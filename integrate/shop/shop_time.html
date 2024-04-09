@@ -129,662 +129,552 @@
 
   <main id="main">
 
-    <!-- 連結管理Modal -->
-    <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- ======= Schedule Section ======= -->
-            <section id="schedule" class="section-with-bg">
-              
-              <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
-                </li>
-              </ul>
-
-              <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-                <!-- Schdule Day 1 -->
-                <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
-                  <form>
-                    <table width="100%" class="insert_group_form">
-                      <tr>
-                        <td>連結類型</td>
-                        <td align="left">
-                          <input type="radio" name="link_type" class="link_radio" id="twitter"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="facebook"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="instagram"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="line"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>連結敘述</td>
-                        <td><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td width="10%">連結網址</td>
-                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                      </tr>
-                    </table>
-                  </form>
-                </div>
-                <!-- End Schdule Day 1 -->
-
-                <!-- Schdule Day 2 -->
-                <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
-                  <form>
-                    <table width="100%" class="social_link_table">
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                        <td width="30%"><input type="text" class="form-control" value="官方推特"></td>
-                        <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
-                      </tr>
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                        <td width="30%"><input type="text" class="form-control" value="三麗鷗快樂購facebook官方社群"></td>
-                        <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                      </tr>
-                      
-                    </table>
-                  </form>
-                </div>
-                <!-- End Schdule Day 2 -->
-
-                <!-- Schdule Day 3 -->
-                <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
-                  <table width="100%" class="social_link_table">
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                      <td width="80%">官方推特</td>
-                      <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                      <td width="80%">三麗鷗快樂購facebook官方社群</td>
-                      <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                    </tr>
-                    
-                  </table>
-               
-                </div>
-                <!-- End Schdule Day  3-->
-
-              </div>
-
-            
-
-            </section><!-- End Schedule Section -->
-            
-            
-            
-          </div>
-        </div>
-      </div>
-    </div>
-
-<!-- ======= shop_group Section ======= -->
-<section id="shop_group" class="shop_group">
-  <div class="container">
-
-    <!-- ======= Schedule Section ======= -->
-    <section id="schedule" class="section-with-bg">
-      
-        
-        <div class="flex-container">
-          <!-- Section Title -->
-          <div class="section-title" data-aos="fade-up">
-            <h2><i class="bi bi-clock-history"></i>&nbsp;&nbsp;限定開團</h2>
-          </div><!-- End Section Title -->
-          <div>
-            <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增開團</button>
-            <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_Preview_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增預告</button>
-          </div>
-          
-          <!-- insert_group_Modal -->
-          <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="insert_group_ModalLabel">新增開團</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <table width="100%" class="insert_group_form">
-                      <tr>
-                        <td width="10%">商品團名</td>
-                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td>結單時間</td>
-                        <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 40%;" value="">&nbsp;&nbsp;<input type="time" name="endtime" class="form-control" style="width: 40%;" value=""></td>
-                      </tr>
-                      <tr>
-                        <td>商團封面</td>
-                        <td><input class="form-control" type="file" id="group_cover"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                      </tr>
-                    </table>
-                    
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div><!-- End insert_group_Modal -->
-
-          <!-- insert_Preview_Modal -->
-          <div class="modal fade" id="insert_Preview_Modal" tabindex="-1" aria-labelledby="insert_Preview_ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="insert_Preview_ModalLabel">新增預告</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <table width="100%" class="insert_group_form">
-                      <tr>
-                        <td width="10%">預告標題</td>
-                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td>預告敘述</td>
-                        <td><textarea class="form-control" rows="5"></textarea></td>
-                      </tr>
-                      <tr>
-                        <td>預告圖片</td>
-                        <td><input class="form-control" type="file" id="group_cover"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                      </tr>
-                    </table>
-                    
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div><!-- insert_Preview_Modal -->
+    <!-- ======= shop_group Section ======= -->
+    <section id="shop_group" class="shop_group">
+      <div class="container">
     
-        </div><!-- End flex-container -->
-        
-
-        <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-          <li class="nav-item">
-            <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-half"></i>&nbsp;進行中</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-start"></i>&nbsp;開團預告</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-end"></i>&nbsp;歷史開團</a>
-          </li>
-        </ul>
-
-        <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-          <!-- Schdule Day 1 -->
-          <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
-
-            <div class="row shop_group-container">
-
-
-                <div class="col-lg-4 col-md-6 shop_group-item">
-                  <div class="shop_group-wrap">
-                    <figure>
-                      <img src="https://thumbor.4gamers.com.tw/KwvSshi__eFtxQzssQALf9Is2kI=/filters:watermark(https://img.4gamers.com.tw/default-image/4gamers_watermark_20190925.png,-5,-3,0,17):format(jpeg):quality(90)/https%3A%2F%2Fimg.4gamers.com.tw%2Fckfinder%2Fimages%2FPanda%2FEvent%2F2021-1%2F220421-hq-%20%285%29.png%3FversionId%3DNZoV9kmCP2TBL1aOctNYI5AnJEAc9sPf" alt="" width="100%" height="100%">
-                      <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                      <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                    </figure>
+        <!-- ======= Schedule Section ======= -->
+        <section id="schedule" class="section-with-bg">
           
-                    <div class="shop_group-info">
-                      <h4><a href="portfolio-details.html">排球少年快閃店</a></h4>
-                      <div class="flex-container">
-                        <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-19</p>
-                        <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          
-                <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
-                  <div class="shop_group-wrap">
-                    <figure>
-                      <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
-                      <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                      <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                    </figure>
-          
-                    <div class="shop_group-info">
-                      <h4><a href="portfolio-details.html">東京-排球少年×三麗鷗聯名快閃店</a></h4>
-                      <div class="flex-container">
-                        <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-02</p>
-                        <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          
-                <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.2s">
-                  <div class="shop_group-wrap">
-                    <figure>
-                      <img src="https://travelimg.yam.com/cdn-cgi/image/w=1200,h=900,fit=cover/data/article/202403/2914093228.jpg" alt="" width="100%" height="100%">
-                      <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                      <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                    </figure>
-          
-                    <div class="shop_group-info">
-                      <h4><a href="portfolio-details.html">烏鴉造型日向、影山娃娃</a></h4>
-                      <div class="flex-container">
-                        <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-30</p>
-                        <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          
-                <div class="col-lg-4 col-md-6 shop_group-item">
-                  <div class="shop_group-wrap">
-                    <figure>
-                      <img src="assets/img/portfolio/portfolio-4.jpg" alt="" width="100%" height="100%">
-                      <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                      <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                    </figure>
-          
-                    <div class="shop_group-info">
-                      <h4><a href="portfolio-details.html">Card 2</a></h4>
-                      <div class="flex-container">
-                        <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-20</p>
-                        <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-            </div>
-
-          </div>
-          <!-- End Schdule Day 1 -->
-
-          <!-- Schdule Day 2 -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
-
-            <div class="row">
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-6">
-                
-                <div class="preview_card">
-                  <table class="preview_table">
-                    <tr class="preview_tr">
-                      <td width="85%">
-                        <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                      </td>
-                      <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" >
-                        <div class="scrollable-row-no-photo">
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                        🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                        📅 開團時間：[日期] [時間]<br>
-                        🛒 販售價格：[價格]<br>
-                        🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                        <br>
-                        敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                
+            
+            <div class="flex-container">
+              <!-- Section Title -->
+              <div class="section-title" data-aos="fade-up">
+                <h2><i class="bi bi-clock-history"></i>&nbsp;&nbsp;限定開團</h2>
+              </div><!-- End Section Title -->
+              <div>
+                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增開團</button>
+                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_Preview_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增預告</button>
               </div>
               
-                
+              <!-- insert_group_Modal -->
+              <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="insert_group_ModalLabel">新增開團</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <table width="100%" class="insert_group_form">
+                          <tr>
+                            <td width="10%">商品團名</td>
+                            <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <td>結單時間</td>
+                            <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 40%;" value="">&nbsp;&nbsp;<input type="time" name="endtime" class="form-control" style="width: 40%;" value=""></td>
+                          </tr>
+                          <tr>
+                            <td>商團封面</td>
+                            <td><input class="form-control" type="file" id="group_cover"></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
+                          </tr>
+                        </table>
+                        
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End insert_group_Modal -->
+    
+              <!-- insert_Preview_Modal -->
+              <div class="modal fade" id="insert_Preview_Modal" tabindex="-1" aria-labelledby="insert_Preview_ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="insert_Preview_ModalLabel">新增預告</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <table width="100%" class="insert_group_form">
+                          <tr>
+                            <td width="10%">預告標題</td>
+                            <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <td>預告敘述</td>
+                            <td><textarea class="form-control" rows="5"></textarea></td>
+                          </tr>
+                          <tr>
+                            <td>預告圖片</td>
+                            <td><input class="form-control" type="file" id="group_cover"></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
+                          </tr>
+                        </table>
+                        
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- insert_Preview_Modal -->
+        
+            </div><!-- End flex-container -->
+            
+    
+            <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+              <li class="nav-item">
+                <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-half"></i>&nbsp;進行中</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-start"></i>&nbsp;開團預告</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-hourglass-end"></i>&nbsp;歷史開團</a>
+              </li>
+            </ul>
+    
+            <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+    
+              <!-- Schdule Day 1 -->
+              <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
+    
+                <div class="row shop_group-container">
+    
+    
+                    <div class="col-lg-4 col-md-6 shop_group-item">
+                      <div class="shop_group-wrap">
+                        <figure>
+                          <img src="https://thumbor.4gamers.com.tw/KwvSshi__eFtxQzssQALf9Is2kI=/filters:watermark(https://img.4gamers.com.tw/default-image/4gamers_watermark_20190925.png,-5,-3,0,17):format(jpeg):quality(90)/https%3A%2F%2Fimg.4gamers.com.tw%2Fckfinder%2Fimages%2FPanda%2FEvent%2F2021-1%2F220421-hq-%20%285%29.png%3FversionId%3DNZoV9kmCP2TBL1aOctNYI5AnJEAc9sPf" alt="" width="100%" height="100%">
+                          <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                          <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                        </figure>
+              
+                        <div class="shop_group-info">
+                          <h4><a href="portfolio-details.html">排球少年快閃店</a></h4>
+                          <div class="flex-container">
+                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-19</p>
+                            <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
+                      <div class="shop_group-wrap">
+                        <figure>
+                          <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
+                          <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                          <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                        </figure>
+              
+                        <div class="shop_group-info">
+                          <h4><a href="portfolio-details.html">東京-排球少年×三麗鷗聯名快閃店</a></h4>
+                          <div class="flex-container">
+                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-02</p>
+                            <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.2s">
+                      <div class="shop_group-wrap">
+                        <figure>
+                          <img src="https://travelimg.yam.com/cdn-cgi/image/w=1200,h=900,fit=cover/data/article/202403/2914093228.jpg" alt="" width="100%" height="100%">
+                          <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                          <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                        </figure>
+              
+                        <div class="shop_group-info">
+                          <h4><a href="portfolio-details.html">烏鴉造型日向、影山娃娃</a></h4>
+                          <div class="flex-container">
+                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-30</p>
+                            <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <div class="col-lg-4 col-md-6 shop_group-item">
+                      <div class="shop_group-wrap">
+                        <figure>
+                          <img src="assets/img/portfolio/portfolio-4.jpg" alt="" width="100%" height="100%">
+                          <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                          <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                        </figure>
+              
+                        <div class="shop_group-info">
+                          <h4><a href="portfolio-details.html">Card 2</a></h4>
+                          <div class="flex-container">
+                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-20</p>
+                            <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+                </div>
+    
+              </div>
+              <!-- End Schdule Day 1 -->
+    
+              <!-- Schdule Day 2 -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
+    
+                <div class="row">
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-6">
+                    
+                    <div class="preview_card">
+                      <table class="preview_table">
+                        <tr class="preview_tr">
+                          <td width="85%">
+                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
+                          </td>
+                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" >
+                            <div class="scrollable-row-no-photo">
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
+                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                            📅 開團時間：[日期] [時間]<br>
+                            🛒 販售價格：[價格]<br>
+                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
+                            <br>
+                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+                  
+                    
+                </div>
+    
+    
+              </div>
+              <!-- End Schdule Day 2 -->
+    
+              <!-- Schdule Day 3 -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
+    
+                <div class="row shop_group-container">
+    
+    
+                  <div class="col-lg-4 col-md-6 shop_group-item">
+                    <div class="shop_group-wrap">
+                      <figure>
+                        <img src="https://thumbor.4gamers.com.tw/KwvSshi__eFtxQzssQALf9Is2kI=/filters:watermark(https://img.4gamers.com.tw/default-image/4gamers_watermark_20190925.png,-5,-3,0,17):format(jpeg):quality(90)/https%3A%2F%2Fimg.4gamers.com.tw%2Fckfinder%2Fimages%2FPanda%2FEvent%2F2021-1%2F220421-hq-%20%285%29.png%3FversionId%3DNZoV9kmCP2TBL1aOctNYI5AnJEAc9sPf" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                        <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                      </figure>
+            
+                      <div class="shop_group-info">
+                        <h4><a href="portfolio-details.html">排球少年快閃店</a></h4>
+                        <div class="flex-container">
+                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(3.4)</p>
+                          <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
+                    <div class="shop_group-wrap">
+                      <figure>
+                        <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                        <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                      </figure>
+            
+                      <div class="shop_group-info">
+                        <h4><a href="portfolio-details.html">東京-排球少年×三麗鷗聯名快閃店</a></h4>
+                        <div class="flex-container">
+                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.8)</p>
+                          <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.2s">
+                    <div class="shop_group-wrap">
+                      <figure>
+                        <img src="https://travelimg.yam.com/cdn-cgi/image/w=1200,h=900,fit=cover/data/article/202403/2914093228.jpg" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                        <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                      </figure>
+            
+                      <div class="shop_group-info">
+                        <h4><a href="portfolio-details.html">烏鴉造型日向、影山娃娃</a></h4>
+                        <div class="flex-container">
+                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.1)</p>
+                          <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="col-lg-4 col-md-6 shop_group-item">
+                    <div class="shop_group-wrap">
+                      <figure>
+                        <img src="assets/img/portfolio/portfolio-4.jpg" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
+                        <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                      </figure>
+            
+                      <div class="shop_group-info">
+                        <h4><a href="portfolio-details.html">Card 2</a></h4>
+                        <div class="flex-container">
+                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(2.3)</p>
+                          <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          
+              </div>
+    
+              </div>
+              <!-- End Schdule Day  3-->
+    
             </div>
-
-
-          </div>
-          <!-- End Schdule Day 2 -->
-
-          <!-- Schdule Day 3 -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
-
-            <div class="row shop_group-container">
-
-
-              <div class="col-lg-4 col-md-6 shop_group-item">
-                <div class="shop_group-wrap">
-                  <figure>
-                    <img src="https://thumbor.4gamers.com.tw/KwvSshi__eFtxQzssQALf9Is2kI=/filters:watermark(https://img.4gamers.com.tw/default-image/4gamers_watermark_20190925.png,-5,-3,0,17):format(jpeg):quality(90)/https%3A%2F%2Fimg.4gamers.com.tw%2Fckfinder%2Fimages%2FPanda%2FEvent%2F2021-1%2F220421-hq-%20%285%29.png%3FversionId%3DNZoV9kmCP2TBL1aOctNYI5AnJEAc9sPf" alt="" width="100%" height="100%">
-                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                  </figure>
-        
-                  <div class="shop_group-info">
-                    <h4><a href="portfolio-details.html">排球少年快閃店</a></h4>
-                    <div class="flex-container">
-                      <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(3.4)</p>
-                      <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
-                <div class="shop_group-wrap">
-                  <figure>
-                    <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
-                    <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                  </figure>
-        
-                  <div class="shop_group-info">
-                    <h4><a href="portfolio-details.html">東京-排球少年×三麗鷗聯名快閃店</a></h4>
-                    <div class="flex-container">
-                      <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.8)</p>
-                      <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.2s">
-                <div class="shop_group-wrap">
-                  <figure>
-                    <img src="https://travelimg.yam.com/cdn-cgi/image/w=1200,h=900,fit=cover/data/article/202403/2914093228.jpg" alt="" width="100%" height="100%">
-                    <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                  </figure>
-        
-                  <div class="shop_group-info">
-                    <h4><a href="portfolio-details.html">烏鴉造型日向、影山娃娃</a></h4>
-                    <div class="flex-container">
-                      <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.1)</p>
-                      <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="col-lg-4 col-md-6 shop_group-item">
-                <div class="shop_group-wrap">
-                  <figure>
-                    <img src="assets/img/portfolio/portfolio-4.jpg" alt="" width="100%" height="100%">
-                    <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="fa-regular fa-heart"></i></a>
-                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                  </figure>
-        
-                  <div class="shop_group-info">
-                    <h4><a href="portfolio-details.html">Card 2</a></h4>
-                    <div class="flex-container">
-                      <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(2.3)</p>
-                      <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    
+          
+    
+        </section><!-- End Schedule Section -->
+          
+    
+      </div>
+    </section><!-- End Portfolio Section -->
+    
+    
+    
+    
       
-          </div>
-
-          </div>
-          <!-- End Schdule Day  3-->
-
-        </div>
-
-      
-
-    </section><!-- End Schedule Section -->
-      
-
-  </div>
-</section><!-- End Portfolio Section -->
-
-
-
-
-  
-
-
-  </main><!-- End #main -->
+    
+    
+      </main><!-- End #main -->
 
   
 
