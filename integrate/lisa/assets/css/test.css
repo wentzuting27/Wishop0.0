@@ -1,0 +1,54 @@
+a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:active {
+    text-decoration: none;
+    color: inherit;
+  }
+.icon-hook {
+    position: relative;
+  }
+  
+  .icon-hook:after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .icon-hook > svg {
+    pointer-events: none;
+  }
+  svg {
+    position: absolute;
+    z-index: 5;
+  }
+  
+ 
+/* Save Demo 2 */
+.star-dashes-2 {
+    opacity: 0;
+    transform-origin: center;
+    transform: scale(.5);
+  }
+  
+  .active .star-dashes-2 {
+    animation: dashes-2 2s forwards;
+  }
+  
+  .active .main-star-2 {
+    fill: yellow;
+    transform: rotate(360deg);
+  }
+  
+  @keyframes dashes-2 {
+    50% {
+      opacity: 1;
+      stroke: #f9f706;
+      transform: rotate(360deg);
+    }
+  }
+      
