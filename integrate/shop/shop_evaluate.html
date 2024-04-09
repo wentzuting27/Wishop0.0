@@ -129,951 +129,841 @@
 
   <main id="main">
 
-    <!-- 連結管理Modal -->
-    <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- ======= Schedule Section ======= -->
-            <section id="schedule" class="section-with-bg">
-              
-              <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
-                </li>
-              </ul>
-
-              <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-                <!-- Schdule Day 1 -->
-                <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
-                  <form>
-                    <table width="100%" class="insert_group_form">
-                      <tr>
-                        <td>連結類型</td>
-                        <td align="left">
-                          <input type="radio" name="link_type" class="link_radio" id="twitter"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="facebook"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="instagram"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
-                          <input type="radio" name="link_type" class="link_radio" id="line"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>連結敘述</td>
-                        <td><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td width="10%">連結網址</td>
-                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                      </tr>
-                    </table>
-                  </form>
-                </div>
-                <!-- End Schdule Day 1 -->
-
-                <!-- Schdule Day 2 -->
-                <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
-                  <form>
-                    <table width="100%" class="social_link_table">
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                        <td width="30%"><input type="text" class="form-control" value="官方推特"></td>
-                        <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
-                      </tr>
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                        <td width="30%"><input type="text" class="form-control" value="三麗鷗快樂購facebook官方社群"></td>
-                        <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                      </tr>
-                      
-                    </table>
-                  </form>
-                </div>
-                <!-- End Schdule Day 2 -->
-
-                <!-- Schdule Day 3 -->
-                <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
-                  <table width="100%" class="social_link_table">
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                      <td width="80%">官方推特</td>
-                      <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                      <td width="80%">三麗鷗快樂購facebook官方社群</td>
-                      <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                    </tr>
-                    
-                  </table>
-               
-                </div>
-                <!-- End Schdule Day  3-->
-
-              </div>
-
-            
-
-            </section><!-- End Schedule Section -->
-            
-            
-            
-          </div>
-        </div>
-      </div>
-    </div>
-
-<!-- ======= shop_group Section ======= -->
-<section id="shop_group" class="shop_group">
-  <div class="container">
-
-    <!-- ======= evaluate Section ======= -->
-    <section id="evaluate" class="section-with-bg">
-        
-      <!-- Section Title -->
-      <div class="section-title" data-aos="fade-up">
-        <h2><i class="fa-regular fa-comment-dots"></i>&nbsp;&nbsp;賣場評價</h2>
-      </div><!-- End Section Title -->
+    <!-- ======= shop_group Section ======= -->
+    <section id="shop_group" class="shop_group">
+      <div class="container">
     
-
-        <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-          <li class="nav-item">
-            <a class="nav-link active" href="#5star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#4star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#3star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#2star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#1star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i></a>
-          </li>
-        </ul>
-
-        <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-          <!-- 5star -->
-          <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star">
-            <div class="row">
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" ><div class="scrollable-row">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">非常感謝</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></div></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" style="height: 70px;"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/474x/31/89/59/318959c8e4555be7c61750eed9bbc1a7.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><div class="scrollable-row-no-photo">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-              
-                
-            </div>
-          </div>
+        <!-- ======= evaluate Section ======= -->
+        <section id="evaluate" class="section-with-bg">
+            
+          <!-- Section Title -->
+          <div class="section-title" data-aos="fade-up">
+            <h2><i class="fa-regular fa-comment-dots"></i>&nbsp;&nbsp;賣場評價</h2>
+          </div><!-- End Section Title -->
         
-          <!-- End 5star -->
-
-          <!-- 4star -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="4star">
-            <div class="row">
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
+    
+            <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+              <li class="nav-item">
+                <a class="nav-link active" href="#5star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#4star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#3star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#2star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#1star" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-wand-sparkles"></i></a>
+              </li>
+            </ul>
+    
+            <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+    
+              <!-- 5star -->
+              <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star">
+                <div class="row">
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" ><div class="scrollable-row">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">非常感謝</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></div></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/474x/31/89/59/318959c8e4555be7c61750eed9bbc1a7.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><div class="scrollable-row-no-photo">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+                  
+                    
                 </div>
-                
               </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
+            
+              <!-- End 5star -->
+    
+              <!-- 4star -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="4star">
+                <div class="row">
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">非常感謝</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-4">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="15%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+                  
+                    
                 </div>
-                
+          
               </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">非常感謝</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"></td>
-                    </tr>
-                  </table>
+    
+    
+              <!-- End 4star -->
+    
+              <!-- 3star -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="3star">
+                <div class="row">
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">非常感謝</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+                  
+                    
                 </div>
-                
               </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
+    
+    
+              <!-- End 3star-->
+    
+              <!-- 2star -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="2star">
+                <div class="row">
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">非常感謝</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+    
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
+                          <td width="60%">
+                            <span>Taro_0106</span><br>
+                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>
+                  
+                    
                 </div>
-                
               </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
+    
+    
+              <!-- End 2star-->
+    
+              <!-- 1star -->
+              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="1star">
+    
               </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-4">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="15%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-              
-                
+    
+    
+              <!-- End 1star-->
+    
             </div>
+    
+          
+    
+        </section><!-- End evaluate Section -->
+          
+    
+      </div>
+    </section><!-- End shop_group Section -->
+    
+    
+    
+    
       
-          </div>
-
-
-          <!-- End 4star -->
-
-          <!-- 3star -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="3star">
-            <div class="row">
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">非常感謝</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card2">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-              
-                
-            </div>
-          </div>
-
-
-          <!-- End 3star-->
-
-          <!-- 2star -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="2star">
-            <div class="row">
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">非常感謝</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/89/c6/23/89c623bb146eab0a3d6395a61bda0523.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/94/21/d8/9421d8ee234a00b9e2715ebb79a3e021.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/fd/fb/3e/fdfb3e996271fe9d6a35b5581c625d0e.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-
-              <div class="col-lg-12">
-                
-                <div class="evaluate_card">
-                  <table class="evaluate_table">
-                    <tr>
-                      <td width="5%"><img src="https://i.pinimg.com/564x/b5/36/bc/b536bc0a7083abe3d64e36e671443982.jpg" class="people_photo"></td>
-                      <td width="60%">
-                        <span>Taro_0106</span><br>
-                        <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                      </td>
-                      <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><img src="https://alibabanews.oss-accelerate.aliyuncs.com/hk/2022/07/dde72d338e5ff1a56f71324c09602d92.png?x-oss-process=style%2Flarge" class="goods_photo"></td>
-                    </tr>
-                  </table>
-                </div>
-                
-              </div>
-              
-                
-            </div>
-          </div>
-
-
-          <!-- End 2star-->
-
-          <!-- 1star -->
-          <div role="tabpanel" class="col-lg-12  tab-pane fade" id="1star">
-
-          </div>
-
-
-          <!-- End 1star-->
-
-        </div>
-
-      
-
-    </section><!-- End evaluate Section -->
-      
-
-  </div>
-</section><!-- End shop_group Section -->
-
-
-
-
-  
-
-
-  </main><!-- End #main -->
+    
+    
+      </main><!-- End #main -->
 
   
 
