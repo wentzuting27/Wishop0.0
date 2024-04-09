@@ -1038,7 +1038,7 @@ section {
   bottom: 0;
   left: 0; /* 从左侧开始，使得按钮和覆盖层都贴近左侧边界 */
   width: 100%;
-  height: 20px; /* 設置覆蓋層高度 */
+  height: 15px; /* 設置覆蓋層高度 */
   background-color: rgba(255, 255, 255, 0.8); /* 設置覆蓋層顏色 */
 }
 }
@@ -1427,11 +1427,23 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
 .table checkbox{
   transform: scale(2.5);
 }
-
-.modal-dialog {
-  z-index: 1050; /* 设置一个比阴影层更高的 z-index 值 */
+.has-search .form-control {
+  padding-left: 2.375rem;
+  margin-left: 40px;
+  width: 900px;
 }
 
-body.modal-open{
-    height: 1000px;
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }
+
+
+
