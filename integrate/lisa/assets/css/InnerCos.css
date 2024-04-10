@@ -72,10 +72,10 @@ a {
     --------------------------------------------------------------*/
   .breadcrumbs {
     padding: 13px 0;
-    background: #f8f9fa;
+    background-color: rgba(175, 162, 199, 0.865);
     min-height: 30px;
     position: relative;
-    z-index: 9;
+    z-index: 2;
   }
   
   
@@ -122,7 +122,7 @@ a {
   }
   marquee {
     font-size: 20px;
-    background-color: #3b7dff;
+    background-color: #fc9ac1;
     color: #333; /* 修改文字颜色 */
     padding: 10px; /* 调整内边距 */
     width: 65%; /* 调整宽度 */
@@ -208,7 +208,7 @@ a {
     --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 65vh;
+    height: 450px;
     overflow: hidden;
     position: relative;
     margin-top: -20px;
@@ -226,7 +226,7 @@ a {
   
   .big-profile-picture {
     margin: 0 auto;
-    border: 5px solid #d7d6d6;
+    border: 5px solid #b0a5c6a8;
     width: 150px;
     height: 150px;
   }
@@ -255,9 +255,9 @@ a {
     border-radius: 30px;
     transition: 0.5s;
     line-height: 1;
-    color: #6142ff;
+    color: #ffffff;
     animation-delay: 0.8s;
-    background: #fff788;
+    background: #E9C9D6;
   }
   
   
@@ -327,13 +327,13 @@ a {
         margin:10px;
         font-size:10px;
         color: #ffffff;
-        background-color:#c5a5ff;
+        background-color:#c3b7dc;
         border-radius:20px;
         box-shadow:0 1px 2px rgba(0,0,0,.3);
         cursor:pointer;
         &:hover {
-          color:rgb(56, 146, 74);
-          background:#ffd49b;
+          color:rgb(255, 255, 255);
+          background:#E9C9D6;
         }
       }
     } 
@@ -399,7 +399,7 @@ a {
   #subject ul li label {
     transition: all 0.3s ease-in-out;
     font-size: 0.6cm;
-    color: #c5a5ff;
+    color: #c3b7dc;
     padding: 5px auto;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -823,6 +823,7 @@ a {
     display: block;
   }
 }
+
   /*--------------------------------------------------------------
   # Sections General
   --------------------------------------------------------------*/
@@ -868,6 +869,7 @@ section {
   @media (min-width: 900px) {
     .small {
       width: 50px;
+      
       position: fixed;
       top: 200px;
       left: 70px;
@@ -880,6 +882,14 @@ section {
       width: 100%; /* 确保菜单占满父容器宽度 */
       max-height: 100%; /* 防止菜单高度超过屏幕高度 */
       overflow-y: auto; /* 添加纵向滚动条 */
+      .list-group-item{
+      background-color: #E9C9D6;
+      color:#FFF
+      }
+      .list-group-item:hover{
+        background-color: #e2b4c8;
+        color:#FFF
+        }
     }
   }
   

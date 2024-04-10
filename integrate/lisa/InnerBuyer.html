@@ -47,7 +47,7 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs" style="background-color: #b0a5c6a8;">
+    <section id="breadcrumbs" class="breadcrumbs" >
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -66,7 +66,7 @@
       <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;background-color: rgba(148, 148, 148, 0.733)">
+    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
       </div>
       <div class="edit_like_shop_button">
         <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
@@ -141,7 +141,7 @@
       </div>
 
       <!-- Showcase -->
-      <div class="card mb-3" style="width: 100%;margin-top: -15px;border: none;background-color: #ffffff00;">
+      <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
@@ -296,7 +296,7 @@
                     </td>
                     <td colspan="2">
                       <fieldset>
-                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
                       </fieldset>
                     </td>
                   </tr>
@@ -311,9 +311,9 @@
           <div>
             <div class="small">
               <div id="list-example" class="list-group">
-                <a class="list-group-item list-group-item-action" href="#list-item-1">已上架區塊</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-2">待上架區塊</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-3">下架區塊</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-1"><b>已上架區塊</b></a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2"><b>待上架區塊</b></a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3"><b>下架區塊</b></a>
               </div>
             </div>
             <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
@@ -1051,7 +1051,91 @@
 
           <button onclick="showCsv()">Console log csv code</button>
           <button onclick="download()">Download csv file</button>
-          <br><br><br>
+          <br><br><br><div class="seven">
+              <h1>接收訂單</h1>
+            </div>
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Description</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                  <th>Amount</th>
+                  <th>確認接收</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Alphabet puzzle</td>
+                  <td>2016/01/15</td>
+                  <td>Done</td>
+                  <td>1000</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" 
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>2</td>
+                  <td>Layout for poster</td>
+                  <td>2016/01/31</td>
+                  <td>Planned</td>
+                  <td>1834</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Image creation</td>
+                  <td>2016/01/23</td>
+                  <td>To Do</td>
+                  <td>1500</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Create font</td>
+                  <td>2016/02/26</td>
+                  <td>Done</td>
+                  <td>1200</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Sticker production</td>
+                  <td>2016/02/18</td>
+                  <td>Planned</td>
+                  <td>2100</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>11</td>
+                  <td>Wedding announcement</td>
+                  <td>2016/07/09</td>
+                  <td>To Do</td>
+                  <td>299</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table><br>
           <div class="seven">
             <h1>認證區塊</h1>
           </div>
@@ -1132,8 +1216,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div></div>
+            <br>
+            
+          
       </div>
       </section>
     </div>
