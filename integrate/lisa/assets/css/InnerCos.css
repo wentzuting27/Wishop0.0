@@ -51,6 +51,22 @@ a {
     height: 5px;
     background-color: #f8f8f8;
   }
+    /*--------------------------------------------------------------
+    # modal
+    --------------------------------------------------------------*/
+
+  /* 在样式表中定义模态框按钮的共同样式 */
+.modal-footer .btn {
+  background-color: #E9C9D6; /* 统一按钮背景颜色 */
+  border:none;
+  color: white; /* 统一文字颜色 */
+}
+
+/* 鼠标悬停时的样式 */
+.modal-footer .btn:hover {
+  background-color: #D89AB5; /* 悬停时背景颜色 */
+}
+
   /*--------------------------------------------------------------
     # Breadcrumbs
     --------------------------------------------------------------*/
@@ -59,7 +75,7 @@ a {
     background: #f8f9fa;
     min-height: 30px;
     position: relative;
-    z-index: 9999;
+    z-index: 9;
   }
   
   
@@ -132,7 +148,25 @@ a {
     border-radius: 50%; /* 将圆点设置为圆形 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
   }
+  /*--------------------------------------------------------------
+# insert_group_form
+--------------------------------------------------------------*/
+.edit_like_shop_button {
+  position: absolute; /* 或者使用 absolute */
+  top: 25px; /* 設置相應的位置 */
+  right: 20px; /* 設置相應的位置 */
+  z-index: 996; /* 設置一個足夠高的 z-index 值 */
+  button{
+    background-color: #E9C9D6;
+    color: white;
+    cursor: pointer; /* 让鼠标在按钮上显示指针 */
+  }
+  button:hover {
+    background-color: #e2b4c8; /* 鼠标悬停时的背景颜色 */
+    color:white;
+  }
   
+}
   
   /*--------------------------------------------------------------
     # Back to top button
