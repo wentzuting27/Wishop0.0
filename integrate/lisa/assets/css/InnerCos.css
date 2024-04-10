@@ -365,7 +365,7 @@ a {
   #subject ul li label {
     transition: all 0.3s ease-in-out;
     font-size: 0.6cm;
-    color: #99b7e8;
+    color: #c5a5ff;
     padding: 5px auto;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -396,7 +396,7 @@ a {
   #subject ul li label:focus,
   #subject ul li label:active {
     outline: 0;
-    color: #bec5cf;
+    color: #E9C9D6;
   }
   
   #subject ul li label:hover svg,
@@ -433,7 +433,7 @@ a {
   }
   
   .tabs .content section h2 {
-    color: #428BFF;
+    color: #E9C9D6;
     display: none;
   }
   
@@ -443,7 +443,7 @@ a {
     display: block;
     width: 30px;
     height: 3px;
-    background: #428BFF;
+    background: #E9C9D6;
     margin-top: 5px;
     left: 1px;
   }
@@ -466,11 +466,11 @@ a {
   
   .tabs input[name=tab-control]:nth-of-type(2):checked~#subject ul>li:nth-child(2)>label {
     cursor: default;
-    color: #428BFF;
+    color: #E9C9D6;
   }
   
   .tabs input[name=tab-control]:nth-of-type(2):checked~#subject ul>li:nth-child(2)>label svg {
-    fill: #428BFF;
+    fill: #E9C9D6;
   }
   
   @media (max-width: 600px) {
@@ -489,11 +489,11 @@ a {
   
   .tabs input[name=tab-control]:nth-of-type(3):checked~#subject ul>li:nth-child(3)>label {
     cursor: default;
-    color: #428BFF;
+    color: #E9C9D6;
   }
   
   .tabs input[name=tab-control]:nth-of-type(3):checked~#subject ul>li:nth-child(3)>label svg {
-    fill: #428BFF;
+    fill: #E9C9D6;
   }
   
   @media (max-width: 600px) {
@@ -512,11 +512,11 @@ a {
   
   .tabs input[name=tab-control]:nth-of-type(4):checked~#subject ul>li:nth-child(4)>label {
     cursor: default;
-    color: #428BFF;
+    color: #E9C9D6;
   }
   
   .tabs input[name=tab-control]:nth-of-type(4):checked~#subject ul>li:nth-child(4)>label svg {
-    fill: #428BFF;
+    fill: #E9C9D6;
   }
   
   @media (max-width: 600px) {
@@ -677,7 +677,7 @@ a {
     cursor: pointer;
     width: 100%;
     border: none;
-    background: #4CAF50;
+    background: #E9C9D6;
     color: #FFF;
     margin: 0 0 5px;
     padding: 10px;
@@ -685,7 +685,7 @@ a {
   }
   
   #contact button[type="submit"]:hover {
-    background: #43A047;
+    background: #E9C9D6;
     -webkit-transition: background 0.3s ease-in-out;
     -moz-transition: background 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
@@ -831,6 +831,70 @@ section {
     font-family: "Poppins", sans-serif;
     color: #4D96C2;
   }
+  @media (min-width: 900px) {
+    .small {
+      width: 50px;
+      position: fixed;
+      top: 200px;
+      left: 70px;
+      height: 100%; /* 保持满屏高度 */
+      overflow-y: auto; /* 添加纵向滚动条 */
+      z-index: 999; /* 确保菜单在页面上方 */
+    }
+  
+    .list-group {
+      width: 100%; /* 确保菜单占满父容器宽度 */
+      max-height: 100%; /* 防止菜单高度超过屏幕高度 */
+      overflow-y: auto; /* 添加纵向滚动条 */
+    }
+  }
+  
+    /*--------------------------------------------------------------
+  # 待上架商品
+  -*/
+  .waiting .card-head {
+    display: grid; /* 使用 Grid 布局 */
+    place-items: center; /* 在容器中居中 */
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 200px; /* 设置外框的高度 */
+  }
+  
+  .waiting .card-head img {
+    position: absolute;
+    max-width: 100%; /* 图片的最大宽度为外框宽度 */
+    height: auto; /* 自适应高度 */
+  }
+  .waiting2 .card-head {
+    display: grid; /* 使用 Grid 布局 */
+    place-items: center; /* 在容器中居中 */
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 200px; /* 设置外框的高度 */
+  }
+  
+  .waiting2 .card-head img {
+    position: absolute;
+    max-width: 100%; /* 图片的最大宽度为外框宽度 */
+    height: auto; /* 自适应高度 */
+  }
+  .waiting3 .card-head {
+    display: grid; /* 使用 Grid 布局 */
+    place-items: center; /* 在容器中居中 */
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 200px; /* 设置外框的高度 */
+  }
+  
+  .waiting3 .card-head img {
+    position: absolute;
+    max-width: 100%; /* 图片的最大宽度为外框宽度 */
+    max-height:200px ; /* 自适应高度 */
+  }
+  
+  
+  
+  
   /*--------------------------------------------------------------
   # 商品
   -*/
