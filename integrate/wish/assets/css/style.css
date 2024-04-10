@@ -2521,6 +2521,7 @@ section {
 }
 
 .bid .member .pic img {
+  aspect-ratio: 1/1;
   transition: ease-in-out 0.3s;
 }
 
@@ -2570,3 +2571,7 @@ section {
   font-weight: 600;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
