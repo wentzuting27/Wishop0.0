@@ -2184,7 +2184,27 @@ section {
   aspect-ratio: 1/1;
 }
 
+.button_success:disabled {
+  background: #83c57e;
+  color: #fff;
+  border-color:#83c57e;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 14px;
+  margin: 0;
+  border-radius: 5px;
+}
 
+.button_fail:disabled {
+  background: #d55858;
+  color: #fff;
+  border-color:#d55858;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 14px;
+  margin: 0;
+  border-radius: 5px;
+}
 
 /*--------------------------------------------------------------
 # insert_button(e6d0d9)
