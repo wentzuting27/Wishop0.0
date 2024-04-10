@@ -2018,3 +2018,26 @@ profile2(頭貼、名字)
   font-weight: 600;
 }
 
+/*--------------------------------------------------------------
+# 已結單
+--------------------------------------------------------------*/
+
+.shop_group-wrap {
+  position: relative;
+}
+
+.shop_group-wrap .btn-floating {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999; /* 确保按钮位于其他内容之上 */
+}
+
+.shop_group-wrap .btn-floating:disabled {
+  padding:  5px 10px 5px 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: 0px;
+  background-color: #ec6b6b;
+}
