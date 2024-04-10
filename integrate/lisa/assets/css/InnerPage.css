@@ -207,8 +207,7 @@ marquee span:before {
 
 #hero .btn-get-started {
   font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 14px 32px;
@@ -287,13 +286,13 @@ marquee span:before {
       margin:10px;
       font-size:10px;
       color: #ffffff;
-      background-color:#c3b7dc;
+      background-color:#c5a5ff;
       border-radius:20px;
       box-shadow:0 1px 2px rgba(0,0,0,.3);
       cursor:pointer;
       &:hover {
-        color:rgb(255, 255, 255);
-        background:#E9C9D6;
+        color:rgb(56, 146, 74);
+        background:#ffd49b;
       }
     }
   } 
@@ -359,7 +358,7 @@ marquee span:before {
 #subject ul li label {
   transition: all 0.3s ease-in-out;
   font-size: 0.6cm;
-  color: #c3b7dc;
+  color: #c5a5ff;
   padding: 5px auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -661,7 +660,7 @@ section {
   padding-right: 30px;
   outline: none;
   cursor: pointer;
-  color: #B0A5C6;
+  color: #E9C9D6;
 }
 
 .why-us .accordion-list span {
@@ -674,7 +673,7 @@ section {
   font-size: 24px;
   right: 0;
   top: 0;
-  color: #e6d0d9;
+  color: #B0A5C6;
 }
 
 .why-us .accordion-list p {
@@ -690,7 +689,7 @@ section {
 }
 
 .why-us .accordion-list a.collapsed {
-  color: #e6d0d9;
+  color: #B0A5C6;
 }
 
 .why-us .accordion-list a:hover {
