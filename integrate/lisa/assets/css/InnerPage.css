@@ -286,13 +286,13 @@ marquee span:before {
       margin:10px;
       font-size:10px;
       color: #ffffff;
-      background-color:#c5a5ff;
+      background-color:#c3b7dc;
       border-radius:20px;
       box-shadow:0 1px 2px rgba(0,0,0,.3);
       cursor:pointer;
       &:hover {
-        color:rgb(56, 146, 74);
-        background:#ffd49b;
+        color:rgb(255, 255, 255);
+        background:#E9C9D6;
       }
     }
   } 
@@ -358,7 +358,7 @@ marquee span:before {
 #subject ul li label {
   transition: all 0.3s ease-in-out;
   font-size: 0.6cm;
-  color: #c5a5ff;
+  color: #c3b7dc;
   padding: 5px auto;
   overflow: hidden;
   text-overflow: ellipsis;
