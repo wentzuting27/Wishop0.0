@@ -107,7 +107,25 @@ marquee span:before {
   border-radius: 50%; /* 将圆点设置为圆形 */
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
 }
-
+/*--------------------------------------------------------------
+# insert_group_form
+--------------------------------------------------------------*/
+.edit_like_shop_button {
+  position: absolute; /* 或者使用 absolute */
+  top: 25px; /* 設置相應的位置 */
+  right: 20px; /* 設置相應的位置 */
+  z-index: 996; /* 設置一個足夠高的 z-index 值 */
+  button{
+    background-color: #E9C9D6;
+    color: white;
+    cursor: pointer; /* 让鼠标在按钮上显示指针 */
+  }
+  button:hover {
+    background-color: #e2b4c8; /* 鼠标悬停时的背景颜色 */
+    color:white;
+  }
+  
+}
 
 /*--------------------------------------------------------------
   # Back to top button
@@ -340,7 +358,7 @@ marquee span:before {
 #subject ul li label {
   transition: all 0.3s ease-in-out;
   font-size: 0.6cm;
-  color: #99b7e8;
+  color: #c5a5ff;
   padding: 5px auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -371,7 +389,7 @@ marquee span:before {
 #subject ul li label:focus,
 #subject ul li label:active {
   outline: 0;
-  color: #bec5cf;
+  color: #E9C9D6;
 }
 
 #subject ul li label:hover svg,
@@ -408,7 +426,7 @@ marquee span:before {
 }
 
 .tabs .content section h2 {
-  color: #428BFF;
+  color: #E9C9D6;
   display: none;
 }
 
@@ -418,7 +436,7 @@ marquee span:before {
   display: block;
   width: 30px;
   height: 3px;
-  background: #428BFF;
+  background: #E9C9D6;
   margin-top: 5px;
   left: 1px;
 }
@@ -441,11 +459,11 @@ marquee span:before {
 
 .tabs input[name=tab-control]:nth-of-type(2):checked~#subject ul>li:nth-child(2)>label {
   cursor: default;
-  color: #428BFF;
+  color: #E9C9D6;
 }
 
 .tabs input[name=tab-control]:nth-of-type(2):checked~#subject ul>li:nth-child(2)>label svg {
-  fill: #428BFF;
+  fill: #E9C9D6;
 }
 
 @media (max-width: 600px) {
@@ -464,11 +482,11 @@ marquee span:before {
 
 .tabs input[name=tab-control]:nth-of-type(3):checked~#subject ul>li:nth-child(3)>label {
   cursor: default;
-  color: #428BFF;
+  color: #E9C9D6;
 }
 
 .tabs input[name=tab-control]:nth-of-type(3):checked~#subject ul>li:nth-child(3)>label svg {
-  fill: #428BFF;
+  fill: #E9C9D6;
 }
 
 @media (max-width: 600px) {
@@ -487,11 +505,11 @@ marquee span:before {
 
 .tabs input[name=tab-control]:nth-of-type(4):checked~#subject ul>li:nth-child(4)>label {
   cursor: default;
-  color: #428BFF;
+  color: #E9C9D6;
 }
 
 .tabs input[name=tab-control]:nth-of-type(4):checked~#subject ul>li:nth-child(4)>label svg {
-  fill: #428BFF;
+  fill: #E9C9D6;
 }
 
 @media (max-width: 600px) {

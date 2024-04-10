@@ -1,4 +1,3 @@
-
 //商品
 $(document).ready(function() {
   var owl = $("#slider-carousel");
@@ -11,6 +10,59 @@ $(document).ready(function() {
     pagination: false
   });
 });
+//商品
+$(document).ready(function() {
+  var owl = $("#slider-carouse2");
+  owl.owlCarousel({
+    items: 3,
+    itemsDesktop: [1000, 4],
+    itemsDesktopSmall: [900, 2],
+    itemsTablet: [600, 1],
+    itemsMobile: false,
+    pagination: false
+  });
+});
+//商品
+$(document).ready(function() {
+  var owl = $("#slider-carouse3");
+  owl.owlCarousel({
+    items: 3,
+    itemsDesktop: [1000, 4],
+    itemsDesktopSmall: [900, 2],
+    itemsTablet: [600, 1],
+    itemsMobile: false,
+    pagination: false
+  });
+});
+//商品
+$(document).ready(function() {
+  var owl = $("#slider-carouse4");
+  owl.owlCarousel({
+    items: 3,
+    itemsDesktop: [1000, 4],
+    itemsDesktopSmall: [900, 2],
+    itemsTablet: [600, 1],
+    itemsMobile: false,
+    pagination: false
+  });
+});
+
+window.addEventListener('load', function() {
+  var listContainer = document.getElementById('list-container');
+  var screenHeight = window.innerHeight;
+  var targetHeight = 900; // 设定目标高度
+
+  window.addEventListener('scroll', function() {
+    var currentHeight = window.scrollY;
+    if (currentHeight <= targetHeight && screenHeight <= targetHeight) {
+      listContainer.style.display = 'block';
+    } else {
+      listContainer.style.display = 'none';
+    }
+  });
+});
+
+
 document.getElementById('pra').addEventListener('click', function() {
   var owl = document.querySelector(
     "#slider-carousel");
