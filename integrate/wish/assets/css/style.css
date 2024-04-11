@@ -2023,8 +2023,8 @@ section {
 }
 
 .fixed-image {
-  width: 420px;
-  height: 420px;
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
 }
 
 .fixed-image2 {
@@ -2054,6 +2054,42 @@ section {
   border-radius: 5px;
 }
 
+.courses-list .col-lg-4 {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1400px) {
+  .courses-list .col-lg-4 {
+    flex: 50%; 
+  }
+
+  .fixed-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  .courses-list .col-lg-4 {
+    display: flex; 
+    justify-content: center;
+  }
+
+  .courses-list .col-lg-4 .course-item {
+    text-align: left; 
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .courses-list .col-lg-4 {
+    flex: 100%; 
+  }
+
+  .fixed-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+
+}
 
 /*--------------------------------------------------------------
 # insert_button(e6d0d9)

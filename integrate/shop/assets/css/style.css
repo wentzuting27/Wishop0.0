@@ -1649,6 +1649,7 @@ profile2(頭貼、名字)
 }
 
 .fixed-image {
+  border-radius: 10px 10px 0px 0px;
   width: 100%;
 }
 
@@ -1698,17 +1699,6 @@ profile2(頭貼、名字)
     width: 100%;
     aspect-ratio: 1/1;
   }
-}
-
-@media (max-width: 1000px) {
-  .courses-list .col-lg-4 {
-    flex: 100%; 
-  }
-
-  .fixed-image {
-    width: 100%;
-    height: auto;
-  }
 
   .courses-list .col-lg-4 {
     display: flex; 
@@ -1718,6 +1708,19 @@ profile2(頭貼、名字)
   .courses-list .col-lg-4 .course-item {
     text-align: left; 
   }
+
+}
+
+@media (max-width: 1000px) {
+  .courses-list .col-lg-4 {
+    flex: 100%; 
+  }
+
+  .fixed-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+
 }
 
 
