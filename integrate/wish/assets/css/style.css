@@ -1766,15 +1766,12 @@ section {
 .blog2 .sidebar .search-form form {
   background: #fff;
   border: 1px solid #ddd;
-  padding: 3px 10px;
   position: relative;
 }
 
 .blog2 .sidebar .search-form form input[type=text] {
   border: 0;
-  padding: 4px;
   border-radius: 4px;
-  width: calc(100% - 40px);
 }
 
 .blog2 .sidebar .search-form form button {
