@@ -224,6 +224,9 @@ marquee span:before {
   background: #E9C9D6;
 }
 
+#hero .btn-get-started:hover {
+  background: #B0A5C6;
+}
 
 
 @media (max-width: 992px) {
@@ -1066,7 +1069,7 @@ section {
 }
 }
 .card.border-secondary.mb-12 .card-body .card-text {
-  color: #000000;
+  color: #5f5f5f;
 }
 
 /*--------------------------------------------------------------
