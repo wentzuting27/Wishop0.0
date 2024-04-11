@@ -82,7 +82,7 @@ h6 {
 }
 marquee {
   font-size: 20px;
-  background-color: #fc9ac1;
+  background-color: #ffffffc1;
   color: #333; /* 修改文字颜色 */
   padding: 10px; /* 调整内边距 */
   width: 65%; /* 调整宽度 */
@@ -93,6 +93,11 @@ marquee {
   margin-top: -20px;
   margin-bottom: 15px;
   margin-left: -260px;
+}
+
+marquee span {
+  color: #666768;
+  font-weight: 600;
 }
 
 marquee span:before {
