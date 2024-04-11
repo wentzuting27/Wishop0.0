@@ -1649,8 +1649,7 @@ profile2(頭貼、名字)
 }
 
 .fixed-image {
-  width: 420px;
-  height: 420px;
+  width: 100%;
 }
 
 .fixed-image2 {
@@ -1685,6 +1684,43 @@ profile2(頭貼、名字)
   overflow: hidden; /* 隐藏超出部分 */
   text-overflow: ellipsis; /* 文本超出时显示省略号 */
 }
+
+.courses-list .col-lg-4 {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1400px) {
+  .courses-list .col-lg-4 {
+    flex: 50%; 
+  }
+
+  .fixed-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 1000px) {
+  .courses-list .col-lg-4 {
+    flex: 100%; 
+  }
+
+  .fixed-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .courses-list .col-lg-4 {
+    display: flex; 
+    justify-content: center;
+  }
+
+  .courses-list .col-lg-4 .course-item {
+    text-align: left; 
+  }
+}
+
+
 
 /*--------------------------------------------------------------
 # Blog
