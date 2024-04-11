@@ -790,6 +790,27 @@ profile2(頭貼、名字)
   padding: 10px 100px;
 }
 
+@media (max-width: 1040px) {
+  #schedule .nav-tabs li {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+  }
+
+  .section-title h2 {
+    font-weight: 600;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .nav-tabs li {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+  }
+}
+
 @media (max-width: 991px) {
   #schedule .nav-tabs a {
     padding: 8px 60px;
