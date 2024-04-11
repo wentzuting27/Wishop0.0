@@ -1259,12 +1259,26 @@ section {
   .features .nav-link {
     border: 0;
     padding: 15px;
+    text-align: center;
   }
 
   .features .nav-link.active {
-    color: #fff;
+    color: #E9C9D6;
     background: #E9C9D6;
   }
+
+  .nav.justify-content-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 靠左對齊 */
+  }
+  
+  .nav-item {
+    flex: 0 0 calc(30% - 0px); /* 設置每個項目寬度為一半，減去一定的間距 */
+    max-width: calc(30% - 0px); /* 同樣設置最大寬度 */
+    margin-bottom: 60px; /* 加上底部間距 */
+  }
+  
 }
 
 /*--------------------------------------------------------------
