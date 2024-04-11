@@ -100,6 +100,11 @@ marquee span {
   font-weight: 600;
 }
 
+marquee span {
+  color: #666768;
+  font-weight: 600;
+}
+
 marquee span:before {
   display: inline-block;
   content: "";
