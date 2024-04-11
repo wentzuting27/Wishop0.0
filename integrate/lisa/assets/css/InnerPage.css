@@ -1190,7 +1190,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #E9C9D6;
+  background: #B0A5C6;
   border: 0;
   padding: 10px 24px;
   color: #fff;
@@ -1199,7 +1199,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #e24d55;
+  background:#E9C9D6;
 }
 
 @keyframes animate-loading {
@@ -1220,9 +1220,10 @@ section {
   height: 1.7rem;
   width: 3rem;
   border-radius: 1.9rem;
-  color: #45659c;
-  background-color: #b6cffb;
+  background-color: #e8eaed;
 }
+
+
 #btn1 .btn-toggle:before,
  #btn1 .btn-toggle:after {
   line-height: 1.5rem;
@@ -1237,25 +1238,27 @@ section {
   transition: opacity 0.25s;
 }
  #btn1 .btn-toggle:before {
-  content: '公開';
   left: -5rem;
 }
  #btn1 .btn-toggle:after {
-  content: '不公開';
-  right: -5.5rem;
+  content: '公開';
+  right: -4.5rem;
+  font-size: 20px;
   opacity: 0.5;
 }
  #btn1 .btn-toggle > .handle {
   position: absolute;
-  top: 0.1875rem;
+  top: 0.28rem;
   left: 0.1875rem;
   width: 1.125rem;
   height: 1.125rem;
   border-radius: 1.125rem;
-  background: #ffd5d5;
+  background: #fff;
   transition: left 0.25s;
   padding: 0%;
 }
+
+
 
 #btn1 .btn-toggle.active > .handle {
   left: 1.6875rem;
@@ -1286,6 +1289,7 @@ section {
 #btn1 .btn-toggle:after {
   color: #6b7381;
 }
+
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
   outline: thin dotted;
