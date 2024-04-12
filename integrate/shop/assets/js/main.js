@@ -247,3 +247,26 @@ let isDragging = false;
 
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
+
+
+
+/**
+   * 縮小後的側邊導覽列
+   */
+document.getElementById('triggerBtn').addEventListener('click', function() {
+  const slideItems = document.querySelectorAll('.slideItem');
+  let delay = 0;
+
+  slideItems.forEach(function(item) {
+    setTimeout(function() {
+      if (item.style.display === 'none' || item.style.display === '') {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    }, delay);
+    delay += 100; // Adjust the delay time (in milliseconds) based on your preference
+  });
+});
