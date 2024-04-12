@@ -750,7 +750,10 @@ section {
   }
 
   .breadcrumbs .d-flex {
-    display: block !important;
+    display: flex; /* 修改为flex布局 */
+    justify-content: space-between; /* 水平方向上均匀分布元素 */
+    align-items: center; /* 垂直方向上居中对齐元素 */
+    flex-wrap: wrap; /* 当空间不足时换行 */
   }
 
   .breadcrumbs h2 {
@@ -758,7 +761,8 @@ section {
   }
 
   .breadcrumbs ol {
-    display: block;
+    display: inline-block; /* 修改为内联块级元素 */
+    margin-right: 10px; /* 调整面包屑列表与按钮之间的间距 */
   }
 
   .breadcrumbs ol li {
@@ -2017,6 +2021,42 @@ section {
   border-radius: 5px;
 }
 
+@media (max-width: 1000px) {
+  #formFile {
+    max-width: 303px; /* 设置最大宽度 */
+  }
+}
+
+@media (max-width: 500px) {
+  #formFile {
+    max-width: 375px; /* 设置最大宽度 */
+  }
+}
+
+@media (max-width: 400px) {
+  #formFile {
+    max-width: 325px; /* 设置最大宽度 */
+  }
+}
+
+@media (max-width: 1000px) {
+  #formFileMultiple {
+    max-width: 385px; /* 设置最大宽度 */
+  }
+}
+
+@media (max-width: 400px) {
+  #formFileMultiple {
+    max-width: 320px; /* 设置最大宽度 */
+  }
+}
+
+@media (max-width: 330px) {
+  #formFileMultiple {
+    max-width: 270px; /* 设置最大宽度 */
+  }
+}
+
 .courses-list .trainer .trainer-rank .heart-icon {
   font-size: 22px;
   color:#b9b0c8;
@@ -2146,6 +2186,16 @@ section {
   right: 20px; /* 設置相應的位置 */
   z-index: 996; /* 設置一個足夠高的 z-index 值 */
 }
+
+@media (max-width: 500px) {
+  .edit_like_shop_button2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Why Us
