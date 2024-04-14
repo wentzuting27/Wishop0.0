@@ -87,8 +87,23 @@
               </ul>
               <p>全14種隨機出貨</p>
 
-              <a type="button" href="#" class="btn btn-light-more" style="background-color: rgb(197, 197, 197);"><i class="fa-regular fa-heart"></i>&nbsp;收藏</a>
+              <a type="button" href="#" class="btn btn-light-like" onclick="toggleHeartIcon(this)"><i id="heartIcon" class="fa-regular fa-heart"></i>&nbsp;收藏</a>
 
+              <script>
+                function toggleHeartIcon(button) {
+                  var heartIcon = document.getElementById('heartIcon');
+                  if (heartIcon.classList.contains('fa-regular')) {
+                    heartIcon.classList.remove('fa-regular');
+                    heartIcon.classList.add('fa-solid');
+                    button.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-btn-bg-solid');
+                  } else {
+                    heartIcon.classList.remove('fa-solid');
+                    heartIcon.classList.add('fa-regular');
+                    button.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-btn-bg-regular');
+                  }
+                }
+              </script>
+              
 
             </div>
 
