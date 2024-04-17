@@ -134,6 +134,11 @@ a {
     margin-bottom: 15px;
     margin-left: -260px;
   }
+
+  marquee span {
+    color: #666768;
+    font-weight: 600;
+  }
   
   marquee span:before {
     display: inline-block;
