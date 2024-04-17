@@ -2260,6 +2260,56 @@ section {
 .nav-menu2 li:hover>a span {
   display: block;
 }
+
+@media (max-width: 991px) {
+  .slideItem {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e6d0d9;
+    margin: 10px;
+  }
+
+  .slideItem:hover {
+    background-color: #B0A5C6;
+  }
+
+  .slideItem i{
+    color: #fff;
+    line-height: 40px; 
+    padding-left: 13px;
+  }
+  
+  #slideContainer {
+    overflow: hidden;
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    z-index: 996;
+  }
+  
+  #triggerBtn {
+    display: block; /* 将按钮的 display 属性设置为 block */
+    position: fixed;
+    z-index: 996;
+    top: 60px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #B0A5C6;
+    border: 0px;
+    color: #fff;
+  } 
+}
+
+@media (min-width: 991px) {
+  .min_nav {
+    display: none;
+  }
+}
+
 /* 導覽列 */
 
 /* 背景圖 */
