@@ -1,0 +1,584 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #E9C9D6;
+  }
+  
+  a:hover {
+    color: #e24d55;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  /*--------------------------------------------------------------
+  # Back to top button
+  --------------------------------------------------------------*/
+  .back-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    background: #E9C9D6;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    transition: all 0.4s;
+  }
+  
+  .back-to-top i {
+    font-size: 28px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .back-to-top:hover {
+    background: #e1444d;
+    color: #fff;
+  }
+  
+  .back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /*--------------------------------------------------------------
+  # Header
+  --------------------------------------------------------------*/
+  
+  
+  /*--------------------------------------------------------------
+  # Navigation Menu
+  --------------------------------------------------------------*/
+  /**
+  * Desktop Navigation 
+  */
+  
+  /**
+  * Mobile Navigation 
+  */
+
+  
+  /*--------------------------------------------------------------
+  # Hero Section
+  --------------------------------------------------------------*/
+ #hero {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(86, 87, 87, 0.397);
+}
+
+#hero::before {
+    content: "";
+    background: url('https://megapx-assets.dcard.tw/images/1bc29e38-bfae-47f0-9eab-6c1395891a35/orig.jpeg') center/cover;
+    opacity: 0.7; /* 設置圖片的透明度 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 確保圖片位於背景之後 */
+}
+  /* Showcase */
+.showcase {
+    width: 100%;
+    height: 400px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    margin-bottom: 20px;
+    z-index: 1;
+  }
+  
+  .showcase h2, .showcase p {
+    margin-bottom: 10px;
+  }
+  
+  .showcase .btn {
+    margin-top: 20px;
+  }
+  
+
+  .profile-picture {
+	border-radius: 100%;
+	overflow: hidden;
+	-webkit-box-sizing: content-box;
+  	-moz-box-sizing: content-box;
+  	box-sizing: content-box;	
+}
+	.big-profile-picture {
+		margin: 0 auto;		
+		border: 5px solid #50597b;
+		width: 150px;
+		height: 150px;
+	}
+  
+  #hero h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: 700;
+  }
+  
+  #hero p {
+    animation-delay: 0.4s;
+    margin: 0 auto 0px auto;
+    color: #fff;
+  }
+  
+
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    animation-delay: 0.8s;
+    background: #E9C9D6;
+  }
+  
+
+  
+  @media (max-width: 992px) {
+    #hero {
+      height: 100vh;
+    }
+  
+    #hero .carousel-container {
+      top: 8px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #hero h2 {
+      font-size: 28px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+  
+    #hero .carousel-control-prev,
+    #hero .carousel-control-next {
+      width: 5%;
+    }
+  }
+  
+  @media (max-height: 500px) {
+    #hero {
+      height: 120vh;
+    }
+  }
+  
+
+
+  /*--------------------------------------------------------------
+  # nav2
+  --------------------------------------------------------------*/
+
+.nav-pills .nav-link {
+  background-color: #d5edf8; /* 更改按钮的背景颜色 */
+  color: #445367; /* 更改按钮的文本颜色 */
+  border-radius: 0 0 20px 20px ; /* 可選：添加按鈕的圓角 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), /* 添加阴影效果 */
+              0px 4px 8px rgba(0, 0, 0, 0.15); /* 增加更多阴影效果，增加立体感 */ 
+  height: 35px;
+  border: #D9AAB7;
+}
+.nav-tabs {
+  border-bottom: 0px solid #fff;
+}
+
+/* 鼠标悬停时的样式 */
+.nav-pills .nav-link:hover {
+  background-color: #E9C9D6; /* 更改鼠标悬停时的背景颜色 */
+}
+
+/* 当按钮处于激活状态时的样式 */
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:focus {
+  background-color: #E9C9D6; /* 更改激活状态下的背景颜色 */
+  color: #445367; /* 更改激活状态下的文本颜色 */
+}
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+  section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  
+  .section-bg,
+  .services .icon-box {
+    background-color: #f8f9fa;
+  }
+  
+  .section-title {
+    padding-bottom: 40px;
+  }
+  
+  .section-title h2 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1px;
+    margin: 0 0 5px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .section-title h2::after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    display: inline-block;
+    background: #e6636a;
+    margin: 4px 10px;
+  }
+  
+  .section-title p {
+    margin: 0;
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    color: #4D96C2;
+  }
+  
+  /*--------------------------------------------------------------
+  # Breadcrumbs
+  --------------------------------------------------------------*/
+  .breadcrumbs {
+    padding: 13px 0;
+    background: #f8f9fa;
+    min-height: 30px;
+  }
+  
+  
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .breadcrumbs ol li+li {
+    padding-left: 10px;
+  }
+  
+  .breadcrumbs ol li+li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: #6b7b8d;
+    content: "/";
+  }
+  
+  @media (max-width: 992px) {
+    .breadcrumbs {
+      margin-top: 58px;
+    }
+  
+    .breadcrumbs .d-flex {
+      display: block !important;
+    }
+  
+    .breadcrumbs h2 {
+      margin-bottom: 10px;
+    }
+  
+    .breadcrumbs ol {
+      display: block;
+    }
+  
+    .breadcrumbs ol li {
+      display: inline-block;
+    }
+  }
+    /*--------------------------------------------------------------
+# navs
+--------------------------------------------------------------*/
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+  position: relative;
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.card-text {
+  display: none;
+}
+
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+  /*--------------------------------------------------------------
+# 商品
+--------------------------------------------------------------*/
+#pricing .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.pricing .box {
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+#pricing .container {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: 400px;
+  height: 300px;
+  background: #F5F5F5;
+  box-shadow: 5px 5px 15px rgba(186, 126, 126, 0.5);
+  border-radius: 10px;
+}
+
+#pricing p {
+  font-size: 0.6em;
+  color: #BA7E7E;
+  letter-spacing: 1px;
+}
+
+#pricing h1 {
+  font-size: 1em;
+  color: #4E4E4E;
+  margin-top: -5px;
+}
+
+#pricing h2 {
+  color: #C3A1A0;
+  margin-top: -5px;
+}
+
+#pricing img {
+  width: 150px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#pricing .slideshow-buttons {
+  top: 70%;
+  display: none;
+}
+
+.one, .two, .three, .four {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #E0C9CB;
+}
+
+.one {
+  left: 22%;
+}
+
+.two {
+  left: 27%;
+}
+
+.three {
+  left: 32%;
+}
+
+.four {
+  left: 37%;
+}
+
+#pricing .product {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  top: 12%;
+  left: 60%;
+}
+
+.desc {
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 17px;
+  color: #4E4E4E;
+  font-size: 0.7em;
+  line-height: 1.6em;
+  margin-right: 30px;
+  text-align: justify;
+}
+
+#tabButtons-pane-2 button {
+  background: #cda9ac;
+  padding: 5px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  margin: -1px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #F5F5F5;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+#pricing button:hover {
+  background: #BA7E7E;
+  transition: all 0.4s ease-in-out;
+}
+
+.add {
+  width: 63%;
+}
+
+.like {
+  width: 22%;
+}
+
+#pricing .sizes {
+  display: grid;
+  color: #D9AAB7;
+  grid-template-columns: repeat(auto-fill, 30px);
+  width: 45%;
+  grid-gap: 4px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+#pricing .sizes:hover {
+  cursor: pointer;
+}
+
+.pick {
+  margin-top: 11px;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+
+#pricing .size {
+  padding: 9px;
+  border: 1px solid #E0C9CB;
+  font-size: 0.7em;
+  text-align: center;
+}
+#pricing .size:hover {
+  background: #BA7E7E;
+  color: #F5F5F5;
+  transition: all 0.4s ease-in-out;
+}
+
+#pricing .focus {
+  background: #BA7E7E;
+  color: #F5F5F5;
+}
+
+  /*--------------------------------------------------------------
+# 討論區
+--------------------------------------------------------------*/
+
+main {
+  width: 1000px;
+  margin: 10px auto;
+  padding: 10px 20px 30px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+  /*--------------------------------------------------------------
+# 結帳
+--------------------------------------------------------------*/
+@keyframes pulse-grow {
+  to {
+    transform: scale(2);
+  }
+}
+
+.pulse-grow {
+  display: inline-block;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.pulse-grow:hover {
+  animation: pulse-grow 0.4s linear infinite alternate;
+}
+/*商品明細*/
+#app
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+  #app table#cart tbody td .form-control {
+    width: 20%;
+    display: inline !important;
+  }
+  #app .actions .btn {
+    width: 36%;
+    margin: 1.5em 0;
+  }
+  #app .actions .btn-info {
+    float: left;
+  }
+  #app .actions .btn-danger {
+    float: right;
+  }
+  #app table#cart thead {
+    display: none;
+  }
+  #app table#cart tbody td {
+    display: block;
+    padding: .6rem;
+    min-width: 320px;
+  }
+  #app table#cart tbody tr td:first-child {
+    background: #333;
+    color: #fff;
+  }
+  #app table#cart tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    display: inline-block;
+    width: 8rem;
+  }
+  #app table#cart tfoot td {
+    display: block;
+  }
+  #app table#cart tfoot td .btn {
+    display: block;
+  }
+}
