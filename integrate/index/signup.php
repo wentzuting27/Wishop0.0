@@ -387,7 +387,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-7 text-center">
                                         <h5 class="purple-text text-center"><b>帳號註冊成功！</b></h5>
-                                        <a href="login.html"><b>返回登入</b></a>
+                                        <a href="login.php"><b>返回登入</b></a>
                                     </div>
                                 </div>
                             </div>

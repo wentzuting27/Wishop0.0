@@ -50,18 +50,18 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">WISHOP</a></h1>
+      <h1 class="logo me-auto"><a href="index.php">WISHOP</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.html" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+          <li><a href="index.php" >首頁</a></li>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="team.php">Team</a></li>
+              <li><a href="testimonials.php">Testimonials</a></li>
 
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -82,12 +82,12 @@
               echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.html"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
                   <hr>
-                  <li><a href="../profile/Wishlist.html" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.html" style="font-weight: 600;">購買紀錄</a></li>
+                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
               </li>
@@ -98,7 +98,7 @@
           ?>
 
 
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -377,7 +377,7 @@
                   <div class="filtertag">
                     <h5>熱門標籤</h5>
                   </div>
-                  <a type="button" href="tag.html" class="btn btn-light-tag">#排球少年</a>
+                  <a type="button" href="tag.php" class="btn btn-light-tag">#排球少年</a>
                   <a type="button" href="#" class="btn btn-light-tag">#火影忍者</a>
                   <a type="button" href="#" class="btn btn-light-tag">#ATEEZ</a>
                   <a type="button" href="#" class="btn btn-light-tag">#偶像夢幻季</a>
@@ -416,7 +416,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
@@ -424,7 +424,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品1</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
               </div>
@@ -436,7 +436,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
@@ -444,7 +444,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品2</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;300</i></p>
               </div>
@@ -455,7 +455,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img
@@ -465,7 +465,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品3</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;200</i></p>
               </div>
@@ -477,7 +477,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
@@ -485,7 +485,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品4</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;199</i></p>
               </div>
@@ -496,7 +496,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
@@ -504,7 +504,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品5</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;350</i></p>
               </div>
@@ -515,7 +515,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img
@@ -525,7 +525,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品6</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;299</i></p>
               </div>
@@ -536,7 +536,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
@@ -544,7 +544,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品7</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;79</i></p>
               </div>
@@ -555,7 +555,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
@@ -563,7 +563,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品8</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;200</i></p>
               </div>
@@ -574,7 +574,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
 
-              <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
                   <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
@@ -582,7 +582,7 @@
               </a>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                     title="Portfolio Details">商品9</a></h4>
                 <p><i class="fa-solid fa-dollar-sign">&nbsp;450</i></p>
               </div>

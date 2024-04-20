@@ -54,7 +54,7 @@
         <div class="d-flex justify-content-between align-items-center">
 
           <ol>
-            <li><a href="../shop/shop.html" style="color: rgb(255, 230, 237);">返回賣場</a></li>
+            <li><a href="../shop/shop.php" style="color: rgb(255, 230, 237);">返回賣場</a></li>
             <li>團內資訊</li>
           </ol>
         </div>
@@ -102,7 +102,7 @@
             </div>
             <br>
             <center>
-              <a href="../shop/shop.html" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+              <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
                 style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
@@ -446,7 +446,7 @@
                     <td data-th="Product">
                       <div class="row">
                         <div class="col-sm-4 hidden-xs">
-                          <a href="doll.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                          <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                             title="Portfolio Details">
                             <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
                               alt="..." class="img-responsive" /></a>
@@ -913,7 +913,7 @@
 
               part2.addEventListener('click', function () {
                 // 导航到新页面
-                window.location.href = '../lisa/discussion.html#blog';
+                window.location.href = '../lisa/discussion.php#blog';
 
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener('load', function () {
@@ -931,7 +931,7 @@
 
               part3.addEventListener('click', function () {
                 // 导航到新页面
-                window.location.href = '../lisa/rewrite.html#blog';
+                window.location.href = '../lisa/rewrite.php#blog';
 
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener('load', function () {
@@ -1120,7 +1120,7 @@
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.php5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js"></script>

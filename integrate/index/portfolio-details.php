@@ -122,7 +122,7 @@
             <div class="portfolio-info">
               <h3>日本「美少女戰士X三麗鷗」</h3>
               <ul>
-                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.html"
+                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.php"
                     target="_blank">三麗鷗快樂購</a></li>
                 <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: 日本</li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
@@ -134,7 +134,7 @@
               </ul>
               <hr>
               <div style="text-align: center;">
-                <a type="button" href="../lisa/InnerPage.html" target="_blank" class="btn btn-light-more">前往團購購買</a>
+                <a type="button" href="../lisa/InnerPage.php" target="_blank" class="btn btn-light-more">前往團購購買</a>
               </div>
             </div>
 
