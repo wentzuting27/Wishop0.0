@@ -79,8 +79,27 @@
           <!-- <li><a href="pricing.html">Pricing</a></li>
           <li><a href="blog.html">Blog</a></li> -->
           <!-- <li><a href="contact.html">Contact</a></li> -->
-          <a href="login.html" class="getstarted" style="color: white;">登入</a>
+          <?php
+            if(!empty($_SESSION['user_name'])){
+              echo '
+              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
+              <li class="dropdown"><a href="../profile/Profile_settings.html"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+                <ul>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <hr>
+                  <li><a href="../profile/Wishlist.html" style="font-weight: 600;">收藏清單</a></li>
+                  <li><a href="../profile/Purchase_history.html" style="font-weight: 600;">購買紀錄</a></li>
+                  <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                </ul>
+              </li>
+              ';
+            }else{
+              echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
+            }
+          ?>
+          
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
