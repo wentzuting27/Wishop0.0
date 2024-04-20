@@ -45,7 +45,7 @@
 </head>
 
 <body>
-
+<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <!-- End Header -->
 
@@ -57,8 +57,8 @@
         <div class="d-flex justify-content-between align-items-center">
 
           <ol>
-            <li><a href="../shop/shop.html" style="color: rgb(255, 230, 237);">返回賣場</a></li>
-            <li>團內資訊</li>
+            <li><a href="../index.php">Home</a></li>
+            <li>Services</li>
           </ol>
         </div>
 
@@ -604,13 +604,13 @@
 
 
                   <h2 class="entry-title">
-                    <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam
+                    <a href="blog-single.php">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam
                       quia</a>
                   </h2>
 
                   <div class="entry-meta">
                     <ul>
-                      <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a href="團內介面2.html#first">
+                      <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a href="團內介面2.php#first">
                           回上一頁</a></li>
                     </ul>
                   </div>
@@ -939,7 +939,7 @@
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.php5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js"></script>

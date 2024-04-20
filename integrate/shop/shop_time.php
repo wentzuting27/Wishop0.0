@@ -39,23 +39,23 @@
 </head>
 
 <body>
-
+<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="../index/index.html">WISHOP</a></h1>
+      <h1 class="logo me-auto"><a href="../index/index.php">WISHOP</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="../index/index.html" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.html" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+          <li><a href="../index/index.php" >首頁</a></li>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="team.php">Team</a></li>
+              <li><a href="testimonials.php">Testimonials</a></li>
 
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -69,19 +69,19 @@
             </ul>
           </li>
           <li><a href="#">團購</a></li>
-          <li><a href="../wish/wish.html">許願池</a></li>
+          <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
             if(!empty($_SESSION['user_name'])){
               echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.html"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
                   <hr>
-                  <li><a href="../profile/Wishlist.html" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.html" style="font-weight: 600;">購買紀錄</a></li>
+                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
               </li>
@@ -92,7 +92,7 @@
           ?>
 
 
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -109,11 +109,11 @@
 
   <div class="profile2">
       <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.html">三麗鷗快樂購</a></h1>
+      <h1 class="text-light"><a href="index.php">三麗鷗快樂購</a></h1>
       
   </div>
   <div class="social-links">
-    <a href="./shop_time.html" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="官方推特" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-twitter"></i></a>
+    <a href="./shop_time.php" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="官方推特" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-twitter"></i></a>
     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="三麗鷗快樂購facebook官方社群"><i class="bx bxl-facebook"></i></a>
     <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>
     
@@ -133,11 +133,11 @@
 
     <nav id="navbar2" class="navbar2 nav-menu2">
       <ul>
-        <li><a href="./shop.html" class="nav-link scrollto"><i class="bi bi-shop"></i><span>代購商品</span></a></li>
-        <li><a href="./shop_time.html" class="nav-link scrollto  active"><i class="bi bi-clock-history"></i> <span>限定開團</span></a></li>
-        <li><a href="./shop_wish.html" class="nav-link scrollto"><i class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
-        <li><a href="./shop_rule.html" class="nav-link scrollto"><i class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
-        <li><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-regular fa-comment-dots"></i> <span>賣場評價</span></a></li>
+        <li><a href="./shop.php" class="nav-link scrollto"><i class="bi bi-shop"></i><span>代購商品</span></a></li>
+        <li><a href="./shop_time.php" class="nav-link scrollto  active"><i class="bi bi-clock-history"></i> <span>限定開團</span></a></li>
+        <li><a href="./shop_wish.php" class="nav-link scrollto"><i class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
+        <li><a href="./shop_rule.php" class="nav-link scrollto"><i class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
+        <li><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-regular fa-comment-dots"></i> <span>賣場評價</span></a></li>
         <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
       </ul>
     </nav><!-- .nav-menu -->
@@ -147,11 +147,11 @@
   <div class="min_nav">
     <button id="triggerBtn"><i class="bi bi-shop"></i></button>
     <div id="slideContainer">
-      <a href="./shop.html" class="slideItem"><i class="bi bi-shop"></i></a>
-      <a href="./shop_time.html" class="slideItem"><i class="bi bi-clock-history"></i></a>
-      <a href="./shop_wish.html" class="slideItem"><i class="fa-solid fa-wand-sparkles"></i></a>
-      <a href="./shop_rule.html" class="slideItem"><i class="fa-solid fa-file-circle-question"></i></a>
-      <a href="./shop_evaluate.html" class="slideItem"><i class="fa-regular fa-comment-dots"></i></a>
+      <a href="./shop.php" class="slideItem"><i class="bi bi-shop"></i></a>
+      <a href="./shop_time.php" class="slideItem"><i class="bi bi-clock-history"></i></a>
+      <a href="./shop_wish.php" class="slideItem"><i class="fa-solid fa-wand-sparkles"></i></a>
+      <a href="./shop_rule.php" class="slideItem"><i class="fa-solid fa-file-circle-question"></i></a>
+      <a href="./shop_evaluate.php" class="slideItem"><i class="fa-regular fa-comment-dots"></i></a>
       <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
     </div>
   </div>
@@ -218,12 +218,12 @@
                     <tr>
                       <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
                       <td width="30%"><input type="text" class="form-control" value="官方推特"></td>
-                      <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
+                      <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
                     </tr>
                     <tr>
                       <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
                       <td width="30%"><input type="text" class="form-control" value="三麗鷗快樂購facebook官方社群"></td>
-                      <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.html"></td>
+                      <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
                     </tr>
                     <tr>
                       <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
@@ -240,12 +240,12 @@
                   <tr>
                     <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
                     <td width="80%">官方推特</td>
-                    <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
+                    <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
                   </tr>
                   <tr>
                     <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
                     <td width="80%">三麗鷗快樂購facebook官方社群</td>
-                    <td width="10%"><a href="./shop_evaluate.html" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
+                    <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
                   </tr>
                   
                 </table>
@@ -392,11 +392,11 @@
                       <figure>
                         <img src="https://www.japaholic.com/storage/article/images/2019/02/1857bd7144653c0b38441f5d801b0769.jpg" alt="" width="100%" height="100%">
                         <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
             
                       <div class="shop_group-info">
-                        <h4><a href="portfolio-details.html">三麗鷗系列周邊貓之日商品</a></h4>
+                        <h4><a href="portfolio-details.php">三麗鷗系列周邊貓之日商品</a></h4>
                         <div class="flex-container">
                           <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-20</p>
                           <p><i class="fa-regular fa-heart"></i>&nbsp;103&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;20</p>
@@ -410,11 +410,11 @@
                         <figure>
                           <img src="https://www.niusnews.com/upload/imgs/default/202302_Noah/0220/2/sub1-goods-sakura-2302.jpeg" alt="" width="100%" height="100%">
                           <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="portfolio-details.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                          <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                         </figure>
               
                         <div class="shop_group-info">
-                          <h4><a href="portfolio-details.html">三麗鷗「櫻花季」</a></h4>
+                          <h4><a href="portfolio-details.php">三麗鷗「櫻花季」</a></h4>
                           <div class="flex-container">
                             <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-20</p>
                             <p><i class="fa-regular fa-heart"></i>&nbsp;1717&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;2039</p>
@@ -428,11 +428,11 @@
                         <figure>
                           <img src="https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200" alt="" width="100%" height="100%">
                           <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="../lisa/InnerPage.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                          <a href="../lisa/InnerPage.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                         </figure>
               
                         <div class="shop_group-info">
-                          <h4><a href="../lisa/InnerPage.html">日本「美少女戰士X三麗鷗」</a></h4>
+                          <h4><a href="../lisa/InnerPage.php">日本「美少女戰士X三麗鷗」</a></h4>
                           <div class="flex-container">
                             <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-02</p>
                             <p><i class="fa-regular fa-heart"></i>&nbsp;255&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;88</p>
@@ -447,11 +447,11 @@
                         <figure>
                           <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qul9-lj5kvyccfayq34" alt="" width="100%" height="100%">
                           <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="portfolio-details.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                          <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                         </figure>
               
                         <div class="shop_group-info">
-                          <h4><a href="portfolio-details.html">日本三麗鷗彩虹樂園限定商品</a></h4>
+                          <h4><a href="portfolio-details.php">日本三麗鷗彩虹樂園限定商品</a></h4>
                           <div class="flex-container">
                             <p><i class="bi bi-clock-history"></i>&nbsp;2023-12-20</p>
                             <p><i class="fa-regular fa-heart"></i>&nbsp;500&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;326</p>
@@ -736,11 +736,11 @@
                       <figure>
                         <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
                         <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
             
                       <div class="shop_group-info">
-                        <h4><a href="portfolio-details.html">東京-排球少年×三麗鷗聯名快閃店</a></h4>
+                        <h4><a href="portfolio-details.php">東京-排球少年×三麗鷗聯名快閃店</a></h4>
                         <div class="flex-container">
                           <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.5)</p>
                           <p><i class="fa-regular fa-heart"></i>&nbsp;3005&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;2594</p>
@@ -754,11 +754,11 @@
                       <figure>
                         <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/mainjpg_2024-02-14-07-35-10.jpg" alt="" width="100%" height="100%">
                         <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.html" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
             
                       <div class="shop_group-info">
-                        <h4><a href="portfolio-details.html">【北海道】大耳狗喜拿×五稜郭</a></h4>
+                        <h4><a href="portfolio-details.php">【北海道】大耳狗喜拿×五稜郭</a></h4>
                         <div class="flex-container">
                           <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.9)</p>
                           <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 
 </head>
-
+<?php session_start(); ?>
 
 <style>
     * {
@@ -387,7 +387,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-7 text-center">
                                         <h5 class="purple-text text-center"><b>帳號註冊成功！</b></h5>
-                                        <a href="login.html"><b>返回登入</b></a>
+                                        <a href="login.php"><b>返回登入</b></a>
                                     </div>
                                 </div>
                             </div>
