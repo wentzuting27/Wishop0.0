@@ -46,6 +46,7 @@
 
   <main id="main">
 
+    <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
@@ -126,7 +127,7 @@
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div style="margin-left: 280px; margin-top: -30px;z-index: 9;">
-          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;"></i></p>
+          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
         </div>
         <div>
           <center>
@@ -150,26 +151,27 @@
             <br>
             <center>
               <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-                style="text-decoration: none;">三麗鷗快樂購</a>
+              style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
           <div class="col-md-7"
-            style="padding-left: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;"><b>三麗鷗X美少女戰士</b>
-              <small style="font-size: 0.4cm;">(跟團人數：<span style="color:#7d8be0;">88人)</span></small>
+            style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>三麗鷗X美少女戰士</b>
+              <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);">
-              <p>本團代購三麗鷗X美少女戰士聯名商品</p>
-              <p>購買前請先注意賣場規則</p>
-              <p>開團時間：4/4~4/21</p>
-              <p>其他代購商品歡迎到賣場逛逛~</p>
-              <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
+            <hr>
+            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
+                <p style="color: #5a5a5a;">本團代購三麗鷗X美少女戰士聯名商品</p>
+                <p style="color: #5a5a5a;">購買前請先注意賣場規則</p>
+                <p style="color: #5a5a5a;">開團時間：4/4~4/21</p>
+                <p style="color: #5a5a5a;">其他代購商品歡迎到賣場逛逛~</p>
+                <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="three" class="button" style="font-size: 0.34cm;">#Uncovering</div>
-                    <div id="four" class="button" style="font-size: 0.34cm;">#Blow Up</div><br>
+                    <div id="three" class="button" style="font-size: 15px;font-weight: bold">#三麗鷗</div>
+                    <div id="four" class="button" style="font-size: 15px;font-weight: bold">#美少女戰士</div><br>
                   </div>
                 </div>
               </div>
@@ -633,7 +635,7 @@
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                     </div>
                   </div>
                   <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>撰寫內容...</small>
@@ -658,7 +660,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
@@ -692,7 +694,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
@@ -719,7 +721,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
@@ -745,7 +747,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
@@ -772,7 +774,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
@@ -802,7 +804,7 @@
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                     </div>
                     <p>團主：</p>
                     <h4><B>關於出貨通知</B></h4>
@@ -839,7 +841,7 @@
                   <div class="profile-picture big-profile-picture clear"
                     style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                     <img width="100%" height="100%" alt="Anne Hathaway picture"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                      src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                   </div>
                   <p>團主：</p>
                   <h4><B>關於出貨通知</B></h4>
@@ -875,7 +877,7 @@
                   <div class="profile-picture big-profile-picture clear"
                     style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                     <img width="100%" height="100%" alt="Anne Hathaway picture"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                      src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                   </div>
                   <p>團主：</p>
                   <h4><B>關於出貨通知</B></h4>
@@ -910,7 +912,7 @@
                   <div class="profile-picture big-profile-picture clear"
                     style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                     <img width="100%" height="100%" alt="Anne Hathaway picture"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                      src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                   </div>
                   <p>團主：</p>
                   <h4><B>關於出貨通知</B></h4>
@@ -1197,7 +1199,7 @@
                       <div class="profile-picture big-profile-picture clear"
                         style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                          src="https://i.pinimg.com/236x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg">
                       </div>
                       <div style="flex-grow: 7;">
                         <p>帳號</p>
@@ -1222,7 +1224,7 @@
                       <div class="profile-picture big-profile-picture clear"
                         style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                          src="https://i.pinimg.com/236x/8c/12/c0/8c12c0f0f6d7c2ee634e7aa541e9911c.jpg">
                       </div>
                       <div style="flex-grow: 7;">
                         <p>帳號</p>
@@ -1247,7 +1249,7 @@
                       <div class="profile-picture big-profile-picture clear"
                         style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                          src="https://i.pinimg.com/236x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg">
                       </div>
                       <div style="flex-grow: 7;">
                         <p>帳號</p>
