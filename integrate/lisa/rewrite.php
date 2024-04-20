@@ -41,7 +41,7 @@
 </head>
 
 <body>
-
+<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <!-- End Header -->
 

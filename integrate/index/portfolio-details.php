@@ -43,7 +43,7 @@
 </head>
 
 <body>
-
+<?php session_start(); ?>
   <main id="main">
 
     <!-- ======= Portfolio Details Section ======= -->
