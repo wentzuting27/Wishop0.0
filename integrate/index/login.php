@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
 </head>
+<?php
+    session_start();
 
+    // Check if the user is already logged in, if yes then redirect him to welcome page
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+      header("Location: index.php");
+      exit();
+  }
+  ?>
 
 
 <style>
@@ -205,12 +213,12 @@
             <div class="secondary">
                 <i class="fas fa-lock"></i>
             </div>
-            <form action="#" method="post">
+            <form action="login2.php" method="post">
                 <div class="primary">
                     <h1>登入</h1>
 
-                    <label>電子信箱</label>
-                    <input type="email" name="email" placeholder="Email" required>
+                    <label>帳號</label>
+                    <input type="text" name="account" placeholder="account" required>
                     <label>密碼</label>
                     <div class="password-container">
                         <input type="password" name="password" placeholder="Password" required data-forgot="Forgot?">
