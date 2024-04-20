@@ -206,7 +206,7 @@
     <div class="wrapper">
         <div class="modal-login">
             <div class="navigation">
-                <a href="index.html"><i class="fas fa-arrow-left"></i>返回首頁</a>
+                <a href="index.php"><i class="fas fa-arrow-left"></i>返回首頁</a>
             </div>
             <div class="clear"></div>
 
@@ -226,7 +226,7 @@
                     <br>
                     <div>
                         <a href="#" id="forgot"><b>忘記密碼？</b></a>
-                        &nbsp;&nbsp;<a href="signup.html"><b>還沒註冊帳號？</b></a>
+                        &nbsp;&nbsp;<a href="signup.php"><b>還沒註冊帳號？</b></a>
                     </div>
 
                     <button type="submit">確認</button>

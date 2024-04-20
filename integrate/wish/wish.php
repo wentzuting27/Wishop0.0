@@ -44,18 +44,18 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="../index/index.html">WISHOP</a></h1>
+      <h1 class="logo me-auto"><a href="../index/index.php">WISHOP</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="../index/index.html" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.html"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+          <li><a href="../index/index.php" >首頁</a></li>
+          <li class="dropdown"><a href="portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="team.php">Team</a></li>
+              <li><a href="testimonials.php">Testimonials</a></li>
 
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -69,19 +69,19 @@
             </ul>
           </li>
           <li><a href="#">團購</a></li>
-          <li><a href="../wish/wish.html" class="active">許願池</a></li>
+          <li><a href="../wish/wish.php" class="active">許願池</a></li>
 
           <?php
             if(!empty($_SESSION['user_name'])){
               echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.html"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
                   <hr>
-                  <li><a href="../profile/Wishlist.html" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.html" style="font-weight: 600;">購買紀錄</a></li>
+                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
               </li>
@@ -92,7 +92,7 @@
           ?>
 
 
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -300,7 +300,7 @@
                                 <span class="category">ATEEZ</span>
                               </div>
 
-                              <h3><a href="wish-details.html">ATEEZ 星和玩偶DDEONGbyeoli</a></h3>
+                              <h3><a href="wish-details.php">ATEEZ 星和玩偶DDEONGbyeoli</a></h3>
                               <p class="description scrollable-row">想收圖上的的大娃，有拆封過也沒關係，可先匯款</p>
                               <div class="trainer d-flex justify-content-between align-items-center">
                                 <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-04-02</span>
@@ -344,7 +344,7 @@
                                 <span class="category">動漫</span>
                               </div>
 
-                              <h3><a href="wish-details.html">排球少年音駒高校白色帽T</a></h3>
+                              <h3><a href="wish-details.php">排球少年音駒高校白色帽T</a></h3>
                               <p class="description">想問有沒有賣音駒的這件帽T，全新，可先付款</p>
                               <div class="trainer d-flex justify-content-between align-items-center">
                                 <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-04-05</span>
@@ -403,7 +403,7 @@
                                 <span class="category">公仔</span>
                               </div>
 
-                              <h3><a href="wish-details.html">火影忍者Q版坐姿公仔模型</a></h3>
+                              <h3><a href="wish-details.php">火影忍者Q版坐姿公仔模型</a></h3>
                               <p class="description">想要圖上的鳴人、卡卡西、佐助和鼬的Q版坐姿公仔，希望四隻都有</p>
                               <div class="trainer d-flex justify-content-between align-items-center">
                                 <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-03-31</span>
@@ -489,7 +489,7 @@
                               <span class="category">瀨名泉</span>
                             </div>
 
-                            <h3><a href="wish-details.html">偶像夢幻祭瀨名泉公仔棉花娃娃20CM</a></h3>
+                            <h3><a href="wish-details.php">偶像夢幻祭瀨名泉公仔棉花娃娃20CM</a></h3>
                             <p class="description">想收偶像夢幻祭同人周邊瀨名泉公仔棉花娃娃20CM動漫換裝玩偶禮物周邊，希望貨到付款</p>
                             <div class="trainer d-flex justify-content-between align-items-center">
                               <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-03-09</span>
@@ -571,7 +571,7 @@
                             <span class="category">三麗鷗</span>
                           </div>
 
-                          <h3><a href="wish-details.html">韓國限定三麗鷗小卡立牌</a></h3>
+                          <h3><a href="wish-details.php">韓國限定三麗鷗小卡立牌</a></h3>
                           <p class="description">我想要韓國限定三麗鷗小卡立牌，有人能幫忙代購嗎?9個款式我都蠻想要的</p>
                           <div class="trainer d-flex justify-content-between align-items-center">
                             <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2023-10-15</span>
@@ -699,7 +699,7 @@
                                 <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
                                 <h4>2024-04-02</h4>
                                 <p class="scrollable-row">
-                                    <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.html"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
+                                    <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
                                     <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
                                     <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
                                 </p>
@@ -715,7 +715,7 @@
                             <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
                             <h4>2024-04-02</h4>
                             <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.html"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
+                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
                               <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
                                     <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
                             </p>
@@ -730,7 +730,7 @@
                             <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
                             <h4>2024-04-02</h4>
                             <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.html"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
+                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
                               <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
                               <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
                             </p>
@@ -745,7 +745,7 @@
                             <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
                             <h4>2024-04-02</h4>
                             <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.html"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
+                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
                               <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
                               <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
                             </p>
@@ -760,7 +760,7 @@
                             <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
                             <h4>2024-04-02</h4>
                             <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.html"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
+                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
                               <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
                               <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
                             </p>
