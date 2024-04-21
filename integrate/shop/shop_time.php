@@ -104,10 +104,11 @@
 
   <!-- ======= shop_bg Section ======= -->
   <?php
+  $shop_id=1;//在哪一個shop要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from shop
-  where account='{$_SESSION["account"]}'";
+  where shop_id=$shop_id";
   $result=mysqli_query($link,$sql);
   while($row=mysqli_fetch_assoc($result))
   {
@@ -409,79 +410,50 @@
               <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
     
                 <div class="row shop_group-container">
-                  
+
+                <?php
+                  $sql="select *
+                  from commodity_group
+                  natural join shop
+                  where shop_id='$shop_id' AND close_order_date != '0000-00-00 00:00:00' and commodity_group_state=1
+                  order by close_order_date";
+                  $result=mysqli_query($link,$sql);
+                  while($row=mysqli_fetch_assoc($result))
+                  {
+                    $commodity_group_id=$row["commodity_group_id"];
+                    if($_SESSION["account"]==$row["account"]){
+                      $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+                    }else{
+                      $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+                    }
+                    echo'
                   <div class="col-lg-4 col-md-6 shop_group-item">
-                    <div class="shop_group-wrap">
+                    <div class="shop_group-wrap">';
+                    if(strtotime($row["close_order_date"]) < strtotime(date('Y-m-d H:i:s'))){
+                      echo '<button type="button" class="btn-floating" disabled>已結單</button>';
+                    }
+                    echo '
                       <figure>
-                        <img src="https://www.japaholic.com/storage/article/images/2019/02/1857bd7144653c0b38441f5d801b0769.jpg" alt="" width="100%" height="100%">
-                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                        <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
+                        <a href="',$group_link,'" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
-            
+
                       <div class="shop_group-info">
-                        <h4><a href="portfolio-details.php">三麗鷗系列周邊貓之日商品</a></h4>
+                        <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
                         <div class="flex-container">
-                          <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-20</p>
+                          <p><i class="bi bi-clock-history"></i>&nbsp;',$row["close_order_date"],'</p>
                           <p><i class="fa-regular fa-heart"></i>&nbsp;103&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;20</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                    <div class="col-lg-4 col-md-6 shop_group-item">
-                      <div class="shop_group-wrap">
-                        <figure>
-                          <img src="https://www.niusnews.com/upload/imgs/default/202302_Noah/0220/2/sub1-goods-sakura-2302.jpeg" alt="" width="100%" height="100%">
-                          <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
-                        </figure>
-              
-                        <div class="shop_group-info">
-                          <h4><a href="portfolio-details.php">三麗鷗「櫻花季」</a></h4>
-                          <div class="flex-container">
-                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-04-20</p>
-                            <p><i class="fa-regular fa-heart"></i>&nbsp;1717&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;2039</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              
-                    <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
-                      <div class="shop_group-wrap">
-                        <figure>
-                          <img src="https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200" alt="" width="100%" height="100%">
-                          <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="../lisa/InnerPage.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
-                        </figure>
-              
-                        <div class="shop_group-info">
-                          <h4><a href="../lisa/InnerPage.php">日本「美少女戰士X三麗鷗」</a></h4>
-                          <div class="flex-container">
-                            <p><i class="bi bi-clock-history"></i>&nbsp;2024-05-02</p>
-                            <p><i class="fa-regular fa-heart"></i>&nbsp;255&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;88</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              
-                    <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.2s">
-                      <div class="shop_group-wrap">
-                        <button type="button" class="btn-floating" disabled>已結單</button>
-                        <figure>
-                          <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qul9-lj5kvyccfayq34" alt="" width="100%" height="100%">
-                          <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                          <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
-                        </figure>
-              
-                        <div class="shop_group-info">
-                          <h4><a href="portfolio-details.php">日本三麗鷗彩虹樂園限定商品</a></h4>
-                          <div class="flex-container">
-                            <p><i class="bi bi-clock-history"></i>&nbsp;2023-12-20</p>
-                            <p><i class="fa-regular fa-heart"></i>&nbsp;500&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;326</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  ';
+                  }
+                ?>
+                  
+                  
     
                 </div>
     
@@ -752,18 +724,33 @@
               <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
     
                 <div class="row shop_group-container">
-    
-    
+
+                <?php
+                  $sql="select *
+                  from commodity_group
+                  natural join shop
+                  where shop_id='$shop_id' AND close_order_date != '0000-00-00 00:00:00' and commodity_group_state=2
+                  order by close_order_date";
+                  $result=mysqli_query($link,$sql);
+                  while($row=mysqli_fetch_assoc($result))
+                  {
+                    $commodity_group_id=$row["commodity_group_id"];
+                    if($_SESSION["account"]==$row["account"]){
+                      $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+                    }else{
+                      $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+                    }
+                    echo'
                   <div class="col-lg-4 col-md-6 shop_group-item">
                     <div class="shop_group-wrap">
                       <figure>
-                        <img src="https://img.japankuru.com/prg_img/img/img2024030815304878405200.jpg" alt="" width="100%" height="100%">
-                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+                        <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">
+                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
+                        <a href="',$group_link,'" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
-            
+
                       <div class="shop_group-info">
-                        <h4><a href="portfolio-details.php">東京-排球少年×三麗鷗聯名快閃店</a></h4>
+                        <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
                         <div class="flex-container">
                           <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.5)</p>
                           <p><i class="fa-regular fa-heart"></i>&nbsp;3005&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;2594</p>
@@ -771,24 +758,11 @@
                       </div>
                     </div>
                   </div>
-            
-                  <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
-                    <div class="shop_group-wrap">
-                      <figure>
-                        <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/mainjpg_2024-02-14-07-35-10.jpg" alt="" width="100%" height="100%">
-                        <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                        <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
-                      </figure>
-            
-                      <div class="shop_group-info">
-                        <h4><a href="portfolio-details.php">【北海道】大耳狗喜拿×五稜郭</a></h4>
-                        <div class="flex-container">
-                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.9)</p>
-                          <p><i class="fa-regular fa-heart"></i>&nbsp;1004&nbsp;&nbsp;<i class="fa-solid fa-user-group"></i>&nbsp;500</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                  ';
+                  }
+                ?>
+    
 
               </div>
     
