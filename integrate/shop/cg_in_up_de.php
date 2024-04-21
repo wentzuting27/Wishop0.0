@@ -50,7 +50,7 @@
         if ($_FILES['group_bg']['error'] == UPLOAD_ERR_OK){
 
             $file = $_FILES['group_bg']['tmp_name'];
-            $dest = 'files/' . $_FILES['group_bg']['name'];
+            $dest = '../files/' . $_FILES['group_bg']['name'];
 
             // 將檔案移至指定位置
             move_uploaded_file($file, $dest);
