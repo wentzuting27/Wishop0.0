@@ -103,13 +103,22 @@
   </header><!-- End Header -->
 
   <!-- ======= shop_bg Section ======= -->
-  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(https://img.shoplineapp.com/media/image_clips/61d3a8ac8c24c20023437d3e/original.png?1641261227);">
+  <?php
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from shop
+  where account='{$_SESSION["account"]}'";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
+  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(',$row["shop_bg"],');">
     
   </section><!-- End Hero -->
 
   <div class="profile2">
-      <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.php">三麗鷗快樂購</a></h1>
+      <img src="',$row["shop_avatar"],'" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="index.php">',$row["shop_name"],'</a></h1>
       
   </div>
   <div class="social-links">
@@ -125,8 +134,9 @@
     <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;已關注</button>
     <button type="button" class="btn insert_button"><i class="fa-regular fa-comments"></i>&nbsp;聯絡賣家</button>
   </div>
-  <!-- End shop_bg Section -->
-
+  <!-- End shop_bg Section -->';
+  }
+  ?>
   <!-- ======= Header ======= -->
 
   <header id="header2" class="d-flex flex-column justify-content-center">
@@ -145,7 +155,7 @@
   </header><!-- End Header -->
   
   <div class="min_nav">
-    <button id="triggerBtn"><i class="bi bi-shop"></i></button>
+    <button id="triggerBtn"><i class="fa-solid fa-wand-sparkles"></i></button>
     <div id="slideContainer">
       <a href="./shop.php" class="slideItem"><i class="bi bi-shop"></i></a>
       <a href="./shop_time.php" class="slideItem"><i class="bi bi-clock-history"></i></a>
