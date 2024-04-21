@@ -52,11 +52,8 @@
             $file = $_FILES['group_bg']['tmp_name'];
             $dest = '../files/' . $_FILES['group_bg']['name'];
 
-            // Check if the file already exists
+            // 檢查是否有一樣名字的檔案
             if (file_exists($dest)) {
-                // Generate a unique filename
-                $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                $basename = pathinfo($filename, PATHINFO_FILENAME);
                 $i = 1;
                 while (file_exists('../files/' . $_FILES['group_bg']['name'] . '_' . $i)) {
                     $i++;
