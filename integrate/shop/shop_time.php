@@ -291,10 +291,23 @@
               <div class="section-title" data-aos="fade-up">
                 <h2><i class="bi bi-clock-history"></i>&nbsp;&nbsp;限定開團</h2>
               </div><!-- End Section Title -->
-              <div>
-                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
-                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_Preview_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增預告</button>
-              </div>
+              <?php
+              $sql="select *
+              from shop
+              where shop_id='$shop_id'";
+              $result=mysqli_query($link,$sql);
+              while($row=mysqli_fetch_assoc($result))
+              {
+              if($_SESSION["account"]==$row["account"]){
+                echo '
+                <div>
+                  <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
+                  <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_Preview_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增預告</button>
+                </div>';
+              }
+              }
+              
+              ?>
               
               <!-- Modal -->
               <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">

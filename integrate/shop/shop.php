@@ -104,10 +104,11 @@
 
   <!-- ======= shop_bg Section ======= -->
   <?php
+  $shop_id=1;//在哪一個shop要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from shop
-  where account='{$_SESSION["account"]}'";
+  where shop_id=$shop_id";
   $result=mysqli_query($link,$sql);
   while($row=mysqli_fetch_assoc($result))
   {
@@ -396,9 +397,22 @@
       <div class="section-title" data-aos="fade-up">
         <h2><i class="bi bi-shop"></i>&nbsp;&nbsp;代購商品</h2>
       </div><!-- End Section Title -->
-      <div>
+      <?php
+      $sql="select *
+      from shop
+      where shop_id='$shop_id'";
+      $result=mysqli_query($link,$sql);
+      while($row=mysqli_fetch_assoc($result))
+      {
+      if($_SESSION["account"]==$row["account"]){
+        echo '
+        <div>
         <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
-      </div>
+      </div>';
+      }
+      }
+      
+      ?>
       
       <!-- Modal -->
       <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
@@ -590,37 +604,39 @@
 
     <div class="row shop_group-container">
 
+    <?php
+      $sql="select *
+      from commodity_group
+      natural join shop
+      where shop_id='$shop_id' AND close_order_date ='0000-00-00 00:00:00'";
+      $result=mysqli_query($link,$sql);
+      while($row=mysqli_fetch_assoc($result))
+      {
+        $commodity_group_id=$row["commodity_group_id"];
+        if($_SESSION["account"]==$row["account"]){
+          $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+        }else{
+          $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+        }
+        echo'
       <div class="col-lg-4 col-md-6 shop_group-item">
         <div class="shop_group-wrap">
           <figure>
-            <img src="https://collabo-cafe.com/wp-content/uploads/6e1451eec9db7a2bd07a52631bf4b207.jpg" alt="" width="100%" height="100%">
+            <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">
             <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
-            <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
+            <a href="',$group_link,'" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
           </figure>
 
           <div class="shop_group-info">
-            <h4><a href="portfolio-details.php">三麗鷗全新直營店「Sanrio新宿店」</a></h4>
+            <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
             <p><i class="fa-regular fa-heart"></i>1000&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>500</p>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 shop_group-item" data-wow-delay="0.1s">
-        <div class="shop_group-wrap">
-          <figure>
-            <img src="https://down-tw.img.susercontent.com/file/e20d0a56401a2d94d37ea10184975b76" alt="" width="100%" height="100%">
-            <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
-            <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
-            <a href="portfolio-details.php" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
-          </figure>
-
-          <div class="shop_group-info">
-            <h4><a href="portfolio-details.php">三麗鷗 Sanrio 韓國限定 小卡 票卡 卡套 卡夾</a></h4>
-            <p><i class="fa-regular fa-heart"></i>580&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>600</p>
-          </div>
-        </div>
-      </div>
-
+      ';
+      }
+    ?>
     
     </div>
 

@@ -104,10 +104,11 @@
 
   <!-- ======= shop_bg Section ======= -->
   <?php
+  $shop_id=1;//在哪一個shop要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from shop
-  where account='{$_SESSION["account"]}'";
+  where shop_id=$shop_id";
   $result=mysqli_query($link,$sql);
   while($row=mysqli_fetch_assoc($result))
   {
