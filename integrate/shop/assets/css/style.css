@@ -2151,7 +2151,7 @@ profile2(頭貼、名字)
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 999; /* 确保按钮位于其他内容之上 */
+  z-index: 991; /* 确保按钮位于其他内容之上 */
 }
 
 .shop_group-wrap .btn-floating:disabled {
