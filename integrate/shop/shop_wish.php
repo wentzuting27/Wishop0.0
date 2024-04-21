@@ -292,9 +292,23 @@
               <div class="section-title" data-aos="fade-up">
                 <h2><i class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;許願池</h2>
               </div><!-- End Section Title -->
-              <div>
+              <?php
+              $sql="select *
+              from shop
+              where shop_id='$shop_id'";
+              $result=mysqli_query($link,$sql);
+              while($row=mysqli_fetch_assoc($result))
+              {
+              if($_SESSION["account"]!=$row["account"]){
+                echo '
+                <div>
                 <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;許願</button>
-              </div>
+              </div>';
+              }
+              }
+              
+              ?>
+              
               
               <!-- insert_group_Modal -->
               <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
@@ -321,7 +335,7 @@
                           </tr>
                           <tr>
                             <td>許願截止日期*</td>
-                            <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 40%;" value="">&nbsp;&nbsp;<input type="time" name="endtime" class="form-control" style="width: 40%;" value=""></td>
+                            <td style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
                           </tr>
                           <tr>
                             <td>參考網址</td>
@@ -366,38 +380,60 @@
                   <div class="container">
                     <div class="row">
                         
-    
+                    <?php
+                    $wish_num=1;
+                    $sql="select *
+                    from wish
+                    natural join account
+                    where wish_shop_id='$shop_id' AND wish_end >= now()
+                    order by wish_start";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                      $wish_id=$row["wish_id"];
+                      echo '
                       <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                         <div class="course-item">
-                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner fixed-image">
-                              <div class="carousel-item active">
-                                <img src="https://www.japaholic.com/storage/article/images/2019/02/97847ee3396aa4c09d2f6e44e3a1575e.jpg" class="d-block w-100" alt="...">
+                          <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner fixed-image">';
+                              $a=1;
+                              $sql_photo="select *
+                              from wish_photo
+                              where wish_id='$wish_id'";
+                              $result_photo=mysqli_query($link,$sql_photo);
+                              while($row_photo=mysqli_fetch_assoc($result_photo))
+                              {
+                                echo '
+                              <div class="carousel-item ';if($a==1){echo 'active"';}echo '">
+                                <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                              </div>';
+                              $a++;
+                              }
+                              echo '
                               </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden"></span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden"></span>
+                              </button>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                          </div>
-                          
+                              
                           <div class="course-content">
                             <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">日本</span>
-                              <span class="category">三麗鷗</span>
+                              <span class="category">xxx</span>
+                              <span class="category">xxxxx</span>
                             </div>
     
-                            <h3><a href="wish-details.php">三麗鷗系列周邊貓之日的外套</a></h3>
-                            <p class="description">我想要三麗鷗系列周邊貓之日的外套 ，然後這個系列的東西我都好喜歡，希望賣家能幫我圓夢</p>
-                              <span class="price">許願日期: 2024-04-09</span>
+                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                            <p class="description">',nl2br($row['wish_narrat']),'</p>
+                              <span class="price">許願日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
                               <div class="trainer-profile d-flex align-items-center">
-                                <img src="https://i.pinimg.com/564x/f3/c5/8b/f3c58b48863dfc996ef0a9624c652bb4.jpg" class="img-fluid" alt="">
-                                <a href="" class="trainer-link">阿散</a>
+                                <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                <a class="trainer-link">',$row["user_name"],'</a>
                               </div>
                               <div class="trainer-rank d-flex align-items-center">
                                 <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;<button class="button">我有興趣</button>
@@ -406,89 +442,10 @@
                             
                           </div>
                         </div>
-                      </div> <!-- End Course Item-->
-
-                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="course-item">
-                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner fixed-image">
-                              <div class="carousel-item active">
-                                <img src="https://www.japaholic.com/storage/article/images/2019/02/97847ee3396aa4c09d2f6e44e3a1575e.jpg" class="d-block w-100" alt="...">
-                              </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                          </div>
-                          
-                          <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">日本</span>
-                              <span class="category">三麗鷗</span>
-                            </div>
-    
-                            <h3><a href="wish-details.php">三麗鷗系列周邊貓之日的外套</a></h3>
-                            <p class="description">我想要三麗鷗系列周邊貓之日的外套 ，然後這個系列的東西我都好喜歡，希望賣家能幫我圓夢</p>
-                              <span class="price">許願日期: 2024-04-09</span>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <div class="trainer-profile d-flex align-items-center">
-                                <img src="https://i.pinimg.com/564x/f3/c5/8b/f3c58b48863dfc996ef0a9624c652bb4.jpg" class="img-fluid" alt="">
-                                <a href="" class="trainer-link">阿散</a>
-                              </div>
-                              <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;<button class="button">我有興趣</button>
-                              </div>
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div> <!-- End Course Item-->
-
-                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="course-item">
-                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner fixed-image">
-                              <div class="carousel-item active">
-                                <img src="https://www.japaholic.com/storage/article/images/2019/02/97847ee3396aa4c09d2f6e44e3a1575e.jpg" class="d-block w-100" alt="...">
-                              </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden"></span>
-                            </button>
-                          </div>
-                          
-                          <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">日本</span>
-                              <span class="category">三麗鷗</span>
-                            </div>
-    
-                            <h3><a href="wish-details.php">三麗鷗系列周邊貓之日的外套</a></h3>
-                            <p class="description">我想要三麗鷗系列周邊貓之日的外套 ，然後這個系列的東西我都好喜歡，希望賣家能幫我圓夢</p>
-                              <span class="price">許願日期: 2024-04-09</span>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <div class="trainer-profile d-flex align-items-center">
-                                <img src="https://i.pinimg.com/564x/f3/c5/8b/f3c58b48863dfc996ef0a9624c652bb4.jpg" class="img-fluid" alt="">
-                                <a href="" class="trainer-link">阿散</a>
-                              </div>
-                              <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;<button class="button">我有興趣</button>
-                              </div>
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div> <!-- End Course Item-->
+                      </div> <!-- End Course Item-->';
+                      $wish_num++;
+                    }
+                    ?>
 
                     </div>
                   </div>
