@@ -427,7 +427,7 @@
                               <span class="category">xxxxx</span>
                             </div>
     
-                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                            <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
                               <span class="price">許願日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
@@ -510,7 +510,7 @@
                               <span class="category">xxxxx</span>
                             </div>
     
-                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                            <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
                               <span class="price">許願日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
@@ -591,7 +591,7 @@
                               <span class="category">xxxxx</span>
                             </div>
     
-                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                            <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
                               <span class="price">許願日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">

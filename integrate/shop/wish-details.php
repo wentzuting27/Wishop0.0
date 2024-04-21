@@ -100,7 +100,28 @@
   </header><!-- End Header -->
 
   <main id="main">
-
+    <?php
+      $link=mysqli_connect('localhost','root','12345678','wishop');
+      $wish_id=$_GET["wish_id"];
+      $shop_id=$_GET["shop_id"];
+      $sql="select *
+      from wish
+      natural join account
+      where wish_id=$wish_id";
+      $result=mysqli_query($link,$sql);
+      while($row=mysqli_fetch_assoc($result))
+      {
+        $account=$row["account"];
+        $user_name=$row["user_name"];
+        $user_avatar=$row["user_avatar"];
+        $wish_name=$row["wish_name"];
+        $wish_narrat=$row["wish_narrat"];
+        $wish_link=$row["wish_link"];
+        $wish_start=$row["wish_start"];
+        $wish_state=$row["wish_state"];
+        $wish_end=$row["wish_end"];
+      }
+    ?>
     <section id="wish-details-hero">
       <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
   
@@ -108,7 +129,7 @@
           <div class="carousel-item active" style="background-image: url(https://i.pinimg.com/564x/bf/f3/7e/bff37e041a3114c7b318665ff2de4964.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">三麗鷗系列周邊貓之日的外套</h2>               
+                <h2 class="animate__animated animate__fadeInDown"><?php echo $wish_name; ?></h2>               
               </div>
             </div>
           </div>
@@ -127,26 +148,55 @@
           <div class="container">
             <div class="d-flex justify-content-between align-items-center">
               <ol>
-                <li><a href="wish.html">賣場許願區</a></li>
+                <li><a href="shop_wish.php?shop_id=<?php echo $shop_id; ?>">賣場許願區</a></li>
                 <li>許願詳情</li>
               </ol>
-              <button class="button-cancel">不受理</button>
+              <div class="d-flex">
+              <?php
+              $sql="select *
+              from shop
+              where shop_id='$shop_id'";
+              $result=mysqli_query($link,$sql);
+              while($row=mysqli_fetch_assoc($result))
+              {
+              if($_SESSION["account"]==$row["account"]){
+                echo '
+                <button class="button-cancel">我要出價</button>&nbsp;&nbsp;
+                <button type="submit" class="button-cancel">不受理</button>';
+              }
+              }
+              
+              ?>
+              </div>
             </div>
           </div>
         </section><!-- End Breadcrumbs -->
 
         <div class="row gy-4">
 
-          <div class="col-lg-4 entries">
+          <div class="col-lg-5 entries">
 
             <article class="entry">
 
               <div class="entry-img">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner fixed-image2">
-                    <div class="carousel-item active">
-                      <img src="https://www.japaholic.com/storage/article/images/2019/02/97847ee3396aa4c09d2f6e44e3a1575e.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    <?php
+                    $a=1;
+                    $sql_photo="select *
+                    from wish_photo
+                    where wish_id='$wish_id'";
+                    $result_photo=mysqli_query($link,$sql_photo);
+                    while($row_photo=mysqli_fetch_assoc($result_photo))
+                    {
+                      echo '
+                    <div class="carousel-item ';if($a==1){echo 'active"';}echo '">
+                      <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                    </div>';
+                    $a++;
+                    }
+                    ?>
+                    
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -164,7 +214,7 @@
 
           </div><!-- End blog entries list -->
 
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <section id="wish-details" class="wish-details"> 
               <div class="container" data-aos="fade-up">    
                 <div class="wish-info">
@@ -173,13 +223,13 @@
                   </div>
                   <br>
                   <ul>
-                    <li><strong><i class="bi bi-person"></i>&nbsp;許願者</strong>: <a href="#"><img src="https://i.pinimg.com/564x/f3/c5/8b/f3c58b48863dfc996ef0a9624c652bb4.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;阿散</a></li>
-                    <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: 2024-04-09</li>
-                    <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: 2024-05-02</li>
-                    <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="https://ateez.kqent.com/shop/kr/products/38" target="_blank">https://ateez.kqent.com/shop/kr/products/38</a></li>
+                    <li><strong><i class="bi bi-person"></i>&nbsp;許願者</strong>: <a href="#"><img src="<?php echo $user_avatar; ?>" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;<?php echo $user_name; ?></a></li>
+                    <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: <?php echo $wish_start; ?></li>
+                    <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: <?php echo $wish_end; ?></li>
+                    <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="<?php echo $wish_link; ?>" target="_blank" style="word-wrap: break-word;overflow-wrap: break-word;"><?php echo $wish_link; ?></a></li>
                     <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>: &nbsp;100&nbsp;</li>
                     <li><strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>: </li>
-                      <p class="scrollable-row">我想要三麗鷗系列周邊貓之日的外套 ，然後這個系列的東西我都好喜歡，希望賣家能幫我圓夢</p>
+                      <p class="scrollable-row"><?php echo nl2br($wish_narrat); ?></p>
                   </ul>
                 </div>              
               </div>
@@ -194,8 +244,8 @@
               <h3 class="sidebar-title">Tags</h3>
               <div class="sidebar-item tags">
                 <ul>
-                  <li><a href="#">日本</a></li>
-                  <li><a href="#">三麗鷗</a></li>
+                  <li><a href="#">xxx</a></li>
+                  <li><a href="#">xxxx</a></li>
                 </ul>
               </div><!-- End sidebar tags-->
 
@@ -220,36 +270,99 @@
       <div class="row">
 
         <div class="col-lg-6">
-          <div class="member d-flex align-items-start">
-            <div class="pic"><img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" class="img-fluid" alt=""></div>
+          <?php
+          $sql="select *
+          from bid
+          natural join shop
+          natural join commodity_group
+          where shop_id='$shop_id' and wish_id='$wish_id'";
+          $result=mysqli_query($link,$sql);
+          while($row=mysqli_fetch_assoc($result))
+          {
+            $commodity_group_id=$row["commodity_group_id"];
+            if($_SESSION["account"]==$row["account"]){
+              $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+            }else{
+              $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+            }
+            echo '
+            <div class="member d-flex align-items-start">
+            <div class="pic"><img src="',$row["shop_avatar"],'" class="img-fluid" alt=""></div>
             <div class="member-info">
-              <h4>三麗鷗快樂購</h4>
+              <h4>',$row["shop_name"],'</h4>
               <div class="flex-container">
                 <span><i class="fa-regular fa-clock"></i>&nbsp;2024-04-10</span>
-                <a href="#" class="reply"><i class="bi bi-link"></i>開團連結</a>
+                <a href="',$group_link,'" class="reply"><i class="bi bi-link"></i>開團連結</a>
               </div>
               <table>
                 <tr>
                   <td><i class="fa-solid fa-dollar-sign"></i>&nbsp;出價:</td>
-                  <td style="text-align: right;">2000以內&nbsp;</td>
+                  <td style="text-align: right;">',$row["bid_price"],'&nbsp;</td>
                   <td><i class="fa-solid fa-user-check"></i>&nbsp;目前意願人數:</td>
-                  <td style="text-align: right;">125&nbsp;</span></td>
+                  <td style="text-align: right;">';
+                  $sql_want="select *
+                  from withgroup
+                  where commodity_group_id='$commodity_group_id'";
+                  $result_want=mysqli_query($link,$sql_want);
+                  echo mysqli_num_rows($result_want);
+
+                  echo'&nbsp;</span></td>
                 </tr>
                 <tr>
                   <td><i class="fa-solid fa-user"></i>&nbsp;最低成團人數:</td>
-                  <td style="text-align: right;">50&nbsp;</td>
+                  <td style="text-align: right;">',$row["bid_people"],'&nbsp;</td>
                   <td><i class="fa-solid fa-face-smile"></i>&nbsp;狀態:</td>
-                  <td style="color: rgb(123, 195, 150);text-align: right;">已成團</td>
+                  <td style="color: rgb(123, 195, 150);text-align: right;">';
+                  $sql_state="select commodity_group_state
+                  from commodity_group
+                  where commodity_group_id='$commodity_group_id'";
+                  $result_state=mysqli_query($link,$sql_state);
+                  $state=$result_state;
+                  if($result_state==3){
+                    echo "待成團";
+                  }else{
+                    echo "已成團";
+                  }
+                  echo '</td>
                 </tr>
                 <tr>
                   <td colspan="4">
-                    <br>
-                    <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>
+                    <br>';
+                    $sql2="select *
+                    from shop
+                    where shop_id='$shop_id'";
+                    $result2=mysqli_query($link,$sql2);
+                    if($row2=mysqli_fetch_assoc($result2))
+                    {
+                      $sql_withgrup_y_or_n="select *
+                      from withgroup
+                      where commodity_group_id='$commodity_group_id' AND account='{$_SESSION["account"]}'";
+                      $result_withgrup_y_or_n=mysqli_query($link,$sql_withgrup_y_or_n);
+                      
+
+                      if($_SESSION["account"]==$row2["account"] && $state==3){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button>';
+                      }elseif($_SESSION["account"]==$row2["account"] && $state!=3){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
+                      }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>';
+                      }else{
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
+                      }
+                    }
+                    echo '
                   </td>
                 </tr>
               </table>
             </div>
-          </div>
+          </div>';
+          }
+          ?>
+          
         </div>
 
       </div>
