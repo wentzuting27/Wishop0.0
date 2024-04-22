@@ -84,13 +84,23 @@
             echo "失敗";
         }
         
-    }
-    elseif($_GET["method"]=="成團"){
+    }elseif($_GET["method"]=="成團"){
         $commodity_group_id=$_GET["commodity_group_id"];
         $shop_id=$_GET["shop_id"];
         $wish_id=$_GET["wish_id"];
         $sql="update commodity_group set commodity_group_state=1
         where commodity_group_id=$commodity_group_id";
+        if(mysqli_query($link, $sql)){
+            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
+        }else{
+            echo "失敗";
+        }
+    }elseif($_GET["method"]=="跟團"){
+        $commodity_group_id=$_GET["commodity_group_id"];
+        $shop_id=$_GET["shop_id"];
+        $wish_id=$_GET["wish_id"];
+        $sql="insert into withgroup(commodity_group_id,account,withgroup_time)
+        value('$commodity_group_id','{$_SESSION["account"]}',NOW())";
         if(mysqli_query($link, $sql)){
             header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }else{
