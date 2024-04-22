@@ -433,7 +433,7 @@
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                         }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
                           echo '
-                          <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>';
+                          <a href=bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&shop_id=',$shop_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
                         }else{
                           echo '
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
