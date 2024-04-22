@@ -419,7 +419,7 @@
                       }elseif($_SESSION["account"]==$row2["account"]){
                         if($state==3){
                           echo '
-                          <button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button>';
+                          <a href=bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&shop_id=',$shop_id,'&wish_id=',$wish_id,'&method=成團><button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button></a>';
                         }else{
                           echo '
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
