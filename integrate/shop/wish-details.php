@@ -159,10 +159,31 @@
               $result=mysqli_query($link,$sql);
               while($row=mysqli_fetch_assoc($result))
               {
-              if($_SESSION["account"]==$row["account"]){
-                echo '
-                <button class="button-cancel">我要出價</button>&nbsp;&nbsp;
-                <button type="submit" class="button-cancel">不受理</button>';
+              if(strtotime($wish_end) < strtotime('now')){
+                if($wish_state==1){
+                  echo '
+                  <button type="button" class="btn button_success" style="background-color:#83c57e" disabled>許願成功</button>';
+                }else{
+                  echo '
+                  <button type="button" class="btn button_fail" style="background-color:#d55858" disabled>許願失敗</button>';
+                }
+              }elseif($_SESSION["account"]==$row["account"]){
+                $sql_bid_y_or_n="select *
+                from bid
+                where shop_id='{$_SESSION["user_shop_id"]}' and wish_id=$wish_id";
+                $result_bid_y_or_n=mysqli_query($link,$sql_bid_y_or_n);
+                if(mysqli_num_rows($result_bid_y_or_n)==0){
+                  echo '
+                  <button class="button-cancel">我要出價</button>&nbsp;&nbsp;';
+                }else{
+                  echo '
+                  <button class="button-cancel" disabled>已出價</button>&nbsp;&nbsp;';
+                }
+                if($wish_state==4){
+                  echo '
+                  <button type="submit" class="button-cancel">不受理</button>';
+                }
+                
               }
               }
               
@@ -280,6 +301,7 @@
           while($row=mysqli_fetch_assoc($result))
           {
             $commodity_group_id=$row["commodity_group_id"];
+            $close_order_date=$row["close_order_date"];
             if($_SESSION["account"]==$row["account"]){
               $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
             }else{
@@ -339,13 +361,21 @@
                       where commodity_group_id='$commodity_group_id' AND account='{$_SESSION["account"]}'";
                       $result_withgrup_y_or_n=mysqli_query($link,$sql_withgrup_y_or_n);
                       
-
-                      if($_SESSION["account"]==$row2["account"] && $state==3){
+                      if(strtotime($wish_end) < strtotime('now')){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
+                      }elseif($_SESSION["account"]==$row2["account"] && $state==3){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button>';
                       }elseif($_SESSION["account"]==$row2["account"] && $state!=3){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
+                      }elseif($state==2){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
+                      }elseif(strtotime($close_order_date) < strtotime('now')){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                       }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>';

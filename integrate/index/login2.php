@@ -7,7 +7,7 @@
     // Processing form data when form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $link=mysqli_connect('localhost','root','12345678','wishop');
-      $sql="SELECT * FROM account WHERE account = '$account'";
+      $sql="SELECT * FROM account NATURAL JOIN shop WHERE account = '$account'";
       $result=mysqli_query($link,$sql);
 
 
@@ -16,6 +16,7 @@
         $password=$row['password'];
         $user_name=$row['user_name'];
         $user_avatar=$row['user_avatar'];
+        $shop_id=$row['shop_id'];
       }
 
         if ($password == $pass) {
@@ -25,6 +26,7 @@
             $_SESSION["account"] = $account;
             $_SESSION["user_name"] = $user_name;
             $_SESSION["user_avatar"] = $user_avatar;
+            $_SESSION["user_shop_id"] = $shop_id;
            
             // 使用 header 函數進行轉址
             header("Location: index.php");
