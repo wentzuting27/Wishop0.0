@@ -103,13 +103,23 @@
 </header><!-- End Header -->
 
   <!-- ======= shop_bg Section ======= -->
-  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(https://img.shoplineapp.com/media/image_clips/61d3a8ac8c24c20023437d3e/original.png?1641261227);">
+  <?php
+  $shop_id=1;//在哪一個shop要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from shop
+  where shop_id=$shop_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
+  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(',$row["shop_bg"],');">
     
   </section><!-- End Hero -->
 
   <div class="profile2">
-      <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.php">三麗鷗快樂購</a></h1>
+      <img src="',$row["shop_avatar"],'" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="index.php">',$row["shop_name"],'</a></h1>
       
   </div>
   <div class="social-links">
@@ -125,8 +135,9 @@
     <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;已關注</button>
     <button type="button" class="btn insert_button"><i class="fa-regular fa-comments"></i>&nbsp;聯絡賣家</button>
   </div>
-  <!-- End shop_bg Section -->
-
+  <!-- End shop_bg Section -->';
+  }
+  ?>
   <!-- ======= Header ======= -->
 
   <header id="header2" class="d-flex flex-column justify-content-center">
@@ -145,7 +156,7 @@
   </header><!-- End Header -->
 
   <div class="min_nav">
-    <button id="triggerBtn"><i class="bi bi-shop"></i></button>
+    <button id="triggerBtn"><i class="fa-solid fa-file-circle-question"></i></button>
     <div id="slideContainer">
       <a href="./shop.php" class="slideItem"><i class="bi bi-shop"></i></a>
       <a href="./shop_time.php" class="slideItem"><i class="bi bi-clock-history"></i></a>
@@ -281,9 +292,23 @@
               <div class="section-title" data-aos="fade-up">
                 <h2><i class="fa-solid fa-file-circle-question"></i>&nbsp;&nbsp;賣場規則</h2>
               </div><!-- End Section Title -->
-              <div>
+              <?php
+              $sql="select *
+              from shop
+              where shop_id='$shop_id'";
+              $result=mysqli_query($link,$sql);
+              while($row=mysqli_fetch_assoc($result))
+              {
+              if($_SESSION["account"]==$row["account"]){
+                echo '
+                <div>
                 <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-patch-plus"></i>&nbsp;新增規則</button>
-              </div>
+              </div>';
+              }
+              }
+              
+              ?>
+              
               
               <!-- insert_group_Modal -->
               <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
@@ -294,22 +319,24 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form method="post" action="rule_in_up_de.php">
+                      <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                      <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
                         <table width="100%" class="insert_group_form">
                           <tr>
                             <td width="10%">類型</td>
                             <td align="left" width="90%">
-                              <input type="radio" name="rule_type" class="form-check-input">跟團須知&nbsp;&nbsp;
-                              <input type="radio" name="rule_type" class="form-check-input">常見問題
+                              <input type="radio" name="rule_type" class="form-check-input" value="跟團須知">跟團須知&nbsp;&nbsp;
+                              <input type="radio" name="rule_type" class="form-check-input" value="常見問題">常見問題
                             </td>
                           </tr>
                           <tr>
                             <td>標題</td>
-                            <td><input type="text" id="group_name" class="form-control"></td>
+                            <td><input type="text" name="title" class="form-control"></td>
                           </tr>
                           <tr>
                             <td>敘述</td>
-                            <td><textarea class="form-control" rows="5"></textarea></td>
+                            <td><textarea class="form-control" rows="5" name="narrate"></textarea></td>
                           </tr>
                           <tr>
                             <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
@@ -347,20 +374,19 @@
     
                       <div class="accordion-list">
                         <ul>
+                        <?php
+                        $i=1;
+                        $sql="select *
+                        from shop_rule
+                        where shop_id='$shop_id' and type='跟團須知'";
+                        $result=mysqli_query($link,$sql);
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+                          echo '
                           <li>
-                            <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">注意事項<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆無提供貨到付款服務，訂購皆需先匯款。<br>
-                                ◆跟團前請先衡量自身經濟能力，避免造成雙方困擾，訂購前請三思，私訊訂購視同購買，不接受任何理由取消訂單，跑單者直接列為黑名單。<br>
-                                ◆價格會依照每日國際匯率而有所變動，下單前請先確認金額再下單。<br>
-                                ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。<br>
-                                ◆代購商品皆為預購，於國外訂購後集運回台需7-20個工作天(不包含例假日和廠商延遲出貨)，不接急單無法等候者請勿下單。<br>
-                                ◆包裹配送至門市，超過時間未取貨，導致包裹退回，重新寄出需收取補寄處理費$100 (含運費，需先匯款)，累積兩次未取包裹紀錄，將列為黑名單處理。<br>
-                                ◆「代購服務」是依照消費者要求而提供的購買商品服務屬「客製化給付」，不適用7日鑑賞期，沒有提供退換貨服務。<br>
-                                ◆衣著類商品由於每樣商品的版型皆有所不同，訂購前可依您平時穿著同類型衣物尺寸為參考依據。<br>
-    
-                              </p>
+                            <a data-bs-toggle="collapse" ';if($i==1){echo 'class="collapse"';}else{echo 'class="collapsed"';} echo 'data-bs-target="#accordion-list-',$i,'">',$row["title"],'<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="accordion-list-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list">
+                              <p>',nl2br($row['narrate']),'</p>
                               <div style="text-align: right;">
                                 <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
                                 <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
@@ -398,119 +424,10 @@
                               </div><!-- End insert_group_Modal -->
     
                             </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">訂購流程<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆於IG貼文、限時動態上看到您想購買的商品，請截圖私訊官賴，告知您要購買的「商品名稱、尺寸、顏色、數量和運送方式」。<br>
-                                ◆確認好金額會給您匯款單，請於三日內匯款，並填寫匯款單，以利後續對帳作業。<br>
-                                ◆匯款完成後請記得填「統一匯款單」，一律請先匯款後填單，當日匯款當日填單!!!!!
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">付款方式<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆提供匯款、轉帳、中信無卡存款等支付方式。<br>
-                                ◆請於三日內完成匯款。<br>
-                                ◆帳戶提供中信、台新、永豐。
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">國內運費<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆7-11賣貨便：運費$35+包材$5，訂單需$55≦訂單總金額 才可以成立，訂單總金額-20元留貨付，貨到時會請您付$20+運費$35=$55。<br>
-                                ◆全家超級好賣：運費$39+包材$5，訂單需$60≦訂單總金額 才可以成立，訂單總金額-25元，貨到時會請您付$25+運費$35 =$60元。<br>
-                                ◆新北蘆洲或新莊自取(地點請配合我們)<br>
-                                <br>
-                                🔺如商品材積太大需要郵寄，會再額外告知。<br>
-                                🔺若商品為需二補，運費一律二補時處理，僅匯款「商品金額」就好，其餘二補會於商品到貨後建立訂單時加進去。
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">出貨 / 到貨時間<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆商品到貨時間無法預知，一切都以官網/廠商實際出貨時間為主，只要官網/廠商有標示預計出貨日，都會寫在「綜合對帳 / 進度表」，請再自行查看進度。
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-6" class="collapsed">合併寄送<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-6" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆如要合併訂單，請先私訊詢問是否可合併，勿擅自決定可不可以合併。<br>
-                                ◆合併寄送商品最多等候一個月，需等待一個月以上則無法合併作業。
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-7" class="collapsed">退換貨<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-7" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                代購商品除了寄錯商品以外不提供退換貨服務。<br>
-                                ◆為了維護雙方權益，開箱過程中請務必全程錄影(箱子未拆封狀態下且需看到名字)，若未錄影，如商品有任何問題皆不協助處理！<br>
-                                ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-8" class="collapsed">關於我們<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-8" class="collapse" data-bs-parent=".accordion-list">
-                              <p>
-                                ◆有任何問題請私訊IG或官賴詢問<br>
-                                ◆聯絡方式：IG請搜尋@cocoma.friends、官賴ID：@353zrdwz<br>
-                                ◆付款方式：提供匯款、轉帳、中信無卡存款等支付方式<br>
-                                ◆也歡迎追蹤我們FB、Twitter：cocoma friends 韓國代購<br>
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
+                          </li>';
+                          $i++;
+                        }
+                        ?>
     
                         </ul>
                       </div>
@@ -535,54 +452,61 @@
     
                       <div class="accordion-list2">
                         <ul>
+                        <?php
+                        $i=1;
+                        $sql="select *
+                        from shop_rule
+                        where shop_id='$shop_id' and type='常見問題'";
+                        $result=mysqli_query($link,$sql);
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+                          echo '
                           <li>
-                            <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">1.請問二補是什麼意思?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list2">
-                              <p>
-                                二補是指二次收費補款，有些商品不知道實際重量多重 ?怕有多收或少收錢的情況發生，這時候會採二補的方式收款。<br>
-                                <br>
-                                二補收的費用包含→國際運費＋關稅<br>
-                                目前我們配合的集運收費是 $225 / kg
-    
-                              </p>
+                            <a data-bs-toggle="collapse" ';if($i==1){echo 'class="collapse"';}else{echo 'class="collapsed"';} echo 'data-bs-target="#accordion-list2-',$i,'">',$row["title"],'<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="accordion-list2-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list2">
+                              <p>',nl2br($row['narrate']),'</p>
                               <div style="text-align: right;">
                                 <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
                                 <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
                               </div>
+                              <!-- insert_group_Modal -->
+                              <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form>
+                                        <table width="100%" class="insert_group_form">
+                                          <tr>
+                                            <td>標題</td>
+                                            <td><input type="text" id="group_name" class="form-control" value="注意事項"></td>
+                                          </tr>
+                                          <tr>
+                                            <td>敘述</td>
+                                            <td>
+                                              <textarea class="form-control" rows="5"></textarea>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
+                                          </tr>
+                                        </table>
+                                        
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- End insert_group_Modal -->
+    
                             </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">2.請問可以貨到付款嗎?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list2">
-                              <p>
-                                不可以！之前有提供貨到付款的服務給大家，但被客人棄單，商品寄到門市未取貨遭包裹退回，私訊聯繫客人也未讀未回，重點還是有跟我們交易過幾次的客人，經過那次不開放貨到付款。<br>
-                                <br>
-                                貨到付款商品遭退回會變成庫存，商品能賣掉就還好，但賣不掉就會變成庫存，我們沒有這麼多錢可以吸收這些費用(哭)。
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-                          <li>
-                            <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">3.商品多久會到貨?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list2">
-                              <p>
-                                代購商品皆為預購，於國外訂購後集運回台需7-20個工作天(不包含例假日和廠商延遲出貨)，我們都是等大家訂購的東西到了差不多時，才會一起集運運回，所以我們不接急單喔！下單前請謹慎考慮，確認沒問題再下單。
-    
-    
-                              </p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                              </div>
-                            </div>
-                          </li>
-    
-    
+                          </li>';
+                          $i++;
+                        }
+                        ?>
+                          
                         </ul>
                       </div>
     
