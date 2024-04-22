@@ -611,7 +611,7 @@
       $sql="select *
       from commodity_group
       natural join shop
-      where shop_id='$shop_id' AND close_order_date ='0000-00-00 00:00:00'";
+      where shop_id='$shop_id' AND close_order_date is null";
       $result=mysqli_query($link,$sql);
       while($row=mysqli_fetch_assoc($result))
       {

@@ -172,16 +172,13 @@
                 from bid
                 where shop_id='{$_SESSION["user_shop_id"]}' and wish_id=$wish_id";
                 $result_bid_y_or_n=mysqli_query($link,$sql_bid_y_or_n);
-                if(mysqli_num_rows($result_bid_y_or_n)==0){
+                if(mysqli_num_rows($result_bid_y_or_n)==0 && $wish_state==3){
                   echo '
-                  <button class="button-cancel">我要出價</button>&nbsp;&nbsp;';
+                  <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal">我要出價</button>&nbsp;&nbsp;
+                  <button type="button" class="btn insert_button">不受理</button>';
                 }else{
                   echo '
-                  <button class="button-cancel" disabled>已出價</button>&nbsp;&nbsp;';
-                }
-                if($wish_state==4){
-                  echo '
-                  <button type="submit" class="button-cancel">不受理</button>';
+                  <button type="button" class="btn insert_button" disabled>已出價</button>&nbsp;&nbsp;';
                 }
                 
               }
@@ -192,6 +189,58 @@
             </div>
           </div>
         </section><!-- End Breadcrumbs -->
+        <!-- insert_group_Modal -->
+        <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="insert_group_ModalLabel">填寫出價資訊</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="bid_in_up_de.php" enctype="multipart/form-data">
+                  <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                  <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="<?php echo $wish_id;?>">
+                  <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
+                  <table width="100%" class="insert_group_form">
+                    <tr>
+                      <td width="10%">商品團名</td>
+                      <td width="90%"><input type="text" name="group_name" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>國家</td>
+                      <td><input type="text" name="nation" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>商團封面</td>
+                      <td><input class="form-control" type="file" name="group_bg"></td>
+                    </tr>
+                    <tr>
+                      <td>商團敘述</td>
+                      <td><textarea class="form-control" rows="5" name="commodity_group_narrate"></textarea></td>
+                    </tr>
+                    <tr>
+                      <td>原商品連結</td>
+                      <td><input type="text" name="group_link" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>願意出售價格(或範圍)*</td>
+                      <td><input type="text" name="bid_price" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>最低成團人數*</td>
+                      <td><input type="number" name="bid_people" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確定出價</button></td>
+                    </tr>
+                  </table>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div><!-- End insert_group_Modal -->
 
         <div class="row gy-4">
 
@@ -313,7 +362,7 @@
             <div class="member-info">
               <h4>',$row["shop_name"],'</h4>
               <div class="flex-container">
-                <span><i class="fa-regular fa-clock"></i>&nbsp;2024-04-10</span>
+                <span><i class="fa-regular fa-clock"></i>&nbsp;',$row["bid_time"],'</span>
                 <a href="',$group_link,'" class="reply"><i class="bi bi-link"></i>開團連結</a>
               </div>
               <table>
@@ -339,11 +388,14 @@
                   from commodity_group
                   where commodity_group_id='$commodity_group_id'";
                   $result_state=mysqli_query($link,$sql_state);
-                  $state=$result_state;
-                  if($result_state==3){
-                    echo "待成團";
-                  }else{
-                    echo "已成團";
+                  if($row_state=mysqli_fetch_assoc($result_state))
+                  {
+                    $state=$row_state["commodity_group_state"];
+                    if($state==3){
+                      echo "待成團";
+                    }else{
+                      echo "已成團";
+                    }
                   }
                   echo '</td>
                 </tr>
@@ -364,24 +416,28 @@
                       if(strtotime($wish_end) < strtotime('now')){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
-                      }elseif($_SESSION["account"]==$row2["account"] && $state==3){
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button>';
-                      }elseif($_SESSION["account"]==$row2["account"] && $state!=3){
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
-                      }elseif($state==2){
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
-                      }elseif(strtotime($close_order_date) < strtotime('now')){
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
-                      }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>';
+                      }elseif($_SESSION["account"]==$row2["account"]){
+                        if($state==3){
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button>';
+                        }else{
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
+                        }
                       }else{
-                        echo '
-                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
+                        if($state==2){
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
+                        }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
+                        }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button>';
+                        }else{
+                          echo '
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
+                        }
                       }
                     }
                     echo '

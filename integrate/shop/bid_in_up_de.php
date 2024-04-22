@@ -1,14 +1,14 @@
 <?php
     $method=$_POST['method'];
-    $page=$_POST['page'];
+    $wish_id=$_POST['wish_id'];
     $shop_id=$_POST['shop_id'];
     $group_name=$_POST['group_name'];
     $nation=$_POST['nation'];
     $group_bg=$_POST['group_bg'];
     $commodity_group_narrate=$_POST['commodity_group_narrate'];
     $group_link=$_POST['group_link'];
-    $end=$_POST['end'];
-    
+    $bid_price=$_POST['bid_price'];
+    $bid_people=$_POST['bid_people'];
     $link=mysqli_connect('localhost','root','12345678','wishop');
     // 取得檔案路徑
     $sql_select = "SELECT commodity_group_bg FROM commodity_group WHERE user_id='{$_SESSION['user_id']}'";
@@ -70,24 +70,18 @@
         $row = mysqli_fetch_assoc($result);
         // 計算新的 id
         $new_id = $row['max_id'] + 1;
-        if(empty($end)){
-            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link)
-            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','1','$nation','$group_link')";
-        }else{
-            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,close_order_date,commodity_group_state,nation,cg_original_product_link)
-            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','$end','1','$nation','$group_link')";
-        }
-        
-        if(mysqli_query($link, $sql_insert)){
-            echo "新增成功";
-        }else{
-            echo "新增失敗";
-        }
 
-        if($page=="shop"){
-            header("refresh:1;url=shop.php?shop_id=$shop_id");
+        $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link)
+        value('$new_id','{$_SESSION["user_shop_id"]}','$group_name','$commodity_group_narrate','$dest','3','$nation','$group_link')";
+        
+        
+        $sql_insert_bid="insert into bid(wish_id,shop_id,commodity_group_id,bid_price,bid_people,bid_time)
+        value('$wish_id','{$_SESSION["user_shop_id"]}','$new_id','$bid_price','$bid_people',NOW())";
+
+        if(mysqli_query($link, $sql_insert) && mysqli_query($link, $sql_insert_bid)){
+            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }else{
-            header("refresh:1;url=shop_time.php?shop_id=$shop_id");
+            echo "失敗";
         }
         
     }
