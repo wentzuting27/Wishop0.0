@@ -85,24 +85,16 @@
         }
         
     }
-    else{
-        // $activity_id=$_GET['activity_id'];
-        // $o_file=$_GET['o_file'];
-        // // 取得檔案路徑
-        // $file_path = $o_file;
-
-        // // 刪除檔案
-        // if (file_exists($file_path)) {
-        //     unlink($file_path);
-        // }
-        // $sql="DELETE FROM activitys WHERE activity_id = $activity_id";
-        // if(mysqli_query($link, $sql)){
-        //     echo "<style> body{width: 100%;background: url(7.png) top right;background-size: cover;position: relative;}</style>";
-        // }else{
-        //     echo "<style> body{width: 100%;background: url(8.png) top right;background-size: cover;position: relative;}</style>";
-        // }
-        
-        // header("refresh:1;url=currently_created.php");
-
+    elseif($_GET["method"]=="成團"){
+        $commodity_group_id=$_GET["commodity_group_id"];
+        $shop_id=$_GET["shop_id"];
+        $wish_id=$_GET["wish_id"];
+        $sql="update commodity_group set commodity_group_state=1
+        where commodity_group_id=$commodity_group_id";
+        if(mysqli_query($link, $sql)){
+            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
+        }else{
+            echo "失敗";
+        }
     }
 ?>
