@@ -40,7 +40,6 @@
 </head>
 
 <body>
-<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <!-- End Header -->
 
@@ -60,8 +59,18 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
+    <?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
 
-    <section id="hero" style="background-image: url(https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200);
+    <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
     ;">
       <div class="background-overlay" style="position: absolute;
     top: 0;
@@ -138,34 +147,53 @@
             </marquee>
           </center>
         </div>
-      </div>
+      </div>';}?>
 
+      <!-- Showcase -->
+      <?php
+  $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from shop
+  where shop_id=$shop_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
       <!-- Showcase -->
       <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg"">
+                src="',$row["shop_bg"],'">
             </div>
             <br>
             <center>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-              style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
+              <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
+          ';}
+?>
+
+<?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
           <div class="col-md-7"
             style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>三麗鷗X美少女戰士</b>
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>',$row["commodity_group_name"],'</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <hr>
             <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
-                <p style="color: #5a5a5a;">本團代購三麗鷗X美少女戰士聯名商品</p>
-                <p style="color: #5a5a5a;">購買前請先注意賣場規則</p>
-                <p style="color: #5a5a5a;">開團時間：4/4~4/21</p>
-                <p style="color: #5a5a5a;">其他代購商品歡迎到賣場逛逛~</p>
-                <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">',$row["commodity_group_narrate"],'</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -181,7 +209,7 @@
       </div>
 
     </section>
-    <!-- SECOND navbar -->
+    <!-- SECOND navbar -->';}?>
 
     <div class="tabs" role="tablist">
 
@@ -209,7 +237,7 @@
         <section class="addgoods">
           <h2>Features</h2>
           <div class="container" >
-            <form id="contact" action="" method="post" style="padding: 5%;">
+            <form id="contact" method="post" action="addcommondity.php" style="padding: 5%;">
               <table class="table table-hover" width="100%">
                 <thead>
                   <tr>
@@ -221,78 +249,46 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr  id="show" >
                     <td scope="row">
                       <fieldset>
-                        <input placeholder="商品名稱" type="text" tabindex="5" required autofocus>
+                        <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name[]" required autofocus>
                       </fieldset>
                     </td>
                     <td>
                       <fieldset>
-                        <textarea placeholder="商品敘述" tabindex="5" required></textarea>
+                        <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate[]" required></textarea>
                       </fieldset>
                     </td>
                     <td>
                       <div>
-                        <input type="radio" id="add1" name="drone" value="huey" checked />
+                        <input type="radio" id="1" name="drone" value="上架" name="commodity_state[]" checked />
                         <label for="add1">上架</label>
                       </div>
 
                       <div>
-                        <input type="radio" id="add2" name="drone" value="dewey" />
+                        <input type="radio" id="2" name="drone" value="待上架" name="commodity_state[]"/>
                         <label for="add2">待上架</label>
                       </div>
                     </td>
                     <td>
                       <fieldset>
-                        <input placeholder="金額" type="email" tabindex="1" required>
+                        <input placeholder="金額" type="email" tabindex="1" name="commodity_price[]" required>
                       </fieldset>
                     </td>
                     <td>
                       <fieldset>
                         <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                          multiple="multiple" />
+                          multiple="multiple" name="commodity_photo[]"/>
                       </fieldset>
                     </td>
                   </tr>
-                  <tr>
-                    <td scope="row">
-                      <fieldset>
-                        <input placeholder="商品名稱" type="text" tabindex="1" required autofocus>
-                      </fieldset>
-                    </td>
-                    <td>
-                      <fieldset>
-                        <textarea placeholder="商品敘述" tabindex="5" required></textarea>
-                      </fieldset>
-                    </td>
-                    <td>
-                      <div>
-                        <input type="radio" id="add3" name="drone" value="huey" checked />
-                        <label for="add3">上架</label>
-                      </div>
-
-                      <div>
-                        <input type="radio" id="add4" name="drone" value="dewey" />
-                        <label for="add4">待上架</label>
-                      </div>
-                    </td>
-                    <td>
-                      <fieldset>
-                        <input placeholder="金額" type="email" tabindex="2" required>
-                      </fieldset>
-                    </td>
-                    <td>
-                      <fieldset>
-                        <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                          multiple="multiple" />
-                      </fieldset>
-                    </td>
-                  </tr>
+                  
                   <tr>
                     <td colspan="3">
                       <fieldset>
-                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">新增</button>
+                        <button 
+                         type="submit"  onclick="addRow()">新增商品</button>
                       </fieldset>
                     </td>
                     <td colspan="2">
@@ -306,6 +302,38 @@
             </form>
           </div>
         </section>
+        <script>
+          //表格
+var indexArr = new Array();
+
+var counter = 1; // 計數器
+
+function addRow() {
+  // 複製表格行的 HTML 內容
+  var showHtml = $("#show").html();
+  // 建立一個新的表格行，將複製的 HTML 內容插入其中
+  var newRow = $("<tr>" + showHtml + "</tr>");
+  
+  // 在新的表格行中找到所有的 radio 元素
+  newRow.find('input[type="radio"]').each(function() {
+    // 修改每個 radio 元素的 id 屬性
+    var oldId = $(this).attr('id');
+    var newId = oldId + counter;
+    $(this).attr('id', newId);
+    
+    // 修改每個 radio 元素的 name 屬性
+    var oldName = $(this).attr('name');
+    var newName = oldName + counter;
+    $(this).attr('name', newName);
+  });
+  
+  // 將新的表格行插入到表格中
+  $("#show").after(newRow);
+  
+  // 增加計數器
+  counter++;
+}
+          </script>
         <section>
           <h2>Delivery Contents</h2>
           <!-- ======= Pricing Section ======= -->

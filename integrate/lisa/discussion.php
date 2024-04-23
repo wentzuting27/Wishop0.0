@@ -51,8 +51,7 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs" style="background-color: #b0a5c6a8;">
+    <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -66,10 +65,23 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section id="hero">
+    <section id="hero" style="background-image: url(https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200);
+    ;">
+      <div class="background-overlay" style="position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+      </div>
+      <div class="edit_like_shop_button">
+        <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
+        <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
+        <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
+        <button type="button" class="btn insert_button"><i
+            class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
+      </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <div style="margin-left: 280px; margin-top: -30px;">
-          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;"></i></p>
+        <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
+          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
         </div>
         <div>
           <center>
@@ -78,43 +90,48 @@
               <span>公告：商品即將寄出，請注意到貨時間！</span>
               <span>公告：商品即將寄出，請注意到貨時間！</span>
             </marquee>
+          </center>
         </div>
+
       </div>
-      </center>
+
       <!-- Showcase -->
-      <div class="card mb-3" style="width: 100%;margin-top: -15px;border: none;background-color: #f4f4f4;">
+      <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
-              <img width="150px" alt="Anne Hathaway picture"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+              <img width="100%" height="100%" alt="Anne Hathaway picture"
+                src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg">
             </div>
             <br>
             <center>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">克拉代購</a>
+              <a href="../shop/shop.html" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
-          <div class="col-md-7" style="padding-left: 40px;">
-            <h3 class="card-title" style="font-size: 0.8cm;">SEVENTEEN專輯團區
-              <small style="font-size: 0.4cm;">(跟團人數：<span style="color:#7d8be0;">88人)</span></small>
-            </h3>
-            <div class="card-text">
-              <ul style="font-size: 0.4cm;">
-                <p>本團代購SEVENTEEN專輯</p>
-                <p>購買前請先注意賣場規則</p>
-                <p>其他代購商品歡迎到賣場逛逛~</p>
-                <p>其他代購商品歡迎到賣場逛逛~</p>
-                <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
-              </ul>
 
+          
+
+
+
+          <div class="col-md-7"
+            style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>三麗鷗X美少女戰士</b>
+              <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
+            </h3>
+            <hr>
+            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
+                <p style="color: #5a5a5a;">本團代購三麗鷗X美少女戰士聯名商品</p>
+                <p style="color: #5a5a5a;">購買前請先注意賣場規則</p>
+                <p style="color: #5a5a5a;">開團時間：4/4~4/21</p>
+                <p style="color: #5a5a5a;">其他代購商品歡迎到賣場逛逛~</p>
+                <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
-                <div class="content" style="background-color: #f4f4f4;font-size: 0.4cm;">
+                <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="one" class="button">#Unfolding</div>
-                    <div id="two" class="button">#Revealing</div>
-                    <div id="three" class="button">#Uncovering</div>
-                    <div id="four" class="button">#Blow Up</div><br>
+                    <div id="three" class="button" style="font-size: 15px;font-weight: bold">#三麗鷗</div>
+                    <div id="four" class="button" style="font-size: 15px;font-weight: bold">#美少女戰士</div><br>
                   </div>
                 </div>
               </div>
@@ -124,33 +141,26 @@
       </div>
 
     </section>
-
     <!-- SECOND navbar -->
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" >
+      <input type="radio" id="tab1" name="tab-control" checked>
       <input type="radio" id="tab2" name="tab-control">
-      <input type="radio" id="tab3" name="tab-control" checked>
+      <input type="radio" id="tab3" name="tab-control">
       <input type="radio" id="tab4" name="tab-control">
-      <ul>
-        <li title="Features"><label for="tab1" role="button"><svg viewBox="0 0 24 24">
-              <path
-                d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2M20.59,3.58L14,10.17L11.62,7.79L10.21,9.21L14,13L22,5M4.93,5.82C3.08,7.34 2,9.61 2,12A8,8 0 0,0 10,20C10.64,20 11.27,19.92 11.88,19.77C10.12,19.38 8.5,18.5 7.17,17.29C5.22,16.25 4,14.21 4,12C4,11.7 4.03,11.41 4.07,11.11C4.03,10.74 4,10.37 4,10C4,8.56 4.32,7.13 4.93,5.82Z" />
-            </svg><br><span>賣場規則</span></label></li>
-        <li title="Delivery Contents"><label for="tab2" role="button"><svg viewBox="0 0 24 24">
-              <path
-                d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
-            </svg><br><span>商品</span></label></li>
-        <li title="Shipping"><label for="tab3" role="button"><svg viewBox="0 0 24 24">
-              <path
-                d="M3,4A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8H17V4M10,6L14,10L10,14V11H4V9H10M17,9.5H19.5L21.47,12H17M6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5M18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5Z" />
-            </svg><br><span>討論區</span></label></li>
-        <li title="Returns"><label for="tab4" role="button"><svg viewBox="0 0 24 24">
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-            </svg><br><span>訂單詳情</span></label></li>
-      </ul>
+      <div id="subject">
+        <ul>
+          <li title="Features"><label for="tab1" role="button">
+              <i class="fa-solid fa-circle-exclamation"></i><br><span>賣場規則</span></label></li>
+          <li title="Delivery Contents"><label for="tab2" role="button">
+              <i class="fa-solid fa-gift"></i><br><span>商品</span></label></li>
+          <li title="Shipping"><label for="tab3" role="button">
+              <i class="fa-solid fa-comments"></i><br><span>討論區</span></label></li>
+          <li title="Returns"><label for="tab4" role="button">
+              <i class="fa-solid fa-cart-shopping"></i><br><span>訂單詳情</span></label></li>
+        </ul>
+      </div>
 
       <div class="slider">
         <div class="indicator"></div>
@@ -160,47 +170,47 @@
           <h2>Features</h2>
 
           <div class="container-fluid">
-            <h3>購買順序及注意事項：</h3>
+            <h4>購買順序及注意事項：</h4>
             <div class="row justify-content-center"> <!-- 使用 justify-content-center 将内容水平居中 -->
               <div class="col-md-10">
                 <div class="example-basic">
                   <br>
                   <div class="timeline">
-                    <h3 class="timeline-title">1.需求確認與溝通</h3>
+                    <h4 class="timeline-title">1.需求確認與溝通</h4>
                     <div class="timeline-item">
                       <div class="timeline-marker"></div>
                       <div class="timeline-content">
-                        <ol>
+                        <ol style="font-size: 0.4cm;">
                           <li>確認購買商品的具體需求，包括商品種類、規格、數量等</li>
                           <li>雙方達成一致後，提供訂單和付款資訊</li>
                         </ol>
                       </div>
                     </div>
-                    <h3 class="timeline-title">2.商品採購與代購</h3>
+                    <h4 class="timeline-title">2.商品採購與代購</h4>
                     <div class="timeline-item">
                       <div class="timeline-marker"></div>
                       <div class="timeline-content">
-                        <ol>
+                        <ol style="font-size: 0.4cm;">
                           <li>確認商品的質量、價格以及運輸方式，並與客戶進行溝通確認</li>
                           <li>代購商下單購買商品，並確保訂單的準確性和及時性</li>
                         </ol>
                       </div>
                     </div>
-                    <h3 class="timeline-title">3.物流運輸與跟蹤</h3>
+                    <h4 class="timeline-title">3.物流運輸與跟蹤</h4>
                     <div class="timeline-item">
                       <div class="timeline-marker"></div>
                       <div class="timeline-content">
-                        <ol>
+                        <ol style="font-size: 0.4cm;">
                           <li>提供客戶訂單跟蹤號碼或連結，方便客戶隨時了解訂單的狀態</li>
                           <li>在運輸過程中，代購商與客戶保持溝通，及時處理可能出現的物流問題</li>
                         </ol>
                       </div>
                     </div>
-                    <h3 class="timeline-title">4.售後服務與回應</h3>
+                    <h4 class="timeline-title">4.售後服務與回應</h4>
                     <div class="timeline-item">
                       <div class="timeline-marker"></div>
                       <div class="timeline-content">
-                        <ol>
+                        <ol style="font-size: 0.4cm;">
                           <li>客戶收到商品後，代購商提供售後服務，解答客戶可能出現的問題，處理退換貨事宜等</li>
                           <li>鼓勵客戶對購買體驗和商品質量進行回應，以便代購商改進服務和商品品質</li>
                         </ol>
@@ -212,163 +222,371 @@
             </div>
           </div><br><br>
 
-          <h3>常見問題：</h3><br>
-          <div style="display: flex;justify-content: center;padding-bottom: 80px;">
-            <div class="wrapper center-block">
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="height: 40px;">
-                <div class="panel panel-default">
-                  <div class="panel-heading active" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseOne">
-                        支付方式是什么？
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                      支付方式通常包括支付宝、微信支付、银行转账等。具体支付方式可以根据代购商的要求而定。
-                    </div>
-                  </div>
+          <h4>常見問題：</h4><br>
+          <div id="why-us" class="why-us section-bg">
+            <div class="container-fluid" data-aos="fade-up">
+              <div class="col-lg-12   align-items-stretch  order-2 order-lg-1">
+
+                <div class="accordion-list">
+                  <ul>
+                    <li>
+                      <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">注意事項<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆無提供貨到付款服務，訂購皆需先匯款。<br>
+                          ◆跟團前請先衡量自身經濟能力，避免造成雙方困擾，訂購前請三思，私訊訂購視同購買，不接受任何理由取消訂單，跑單者直接列為黑名單。<br>
+                          ◆價格會依照每日國際匯率而有所變動，下單前請先確認金額再下單。<br>
+                          ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。<br>
+                          ◆代購商品皆為預購，於國外訂購後集運回台需7-20個工作天(不包含例假日和廠商延遲出貨)，不接急單無法等候者請勿下單。<br>
+                          ◆包裹配送至門市，超過時間未取貨，導致包裹退回，重新寄出需收取補寄處理費$100 (含運費，需先匯款)，累積兩次未取包裹紀錄，將列為黑名單處理。<br>
+                          ◆「代購服務」是依照消費者要求而提供的購買商品服務屬「客製化給付」，不適用7日鑑賞期，沒有提供退換貨服務。<br>
+                          ◆衣著類商品由於每樣商品的版型皆有所不同，訂購前可依您平時穿著同類型衣物尺寸為參考依據。<br>
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal">
+                            <i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                        <!-- insert_group_Modal -->
+                        <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <table width="100%" class="insert_group_form">
+                                    <tr>
+                                      <td>標題</td>
+                                      <td><input type="text" id="group_name" class="form-control" value="注意事項"></td>
+                                    </tr>
+                                    <tr>
+                                      <td>敘述</td>
+                                      <td>
+                                        <textarea class="form-control" rows="5"></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2"><button type="submit" class="btn insert_button"
+                                          style="display: block;width: 100%;">確認修改</button></td>
+                                    </tr>
+                                  </table>
+
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- End insert_group_Modal -->
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">訂購流程<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆於IG貼文、限時動態上看到您想購買的商品，請截圖私訊官賴，告知您要購買的「商品名稱、尺寸、顏色、數量和運送方式」。<br>
+                          ◆確認好金額會給您匯款單，請於三日內匯款，並填寫匯款單，以利後續對帳作業。<br>
+                          ◆匯款完成後請記得填「統一匯款單」，一律請先匯款後填單，當日匯款當日填單!!!!!
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">付款方式<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆提供匯款、轉帳、中信無卡存款等支付方式。<br>
+                          ◆請於三日內完成匯款。<br>
+                          ◆帳戶提供中信、台新、永豐。
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">國內運費<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆7-11賣貨便：運費$35+包材$5，訂單需$55≦訂單總金額 才可以成立，訂單總金額-20元留貨付，貨到時會請您付$20+運費$35=$55。<br>
+                          ◆全家超級好賣：運費$39+包材$5，訂單需$60≦訂單總金額 才可以成立，訂單總金額-25元，貨到時會請您付$25+運費$35 =$60元。<br>
+                          ◆新北蘆洲或新莊自取(地點請配合我們)<br>
+                          <br>
+                          🔺如商品材積太大需要郵寄，會再額外告知。<br>
+                          🔺若商品為需二補，運費一律二補時處理，僅匯款「商品金額」就好，其餘二補會於商品到貨後建立訂單時加進去。
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">出貨 / 到貨時間<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆商品到貨時間無法預知，一切都以官網/廠商實際出貨時間為主，只要官網/廠商有標示預計出貨日，都會寫在「綜合對帳 / 進度表」，請再自行查看進度。
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-6" class="collapsed">合併寄送<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-6" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆如要合併訂單，請先私訊詢問是否可合併，勿擅自決定可不可以合併。<br>
+                          ◆合併寄送商品最多等候一個月，需等待一個月以上則無法合併作業。
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-7" class="collapsed">退換貨<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-7" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          代購商品除了寄錯商品以外不提供退換貨服務。<br>
+                          ◆為了維護雙方權益，開箱過程中請務必全程錄影(箱子未拆封狀態下且需看到名字)，若未錄影，如商品有任何問題皆不協助處理！<br>
+                          ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-8" class="collapsed">關於我們<i
+                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      <div id="accordion-list-8" class="collapse" data-bs-parent=".accordion-list">
+                        <p>
+                          ◆有任何問題請私訊IG或官賴詢問<br>
+                          ◆聯絡方式：IG請搜尋@cocoma.friends、官賴ID：@353zrdwz<br>
+                          ◆付款方式：提供匯款、轉帳、中信無卡存款等支付方式<br>
+                          ◆也歡迎追蹤我們FB、Twitter：cocoma friends 韓國代購<br>
+
+                        </p>
+                        <div style="text-align: right;">
+                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
+                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
+                          <button type="button" class="btn insert_button"><i
+                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
                 </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        如何确定商品的可靠性和真实性？
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                      代购商通常会提供商品来源、真实图片以及相关证明材料，同时客户也可以通过代购商的信誉和口碑来判断商品的可靠性。
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        代购商品的价格包含哪些费用？
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                    aria-labelledby="headingThree">
-                    <div class="panel-body">
-                      代购商品的价格通常包括商品价格、代购费用、服务费用以及运费等。具体费用取决于商品类型和代购商政策。
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingFour">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        下单后多久能够发货？
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <div class="panel-body">
-                      代购商品的价格通常包括商品价格、代购费用、服务费用以及运费等。具体费用取决于商品类型和代购商政策。
-                    </div>
-                  </div>
-                </div>
+
               </div>
+
             </div>
+          </div>
         </section>
         <section>
           <h2>Delivery Contents</h2>
           <!-- ======= Pricing Section ======= -->
 
-
           <!-- change Section -->
-          <div id="app" style="padding-bottom: 100px;">
-            <section id="breadcrumbs" class="breadcrumbs" style="width: 100%;">
-              <div class="container">
-
-                <div class="d-flex  align-items-center">
-
-                  <ol>
-                    <li><a id="homeLink" href="#pricing">回到購物車</a></li>
-                    <li>Services</li>
-
-                  </ol>
-                </div>
-
-              </div>
-            </section><!-- End Breadcrumbs -->
-            <div class="container" style="transform: scale(1);margin-bottom: 90px;">
+          <div id="app">
+            <div class="container">
               <table id="cart" class="table table-hover table-condensed">
                 <thead>
                   <tr>
                     <th style="width:50%">Product</th>
-                    <th style="width:10%">Price</th>
-                    <th style="width:8%">Quantity</th>
-                    <th style="width:22%" class="text-center">Subtotal</th>
-                    <th style="width:10%"></th>
+                    <th>Price</th>
+                    <th style="width:10%">Quantity</th>
+                    <th class="text-center">Subtotal</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td data-th="Product">
                       <div class="row">
-                        <div class="col-sm-2 hidden-xs"><img
-                            src="https://www.ccr.com.tw/GIMG/414/8809848755309_eraq.JPG" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-10">
-                          <h4 class="nomargin">Product 1</h4>
-                          <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Lorem ipsum dolor sit amet.</p>
+                        <div class="col-sm-4 hidden-xs">
+                          <a href="doll.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                            title="Portfolio Details">
+                            <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
+                              alt="..." class="img-responsive" /></a>
+                        </div>
+                        <div class="col-sm-8">
+                          <h4 class="nomargin"><b>玩偶吊飾</b></h4>
+                          <p>水星/大耳狗玩偶吊飾、木星/瑪莉兔玩偶吊飾、火星/庫洛米玩偶吊飾.</p>
                         </div>
                       </div>
                     </td>
-                    <td data-th="Price">$1.99</td>
+                    <td data-th="Price">$750</td>
                     <td data-th="Quantity">
                       <input type="number" class="form-control text-center" value="1">
                     </td>
-                    <td data-th="Subtotal" class="text-center">1.99</td>
+                    <td data-th="Subtotal" class="text-center">750</td>
                     <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                      <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                      <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i
+                          class="fa-solid fa-trash"></i></button>
                     </td>
                   </tr>
                   <tr>
                     <td data-th="Product">
                       <div class="row">
-                        <div class="col-sm-2 hidden-xs"><img
-                            src="https://www.ccr.com.tw/GIMG/414/8809848755309_eraq.JPG" alt="..."
+                        <div class="col-sm-4 hidden-xs"><img
+                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98y-lq1pws45etqa02" alt="..."
                             class="img-responsive" /></div>
-                        <div class="col-sm-10">
-                          <h4 class="nomargin">Product 1</h4>
-                          <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Lorem ipsum dolor sit amet.</p>
+                        <div class="col-sm-8">
+                          <h4 class="nomargin"><b>拉鍊收納包</b></h4>
+                          <p>Hello Kitty/月野兔、美樂蒂/小兔子、大耳狗/水野亞美、庫洛米/火野麗、布丁狗/愛野美奈子</p>
                         </div>
                       </div>
                     </td>
-                    <td data-th="Price">$1.99</td>
+                    <td data-th="Price">$260</td>
                     <td data-th="Quantity">
                       <input type="number" class="form-control text-center" value="1">
                     </td>
-                    <td data-th="Subtotal" class="text-center">1.99</td>
+                    <td data-th="Subtotal" class="text-center">260</td>
                     <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                      <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                      <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i
+                          class="fa-solid fa-trash"></i></button>
                     </td>
                   </tr>
-                </tbody>
-                <tfoot>
-                  <tr class="visible-xs">
-                    <td class="text-center"><strong>Total 1.99</strong></td>
+                  <tr>
+                    <td data-th="Product">
+                      <div class="row">
+                        <div class="col-sm-4 hidden-xs"><img
+                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" alt="..."
+                            class="img-responsive" /></div>
+                        <div class="col-sm-8">
+                          <h4 class="nomargin"><b>壓克力吊飾盲盒</b></h4>
+                          <p>全14種隨機出貨</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td data-th="Price">$300</td>
+                    <td data-th="Quantity">
+                      <input type="number" class="form-control text-center" value="1">
+                    </td>
+                    <td data-th="Subtotal" class="text-center">300</td>
+                    <td class="actions" data-th="">
+                      <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i
+                          class="fa-solid fa-trash"></i></button>
+                    </td>
                   </tr>
                   <tr>
-                    <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-                    <td colspan="2" class="hidden-xs"></td>
+                    <td data-th="Product">
+                      <div class="row">
+                        <div class="col-sm-4 hidden-xs"><img
+                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98s-lnx31qxr00mx53" alt="..."
+                            class="img-responsive" /></div>
+                        <div class="col-sm-8">
+                          <h4 class="nomargin"><b>原子筆</b></h4>
+                          <p>粉色-內部戰士、藍色-外部戰士</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td data-th="Price">$140</td>
+                    <td data-th="Quantity">
+                      <input type="number" class="form-control text-center" value="1">
+                    </td>
+                    <td data-th="Subtotal" class="text-center">140</td>
+                    <td class="actions" data-th="">
+                      <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i
+                          class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-th="Product">
+                      <div class="row">
+                        <div class="col-sm-4 hidden-xs"><img
+                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07" alt="..."
+                            class="img-responsive" /></div>
+                        <div class="col-sm-8">
+                          <h4 class="nomargin"><b>多層資料夾</b></h4>
+                          <p>米色-內部戰士、白色-外部戰士</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td data-th="Price">$145</td>
+                    <td data-th="Quantity">
+                      <input type="number" class="form-control text-center" value="1">
+                    </td>
+                    <td data-th="Subtotal" class="text-center">145</td>
+                    <td class="actions" data-th="">
+                      <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i
+                          class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="hidden-xs"></td>
                     <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                    <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a>
+                    <td><a href="#" class="btn btn-success btn-block"
+                        style="background-color: #b0a5c6a8;border: none;color: white;">結帳 <i
+                          class="fa fa-angle-right"></i></a>
                     </td>
                   </tr>
                 </tfoot>
@@ -548,39 +766,46 @@
         </section>
         </section>
 
-        <section>
+        <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
+          <!-- Actual search box -->
+          <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback"
+              style="height: 30px;width: 30px;margin-left: 45px;margin-top: 5px;"></span>
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <br>
           <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th>Order</th>
-                <th>Description</th>
-                <th>Deadline</th>
-                <th>Status</th>
-                <th>Amount</th>
-                <th style="text-align:center;width:100px;">Add row <button type="button" data-func="dt-add"
-                    class="btn btn-success btn-xs dt-add">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                  </button></th>
+                <th>姓名</th>
+                <th>商品名稱</th>
+                <th>訂單成立時間</th>
+                <th>付款方式</th>
+                <th>總額</th>
+                <th>確認付款</th>
+                <th>備註</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>Alphabet puzzle</td>
+                <td>派大星</td>
+                <td>玩偶吊飾</td>
                 <td>2016/01/15</td>
-                <td>Done</td>
+                <td>信用卡付款</td>
                 <td>1000</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-check" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center>
+                    <input id="box1" type="checkbox" />
+                    <label for="box1" id="label1">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
+
               <tr>
                 <td>2</td>
                 <td>Layout for poster</td>
@@ -588,12 +813,12 @@
                 <td>Planned</td>
                 <td>1834</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center><input id="box2" type="checkbox" />
+                    <label for="box2">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
               <tr>
@@ -603,12 +828,13 @@
                 <td>To Do</td>
                 <td>1500</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center>
+                    <input id="box3" type="checkbox" />
+                    <label for="box3">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
               <tr>
@@ -618,12 +844,12 @@
                 <td>Done</td>
                 <td>1200</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center><input id="box4" type="checkbox" />
+                    <label for="box4">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
               <tr>
@@ -633,12 +859,12 @@
                 <td>Planned</td>
                 <td>2100</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center><input id="box5" type="checkbox" />
+                    <label for="box5">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
 
@@ -649,12 +875,12 @@
                 <td>To Do</td>
                 <td>299</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                    <i class="fa-sharp fa-solid fa-check"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs dt-delete">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
+                  <center><input id="box6" type="checkbox" />
+                    <label for="box6">未付款</label>
+                  </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
             </tbody>
@@ -667,7 +893,21 @@
       </div>
     </div>
 
+    <script>
+      // 取得按鈕元素
+      const checkbox = document.getElementById('box1');
+      const label1 = document.getElementById('label1');
 
+      // 添加点击事件监听器
+      checkbox.addEventListener('click', function () {
+        // 检查当前按钮文本
+        if (checkbox.checked) {
+          label1.textContent = '已付款';
+        } else {
+          label1.textContent = '未付款';
+        }
+      });
+    </script>
     </div>
     </div>
     </div>
