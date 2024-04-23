@@ -41,7 +41,6 @@
 </head>
 
 <body>
-<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <!-- End Header -->
 
@@ -61,8 +60,17 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
-
-    <section id="hero" style="background-image: url(https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200);
+    <?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
+    <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
     ;">
       <div class="background-overlay" style="position: absolute;
     top: 0;
@@ -70,8 +78,6 @@
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
       </div>
       <div class="edit_like_shop_button">
-        <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
-        <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
         <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
         <button type="button" class="btn insert_button"><i
             class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
@@ -91,14 +97,25 @@
         </div>
 
       </div>
-
+';}
+?>
+<?php
+  $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from shop
+  where shop_id=$shop_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
       <!-- Showcase -->
       <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg">
+                src="',$row["shop_bg"],'">
             </div>
             <br>
             <center>
@@ -106,23 +123,26 @@
                 style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
+          ';}
+?>
 
-          
-
-
-
+<?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
           <div class="col-md-7"
             style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>三麗鷗X美少女戰士</b>
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>',$row["commodity_group_name"],'</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <hr>
             <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
-                <p style="color: #5a5a5a;">本團代購三麗鷗X美少女戰士聯名商品</p>
-                <p style="color: #5a5a5a;">購買前請先注意賣場規則</p>
-                <p style="color: #5a5a5a;">開團時間：4/4~4/21</p>
-                <p style="color: #5a5a5a;">其他代購商品歡迎到賣場逛逛~</p>
-                <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">',$row["commodity_group_narrate"],'</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -138,7 +158,7 @@
       </div>
 
     </section>
-    <!-- SECOND navbar -->
+    <!-- SECOND navbar -->';}?>
 
     <div class="tabs" role="tablist">
 
