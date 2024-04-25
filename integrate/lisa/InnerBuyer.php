@@ -166,7 +166,7 @@
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="',$row["shop_bg"],'">
+                src="',$row["shop_avatar"],'">
             </div>
             <br>
             <center>
@@ -237,61 +237,67 @@
         <section class="addgoods">
           <h2>Features</h2>
           <div class="container" >
-            <form id="contact" method="post" action="addcommondity.php" style="padding: 5%;">
+            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;">
               <table class="table table-hover" width="100%">
-                <thead>
-                  <tr>
-                    <th scope="col" style="width: 15%;">商品名稱</th>
-                    <th scope="col">商品敘述</th>
-                    <th scope="col" style="width: 10%;">商品狀態</th>
-                    <th scope="col" style="width: 10%;">金額</th>
-                    <th scope="col" style="width: 10%;">上傳圖片</th>
-                  </tr>
-                </thead>
                 <tbody>
-                  <tr  id="show" >
-                    <td scope="row">
+                  <tr>
+                  <th>商品名稱</th>
+                    <td >
                       <fieldset>
-                        <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name[]" required autofocus>
+                        <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
                       </fieldset>
                     </td>
+                  </tr>
+                  <tr>
+                    <th>商品敘述</th>
                     <td>
                       <fieldset>
-                        <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate[]" required></textarea>
+                        <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
                       </fieldset>
                     </td>
+                  </tr>
+                  <tr>
+                    <th>商品狀態</th>
                     <td>
-                      <div>
-                        <input type="radio" id="1" name="drone" value="上架" name="commodity_state[]" checked />
-                        <label for="add1">上架</label>
-                      </div>
-
-                      <div>
-                        <input type="radio" id="2" name="drone" value="待上架" name="commodity_state[]"/>
-                        <label for="add2">待上架</label>
-                      </div>
+                    <div>
+                      <input type="radio" id="1" name="commodity_state" value="1" checked />
+                      <label for="add1">上架</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="2" name="commodity_state" value="2" />
+                      <label for="add2">待上架</label>
+                    </div>
                     </td>
+                    </tr>
+                    <tr>
+                      <th >金額</th>
                     <td>
                       <fieldset>
-                        <input placeholder="金額" type="email" tabindex="1" name="commodity_price[]" required>
+                        <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
                       </fieldset>
                     </td>
+                    
+                    </tr>
+                    <tr>
+                      <th>連結</th>
+                      <td>
+                      <fieldset>
+                        <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
+                      </fieldset>
+                    </td>
+                    </tr>
+                    <tr>
+                      <th>上傳圖片</th>
                     <td>
                       <fieldset>
                         <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                          multiple="multiple" name="commodity_photo[]"/>
+                          multiple="multiple" name="commodity_photo"/>
                       </fieldset>
                     </td>
                   </tr>
                   
                   <tr>
-                    <td colspan="3">
-                      <fieldset>
-                        <button 
-                         type="submit"  onclick="addRow()">新增商品</button>
-                      </fieldset>
-                    </td>
-                    <td colspan="2">
+                    <td colspan="5">
                       <fieldset>
                         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
                       </fieldset>
@@ -302,38 +308,7 @@
             </form>
           </div>
         </section>
-        <script>
-          //表格
-var indexArr = new Array();
 
-var counter = 1; // 計數器
-
-function addRow() {
-  // 複製表格行的 HTML 內容
-  var showHtml = $("#show").html();
-  // 建立一個新的表格行，將複製的 HTML 內容插入其中
-  var newRow = $("<tr>" + showHtml + "</tr>");
-  
-  // 在新的表格行中找到所有的 radio 元素
-  newRow.find('input[type="radio"]').each(function() {
-    // 修改每個 radio 元素的 id 屬性
-    var oldId = $(this).attr('id');
-    var newId = oldId + counter;
-    $(this).attr('id', newId);
-    
-    // 修改每個 radio 元素的 name 屬性
-    var oldName = $(this).attr('name');
-    var newName = oldName + counter;
-    $(this).attr('name', newName);
-  });
-  
-  // 將新的表格行插入到表格中
-  $("#show").after(newRow);
-  
-  // 增加計數器
-  counter++;
-}
-          </script>
         <section>
           <h2>Delivery Contents</h2>
           <!-- ======= Pricing Section ======= -->
@@ -488,7 +463,6 @@ function addRow() {
                           style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                         </td>
                       </tr>
-
                     </tbody>
                   </table>
                 </div>
