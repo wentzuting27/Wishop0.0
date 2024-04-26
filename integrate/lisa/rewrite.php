@@ -28,7 +28,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/InnerPage.css" rel="stylesheet">
+  <link href="assets/css/InnerCos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
@@ -41,7 +41,6 @@
 </head>
 
 <body>
-<?php session_start(); ?>
   <!-- ======= Header ======= -->
   <!-- End Header -->
 
@@ -62,7 +61,18 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section id="hero" style="background-image: url(https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200);
+    <?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
+
+    <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
     ;">
       <div class="background-overlay" style="position: absolute;
     top: 0;
@@ -72,13 +82,63 @@
       <div class="edit_like_shop_button">
         <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
         <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
-        <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-        <button type="button" class="btn insert_button"><i
-            class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
+        <button type="button"  class="btn insert_button" data-bs-toggle="modal"
+          data-bs-target="#up_rule_Modal"><i class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>
+        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
+          <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
+      </div>
+      <!-- insert_group_Modal -->
+      <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <table width="100%" class="insert_group_form">
+                  <tr>
+                    <td>名稱</td>
+                    <td><input type="text" id="group_name" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td>敘述</td>
+                    <td>
+                      <textarea class="form-control" rows="5"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit" class="btn insert_button"
+                        style="display: block;width: 100%;">確認修改</button></td>
+                  </tr>
+                </table>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div><!-- End insert_group_Modal -->
+      <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="leaveLabel">確定結束？</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
-          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;"></i></p>
+        <div style="margin-left: 280px; margin-top: -30px;z-index: 9;">
+          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
         </div>
         <div>
           <center>
@@ -89,41 +149,59 @@
             </marquee>
           </center>
         </div>
+      </div>';}?>
 
-      </div>
-
+      <!-- Showcase -->
+      <?php
+  $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from shop
+  where shop_id=$shop_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
       <!-- Showcase -->
       <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg">
+                src="',$row["shop_avatar"],'">
             </div>
             <br>
             <center>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-                style="text-decoration: none;">三麗鷗快樂購</a>
+              <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
+          ';}
+?>
+
+  <?php
+  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $link=mysqli_connect('localhost','root','12345678','wishop');
+  $sql="select *
+  from commodity_group
+  where commodity_group_id=$commodity_group_id";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo '
           <div class="col-md-7"
             style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;"><b>三麗鷗X美少女戰士</b>
-              <small style="font-size: 0.4cm;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>',$row["commodity_group_name"],'</b>
+              <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <hr>
-            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);">
-              <p>本團代購三麗鷗X美少女戰士聯名商品</p>
-              <p>購買前請先注意賣場規則</p>
-              <p>開團時間：4/4~4/21</p>
-              <p>其他代購商品歡迎到賣場逛逛~</p>
-              <p style="color: rgb(234, 65, 110);">重要資訊公告在討論區！！</p>
+            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
+                <p style="color: #5a5a5a;font-size: 0.3cm">',$row["commodity_group_narrate"],'</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="three" class="button" style="font-size: 15px;">#三麗鷗</div>
-                    <div id="four" class="button" style="font-size: 15px;">#美少女戰士</div><br>
+                    <div id="three" class="button" style="font-size: 15px;font-weight: bold">#三麗鷗</div>
+                    <div id="four" class="button" style="font-size: 15px;font-weight: bold">#美少女戰士</div><br>
                   </div>
                 </div>
               </div>
@@ -133,20 +211,20 @@
       </div>
 
     </section>
-    <!-- SECOND navbar -->
+    <!-- SECOND navbar -->';}?>
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control">
+      <input type="radio" id="tab1" name="tab-control" >
       <input type="radio" id="tab2" name="tab-control">
       <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
       <div id="subject">
         <ul>
           <li title="Features"><label for="tab1" role="button">
-              <i class="fa-solid fa-circle-exclamation"></i><br><span>賣場規則</span></label></li>
+              <i class="fa-solid fa-circle-exclamation"></i><br><span>新增商品</span></label></li>
           <li title="Delivery Contents"><label for="tab2" role="button">
-              <i class="fa-solid fa-gift"></i><br><span>商品</span></label></li>
+              <i class="fa-solid fa-gift"></i><br><span>管理商品</span></label></li>
           <li title="Shipping"><label for="tab3" role="button">
               <i class="fa-solid fa-comments"></i><br><span>討論區</span></label></li>
           <li title="Returns"><label for="tab4" role="button">
@@ -157,446 +235,243 @@
       <div class="slider">
         <div class="indicator"></div>
       </div>
-      <div class="content" style="margin-top: -5px;">
-        <section>
+      <div class="content" style="margin-top: -5px;padding: 0%;">
+        <section class="addgoods">
           <h2>Features</h2>
-
-          <div class="container-fluid">
-            <h4>購買順序及注意事項：</h4>
-            <div class="row justify-content-center"> <!-- 使用 justify-content-center 将内容水平居中 -->
-              <div class="col-md-10">
-                <div class="example-basic">
-                  <br>
-                  <div class="timeline">
-                    <h4 class="timeline-title">1.需求確認與溝通</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>確認購買商品的具體需求，包括商品種類、規格、數量等</li>
-                          <li>雙方達成一致後，提供訂單和付款資訊</li>
-                        </ol>
-                      </div>
+          <div class="container" >
+            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;">
+              <table class="table table-hover" width="100%">
+                <tbody>
+                  <tr>
+                  <th>商品名稱</th>
+                    <td >
+                      <fieldset>
+                        <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
+                      </fieldset>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>商品敘述</th>
+                    <td>
+                      <fieldset>
+                        <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
+                      </fieldset>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>商品狀態</th>
+                    <td>
+                    <div>
+                      <input type="radio" id="1" name="commodity_state" value="1" checked />
+                      <label for="add1">上架</label>
                     </div>
-                    <h4 class="timeline-title">2.商品採購與代購</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>確認商品的質量、價格以及運輸方式，並與客戶進行溝通確認</li>
-                          <li>代購商下單購買商品，並確保訂單的準確性和及時性</li>
-                        </ol>
-                      </div>
+                    <div>
+                      <input type="radio" id="2" name="commodity_state" value="2" />
+                      <label for="add2">待上架</label>
                     </div>
-                    <h4 class="timeline-title">3.物流運輸與跟蹤</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>提供客戶訂單跟蹤號碼或連結，方便客戶隨時了解訂單的狀態</li>
-                          <li>在運輸過程中，代購商與客戶保持溝通，及時處理可能出現的物流問題</li>
-                        </ol>
-                      </div>
-                    </div>
-                    <h4 class="timeline-title">4.售後服務與回應</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>客戶收到商品後，代購商提供售後服務，解答客戶可能出現的問題，處理退換貨事宜等</li>
-                          <li>鼓勵客戶對購買體驗和商品質量進行回應，以便代購商改進服務和商品品質</li>
-                        </ol>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><br><br>
-
-          <h4>常見問題：</h4><br>
-          <div id="why-us" class="why-us section-bg">
-            <div class="container-fluid" data-aos="fade-up">
-              <div class="col-lg-12   align-items-stretch  order-2 order-lg-1">
-
-                <div class="accordion-list">
-                  <ul>
-                    <li>
-                      <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">注意事項<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆無提供貨到付款服務，訂購皆需先匯款。<br>
-                          ◆跟團前請先衡量自身經濟能力，避免造成雙方困擾，訂購前請三思，私訊訂購視同購買，不接受任何理由取消訂單，跑單者直接列為黑名單。<br>
-                          ◆價格會依照每日國際匯率而有所變動，下單前請先確認金額再下單。<br>
-                          ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。<br>
-                          ◆代購商品皆為預購，於國外訂購後集運回台需7-20個工作天(不包含例假日和廠商延遲出貨)，不接急單無法等候者請勿下單。<br>
-                          ◆包裹配送至門市，超過時間未取貨，導致包裹退回，重新寄出需收取補寄處理費$100 (含運費，需先匯款)，累積兩次未取包裹紀錄，將列為黑名單處理。<br>
-                          ◆「代購服務」是依照消費者要求而提供的購買商品服務屬「客製化給付」，不適用7日鑑賞期，沒有提供退換貨服務。<br>
-                          ◆衣著類商品由於每樣商品的版型皆有所不同，訂購前可依您平時穿著同類型衣物尺寸為參考依據。<br>
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal">
-                            <i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                        <!-- insert_group_Modal -->
-                        <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <form>
-                                  <table width="100%" class="insert_group_form">
-                                    <tr>
-                                      <td>標題</td>
-                                      <td><input type="text" id="group_name" class="form-control" value="注意事項"></td>
-                                    </tr>
-                                    <tr>
-                                      <td>敘述</td>
-                                      <td>
-                                        <textarea class="form-control" rows="5"></textarea>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td colspan="2"><button type="submit" class="btn insert_button"
-                                          style="display: block;width: 100%;">確認修改</button></td>
-                                    </tr>
-                                  </table>
-
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div><!-- End insert_group_Modal -->
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">訂購流程<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆於IG貼文、限時動態上看到您想購買的商品，請截圖私訊官賴，告知您要購買的「商品名稱、尺寸、顏色、數量和運送方式」。<br>
-                          ◆確認好金額會給您匯款單，請於三日內匯款，並填寫匯款單，以利後續對帳作業。<br>
-                          ◆匯款完成後請記得填「統一匯款單」，一律請先匯款後填單，當日匯款當日填單!!!!!
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">付款方式<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆提供匯款、轉帳、中信無卡存款等支付方式。<br>
-                          ◆請於三日內完成匯款。<br>
-                          ◆帳戶提供中信、台新、永豐。
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">國內運費<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆7-11賣貨便：運費$35+包材$5，訂單需$55≦訂單總金額 才可以成立，訂單總金額-20元留貨付，貨到時會請您付$20+運費$35=$55。<br>
-                          ◆全家超級好賣：運費$39+包材$5，訂單需$60≦訂單總金額 才可以成立，訂單總金額-25元，貨到時會請您付$25+運費$35 =$60元。<br>
-                          ◆新北蘆洲或新莊自取(地點請配合我們)<br>
-                          <br>
-                          🔺如商品材積太大需要郵寄，會再額外告知。<br>
-                          🔺若商品為需二補，運費一律二補時處理，僅匯款「商品金額」就好，其餘二補會於商品到貨後建立訂單時加進去。
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">出貨 / 到貨時間<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆商品到貨時間無法預知，一切都以官網/廠商實際出貨時間為主，只要官網/廠商有標示預計出貨日，都會寫在「綜合對帳 / 進度表」，請再自行查看進度。
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-6" class="collapsed">合併寄送<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-6" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆如要合併訂單，請先私訊詢問是否可合併，勿擅自決定可不可以合併。<br>
-                          ◆合併寄送商品最多等候一個月，需等待一個月以上則無法合併作業。
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-7" class="collapsed">退換貨<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-7" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          代購商品除了寄錯商品以外不提供退換貨服務。<br>
-                          ◆為了維護雙方權益，開箱過程中請務必全程錄影(箱子未拆封狀態下且需看到名字)，若未錄影，如商品有任何問題皆不協助處理！<br>
-                          ◆國際運送過程中出現碰撞難免會造成商品凹損，完美主義者請勿跟團。
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <a data-bs-toggle="collapse" data-bs-target="#accordion-list-8" class="collapsed">關於我們<i
-                          class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                      <div id="accordion-list-8" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                          ◆有任何問題請私訊IG或官賴詢問<br>
-                          ◆聯絡方式：IG請搜尋@cocoma.friends、官賴ID：@353zrdwz<br>
-                          ◆付款方式：提供匯款、轉帳、中信無卡存款等支付方式<br>
-                          ◆也歡迎追蹤我們FB、Twitter：cocoma friends 韓國代購<br>
-
-                        </p>
-                        <div style="text-align: right;">
-                          <button type="button" class="btn insert_button" data-bs-toggle="modal"
-                            data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                          <button type="button" class="btn insert_button"><i
-                              class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
-                        </div>
-                      </div>
-                    </li>
-
-                  </ul>
-                </div>
-
-              </div>
-
-            </div>
+                    </td>
+                    </tr>
+                    <tr>
+                      <th >金額</th>
+                    <td>
+                      <fieldset>
+                        <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
+                      </fieldset>
+                    </td>
+                    
+                    </tr>
+                    <tr>
+                      <th>連結</th>
+                      <td>
+                      <fieldset>
+                        <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
+                      </fieldset>
+                    </td>
+                    </tr>
+                    <tr>
+                      <th>上傳圖片</th>
+                    <td>
+                      <fieldset>
+                        <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                          multiple="multiple" name="commodity_photo"/>
+                      </fieldset>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colspan="5">
+                      <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
+                      </fieldset>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
           </div>
         </section>
+
         <section>
           <h2>Delivery Contents</h2>
           <!-- ======= Pricing Section ======= -->
+          <div>
+            <div class="small">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="#list-item-1"><b>已上架區塊</b></a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2"><b>待上架區塊</b></a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3"><b>下架區塊</b></a>
+              </div>
+            </div>
+            <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
+              class="scrollspy-example" tabindex="0">
 
-          <!-- change Section -->
-          <div id="app">
-            <div class="container">
-              <table id="cart" class="table table-hover table-condensed">
-                <thead>
-                  <tr>
-                    <th style="width:50%">Product</th>
-                    <th>Price</th>
-                    <th style="width:10%">Quantity</th>
-                    <th class="text-center">Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs">
-                          <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                            title="Portfolio Details">
-                            <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
-                              alt="..." class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>玩偶吊飾</b></h4>
-                          <p>水星/大耳狗玩偶吊飾、木星/瑪莉兔玩偶吊飾、火星/庫洛米玩偶吊飾.</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$750</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">750</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98y-lq1pws45etqa02" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>拉鍊收納包</b></h4>
-                          <p>Hello Kitty/月野兔、美樂蒂/小兔子、大耳狗/水野亞美、庫洛米/火野麗、布丁狗/愛野美奈子</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$260</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">260</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>壓克力吊飾盲盒</b></h4>
-                          <p>全14種隨機出貨</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$300</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">300</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98s-lnx31qxr00mx53" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>原子筆</b></h4>
-                          <p>粉色-內部戰士、藍色-外部戰士</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$140</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">140</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>多層資料夾</b></h4>
-                          <p>米色-內部戰士、白色-外部戰士</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$145</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">145</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
 
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="3" class="hidden-xs"></td>
-                    <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                    <td><a href="#" class="btn btn-success btn-block"
-                        style="background-color: #b0a5c6a8;border: none;color: white;">結帳 <i
-                          class="fa fa-angle-right"></i></a>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+              <!-- change Section -->
+              <div class="seven" id="list-item-1">
+                <h1>已上架商品區</h1>
+              </div>
+              <div id="app">
+                <div class="container">
+                  <table id="cart" class="table table-hover table-condensed">
+                    <thead>
+                      <tr>
+                        <th style="width:50%">商品</th>
+                        <th>價格</th>
+                        <th style="width:10%">已賣出</th>
+                        <th class="text-center">收藏次數</th>
+                      </tr>
+                    </thead>
+                    <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=1";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
+                    <tbody>
+                      <tr>
+                        <td data-th="Product">
+                          <div class="row">
+                            <div class="col-sm-4 hidden-xs">
+                              <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
+                                title="Portfolio Details">
+                                <img src="',$row["commodity_photo"],'"
+                                  alt="..." class="img-responsive" /></a>
+                            </div>
+                            <div class="col-sm-8">
+                              <h4 class="nomargin"><b>',$row["commodity_name"],'</b></h4>
+                              <p>',$row["commodity_narrate"],'</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td data-th="Price">$',$row["commodity_price"],'</td>
+                        <td data-th="Quantity">
+                          <center>2</center>
+                        </td>
+                        <td data-th="Subtotal" class="text-center">5</td>
+                        <td class="actions" data-th="">
+                          <button class="btn btn-info btn-sm"
+                          style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="btn btn-danger btn-sm"
+                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                      </tr>';}?>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br><br>
+              <div class="seven" id="list-item-2">
+                <h1>待上架商品區</h1>
+              </div>
+              <div class="row">
+                <div id="slider-carouse2" class="owl-carousel">
+                <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=2";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
+                  <div class="waiting">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-head">
+                        <img
+                          src="',$row["commodity_photo"],'"
+                          class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">',$row["commodity_name"],'</h5>
+                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </div>
+                  </div>'
+                  ;}
+                  ?>
+                </div>
+              </div>
+              <br><br>
+              <div class="seven" id="list-item-3">
+                <h1>下架商品區</h1>
+              </div>
+              <div class="row">
+                <div id="slider-carouse3" class="owl-carousel">
+                <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=3";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
+                  <div class="waiting">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-head">
+                        <img
+                          src="',$row["commodity_photo"],'"
+                          class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">',$row["commodity_name"],'</h5>
+                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <button class="btn btn-info btn-sm"
+                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger btn-sm"
+                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </div>
+                  </div>'
+                  ;}
+                  ?>
+                </div>
+              </div>
             </div>
           </div>
         </section>
         <section id="first">
           <h2>Shipping</h2>
-          <div id="contact" class="contact" style="padding-left: 90px;padding-right: 90px;margin-bottom: 60px;">
+          <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
 
             <div class="col-lg-12 mt-5 mt-lg-0">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form action="addwrite.php" method="post" role="form" >
 
                 <div>
                   <div class="col-md-3">
                     <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 30px; margin-bottom: 20px;">
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
                         src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
                     </div>
@@ -605,10 +480,7 @@
                     <h5>用戶暱稱</h5>
                   </div>
                 </div>
-
-
-
-                <div class="row" style="float: right;transform: scale(1);margin-top:44px;">
+                <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
 
                   <div class="col-sm-5" id="btn1">
                     <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
@@ -616,21 +488,16 @@
                       <div class="handle"></div>
                     </button>
                   </div>
-                </div>
-
+                </div>-->
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="標題" required>
+                  <input type="text" class="form-control" name="announce_title" placeholder="標題" required>
                 </div>
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="內容" required></textarea>
+                  <textarea class="form-control" name="announce_narrate" rows="5" placeholder="內容" required></textarea>
                 </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="text-center">
+                  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">上傳</button>
                 </div>
-                <div class="text-center"><button type="submit"><a href="../lisa/團內介面2.php#first"
-                      style="text-decoration: none; color: #FFF;">上傳</a></button></div>
               </form>
 
             </div>
@@ -641,7 +508,9 @@
 
         <section id="order">
           <h2>Returns</h2>
-          <h4>對帳表:</h4>
+          <div class="seven">
+            <h1>對帳表</h1>
+          </div>
           <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
               <tr>
@@ -651,6 +520,7 @@
                 <th>Status</th>
                 <th>Amount</th>
                 <th>確認付款</th>
+                <th>備註</th>
               </tr>
             </thead>
             <tbody>
@@ -666,6 +536,9 @@
                     <label for="box1" id="label1">未付款</label>
                   </center>
                 </td>
+                <td>
+                  <p>希望可以幫我併單</p>
+                </td>
               </tr>
 
               <tr>
@@ -678,6 +551,9 @@
                   <center><input id="box2" type="checkbox" />
                     <label for="box2">未付款</label>
                   </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
               <tr>
@@ -692,6 +568,9 @@
                     <label for="box3">未付款</label>
                   </center>
                 </td>
+                <td>
+                  <p>希望可以幫我併單</p>
+                </td>
               </tr>
               <tr>
                 <td>4</td>
@@ -704,6 +583,9 @@
                     <label for="box4">未付款</label>
                   </center>
                 </td>
+                <td>
+                  <p>希望可以幫我併單</p>
+                </td>
               </tr>
               <tr>
                 <td>5</td>
@@ -715,6 +597,9 @@
                   <center><input id="box5" type="checkbox" />
                     <label for="box5">未付款</label>
                   </center>
+                </td>
+                <td>
+                  <p>希望可以幫我併單</p>
                 </td>
               </tr>
 
@@ -729,14 +614,184 @@
                     <label for="box6">未付款</label>
                   </center>
                 </td>
+                <td>
+                  <p>希望可以幫我併單</p>
+                </td>
               </tr>
             </tbody>
           </table>
 
           <button onclick="showCsv()">Console log csv code</button>
           <button onclick="download()">Download csv file</button>
-          <br><br><br>
-        </section>
+          <br><br><br><div class="seven">
+              <h1>接收訂單</h1>
+            </div>
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Description</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                  <th>Amount</th>
+                  <th>確認接收</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Alphabet puzzle</td>
+                  <td>2016/01/15</td>
+                  <td>Done</td>
+                  <td>1000</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" 
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>2</td>
+                  <td>Layout for poster</td>
+                  <td>2016/01/31</td>
+                  <td>Planned</td>
+                  <td>1834</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Image creation</td>
+                  <td>2016/01/23</td>
+                  <td>To Do</td>
+                  <td>1500</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Create font</td>
+                  <td>2016/02/26</td>
+                  <td>Done</td>
+                  <td>1200</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Sticker production</td>
+                  <td>2016/02/18</td>
+                  <td>Planned</td>
+                  <td>2100</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>11</td>
+                  <td>Wedding announcement</td>
+                  <td>2016/07/09</td>
+                  <td>To Do</td>
+                  <td>299</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"
+                    style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table><br>
+          <div class="seven">
+            <h1>認證區塊</h1>
+          </div>
+          <div class="row">
+            <div id="slider-carouse4" class="owl-carousel">
+              <div class="waiting3">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-head">
+                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
+                      class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-header">
+                    <div class="col-md-12" style="display: flex; align-items: center;">
+                      <div class="profile-picture big-profile-picture clear"
+                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
+                        <img width="100%" height="100%" alt="Anne Hathaway picture"
+                          src="https://i.pinimg.com/236x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg">
+                      </div>
+                      <div style="flex-grow: 7;">
+                        <p>帳號</p>
+                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body"><button type="button" class="btn btn-warning"
+                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
+                  </div>
+                </div>
+              </div>
+              <div class="waiting3">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-head">
+                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
+                      class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-header">
+                    <div class="col-md-12" style="display: flex; align-items: center;">
+                      <div class="profile-picture big-profile-picture clear"
+                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
+                        <img width="100%" height="100%" alt="Anne Hathaway picture"
+                          src="https://i.pinimg.com/236x/8c/12/c0/8c12c0f0f6d7c2ee634e7aa541e9911c.jpg">
+                      </div>
+                      <div style="flex-grow: 7;">
+                        <p>帳號</p>
+                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body"><button type="button" class="btn btn-warning"
+                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
+                  </div>
+                </div>
+              </div>
+              <div class="waiting3">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-head">
+                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
+                      class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-header">
+                    <div class="col-md-12" style="display: flex; align-items: center;">
+                      <div class="profile-picture big-profile-picture clear"
+                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
+                        <img width="100%" height="100%" alt="Anne Hathaway picture"
+                          src="https://i.pinimg.com/236x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg">
+                      </div>
+                      <div style="flex-grow: 7;">
+                        <p>帳號</p>
+                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body"><button type="button" class="btn btn-warning"
+                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
+                  </div>
+                </div>
+              </div>
+            </div></div>
+            <br>
+      </div>
+      </section>
       </div>
     </div>
 
