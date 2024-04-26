@@ -71,7 +71,7 @@
     echo '
 
     <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
-    ;">
+    ;">';}?>
       <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
@@ -128,8 +128,8 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+              <button type="button" name="delgroup" class="btn btn-primary">確定</button>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@
             </marquee>
           </center>
         </div>
-      </div>';}?>
+      </div>
 
       <!-- Showcase -->
       <?php

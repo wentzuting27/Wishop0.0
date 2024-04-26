@@ -79,8 +79,8 @@
       </div>
       <div class="edit_like_shop_button">
         <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-        <button type="button" class="btn insert_button"><i
-            class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
+        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
@@ -97,9 +97,25 @@
         </div>
 
       </div>
+      <!-- Modal -->
+      <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="leaveLabel">確定跟團？</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <p style="color:red;">跟團須知：請勿跟團後不購買產品，否則列入黑名單！！！</p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+              <button type="button" name="addgroup" class="btn btn-primary">確定</button>
+            </div>
+          </div>
+        </div>
+      </div>
 ';}
 ?>
-<?php
+  <?php
   $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
@@ -115,7 +131,7 @@
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="',$row["shop_bg"],'">
+                src="',$row["shop_avatar"],'">
             </div>
             <br>
             <center>
@@ -185,60 +201,6 @@
       <div class="content" style="margin-top: -5px;">
         <section>
           <h2>Features</h2>
-
-          <div class="container-fluid">
-            <h4>購買順序及注意事項：</h4>
-            <div class="row justify-content-center"> <!-- 使用 justify-content-center 将内容水平居中 -->
-              <div class="col-md-10">
-                <div class="example-basic">
-                  <br>
-                  <div class="timeline">
-                    <h4 class="timeline-title">1.需求確認與溝通</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>確認購買商品的具體需求，包括商品種類、規格、數量等</li>
-                          <li>雙方達成一致後，提供訂單和付款資訊</li>
-                        </ol>
-                      </div>
-                    </div>
-                    <h4 class="timeline-title">2.商品採購與代購</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>確認商品的質量、價格以及運輸方式，並與客戶進行溝通確認</li>
-                          <li>代購商下單購買商品，並確保訂單的準確性和及時性</li>
-                        </ol>
-                      </div>
-                    </div>
-                    <h4 class="timeline-title">3.物流運輸與跟蹤</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>提供客戶訂單跟蹤號碼或連結，方便客戶隨時了解訂單的狀態</li>
-                          <li>在運輸過程中，代購商與客戶保持溝通，及時處理可能出現的物流問題</li>
-                        </ol>
-                      </div>
-                    </div>
-                    <h4 class="timeline-title">4.售後服務與回應</h4>
-                    <div class="timeline-item">
-                      <div class="timeline-marker"></div>
-                      <div class="timeline-content">
-                        <ol style="font-size: 0.4cm;">
-                          <li>客戶收到商品後，代購商提供售後服務，解答客戶可能出現的問題，處理退換貨事宜等</li>
-                          <li>鼓勵客戶對購買體驗和商品質量進行回應，以便代購商改進服務和商品品質</li>
-                        </ol>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><br><br>
-
           <h4>常見問題：</h4><br>
           <div id="why-us" class="why-us section-bg">
             <div class="container-fluid" data-aos="fade-up">
