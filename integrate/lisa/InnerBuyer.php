@@ -177,7 +177,7 @@
           ';}
 ?>
 
-<?php
+  <?php
   $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
@@ -339,6 +339,16 @@
                         <th class="text-center">收藏次數</th>
                       </tr>
                     </thead>
+                    <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=1";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
                     <tbody>
                       <tr>
                         <td data-th="Product">
@@ -346,16 +356,16 @@
                             <div class="col-sm-4 hidden-xs">
                               <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                                 title="Portfolio Details">
-                                <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
+                                <img src="',$row["commodity_photo"],'"
                                   alt="..." class="img-responsive" /></a>
                             </div>
                             <div class="col-sm-8">
-                              <h4 class="nomargin"><b>玩偶吊飾</b></h4>
-                              <p>水星/大耳狗玩偶吊飾、木星/瑪莉兔玩偶吊飾、火星/庫洛米玩偶吊飾.</p>
+                              <h4 class="nomargin"><b>',$row["commodity_name"],'</b></h4>
+                              <p>',$row["commodity_narrate"],'</p>
                             </div>
                           </div>
                         </td>
-                        <td data-th="Price">$750</td>
+                        <td data-th="Price">$',$row["commodity_price"],'</td>
                         <td data-th="Quantity">
                           <center>2</center>
                         </td>
@@ -366,183 +376,47 @@
                           <button class="btn btn-danger btn-sm"
                           style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                         </td>
-                      </tr>
-                      <tr>
-                        <td data-th="Product">
-                          <div class="row">
-                            <div class="col-sm-4 hidden-xs"><img
-                                src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98y-lq1pws45etqa02"
-                                alt="..." class="img-responsive" /></div>
-                            <div class="col-sm-8">
-                              <h4 class="nomargin"><b>拉鍊收納包</b></h4>
-                              <p>Hello Kitty/月野兔、美樂蒂/小兔子、大耳狗/水野亞美、庫洛米/火野麗、布丁狗/愛野美奈子</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td data-th="Price">$260</td>
-                        <td data-th="Quantity">
-                          <center>2</center>
-                        </td>
-                        <td data-th="Subtotal" class="text-center">5</td>
-                        <td class="actions" data-th="">
-                          <button class="btn btn-info btn-sm"
-                          style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm"
-                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-th="Product">
-                          <div class="row">
-                            <div class="col-sm-4 hidden-xs"><img
-                                src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5"
-                                alt="..." class="img-responsive" /></div>
-                            <div class="col-sm-8">
-                              <h4 class="nomargin"><b>壓克力吊飾盲盒</b></h4>
-                              <p>全14種隨機出貨</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td data-th="Price">$300</td>
-                        <td data-th="Quantity">
-                          <center>2</center>
-                        </td>
-                        <td data-th="Subtotal" class="text-center">5</td>
-                        <td class="actions" data-th="">
-                          <button class="btn btn-info btn-sm"
-                          style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm"
-                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-th="Product">
-                          <div class="row">
-                            <div class="col-sm-4 hidden-xs"><img
-                                src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98s-lnx31qxr00mx53"
-                                alt="..." class="img-responsive" /></div>
-                            <div class="col-sm-8">
-                              <h4 class="nomargin"><b>原子筆</b></h4>
-                              <p>粉色-內部戰士、藍色-外部戰士</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td data-th="Price">$140</td>
-                        <td data-th="Quantity">
-                          <center>2</center>
-                        </td>
-                        <td data-th="Subtotal" class="text-center">5</td>
-                        <td class="actions" data-th="">
-                          <button class="btn btn-info btn-sm"
-                          style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm"
-                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-th="Product">
-                          <div class="row">
-                            <div class="col-sm-4 hidden-xs"><img
-                                src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07"
-                                alt="..." class="img-responsive" /></div>
-                            <div class="col-sm-8">
-                              <h4 class="nomargin"><b>多層資料夾</b></h4>
-                              <p>米色-內部戰士、白色-外部戰士</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td data-th="Price">$145</td>
-                        <td data-th="Quantity">
-                          <input type="number" class="form-control text-center" value="1">
-                        </td>
-                        <td data-th="Subtotal" class="text-center">145</td>
-                        <td class="actions" data-th="">
-                          <button class="btn btn-info btn-sm"
-                          style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm"
-                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                      </tr>
+                      </tr>';}?>
+                     
                     </tbody>
                   </table>
                 </div>
               </div>
+              <br><br>
               <div class="seven" id="list-item-2">
                 <h1>待上架商品區</h1>
               </div>
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
+                <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=2";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="https://files.lpzine.com/image/4478a9bfc3a1f836be104836821bdb6272bdc92cd3fe5c17bf4a28300771fc0f/79779280/252536752372183039.jpg"
+                          src="',$row["commodity_photo"],'"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
+                        <h5 class="card-title">',$row["commodity_name"],'</h5>
+                        <p class="card-text">',$row["commodity_narrate"],'</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
                         style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                       </div>
                     </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img
-                          src="https://tshop.r10s.com/251ef580-ec8c-11e4-8128-005056b73023/New/202120/s4970381702892c.jpg?_ex=486x486"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUxCyCFKqFewe5wuex5uWkVHbfM8GN4ANNIaJgWq5gxw&s"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img src="https://shoplineimg.com/63f327d6db5064000a7e4723/659e2a669e25b5bf4d0a8c25/800x.jpeg?"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
+                  </div>'
+                  ;}
+                  ?>
                 </div>
               </div>
               <br><br>
@@ -551,77 +425,35 @@
               </div>
               <div class="row">
                 <div id="slider-carouse3" class="owl-carousel">
+                <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity natural join commodity_photo
+                    where commodity_state=3";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="https://files.lpzine.com/image/4478a9bfc3a1f836be104836821bdb6272bdc92cd3fe5c17bf4a28300771fc0f/79779280/252536752372183039.jpg"
+                          src="',$row["commodity_photo"],'"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
+                        <h5 class="card-title">',$row["commodity_name"],'</h5>
+                        <p class="card-text">',$row["commodity_narrate"],'</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
                         style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                       </div>
                     </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img
-                          src="https://tshop.r10s.com/251ef580-ec8c-11e4-8128-005056b73023/New/202120/s4970381702892c.jpg?_ex=486x486"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUxCyCFKqFewe5wuex5uWkVHbfM8GN4ANNIaJgWq5gxw&s"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="waiting">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-head">
-                        <img src="https://shoplineimg.com/63f327d6db5064000a7e4723/659e2a669e25b5bf4d0a8c25/800x.jpeg?"
-                          class="card-img-top" alt="...">
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                          the card's content.</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                      </div>
-                    </div>
-                  </div>
+                  </div>'
+                  ;}
+                  ?>
                 </div>
               </div>
             </div>
@@ -654,6 +486,15 @@
             </h3>
             <div class="row">
               <div id="slider-carousel" class="owl-carousel">
+              <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity_group_announce";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
                 <div class="item">
                   <div class="col-sm-10">
                     <div class="card">
@@ -666,7 +507,7 @@
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
+                            <h5>',$row["announce_title"],'<i class="fa-solid fa-ellipsis-vertical"
                                 style="float: right; margin-top: -15px;"></i></h5>
                           </div>
                         </div>
@@ -674,12 +515,13 @@
                       <div class="card-body">
                         <p class="card-text">
                         <p>尊敬的客戶:</p>
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
+                        ',$row["announce_narrate"],'
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>';}
+                ?>
                 <script>
                   document.getElementById('pra').addEventListener('click', function () {
                     var owl = document.getElementById("slider-carousel");
@@ -688,115 +530,9 @@
                   });
                 </script>
                 <!-- 添加其他的 .item -->
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div><br>
+            </div>
+            <br>
             <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
 
             <div class="part2" id="card1">
@@ -967,7 +703,7 @@
 
               part3.addEventListener('click', function () {
                 // 导航到新页面
-                window.location.href = '../lisa/rewrite.php#blog';
+                window.location.href = '../lisa/rewrite.php#contact';
 
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener('load', function () {
