@@ -300,11 +300,11 @@
                                     }
                                     echo'
                                   </div>
-                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                   </button>
-                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                   </button>
@@ -372,7 +372,7 @@
                       </section>  
 
                       <?php
-                          $wish_num=1;
+                          $wish_num=$wish_num+1;
                           date_default_timezone_set('Asia/Taipei');
                           $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
                           $link=mysqli_connect('localhost','root','12345678','wishop');
@@ -403,11 +403,11 @@
                                     }
                                     echo'
                                   </div>
-                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                   </button>
-                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                   </button>
@@ -479,85 +479,85 @@
                           </div><!-- End sidebar -->              
                         </div><!-- End blog sidebar --></center>                     
                     </section> 
-                  <?php  
-                    $wish_num=1;
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select * from wish
-                    natural join account
-                    where wish_shop_id IS null AND wish_end <= now()
-                    order by wish_start";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
-                      $wish_id=$row["wish_id"];
-                      echo'
-                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="course-item">
-                          <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner fixed-image">';
-                              $a=1;
-                              $sql_photo="select * from wish_photo where wish_id='$wish_id'";
-                              $result_photo=mysqli_query($link,$sql_photo);
-                              while($row_photo=mysqli_fetch_assoc($result_photo))
-                              {
-                              echo '
-                              <div class="carousel-item '; if($a==1){echo 'active';}echo'">
-                                <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
-                              </div>';
-                              $a++;
-                              }
-                              echo'
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div> 
-                        
+                    <?php  
+                      $wish_num=$wish_num+1;
+                      $link=mysqli_connect('localhost','root','12345678','wishop');
+                      $sql="select * from wish
+                      natural join account
+                      where wish_shop_id IS null AND wish_end <= now()
+                      order by wish_start";
+                      $result=mysqli_query($link,$sql);
+                      while($row=mysqli_fetch_assoc($result))
+                      {
+                        $wish_id=$row["wish_id"];
+                        echo'
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                          <div class="course-item">
+                            <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-inner fixed-image">';
+                                $a=1;
+                                $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                $result_photo=mysqli_query($link,$sql_photo);
+                                while($row_photo=mysqli_fetch_assoc($result_photo))
+                                {
+                                echo '
+                                <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                  <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                </div>';
+                                $a++;
+                                }
+                                echo'
+                              </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div> 
                           
-                          <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">韓國</span>
-                              <span class="category">三麗鷗</span>
-                            </div>
+                            
+                            <div class="course-content">
+                              <div class="justify-content-between align-items-center mb-3">
+                                <span class="category">韓國</span>
+                                <span class="category">三麗鷗</span>
+                              </div>
 
-                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
-                            <p class="description">',nl2br($row["wish_narrat"]),'</p>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
-                            </div>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <div class="trainer-profile d-flex align-items-center">
-                                <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
-                                <a href="" class="trainer-link">',$row["user_name"],'</a>
-                              </div>';
-                              if($row["wish_state"]==1){
-                                echo'
-                                <div class="trainer-rank d-flex align-items-center">
-                                  <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                              <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                              <p class="description">',nl2br($row["wish_narrat"]),'</p>
+                              <div class="trainer d-flex justify-content-between align-items-center">
+                                <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
+                              </div>
+                              <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                  <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                  <a href="" class="trainer-link">',$row["user_name"],'</a>
                                 </div>';
-                              }else{
-                                echo'
-                                <div class="trainer-rank d-flex align-items-center">
-                                  <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
-                                </div>';
-                              }
+                                if($row["wish_state"]==1){
+                                  echo'
+                                  <div class="trainer-rank d-flex align-items-center">
+                                    <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                  </div>';
+                                }else{
+                                  echo'
+                                  <div class="trainer-rank d-flex align-items-center">
+                                    <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                  </div>';
+                                }
 
-                              echo'
+                                echo'
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div> <!-- End Course Item-->';
-                      $wish_num++;
-                    } 
-                  ?>
+                        </div> <!-- End Course Item-->';
+                        $wish_num++;
+                      } 
+                    ?>
+                  </div>
                 </div>
-              </div>
-            </section><!-- /Courses List Section -->
+              </section><!-- /Courses List Section -->
 
             </div>
           </div><!-- End Tab Content 3 -->

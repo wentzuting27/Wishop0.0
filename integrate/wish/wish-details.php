@@ -5,7 +5,28 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ATEEZ 星和玩偶DDEONGbyeoli</title>
+  <?php
+    $link=mysqli_connect('localhost','root','12345678','wishop');
+    $wish_id=$_GET["wish_id"];
+    $sql="select * from wish
+    natural join account
+    where wish_id=$wish_id";
+    $result=mysqli_query($link,$sql);
+    while($row=mysqli_fetch_assoc($result))
+    {
+      $account=$row["account"];
+      $user_name=$row["user_name"];
+      $user_avatar=$row["user_avatar"];
+      $wish_name=$row["wish_name"];
+      $wish_narrat=$row["wish_narrat"];
+      $wish_link=$row["wish_link"];
+      $wish_start=$row["wish_start"];
+      $wish_end=$row["wish_end"];
+      $wish_state=$row["wish_state"];
+    }
+  ?>
+  
+  <title><?php echo $wish_name; ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -104,6 +125,8 @@
 
   <main id="main">
 
+  
+
     <section id="wish-details-hero">
       <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
   
@@ -111,7 +134,7 @@
           <div class="carousel-item active" style="background-image: url(https://i.pinimg.com/564x/bf/f3/7e/bff37e041a3114c7b318665ff2de4964.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">ATEEZ 星和玩偶DDEONGbyeoli</h2>               
+                <h2 class="animate__animated animate__fadeInDown"><?php echo $wish_name; ?></h2>               
               </div>
             </div>
           </div>
