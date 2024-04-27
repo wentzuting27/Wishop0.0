@@ -413,7 +413,10 @@
                       where commodity_group_id='$commodity_group_id' AND account='{$_SESSION["account"]}'";
                       $result_withgrup_y_or_n=mysqli_query($link,$sql_withgrup_y_or_n);
                       
-                      if(strtotime($wish_end) < strtotime('now')){
+                      if(!isset($_SESSION["account"])){
+                        echo '
+                        <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>尚未登入</button>';
+                      }elseif(strtotime($wish_end) < strtotime('now')){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
                       }elseif($_SESSION["account"]==$row2["account"]){

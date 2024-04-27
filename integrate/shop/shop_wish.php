@@ -299,7 +299,7 @@
               $result=mysqli_query($link,$sql);
               while($row=mysqli_fetch_assoc($result))
               {
-              if($_SESSION["account"]!=$row["account"]){
+              if($_SESSION["account"]!=$row["account"] && isset($_SESSION["account"])){
                 echo '
                 <div>
                 <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;許願</button>
@@ -319,15 +319,15 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form method="post" action="rule_in_up_de.php">
                         <table width="100%" class="insert_group_form">
                           <tr>
                             <td width="15%">商品名稱*</td>
-                            <td width="85%"><input type="text" id="group_name" class="form-control"></td>
+                            <td width="85%"><input type="text" name="wish_name" class="form-control"></td>
                           </tr>
                           <tr>
                             <td>商品敘述*</td>
-                            <td><textarea class="form-control" rows="5"></textarea></td>
+                            <td><textarea class="form-control" rows="5" name="wish_name"></textarea></td>
                           </tr>
                           <tr>
                             <td>商品標籤(最多可填5個)</td>
@@ -339,7 +339,7 @@
                           </tr>
                           <tr>
                             <td>參考網址</td>
-                            <td><input type="text" id="group_name" class="form-control"></td>
+                            <td><input type="text" name="wish_link" class="form-control"></td>
                           </tr>
                           <tr>
                             <td>商品圖片(可選多張)*</td>
