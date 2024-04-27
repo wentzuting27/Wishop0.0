@@ -104,7 +104,7 @@
 
   <!-- ======= shop_bg Section ======= -->
   <?php
-  $shop_id=1;//在哪一個shop要用接值得方式,先假設1,之後再改
+  $shop_id=$_GET["shop_id"];//在哪一個shop要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from shop
@@ -144,11 +144,11 @@
 
     <nav id="navbar2" class="navbar2 nav-menu2">
       <ul>
-        <li><a href="./shop.php" class="nav-link scrollto"><i class="bi bi-shop"></i><span>代購商品</span></a></li>
-        <li><a href="./shop_time.php" class="nav-link scrollto  active"><i class="bi bi-clock-history"></i> <span>限定開團</span></a></li>
-        <li><a href="./shop_wish.php" class="nav-link scrollto"><i class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
-        <li><a href="./shop_rule.php" class="nav-link scrollto"><i class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
-        <li><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-regular fa-comment-dots"></i> <span>賣場評價</span></a></li>
+        <li><a href="./shop.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="bi bi-shop"></i><span>代購商品</span></a></li>
+        <li><a href="./shop_time.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto  active"><i class="bi bi-clock-history"></i> <span>限定開團</span></a></li>
+        <li><a href="./shop_wish.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
+        <li><a href="./shop_rule.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
+        <li><a href="./shop_evaluate.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-regular fa-comment-dots"></i> <span>賣場評價</span></a></li>
         <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
       </ul>
     </nav><!-- .nav-menu -->
@@ -158,11 +158,11 @@
   <div class="min_nav">
     <button id="triggerBtn"><i class="bi bi-clock-history"></i></button>
     <div id="slideContainer">
-      <a href="./shop.php" class="slideItem"><i class="bi bi-shop"></i></a>
-      <a href="./shop_time.php" class="slideItem"><i class="bi bi-clock-history"></i></a>
-      <a href="./shop_wish.php" class="slideItem"><i class="fa-solid fa-wand-sparkles"></i></a>
-      <a href="./shop_rule.php" class="slideItem"><i class="fa-solid fa-file-circle-question"></i></a>
-      <a href="./shop_evaluate.php" class="slideItem"><i class="fa-regular fa-comment-dots"></i></a>
+      <a href="./shop.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="bi bi-shop"></i></a>
+      <a href="./shop_time.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="bi bi-clock-history"></i></a>
+      <a href="./shop_wish.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-solid fa-wand-sparkles"></i></a>
+      <a href="./shop_rule.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-solid fa-file-circle-question"></i></a>
+      <a href="./shop_evaluate.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-regular fa-comment-dots"></i></a>
       <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
     </div>
   </div>
