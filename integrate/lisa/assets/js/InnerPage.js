@@ -57,54 +57,42 @@ btnOne.addEventListener('click', function() {
 
 
 /**商品**/
-// 获取输入框元素
-var quantityInput = document.getElementById('quantityInput');
+ // 获取所有输入框元素
+ const quantityInputs = document.querySelectorAll('[id^="quantityInput"]');
 
-// 添加事件监听器
-quantityInput.addEventListener('input', function() {
-  // 获取输入框的值
-  var value = parseInt(this.value);
+ // 添加事件监听器
+ quantityInputs.forEach(input => {
+     input.addEventListener('input', function() {
+         // 获取输入框的值
+         const value = parseInt(this.value);
 
-  // 检查值是否大于0
-  if (value <= 0 || isNaN(value)) {
-    // 如果值小于等于0或者不是一个有效的数字，则将值设为1
-    this.value = 0;
-  }
-});
+         // 检查值是否大于0
+         if (value <= 0 || isNaN(value)) {
+             // 如果值小于等于0或者不是一个有效的数字，则将值设为0
+             this.value = 0;
+         }
 
-// 获取单价元素和总价元素
-const priceElements = document.querySelectorAll('[data-th="Price"]');
-const subtotalElements = document.querySelectorAll('[data-th="Subtotal"]');
-const totalPriceElement = document.getElementById('totalPrice');
+         // 重新计算总价和每个商品的小计
+         let totalPrice = 0;
+         quantityInputs.forEach((quantityInput, index) => {
+             // 获取对应商品的单价和数量
+             const price = parseFloat(document.querySelectorAll('[data-th="Price"]')[index].textContent.replace('$', ''));
+             const quantity = parseInt(quantityInput.value);
 
-// 初始化总价
-let totalPrice = 0;
+             // 计算小计
+             const subtotal = quantity * price;
 
-// 添加事件监听器
-quantityInput.addEventListener('input', function() {
-  // 获取输入框的值
-  const quantity = parseInt(this.value);
+             // 更新对应商品的小计
+             document.querySelectorAll('[data-th="Subtotal"]')[index].textContent = '$' + subtotal.toFixed(0);
 
-  // 重新计算总价和每个商品的小计
-  totalPrice = 0;
-  priceElements.forEach((priceElement, index) => {
-    // 获取商品单价
-    const price = parseFloat(priceElement.textContent.replace('$', ''));
+             // 累加到总价中
+             totalPrice += subtotal;
+         });
 
-    // 计算小计
-    const subtotal = quantity * price;
-    
-    // 更新对应商品的小计
-    subtotalElements[index].textContent = '$' + subtotal.toFixed(0);
-    
-    // 累加到总价中
-    totalPrice += subtotal;
-  });
-
-  // 更新总价，保留两位小数
-  totalPriceElement.textContent = 'Total $' + totalPrice.toFixed(0);
-});
-
+         // 更新总价，保留两位小数
+         document.getElementById('totalPrice').textContent = 'Total $' + totalPrice.toFixed(0);
+        });
+      });
 
 /**訂單按鈕**/
 const checkbox = document.getElementById('box1');
