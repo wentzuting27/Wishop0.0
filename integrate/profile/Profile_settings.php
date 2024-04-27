@@ -113,10 +113,13 @@
         style="border:0; width: 100%; height: 400px; background-color:#e9e4ee; background-image: url('./assets/img/background2.jpg'); background-size: cover; background-position: center; padding-top: 100px;">
         <div class="pic-holder">
           <!-- uploaded pic shown here -->
-          <img id="profilePic" class="pic"
-            src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+          <?php
+          if (!empty($_SESSION['user_name'])) {
+            echo '
+          <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
+
           <label for="newProfilePhoto" class="upload-file-block">
             <div class="text-center">
               <div class="mb-2">
@@ -128,50 +131,70 @@
             </div>
           </label>
         </div>
-        <h5 style="color: #ffffff;">孤爪研磨</h5>
-        <p class="text-center middle" style="color: #cfcfcf; display: inline-block;">@yutinglu506</p>
-        <a class="btn btn-outline-secondary btn-lg profile-button"
+        <h5 style="color: #ffffff;">', $_SESSION["user_name"], '</h5>
+        <p class="text-center middle" style="color: #cfcfcf; display: inline-block;">@', $_SESSION["account"], '</p>
+        ';
+          }
+          ?>
+          <?php
+          if (isset($_SESSION['user_shop_id'])) {
+
+            echo '
+              <a class="btn btn-outline-secondary btn-lg profile-button"
+              style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
+              href="../shop/shop.php?shop_id=',$_SESSION['user_shop_id'].'" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
+            ';
+          } else {
+            echo '
+            <a class="btn btn-outline-secondary btn-lg profile-button"
           style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-          data-bs-toggle="modal" data-bs-target="#setshop" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場
+          data-bs-toggle="modal" data-bs-target="#setshop" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;創建賣場
         </a>
-        <!-- Modal -->
-        <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header" style="background-color: #b3a4bd;">
-                <h5 class="modal-title" style="color: #fff;" id="exampleModalLabel">創建賣場</h5>
-              </div>
-              <div class="modal-body" style="padding: 30px 50px 50px 50px;">
-                <form action="">
+  
+          <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="createShop" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color: #b3a4bd;">
+                  <h5 class="modal-title" style="color: #fff;" id="createShop">創建賣場</h5>
+                </div>
+                <div class="modal-body" style="padding: 30px 50px 50px 50px;">
+                  <form action="post">
+  
+                    <div class="form-container">
+        
+                      <div class="form-group">
+                        <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;賣場名稱</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
+                      </div>
+        
+                      <div class="form-group">
+                        <label for="inputBackground"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;上傳賣場頭貼</label>
+                        <input type="file" name="background" class="form-control" id="background">
+                      </div>
+  
+                      <div class="form-group">
+                        <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳賣場背景</label>
+                        <input type="file" name="background" class="form-control" id="background">
+                      </div>
 
-                  <div class="form-container">
-      
-                    <div class="form-group">
-                      <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;賣場名稱</label>
-                      <input type="text" name="name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
+                      <div class="form-group">
+                      <label for="inputBackground">賣場簡介</label><br>
+                      <textarea name="e_content" rows="5" cols="50" placeholder="請輸入賣場簡介"></textarea>
                     </div>
-      
-                    <div class="form-group">
-                      <label for="inputBackground"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;上傳賣場頭貼</label>
-                      <input type="file" name="background" class="form-control" id="background">
                     </div>
-
-                    <div class="form-group">
-                      <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳賣場背景</label>
-                      <input type="file" name="background" class="form-control" id="background">
-                    </div>
-
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <a href="../shop/shop.php" type="button" class="btn btn-outline-secondary btn-primary"
-          style="--bs-btn-hover-bg: #E9C9D6; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff; --bs-btn-bg: #b3a4bd;">創建</a>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-outline-secondary btn-primary"
+            style="--bs-btn-hover-bg: #E9C9D6; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff; --bs-btn-bg: #b3a4bd;">創建</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          ';
+          }
+          ?>
       </div>
       <div class="container">
         <header id="header2" class="d-flex flex-column justify-content-center">

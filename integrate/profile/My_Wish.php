@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -54,8 +54,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+          <li><a href="index.php">首頁</a></li>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i
+                class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
               <li><a href="team.php">Team</a></li>
@@ -76,13 +77,13 @@
           <li><a href="#">許願池</a></li>
 
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
@@ -90,9 +91,9 @@
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
 
 
@@ -113,9 +114,13 @@
         style="border:0; width: 100%; height: 400px; background-color:#e9e4ee; background-image: url('./assets/img/background2.jpg'); background-size: cover; background-position: center; padding-top: 100px;">
         <div class="pic-holder">
           <!-- uploaded pic shown here -->
-          <img id="profilePic" class="pic" src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+          <?php
+          if (!empty($_SESSION['user_name'])) {
+            echo '
+          <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
+
           <label for="newProfilePhoto" class="upload-file-block">
             <div class="text-center">
               <div class="mb-2">
@@ -127,21 +132,78 @@
             </div>
           </label>
         </div>
-        <h5 style="color: #ffffff;">孤爪研磨</h5>
-        <p class="text-center middle" style="color: #cfcfcf; display: inline-block;">@yutinglu506</p>
+        <h5 style="color: #ffffff;">', $_SESSION["user_name"], '</h5>
+        <p class="text-center middle" style="color: #cfcfcf; display: inline-block;">@', $_SESSION["account"], '</p>
+        ';
+          }
+          ?>
 
-        <a class="btn btn-outline-secondary btn-lg profile-button"
-        style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-        href="../shop/shop.php" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場
-      </a>
+          <?php
+          if (isset($_SESSION['user_shop_id'])) {
 
-      <!-- 創建賣場modal -->
-        <!-- <a class="btn btn-outline-secondary btn-lg profile-button"
+            echo '
+              <a class="btn btn-outline-secondary btn-lg profile-button"
+              style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
+              href="../shop/shop.php?shop_id=',$_SESSION['user_shop_id'].'" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
+            ';
+          } else {
+            echo '
+            <a class="btn btn-outline-secondary btn-lg profile-button"
+          style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
+          data-bs-toggle="modal" data-bs-target="#setshop" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;創建賣場
+        </a>
+  
+          <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="createShop" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color: #b3a4bd;">
+                  <h5 class="modal-title" style="color: #fff;" id="createShop">創建賣場</h5>
+                </div>
+                <div class="modal-body" style="padding: 30px 50px 50px 50px;">
+                  <form action="post">
+  
+                    <div class="form-container">
+        
+                      <div class="form-group">
+                        <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;賣場名稱</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
+                      </div>
+        
+                      <div class="form-group">
+                        <label for="inputBackground"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;上傳賣場頭貼</label>
+                        <input type="file" name="background" class="form-control" id="background">
+                      </div>
+  
+                      <div class="form-group">
+                        <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳賣場背景</label>
+                        <input type="file" name="background" class="form-control" id="background">
+                      </div>
+
+                      <div class="form-group">
+                      <label for="inputBackground">賣場簡介</label><br>
+                      <textarea name="e_content" rows="5" cols="50" placeholder="請輸入賣場簡介"></textarea>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-outline-secondary btn-primary"
+            style="--bs-btn-hover-bg: #E9C9D6; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff; --bs-btn-bg: #b3a4bd;">創建</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          ';
+          }
+          ?>
+          <!-- 創建賣場modal -->
+          <!-- <a class="btn btn-outline-secondary btn-lg profile-button"
           style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
           data-bs-toggle="modal" data-bs-target="#setshop" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場
-        </a>
+        </a> -->
 
-        <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header" style="background-color: #b3a4bd;">
@@ -178,454 +240,487 @@
             </div>
           </div>
         </div> -->
-      </div>
-      <div class="container">
-        <header id="header2" class="d-flex flex-column justify-content-center">
-          <nav id="navbar2" class="navbar2 nav-menu2">
-            <ul>
-              <li><a href="./Profile_settings.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
-              </li>
-              <li><a href="./TransactionInfo_settings.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-credit-card"></i><span>交易資訊設定</span></a>
-              </li>
-              <li><a href="./Wishlist.php" class="nav-link scrollto"><i class="fa-solid fa-heart"></i><span>收藏清單</span></a>
-              </li>
-              <li><a href="./My_Wish.php" class="nav-link scrollto active"><i
-                    class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
-              <li><a href="./Purchase_history.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
-              </li>
-            </ul>
-          </nav><!-- .nav-menu -->
-
-          <div class="min_nav">
-            <button id="triggerBtn"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-            <div id="slideContainer">
-              <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
-              <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
-              <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
-              <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
-              <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
-              <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
-            </div>
-          </div>
-
-
-        </header><!-- End Header -->
-
-
-
-        <div class="row">
-          <div class="col-lg-3 features">
-            <ul class="nav nav-tabs flex-column" style="text-align: center; background-color: #b3a4bd;">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-4">
-                  <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
-                      class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;當前許願
-                  </h5>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">
-                  <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
-                      class="fa-solid fa-hat-wizard"></i>&nbsp;&nbsp;歷史許願紀錄</h5>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-9 mt-4 mt-lg-0">
-            <div class="tab-content" style="vertical-align: middle;">
-              <div class="tab-pane active show" id="tab-4">
-                <div class="row mt-4">
-                  <div class="tab-menu-container">
-
-                    <ul class="nav nav-tabs flex-row">
-                      <li class="nav-item">
-                        <a class="nav-link active show" data-bs-toggle="tab" href="#tab-6">
-                          <i class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;公共許願池
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab-7">
-                          <i class="fa-solid fa-shop"></i>&nbsp;&nbsp;特定賣場
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="tab-content" style="vertical-align: middle;">
-
-                    <div class="tab-pane active show" id="tab-6">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>排球少年音駒高校白色帽T</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">有人出價</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishNo-tag">無人出價</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">有人出價</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">有人出價</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="tab-pane" id="tab-7">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>排球少年音駒高校白色帽T</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishNo-tag"><i class="fa-solid fa-hourglass-start"></i>&nbsp;&nbsp;待接取</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                </div>
-                              </div>
-                            </div>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane" id="tab-5">
-                <div class="row mt-4">
-                  <div class="tab-menu-container">
-
-                    <ul class="nav nav-tabs flex-row">
-                      <li class="nav-item">
-                        <a class="nav-link active show" data-bs-toggle="tab" href="#tab-9">
-                          <i class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;公共許願池
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab-11">
-                          <i class="fa-solid fa-shop"></i>&nbsp;&nbsp;特定賣場
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="tab-content" style="vertical-align: middle;">
-
-                    <div class="tab-pane active show" id="tab-9">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>排球少年音駒高校白色帽T</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishNo-tag">許願失敗</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                    </a>
-                                  </div>
-                                  <p class="deadline">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="tab-pane" id="tab-11">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>排球少年音駒高校白色帽T</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishNo-tag">許願失敗</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                    </a>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">許願時間: 2023/06/30</p>
-                                  <p class="deadline">許願到期時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <span class="wishYes-tag">許願成功</span>
-                                </div>
-                              </div>
-                            </div>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
         </div>
+        <div class="container">
+          <header id="header2" class="d-flex flex-column justify-content-center">
+            <nav id="navbar2" class="navbar2 nav-menu2">
+              <ul>
+                <li><a href="./Profile_settings.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
+                </li>
+                <li><a href="./TransactionInfo_settings.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-credit-card"></i><span>交易資訊設定</span></a>
+                </li>
+                <li><a href="./Wishlist.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-heart"></i><span>收藏清單</span></a>
+                </li>
+                <li><a href="./My_Wish.php" class="nav-link scrollto active"><i
+                      class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
+                <li><a href="./Purchase_history.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
+                </li>
+              </ul>
+            </nav><!-- .nav-menu -->
+
+            <div class="min_nav">
+              <button id="triggerBtn"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+              <div id="slideContainer">
+                <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
+                <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
+                <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
+                <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+                <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
+                <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+              </div>
+            </div>
+
+
+          </header><!-- End Header -->
+
+
+
+          <div class="row">
+            <div class="col-lg-3 features">
+              <ul class="nav nav-tabs flex-column" style="text-align: center; background-color: #b3a4bd;">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-bs-toggle="tab" href="#tab-4">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;當前許願
+                    </h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#tab-5">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-hat-wizard"></i>&nbsp;&nbsp;歷史許願紀錄</h5>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-9 mt-4 mt-lg-0">
+              <div class="tab-content" style="vertical-align: middle;">
+                <div class="tab-pane active show" id="tab-4">
+                  <div class="row mt-4">
+                    <div class="tab-menu-container">
+
+                      <ul class="nav nav-tabs flex-row">
+                        <li class="nav-item">
+                          <a class="nav-link active show" data-bs-toggle="tab" href="#tab-6">
+                            <i class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;公共許願池
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#tab-7">
+                            <i class="fa-solid fa-shop"></i>&nbsp;&nbsp;特定賣場
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="tab-content" style="vertical-align: middle;">
+
+                      <div class="tab-pane active show" id="tab-6">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>排球少年音駒高校白色帽T</h4>
+                                      </a>
+                                      <span class="expiring-tag">即將過期</span>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">有人出價</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishNo-tag">無人出價</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">有人出價</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">有人出價</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab-7">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>排球少年音駒高校白色帽T</h4>
+                                      </a>
+                                      <span class="expiring-tag">即將過期</span>
+                                    </div>
+                                    <a href="#" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag"><i
+                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishNo-tag"><i
+                                        class="fa-solid fa-hourglass-start"></i>&nbsp;&nbsp;待接取</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag"><i
+                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag"><i
+                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab-5">
+                  <div class="row mt-4">
+                    <div class="tab-menu-container">
+
+                      <ul class="nav nav-tabs flex-row">
+                        <li class="nav-item">
+                          <a class="nav-link active show" data-bs-toggle="tab" href="#tab-9">
+                            <i class="fa-solid fa-wand-sparkles"></i>&nbsp;&nbsp;公共許願池
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#tab-11">
+                            <i class="fa-solid fa-shop"></i>&nbsp;&nbsp;特定賣場
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="tab-content" style="vertical-align: middle;">
+
+                      <div class="tab-pane active show" id="tab-9">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>排球少年音駒高校白色帽T</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishNo-tag">許願失敗</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
+                                      </a>
+                                    </div>
+                                    <p class="deadline">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab-11">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>排球少年音駒高校白色帽T</h4>
+                                      </a>
+                                      <span class="expiring-tag">即將過期</span>
+                                    </div>
+                                    <a href="#" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishNo-tag">許願失敗</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="list-group-item list-group-item-action">
+                                <div class="item">
+                                  <img
+                                    src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png"
+                                    alt="Product 1">
+                                  <div class="item-details">
+                                    <div class="product-title">
+                                      <a href="#">
+                                        <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
+                                      </a>
+                                    </div>
+                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
+                                    <p class="neirong">許願時間: 2023/06/30</p>
+                                    <p class="deadline">許願到期時間: 2023/09/30</p>
+                                  </div>
+                                  <div class="item-meta">
+                                    <span class="wishYes-tag">許願成功</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
