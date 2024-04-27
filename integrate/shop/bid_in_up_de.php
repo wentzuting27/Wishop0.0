@@ -84,15 +84,23 @@
             echo "失敗";
         }
         
-    }elseif($_GET["method"]=="成團"){
-        $commodity_group_id=$_GET["commodity_group_id"];
-        $shop_id=$_GET["shop_id"];
-        $wish_id=$_GET["wish_id"];
-        $sql="update commodity_group set commodity_group_state=1
-        where commodity_group_id=$commodity_group_id";
+    }elseif($_POST["method"]=="成團"){
+        $commodity_group_id=$_POST["commodity_group_id"];
+        $shop_id=$_POST["shop_id"];
+        $wish_id=$_POST["wish_id"];
+        $end=$_POST["end"];
+        if(empty($end)){
+            $sql="update commodity_group set commodity_group_state=1
+            where commodity_group_id=$commodity_group_id";
+        }else{
+            $sql="update commodity_group set commodity_group_state=1,close_order_date='$end'
+            where commodity_group_id=$commodity_group_id";
+        }
+        
         if(mysqli_query($link, $sql)){
             header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }else{
+            echo $sql;
             echo "失敗";
         }
     }elseif($_GET["method"]=="跟團"){
