@@ -32,7 +32,7 @@
                     <!-- Wizard container -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="red" id="wizard">
-                            <form action="addacount.php" method="post">
+                            <form action="addacount.php" method="post" enctype="multipart/form-data">
 
                                 <div class="wizard-header">
                                     <h3 class="wizard-title">
@@ -126,7 +126,7 @@
 
                                                         <div class="choice" data-toggle="wizard-radio" rel="tooltip"
                                                             title="">
-                                                            <input name="user_name" type="text" class="form-control">
+                                                            <input name="user_name" type="text" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
