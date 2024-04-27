@@ -133,46 +133,48 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="mb-3 row">
-              <label for="inputName" class="col-sm-2 col-form-label">商品名稱*</label>
-              <div class="col-sm-10">
-                <input type="name" class="form-control" id="inputName" required>
+            <form>
+              <div class="mb-3 row">
+                <label for="inputName" class="col-sm-2 col-form-label">商品名稱*</label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" id="inputName" required>
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">商品敘述*</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+              <div class="mb-3 row">
+                <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">商品敘述*</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="inputName" class="col-sm-2 col-form-label">商品標籤(最多可填5個)</label>
-              <div class="col-sm-10">
-                <input type="name" class="form-control" id="inputName" placeholder="標籤1"><br>
-                <input type="name" class="form-control" id="inputName" placeholder="標籤2"><br>
-                <input type="name" class="form-control" id="inputName" placeholder="標籤3"><br>
-                <input type="name" class="form-control" id="inputName" placeholder="標籤4"><br>
-                <input type="name" class="form-control" id="inputName" placeholder="標籤5">
+              <div class="mb-3 row">
+                <label for="inputName" class="col-sm-2 col-form-label">商品標籤(最多可填5個)</label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" id="inputName" placeholder="標籤1"><br>
+                  <input type="name" class="form-control" id="inputName" placeholder="標籤2"><br>
+                  <input type="name" class="form-control" id="inputName" placeholder="標籤3"><br>
+                  <input type="name" class="form-control" id="inputName" placeholder="標籤4"><br>
+                  <input type="name" class="form-control" id="inputName" placeholder="標籤5">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="inputName" class="col-sm-2 col-form-label">許願截止日期*</label>
-              <div class="col-sm-10">
-                <input type="datetime-local" class="form-control" id="inputName" required>
+              <div class="mb-3 row">
+                <label for="inputName" class="col-sm-2 col-form-label">許願截止日期*</label>
+                <div class="col-sm-10">
+                  <input type="datetime-local" class="form-control" id="inputName" required>
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="inputName" class="col-sm-2 col-form-label">參考網址</label>
-              <div class="col-sm-10">
-                <input type="name" class="form-control" id="inputName">
+              <div class="mb-3 row">
+                <label for="inputName" class="col-sm-2 col-form-label">參考網址</label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" id="inputName">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="formFileMultiple" class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
-              <div class="col-sm-10">
-              <input class="form-control" type="file" id="formFileMultiple" multiple style="width:635px;margin:auto" required>
+              <div class="mb-3 row">
+                <label for="formFileMultiple" class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
+                <div class="col-sm-10">
+                <input class="form-control" type="file" id="formFileMultiple" multiple style="width:635px;margin:auto" required>
+                </div>
               </div>
-            </div>
+            </form>
           <div class="modal-footer">
             <button type="button" class="btn">確定許願</button>
           </div>
@@ -253,174 +255,88 @@
                   <section id="courses-list" class="section courses-list">
                     <div class="container">
                       <div class="row">
-                        <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-feather-pointed"></i>&nbsp;許願區</h3></center>
-                        
-                        <section id="blog2" class="blog2">                     
-                            <center><div class="col-lg-12">
-                              <div class="sidebar">                 
-                                <h3 class="sidebar-title">Search</h3>
-                                <div class="sidebar-item search-form">
-                                  <form action="">
-                                    <input type="text" class="form-control">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                  </form>
-                                </div><!-- End sidebar search formn-->               
-                              </div><!-- End sidebar -->              
-                            </div><!-- End blog sidebar --></center>                     
-                        </section>  
-
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                          <div class="course-item">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                              <div class="carousel-inner fixed-image">
-                                <div class="carousel-item active">
-                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://i.pinimg.com/736x/c9/7f/2b/c97f2b3a9944c500f4aac34e74586646.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://i.pinimg.com/564x/7c/a8/b1/7ca8b121f17faa6714b84235b1aa5d85.jpg" class="d-block w-100" alt="...">
-                                </div>
-                              </div>
-                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                            </div>
+                        <center><h3 style="color:#b9b0c8";><i class="fa-solid fa-feather-pointed"></i>&nbsp;許願區</h3></center>
                             
-                            <div class="course-content">
-                              <div class="justify-content-between align-items-center mb-3">
-                                <span class="category">韓國</span>
-                                <span class="category">明星</span>
-                                <span class="category">ATEEZ</span>
-                              </div>
+                            <section id="blog2" class="blog2">                     
+                                <center><div class="col-lg-12">
+                                  <div class="sidebar">                 
+                                    <h3 class="sidebar-title">Search</h3>
+                                    <div class="sidebar-item search-form">
+                                      <form action="">
+                                        <input type="text" class="form-control">
+                                        <button type="submit"><i class="bi bi-search"></i></button>
+                                      </form>
+                                    </div><!-- End sidebar search formn-->               
+                                  </div><!-- End sidebar -->              
+                                </div><!-- End blog sidebar --></center>                     
+                            </section>  
+                        <?php
+                          $wish_num=1;
+                          $link=mysqli_connect('localhost','root','12345678','wishop');
+                          $sql="select * from wish
+                          natural join account
+                          where wish_shop_id IS null AND wish_end >= now()
+                          order by wish_start";
+                          $result=mysqli_query($link,$sql);
+                          while($row=mysqli_fetch_assoc($result))
+                          {
+                            $wish_id=$row["wish_id"];
+                            echo '
 
-                              <h3><a href="wish-details.php">ATEEZ 星和玩偶DDEONGbyeoli</a></h3>
-                              <p class="description scrollable-row">想收圖上的的大娃，有拆封過也沒關係，可先匯款</p>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-04-02</span>
-                              </div>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                  <img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" class="img-fluid" alt="">
-                                  <a href="" class="trainer-link">朴星和</a>
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                              <div class="course-item">
+                                <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                  <div class="carousel-inner fixed-image">';
+                                    $a=1;
+                                    $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                    $result_photo=mysqli_query($link,$sql_photo);
+                                    while($row_photo=mysqli_fetch_assoc($result_photo))
+                                    {
+                                    echo '
+                                    <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                      <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                    </div>';
+                                    $a++;
+                                    }
+                                    echo'
+                                  </div>
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </button>
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </button>
                                 </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                  <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                        </div> <!-- End Course Item-->
+                                
+                                <div class="course-content">
+                                  <div class="justify-content-between align-items-center mb-3">
+                                    <span class="category">韓國</span>
+                                    <span class="category">明星</span>
+                                    <span class="category">ATEEZ</span>
+                                  </div>
 
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                          <div class="course-item">
-                            <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
-                              <div class="carousel-inner fixed-image">
-                                <div class="carousel-item active">
-                                  <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" class="d-block w-100" alt="...">
+                                  <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                  <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
+                                  <div class="trainer d-flex justify-content-between align-items-center">
+                                    <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期:',$row["wish_end"],'</span>
+                                  </div>
+                                  <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                      <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                      <a href="" class="trainer-link">',$row["user_name"],'</a>
+                                    </div>
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                            </div>
-                            
-                            <div class="course-content">
-                              <div class="justify-content-between align-items-center mb-3">
-                                <span class="category">日本</span>
-                                <span class="category">排球少年</span>
-                                <span class="category">動漫</span>
-                              </div>
-
-                              <h3><a href="wish-details.php">排球少年音駒高校白色帽T</a></h3>
-                              <p class="description">想問有沒有賣音駒的這件帽T，全新，可先付款</p>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-04-05</span>
-                              </div>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                  <img src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg" class="img-fluid" alt="">
-                                  <a href="" class="trainer-link">孤爪研磨</a>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                  <i class="bi bi-heart heart-icon"></i>&nbsp;5&nbsp;<button class="button">收藏許願</button>
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                        </div> <!-- End Course Item-->
-
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                          <div class="course-item">
-                            <div id="carouselExampleIndicators3" class="carousel slide" data-bs-ride="carousel">
-                              <div class="carousel-inner fixed-image">
-                                <div class="carousel-item active">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN01uHUEKt1GEGSjvD7SA_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN013kdvbX1GEGSfMkUed_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN01RN5BLO1GEGRierHCK_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN01CNdzSq1GEGRuc2KdR_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN01qRzNA51GEGRnK51JO_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="https://cbu01.alicdn.com/img/ibank/O1CN01niuKnx1GEGRiefObS_!!2212527300590-0-cib.jpg" class="d-block w-100" alt="...">
-                                </div>
-                              </div>
-                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                            </div>
-                            
-                            <div class="course-content">
-                              <div class="justify-content-between align-items-center mb-3">
-                                <span class="category">日本</span>
-                                <span class="category">火影忍者</span>
-                                <span class="category">公仔</span>
-                              </div>
-
-                              <h3><a href="wish-details.php">火影忍者Q版坐姿公仔模型</a></h3>
-                              <p class="description">想要圖上的鳴人、卡卡西、佐助和鼬的Q版坐姿公仔，希望四隻都有</p>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-03-31</span>
-                              </div>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                  <img src="https://i.pinimg.com/564x/b8/5e/e1/b85ee1c6b59c9990b2d2d448df40aef4.jpg" class="img-fluid" alt="">
-                                  <a href="" class="trainer-link">鳴人</a>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                  <i class="bi bi-heart heart-icon"></i>&nbsp;46&nbsp;<button class="button">收藏許願</button>
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                        </div> <!-- End Course Item--><p></p><p></p>
+                              </div>  
+                            </div><!-- End Course Item-->';
+                            $wish_num++;
+                          }
+                        ?>
 
                       </div>
                     </div>
@@ -455,59 +371,76 @@
                           </div><!-- End blog sidebar --></center>                     
                       </section>  
 
-                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="course-item">
-                          <div id="carouselExampleIndicators9" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner fixed-image">
-                              <div class="carousel-item active">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_650.jpg" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_152.jpg" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_887.jpg" class="d-block w-100" alt="...">
-                              </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators9" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators9" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
-                          
-                          <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">日本</span>
-                              <span class="category">偶像夢幻祭</span>
-                              <span class="category">瀨名泉</span>
-                            </div>
+                      <?php
+                          $wish_num=1;
+                          date_default_timezone_set('Asia/Taipei');
+                          $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
+                          $link=mysqli_connect('localhost','root','12345678','wishop');
+                          $sql="select * from wish
+                          natural join account
+                          where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= now()
+                          order by wish_start";
+                          $result=mysqli_query($link,$sql);
+                          while($row=mysqli_fetch_assoc($result))
+                          {
+                            $wish_id=$row["wish_id"];
+                            echo '
 
-                            <h3><a href="wish-details.php">偶像夢幻祭瀨名泉公仔棉花娃娃20CM</a></h3>
-                            <p class="description">想收偶像夢幻祭同人周邊瀨名泉公仔棉花娃娃20CM動漫換裝玩偶禮物周邊，希望貨到付款</p>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2024-03-09</span>
-                            </div>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                              <div class="trainer-profile d-flex align-items-center">
-                                <img src="https://i.pinimg.com/564x/14/2b/c4/142bc484f63a2bf7024e95a10a387ea1.jpg" class="img-fluid" alt="">
-                                <a href="" class="trainer-link">月永雷歐</a>
-                              </div>
-                              <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;8&nbsp;<button class="button">收藏許願</button>
-                              </div>
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div> <!-- End Course Item-->
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                              <div class="course-item">
+                                <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                  <div class="carousel-inner fixed-image">';
+                                    $a=1;
+                                    $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                    $result_photo=mysqli_query($link,$sql_photo);
+                                    while($row_photo=mysqli_fetch_assoc($result_photo))
+                                    {
+                                    echo '
+                                    <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                      <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                    </div>';
+                                    $a++;
+                                    }
+                                    echo'
+                                  </div>
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </button>
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </button>
+                                </div>
+                                
+                                <div class="course-content">
+                                  <div class="justify-content-between align-items-center mb-3">
+                                    <span class="category">韓國</span>
+                                    <span class="category">明星</span>
+                                    <span class="category">ATEEZ</span>
+                                  </div>
 
+                                  <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                  <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
+                                  <div class="trainer d-flex justify-content-between align-items-center">
+                                    <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期:',$row["wish_end"],'</span>
+                                  </div>
+                                  <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                      <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                      <a href="" class="trainer-link">',$row["user_name"],'</a>
+                                    </div>
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>  
+                            </div><!-- End Course Item-->';
+                            $wish_num++;
+                          }
+                        ?>                      
+  
                     </div>
                   </div>
                 </section><!-- /Courses List Section -->
@@ -546,50 +479,82 @@
                           </div><!-- End sidebar -->              
                         </div><!-- End blog sidebar --></center>                     
                     </section> 
-                    
-                    
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                      <div class="course-item">
-                        <div id="carouselExampleIndicators12" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-inner fixed-image">
-                            <div class="carousel-item active">
-                              <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7quky-lesl4fpidnvz6e" class="d-block w-100" alt="...">
+                  <?php  
+                    $wish_num=1;
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select * from wish
+                    natural join account
+                    where wish_shop_id IS null AND wish_end <= now()
+                    order by wish_start";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                      $wish_id=$row["wish_id"];
+                      echo'
+                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="course-item">
+                          <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner fixed-image">';
+                              $a=1;
+                              $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                              $result_photo=mysqli_query($link,$sql_photo);
+                              while($row_photo=mysqli_fetch_assoc($result_photo))
+                              {
+                              echo '
+                              <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                              </div>';
+                              $a++;
+                              }
+                              echo'
                             </div>
-                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators12" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators12" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                        </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div> 
                         
-                        <div class="course-content">
-                          <div class="justify-content-between align-items-center mb-3">
-                            <span class="category">韓國</span>
-                            <span class="category">三麗鷗</span>
-                          </div>
-
-                          <h3><a href="wish-details.php">韓國限定三麗鷗小卡立牌</a></h3>
-                          <p class="description">我想要韓國限定三麗鷗小卡立牌，有人能幫忙代購嗎?9個款式我都蠻想要的</p>
-                          <div class="trainer d-flex justify-content-between align-items-center">
-                            <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願日期: 2023-10-15</span>
-                          </div>
-                          <div class="trainer d-flex justify-content-between align-items-center">
-                            <div class="trainer-profile d-flex align-items-center">
-                              <img src="https://i.pinimg.com/564x/9f/b9/0f/9fb90fdd71d07728a5a3fab12e92aefb.jpg" class="img-fluid" alt="">
-                              <a href="" class="trainer-link">堯Yao</a>
-                            </div>
-                            <div class="trainer-rank d-flex align-items-center">
-                              <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
-                            </div>
-                          </div>
                           
+                          <div class="course-content">
+                            <div class="justify-content-between align-items-center mb-3">
+                              <span class="category">韓國</span>
+                              <span class="category">三麗鷗</span>
+                            </div>
+
+                            <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                            <p class="description">',nl2br($row["wish_narrat"]),'</p>
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
+                            </div>
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                              <div class="trainer-profile d-flex align-items-center">
+                                <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                <a href="" class="trainer-link">',$row["user_name"],'</a>
+                              </div>';
+                              if($row["wish_state"]==1){
+                                echo'
+                                <div class="trainer-rank d-flex align-items-center">
+                                  <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                </div>';
+                              }else{
+                                echo'
+                                <div class="trainer-rank d-flex align-items-center">
+                                  <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                </div>';
+                              }
+
+                              echo'
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div> <!-- End Course Item-->
-                  
+                      </div> <!-- End Course Item-->';
+                      $wish_num++;
+                    } 
+                  ?>
                 </div>
               </div>
             </section><!-- /Courses List Section -->
