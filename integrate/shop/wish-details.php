@@ -153,6 +153,7 @@
               </ol>
               <div class="d-flex">
               <?php
+              date_default_timezone_set('Asia/Taipei');
               $sql="select *
               from shop
               where shop_id='$shop_id'";
