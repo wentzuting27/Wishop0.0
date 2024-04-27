@@ -319,7 +319,9 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form method="post" action="rule_in_up_de.php">
+                      <form method="post" action="wish_in_up_de.php" enctype="multipart/form-data">
+                      <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                      <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
                         <table width="100%" class="insert_group_form">
                           <tr>
                             <td width="15%">商品名稱*</td>
@@ -327,7 +329,7 @@
                           </tr>
                           <tr>
                             <td>商品敘述*</td>
-                            <td><textarea class="form-control" rows="5" name="wish_name"></textarea></td>
+                            <td><textarea class="form-control" rows="5" name="wish_narrat"></textarea></td>
                           </tr>
                           <tr>
                             <td>商品標籤(最多可填5個)</td>
@@ -343,7 +345,7 @@
                           </tr>
                           <tr>
                             <td>商品圖片(可選多張)*</td>
-                            <td><input class="form-control" type="file" id="group_cover"></td>
+                            <td><input class="form-control" type="file" name="wish_photo[]" multiple></td>
                           </tr>
                           <tr>
                             <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認許願</button></td>
