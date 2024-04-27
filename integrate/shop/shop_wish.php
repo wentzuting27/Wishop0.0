@@ -308,7 +308,9 @@
               }
               
               ?>
-              
+              <?php 
+                $max_date = date('Y-m-d', strtotime('+3 months'));
+              ?>
               
               <!-- insert_group_Modal -->
               <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
@@ -325,11 +327,11 @@
                         <table width="100%" class="insert_group_form">
                           <tr>
                             <td width="15%">商品名稱*</td>
-                            <td width="85%"><input type="text" name="wish_name" class="form-control"></td>
+                            <td width="85%"><input type="text" name="wish_name" class="form-control" required></td>
                           </tr>
                           <tr>
                             <td>商品敘述*</td>
-                            <td><textarea class="form-control" rows="5" name="wish_narrat"></textarea></td>
+                            <td><textarea class="form-control" rows="5" name="wish_narrat" required></textarea></td>
                           </tr>
                           <tr>
                             <td>商品標籤(最多可填5個)</td>
@@ -337,7 +339,7 @@
                           </tr>
                           <tr>
                             <td>許願截止日期*</td>
-                            <td style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
+                            <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 100%;" value="<?php echo $max_date;?>" max="<?php echo $max_date; ?>" id="end-date" required></td>
                           </tr>
                           <tr>
                             <td>參考網址</td>
@@ -345,7 +347,7 @@
                           </tr>
                           <tr>
                             <td>商品圖片(可選多張)*</td>
-                            <td><input class="form-control" type="file" name="wish_photo[]" multiple></td>
+                            <td><input class="form-control" type="file" name="wish_photo[]" multiple required></td>
                           </tr>
                           <tr>
                             <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認許願</button></td>
@@ -359,6 +361,7 @@
               </div><!-- End insert_group_Modal -->
     
             </div><!-- End flex-container -->
+            
             
     
             <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
