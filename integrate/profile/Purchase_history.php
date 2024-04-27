@@ -158,40 +158,41 @@
                   <h5 class="modal-title" style="color: #fff;" id="createShop">創建賣場</h5>
                 </div>
                 <div class="modal-body" style="padding: 30px 50px 50px 50px;">
-                  <form action="post">
+                  <form method="post" action="createShop.php" enctype="multipart/form-data">
   
                     <div class="form-container">
         
                       <div class="form-group">
                         <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;賣場名稱</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
+                        <input type="text" name="shop_name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
                       </div>
         
                       <div class="form-group">
                         <label for="inputBackground"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;上傳賣場頭貼</label>
-                        <input type="file" name="background" class="form-control" id="background">
+                        <input type="file" name="shop_avatar" class="form-control" id="background">
                       </div>
   
                       <div class="form-group">
                         <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳賣場背景</label>
-                        <input type="file" name="background" class="form-control" id="background">
+                        <input type="file" name="shop_bg" class="form-control" id="background">
                       </div>
 
                       <div class="form-group">
                       <label for="inputBackground">賣場簡介</label><br>
-                      <textarea name="e_content" rows="5" cols="50" placeholder="請輸入賣場簡介"></textarea>
+                      <textarea name="shop_narrat" rows="5" cols="50" placeholder="請輸入賣場簡介"></textarea>
                     </div>
                     </div>
-                  </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                  <button type="button" class="btn btn-outline-secondary btn-primary"
+                  <button type="submit" class="btn btn-outline-secondary btn-primary"
             style="--bs-btn-hover-bg: #E9C9D6; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff; --bs-btn-bg: #b3a4bd;">創建</button>
                 </div>
               </div>
             </div>
           </div>
+          </form>
+
           ';
           }
           ?>
