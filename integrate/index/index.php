@@ -522,7 +522,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="seven">
-          <h1>本周精選店家</h1>
+          <h1>推薦店家</h1>
         </div>
 
         <div class="row gy-4 mt-3">
@@ -530,15 +530,42 @@
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-          $sql = "SELECT *FROM shop
-          ORDER BY RAND()
-          LIMIT 4";
+          $sql2 = "SELECT * FROM shop ORDER BY RAND() LIMIT 4";
 
-
+          $result2 = mysqli_query($link, $sql2);
           ?>
 
+          <div class="container">
+            <div class="row">
+              <?php while ($row = mysqli_fetch_assoc($result2)): ?>
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                  <div class="member">
+                    <div class="member-img">
+                      <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">
+                      <div class="social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                      </div>
+                    </div>
+                    <div class="member-info">
+                      <a href="../shop/shop.php?shop_id=<?php echo $row['shop_id']; ?>">
+                        <h4><?php echo $row['shop_name']; ?></h4>
+                      </a>
+                      <span></span>
+                      <p><?php echo $row['shop_narrat']; ?></p>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            </div>
+          </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <?php mysqli_close($link); ?>
+
+
+
+          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
               <div class="member-img">
                 <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" class="img-fluid"
@@ -559,78 +586,13 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="member-img">
-                <img
-                  src="https://scontent.ftpe8-1.fna.fbcdn.net/v/t39.30808-6/309375606_436814621877149_3816341275859789575_n.png?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1xcRDRmsARMAb7QeT5p&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfDDFfZv0Zhl8pFrhvAK9Qwkht4mfEgwiUeyIxIO_Q3snw&oe=6615A905"
-                  class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <a href="#">
-                  <h4>. $row['shop_name'] .</h4>
-                </a>
-                <span></span>
-                <p>. $row['shop_narrat'] .</p>
-              </div>
-            </div>
-          </div>
+          
+          
+          
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="member-img">
-                <img src="https://img.ws.mms.shopee.tw/tw-11134233-7qul0-lhz4igix1pzi1d" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <a href="#">
-                  <h4>KPOP偶像周邊代購</h4>
-                </a>
-                <span>韓國偶像周邊代購</span>
-                <p>안녕하세요～
-
-                  自己是愛買收集各種周邊的小粉絲🥰
-
-                  歡迎大家跟上每次的小小代購
-
-                  所有韓國商品皆可代購哦～歡迎許願唷</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <div class="member-img">
-                <img
-                  src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t39.30808-6/327166310_490496196597384_1189097818044976035_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=523QuLRsXUMAb5VHOfm&_nc_ht=scontent.ftpe8-4.fna&oh=00_AfA4htAwnTCjdnV6bII0GCgOVdy3VePm1UkXb8BNGlSySw&oe=6615A47B"
-                  class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <a href="#">
-                  <h4>FACILE SHOP</h4>
-                </a>
-                <span>英美精品代購</span>
-                <p>賣場商品會不定時更新因小闆娘都已客人喜好挑選商品，款式會較少品質都是挑選過後上架，快速出貨提供完整透明的商品資訊</p>
-              </div>
-            </div>
-          </div>
-
+          
 
 
         </div>
