@@ -416,6 +416,7 @@
           <!-- change Section -->
           <div id="app">
             <div class="container">
+            <form  method="post" action="order.php">
               <table id="cart" class="table table-hover table-condensed">
                 <thead>
                   <tr>
@@ -426,45 +427,49 @@
                   </tr>
                 </thead>
                 <?php
-$commodity_group_id = 3; // 根据实际情况获取商品组ID
-$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-$sql = "SELECT * FROM commodity NATURAL JOIN commodity_photo WHERE commodity_state = 1";
-$result = mysqli_query($link, $sql);
+                  $commodity_group_id = 3; // 根据实际情况获取商品组ID
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity NATURAL JOIN commodity_photo WHERE commodity_state = 1";
+                  $result = mysqli_query($link, $sql);
 
-while ($row = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
 
-    echo '
-    <tr>
-        <td data-th="Product">
-            <div class="row">
-                <div class="col-sm-4 hidden-xs">
-                    <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
-                        <img src="', $row["commodity_photo"], '" alt="..." class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-8">
-                    <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
-                    <p>', $row["commodity_narrate"], '</p>
-                </div>
-            </div>
-        </td>
-        <td data-th="Price">$', $row["commodity_price"], '</td>
-        <td data-th="Quantity">
-            <input type="number" class="form-control text-center originalStyle" value="0" id="quantityInput<?php echo $row["commodity_id"]; ?>
-        </td>
-        <td data-th="Subtotal" class="text-center">$0</td>
-        <td class="actions" data-th="">
-            <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-        </td>
-    </tr>';
-}?>
+                echo '
+                    <tr>
+                    <td data-th="Product">
+                      <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+                          <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
+                          <img src="', $row["commodity_photo"], '" alt="..." class="img-responsive" />
+                          </a>
+                      </div>
+                      <div class="col-sm-8">
+                          <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
+                          <p>', $row["commodity_narrate"], '</p>
+                      </div>
+                      </div>
+                    </td>
+                    <td data-th="Price">$', $row["commodity_price"], '</td>
+                    <td data-th="Quantity">
+                      <input type="number" class="form-control text-center" value="0" 
+                       name="quantity_',$row["commodity_id"],'" id="quantityInput',$row["commodity_id"],'" >
+                       quantity_',$row["commodity_id"],'
+                    </td>
+                    <td data-th="Subtotal" class="text-center" >$0</td>
+                    <td class="actions" data-th="">
+                    <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>';
+                  }?>
 
                 <tfoot>
                 <tr>
                   <td colspan="3" class="hidden-xs"></td>
                   <td class="hidden-xs text-center" id="totalPrice"><strong>Total $0</strong></td>
-                  <td class="text-right"><a href="#" class="btn btn-success btn-block">Checkout <i class="fa-solid fa-arrow-right-to-line"></i></a></td>
+                  <td class="text-right"><button type="button" data-bs-toggle="modal" data-bs-target="#remark" 
+                  class="btn btn-success btn-block" >
+                    結帳 <i class="fa-solid fa-arrow-right-to-line"></i></button></td>
                 </tr>
                 </tfoot>
                 
@@ -472,6 +477,26 @@ while ($row = mysqli_fetch_assoc($result)) {
             </div>
           </div>
         </section>
+        
+         <!-- Modal -->
+         
+      <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="remarkLabel">有需要備註的內容嗎？</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <textarea id="w3review" name="remark"rows="4" cols="50" style="margin:10px;" placeholder="備註內容..."
+            ></textarea>
+            <div class="modal-footer">
+              <button  class="btn btn-secondary" data-bs-dismiss="modal" name="submit2" type="submit">無</button>
+              <button  class="btn btn-primary" data-bs-dismiss="modal"  name="submit" type="submit">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
         <section id="first">
           <h2>Shipping</h2>
           <div id="third">
@@ -517,13 +542,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                   </div>
                 </div>';}
                 ?>
-                <script>
-                  document.getElementById('pra').addEventListener('click', function () {
-                    var owl = document.getElementById("slider-carousel");
-                    $(owl).owlCarousel(); // 初始化 Owl Carousel
-                    $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
-                  });
-                </script>
                 <!-- 添加其他的 .item -->
                 <div class="item">
                   <div class="col-sm-10">
