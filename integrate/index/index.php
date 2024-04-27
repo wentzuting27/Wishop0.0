@@ -190,9 +190,13 @@
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-            $sql = "SELECT commodity_group.*, shop.shop_name
+            $sql = "SELECT commodity_group.*, shop.shop_name, COUNT(*) 
             FROM commodity_group
             INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
+            INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
+            WHERE commodity_group_state <> 2
+            GROUP BY commodity_group.commodity_group_id, shop.shop_name
+            ORDER BY COUNT(*) DESC
             LIMIT 5";
 
             $result = mysqli_query($link, $sql);
