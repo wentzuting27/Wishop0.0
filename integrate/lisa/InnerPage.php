@@ -450,7 +450,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         </td>
         <td data-th="Price">$', $row["commodity_price"], '</td>
         <td data-th="Quantity">
-            <input id="quantityInput" type="number" class="form-control text-center " value="0">
+            <input type="number" class="form-control text-center originalStyle" value="0" id="quantityInput<?php echo $row["commodity_id"]; ?>
         </td>
         <td data-th="Subtotal" class="text-center">$0</td>
         <td class="actions" data-th="">
