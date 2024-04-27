@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -80,13 +80,13 @@
           <li><a href="blog.php">Blog</a></li> -->
           <!-- <li><a href="contact.php">Contact</a></li> -->
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
@@ -94,12 +94,12 @@
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
-          
-          
+
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -122,7 +122,8 @@
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">WISHOP</h2>
               <p class="animate__animated animate__fadeInUp">WISH AND BUY U WANT<br>許願代購</p>
-              <a href="portfolio.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>開始購物</b></a>
+              <a href="portfolio.php"
+                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>開始購物</b></a>
             </div>
           </div>
         </div>
@@ -146,7 +147,8 @@
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">許願池</h2>
               <p class="animate__animated animate__fadeInUp">想要什麼卻買不到嗎？歡迎許願讓賣家們看到吧！</p>
-              <a href="/integrate/wish/wish.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>去許願</b></a>
+              <a href="/integrate/wish/wish.php"
+                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>去許願</b></a>
             </div>
           </div>
         </div>
@@ -185,170 +187,94 @@
           <div class="swiper-wrapper">
 
 
-            <div class="swiper-slide">
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+            $sql = "SELECT commodity_group.*, shop.shop_name
+            FROM commodity_group
+            INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
+            LIMIT 5";
+
+            $result = mysqli_query($link, $sql);
+
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div class="swiper-slide" >
+                <div class="testimonial-wrap" >
+                  <div class="testimonial-item" style="height: 400px;">
+                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="">
+                    <div class="demo">
+                      <h3><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">' . $row['commodity_group_name'] . '</a></h3>
+                    </div>
+                    <h4>' . $row['shop_name'] . '</h4>
+                    <br>
+                    <div style="height: 100px; overflow-y: auto;">
+                    <span>' . $row['commodity_group_narrate'] . '</span>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-clock"></i> <span class="ps-2">截單日期：' . $row['close_order_date'] . '</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>';
+              }
+            } else {
+              echo "查詢失敗：" . mysqli_error($link);
+            }
+
+            mysqli_close($link);
+            ?>
+
+
+            <!-- item -->
+            <!-- <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-                  <img src="https://img.shoplineapp.com/media/image_clips/61d3a8ac8c24c20023437d3e/original.png?1641261227"
-                    class="testimonial-img" alt="">
+                  <img src="commodity_group_bg" class="testimonial-img" alt="">
                   <div class="demo">
-                    <h3><a href="../lisa/InnerPage.php">三麗鷗X美少女戰士</a></h3>
+                    <h3><a href='../lisa/InnerPage.php?commodity_group_id=$commodity_group_id'> .
+                        $row['commodity_group_name'] .</a></h3>
                   </div>
-                  <h4>三麗鷗快樂購</h4>
+                  <h4>. $row['shop_name'] .</h4>
                   <br>
-                  <span>本團代購三麗鷗X美少女戰士聯名商品
-
-                    購買前請先注意賣場規則</span>
+                  <span>. $row['commodity_group_narrate'] .</span>
                   <br>
                   <br>
                   <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#三麗鷗</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#美少女戰士</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#動漫周邊</a>
+                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
                   </div>
                   <br>
                   <br>
                   <div class="meta d-flex align-items-center">
                     <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">截單日期：4/21</span>
-                    </div>
-                    <span class="px-3 text-black-50">/</span>
+                      <i class="bi bi-clock"></i> <span class="ps-2">截單日期：. $row['close_order_date'] .</span>
+                    </div> -->
+            <!-- <span class="px-3 text-black-50">/</span>
                     <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">下午6:00</span>
-                    </div>
-                  </div>
+                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">下午6:00</span>
+                    </div> -->
+            <!-- </div>
 
                 </div>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="https://images.plurk.com/iKOdz5DMLNQ6Hf4fHPO58.png" class="testimonial-img" alt="">
-                  <div class="demo">
-                    <h3><a href="#">【ATEEZ】2024巡迴演唱會TOWARDS THE LIGHT : WILL TO POWER周邊商品</a></h3>
-                  </div>
-                  <h4>YaoYao</h4>
-                  <br>
-                  <span>這是一段說明文字，下面是這個團購的tag和截單時間</span>
-                  <br>
-                  <br>
-                  <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#ATEEZ</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#에이티즈</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#韓國代購</a>
-                  </div>
-                  <br>
-                  <div class="meta d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">截單日期：官方售完為止</span>
-                    </div>
-                    <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">X</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="https://images.plurk.com/5FxQuZXGJ9NLuW4R2oCTei.jpg" class="testimonial-img" alt="">
-                  <div class="demo">
-                    <h3><a href="#">迪士尼 MICKEY'S BAKERY</a></h3>
-                  </div>
-                  <h4>HU</h4>
-                  <br>
-                  <span>這是一段說明文字，下面是這個團購的tag和截單時間</span>
-                  <br>
-                  <br>
-                  <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#迪士尼</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#日本代購</a>
-                  </div>
-                  <br>
-
-                  <div class="meta d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">截單日期：4/7</span>
-                    </div>
-                    <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">下午6:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="https://images.plurk.com/6RagVTBWmsxozoIaD8gdIK.jpg" class="testimonial-img" alt="">
-                  <div class="demo">
-                    <h3><a href="#">三麗鷗新品寶寶斗篷娃衣</a></h3>
-                  </div>
-                  <h4>Sumi</h4>
-                  <br>
-                  <span>這是一段說明文字，下面是這個團購的tag和截單時間</span>
-                  <br>
-                  <br>
-                  <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#娃衣</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#三麗鷗</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#日本代購</a>
-                  </div>
-                  <br>
-
-                  <div class="meta d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">截單日期：4/10</span>
-                    </div>
-                    <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">下午7:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
+            </div> -->
+            <!-- End testimonial item -->
 
 
 
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="https://images.plurk.com/1xMfqQQsyPLy3u5piTLS94.png" class="testimonial-img" alt="">
-                  <div class="demo">
-                    <h3><a href="#">排球×三麗鷗合作商品</a></h3>
-                  </div>
-                  <h4>Taro</h4>
-                  <br>
-                  <span>這是一段說明文字，下面是這個團購的tag和截單時間</span>
-                  <br>
-                  <br>
-                  <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#排球少年</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#動漫周邊</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#日本代購</a>
-                  </div>
-                  <br>
-
-                  <div class="meta d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">截單日期：4/12</span>
-                    </div>
-                    <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">下午9:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
 
           </div>
           <div class="swiper-pagination"></div>
@@ -405,7 +331,8 @@
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
-                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" class="img-fluid" alt="">
+                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5"
+                    class="img-fluid" alt="">
                 </figure>
               </a>
 
@@ -425,7 +352,8 @@
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
-                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c" class="img-fluid" alt="">
+                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
+                    class="img-fluid" alt="">
                 </figure>
               </a>
 
@@ -466,7 +394,9 @@
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
-                  <img src="https://cdn.cybassets.com/media/W1siZiIsIjExMTE3L3Byb2R1Y3RzLzQ1NzQyMTk5LzExMTE3LXByb2R1Y3QtcGhvdG8tMjAyNDA0MDItNDktNnhoNzE2XzUyYjZmZTI2M2Q4NjZlYzYxMDAxLmpwZWciXSxbInAiLCJ0aHVtYiIsIjYwMHg2MDAiXV0.jpeg?sha=892bbe2cf0939acc" class="img-fluid" alt="">
+                  <img
+                    src="https://cdn.cybassets.com/media/W1siZiIsIjExMTE3L3Byb2R1Y3RzLzQ1NzQyMTk5LzExMTE3LXByb2R1Y3QtcGhvdG8tMjAyNDA0MDItNDktNnhoNzE2XzUyYjZmZTI2M2Q4NjZlYzYxMDAxLmpwZWciXSxbInAiLCJ0aHVtYiIsIjYwMHg2MDAiXV0.jpeg?sha=892bbe2cf0939acc"
+                    class="img-fluid" alt="">
                 </figure>
               </a>
 
@@ -504,7 +434,9 @@
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                 title="Portfolio Details">
                 <figure>
-                  <img src="https://cdn.cybassets.com/s/files/11117/ckeditor/pictures/content_d7bd690c-2901-4a40-8e45-a1925d175ecd.jpg" class="img-fluid" alt="">
+                  <img
+                    src="https://cdn.cybassets.com/s/files/11117/ckeditor/pictures/content_d7bd690c-2901-4a40-8e45-a1925d175ecd.jpg"
+                    class="img-fluid" alt="">
                 </figure>
               </a>
 
@@ -579,110 +511,95 @@
         <div style="text-align: center;">
           <a type="button" href="portfolio.php" class="btn btn-light-more">More</a>
         </div>
-        
+
       </div>
     </section><!-- End Portfolio Section -->
 
 
- <!-- ======= Team Section ======= -->
- <section id="team" class="team">
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
 
-  <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up">
 
-    <div class="seven">
-      <h1>本周精選店家</h1>
-    </div>
+        <div class="seven">
+          <h1>推薦店家</h1>
+        </div>
 
-    <div class="row gy-4 mt-3">
+        <div class="row gy-4 mt-3">
 
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-        <div class="member">
-          <div class="member-img">
-            <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" class="img-fluid" alt="">
-            <div class="social">
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
+          $sql2 = "SELECT * FROM shop ORDER BY RAND() LIMIT 4";
+
+          $result2 = mysqli_query($link, $sql2);
+          ?>
+
+          <div class="container">
+            <div class="row">
+              <?php while ($row = mysqli_fetch_assoc($result2)): ?>
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                  <div class="member">
+                    <div class="member-img">
+                      <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">
+                      <div class="social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                      </div>
+                    </div>
+                    <div class="member-info">
+                      <a href="../shop/shop.php?shop_id=<?php echo $row['shop_id']; ?>">
+                        <h4><?php echo $row['shop_name']; ?></h4>
+                      </a>
+                      <span></span>
+                      <p><?php echo $row['shop_narrat']; ?></p>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
             </div>
           </div>
-          <div class="member-info">
-            <a href="../shop/shop.php"><h4>三麗鷗快樂購</h4></a>
-            <span>三麗鷗</span>
-            <p>
-              如果你對可愛、療癒的三麗鷗商品著迷，但由於地理或其他原因無法直接購買，我可以幫助你實現這個夢想🩷！
-              </p>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-        <div class="member">
-          <div class="member-img">
-            <img src="https://scontent.ftpe8-1.fna.fbcdn.net/v/t39.30808-6/309375606_436814621877149_3816341275859789575_n.png?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1xcRDRmsARMAb7QeT5p&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfDDFfZv0Zhl8pFrhvAK9Qwkht4mfEgwiUeyIxIO_Q3snw&oe=6615A905" class="img-fluid" alt="">
-            <div class="social">
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
+          <?php mysqli_close($link); ?>
+
+
+
+          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <div class="member-img">
+                <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg" class="img-fluid"
+                  alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <a href="../shop/shop.php">
+                  <h4>三麗鷗快樂購</h4>
+                </a>
+                <span>三麗鷗</span>
+                <p>
+                  如果你對可愛、療癒的三麗鷗商品著迷，但由於地理或其他原因無法直接購買，我可以幫助你實現這個夢想🩷！
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="member-info">
-            <a href="#"><h4>小莓波醬</h4></a>
-            <span>韓國/日本直送</span>
-            <p>商品都是闆娘親自跟第一手的廠商接洽💞！時常飛出去世界各地🌍✈️幫大家細心挑選各種可愛東東✨</p>
-          </div>
+          </div> -->
+
+          
+          
+          
+
+          
+
+
         </div>
+
       </div>
 
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-        <div class="member">
-          <div class="member-img">
-            <img src="https://img.ws.mms.shopee.tw/tw-11134233-7qul0-lhz4igix1pzi1d" class="img-fluid" alt="">
-            <div class="social">
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <a href="#"><h4>KPOP偶像周邊代購</h4></a>
-            <span>韓國偶像周邊代購</span>
-            <p>안녕하세요～
-
-              自己是愛買收集各種周邊的小粉絲🥰
-
-              歡迎大家跟上每次的小小代購
-
-              所有韓國商品皆可代購哦～歡迎許願唷</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-        <div class="member">
-          <div class="member-img">
-            <img src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t39.30808-6/327166310_490496196597384_1189097818044976035_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=523QuLRsXUMAb5VHOfm&_nc_ht=scontent.ftpe8-4.fna&oh=00_AfA4htAwnTCjdnV6bII0GCgOVdy3VePm1UkXb8BNGlSySw&oe=6615A47B" class="img-fluid" alt="">
-            <div class="social">
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <a href="#"><h4>FACILE SHOP</h4></a>
-            <span>英美精品代購</span>
-            <p>賣場商品會不定時更新因小闆娘都已客人喜好挑選商品，款式會較少品質都是挑選過後上架，快速出貨提供完整透明的商品資訊</p>
-          </div>
-        </div>
-      </div>
-
-      
-
-    </div>
-
-  </div>
-
-</section><!-- End Team Section -->
+    </section><!-- End Team Section -->
 
 
 
@@ -698,7 +615,7 @@
 
 
 
-    
+
 
 
 
