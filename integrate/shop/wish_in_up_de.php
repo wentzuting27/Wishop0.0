@@ -1,56 +1,66 @@
 <?php
     $method=$_POST['method'];
-    $rule_type=$_POST['rule_type'];
     $shop_id=$_POST['shop_id'];
-    $title=$_POST['title'];
-    $narrate=$_POST['narrate'];
+    $wish_name=$_POST['wish_name'];
+    $wish_narrat=$_POST['wish_narrat'];
+    $end=$_POST['end'];
+    $wish_link=$_POST['wish_link'];
     $link=mysqli_connect('localhost','root','12345678','wishop');
 
     if($method=="up"){
-        // if (!empty($_FILES['upload_file']['name'])) {
-        //     取得檔案路徑
-        //     $file_path = $o_file;
-        //     刪除檔案
-        //     if (file_exists($file_path)) {
-        //         unlink($file_path);
-        //     } 
-
-        //     if ($_FILES['upload_file']['error'] == UPLOAD_ERR_OK){
-
-        //         $file = $_FILES['upload_file']['tmp_name'];
-        //         $dest = 'files/' . $_FILES['upload_file']['name'];
-    
-        //         將檔案移至指定位置
-        //         move_uploaded_file($file, $dest);
-        //     }
-        // }else{
-        //     $dest = $o_file;
-        // }
-        // $sql="update activitys set activity_name='$name',presenter='$presenter',organizer='$organizer',undertaker='$undertaker',contact_phone='$phonenum',email='$email'
-        // ,registration_way='$apply',money='$money',content='$content',activity_theme='$theme',activity_type='$type'
-        // ,registration_open='$eventDateTimeopen',registration_end='$eventDateTimeend',file='$dest'
-        // where activity_id=$activity_id";
-        // if(mysqli_query($link, $sql)){
-        //     echo "<style> body{width: 100%;background: url(7.png) top right;background-size: cover;position: relative;}</style>";
-        // }else{
-        //     echo "<style> body{width: 100%;background: url(8.png) top right;background-size: cover;position: relative;}</style>";
-        // }
-
         
-        // header("refresh:1;url=created_ac_detail.php?activity_id=$activity_id");
 
     }elseif($method=="in"){
 
-        $sql_insert="insert into shop_rule(shop_rule_id,shop_id,type,title,narrate)
-        value('','$shop_id','$rule_type','$title','$narrate')";
-
-        if(mysqli_query($link, $sql_insert)){
-            echo "新增成功";
+        $sql = "SELECT MAX(wish_id) as max_id FROM wish";
+        $result = mysqli_query($link, $sql);
+        $row = mysqli_fetch_assoc($result);
+        // 計算新的 id
+        $new_id = $row['max_id'] + 1;
+        $sql_wish="insert into wish(wish_id,account,wish_shop_id,wish_name,wish_narrat,wish_link,wish_start,wish_state,wish_end)
+        value('$new_id','{$_SESSION["account"]}','$shop_id','$wish_name','$wish_narrat','$wish_link',now(),'3','$end')";
+        if(mysqli_query($link, $sql_wish)){
+            echo "Y";
         }else{
-            echo "新增失敗";
+            echo $sql_wish;
+            echo "N";
         }
+        
 
-        header("refresh:1;url=shop_rule.php?shop_id=$shop_id");
+        if ($_FILES['wish_photo']['error'][0] == UPLOAD_ERR_OK){
+
+            // Loop through each uploaded file
+            foreach ($_FILES['wish_photo']['tmp_name'] as $key => $tmp_name) {
+                // Handle each file individually
+                $file = $_FILES['wish_photo']['tmp_name'][$key];
+                $filename = $_FILES['wish_photo']['name'][$key];
+                $dest = '../files/' . $filename;
+
+                // 檢查是否有一樣名字的檔案
+                if (file_exists($dest)) {
+                    $i = 1;
+                    $info = pathinfo($filename);
+                    $file_name = $info['filename'];
+                    $file_extension = $info['extension'];
+                    while (file_exists('../files/' . $file_name . '_' . $i . '.' . $file_extension)) {
+                        $i++;
+                    }
+                    $filename = $file_name . '_' . $i . '.' . $file_extension;
+                    $dest = "../files/" . $filename;
+                }
+
+                // 將檔案移至指定位置
+                move_uploaded_file($file, $dest);
+
+                $sql_insert = "INSERT INTO wish_photo (wish_id, wish_photo_link) VALUES ('$new_id', '$dest')";
+                if(mysqli_query($link, $sql_insert)){
+                    echo "y";
+                }else{
+                    echo "n";
+                }
+            }
+
+        }
         
     }
     else{
