@@ -7,8 +7,9 @@
     // Processing form data when form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $link=mysqli_connect('localhost','root','12345678','wishop');
-      $sql="SELECT * FROM account NATURAL JOIN shop WHERE account = '$account'";
+      $sql="SELECT * FROM account left JOIN shop using(account) WHERE account = '$account'";
       $result=mysqli_query($link,$sql);
+      echo $sql;
 
 
       while($row=mysqli_fetch_assoc($result))
