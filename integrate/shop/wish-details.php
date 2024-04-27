@@ -422,7 +422,36 @@
                       }elseif($_SESSION["account"]==$row2["account"]){
                         if($state==3){
                           echo '
-                          <a href=bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&shop_id=',$shop_id,'&wish_id=',$wish_id,'&method=成團><button type="button" class="btn insert_button" style="display: block;width: 100%;">成團</button></a>';
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#group_state">成團</button>';
+                          echo '<!-- insert_group_Modal -->
+                          <div class="modal fade" id="group_state" tabindex="-1" aria-labelledby="group_stateLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="group_stateLabel">選擇結單時間</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form method="post" action="bid_in_up_de.php">
+                                  <input type="hidden" name="method" class="form-control" style="width: 100%;" value="成團">
+                                  <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="';echo $shop_id;echo '">
+                                  <input type="hidden" name="commodity_group_id" class="form-control" style="width: 100%;" value="';echo $commodity_group_id;echo '">
+                                  <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="';echo $wish_id;echo '">
+                                    <table width="100%" class="insert_group_form">
+                                      <tr>
+                                        <td width="10%">結單日期</td>
+                                        <td width="90%" style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認成團</button></td>
+                                      </tr>
+                                    </table>
+                                    
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div><!-- End insert_group_Modal -->';
                         }else{
                           echo '
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
