@@ -105,6 +105,7 @@
   <!-- ======= shop_bg Section ======= -->
   <?php
   $shop_id=$_GET["shop_id"];//在哪一個shop要用接值得方式,先假設1,之後再改
+  date_default_timezone_set('Asia/Taipei');
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from shop
