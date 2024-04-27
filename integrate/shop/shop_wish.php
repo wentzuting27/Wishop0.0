@@ -390,7 +390,7 @@
                     $sql="select *
                     from wish
                     natural join account
-                    where wish_shop_id='$shop_id' AND wish_end >= now()
+                    where wish_shop_id='$shop_id' AND wish_end >= CURDATE()
                     order by wish_start";
                     $result=mysqli_query($link,$sql);
                     while($row=mysqli_fetch_assoc($result))
@@ -434,7 +434,7 @@
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
-                              <span class="price">許願日期: ',$row["wish_end"],'</span>
+                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
                               <div class="trainer-profile d-flex align-items-center">
                                 <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
@@ -472,7 +472,7 @@
                     FROM wish
                     NATURAL JOIN account
                     WHERE wish_id IN (SELECT wish_id FROM bid WHERE shop_id = $shop_id)
-                    AND wish_end >= NOW()
+                    AND wish_end >= CURDATE()
                     AND wish_shop_id IS NULL
                     ORDER BY wish_start;";
                     $result=mysqli_query($link,$sql);
@@ -517,7 +517,7 @@
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
-                              <span class="price">許願日期: ',$row["wish_end"],'</span>
+                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
                               <div class="trainer-profile d-flex align-items-center">
                                 <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
@@ -554,7 +554,7 @@
                     $sql="select *
                     from wish
                     natural join account
-                    where wish_shop_id='$shop_id' AND wish_end <= now()
+                    where wish_shop_id='$shop_id' AND wish_end < CURDATE()
                     order by wish_start";
                     $result=mysqli_query($link,$sql);
                     while($row=mysqli_fetch_assoc($result))
@@ -598,7 +598,7 @@
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
-                              <span class="price">許願日期: ',$row["wish_end"],'</span>
+                              <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
                             <div class="trainer d-flex justify-content-between align-items-center">
                               <div class="trainer-profile d-flex align-items-center">
                                 <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
