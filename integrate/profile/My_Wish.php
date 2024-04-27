@@ -118,6 +118,7 @@
           if (!empty($_SESSION['user_name'])) {
             echo '
           <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
+            
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
 
@@ -198,49 +199,6 @@
           ';
           }
           ?>
-          <!-- 創建賣場modal -->
-          <!-- <a class="btn btn-outline-secondary btn-lg profile-button"
-          style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-          data-bs-toggle="modal" data-bs-target="#setshop" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場
-        </a> -->
-
-        <!-- <div class="modal fade" id="setshop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header" style="background-color: #b3a4bd;">
-                <h5 class="modal-title" style="color: #fff;" id="exampleModalLabel">創建賣場</h5>
-              </div>
-              <div class="modal-body" style="padding: 30px 50px 50px 50px;">
-                <form action="">
-
-                  <div class="form-container">
-      
-                    <div class="form-group">
-                      <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;賣場名稱</label>
-                      <input type="text" name="name" class="form-control" id="name" placeholder="請輸入賣場名稱" required>
-                    </div>
-      
-                    <div class="form-group">
-                      <label for="inputBackground"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;上傳賣場頭貼</label>
-                      <input type="file" name="background" class="form-control" id="background">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳賣場背景</label>
-                      <input type="file" name="background" class="form-control" id="background">
-                    </div>
-
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-outline-secondary btn-primary"
-          style="--bs-btn-hover-bg: #E9C9D6; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff; --bs-btn-bg: #b3a4bd;">創建</button>
-              </div>
-            </div>
-          </div>
-        </div> -->
         </div>
         <div class="container">
           <header id="header2" class="d-flex flex-column justify-content-center">
@@ -326,84 +284,66 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img
-                                    src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp"
-                                    alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>排球少年音駒高校白色帽T</h4>
-                                      </a>
-                                      <span class="expiring-tag">即將過期</span>
-                                    </div>
-                                    <p class="deadline">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag">有人出價</span>
-                                  </div>
-                                </div>
-                              </div>
+                            <?php
+                              $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg"
-                                    alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                                      </a>
-                                    </div>
-                                    <p class="deadline">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishNo-tag">無人出價</span>
-                                  </div>
-                                </div>
-                              </div>
+                              // 查詢所有進行中的許願
+                              $sql = "SELECT * FROM wish
+                                      WHERE wish_end >= CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NULL";
+                              $result = mysqli_query($link, $sql);
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg"
-                                    alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                      </a>
-                                    </div>
-                                    <p class="deadline">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag">有人出價</span>
-                                  </div>
-                                </div>
-                              </div>
+                              if ($result) {
+                                  while ($row = mysqli_fetch_assoc($result)) {
+                                      echo '<div class="list-group-item list-group-item-action">
+                                              <div class="item">
+                                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
+                                                <div class="item-details">
+                                                  <div class="product-title">
+                                                    <a href="#">
+                                                      <h4>', $row["wish_name"], '</h4>
+                                                    </a>';
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img
-                                    src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png"
-                                    alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                      </a>
-                                    </div>
-                                    <p class="deadline">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag">有人出價</span>
-                                  </div>
-                                </div>
-                              </div>
+                                                    // 設一個現在日期7天前的變數
+                                                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                                    if($row["wish_end"]<= $oneweekAgo && $row["wish_end"]>= date('Y-m-d')){
+                                                      echo'
+                                                      <span class="expiring-tag">即將過期</span>
+                                                      ';
+                                                    }
+
+                                                    echo '
+                                                  </div>
+                                                  <p class="deadline">許願時間: ', $row["wish_start"], '</p>
+                                                  <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
+                                                </div>';
+
+                                                $sql_wish_YorN="select * from bid
+                                                WHERE wish_id='{$row["wish_id"]}'";
+                                                $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
+                                                if(mysqli_num_rows($result_wish_YorN)==0){
+                                                  echo '<div class="item-meta">
+                                                  <span class="wishNo-tag">無人出價</span>
+                                                  </div>';
+                                                }else{
+                                                  echo '<div class="item-meta">
+                                                  <span class="wishYes-tag">有人出價</span>
+                                                </div>';
+                                                }
+                                                
+
+                                                
+                                              echo'
+                                              </div>
+                                            </div>';
+                                  }
+                              } else {
+                                echo $sql;
+
+                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                              }
+
+                              mysqli_close($link);
+                              ?>
 
                             </ul>
                           </div>

@@ -15,7 +15,7 @@
     if ($_FILES['shop_avatar']['error'] == UPLOAD_ERR_OK){
 
         $file = $_FILES['shop_avatar']['tmp_name'];
-        $dest = '../files/' . $_FILES['shop_avator']['name'];
+        $dest = '../files/' . $_FILES['shop_avatar']['name'];
 
         // 檢查是否有一樣名字的檔案
         if (file_exists($dest)) {
@@ -62,10 +62,9 @@
         echo'y';
         $_SESSION["user_shop_id"]=$shop_id;
     }else{
-        echo $sql;
         echo'n';
     }
-    
+
     header("refresh:0;url=../shop/shop.php?shop_id=$shop_id");
     ?>
 
