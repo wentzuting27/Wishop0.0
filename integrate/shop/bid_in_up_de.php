@@ -103,6 +103,15 @@
             echo $sql;
             echo "失敗";
         }
+
+        $sql="update wish set wish_state=1
+        where wish_id=$wish_id";
+        if(mysqli_query($link, $sql)){
+            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
+        }else{
+            echo $sql;
+            echo "失敗";
+        }
     }elseif($_GET["method"]=="跟團"){
         $commodity_group_id=$_GET["commodity_group_id"];
         $shop_id=$_GET["shop_id"];
