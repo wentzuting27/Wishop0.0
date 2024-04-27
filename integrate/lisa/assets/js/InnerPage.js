@@ -1,99 +1,165 @@
-//商品
+/**商品滑動**/
 $(document).ready(function() {
-  var owl = $("#slider-carousel");
-  owl.owlCarousel({
-    items: 3,
-    itemsDesktop: [1000, 4],
-    itemsDesktopSmall: [900, 2],
-    itemsTablet: [600, 1],
-    itemsMobile: false,
-    pagination: false
+  $("#slider-carousel, #slider-carouse2, #slider-carouse3, #slider-carouse4").each(function() {
+    var owl = $(this);
+    owl.owlCarousel({
+      items: 3,
+      itemsDesktop: [1000, 4],
+      itemsDesktopSmall: [900, 2],
+      itemsTablet: [600, 1],
+      itemsMobile: false,
+      pagination: false
+    });
   });
-});
-//商品
-$(document).ready(function() {
-  var owl = $("#slider-carouse2");
-  owl.owlCarousel({
-    items: 3,
-    itemsDesktop: [1000, 4],
-    itemsDesktopSmall: [900, 2],
-    itemsTablet: [600, 1],
-    itemsMobile: false,
-    pagination: false
+
+/**对于滑动的上一个和下一个按钮，我假设你使用的是相同的类名进行操作**/
+  $('#pra').click(function() {
+    $("#slider-carousel").trigger('prev.owl.carousel');
   });
-});
-//商品
-$(document).ready(function() {
-  var owl = $("#slider-carouse3");
-  owl.owlCarousel({
-    items: 3,
-    itemsDesktop: [1000, 4],
-    itemsDesktopSmall: [900, 2],
-    itemsTablet: [600, 1],
-    itemsMobile: false,
-    pagination: false
-  });
-});
-//商品
-$(document).ready(function() {
-  var owl = $("#slider-carouse4");
-  owl.owlCarousel({
-    items: 3,
-    itemsDesktop: [1000, 4],
-    itemsDesktopSmall: [900, 2],
-    itemsTablet: [600, 1],
-    itemsMobile: false,
-    pagination: false
-  });
+
+  // 你的其他事件处理器代码...
 });
 
-window.addEventListener('load', function() {
-  var listContainer = document.getElementById('list-container');
-  var screenHeight = window.innerHeight;
-  var targetHeight = 900; // 设定目标高度
-
-  window.addEventListener('scroll', function() {
-    var currentHeight = window.scrollY;
-    if (currentHeight <= targetHeight && screenHeight <= targetHeight) {
-      listContainer.style.display = 'block';
-    } else {
-      listContainer.style.display = 'none';
-    }
-  });
-});
-
-
-document.getElementById('pra').addEventListener('click', function() {
-  var owl = document.querySelector(
-    "#slider-carousel");
-      owl.owlCarousel(); // 初始化 Owl Carousel
-      owl.trigger('prev.owl.wrapper.outer'); // 触发向前滑动
-});
-
-// 取得按鈕元素
+// 获取按钮元素
 const btnOne = document.getElementById('one');
+const text = document.getElementById('one1');
 
 // 添加点击事件监听器
 btnOne.addEventListener('click', function() {
   // 检查当前按钮文本
-  if (btnOne.textContent === '我要跟團') {
+  if (text.textContent.trim() === '我要跟團') {
     // 如果当前文本是 '我要跟團'，则切换为 '取消跟團'
-    btnOne.textContent = '取消跟團';
+    text.textContent = '取消跟團';
   } else {
     // 否则，切换为 '我要跟團'
-    btnOne.textContent = '我要跟團';
+    text.textContent = '我要跟團';
+  }
+
+  // 取得模態框標題元素
+  const modalTitle = document.getElementById('leaveLabel');
+  // 修改模態框標題
+  modalTitle.textContent = '請注意';
+
+  // 取得模態框內容元素
+  const modalContent = document.querySelector('#leave .modal-content');
+  // 修改模態框內容
+  modalContent.innerHTML = `
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="leaveLabel">請注意</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <h6 style="color:red;padding-left:10px">跟團後無法退團</h6>
+            <div class="modal-footer">
+              <button type="button" name="addgroup" class="btn btn-primary" id="one" data-bs-dismiss="modal">確定</button>
+            </div>`
+;
+}); 
+
+
+/**商品**/
+// 获取输入框元素
+var quantityInput = document.getElementById('quantityInput');
+
+// 添加事件监听器
+quantityInput.addEventListener('input', function() {
+  // 获取输入框的值
+  var value = parseInt(this.value);
+
+  // 检查值是否大于0
+  if (value <= 0 || isNaN(value)) {
+    // 如果值小于等于0或者不是一个有效的数字，则将值设为1
+    this.value = 0;
   }
 });
 
+// 获取单价元素和总价元素
+const priceElements = document.querySelectorAll('[data-th="Price"]');
+const subtotalElements = document.querySelectorAll('[data-th="Subtotal"]');
+const totalPriceElement = document.getElementById('totalPrice');
 
-//對帳表
-var textElement = document.getElementById('scrollingText');
-var textContent = textElement.textContent.trim();
+// 初始化总价
+let totalPrice = 0;
+
+// 添加事件监听器
+quantityInput.addEventListener('input', function() {
+  // 获取输入框的值
+  const quantity = parseInt(this.value);
+
+  // 重新计算总价和每个商品的小计
+  totalPrice = 0;
+  priceElements.forEach((priceElement, index) => {
+    // 获取商品单价
+    const price = parseFloat(priceElement.textContent.replace('$', ''));
+
+    // 计算小计
+    const subtotal = quantity * price;
+    
+    // 更新对应商品的小计
+    subtotalElements[index].textContent = '$' + subtotal.toFixed(0);
+    
+    // 累加到总价中
+    totalPrice += subtotal;
+  });
+
+  // 更新总价，保留两位小数
+  totalPriceElement.textContent = 'Total $' + totalPrice.toFixed(0);
+});
 
 
+/**訂單按鈕**/
+const checkbox = document.getElementById('box1');
+const label1 = document.getElementById('label1');
 
-
+// 添加点击事件监听器
+checkbox.addEventListener('click', function () {
+  // 检查当前按钮文本
+  if (checkbox.checked) {
+    label1.textContent = '已付款';
+  } else {
+    label1.textContent = '未付款';
+  }
+});
   
   
+/**
+ * 賣家
+ * **/
 
 
+/**切換頁面**/
+document.addEventListener("DOMContentLoaded", function () {
+  var part2 = document.getElementById('card1');
+
+  part2.addEventListener('click', function () {
+    // 导航到新页面
+    window.location.href = '../lisa/discussion.php#blog';
+
+    // 页面加载后延迟执行滚动到指定区域
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var targetElement = document.querySelector('#blog');
+        if (targetElement) {
+          targetElement.scrollIntoView();
+        }
+      }, 1000); // 延迟 1 秒执行滚动操作
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  var part3 = document.getElementById('card0');
+
+  part3.addEventListener('click', function () {
+    // 导航到新页面
+    window.location.href = '../lisa/rewrite.php#contact';
+
+    // 页面加载后延迟执行滚动到指定区域
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var targetElement = document.querySelector('#contact');
+        if (targetElement) {
+          targetElement.scrollIntoView();
+        }
+      }, 1000); // 延迟 1 秒执行滚动操作
+    });
+  });
+});

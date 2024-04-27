@@ -36,9 +36,8 @@
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
     crossorigin="anonymous"></script>
-
+    
 </head>
-
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -522,14 +521,6 @@
                   </div>
                 </div>';}
                 ?>
-                <script>
-                  document.getElementById('pra').addEventListener('click', function () {
-                    var owl = document.getElementById("slider-carousel");
-                    $(owl).owlCarousel(); // 初始化 Owl Carousel
-                    $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
-                  });
-                </script>
-                <!-- 添加其他的 .item -->
               </div>
             </div>
             <br>
@@ -679,45 +670,7 @@
               </div>
             </div>
           </div>
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              var part2 = document.getElementById('card1');
-
-              part2.addEventListener('click', function () {
-                // 导航到新页面
-                window.location.href = '../lisa/discussion.php#blog';
-
-                // 页面加载后延迟执行滚动到指定区域
-                window.addEventListener('load', function () {
-                  setTimeout(function () {
-                    var targetElement = document.querySelector('#blog');
-                    if (targetElement) {
-                      targetElement.scrollIntoView();
-                    }
-                  }, 1000); // 延迟 1 秒执行滚动操作
-                });
-              });
-            });
-            document.addEventListener("DOMContentLoaded", function () {
-              var part3 = document.getElementById('card0');
-
-              part3.addEventListener('click', function () {
-                // 导航到新页面
-                window.location.href = '../lisa/rewrite.php#contact';
-
-                // 页面加载后延迟执行滚动到指定区域
-                window.addEventListener('load', function () {
-                  setTimeout(function () {
-                    var targetElement = document.querySelector('#contact');
-                    if (targetElement) {
-                      targetElement.scrollIntoView();
-                    }
-                  }, 1000); // 延迟 1 秒执行滚动操作
-                });
-              });
-            });
-
-          </script>
+          
         </section>
         <section id="order">
           <h2>Returns</h2>
@@ -1009,22 +962,6 @@
       </section>
     </div>
     </div>
-
-    <script>
-      // 取得按鈕元素
-      const checkbox = document.getElementById('box1');
-      const label1 = document.getElementById('label1');
-
-      // 添加点击事件监听器
-      checkbox.addEventListener('click', function () {
-        // 检查当前按钮文本
-        if (checkbox.checked) {
-          label1.textContent = '已付款';
-        } else {
-          label1.textContent = '未付款';
-        }
-      });
-    </script>
     </div>
     </div>
     </div>
@@ -1041,6 +978,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
     <!-- 这里是你的 JavaScript 代码 -->
+    
 
     <!-- JQERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -1074,7 +1012,7 @@
     <script src="../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Your Custom JS Files -->
-    <script src="../lisa/assets/js/InnerPage.js"></script>
+    <script src="../lisa/assets/js/InnerBuyer.js"></script>
     <script src="../lisa/assets/js/cvs.js"></script>
     <script src="assets/js/main.js"></script>
 

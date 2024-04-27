@@ -79,8 +79,8 @@
       </div>
       <div class="edit_like_shop_button">
         <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
-        <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;我要跟團</button>
+        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+        我要跟團</button>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
@@ -105,10 +105,12 @@
               <h1 class="modal-title fs-5" id="leaveLabel">確定跟團？</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <p style="color:red;">跟團須知：請勿跟團後不購買產品，否則列入黑名單！！！</p>
+            <h6 style="color:red;padding-left:10px">跟團須知：</h6>
+            <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
+            <h6 style="padding-left:10px">跟團也無法退團</h6>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="button" name="addgroup" class="btn btn-primary">確定</button>
+              <button type="button" name="addgroup" class="btn btn-primary" id="one" data-bs-dismiss="modal">確定</button>
             </div>
           </div>
         </div>
@@ -423,152 +425,49 @@
                     <th class="text-center">Subtotal</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs">
-                          <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                            title="Portfolio Details">
-                            <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
-                              alt="..." class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>玩偶吊飾</b></h4>
-                          <p>水星/大耳狗玩偶吊飾、木星/瑪莉兔玩偶吊飾、火星/庫洛米玩偶吊飾.</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$750</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">750</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98y-lq1pws45etqa02" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>拉鍊收納包</b></h4>
-                          <p>Hello Kitty/月野兔、美樂蒂/小兔子、大耳狗/水野亞美、庫洛米/火野麗、布丁狗/愛野美奈子</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$260</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">260</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>壓克力吊飾盲盒</b></h4>
-                          <p>全14種隨機出貨</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$300</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">300</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98s-lnx31qxr00mx53" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>原子筆</b></h4>
-                          <p>粉色-內部戰士、藍色-外部戰士</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$140</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">140</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-sm-4 hidden-xs"><img
-                            src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07" alt="..."
-                            class="img-responsive" /></div>
-                        <div class="col-sm-8">
-                          <h4 class="nomargin"><b>多層資料夾</b></h4>
-                          <p>米色-內部戰士、白色-外部戰士</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$145</td>
-                    <td data-th="Quantity">
-                      <input type="number" class="form-control text-center" value="1">
-                    </td>
-                    <td data-th="Subtotal" class="text-center">145</td>
-                    <td class="actions" data-th="">
-                      <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i
-                          class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i
-                          class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
+                <?php
+$commodity_group_id = 3; // 根据实际情况获取商品组ID
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+$sql = "SELECT * FROM commodity NATURAL JOIN commodity_photo WHERE commodity_state = 1";
+$result = mysqli_query($link, $sql);
 
-                </tbody>
+while ($row = mysqli_fetch_assoc($result)) {
+
+    echo '
+    <tr>
+        <td data-th="Product">
+            <div class="row">
+                <div class="col-sm-4 hidden-xs">
+                    <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
+                        <img src="', $row["commodity_photo"], '" alt="..." class="img-responsive" />
+                    </a>
+                </div>
+                <div class="col-sm-8">
+                    <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
+                    <p>', $row["commodity_narrate"], '</p>
+                </div>
+            </div>
+        </td>
+        <td data-th="Price">$', $row["commodity_price"], '</td>
+        <td data-th="Quantity">
+            <input id="quantityInput" type="number" class="form-control text-center " value="0">
+        </td>
+        <td data-th="Subtotal" class="text-center">$0</td>
+        <td class="actions" data-th="">
+            <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+        </td>
+    </tr>';
+}?>
+
                 <tfoot>
-                  <tr>
-                    <td colspan="3" class="hidden-xs"></td>
-                    <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                    <td><a href="#" class="btn btn-success btn-block"
-                        style="background-color: #b0a5c6a8;border: none;color: white;">結帳 <i
-                          class="fa fa-angle-right"></i></a>
-                    </td>
-                  </tr>
+                <tr>
+                  <td colspan="3" class="hidden-xs"></td>
+                  <td class="hidden-xs text-center" id="totalPrice"><strong>Total $0</strong></td>
+                  <td class="text-right"><a href="#" class="btn btn-success btn-block">Checkout <i class="fa-solid fa-arrow-right-to-line"></i></a></td>
+                </tr>
                 </tfoot>
+                
               </table>
             </div>
           </div>
@@ -582,6 +481,15 @@
             </h3>
             <div class="row">
               <div id="slider-carousel" class="owl-carousel">
+              <?php
+                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link=mysqli_connect('localhost','root','12345678','wishop');
+                    $sql="select *
+                    from commodity_group_announce";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                    echo '
                 <div class="item">
                   <div class="col-sm-10">
                     <div class="card">
@@ -594,7 +502,7 @@
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
+                            <h5>',$row["announce_title"],'<i class="fa-solid fa-ellipsis-vertical"
                                 style="float: right; margin-top: -15px;"></i></h5>
                           </div>
                         </div>
@@ -602,12 +510,13 @@
                       <div class="card-body">
                         <p class="card-text">
                         <p>尊敬的客戶:</p>
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
+                        ',$row["announce_narrate"],'
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>';}
+                ?>
                 <script>
                   document.getElementById('pra').addEventListener('click', function () {
                     var owl = document.getElementById("slider-carousel");
@@ -1056,21 +965,6 @@
       </div>
     </div>
 
-    <script>
-      // 取得按鈕元素
-      const checkbox = document.getElementById('box1');
-      const label1 = document.getElementById('label1');
-
-      // 添加点击事件监听器
-      checkbox.addEventListener('click', function () {
-        // 检查当前按钮文本
-        if (checkbox.checked) {
-          label1.textContent = '已付款';
-        } else {
-          label1.textContent = '未付款';
-        }
-      });
-    </script>
     </div>
     </div>
     </div>
@@ -1087,7 +981,6 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
     <!-- 这里是你的 JavaScript 代码 -->
-
     <!-- JQERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
