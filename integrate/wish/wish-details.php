@@ -25,7 +25,7 @@
       $wish_state=$row["wish_state"];
     }
   ?>
-  
+
   <title><?php echo $wish_name; ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -234,22 +234,28 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-4 entries">
+          <div class="col-lg-5 entries">
 
             <article class="entry">
 
               <div class="entry-img">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner fixed-image2">
-                    <div class="carousel-item active">
-                      <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="https://i.pinimg.com/736x/c9/7f/2b/c97f2b3a9944c500f4aac34e74586646.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="https://i.pinimg.com/564x/7c/a8/b1/7ca8b121f17faa6714b84235b1aa5d85.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    <?php
+                      $a=1;
+                      $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                      $result_photo=mysqli_query($link,$sql_photo);
+                      while($row_photo=mysqli_fetch_assoc($result_photo))
+                      {
+                        echo'
+                        <div class="carousel-item ';if($a==1){echo 'active';}echo'">
+                          <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                        </div>';
+                        $a++;
+                      } 
+                    ?>
+                    
+                    
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -267,7 +273,7 @@
 
           </div><!-- End blog entries list -->
 
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <section id="wish-details" class="wish-details"> 
               <div class="container" data-aos="fade-up">    
                 <div class="wish-info">
@@ -277,13 +283,13 @@
                   </div>
                   <br>
                   <ul>
-                    <li><strong><i class="bi bi-person"></i>&nbsp;許願者</strong>: <a href="#"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;朴星和</a></li>
-                    <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: 2024-04-02</li>
-                    <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: 2024-05-02</li>
-                    <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="https://ateez.kqent.com/shop/kr/products/38" target="_blank">https://ateez.kqent.com/shop/kr/products/38</a></li>
+                    <li><strong><i class="bi bi-person"></i>&nbsp;許願者</strong>: <a href="#"><img src="<?php echo $user_avatar ?>" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;<?php echo $user_name ?></a></li>
+                    <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: <?php echo $wish_start ?></li>
+                    <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: <?php echo $wish_end ?></li>
+                    <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="<?php echo $wish_link ?>" target="_blank">相關連結</a></li>
                     <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>: &nbsp;10&nbsp;</li>
                     <li><strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>: </li>
-                      <p class="scrollable-row">想收圖上的的大娃，有拆封過也沒關係，可先匯款</p>
+                      <p class="scrollable-row"><?php echo nl2br($wish_narrat) ?></p>
                   </ul>
                 </div>              
               </div>
@@ -325,6 +331,8 @@
       <div class="row">
 
         <div class="col-lg-6">
+
+
           <div class="member d-flex align-items-start">
             <div class="pic"><img src="https://i.pinimg.com/564x/ab/90/cd/ab90cdbe69acb9fe82c0662adf0dac6e.jpg" class="img-fluid" alt=""></div>
             <div class="member-info">
@@ -355,6 +363,8 @@
               </table>
             </div>
           </div>
+
+          
         </div>
 
         <div class="col-lg-6">
