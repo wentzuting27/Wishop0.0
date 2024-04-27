@@ -55,6 +55,11 @@ btnOne.addEventListener('click', function() {
 ;
 }); 
 
+document.getElementById('pra').addEventListener('click', function () {
+  var owl = document.getElementById("slider-carousel");
+  $(owl).owlCarousel(); // 初始化 Owl Carousel
+  $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
+});
 
 /**商品**/
  // 获取所有输入框元素
