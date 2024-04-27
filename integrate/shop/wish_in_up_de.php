@@ -62,8 +62,24 @@
 
         }
         
+    }elseif($_GET["method"]=="不受理"){
+        echo "123";
+        $wish_id=$_GET["wish_id"];
+        $shop_id=$_GET["shop_id"];
+        $sql="update wish set wish_state=2
+        where wish_id=$wish_id";
+        
+        if(mysqli_query($link, $sql)){
+            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
+        }else{
+            echo $sql;
+            echo "失敗";
+        }
+        
     }
     else{
+        echo "456";
+
         // $activity_id=$_GET['activity_id'];
         // $o_file=$_GET['o_file'];
         // // 取得檔案路徑

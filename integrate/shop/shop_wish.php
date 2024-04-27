@@ -390,7 +390,7 @@
                     $sql="select *
                     from wish
                     natural join account
-                    where wish_shop_id='$shop_id' AND wish_end >= CURDATE()
+                    where wish_shop_id='$shop_id' AND wish_end >= CURDATE() AND wish_state <>  2
                     order by wish_start";
                     $result=mysqli_query($link,$sql);
                     while($row=mysqli_fetch_assoc($result))
@@ -554,7 +554,7 @@
                     $sql="select *
                     from wish
                     natural join account
-                    where wish_shop_id='$shop_id' AND wish_end < CURDATE()
+                    where wish_shop_id='$shop_id' AND (wish_end < CURDATE() or wish_state=2)
                     order by wish_start";
                     $result=mysqli_query($link,$sql);
                     while($row=mysqli_fetch_assoc($result))

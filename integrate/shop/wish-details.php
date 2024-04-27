@@ -160,7 +160,7 @@
               $result=mysqli_query($link,$sql);
               while($row=mysqli_fetch_assoc($result))
               {
-              if(strtotime($wish_end) < strtotime('now')){
+              if(strtotime($wish_end) < date("Y-M-D") or $wish_state==2){
                 if($wish_state==1){
                   echo '
                   <button type="button" class="btn button_success" style="background-color:#83c57e" disabled>許願成功</button>';
@@ -176,7 +176,7 @@
                 if(mysqli_num_rows($result_bid_y_or_n)==0 && $wish_state==3){
                   echo '
                   <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal">我要出價</button>&nbsp;&nbsp;
-                  <button type="button" class="btn insert_button">不受理</button>';
+                  <a href="wish_in_up_de.php?method=不受理&wish_id=',$wish_id,'&shop_id=',$shop_id,'"><button type="button" class="btn insert_button">不受理</button></a>';
                 }else{
                   echo '
                   <button type="button" class="btn insert_button" disabled>已出價</button>&nbsp;&nbsp;';
