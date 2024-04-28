@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -39,49 +41,58 @@
 </head>
 
 <body>
-<?php session_start(); ?>
-  <main id="main">
+  <?php session_start(); ?>
+  <main id="main" >
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
-      <div class="container align-items-center">
-        <div class="row gy-4 " style="margin-top:-60px">
-          <div class="col-lg-6" >
+      <div class="container align-items-center" style="height:400px;">
+        <div class="row gy-4 " style="margin-top:-100px">
+          <div class="col-lg-6">
             <div class="portfolio-details-slider swiper" style="transform: scale(0.8);background-color: beige;">
               <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98o-lkxejb1adjuh39" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qul7-lisxzazn59aa3d" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qukx-lisxzazn59dga2" class="d-block w-100" alt="...">
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    $sql = "SELECT commodity_photo FROM commodity_photo WHERE commodity_id=2";
+                    $result = mysqli_query($link, $sql);
+                    $active = true;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '<div class="carousel-item  ' . ($active ? 'active' : '') . '">
+                                <img src="' . $row["commodity_photo"] . '" class="d-block w-100" alt="...">
+                            </div>';
+                      $active = false;
+                    }
+                    ?>
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-          </div>
-          </div>
-          
-          <div class="col-lg-6 align-items-center" style="margin-top: 90px;z-index: 998;">
+            </div>
+          <?php
+          $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "select * from  commodity where commodity_id=2";
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '
+          <div class="col-lg-6 align-items-center" style="margin-top: 100px;z-index: 998;">
             <div class="portfolio-info">
-              <h3>玩偶吊飾</h3>
+              <h3>', $row["commodity_name"], '</h3>
               <ul style="list-style-type: none;font-display: left;text-align:left ;">
-                <li><strong>價格</strong>: $750</li>
+                <li><strong>價格</strong>: $', $row["commodity_price"], '</li>
                 <li><strong>國家</strong>: 日本</li>
-                <li><strong>貨源</strong>: 三麗鷗官網</li>
-                <li><strong>預計到貨時間</strong>: 01 March, 2020</li>
                 <li><strong>注意事項</strong>: 非重大瑕疵不退貨</li>
-                <li><strong>商品連結</strong>: <a href="#">https://reurl.cc/3787vR</a></li>
+                <li><strong>商品連結</strong>: <a href="', $row["c_original_product_link"], '">商品連結</a></li>
               </ul>
             </div>
            
@@ -90,11 +101,13 @@
         </div>
         
       </div>        
-    </section><!-- End Portfolio Details Section -->
-
+    </section><!-- End Portfolio Details Section -->'
+            ;
+          } ?>
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

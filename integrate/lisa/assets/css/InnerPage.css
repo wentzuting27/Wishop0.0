@@ -1,5 +1,3 @@
-
-
 a {
   text-decoration: none;
   color: #E9C9D6;
@@ -18,6 +16,7 @@ h5,
 h6 {
   font-family: "Raleway", sans-serif;
 }
+
 .icon {
   display: inline-block;
   width: 1em;
@@ -80,16 +79,24 @@ h6 {
     display: inline-block;
   }
 }
+
 marquee {
   font-size: 20px;
   background-color: #ffffffc1;
-  color: #333; /* 修改文字颜色 */
-  padding: 10px; /* 调整内边距 */
-  width: 65%; /* 调整宽度 */
-  margin: 0 auto; /* 设置左右居中 */
-  border-radius: 20px; /* 调整圆角 */
-  text-align: center; /* 文字居中 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  color: #333;
+  /* 修改文字颜色 */
+  padding: 10px;
+  /* 调整内边距 */
+  width: 65%;
+  /* 调整宽度 */
+  margin: 0 auto;
+  /* 设置左右居中 */
+  border-radius: 20px;
+  /* 调整圆角 */
+  text-align: center;
+  /* 文字居中 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* 添加阴影效果 */
   margin-top: -20px;
   margin-bottom: 15px;
   margin-left: -260px;
@@ -111,31 +118,46 @@ marquee span:before {
   width: 10px;
   height: 10px;
   position: relative;
-  top: -2px; /* 调整位置 */
-  vertical-align: middle; /* 垂直居中 */
-  background-color: #fff; /* 修改颜色 */
-  margin: 0 12px; /* 调整间距 */
-  border-radius: 50%; /* 将圆点设置为圆形 */
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+  top: -2px;
+  /* 调整位置 */
+  vertical-align: middle;
+  /* 垂直居中 */
+  background-color: #fff;
+  /* 修改颜色 */
+  margin: 0 12px;
+  /* 调整间距 */
+  border-radius: 50%;
+  /* 将圆点设置为圆形 */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  /* 添加阴影效果 */
 }
+
 /*--------------------------------------------------------------
 # insert_group_form
 --------------------------------------------------------------*/
 .edit_like_shop_button {
-  position: absolute; /* 或者使用 absolute */
-  top: 25px; /* 設置相應的位置 */
-  right: 20px; /* 設置相應的位置 */
-  z-index: 996; /* 設置一個足夠高的 z-index 值 */
-  button{
+  position: absolute;
+  /* 或者使用 absolute */
+  top: 25px;
+  /* 設置相應的位置 */
+  right: 20px;
+  /* 設置相應的位置 */
+  z-index: 996;
+
+  /* 設置一個足夠高的 z-index 值 */
+  button {
     background-color: #E9C9D6;
     color: white;
-    cursor: pointer; /* 让鼠标在按钮上显示指针 */
+    cursor: pointer;
+    /* 让鼠标在按钮上显示指针 */
   }
+
   button:hover {
-    background-color: #e2b4c8; /* 鼠标悬停时的背景颜色 */
-    color:white;
+    background-color: #e2b4c8;
+    /* 鼠标悬停时的背景颜色 */
+    color: white;
   }
-  
+
 }
 
 /*--------------------------------------------------------------
@@ -277,38 +299,42 @@ marquee span:before {
 
 
 .card-text .content {
-  min-height:100%;
-  height:100%;
-  background:white;
-  position:relative;
-  z-index:0;
+  min-height: 100%;
+  height: 100%;
+  background: white;
+  position: relative;
+  z-index: 0;
+
   h1 {
-    padding:75px 0 30px 0;
-    text-align:center;
-    font-size:30px;
-    line-height:30px;
+    padding: 75px 0 30px 0;
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
   }
+
   .buttons {
-    max-width:800px;
-    margin:0 auto;
-    padding:0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+
     .button {
-      display:inline-block;
-      text-align:center;
-      padding:10px 15px;
-      margin:10px;
-      font-size:10px;
+      display: inline-block;
+      text-align: center;
+      padding: 10px 15px;
+      margin: 10px;
+      font-size: 10px;
       color: #ffffff;
-      background-color:#c3b7dc;
-      border-radius:20px;
-      box-shadow:0 1px 2px rgba(0,0,0,.3);
-      cursor:pointer;
+      background-color: #c3b7dc;
+      border-radius: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+      cursor: pointer;
+
       &:hover {
-        color:rgb(255, 255, 255);
-        background:#E9C9D6;
+        color: rgb(255, 255, 255);
+        background: #E9C9D6;
       }
     }
-  } 
+  }
 }
 
 
@@ -323,7 +349,7 @@ marquee span:before {
 /* selectors relative to radio inputs */
 
 .tabs {
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
   position: relative;
   background: white;
@@ -349,7 +375,7 @@ marquee span:before {
   color: #428BFF;
 }
 
- #subject ul {
+#subject ul {
   list-style-type: none;
   padding-left: 0;
   display: flex;
@@ -360,7 +386,7 @@ marquee span:before {
   flex-wrap: wrap;
 }
 
- #subject ul li {
+#subject ul li {
   box-sizing: border-box;
   flex: 1;
   width: 25%;
@@ -642,6 +668,7 @@ section {
   font-family: "Poppins", sans-serif;
   color: #4D96C2;
 }
+
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
@@ -720,8 +747,10 @@ section {
 .why-us .accordion-list a.collapsed .icon-close {
   display: none;
 }
+
 .why-us ul {
-  list-style-type: none; /* 删除 ul 元素默认的圆点 */
+  list-style-type: none;
+  /* 删除 ul 元素默认的圆点 */
 }
 
 
@@ -732,15 +761,18 @@ section {
 }
 
 .col-sm-4.hidden-xs img {
-  max-width: 100%; /* 最大宽度为父容器的宽度 */
-  height: auto; /* 自适应高度，保持图片比例 */
+  max-width: 100%;
+  /* 最大宽度为父容器的宽度 */
+  height: auto;
+  /* 自适应高度，保持图片比例 */
 }
 
-#cart{
+#cart {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   font-size: 0.4cm;
   overflow: scroll;
 }
+
 @media screen and (max-width: 1000px) {
   #app table#cart tbody td .form-control {
     width: 20%;
@@ -790,59 +822,113 @@ section {
     display: block;
   }
 }
+
 /*--------------------------------------------------------------
 # 商品
 -*/
-
-.owl-carousel .owl-wrapper-outer {  
+.owl-carousel .owl-wrapper-outer {
   overflow-y: auto;
   overflow-x: hidden;
   transition: max-height 0.3s ease;
 }
+
 .owl-carousel .owl-item {
   float: left;
 }
 
-/* Styling Next and Prev buttons */
-.item .col-sm-10{
-  width: 300px;
-  height: 280px;
-  
+.item .card .card-header .col-md-12 {
+  display: flex;
+  align-items: center;
 }
 
-.item .card {
-  border-radius: 10%;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border: none;
+.item .card .card-header .col-md-12 .profile-picture.big-profile-picture.clear {
+  width: 50px;
+  height: 50px;
+  border: 0;
+  margin-right: 10px;
 }
 
-.item .card .card-header {
-  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-  margin-bottom: 0;
-  color: var(--bs-card-cap-color);
-  background-color: var(--bs-card-cap-bg);
-  border-bottom: none;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px; /* 设置与.card相同的边框半径 */
+@media(min-width: 920px) {
+
+  /* Styling Next and Prev buttons */
+  .item .col-sm-10 {
+    width: 300px;
+    height: 280px;
+
+  }
+
+  .item .card {
+    border-radius: 10%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: none;
+  }
+
+  .item .card .card-header {
+    padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+    margin-bottom: 0;
+    color: var(--bs-card-cap-color);
+    background-color: var(--bs-card-cap-bg);
+    border-bottom: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /* 设置与.card相同的边框半径 */
+  }
+
 }
-.part2 .card.border-secondary.mb-12{
+
+@media(max-width: 780px) {
+
+  .item .col-sm-10 {
+    width: 90%;
+    /* 將卡片寬度設置為100%，以充分利用小螢幕的寬度 */
+    height: 170px;
+    /* 自動調整高度，以適應內容的大小 */
+  }
+
+  .item .card {
+    border-radius: 0;
+    /* 移除邊框半徑 */
+    box-shadow: none;
+    /* 移除陰影 */
+    border: 1px solid #ddd;
+    /* 添加細邊框 */
+  }
+
+  .item .card .card-header {
+    border-radius: 0;
+    /* 移除卡片標頭的邊框半徑 */
+  }
+
+  .item .col-sm-10 .card .card-body {
+    font-size: 0.4cm;
+  }
+}
+
+.part2 .card.border-secondary.mb-12 {
   max-height: 250px;
   margin-bottom: 50px;
   border-radius: 10px;
 }
-.part2 .card.border-secondary.mb-12 .card-body{
+
+.part2 .card.border-secondary.mb-12 .card-body {
   max-height: 200px;
-  position: relative; /* 让覆盖层和按钮相对于这个元素定位 */
+  position: relative;
+  /* 让覆盖层和按钮相对于这个元素定位 */
   overflow: hidden;
+
   #overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0; /* 从左侧开始，使得按钮和覆盖层都贴近左侧边界 */
-  width: 100%;
-  height: 15px; /* 設置覆蓋層高度 */
-  background-color: rgba(255, 255, 255, 0.8); /* 設置覆蓋層顏色 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* 从左侧开始，使得按钮和覆盖层都贴近左侧边界 */
+    width: 100%;
+    height: 15px;
+    /* 設置覆蓋層高度 */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* 設置覆蓋層顏色 */
+  }
 }
-}
+
 .card.border-secondary.mb-12 .card-body .card-text {
   color: #5f5f5f;
 }
@@ -977,7 +1063,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background:#E9C9D6;
+  background: #E9C9D6;
 }
 
 @keyframes animate-loading {
@@ -1003,7 +1089,7 @@ section {
 
 
 #btn1 .btn-toggle:before,
- #btn1 .btn-toggle:after {
+#btn1 .btn-toggle:after {
   line-height: 1.5rem;
   width: 5rem;
   text-align: center;
@@ -1015,16 +1101,19 @@ section {
   bottom: 0;
   transition: opacity 0.25s;
 }
- #btn1 .btn-toggle:before {
+
+#btn1 .btn-toggle:before {
   left: -5rem;
 }
- #btn1 .btn-toggle:after {
+
+#btn1 .btn-toggle:after {
   content: '公開';
   right: -4.5rem;
   font-size: 20px;
   opacity: 0.5;
 }
- #btn1 .btn-toggle > .handle {
+
+#btn1 .btn-toggle>.handle {
   position: absolute;
   top: 0.28rem;
   left: 0.1875rem;
@@ -1038,7 +1127,7 @@ section {
 
 
 
-#btn1 .btn-toggle.active > .handle {
+#btn1 .btn-toggle.active>.handle {
   left: 1.6875rem;
   transition: left 0.25s;
 }
@@ -1046,19 +1135,24 @@ section {
 #btn1 .btn-toggle.active:before {
   opacity: 0.5;
 }
+
 #btn1 .btn-toggle.active:after {
   opacity: 1;
 }
+
 #btn1 .btn-toggle.btn-sm:before {
   text-align: right;
 }
- #btn1 .btn-toggle.btn-sm:after {
+
+#btn1 .btn-toggle.btn-sm:after {
   text-align: left;
   opacity: 0;
 }
- #btn1 .btn-toggle.btn-sm.active:before {
+
+#btn1 .btn-toggle.btn-sm.active:before {
   opacity: 0;
 }
+
 #btn1 .btn-toggle.btn-sm.active:after {
   opacity: 1;
 }
@@ -1069,7 +1163,12 @@ section {
 }
 
 
-.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
   outline: thin dotted;
   outline: 0px auto r;
   outline-offset: -1px;
@@ -1093,7 +1192,12 @@ section {
 --------------------------------------------------------------*/
 
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #3D4351;
   margin-top: 0;
 }
@@ -1101,13 +1205,16 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: #FF6B6B;
 }
+
 a:hover {
   color: #ff9a9a;
   text-decoration: none;
 }
-#order #example{
+
+#order #example {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
+
 .example-header {
   background: #3D4351;
   color: #FFF;
@@ -1115,11 +1222,13 @@ a:hover {
   padding: 3em 1em;
   text-align: center;
 }
+
 .example-header h1 {
   color: #FFF;
   font-weight: 300;
   margin-bottom: 20px;
 }
+
 .example-header p {
   font-size: 12px;
   text-transform: uppercase;
@@ -1130,6 +1239,7 @@ a:hover {
 .container-fluid .row {
   padding: 0 0 4em 0;
 }
+
 .container-fluid .row:nth-child(even) {
   background: #F1F4F5;
 }
@@ -1140,15 +1250,13 @@ a:hover {
   padding: 3em 0;
   border-bottom: 1px solid #E4EAEC;
 }
+
 .example-title p {
   margin: 0 auto;
   font-size: 16px;
   max-width: 400px;
 }
 
-/*--------------------------------------------------------------
-# Portfolio Details
---------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
@@ -1158,7 +1266,8 @@ a:hover {
 
 /* Add more CSS rules based on your SCSS variables */
 
-.carousel-control-next-icon, .carousel-control-prev-icon {
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -1167,6 +1276,7 @@ a:hover {
   background-size: 100% 100%;
   background-color: rgba(0, 0, 0, 0.103);
 }
+
 .portfolio-details {
   padding-top: 80px;
 }
@@ -1218,20 +1328,41 @@ a:hover {
 
 /*** custom checkboxes ***/
 
-input[type=checkbox] { display:none; } /* to hide the checkbox itself */
-input[type=checkbox] + label:before {
+input[type=checkbox] {
+  display: none;
+}
+
+/* to hide the checkbox itself */
+input[type=checkbox]+label:before {
   font-family: FontAwesome;
   display: inline-block;
 }
 
-input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
-input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+input[type=checkbox]+label:before {
+  content: "\f096";
+}
 
-input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
-input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
-.table checkbox{
+/* unchecked icon */
+input[type=checkbox]+label:before {
+  letter-spacing: 10px;
+}
+
+/* space between checkbox and label */
+
+input[type=checkbox]:checked+label:before {
+  content: "\f046";
+}
+
+/* checked icon */
+input[type=checkbox]:checked+label:before {
+  letter-spacing: 5px;
+}
+
+/* allow space for check mark */
+.table checkbox {
   transform: scale(2.5);
 }
+
 .has-search .form-control {
   padding-left: 2.375rem;
   margin-left: 40px;
@@ -1249,6 +1380,3 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
   pointer-events: none;
   color: #aaa;
 }
-
-
-
