@@ -78,7 +78,9 @@
                     c.commodity_narrate,
 
                     s.shop_name,
+                    s.shop_id,
 
+                    cg.commodity_group_id,
                     cg.commodity_group_name,
                     cg.nation
                     
@@ -106,7 +108,9 @@
             $commodity_photo = $row['commodity_photo'];
 
             $shop_name = $row['shop_name'];
+            $shop_id = $row['shop_id'];
 
+            $commodity_group_id = $row['commodity_group_id'];
             $commodity_group_name = $row['commodity_group_name'];
             $nation = $row['nation'];
 
@@ -192,8 +196,8 @@
             <div class="portfolio-info">
               <h3><?php echo $commodity_group_name; ?></h3>
               <ul>
-                <li><i class="fa-solid fa-user"></i>&nbsp;<strong><?php echo $shop_name; ?></strong>: <a href="../shop/shop.php"
-                    target="_blank">三麗鷗快樂購</a></li>
+                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
+                <?php echo $shop_name; ?></a></li>
                 <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <?php echo $nation; ?></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>: 主題</li>
@@ -204,7 +208,7 @@
               </ul>
               <hr>
               <div style="text-align: center;">
-                <a type="button" href="../lisa/InnerPage.php" target="_blank" class="btn btn-light-more">前往團購購買</a>
+                <a type="button" href="../lisa/InnerPage.php?commodity_group_id=<?php echo $commodity_group_id; ?>" target="_blank" class="btn btn-light-more">前往團購購買</a>
               </div>
             </div>
 
