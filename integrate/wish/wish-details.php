@@ -159,7 +159,7 @@
                 </ol>
                 <div class="d-flex">
                   <?php
-                    $sql="select * from wish";
+                    $sql="select * from wish where wish_id='$wish_id'";
                     $result=mysqli_query($link,$sql);
                     if($row=mysqli_fetch_assoc($result))
                     {
