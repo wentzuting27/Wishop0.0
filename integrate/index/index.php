@@ -320,195 +320,51 @@
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">日本</li>
-              <li data-filter=".filter-card">韓國</li>
-              <li data-filter=".filter-web">美國</li>
+              <li data-filter=".filter-日本">日本</li>
+              <li data-filter=".filter-韓國">韓國</li>
+              <li data-filter=".filter-美國">美國</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
-            <div class="portfolio-wrap">
 
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">壓克力吊飾盲盒</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;300</i></p>
+          $sql3 = "SELECT c.*, cg.*, cp.commodity_photo 
+          FROM commodity c 
+          JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
+          JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+          GROUP BY c.commodity_id
+          ORDER BY RAND() 
+          LIMIT 16";
+
+          $result3 = mysqli_query($link, $sql3);
+
+          while ($row = mysqli_fetch_assoc($result3)) {
+            echo '
+              <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' wow fadeInUp">
+                  <div class="portfolio-wrap">
+                      <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
+                          data-glightbox="type: external" title="' . $row['commodity_name'] . '">
+                          <figure>
+                              <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                          </figure>
+                      </a>
+                      <div class="portfolio-info">
+                          <h4>' . $row['commodity_name'] . '</h4>
+                          <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                      </div>
+                  </div>
               </div>
+              ';
+          }
+          ?>
 
 
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">玩偶吊飾</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;750</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img
-                    src="https://gw.alicdn.com/imgextra/i3/55510288/O1CN017yLxEc1Dzwy2sJtCP_!!55510288.jpg_Q75.jpg_.webp"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">原子筆</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;140</i></p>
-              </div>
-
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img
-                    src="https://cdn.cybassets.com/media/W1siZiIsIjExMTE3L3Byb2R1Y3RzLzQ1NzQyMTk5LzExMTE3LXByb2R1Y3QtcGhvdG8tMjAyNDA0MDItNDktNnhoNzE2XzUyYjZmZTI2M2Q4NjZlYzYxMDAxLmpwZWciXSxbInAiLCJ0aHVtYiIsIjYwMHg2MDAiXV0.jpeg?sha=892bbe2cf0939acc"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品4</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;199</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="http://funbox.com.tw/website_folder/753581/753581-600-07.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品5</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;350</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img
-                    src="https://cdn.cybassets.com/s/files/11117/ckeditor/pictures/content_d7bd690c-2901-4a40-8e45-a1925d175ecd.jpg"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品6</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;299</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品7</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;79</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品8</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;200</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品9</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;450</i></p>
-              </div>
-
-            </div>
-          </div>
+          
 
         </div>
 
@@ -592,11 +448,11 @@
             </div>
           </div> -->
 
-          
-          
-          
 
-          
+
+
+
+
 
 
         </div>
