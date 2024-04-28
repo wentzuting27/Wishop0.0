@@ -1,9 +1,9 @@
 <?php
 $commodity_group_id = 3; // 在哪一個商品團體要用接值得方式,先假設1,之後再改
-// 首先啟動會話
-session_start();
-// 取得目前會話的 Session ID
-$account = session_id();
+        // 首先啟動會話
+        //session_start();
+        // 取得目前會話的 Session ID
+        $account = "sena1102";
 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
 // 檢查連接是否成功
@@ -12,22 +12,17 @@ if ($link->connect_error) {
 }
 
 // 獲取前端傳來的參數
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 判斷是否是確定按鈕的點擊事件
-    if (isset($_POST["delgroup"])) {
+if (isset($_POST["delgroup"])) {
         // 在這裡執行刪除操作
         $sql = "DELETE FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
         if (mysqli_query($link, $sql)) {
             echo "成功刪除該團體";
         } else {
-            echo "刪除失敗: " . mysqli_error($link);
+            echo "刪除失敗: ";
         }
     }
-}
-// 獲取前端傳來的參數
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 判斷是否是確定按鈕的點擊事件
-    if (isset($_POST["addgroup"])) {
+
+ if (isset($_POST['addgroup'])) {
         // 取得目前的時間戳
         $timestamp = time();
         // 將時間戳格式化為日期時間字串
@@ -37,12 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         (commodity_group_id,account, withgroup_time) 
         VALUES (3, '$account', '$add_time')";
         if (mysqli_query($link, $sql)) {
-            echo "成功跟團";
+            echo '<script>alert("跟團成功!"); window.location.href = "InnerPage.php";</script>';
         } else {
-            echo "跟團刪除: " . mysqli_error($link);
+            echo '<script>alert("跟團失敗!"); window.location.href = "InnerPage.php";</script>';
         }
     }
-}
+    
+
 
 // 關閉資料庫連接
 mysqli_close($link);

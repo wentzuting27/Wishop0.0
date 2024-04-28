@@ -71,32 +71,73 @@
   {
     echo '
     <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
-    ;">
-      <div class="background-overlay" style="position: absolute;
+    ;">';}?>
+    <?php
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+$commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+$account = "ateez2018";
+$sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=3";
+$result = mysqli_query($link, $sql);
+
+if ($result && mysqli_num_rows($result) == 0) {
+    echo '
+    <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-      </div>
-      <div class="edit_like_shop_button">
-        <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-        我要跟團</button>
-      </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
-        <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
-          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
-        </div>
-        <div>
-          <center>
-            <marquee>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-            </marquee>
-          </center>
-        </div>
+    </div>
+    <div class="edit_like_shop_button">
+    <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    我要跟團</button>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
+    <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
+    </div>
+    <div>
+    <center>
+    <marquee>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    </marquee>
+    </center>
+    </div>
+    </div>';
+} else {
+    echo '
+    <div class="background-overlay" style="position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+    </div>
+    <div class="edit_like_shop_button">
+    <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    取消跟團</button>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
+    <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
+    </div>
+    <div>
+    <center>
+    <marquee>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    </marquee>
+    </center>
+    </div>
+    </div>';
+}
 
-      </div>
+mysqli_close($link);
+?>
+
+      
+      <form  method="post" action="withgroup.php">
       <!-- Modal -->
       <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -110,13 +151,14 @@
             <h6 style="padding-left:10px">跟團也無法退團</h6>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="button" name="addgroup" class="btn btn-primary" id="one" data-bs-dismiss="modal">確定</button>
+              <button type="submit" name="addgroup" class="btn btn-primary" id="one" >確定</button>
             </div>
           </div>
         </div>
       </div>
-';}
-?>
+      </form>
+
+
   <?php
   $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
   $link=mysqli_connect('localhost','root','12345678','wishop');
