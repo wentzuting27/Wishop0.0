@@ -43,8 +43,11 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
   <main id="main">
+
+
+  
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
@@ -56,38 +59,109 @@
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
 
+
+              <?php
+          if ($_GET['commodity_id'] != '') {
+            $commodity_id = $_GET['commodity_id'];
+
+          }
+
+
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "SELECT 
+                    cp.commodity_photo,
+
+                    c.commodity_id,
+                    c.commodity_name,
+                    c.commodity_price,
+                    c.c_original_product_link,
+                    c.commodity_narrate,
+
+                    s.shop_name,
+                    s.shop_id,
+
+                    cg.commodity_group_id,
+                    cg.commodity_group_name,
+                    cg.nation
+                    
+                FROM 
+                    commodity c
+                JOIN 
+                    commodity_photo cp ON c.commodity_id = cp.commodity_id
+                JOIN 
+                    commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+                JOIN 
+                    shop s ON cg.shop_id = s.shop_id
+                    
+                    where c.commodity_id='$commodity_id'";
+
+
+          $result = mysqli_query($link, $sql);
+
+          if ($row = mysqli_fetch_assoc($result)) {
+            $commodity_id = $row['commodity_id'];
+            $commodity_name = $row['commodity_name'];
+            $commodity_price = $row['commodity_price'];
+            $c_original_product_link = $row['c_original_product_link'];
+            $commodity_narrate = $row['commodity_narrate'];
+
+            $commodity_photo = $row['commodity_photo'];
+
+            $shop_name = $row['shop_name'];
+            $shop_id = $row['shop_id'];
+
+            $commodity_group_id = $row['commodity_group_id'];
+            $commodity_group_name = $row['commodity_group_name'];
+            $nation = $row['nation'];
+
+          }
+
+          if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div class="swiper-slide">';
+                echo '<img src="' . $row['commodity_photo'] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">';
+                echo '</div>';
+            }
+        }
+        
+
+          ?>
+
+
+<!-- 圖片還有問題 -->
                 <div class="swiper-slide">
-                  <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5"
+                  <img src="<?php echo $commodity_photo; ?>"
                     style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">
                 </div>
 
-                <!-- <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
-                </div> -->
+                
 
               </div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
 
+
+          
+
           <div class="col-lg-4">
 
             <div class="portfolio-info">
-              <h3>壓克力吊飾盲盒</h3>
+              <h3>
+                <?php echo $commodity_name; ?>
+              </h3>
 
               <ul>
-                <li><strong><i class="fa-solid fa-dollar-sign"></i>&nbsp;售價</strong>: 300</li>
+                <li><strong><i class="fa-solid fa-dollar-sign"></i>&nbsp;售價</strong>: <?php echo $commodity_price; ?>
+                </li>
                 <li><strong><i class="fa-solid fa-paperclip"></i>&nbsp;參考網址</strong>: <a
-                    href="https://fromjapan.info/zh-hant/topic-about-sailormoonxsanrio-2023/" target="_blank">前往連結</a>
+                    href="<?php echo $c_original_product_link; ?>" target="_blank">前往連結</a>
                 </li>
               </ul>
-              <p>全14種隨機出貨</p>
+              <p><?php echo $commodity_narrate; ?></p>
 
-              <a type="button" href="#" class="btn btn-light-like" onclick="toggleHeartIcon(this)"><i id="heartIcon" class="fa-regular fa-heart"></i>&nbsp;收藏</a>
+              <a type="button" href="#" class="btn btn-light-like" onclick="toggleHeartIcon(this)"><i id="heartIcon"
+                  class="fa-regular fa-heart"></i>&nbsp;收藏</a>
 
               <script>
                 function toggleHeartIcon(button) {
@@ -103,7 +177,7 @@
                   }
                 }
               </script>
-              
+
 
             </div>
 
@@ -120,21 +194,21 @@
               }
             </style>
             <div class="portfolio-info">
-              <h3>日本「美少女戰士X三麗鷗」</h3>
+              <h3><?php echo $commodity_group_name; ?></h3>
               <ul>
-                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.php"
-                    target="_blank">三麗鷗快樂購</a></li>
-                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: 日本</li>
+                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
+                <?php echo $shop_name; ?></a></li>
+                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <?php echo $nation; ?></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
-                <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>: 動漫</li>
+                <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>: 主題</li>
                 <li><i class="fa-solid fa-tags"></i>&nbsp;<strong>標籤</strong>:
-                  <span class="category">三麗鷗</span>
-                  <span class="category">美少女戰士</span>
+                  <span class="category">tag</span>
+                  <span class="category">tag</span>
                 </li>
               </ul>
               <hr>
               <div style="text-align: center;">
-                <a type="button" href="../lisa/InnerPage.php" target="_blank" class="btn btn-light-more">前往團購購買</a>
+                <a type="button" href="../lisa/InnerPage.php?commodity_group_id=<?php echo $commodity_group_id; ?>" target="_blank" class="btn btn-light-more">前往團購購買</a>
               </div>
             </div>
 
