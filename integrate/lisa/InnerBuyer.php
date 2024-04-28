@@ -236,7 +236,7 @@
         <section class="addgoods">
           <h2>Features</h2>
           <div class="container" >
-            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;">
+            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;" enctype="multipart/form-data">
               <table class="table table-hover" width="100%">
                 <tbody>
                   <tr>
@@ -290,7 +290,7 @@
                     <td>
                       <fieldset>
                         <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                          multiple="multiple" name="commodity_photo"/>
+                           name="commodity_photo[]"  multiple required/>
                       </fieldset>
                     </td>
                   </tr>
