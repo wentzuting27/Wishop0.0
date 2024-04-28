@@ -330,10 +330,8 @@
 
       <div class="row">
 
-        <div class="col-lg-6">
-
+        
           <?php
-            $i=1;
             $sql="select * from bid
             natural join shop
             natural join commodity_group
@@ -350,120 +348,120 @@
               }
 
               echo'
-              <div class="member d-flex align-items-start ">
-                <div class="pic"><img src="',$row["shop_avatar"],'" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                  <h4>',$row["shop_name"],'</h4>
-                  <div class="flex-container">
-                    <span><i class="fa-regular fa-clock"></i>&nbsp;',$row["bid_time"],'</span>
-                    <a href="',$group_link,'" class="reply"><i class="bi bi-link"></i> 開團連結</a>
-                  </div>
-                  <table>
-                    <tr>
-                      <td><i class="fa-solid fa-dollar-sign"></i>&nbsp;出價:</td>
-                      <td style="text-align: right;">',$row["bid_price"],'&nbsp;</td>
-                      <td><i class="fa-solid fa-user-check"></i>&nbsp;目前意願人數:</td>
-                      <td style="text-align: right;">';
-                      
-                      $sql_want="select * from withgroup where commodity_group_id='$commodity_group_id'";
-                      $result_want=mysqli_query($link,$sql_want);
-                      echo mysqli_num_rows($result_want);//取得結果集的行數
+              <div class="col-lg-6">
+                <div class="member d-flex">
+                  <div class="pic"><img src="',$row["shop_avatar"],'" class="img-fluid" alt=""></div>
+                  <div class="member-info">
+                    <h4>',$row["shop_name"],'</h4>
+                    <div class="flex-container">
+                      <span><i class="fa-regular fa-clock"></i>&nbsp;',$row["bid_time"],'</span>
+                      <a href="',$group_link,'" class="reply"><i class="bi bi-link"></i> 開團連結</a>
+                    </div>
+                    <table>
+                      <tr>
+                        <td><i class="fa-solid fa-dollar-sign"></i>&nbsp;出價:</td>
+                        <td style="text-align: right;">',$row["bid_price"],'&nbsp;</td>
+                        <td><i class="fa-solid fa-user-check"></i>&nbsp;目前意願人數:</td>
+                        <td style="text-align: right;">';
+                        
+                        $sql_want="select * from withgroup where commodity_group_id='$commodity_group_id'";
+                        $result_want=mysqli_query($link,$sql_want);
+                        echo mysqli_num_rows($result_want);//取得結果集的行數
 
-                      echo'&nbsp;</span></td>
-                    </tr>
-                    <tr>
-                      <td><i class="fa-solid fa-user"></i>&nbsp;最低成團人數:</td>
-                      <td style="text-align: right;">',$row["bid_people"],'&nbsp;</td>
-                      <td><i class="fa-solid fa-face-smile"></i>&nbsp;狀態:</td>
-                      <td style="color: rgb(123, 195, 150);text-align: right;">';
-                      $sql_state="select commodity_group_state from commodity_group
-                      where commodity_group_id='$commodity_group_id'";
-                      $result_state=mysqli_query($link,$sql_state);
-                      if($row_state=mysqli_fetch_assoc($result_state))
-                      {
-                        $state=$row_state["commodity_group_state"];
-                        if($state==3){ //未成團
-                          echo "待成團";
-                        }else{ //進行中or已結束
-                          echo "已成團";
-                        }
-                      }
-
-                      echo '</td>
-                    </tr>
-                    <tr>
-                      <td colspan="4">
-                        <br>';
-                        $sql2="select * from shop where shop_id='$shop_id'";
-                        $result2=mysqli_query($link,$sql2);
-                        if($row2=mysqli_fetch_assoc($result2))
+                        echo'&nbsp;</span></td>
+                      </tr>
+                      <tr>
+                        <td><i class="fa-solid fa-user"></i>&nbsp;最低成團人數:</td>
+                        <td style="text-align: right;">',$row["bid_people"],'&nbsp;</td>
+                        <td><i class="fa-solid fa-face-smile"></i>&nbsp;狀態:</td>
+                        <td style="color: rgb(123, 195, 150);text-align: right;">';
+                        $sql_state="select commodity_group_state from commodity_group
+                        where commodity_group_id='$commodity_group_id'";
+                        $result_state=mysqli_query($link,$sql_state);
+                        if($row_state=mysqli_fetch_assoc($result_state))
                         {
-                          $sql_withgroup_y_or_n="select * from withgroup
-                          where commodity_group_id='$commodity_group_id' and account='{$_SESSION["account"]}'";
-                          $result_withgroup_y_or_n=mysqli_query($link,$sql_withgroup_y_or_n);
-                          
-                          if(!isset($_SESSION["account"])){
-                            echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>尚未登入</button>';
-                          }elseif(strtotime($wish_end) < strtotime('now')){ //願望期限已到
-                            echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
-                          }elseif($_SESSION["account"]==$row2["account"]){ //登入的帳號是出價的賣家
-                            if($state==3){
-                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#group_state">成團</button>';
-                              echo '<!-- insert_group_Modal -->
-                              <div class="modal fade" id="group_state" tabindex="-1" aria-labelledby="group_stateLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="group_stateLabel">選擇結單時間</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form method="post" action="bid_in_up_de.php">
-                                      <input type="hidden" name="method" class="form-control" style="width: 100%;" value="成團">
-                                      <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="';echo $shop_id;echo '">
-                                      <input type="hidden" name="commodity_group_id" class="form-control" style="width: 100%;" value="';echo $commodity_group_id;echo '">
-                                      <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="';echo $wish_id;echo '">
-                                        <table width="100%" class="insert_group_form">
-                                          <tr>
-                                            <td width="10%">結單日期</td>
-                                            <td width="90%" style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
-                                          </tr>
-                                          <tr>
-                                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認成團</button></td>
-                                          </tr>
-                                        </table>
-                                        
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div><!-- End insert_group_Modal -->';
-                            }else{
-                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
-                            }
-                          }else{
-                            if($state==2){
-                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
-                            }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
-                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
-                            }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有按過跟團
-                              echo' <a href=bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&shop_id=',$shop_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
-                            }else{
-                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
-                            }
+                          $state=$row_state["commodity_group_state"];
+                          if($state==3){ //未成團
+                            echo "待成團";
+                          }else{ //進行中or已結束
+                            echo "已成團";
                           }
                         }
 
-                        echo'
-                      </td>
-                    </tr>
-                  </table>
+                        echo '</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4">
+                          <br>';
+                            date_default_timezone_set('Asia/Taipei');
+                            $sql_withgroup_y_or_n="select * from withgroup
+                            where commodity_group_id='$commodity_group_id' and account='{$_SESSION["account"]}'";
+                            $result_withgroup_y_or_n=mysqli_query($link,$sql_withgroup_y_or_n);
+                            
+                            if(!isset($_SESSION["account"])){
+                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>尚未登入</button>';
+                            }elseif(strtotime($wish_end) < strtotime('now')){ //願望期限已到
+                              echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
+                            }elseif($_SESSION["account"]==$row["account"]){ //登入的帳號是出價的賣家
+                              if($state==3){
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#group_state">成團</button>';
+                                echo '<!-- insert_group_Modal -->
+                                <div class="modal fade" id="group_state" tabindex="-1" aria-labelledby="group_stateLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="group_stateLabel">選擇結單時間</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form method="post" action="bid_in_up.php">
+                                        <input type="hidden" name="method" class="form-control" style="width: 100%;" value="成團">
+                                        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="';echo $shop_id;echo '">
+                                        <input type="hidden" name="commodity_group_id" class="form-control" style="width: 100%;" value="';echo $commodity_group_id;echo '">
+                                        <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="';echo $wish_id;echo '">
+                                          <table width="100%" class="insert_group_form">
+                                            <tr>
+                                              <td width="10%">結單日期</td>
+                                              <td width="90%" style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認成團</button></td>
+                                            </tr>
+                                          </table>
+                                          
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End insert_group_Modal -->';
+                              }else{
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
+                              }
+                            }else{
+                              if($state==2){
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
+                              }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
+                              }elseif($_SESSION["account"]!=$row["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有按過跟團
+                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
+                              }else{
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
+                              }
+                            }
+                          
+
+                          echo'
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>';
+              
             } 
           ?>
 
-        </div>
+        
       </div>
 
     </div>
