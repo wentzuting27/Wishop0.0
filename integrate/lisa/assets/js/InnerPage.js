@@ -24,36 +24,7 @@ $(document).ready(function() {
 const btnOne = document.getElementById('one');
 const text = document.getElementById('one1');
 
-// 添加点击事件监听器
-btnOne.addEventListener('click', function() {
-  // 检查当前按钮文本
-  if (text.textContent.trim() === '我要跟團') {
-    // 如果当前文本是 '我要跟團'，则切换为 '取消跟團'
-    text.textContent = '取消跟團';
-  } else {
-    // 否则，切换为 '我要跟團'
-    text.textContent = '我要跟團';
-  }
 
-  // 取得模態框標題元素
-  const modalTitle = document.getElementById('leaveLabel');
-  // 修改模態框標題
-  modalTitle.textContent = '請注意';
-
-  // 取得模態框內容元素
-  const modalContent = document.querySelector('#leave .modal-content');
-  // 修改模態框內容
-  modalContent.innerHTML = `
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="leaveLabel">請注意</h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <h6 style="color:red;padding-left:10px">跟團後無法退團</h6>
-            <div class="modal-footer">
-              <button type="button" name="addgroup" class="btn btn-primary" id="one" data-bs-dismiss="modal">確定</button>
-            </div>`
-;
-}); 
 
 document.getElementById('pra').addEventListener('click', function () {
   var owl = document.getElementById("slider-carousel");
