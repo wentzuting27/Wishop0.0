@@ -12,17 +12,47 @@ if(isset($_POST['submit'])) {
         die('Connection failed: ' . mysqli_connect_error());
     }
 
-    // 移除了 'c_original_product_link' 的引號，因為欄位名稱不應該被引號包裹
     $sql = "INSERT INTO commodity (commodity_group_id, commodity_name, commodity_narrate, commodity_state, commodity_price, c_original_product_link) VALUES (3, '$commodity_name', '$commodity_narrate', '$commodity_state', '$commodity_price', '$commodity_link')";
 
     $result = mysqli_query($link, $sql);
     if ($result) {
+        $new_id = mysqli_insert_id($link); // 獲取剛剛插入商品的ID
+        // 進行圖片上傳及相關資料庫操作
+        $upload_dir = "../files/"; // 設置上傳檔案的目錄，注意這裡的路徑
+        foreach ($_FILES['commodity_photo']['tmp_name'] as $key => $file_tmp) {
+            $file_name = $_FILES['commodity_photo']['name'][$key];
+            
+            // 檢查是否有相同名字的檔案
+            $dest = $upload_dir . $file_name;
+            if (file_exists($dest)) {
+                $i = 1;
+                $info = pathinfo($file_name);
+                $file_name = $info['filename'];
+                $file_extension = $info['extension'];
+                while (file_exists($upload_dir . $file_name . '_' . $i . '.' . $file_extension)) {
+                    $i++;
+                }
+                $filename = $file_name . '_' . $i . '.' . $file_extension;
+                $dest = $upload_dir . $filename;
+            }
+
+            // 將檔案移至指定位置
+            move_uploaded_file($file_tmp, $dest);
+
+            // 插入檔案路徑到資料庫
+            $sql_insert = "INSERT INTO commodity_photo (commodity_id, commodity_photo) VALUES ('$new_id', '$dest')";
+            if(mysqli_query($link, $sql_insert)){
+                echo "y";
+            }else{
+                echo "n";
+            }
+        }
         echo '<script>alert("新增成功!"); window.location.href = "InnerBuyer.php";</script>';
         exit(); 
-    } else{
+    } else {
         echo '<script>alert("新增失敗"); window.location.href = "InnerBuyer.php";</script>'; 
     }
-    
-    mysqli_close($link);
+
+    mysqli_close($link); // 關閉資料庫連接
 }
 ?>

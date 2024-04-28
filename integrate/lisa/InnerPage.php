@@ -429,7 +429,12 @@
                 <?php
                   $commodity_group_id = 3; // 根据实际情况获取商品组ID
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "SELECT * FROM commodity NATURAL JOIN commodity_photo WHERE commodity_state = 1";
+                  $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
+                  FROM commodity
+                  JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
+                  WHERE commodity.commodity_state = 1
+                  GROUP BY commodity.commodity_id;
+                  ";
                   $result = mysqli_query($link, $sql);
 
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -440,7 +445,7 @@
                       <div class="row">
                         <div class="col-sm-4 hidden-xs">
                           <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
-                          <img src="', $row["commodity_photo"], '" alt="..." class="img-responsive" />
+                          <img src="', $row["first_photo"], '" alt="..." class="img-responsive" />
                           </a>
                       </div>
                       <div class="col-sm-8">
@@ -453,7 +458,6 @@
                     <td data-th="Quantity">
                       <input type="number" class="form-control text-center" value="0" 
                        name="quantity_',$row["commodity_id"],'" id="quantityInput',$row["commodity_id"],'" >
-                       quantity_',$row["commodity_id"],'
                     </td>
                     <td data-th="Subtotal" class="text-center" >$0</td>
                     <td class="actions" data-th="">
@@ -476,9 +480,7 @@
               </table>
             </div>
           </div>
-        </section>
-        
-         <!-- Modal -->
+          <!-- Modal -->
          
       <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -497,6 +499,9 @@
         </div>
       </div>
     </form>
+        </section>
+        
+         
         <section id="first">
           <h2>Shipping</h2>
           <div id="third">
