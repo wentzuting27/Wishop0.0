@@ -6,6 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <?php
+    date_default_timezone_set('Asia/Taipei');
     $link=mysqli_connect('localhost','root','12345678','wishop');
     $wish_id=$_GET["wish_id"];
     $sql="select * from wish
@@ -157,24 +158,52 @@
                     <li>許願詳情</li>
                 </ol>
                 <div class="d-flex">
-                    <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">刪除願望</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            目前此許願已有賣家出價，故無法取消此次的許願，還望您的諒解~
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                  <?php
+                    $sql="select * from wish";
+                    $result=mysqli_query($link,$sql);
+                    if($row=mysqli_fetch_assoc($result))
+                    {
+                      if(strtotime($wish_end) < date("Y-M-D") or $wish_state==2 or $wish_state==1){
+                        if($wish_state==1){
+                          echo '
+                          <button type="button" class="btn button_success" style="background-color:#83c57e" disabled>許願成功</button>';
+                        }else{
+                          echo '
+                          <button type="button" class="btn button_fail" style="background-color:#d55858" disabled>許願失敗</button>';
+                        }
+                      }elseif($_SESSION["account"]==$row["account"]){
+                          echo '
+                          <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>';
+                      }elseif($_SESSION["account"]!=$row["account"]){
+                        $sql_bid_y_or_n="select * from bid
+                        where shop_id='{$_SESSION["user_shop_id"]}' and wish_id=$wish_id";
+                        $result_bid_y_or_n=mysqli_query($link,$sql_bid_y_or_n);
+                        if(mysqli_num_rows($result_bid_y_or_n)==0 && $wish_state==3){
+                          echo '
+                          <button class="button-cancel" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;我要出價</button>';
+                        }else{
+                          echo '
+                          <button type="button" class="btn insert_button" disabled>已出價</button>&nbsp;&nbsp;';
+                        }
+                      }
+                    }
+                  ?>  
 
-                    <button class="button-cancel" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;我要出價</button>
-                    <!-- Modal -->
+                    <!-- Modal 刪除願望 -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">刪除願望</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          目前此許願已有賣家出價，故無法取消此次的許願，還望您的諒解~
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal 填寫出價資訊 -->
                     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -393,7 +422,6 @@
                       <tr>
                         <td colspan="4">
                           <br>';
-                            date_default_timezone_set('Asia/Taipei');
                             $sql_withgroup_y_or_n="select * from withgroup
                             where commodity_group_id='$commodity_group_id' and account='{$_SESSION["account"]}'";
                             $result_withgroup_y_or_n=mysqli_query($link,$sql_withgroup_y_or_n);

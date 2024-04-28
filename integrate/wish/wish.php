@@ -374,11 +374,11 @@
                       <?php
                           $wish_num=$wish_num+1;
                           date_default_timezone_set('Asia/Taipei');
-                          
+                          $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
                           $link=mysqli_connect('localhost','root','12345678','wishop');
                           $sql="select * from wish
                           natural join account
-                          where wish_shop_id IS null AND wish_end >= CURDATE()
+                          where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= now()
                           order by wish_start";
                           $result=mysqli_query($link,$sql);
                           while($row=mysqli_fetch_assoc($result))
@@ -484,7 +484,7 @@
                       $link=mysqli_connect('localhost','root','12345678','wishop');
                       $sql="select * from wish
                       natural join account
-                      where wish_shop_id IS null AND wish_end < now()
+                      where wish_shop_id IS null AND wish_end <= now()
                       order by wish_start";
                       $result=mysqli_query($link,$sql);
                       while($row=mysqli_fetch_assoc($result))
