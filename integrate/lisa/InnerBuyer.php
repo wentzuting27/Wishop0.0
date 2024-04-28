@@ -36,8 +36,9 @@
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
     crossorigin="anonymous"></script>
-    
+
 </head>
+
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -59,113 +60,112 @@
       </div>
     </section><!-- End Breadcrumbs -->
     <?php
-  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from commodity_group
   where commodity_group_id=$commodity_group_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
 
-    <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
-    ;">';}?>
-      <div class="background-overlay" style="position: absolute;
+    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
+    ;">';
+    } ?>
+    <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-      </div>
-      <div class="edit_like_shop_button">
-        <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
-        <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
-        <button type="button"  class="btn insert_button" data-bs-toggle="modal"
-          data-bs-target="#up_rule_Modal"><i class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>
-        <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
-          <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
-      </div>
-      <!-- insert_group_Modal -->
-      <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <table width="100%" class="insert_group_form">
-                  <tr>
-                    <td>名稱</td>
-                    <td><input type="text" id="group_name" class="form-control"></td>
-                  </tr>
-                  <tr>
-                    <td>敘述</td>
-                    <td>
-                      <textarea class="form-control" rows="5"></textarea>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><button type="submit" class="btn insert_button"
-                        style="display: block;width: 100%;">確認修改</button></td>
-                  </tr>
-                </table>
-
-              </form>
-            </div>
+    </div>
+    <div class="edit_like_shop_button">
+      <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
+      <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i
+          class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
+        <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
+    </div>
+    <!-- insert_group_Modal -->
+    <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-      </div><!-- End insert_group_Modal -->
-      <!-- Button trigger modal -->
+          <div class="modal-body">
+            <form>
+              <table width="100%" class="insert_group_form">
+                <tr>
+                  <td>名稱</td>
+                  <td><input type="text" id="group_name" class="form-control"></td>
+                </tr>
+                <tr>
+                  <td>敘述</td>
+                  <td>
+                    <textarea class="form-control" rows="5"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"><button type="submit" class="btn insert_button"
+                      style="display: block;width: 100%;">確認修改</button></td>
+                </tr>
+              </table>
 
-      <!-- Modal -->
-      <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="leaveLabel">確定結束？</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="button" name="delgroup" class="btn btn-primary">確定</button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
-        <div style="margin-left: 280px; margin-top: -30px;z-index: 9;">
-          <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
-        </div>
-        <div>
-          <center>
-            <marquee>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-              <span>公告：商品即將寄出，請注意到貨時間！</span>
-            </marquee>
-          </center>
+    </div><!-- End insert_group_Modal -->
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="leaveLabel">確定結束？</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            <button type="button" name="delgroup" class="btn btn-primary">確定</button>
+          </div>
         </div>
       </div>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <div style="margin-left: 280px; margin-top: -30px;z-index: 9;">
+        <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
+      </div>
+      <div>
+        <center>
+          <marquee>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+          </marquee>
+        </center>
+      </div>
+    </div>
 
-      <!-- Showcase -->
-      <?php
-  $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    <!-- Showcase -->
+    <?php
+    $shop_id = 1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from shop
   where shop_id=$shop_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
       <!-- Showcase -->
       <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="',$row["shop_avatar"],'">
+                src="', $row["shop_avatar"], '">
             </div>
             <br>
             <center>
@@ -173,26 +173,26 @@
                 style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
-          ';}
-?>
+          ';
+    }
+    ?>
 
-  <?php
-  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    <?php
+    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from commodity_group
   where commodity_group_id=$commodity_group_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
           <div class="col-md-7"
             style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>',$row["commodity_group_name"],'</b>
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>', $row["commodity_group_name"], '</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
             <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
-                <p style="color: #5a5a5a;font-size: 0.3cm">',$row["commodity_group_narrate"],'</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -208,7 +208,8 @@
       </div>
 
     </section>
-    <!-- SECOND navbar -->';}?>
+    <!-- SECOND navbar -->';
+    } ?>
 
     <div class="tabs" role="tablist">
 
@@ -235,13 +236,14 @@
       <div class="content" style="margin-top: -5px;padding: 0%;">
         <section class="addgoods">
           <h2>Features</h2>
-          <div class="container" >
-            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;" enctype="multipart/form-data">
+          <div class="container">
+            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;"
+              enctype="multipart/form-data">
               <table class="table table-hover" width="100%">
                 <tbody>
                   <tr>
-                  <th>商品名稱</th>
-                    <td >
+                    <th>商品名稱</th>
+                    <td>
                       <fieldset>
                         <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
                       </fieldset>
@@ -258,43 +260,43 @@
                   <tr>
                     <th>商品狀態</th>
                     <td>
-                    <div>
-                      <input type="radio" id="1" name="commodity_state" value="1" checked />
-                      <label for="add1">上架</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="2" name="commodity_state" value="2" />
-                      <label for="add2">待上架</label>
-                    </div>
+                      <div>
+                        <input type="radio" id="1" name="commodity_state" value="1" checked />
+                        <label for="add1">上架</label>
+                      </div>
+                      <div>
+                        <input type="radio" id="2" name="commodity_state" value="2" />
+                        <label for="add2">待上架</label>
+                      </div>
                     </td>
-                    </tr>
-                    <tr>
-                      <th >金額</th>
+                  </tr>
+                  <tr>
+                    <th>金額</th>
                     <td>
                       <fieldset>
                         <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
                       </fieldset>
                     </td>
-                    
-                    </tr>
-                    <tr>
-                      <th>連結</th>
-                      <td>
+
+                  </tr>
+                  <tr>
+                    <th>連結</th>
+                    <td>
                       <fieldset>
                         <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
                       </fieldset>
                     </td>
-                    </tr>
-                    <tr>
-                      <th>上傳圖片</th>
+                  </tr>
+                  <tr>
+                    <th>上傳圖片</th>
                     <td>
                       <fieldset>
                         <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                           name="commodity_photo[]"  multiple required/>
+                          name="commodity_photo[]" multiple required />
                       </fieldset>
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td colspan="5">
                       <fieldset>
@@ -339,15 +341,14 @@
                       </tr>
                     </thead>
                     <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=1";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
-                    echo '
+                    $result = mysqli_query($link, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '
                     <tbody>
                       <tr>
                         <td data-th="Product">
@@ -355,16 +356,16 @@
                             <div class="col-sm-4 hidden-xs">
                               <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                                 title="Portfolio Details">
-                                <img src="',$row["commodity_photo"],'"
+                                <img src="', $row["commodity_photo"], '"
                                   alt="..." class="img-responsive" /></a>
                             </div>
                             <div class="col-sm-8">
-                              <h4 class="nomargin"><b>',$row["commodity_name"],'</b></h4>
-                              <p>',$row["commodity_narrate"],'</p>
+                              <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
+                              <p>', $row["commodity_narrate"], '</p>
                             </div>
                           </div>
                         </td>
-                        <td data-th="Price">$',$row["commodity_price"],'</td>
+                        <td data-th="Price">$', $row["commodity_price"], '</td>
                         <td data-th="Quantity">
                           <center>2</center>
                         </td>
@@ -375,8 +376,9 @@
                           <button class="btn btn-danger btn-sm"
                           style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                         </td>
-                      </tr>';}?>
-                     
+                      </tr>';
+                    } ?>
+
                     </tbody>
                   </table>
                 </div>
@@ -387,26 +389,25 @@
               </div>
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
-                <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                  <?php
+                  $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=2";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="',$row["commodity_photo"],'"
+                          src="', $row["commodity_photo"], '"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">',$row["commodity_name"],'</h5>
-                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <h5 class="card-title">', $row["commodity_name"], '</h5>
+                        <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
@@ -414,7 +415,8 @@
                       </div>
                     </div>
                   </div>'
-                  ;}
+                    ;
+                  }
                   ?>
                 </div>
               </div>
@@ -424,26 +426,25 @@
               </div>
               <div class="row">
                 <div id="slider-carouse3" class="owl-carousel">
-                <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                  <?php
+                  $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=3";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="',$row["commodity_photo"],'"
+                          src="', $row["commodity_photo"], '"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">',$row["commodity_name"],'</h5>
-                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <h5 class="card-title">', $row["commodity_name"], '</h5>
+                        <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
@@ -451,7 +452,8 @@
                       </div>
                     </div>
                   </div>'
-                  ;}
+                    ;
+                  }
                   ?>
                 </div>
               </div>
@@ -473,8 +475,8 @@
                   </div>
                   <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>撰寫內容...</small>
                   </h4>
-                  <button class="btn btn-info btn-sm" 
-                  style="font-size: 0.3cm;float: right;margin-top: 13px;background-color: #b0a5c6a8;border: none;color: white;"><i
+                  <button class="btn btn-info btn-sm"
+                    style="font-size: 0.3cm;float: right;margin-top: 13px;background-color: #b0a5c6a8;border: none;color: white;"><i
                       class="fa-solid fa-pen-to-square"></i></button>
                 </div>
               </div>
@@ -485,15 +487,14 @@
             </h3>
             <div class="row">
               <div id="slider-carousel" class="owl-carousel">
-              <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                <?php
+                $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "select *
                     from commodity_group_announce";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
-                    echo '
+                $result = mysqli_query($link, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '
                 <div class="item">
                   <div class="col-sm-10">
                     <div class="card">
@@ -506,7 +507,7 @@
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
-                            <h5>',$row["announce_title"],'<i class="fa-solid fa-ellipsis-vertical"
+                            <h5>', $row["announce_title"], '<i class="fa-solid fa-ellipsis-vertical"
                                 style="float: right; margin-top: -15px;"></i></h5>
                           </div>
                         </div>
@@ -514,19 +515,20 @@
                       <div class="card-body">
                         <p class="card-text">
                         <p>尊敬的客戶:</p>
-                        ',$row["announce_narrate"],'
+                        ', $row["announce_narrate"], '
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>';}
+                </div>';
+                }
                 ?>
               </div>
             </div>
             <br>
             <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
 
-            <div class="part2" id="card1">
+            <div class="part2">
               <div class="card border-secondary mb-12" style="width: 100%;">
                 <div class="card-header bg-transparent border-secondary">
                   <div class="col-md-12">
@@ -538,10 +540,25 @@
                     <p>團主：</p>
                     <h4><B>關於出貨通知</B></h4>
                   </div>
-                  <h4 style="float: right;margin-top:-70px;"><i class="fa-solid fa-ellipsis-vertical"></i></h4>
+                  <h4 style="float: right;margin-top:-70px;">
+                  <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i></h4>
                 </div>
-                <div class="card-body ">
-
+                <!-- Modal -->
+                <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                        <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body " id="card1">
                   <p>尊敬的客戶:</p>
                   <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
                   <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
@@ -670,7 +687,7 @@
               </div>
             </div>
           </div>
-          
+
         </section>
         <section id="order">
           <h2>Returns</h2>
@@ -791,18 +808,20 @@
           <button onclick="download()">Download csv file</button>
           <br><br><br>
           <div class="seven">
-              <h1>接收訂單</h1>
-            </div>
-            <form  method="post" action="confirmorder.php" style="height: 400px;overflow-y: auto;">
+            <h1>接收訂單</h1>
+          </div>
+          <form method="post" action="confirmorder.php" style="height: 400px;overflow-y: auto;">
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             if (!$link) {
-              die('Connection failed: ' . mysqli_connect_error());}
-              $sql = "SELECT *FROM `order` NATURAL JOIN order_details";
-              $result = mysqli_query($link, $sql);
-              if (!$result) {
-                die('Query failed: ' . mysqli_error($link));}
-                echo '<table id="example" 
+              die('Connection failed: ' . mysqli_connect_error());
+            }
+            $sql = "SELECT *FROM `order` NATURAL JOIN order_details";
+            $result = mysqli_query($link, $sql);
+            if (!$result) {
+              die('Query failed: ' . mysqli_error($link));
+            }
+            echo '<table id="example" 
                 class="table table-striped table-bordered" cellspacing="0" width="100%" style="height:300px;overflow: scroll;">
                 <thead>
                 <tr>
@@ -815,17 +834,18 @@
             </tr>
         </thead>
         <tbody>';
-        while ($row = mysqli_fetch_assoc($result)) {
-          $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+            while ($row = mysqli_fetch_assoc($result)) {
+              $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
             FROM order_details
             JOIN commodity ON order_details.commodity_id = commodity.commodity_id
             WHERE `order_details`.order_id = {$row['order_id']}";
-          $result2 = mysqli_query($link, $sql2);
-          $totalprice = 0;
-          if ($result2 && mysqli_num_rows($result2) > 0) {
-            $totalprice_row = mysqli_fetch_assoc($result2);
-            $totalprice = $totalprice_row['totalprice'];}
-             echo '<tr>
+              $result2 = mysqli_query($link, $sql2);
+              $totalprice = 0;
+              if ($result2 && mysqli_num_rows($result2) > 0) {
+                $totalprice_row = mysqli_fetch_assoc($result2);
+                $totalprice = $totalprice_row['totalprice'];
+              }
+              echo '<tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
@@ -836,10 +856,10 @@
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
             </td>
           </tr>';
-        }
-        echo '</tbody></table>';
-        mysqli_close($link);?>
-        </form><br>
+            }
+            echo '</tbody></table>';
+            mysqli_close($link); ?>
+          </form><br>
           <div class="seven">
             <h1>認證區塊</h1>
           </div>
@@ -920,10 +940,11 @@
                   </div>
                 </div>
               </div>
-            </div></div>
-            <br>
-            
-          
+            </div>
+          </div>
+          <br>
+
+
       </div>
       </section>
     </div>
@@ -944,7 +965,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
     <!-- 这里是你的 JavaScript 代码 -->
-    
+
 
     <!-- JQERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>

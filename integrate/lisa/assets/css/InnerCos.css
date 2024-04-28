@@ -957,27 +957,60 @@ section {
     float: left;
   }
   
-  /* Styling Next and Prev buttons */
-  .item .col-sm-10{
-    width: 300px;
-    height: 280px;
-    
+  @media(min-width: 920px) {
+
+    /* Styling Next and Prev buttons */
+    .item .col-sm-10 {
+      width: 300px;
+      height: 280px;
+  
+    }
+  
+    .item .card {
+      border-radius: 10%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      border: none;
+    }
+  
+    .item .card .card-header {
+      padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+      margin-bottom: 0;
+      color: var(--bs-card-cap-color);
+      background-color: var(--bs-card-cap-bg);
+      border-bottom: none;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      /* 设置与.card相同的边框半径 */
+    }
+  
   }
   
-  .item .card {
-    border-radius: 10%;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    border: none;
-  }
+  @media(max-width: 780px) {
   
-  .item .card .card-header {
-    padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-    margin-bottom: 0;
-    color: var(--bs-card-cap-color);
-    background-color: var(--bs-card-cap-bg);
-    border-bottom: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px; /* 设置与.card相同的边框半径 */
+    .item .col-sm-10 {
+      width: 90%;
+      /* 將卡片寬度設置為100%，以充分利用小螢幕的寬度 */
+      height: 170px;
+      /* 自動調整高度，以適應內容的大小 */
+    }
+  
+    .item .card {
+      border-radius: 0;
+      /* 移除邊框半徑 */
+      box-shadow: none;
+      /* 移除陰影 */
+      border: 1px solid #ddd;
+      /* 添加細邊框 */
+    }
+  
+    .item .card .card-header {
+      border-radius: 0;
+      /* 移除卡片標頭的邊框半徑 */
+    }
+  
+    .item .col-sm-10 .card .card-body {
+      font-size: 0.4cm;
+    }
   }
   .part2 .card.border-secondary.mb-12{
     max-height: 250px;
