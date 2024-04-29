@@ -110,7 +110,7 @@
       date_default_timezone_set('Asia/Taipei');
       // 計算當月的起始和結束日期
       $startOfMonth = date('Y-m-01'); // 當月的第一天
-      $endOfMonth = date('Y-m-t'); // 當月的最後一天
+      $endOfMonth = date('Y-m-t 23:59:59'); // 當月的最後一天
       $sql="select * from wish 
       where account='{$_SESSION["account"]}'
       AND wish_start between '{$startOfMonth}' and '{$endOfMonth}'";
@@ -135,23 +135,68 @@
     ?>
     
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
-
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(https://i.pinimg.com/564x/27/b0/41/27b04138dc48c4d5d433f2c5839203c8.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <div class="edit_like_shop_button">
-              <h2 class="animate__animated animate__fadeInDown">許下您的願望，讓WISHOP替您實現吧!</h2>
-              <p class="animate__animated animate__fadeInUp">~每一个心聲都被聽見，每一次的許願都有機會實現~</p>
-              <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>
-            </div>
+      <!-- Slide 1 -->
+      <div class="carousel-item active" style="background-image: url(https://i.pinimg.com/564x/27/b0/41/27b04138dc48c4d5d433f2c5839203c8.jpg)">
+        <div class="carousel-container">
+          <div class="container">
+            <div class="edit_like_shop_button">
+            <h2 class="animate__animated animate__fadeInDown">許下您的願望，讓WISHOP替您實現吧!</h2>
+            <p class="animate__animated animate__fadeInUp">~每一个心聲都被聽見，每一次的許願都有機會實現~</p>
+            <?php
+            $sql="select * from wish where account='{$_SESSION["account"]}'";
+            $result = mysqli_query($link, $sql);
+            $count = mysqli_num_rows($result); // 获取结果行数
+            if(!isset($_SESSION["account"])){
+              echo'
+              <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+              <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+            }elseif($count==3){
+              echo'
+              <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+              <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+            }else{
+              echo'
+              <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+              <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+            }
+            
+            ?>
           </div>
-          
         </div>
-      
+      </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Modal 未登入不能許願 -->
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">許願提醒</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          您需要先登入才能新增願望!~
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 無許願次數 -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">許願提醒</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          這個月您已經達到許願次數上限了，請期待下個月再來實現您的願望吧！
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <?php $max_date = date('Y-m-d', strtotime('+3 months')); ?><!-- 計算從當前日期開始的三個月後的日期-->
+    <!-- Modal 新增願望-->
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -159,51 +204,53 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="post" action="wish_in_de.php" enctype="multipart/form-data">
+            <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">  
               <div class="mb-3 row">
-                <label for="inputName" class="col-sm-2 col-form-label">商品名稱*</label>
+                <label class="col-sm-2 col-form-label">商品名稱*</label>
                 <div class="col-sm-10">
-                  <input type="name" class="form-control" id="inputName" required>
+                  <input type="text" name="wish_name" class="form-control" required>
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">商品敘述*</label>
+                <label class="col-sm-2 col-form-label">商品敘述*</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                  <textarea name="wish_narrat" class="form-control" rows="3" required></textarea>
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="inputName" class="col-sm-2 col-form-label">商品標籤(最多可填5個)</label>
+                <label class="col-sm-2 col-form-label">商品標籤(最多可填5個)</label>
                 <div class="col-sm-10">
-                  <input type="name" class="form-control" id="inputName" placeholder="標籤1"><br>
-                  <input type="name" class="form-control" id="inputName" placeholder="標籤2"><br>
-                  <input type="name" class="form-control" id="inputName" placeholder="標籤3"><br>
-                  <input type="name" class="form-control" id="inputName" placeholder="標籤4"><br>
-                  <input type="name" class="form-control" id="inputName" placeholder="標籤5">
+                  <input type="text" class="form-control" placeholder="標籤1"><br>
+                  <input type="text" class="form-control" placeholder="標籤2"><br>
+                  <input type="text" class="form-control" placeholder="標籤3"><br>
+                  <input type="text" class="form-control" placeholder="標籤4"><br>
+                  <input type="text" class="form-control" placeholder="標籤5">
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="inputName" class="col-sm-2 col-form-label">許願截止日期*</label>
+                <label class="col-sm-2 col-form-label">許願截止日期*</label>
                 <div class="col-sm-10">
-                  <input type="datetime-local" class="form-control" id="inputName" required>
+                  <input type="date" name="end" class="form-control" value="<?php echo $max_date?>" max="<?php echo $max_date?>" id="end-date" required>
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="inputName" class="col-sm-2 col-form-label">參考網址</label>
+                <label class="col-sm-2 col-form-label">參考網址</label>
                 <div class="col-sm-10">
-                  <input type="name" class="form-control" id="inputName">
+                  <input type="text" name="wish_link" class="form-control">
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="formFileMultiple" class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
+                <label class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
                 <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFileMultiple" multiple style="width:635px;margin:auto" required>
+                <input class="form-control" type="file" name="wish_photo[]" multiple style="width:635px;margin:auto" required>
                 </div>
+              </div>
+            
+              <div class="modal-footer">
+                <button type="submit" class="btn insert_button">確定許願</button>
               </div>
             </form>
-          <div class="modal-footer">
-            <button type="button" class="btn">確定許願</button>
-          </div>
         </div>
       </div>
     </div>
