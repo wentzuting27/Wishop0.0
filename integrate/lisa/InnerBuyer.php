@@ -508,7 +508,7 @@
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
                             <h5>', $row["announce_title"], '<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
+                                style="float: right; margin-top: -15px;" data-bs-toggle="modal" data-bs-target="#del"></i></h5>
                           </div>
                         </div>
                       </div>
@@ -523,6 +523,23 @@
                 </div>';
                 }
                 ?>
+                <!-- Modal -->
+                <div class="modal fade" id="del" tabindex="-1" aria-labelledby="delLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delLabel">想要刪除嗎？</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" name="delgroup" class="btn btn-primary"
+                          data-bs-dismiss="modal">刪除</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <br>
@@ -541,10 +558,12 @@
                     <h4><B>關於出貨通知</B></h4>
                   </div>
                   <h4 style="float: right;margin-top:-70px;">
-                  <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i></h4>
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
+                  </h4>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+                <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel"
+                  aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -553,7 +572,8 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
-                        <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                        <button type="button" name="delgroup" class="btn btn-primary"
+                          data-bs-dismiss="modal">刪除</button>
                       </div>
                     </div>
                   </div>
@@ -694,116 +714,58 @@
           <div class="seven">
             <h1>對帳表</h1>
           </div>
-          <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Order</th>
-                <th>Description</th>
-                <th>Deadline</th>
-                <th>Status</th>
-                <th>Amount</th>
-                <th>確認付款</th>
+          <div style="height: 400px;overflow-y: auto;">
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            if (!$link) {
+              die('Connection failed: ' . mysqli_connect_error());
+            }
+            $sql = "SELECT *FROM `order` NATURAL JOIN order_details";
+            $result = mysqli_query($link, $sql);
+            if (!$result) {
+              die('Query failed: ' . mysqli_error($link));
+            }
+            echo '<table id="example" 
+                class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                <th>帳號</th>
+                <th>付款帳號</th>
+                <th>下單時間</th>
+                <th>總金額</th>
                 <th>備註</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Alphabet puzzle</td>
-                <td>2016/01/15</td>
-                <td>Done</td>
-                <td>1000</td>
-                <td>
+                <th>確認付款</th>
+            </tr>
+        </thead>
+        <tbody>';
+            while ($row = mysqli_fetch_assoc($result)) {
+              $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+            FROM order_details
+            JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+            WHERE `order_details`.order_id = {$row['order_id']}";
+              $result2 = mysqli_query($link, $sql2);
+              $totalprice = 0;
+              if ($result2 && mysqli_num_rows($result2) > 0) {
+                $totalprice_row = mysqli_fetch_assoc($result2);
+                $totalprice = $totalprice_row['totalprice'];
+              }
+              echo '<tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>' . $row['remark'] . '</td>
+            <td>
                   <center>
                     <input id="box1" type="checkbox" />
                     <label for="box1" id="label1">未付款</label>
                   </center>
                 </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>Layout for poster</td>
-                <td>2016/01/31</td>
-                <td>Planned</td>
-                <td>1834</td>
-                <td>
-                  <center><input id="box2" type="checkbox" />
-                    <label for="box2">未付款</label>
-                  </center>
-                </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Image creation</td>
-                <td>2016/01/23</td>
-                <td>To Do</td>
-                <td>1500</td>
-                <td>
-                  <center>
-                    <input id="box3" type="checkbox" />
-                    <label for="box3">未付款</label>
-                  </center>
-                </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Create font</td>
-                <td>2016/02/26</td>
-                <td>Done</td>
-                <td>1200</td>
-                <td>
-                  <center><input id="box4" type="checkbox" />
-                    <label for="box4">未付款</label>
-                  </center>
-                </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Sticker production</td>
-                <td>2016/02/18</td>
-                <td>Planned</td>
-                <td>2100</td>
-                <td>
-                  <center><input id="box5" type="checkbox" />
-                    <label for="box5">未付款</label>
-                  </center>
-                </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>11</td>
-                <td>Wedding announcement</td>
-                <td>2016/07/09</td>
-                <td>To Do</td>
-                <td>299</td>
-                <td>
-                  <center><input id="box6" type="checkbox" />
-                    <label for="box6">未付款</label>
-                  </center>
-                </td>
-                <td>
-                  <p>希望可以幫我併單</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
+          </tr>';
+            }
+            echo '</tbody></table>';
+            mysqli_close($link); ?>
+          </div>
           <button onclick="showCsv()">Console log csv code</button>
           <button onclick="download()">Download csv file</button>
           <br><br><br>
@@ -828,8 +790,8 @@
                 <th>帳號</th>
                 <th>付款帳號</th>
                 <th>下單時間</th>
-                <th>備註</th>
                 <th>總金額</th>
+                <th>備註</th>
                 <th>確認接收</th>
             </tr>
         </thead>
@@ -849,8 +811,8 @@
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
-            <td>' . $row['remark'] . '</td>
             <td>' . $totalprice . '</td>
+            <td>' . $row['remark'] . '</td>
             <td>
                 <button type="submit" name="submit" class="btn btn-primary" 
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
