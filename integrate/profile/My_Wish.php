@@ -43,7 +43,7 @@
 </head>
 
 <body>
-  <?php session_start(); ?>
+  <?php session_start(); date_default_timezone_set('Asia/Taipei');?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
