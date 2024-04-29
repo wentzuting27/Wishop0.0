@@ -42,7 +42,6 @@
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -59,6 +58,7 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
+    
     <?php
     $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -85,7 +85,21 @@
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
         <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
     </div>
-    <!-- insert_group_Modal -->
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
+    <p><i class="fa-solid fa-bullhorn"></i></p>
+    </div>
+    <div>
+        <center>
+          <marquee>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+            <span>公告：商品即將寄出，請注意到貨時間！</span>
+          </marquee>
+        </center>
+      </div>
+    </div>
+<!-- insert_group_Modal -->
     <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -134,35 +148,20 @@
         </div>
       </div>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <div style="margin-left: 280px; margin-top: -30px;z-index: 9;">
-        <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
-      </div>
-      <div>
-        <center>
-          <marquee>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-          </marquee>
-        </center>
-      </div>
-    </div>
-
     <!-- Showcase -->
     <?php
     $shop_id = 1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select *
-  from shop
-  where shop_id=$shop_id";
+    from shop
+    where shop_id=$shop_id";
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
       <!-- Showcase -->
-      <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
+      <div class="card mb-3" style="border: none;background-color: #ffffff00;">
         <div class="row g-0">
-          <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
+          <div class="col-md-5">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
                 src="', $row["shop_avatar"], '">
@@ -181,24 +180,23 @@
     $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select *
-  from commodity_group
-  where commodity_group_id=$commodity_group_id";
+    from commodity_group
+    where commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
-          <div class="col-md-7"
-            style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>', $row["commodity_group_name"], '</b>
+          <div class="col-md-7">
+            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
+            <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="three" class="button" style="font-size: 15px;font-weight: bold">#三麗鷗</div>
-                    <div id="four" class="button" style="font-size: 15px;font-weight: bold">#美少女戰士</div><br>
+                    <div id="three" class="button">#三麗鷗</div>
+                    <div id="four" class="button">#美少女戰士</div><br>
                   </div>
                 </div>
               </div>
@@ -524,8 +522,7 @@
                 }
                 ?>
                 <!-- Modal -->
-                <div class="modal fade" id="del" tabindex="-1" aria-labelledby="delLabel"
-                  aria-hidden="true">
+                <div class="modal fade" id="del" tabindex="-1" aria-labelledby="delLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">

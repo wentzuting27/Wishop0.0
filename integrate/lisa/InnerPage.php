@@ -75,7 +75,9 @@
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-    $account = "ateez2018";
+    //session_start();
+    //$account = $_SESSION["account"];
+    $account = "123";
     $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=3";
     $result = mysqli_query($link, $sql);
 
@@ -88,12 +90,11 @@
     </div>
     <div class="edit_like_shop_button">
     <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-    我要跟團</button>
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">我要跟團</button>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
-    <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
+    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
+    <p><i class="fa-solid fa-bullhorn"></i></p>
     </div>
     <div>
     <center>
@@ -103,8 +104,7 @@
     <span>公告：商品即將寄出，請注意到貨時間！</span>
     </marquee>
     </center>
-    </div>
-    </div>';
+    ';
     } else {
       echo '
     <div class="background-overlay" style="position: absolute;
@@ -117,25 +117,22 @@
     <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
     取消跟團</button>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-    <div style="margin-left: 300px; margin-top: -30px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn" style="font-size: 30px;color:#B0A5C6"></i></p>
-    </div>
-    <div>
+    <p>
+        <i class="fa-solid fa-bullhorn" ></i>
+    </p>
     <center>
     <marquee>
     <span>公告：商品即將寄出，請注意到貨時間！</span>
     <span>公告：商品即將寄出，請注意到貨時間！</span>
     <span>公告：商品即將寄出，請注意到貨時間！</span>
     </marquee>
-    </center>
-    </div>
-    </div>';
+    </center>';
     }
 
     mysqli_close($link);
     ?>
-
+</div>
+    </div>
 
     <form method="post" action="withgroup.php">
       <!-- Modal -->
@@ -169,9 +166,9 @@
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
       <!-- Showcase -->
-      <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
+      <div class="card mb-3" style="border: none;background-color: #ffffff00;">
         <div class="row g-0">
-          <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
+          <div class="col-md-5">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
                 src="', $row["shop_avatar"], '">
@@ -195,19 +192,18 @@
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
-          <div class="col-md-7"
-            style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>', $row["commodity_group_name"], '</b>
+          <div class="col-md-7">
+            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
-            <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
+            <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="three" class="button" style="font-size: 15px;font-weight: bold">#三麗鷗</div>
-                    <div id="four" class="button" style="font-size: 15px;font-weight: bold">#美少女戰士</div><br>
+                    <div id="three" class="button">#三麗鷗</div>
+                    <div id="four" class="button">#美少女戰士</div><br>
                   </div>
                 </div>
               </div>
@@ -591,113 +587,6 @@
                 </div>';
                 }
                 ?>
-                <!-- 添加其他的 .item -->
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12">
-                          <div class="profile-picture big-profile-picture clear">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                          </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>關於出貨通知<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"></i></h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <p>尊敬的客戶:</p>
-                        感謝您的訂單！我們很高興地通知您，您的商品已經準備好並已出貨。
-                        您可以通過訂單追蹤連結來查看包裹的最新狀態。如果您有任何問題或需要幫助，請隨時與我們的客服團隊聯繫。祝您購物愉快！
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div><br>
 
