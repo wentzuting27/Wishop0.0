@@ -163,11 +163,11 @@
                     $result=mysqli_query($link,$sql);
                     if($row=mysqli_fetch_assoc($result))
                     {
-                      if(strtotime($wish_end) < date("Y-M-D") or $wish_state==2 or $wish_state==1){
+                      if(strtotime($wish_end) < strtotime(date("Y-m-d"))){
                         if($wish_state==1){
                           echo '
                           <button type="button" class="btn button_success" style="background-color:#83c57e" disabled>許願成功</button>';
-                        }else{
+                        }elseif($wish_state==2){
                           echo '
                           <button type="button" class="btn button_fail" style="background-color:#d55858" disabled>許願失敗</button>';
                         }
@@ -207,54 +207,64 @@
                     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header">
+                          <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel">填寫出價資訊</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+                          </div>
+                          <form method="post" action="bid_in_up.php" enctype="multipart/form-data"><!--用於檔案圖片上傳-->
+                            <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                            <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="<?php echo $wish_id; ?>">  
                             <div class="modal-body">
-                            <div class="mb-3 row">
-                              <label for="inputName" class="col-sm-3 col-form-label">開團名稱*</label>
-                              <div class="col-sm-8">
-                              <input type="name" class="form-control" id="inputName" required>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">商品團名</label>
+                                <div class="col-sm-8">
+                                <input type="text" name="group_name" class="form-control">
+                                </div>
                               </div>
-                            </div>
-                            <div class="mb-3 row">
-                              <label for="formFile" class="col-sm-3 col-form-label">開團背景圖片*</label>
-                              <div class="col-sm-8">
-                              <input class="form-control" type="file" id="formFile" style="width:503px;" required>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">國家</label>
+                                <div class="col-sm-8">
+                                <input type="text" name="nation" class="form-control">
+                                </div>
                               </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="inputPrice" class="col-sm-3 col-form-label">願意出售價格(或範圍)*</label>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">商團封面</label>
                                 <div class="col-sm-8">
-                                <input type="price" class="form-control" id="inputPrice" required>
+                                <input class="form-control" type="file" name="group_bg" style="width:503px;">
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="inputLower" class="col-sm-3 col-form-label">最低成團人數*</label>
+                              </div>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">商團敘述</label>
                                 <div class="col-sm-8">
-                                <input type="lower" class="form-control" id="inputLower" required>
+                                <textarea name="commodity_group_narrate" class="form-control"></textarea>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="inputState" class="col-sm-3 col-form-label">狀態*</label>
+                              </div>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">原商品連結</label>
                                 <div class="col-sm-8">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="未成團">
-                                    <label class="form-check-label" for="inlineRadio1" style="color:rgb(195, 123, 123)">未成團</label>
+                                <input type="text" name="group_link" class="form-control">
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="已成團">
-                                    <label class="form-check-label" for="inlineRadio2" style="color:rgb(123, 195, 150)">已成團</label>
+                              </div>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">願意出售價格(或範圍)*</label>
+                                <div class="col-sm-8">
+                                <input type="text" name="bid_price" class="form-control" required>
                                 </div>
+                              </div>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">最低成團人數*</label>
+                                <div class="col-sm-8">
+                                <input type="number" name="bid_people" class="form-control" required>
                                 </div>
-                            </div>
+                              </div>
+                            </div>  
                             <div class="modal-footer">
-                            <button type="summit" class="btn">確定出價</button>
+                              <button type="submit" class="btn insert_button">確定出價</button>
                             </div>
+                          </form>  
                         </div>
                         </div>
-                    </div>
+                    
                 </div>
                 
             </div>
@@ -444,7 +454,6 @@
                                       <div class="modal-body">
                                         <form method="post" action="bid_in_up.php">
                                         <input type="hidden" name="method" class="form-control" style="width: 100%;" value="成團">
-                                        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="';echo $shop_id;echo '">
                                         <input type="hidden" name="commodity_group_id" class="form-control" style="width: 100%;" value="';echo $commodity_group_id;echo '">
                                         <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="';echo $wish_id;echo '">
                                           <table width="100%" class="insert_group_form">
@@ -471,7 +480,7 @@
                               }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                               }elseif($_SESSION["account"]!=$row["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有按過跟團
-                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
+                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
                               }else{
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
                               }
