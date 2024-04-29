@@ -11,10 +11,7 @@
     $bid_price=$_POST['bid_price'];
     $bid_people=$_POST['bid_people'];
     $link=mysqli_connect('localhost','root','12345678','wishop');
-    // 取得檔案路徑
-    $sql_select = "SELECT commodity_group_bg FROM commodity_group WHERE user_id='{$_SESSION['user_id']}'";
-    $result_select = mysqli_query($link, $sql_select);
-
+    
     if($method=="in"){
         if ($_FILES['group_bg']['error'] == UPLOAD_ERR_OK){
 
@@ -54,13 +51,12 @@
         
     }elseif($_POST["method"]=="成團"){
         $commodity_group_id=$_POST["commodity_group_id"];
-        $shop_id=$_POST["shop_id"];
         $wish_id=$_POST["wish_id"];
         $end=$_POST["end"];
-        if(empty($end)){
-            $sql="update commodity_group set commodity_group_state=1
+        if(empty($end)){ //檢查結單時間是否為空或未設定，更新為進行中
+            $sql="update commodity_group set commodity_group_state=1 
             where commodity_group_id=$commodity_group_id";
-        }else{
+        }else{ 
             $sql="update commodity_group set commodity_group_state=1,close_order_date='$end'
             where commodity_group_id=$commodity_group_id";
         }
@@ -71,7 +67,7 @@
             echo $sql;
             echo "失敗";
         }
-
+        //更新許願狀態為成功
         $sql="update wish set wish_state=1
         where wish_id=$wish_id";
         if(mysqli_query($link, $sql)){
