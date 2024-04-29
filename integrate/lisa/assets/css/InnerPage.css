@@ -80,6 +80,8 @@ h6 {
   }
 }
 
+
+
 marquee {
   font-size: 20px;
   background-color: #ffffffc1;
@@ -88,8 +90,6 @@ marquee {
   padding: 10px;
   /* 调整内边距 */
   width: 65%;
-  /* 调整宽度 */
-  margin: 0 auto;
   /* 设置左右居中 */
   border-radius: 20px;
   /* 调整圆角 */
@@ -100,11 +100,6 @@ marquee {
   margin-top: -20px;
   margin-bottom: 15px;
   margin-left: -260px;
-}
-
-marquee span {
-  color: #666768;
-  font-weight: 600;
 }
 
 marquee span {
@@ -130,6 +125,31 @@ marquee span:before {
   /* 将圆点设置为圆形 */
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   /* 添加阴影效果 */
+}
+
+.fa-solid.fa-bullhorn {
+  font-size: 30px;
+  color: #B0A5C6;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .fa-solid.fa-bullhorn {
+    font-size: 30px;
+    color: #B0A5C6;
+    margin-top: 20px;
+    margin-right: 100px;
+  }
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 904px) {
+  .fa-solid.fa-bullhorn {
+    font-size: 30px;
+    color: #B0A5C6;
+    margin-top: 20px;
+    margin-left: -80px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -161,41 +181,6 @@ marquee span:before {
 }
 
 /*--------------------------------------------------------------
-  # Back to top button
-  --------------------------------------------------------------*/
-.back-to-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 996;
-  background: #E9C9D6;
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  transition: all 0.4s;
-}
-
-.back-to-top i {
-  font-size: 28px;
-  color: #fff;
-  line-height: 0;
-}
-
-.back-to-top:hover {
-  background: #e1444d;
-  color: #fff;
-}
-
-.back-to-top.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-
-
-/*--------------------------------------------------------------
   # Hero Section
   --------------------------------------------------------------*/
 #hero {
@@ -205,6 +190,39 @@ marquee span:before {
   position: relative;
   margin-top: -20px;
   background-color: #f4f4f477;
+}
+
+@media (max-width: 992px) {
+  #hero {
+    height: 450px;
+  }
+
+}
+
+#hero h2 {
+  color: #000000;
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#hero p {
+  animation-delay: 0.4s;
+  margin: 0 auto 0px auto;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  #hero h2 {
+    font-size: 28px;
+  }
+}
+
+
+@media (max-height: 500px) {
+  #hero {
+    height: 450px;
+  }
 }
 
 
@@ -223,18 +241,15 @@ marquee span:before {
   height: 150px;
 }
 
-#hero h2 {
-  color: #000000;
-  margin-bottom: 20px;
-  font-size: 40px;
-  font-weight: 700;
+@media(max-width:904px) {
+  .big-profile-picture {
+    margin: 0 auto;
+    border: 5px solid #b0a5c6a8;
+    width: 120px;
+    height: 120px;
+  }
 }
 
-#hero p {
-  animation-delay: 0.4s;
-  margin: 0 auto 0px auto;
-  color: #000000;
-}
 
 
 #hero .btn-get-started {
@@ -255,47 +270,41 @@ marquee span:before {
   background: #B0A5C6;
 }
 
-
-@media (max-width: 992px) {
-  #hero {
-    height: 100vh;
-  }
-
-  #hero .carousel-container {
-    top: 8px;
-  }
-}
-
-@media (max-width: 768px) {
-  #hero h2 {
-    font-size: 28px;
-  }
-}
-
-@media (min-width: 1024px) {
-
-  #hero .carousel-control-prev,
-  #hero .carousel-control-next {
-    width: 5%;
+@media(max-width:780px) {
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 30px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #ffffff;
+    animation-delay: 0.8s;
+    background: #E9C9D6;
   }
 }
 
-@media (max-height: 500px) {
-  #hero {
-    height: 120vh;
-  }
+.row.g-0 .col-md-5 {
+  padding: 10px;
+  padding-left: 150px;
 }
 
-
-.cardtext .text {
-  color: white;
-  font-size: 22px;
-  position: absolute;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  white-space: nowrap;
+.row.g-0 .col-md-7 {
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: rgb(252, 252, 252);
+  width: 500px;
+  border-radius: 30px;
 }
+
+.col-md-7 .card-title {
+  font-size: 0.8cm;
+  padding-top: 14px;
+  color: #B0A5C6;
+}
+
 
 
 .card-text .content {
@@ -337,6 +346,86 @@ marquee span:before {
   }
 }
 
+.buttons #three {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.buttons #four {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* 媒体查询：小屏幕设备 */
+@media screen and (max-width: 768px) {
+  .row.g-0 {
+    .col-md-5 {
+      width: 40%;
+      padding: 10px;
+      padding-left: 150px;
+    }
+
+    .col-md-7 {
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 40%;
+      background-color: rgb(252, 252, 252);
+      border-radius: 30px;
+    }
+
+    .col-md-7 .card-title {
+      font-size: 0.6cm;
+      padding-top: 14px;
+      color: #B0A5C6;
+    }
+  }
+
+  .buttons #three {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .buttons #four {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+
+/* 媒体查询：中等屏幕设备 */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .row.g-0 {
+    .col-md-5 {
+      width: 40%;
+      padding: 10px;
+      padding-left: 150px;
+    }
+
+    .col-md-7 {
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 45%;
+      background-color: rgb(252, 252, 252);
+      border-radius: 30px;
+    }
+
+    .col-md-7 .card-title {
+      font-size: 0.7cm;
+      padding-top: 14px;
+      color: #B0A5C6;
+    }
+  }
+
+  .buttons #three {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .buttons #four {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
 
 /*--------------------------------------------------------------
   # nav2
@@ -1363,27 +1452,27 @@ input[type=checkbox]:checked+label:before {
   transform: scale(2.5);
 }
 
-.svg-inline--fa.fa-w-16{
-    position: absolute;
-    z-index: 2;
-    display: block;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-    height: 30px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 3px;
-  }
+.svg-inline--fa.fa-w-16 {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  margin-top: 3px;
+}
 
-  .form-control {
-    margin-left: 45px;
-    width: 200px;
+.form-control {
+  margin-left: 45px;
+  width: 200px;
 }
 
 @media(max-width:780px) {
-  #example2{
+  #example2 {
     transform: scale(0.9);
-}
+  }
 }

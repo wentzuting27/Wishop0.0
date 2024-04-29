@@ -2,7 +2,8 @@
 if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $shop_id = 1;
     // 取得目前会话的 Session ID
-    $account = 'sena1102';
+    session_start();
+    $account = $_SESSION["account"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
     if (!$link) {

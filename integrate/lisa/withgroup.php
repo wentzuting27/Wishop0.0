@@ -2,8 +2,8 @@
 $commodity_group_id = 3; // 在哪一個商品團體要用接值得方式,先假設1,之後再改
 // 首先啟動會話
 //session_start();
-// 取得目前會話的 Session ID
-$account = "sena1102";
+session_start();
+$account = $_SESSION["account"];
 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
 // 檢查連接是否成功
