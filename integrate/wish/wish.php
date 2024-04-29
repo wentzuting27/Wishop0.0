@@ -275,7 +275,7 @@
                           $link=mysqli_connect('localhost','root','12345678','wishop');
                           $sql="select * from wish
                           natural join account
-                          where wish_shop_id IS null AND wish_end >= now()
+                          where wish_shop_id IS null AND wish_end >= CURDATE()
                           order by wish_start";
                           $result=mysqli_query($link,$sql);
                           while($row=mysqli_fetch_assoc($result))
@@ -378,7 +378,7 @@
                           $link=mysqli_connect('localhost','root','12345678','wishop');
                           $sql="select * from wish
                           natural join account
-                          where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= now()
+                          where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= CURDATE()
                           order by wish_start";
                           $result=mysqli_query($link,$sql);
                           while($row=mysqli_fetch_assoc($result))
@@ -484,7 +484,7 @@
                       $link=mysqli_connect('localhost','root','12345678','wishop');
                       $sql="select * from wish
                       natural join account
-                      where wish_shop_id IS null AND wish_end <= now()
+                      where wish_shop_id IS null AND wish_end <= CURDATE()
                       order by wish_start";
                       $result=mysqli_query($link,$sql);
                       while($row=mysqli_fetch_assoc($result))
