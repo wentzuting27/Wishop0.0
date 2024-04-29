@@ -1,6 +1,6 @@
 <?php
+    session_start();
     $method=$_POST['method'];
-    $shop_id=$_POST['shop_id'];
     $wish_name=$_POST['wish_name'];
     $wish_narrat=$_POST['wish_narrat'];
     $end=$_POST['end'];
@@ -15,7 +15,7 @@
         // 計算新的 id
         $new_id = $row['max_id'] + 1;
         $sql_wish="insert into wish(wish_id,account,wish_shop_id,wish_name,wish_narrat,wish_link,wish_start,wish_state,wish_end)
-        value('$new_id','{$_SESSION["account"]}','$shop_id','$wish_name','$wish_narrat','$wish_link',now(),'3','$end')";
+        value('$new_id','{$_SESSION["account"]}',NULL,'$wish_name','$wish_narrat','$wish_link',now(),'3','$end')";
         if(mysqli_query($link, $sql_wish)){
             echo "Y";
         }else{
