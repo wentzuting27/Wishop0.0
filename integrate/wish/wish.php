@@ -104,10 +104,36 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="edit_like_shop_button2">
-      <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;當月剩餘許願次數【2】</button>&nbsp
-      <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;平台總許願次數【17】</button>
-    </div>
+
+    <?php
+      $link=mysqli_connect('localhost','root','12345678','wishop');
+      date_default_timezone_set('Asia/Taipei');
+      // 計算當月的起始和結束日期
+      $startOfMonth = date('Y-m-01'); // 當月的第一天
+      $endOfMonth = date('Y-m-t'); // 當月的最後一天
+      $sql="select * from wish 
+      where account='{$_SESSION["account"]}'
+      AND wish_start between '{$startOfMonth}' and '{$endOfMonth}'";
+      $result = mysqli_query($link, $sql);
+      $count = mysqli_num_rows($result); // 获取结果行数
+
+      $sql_total="select * from wish";
+      $result_total = mysqli_query($link, $sql_total);
+      $count_total = mysqli_num_rows($result_total); // 获取结果行数
+      echo'
+      <div class="edit_like_shop_button2">';
+        if(!isset($_SESSION["account"])){
+          echo'
+          <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;平台總許願次數【',$count_total,'】</button>';
+        }else{
+          echo'<button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;當月剩餘許願次數【',3-$count,'】</button>&nbsp
+          <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;平台總許願次數【',$count_total,'】</button>';
+        }
+      
+      echo'
+      </div>';
+    ?>
+    
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
         <!-- Slide 1 -->
@@ -271,8 +297,7 @@
                                 </div><!-- End blog sidebar --></center>                     
                             </section>  
                         <?php
-                          $wish_num=1;
-                          $link=mysqli_connect('localhost','root','12345678','wishop');
+                          $wish_num=1;         
                           $sql="select * from wish
                           natural join account
                           where wish_shop_id IS null AND wish_end >= CURDATE()
@@ -373,7 +398,6 @@
 
                       <?php
                           $wish_num=$wish_num+1;
-                          date_default_timezone_set('Asia/Taipei');
                           $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
                           $link=mysqli_connect('localhost','root','12345678','wishop');
                           $sql="select * from wish
