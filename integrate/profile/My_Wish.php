@@ -306,7 +306,7 @@
                                                 <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                                 <div class="item-details">
                                                   <div class="product-title">
-                                                    <a href="../wish/wish-details.php?wish_id=',$_SESSION['wish_id'].'">
+                                                    <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
                                                       <h4>', $row["wish_name"], '</h4>
                                                     </a>';
 
@@ -383,7 +383,7 @@
                                               <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                               <div class="item-details">
                                                 <div class="product-title">
-                                                  <a href="../wish/wish-details.php?wish_id=',$_SESSION['wish_id'].'">
+                                                  <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
                                                     <h4>', $row["wish_name"], '</h4>
                                                   </a>';
 
@@ -473,7 +473,7 @@
                             <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
-                              // 查詢所有進行中的許願
+                              // 查詢所有歷史的許願
                               $sql = "SELECT * FROM wish
                                       WHERE wish_end < CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NULL";
                                       // is null 代表沒有向特定賣場許願=>公共許願池
@@ -491,7 +491,7 @@
                                                 <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                                 <div class="item-details">
                                                   <div class="product-title">
-                                                    <a href="../wish/wish-details.php?wish_id=',$_SESSION['wish_id'].'">
+                                                    <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
                                                       <h4>', $row["wish_name"], '</h4>
                                                     </a>
                                                   </div>
@@ -553,7 +553,7 @@
                                               <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                               <div class="item-details">
                                                 <div class="product-title">
-                                                  <a href="../wish/wish-details.php?wish_id=',$_SESSION['wish_id'].'">
+                                                  <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
                                                     <h4>', $row["wish_name"], '</h4>
                                                   </a>
                                                   </div>';

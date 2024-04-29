@@ -278,81 +278,50 @@
                         <div class="scrollable-container">
                           <ul class="list-group list-group-flush">
 
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>排球少年音駒高校白色帽T</h4>
-                                    </a>
-                                    <span class="publicWish-tag">公共許願池</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="deadline">下單時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                                </div>
-                              </div>
-                            </div>
+                          <?php
+                              $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                              // 查詢所有進行中的訂單
+                              $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+                                      WHERE order_time <= CURDATE() AND account = '{$_SESSION['account']}' AND order_state <> '訂單完成'
+                                      GROUP BY order_id";
+                                      // 下單時間在今天以前(下單完成)且還沒訂單完成的訂單
+                              $result = mysqli_query($link, $sql);
+                              if ($result) {
+                                  while ($row = mysqli_fetch_assoc($result)) {
+                                      echo '
 
                             <div class="list-group-item list-group-item-action">
                               <div class="item">
-                                <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
+                                <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                                 <div class="item-details">
                                   <div class="product-title">
-                                    <a href="#">
-                                      <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
+                                    <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                      <h4>', $row["commodity_group_name"], '</h4>
                                     </a>
-                                    <span class="theShop-tag">特定賣場</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
-                                  <p class="deadline">下單時間: 2023/09/30</p>
+                                  </div>';
+                                  $sql_shop="select * from shop
+                                  WHERE shop_id='{$row["shop_id"]}'";
+                                  $result_shop=mysqli_query($link, $sql_shop);
+                                  $row_shop = mysqli_fetch_assoc($result_shop);
+                                  echo '
+                                <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
+                                ';
+                                echo'
+                                  <p class="deadline">下單時間: ', $row["order_time"], '</p>
                                 </div>
                                 <div class="item-meta">
-                                  <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
+                                  <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=',$_SESSION['commodity_group_id'].'"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
                                 </div>
                               </div>
-                            </div>
+                            </div>';
+                                  }
+                              } else {
+                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                              }
 
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                                    </a>
-                                    <span class="theShop-tag">特定賣場</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                                  <p class="deadline">下單時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                                    </a>
-                                    <span class="theShop-tag">特定賣場</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="deadline">下單時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                                </div>
-                              </div>
-                            </div>
+                              mysqli_close($link);
+                              ?>
 
                           </ul>
                         </div>
@@ -364,85 +333,81 @@
                         <div class="scrollable-container">
                           <ul class="list-group list-group-flush">
 
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://www.niusnews.com/upload/imgs/default/202302_Noah/0220/2/sub1-goods-sakura-2302.jpeg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>三麗鷗「櫻花季」</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">下單時間: 2023/06/30</p>
-                                  <p class="deadline">截止時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <p class="price">$99.99</p>
-                                </div>
-                              </div>
-                            </div>
+                          <?php
+                              $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                              // 查詢所有我也想買(跟團)
+                              $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group
+                                      WHERE commodity_group_state <> 2 AND account = '{$_SESSION['account']}'";
+                                      // 團體狀態不等於已結束的跟團
+                              $result = mysqli_query($link, $sql);
+                              if ($result) {
+                                  while ($row = mysqli_fetch_assoc($result)) {
+                                      echo '
 
                             <div class="list-group-item list-group-item-action">
                               <div class="item">
-                                <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qul9-lj5kvyccfayq34" alt="Product 1">
+                                <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                                 <div class="item-details">
                                   <div class="product-title">
-                                    <a href="#">
-                                      <h4>日本三麗鷗彩虹樂園限定商品</h4>
-                                    </a>
+                                    <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                      <h4>', $row["commodity_group_name"], '</h4>
+                                    </a>';
+                                    $sql_order_YorN = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+                                    WHERE account = '{$_SESSION['account']}'
+                                    GROUP BY order_id";
+                                    $result_order_YorN = mysqli_query($link, $sql_order_YorN);
+
+                                    // 設一個下個星期的今天的變數
+                                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                    // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                                    if($row["close_order_date"]<= $oneweekAgo && $row["close_order_date"]>= date('Y-m-d') && mysqli_num_rows($result__order_YorN)==0){
+                                      echo'
+                                      <span class="expiring-tag">下單期限即將結束</span>
+                                      ';
+                                    }
+                                    echo'
                                   </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">下單時間: 2023/06/30</p>
-                                  <p class="deadline">截止時間: 2023/09/30</p>
+                                  ';
+
+                                  $sql_shop="select * from shop
+                                  WHERE shop_id='{$row["shop_id"]}'";
+                                  $result_shop=mysqli_query($link, $sql_shop);
+                                  $row_shop = mysqli_fetch_assoc($result_shop);
+                                  echo '
+                                <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
+                                ';
+
+                                echo'
+                                  <p class="deadline">下單截止時間: ', $row["close_order_date"], '</p>
                                 </div>
                                 <div class="item-meta">
-                                  <p class="price">$99.99</p>
+                                ';
+
+                                if($row["commodity_group_state"]==3){
+                                  echo '<div class="item-meta">
+                                  <span class="wishNo-tag">未成團</span>
+                                  </div>';
+                                }elseif(mysqli_num_rows($result__order_YorN)==0){
+                                  echo '<div class="item-meta">
+                                  <span class="wishNo-tag">尚未下單</span>
+                                  </div>';
+                                }else{
+                                  echo '<div class="item-meta">
+                                  <span class="wishYes-tag">已下單</span>
+                                </div>';
+                                }
+                              echo'
                                 </div>
                               </div>
-                            </div>
+                            </div>';
+                          }
+                      } else {
+                          echo "查無當前進行中許願：" . mysqli_error($link);
+                      }
 
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://today-obs.line-scdn.net/0hQYfc7xmHDnZbGhy6CX9xIWNMAgdofBR_eS9GFH4ZUE5_NkFwZn9dFSkYBFp-LUh3ey9GEC5OV0R3LklwMA/w1200" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>日本「美少女戰士X三麗鷗」</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">下單時間: 2023/06/30</p>
-                                  <p class="deadline">截止時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <p class="price">$99.99</p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                              <div class="item">
-                                <img src="https://cdn.walkerland.com.tw/images/upload/subject/2023/03/1084ddfc99034970915184c36bd4eb61fa1c7d7c.jpg" alt="Product 1">
-                                <div class="item-details">
-                                  <div class="product-title">
-                                    <a href="#">
-                                      <h4>三麗鷗全新直營店「Sanrio新宿店」</h4>
-                                    </a>
-                                    <span class="expiring-tag">即將過期</span>
-                                  </div>
-                                  <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                                  <p class="neirong">下單時間: 2023/06/30</p>
-                                  <p class="deadline">截止時間: 2023/09/30</p>
-                                </div>
-                                <div class="item-meta">
-                                  <p class="price">$99.99</p>
-                                </div>
-                              </div>
-                            </div>
-
+                      mysqli_close($link);
+                      ?>
                           </ul>
                         </div>
                       </div>
@@ -456,81 +421,53 @@
                   <div class="scrollable-container">
                     <ul class="list-group list-group-flush">
 
-                      <div class="list-group-item list-group-item-action">
-                        <div class="item">
-                          <img src="https://gw.alicdn.com/imgextra/O1CN01Pg0FhG1It99KQYtET_!!6000000000950-2-yinhe.png_.webp" alt="Product 1">
-                          <div class="item-details">
-                            <div class="product-title">
-                              <a href="#">
-                                <h4>排球少年音駒高校白色帽T</h4>
-                              </a>
-                              <span class="publicWish-tag">公共許願池</span>
-                            </div>
-                            <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                            <p class="deadline">下單時間: 2023/09/30</p>
-                          </div>
-                          <div class="item-meta">
-                            <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="list-group-item list-group-item-action">
-                        <div class="item">
-                          <img src="https://i.pinimg.com/736x/a6/b3/15/a6b31560e581085b07d17716ecf8f681.jpg" alt="Product 1">
-                          <div class="item-details">
-                            <div class="product-title">
-                              <a href="#">
-                                <h4>ATEEZ 星和玩偶DDEONGbyeoli</h4>
-                              </a>
-                              <span class="theShop-tag">特定賣場</span>
-                            </div>
-                            <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;韓國正品代購團</a>
-                            <p class="deadline">下單時間: 2023/09/30</p>
-                          </div>
-                          <div class="item-meta">
-                            <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="list-group-item list-group-item-action">
-                        <div class="item">
-                          <img src="https://gcs.rimg.com.tw/g0/658/38c/agate898/e/3b/1f/22333461233439_323.jpg" alt="Product 1">
-                          <div class="item-details">
-                            <div class="product-title">
-                              <a href="#">
-                                <h4>偶像夢幻祭瀨名泉公仔棉花娃娃20CM</h4>
-                              </a>
-                              <span class="theShop-tag">特定賣場</span>
-                            </div>
-                            <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;日本藥妝、零食、動漫現地代購</a>
-                            <p class="deadline">下單時間: 2023/09/30</p>
-                          </div>
-                          <div class="item-meta">
-                            <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="list-group-item list-group-item-action">
-                        <div class="item">
-                          <img src="https://renewalprod.blob.core.windows.net/renewal-prod/cms/articles/content/sub10png_2024-02-14-07-40-43.png" alt="Product 1">
-                          <div class="item-details">
-                            <div class="product-title">
-                              <a href="#">
-                                <h4>【北海道】大耳狗喜拿×五稜郭的壓克力立牌</h4>
-                              </a>
-                              <span class="theShop-tag">特定賣場</span>
-                            </div>
-                            <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;三麗鷗快樂購</a>
-                            <p class="deadline">下單時間: 2023/09/30</p>
-                          </div>
-                          <div class="item-meta">
-                            <a class="link-btn" href="#對帳表"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;對帳表</a>
-                          </div>
-                        </div>
-                      </div>
+                    <?php
+                      $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                              // 查詢所有進行中的訂單
+                      $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+                                      WHERE account = '{$_SESSION['account']}' AND order_state = '訂單完成'
+                                      GROUP BY order_id";
+                                      // 所有已經訂單完成的訂單
+                                      $result = mysqli_query($link, $sql);
+                                      if ($result) {
+                                          while ($row = mysqli_fetch_assoc($result)) {
+                                              echo '
+        
+                                    <div class="list-group-item list-group-item-action">
+                                      <div class="item">
+        
+        
+                                        <img src="', $row["commodity_group_bg"], '" alt="Product 1">
+                                        <div class="item-details">
+                                          <div class="product-title">
+                                            <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                              <h4>', $row["commodity_group_name"], '</h4>
+                                            </a>
+                                          </div>';
+                                          $sql_shop="select * from shop
+                                          WHERE shop_id='{$row["shop_id"]}'";
+                                          $result_shop=mysqli_query($link, $sql_shop);
+                                          $row_shop = mysqli_fetch_assoc($result_shop);
+                                          echo '
+                                        <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
+                                        ';
+                                        echo'
+                                          <p class="deadline">下單時間: ', $row["order_time"], '</p>
+                                          <p class="deadline">訂單完成時間: ', $row["order_time"], '</p>
+                                        </div>
+                                        <div class="item-meta">
+                                          <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=',$_SESSION['commodity_group_id'].'"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
+                                        </div>
+                                      </div>
+                                    </div>';
+                                          }
+                                      } else {
+                                          echo "查無當前進行中許願：" . mysqli_error($link);
+                                      }
+        
+                                      mysqli_close($link);
+                                      ?>
 
                     </ul>
                   </div>
