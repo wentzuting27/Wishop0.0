@@ -179,7 +179,7 @@
 
                       <div class="form-group">
                       <label for="inputBackground">賣場簡介</label><br>
-                      <textarea name="shop_narrat" rows="5" cols="50" placeholder="請輸入賣場簡介"></textarea>
+                      <textarea name="shop_narrat" rows="5" cols="50" placeholder="請輸入賣場簡介"  class="form-control" with="100%"></textarea>
                     </div>
                     </div>
                 </div>
