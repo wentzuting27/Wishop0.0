@@ -329,6 +329,14 @@
 
         <div class="row portfolio-container">
 
+          <style>
+            .img-fluid {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+          </style>
+
 
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -364,7 +372,7 @@
           ?>
 
 
-          
+
 
         </div>
 
