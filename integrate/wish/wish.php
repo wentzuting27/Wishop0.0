@@ -126,7 +126,13 @@
           echo'
           <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;平台總許願次數【',$count_total,'】</button>';
         }else{
-          echo'<button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;當月剩餘許願次數【',3-$count,'】</button>&nbsp
+          echo'<button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;當月剩餘許願次數【';
+          if ((3 - $count) <= 0) {
+            echo '0';
+          } else {
+              echo 3 - $count;
+          }
+          echo'】</button>&nbsp
           <button type="button" class="btn insert_button"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;平台總許願次數【',$count_total,'】</button>';
         }
       
@@ -150,7 +156,7 @@
               echo'
               <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
               <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
-            }elseif($count==3){
+            }elseif($count>=3){
               echo'
               <button class="btn-get-started animate__animated animate__fadeInUp scrollto" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
               <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';

@@ -17,7 +17,7 @@
         $sql_wish="insert into wish(wish_id,account,wish_shop_id,wish_name,wish_narrat,wish_link,wish_start,wish_state,wish_end)
         value('$new_id','{$_SESSION["account"]}',NULL,'$wish_name','$wish_narrat','$wish_link',now(),'3','$end')";
         if(mysqli_query($link, $sql_wish)){
-            echo "Y";
+            header("refresh:1;url=wish.php?wish_id=$wish_id");
         }else{
             echo $sql_wish;
             echo "N";
@@ -51,7 +51,7 @@
 
                 $sql_insert = "INSERT INTO wish_photo (wish_id, wish_photo_link) VALUES ('$new_id', '$dest')";
                 if(mysqli_query($link, $sql_insert)){
-                    echo "y";
+                    header("refresh:1;url=wish.php?wish_id=$wish_id");
                 }else{
                     echo "n";
                 }
