@@ -54,7 +54,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php" >首頁</a></li>
+          <li><a href="../index/index.php" >首頁</a></li>
           <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
