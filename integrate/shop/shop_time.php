@@ -326,28 +326,28 @@
                       <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
                         <table width="100%" class="insert_group_form">
                           <tr>
-                            <td width="10%">商品團名</td>
-                            <td width="90%"><input type="text" name="group_name" class="form-control"></td>
+                            <td width="10%">商品團名*</td>
+                            <td width="90%"><input type="text" name="group_name" class="form-control" required></td>
                           </tr>
                           <tr>
-                            <td>國家</td>
-                            <td><input type="text" name="nation" class="form-control"></td>
+                            <td>國家*</td>
+                            <td><input type="text" name="nation" class="form-control" required></td>
                           </tr>
                           <tr>
-                            <td>商團封面</td>
-                            <td><input class="form-control" type="file" name="group_bg"></td>
+                            <td>商團封面*</td>
+                            <td><input class="form-control" type="file" name="group_bg" required></td>
                           </tr>
                           <tr>
-                            <td>商團敘述</td>
-                            <td><textarea class="form-control" rows="5" name="commodity_group_narrate"></textarea></td>
+                            <td>商團敘述*</td>
+                            <td><textarea class="form-control" rows="5" name="commodity_group_narrate" required></textarea></td>
                           </tr>
                           <tr>
                             <td>原商品連結</td>
                             <td><input type="text" name="group_link" class="form-control"></td>
                           </tr>
                           <tr>
-                            <td>結單日期</td>
-                            <td style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value=""></td>
+                            <td>結單日期*</td>
+                            <td style="text-align: left;"><input type="datetime-local" name="end" class="form-control" style="width: 100%;" value="" required></td>
                           </tr>
                           <tr>
                             <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>

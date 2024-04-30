@@ -417,7 +417,7 @@
                       if(!isset($_SESSION["account"])){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>尚未登入</button>';
-                      }elseif(strtotime($wish_end) < strtotime('now')){
+                      }elseif(strtotime($wish_end) < date("Y-M-D")){
                         echo '
                         <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
                       }elseif($_SESSION["account"]==$row2["account"]){

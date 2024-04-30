@@ -20,10 +20,7 @@
         $sql_wish="insert into wish(wish_id,account,wish_shop_id,wish_name,wish_narrat,wish_link,wish_start,wish_state,wish_end)
         value('$new_id','{$_SESSION["account"]}','$shop_id','$wish_name','$wish_narrat','$wish_link',now(),'3','$end')";
         if(mysqli_query($link, $sql_wish)){
-            echo "Y";
         }else{
-            echo $sql_wish;
-            echo "N";
         }
         
 
@@ -54,13 +51,13 @@
 
                 $sql_insert = "INSERT INTO wish_photo (wish_id, wish_photo_link) VALUES ('$new_id', '$dest')";
                 if(mysqli_query($link, $sql_insert)){
-                    echo "y";
                 }else{
-                    echo "n";
                 }
             }
 
         }
+        header("refresh:0;url=wish-details.php?shop_id=$shop_id&wish_id=$new_id");
+
         
     }elseif($_GET["method"]=="不受理"){
         echo "123";
@@ -70,10 +67,9 @@
         where wish_id=$wish_id";
         
         if(mysqli_query($link, $sql)){
-            header("refresh:1;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
+            header("refresh:0;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }else{
-            echo $sql;
-            echo "失敗";
+            header("refresh:0;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }
         
     }
