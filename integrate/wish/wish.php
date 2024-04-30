@@ -396,7 +396,7 @@
                                   </div>
                                   <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
-                                      <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                      <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">
