@@ -62,7 +62,7 @@
     </section><!-- End Breadcrumbs -->
 
     <?php
-  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $commodity_group_id = $_GET["commodity_group_id"];
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from commodity_group
@@ -180,7 +180,7 @@
 ?>
 
   <?php
-  $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $commodity_group_id = $_GET["commodity_group_id"];
   $link=mysqli_connect('localhost','root','12345678','wishop');
   $sql="select *
   from commodity_group
@@ -342,7 +342,6 @@
                       </tr>
                     </thead>
                     <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                     $link=mysqli_connect('localhost','root','12345678','wishop');
                     $sql="select *
                     from commodity natural join commodity_photo
@@ -391,7 +390,6 @@
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
                 <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                     $link=mysqli_connect('localhost','root','12345678','wishop');
                     $sql="select *
                     from commodity natural join commodity_photo
@@ -428,7 +426,6 @@
               <div class="row">
                 <div id="slider-carouse3" class="owl-carousel">
                 <?php
-                    $commodity_group_id=3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                     $link=mysqli_connect('localhost','root','12345678','wishop');
                     $sql="select *
                     from commodity natural join commodity_photo

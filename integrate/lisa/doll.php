@@ -41,7 +41,6 @@
 </head>
 
 <body>
-  <?php session_start(); ?>
   <main id="main" >
 
     <!-- ======= Portfolio Details Section ======= -->
@@ -53,8 +52,9 @@
               <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php
+                    $commodity_id = $_GET["commodity_id"];
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    $sql = "SELECT commodity_photo FROM commodity_photo WHERE commodity_id=2";
+                    $sql = "SELECT commodity_photo FROM commodity_photo WHERE commodity_id=$commodity_id";
                     $result = mysqli_query($link, $sql);
                     $active = true;
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -105,9 +105,6 @@
             ;
           } ?>
   </main><!-- End #main -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

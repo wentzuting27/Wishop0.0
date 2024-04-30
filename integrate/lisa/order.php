@@ -14,6 +14,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
     $account_to_send_money_to = $row['common_payment_account'];
+    $commodity_group_id = $_GET["commodity_group_id"];
     $result1 = mysqli_query($link, $sql1);
     $row1 = mysqli_fetch_assoc($result1);
     $payment_account = $row1['common_payment_account'];
@@ -32,7 +33,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     
     // 如果插入失敗，則提示並退出
     if (!$result2) {
-        echo '<script>alert("新增失敗"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("新增失敗"); window.location.href = "InnerPage.php?'.$commodity_group_id.'";</script>';
         exit();
     }
 
@@ -51,7 +52,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
 
     // 檢查是否有選擇了商品
     if (empty($order_details)) {
-        echo '<script>alert("請選擇至少一個商品"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("請選擇至少一個商品"); window.location.href = "InnerPage.php?'.$commodity_group_id.'";</script>';
         exit();
     }
 
@@ -77,9 +78,9 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
 
     // 根據成功標誌顯示結果
     if ($all_successful) {
-        echo '<script>alert("新增成功!"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("新增成功!"); window.location.href = "InnerPage.php?'.$commodity_group_id.'";</script>';
     } else {
-        echo '<script>alert("新增失敗"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("新增失敗"); window.location.href = "InnerPage.php?'.$commodity_group_id.'";</script>';
     }
 
     mysqli_close($link);

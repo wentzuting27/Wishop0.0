@@ -1,5 +1,6 @@
 <?php
 if(isset($_POST['submit'])) {
+    $commodity_group_id = $_GET["commodity_group_id"];
     $commodity_name = $_POST['commodity_name'];
     $commodity_narrate = $_POST['commodity_narrate'];
     $commodity_state = $_POST['commodity_state'];
@@ -12,7 +13,7 @@ if(isset($_POST['submit'])) {
         die('Connection failed: ' . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO commodity (commodity_group_id, commodity_name, commodity_narrate, commodity_state, commodity_price, c_original_product_link) VALUES (3, '$commodity_name', '$commodity_narrate', '$commodity_state', '$commodity_price', '$commodity_link')";
+    $sql = "INSERT INTO commodity (commodity_group_id, commodity_name, commodity_narrate, commodity_state, commodity_price, c_original_product_link) VALUES ('$commodity_group_id', '$commodity_name', '$commodity_narrate', '$commodity_state', '$commodity_price', '$commodity_link')";
 
     $result = mysqli_query($link, $sql);
     if ($result) {
