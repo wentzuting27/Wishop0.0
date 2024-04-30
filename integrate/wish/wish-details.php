@@ -161,6 +161,11 @@
                   <?php
                     $sql="select * from wish where wish_id='$wish_id'";
                     $result=mysqli_query($link,$sql);
+
+                    $sql_shop="select * from shop where account='{$_SESSION["account"]}'";
+                    $result_shop=mysqli_query($link,$sql_shop);
+                    $count_shop=mysqli_num_rows($result_shop);
+
                     if($row=mysqli_fetch_assoc($result))
                     {
                       if(!isset($_SESSION["account"])){
@@ -175,13 +180,16 @@
                           <button type="button" class="btn button_fail" style="background-color:#d55858" disabled>許願失敗</button>';
                         }
                       }elseif($_SESSION["account"]==$row["account"]){
-                          echo '
-                          <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>';
+                        echo '
+                        <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>';
+                      }elseif($_SESSION["account"]!=$row["account"] && $count_shop==0){
+                        echo'
+                        <button type="button" class="btn insert_button" disabled>欲出價請先建立賣場</button>&nbsp;&nbsp;';
                       }elseif($_SESSION["account"]!=$row["account"]){
                         $sql_bid_y_or_n="select * from bid
                         where shop_id='{$_SESSION["user_shop_id"]}' and wish_id=$wish_id";
                         $result_bid_y_or_n=mysqli_query($link,$sql_bid_y_or_n);
-                        if(mysqli_num_rows($result_bid_y_or_n)==0 && $wish_state==3){
+                        if(mysqli_num_rows($result_bid_y_or_n)==0){
                           echo '
                           <button class="button-cancel" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;我要出價</button>';
                         }else{
@@ -441,7 +449,7 @@
                             
                             if(!isset($_SESSION["account"])){
                               echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>尚未登入</button>';
-                            }elseif(strtotime($wish_end) < strtotime('now')){ //願望期限已到
+                            }elseif(strtotime($wish_end) < date("Y-M-D")){ //願望期限已到
                               echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已截止</button>';
                             }elseif($_SESSION["account"]==$row["account"]){ //登入的帳號是出價的賣家
                               if($state==3){
