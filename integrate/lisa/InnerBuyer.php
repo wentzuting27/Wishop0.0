@@ -58,9 +58,9 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
-    
+
     <?php
-    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $commodity_group_id = $_GET["commodity_group_id"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select *
   from commodity_group
@@ -86,10 +86,10 @@
         <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
-    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn"></i></p>
-    </div>
-    <div>
+      <div style="margin-left: 300px; margin-top: -50px;z-index: 9;">
+        <p><i class="fa-solid fa-bullhorn"></i></p>
+      </div>
+      <div>
         <center>
           <marquee>
             <span>公告：商品即將寄出，請注意到貨時間！</span>
@@ -99,7 +99,7 @@
         </center>
       </div>
     </div>
-<!-- insert_group_Modal -->
+    <!-- insert_group_Modal -->
     <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -177,8 +177,8 @@
     ?>
 
     <?php
-    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $commodity_group_id = $_GET["commodity_group_id"];
     $sql = "select *
     from commodity_group
     where commodity_group_id=$commodity_group_id";
@@ -339,7 +339,7 @@
                       </tr>
                     </thead>
                     <?php
-                    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+                    $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                     $sql = "select *
                     from commodity natural join commodity_photo
@@ -388,7 +388,6 @@
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
                   <?php
-                  $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $sql = "select *
                     from commodity natural join commodity_photo
@@ -425,7 +424,6 @@
               <div class="row">
                 <div id="slider-carouse3" class="owl-carousel">
                   <?php
-                  $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $sql = "select *
                     from commodity natural join commodity_photo
@@ -486,7 +484,6 @@
             <div class="row">
               <div id="slider-carousel" class="owl-carousel">
                 <?php
-                $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "select *
                     from commodity_group_announce";
@@ -717,7 +714,10 @@
             if (!$link) {
               die('Connection failed: ' . mysqli_connect_error());
             }
-            $sql = "SELECT *FROM `order` NATURAL JOIN order_details";
+            $sql = "SELECT `order`.*, MIN(commodity_id) AS pre_order
+            FROM `order`
+            JOIN order_details ON order.order_id = order_details.order_id
+            GROUP BY order.order_id;";
             $result = mysqli_query($link, $sql);
             if (!$result) {
               die('Query failed: ' . mysqli_error($link));
@@ -730,8 +730,8 @@
                 <th>付款帳號</th>
                 <th>下單時間</th>
                 <th>總金額</th>
-                <th>備註</th>
                 <th>確認付款</th>
+                <th>明細</th>
             </tr>
         </thead>
         <tbody>';
@@ -751,18 +751,95 @@
             <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
-            <td>' . $row['remark'] . '</td>
             <td>
                   <center>
                     <input id="box1" type="checkbox" />
                     <label for="box1" id="label1">未付款</label>
                   </center>
                 </td>
+                <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                ' . $row['remark'] . '</td>
           </tr>';
             }
-            echo '</tbody></table>';
             mysqli_close($link); ?>
+            </tbody>
+            </table>
           </div>
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          if (!$link) {
+            die('Connection failed: ' . mysqli_connect_error());
+          }
+          $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
+
+          $result = mysqli_query($link, $sql);
+          if (!$result) {
+            die('Query failed: ' . mysqli_error($link));
+          }
+
+          while ($row = mysqli_fetch_assoc($result)) {
+
+            echo '<!-- Modal -->
+          <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="detailsLabel">訂單詳細</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>';
+        
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          if (!$link) {
+            die('Connection failed: ' . mysqli_connect_error());
+          }
+          $sql2 = "SELECT *FROM  order_details natural join commodity";
+
+          $result2 = mysqli_query($link, $sql2);
+          if (!$result) {
+            die('Query failed: ' . mysqli_error($link));
+          }
+
+          while ($row = mysqli_fetch_assoc($result2)) {
+
+            echo '<div class="modal-body">
+                  <form>
+                    <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
+                      <tr>
+                        <th>訂單內容</th>
+                        <td>
+                        <ul>
+                        <li>' . $row['commodity_id'] . '/ ' . $row['order_details_num'] . '個</li>
+                        </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>買家備註內容</th>
+                        <td>
+                        <p>' . $row['remark'] . '</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th >訂單狀態</th>
+                        <td>
+                        <textarea  style="font-size:0.35cm;" class="form-control" tabindex="8"
+                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)"></textarea>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                  <button type="button" name="delgroup" class="btn btn-primary">確定</button>
+                </div>
+              </div>
+            </div>
+          </div>';
+          }}
+          mysqli_close($link); 
+          ?>
           <button onclick="showCsv()">Console log csv code</button>
           <button onclick="download()">Download csv file</button>
           <br><br><br>

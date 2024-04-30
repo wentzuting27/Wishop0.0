@@ -19,7 +19,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $payment_account = $row1['common_payment_account'];
     $payment_state=1;
     $order_state="未成立";
-    $remark = isset($_POST['remark']) ? $_POST['remark'] : ''; // 检查备注是否设置
+    $remark = isset($_POST['remark']) ? $_POST['remark'] : '無'; // 检查备注是否设置
     // 取得目前的时间戳
     $timestamp = time();
     // 将时间戳格式化为日期时间字符串

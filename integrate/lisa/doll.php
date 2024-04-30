@@ -79,9 +79,9 @@
               </div>
             </div>
           <?php
-          $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+          $commodity_id = $_GET["commodity_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-          $sql = "select * from  commodity where commodity_id=2";
+          $sql = "select * from  commodity where commodity_id=$commodity_id";
           $result = mysqli_query($link, $sql);
           while ($row = mysqli_fetch_assoc($result)) {
             echo '

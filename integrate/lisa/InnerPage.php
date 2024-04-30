@@ -61,7 +61,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
     <?php
-    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $commodity_group_id =  $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select *
   from commodity_group
@@ -74,11 +74,11 @@
     } ?>
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $commodity_group_id =  $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
     //session_start();
     //$account = $_SESSION["account"];
     $account = "123";
-    $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=3";
+    $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
 
     if ($result && mysqli_num_rows($result) == 0) {
@@ -184,7 +184,7 @@
     ?>
 
     <?php
-    $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    // $commodity_group_id = 3;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select *
   from commodity_group
@@ -465,7 +465,6 @@
                     </tr>
                   </thead>
                   <?php
-                  $commodity_group_id = 3; // 根据实际情况获取商品组ID
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                   FROM commodity
@@ -482,7 +481,7 @@
                     <td data-th="Product">
                       <div class="row">
                         <div class="col-sm-4 hidden-xs">
-                          <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
+                          <a href="doll.php?commodity_id=', $row["commodity_id"], '" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details">
                           <img src="', $row["first_photo"], '" alt="..." class="img-responsive" />
                           </a>
                       </div>
