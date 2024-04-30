@@ -45,18 +45,18 @@
    <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html"></a></h1>
+      <h1 class="logo me-auto"><a href="../index/index.php"></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.html"><span>購物</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a href="../index/index.php" class="active">首頁</a></li>
+          <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="team.php">Team</a></li>
+              <li><a href="testimonials.php">Testimonials</a></li>
 
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -70,19 +70,19 @@
             </ul>
           </li>
           <li><a href="#">團購</a></li>
-          <li><a href="#">許願池</a></li>
+          <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
             if(!empty($_SESSION['user_name'])){
               echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.html"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
                   <hr>
-                  <li><a href="../profile/Wishlist.html" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.html" style="font-weight: 600;">購買紀錄</a></li>
+                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
               </li>
