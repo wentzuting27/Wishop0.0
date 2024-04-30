@@ -51,7 +51,7 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li><a href="../index/index.php" >首頁</a></li>
-        <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+        <li class="dropdown"><a href="../index/portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="about.php">About</a></li>
             <li><a href="team.php">Team</a></li>
