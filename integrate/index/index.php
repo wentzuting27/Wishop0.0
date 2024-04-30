@@ -394,6 +394,8 @@
       </div>
     </section><!-- End Portfolio Section -->
 
+    
+
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
@@ -417,7 +419,7 @@
           <div class="container">
             <div class="row">
               <?php while ($row = mysqli_fetch_assoc($result2)): ?>
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-2 mb-2" data-aos="fade-up" data-aos-delay="100">
                   <div class="member">
                     <div class="member-img">
                       <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">
