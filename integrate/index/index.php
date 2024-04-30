@@ -180,6 +180,10 @@
           <h1>熱門團購</h1>
         </div>
 
+        <style>
+          
+        </style>
+
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
 
@@ -206,24 +210,31 @@
                 echo '<div class="swiper-slide" >
                 <div class="testimonial-wrap" >
                   <div class="testimonial-item" style="height: 400px;">
-                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="">
+                  
+                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="" >
+
                     <div class="demo">
                       <h3><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">' . $row['commodity_group_name'] . '</a></h3>
                     </div>
+
                     <h4>' . $row['shop_name'] . '</h4>
                     <br>
                     <div style="height: 100px; overflow-y: auto;">
+
                     <span>' . $row['commodity_group_narrate'] . '</span>
-                    </div>
+                  </div>
                     <br>
                     <br>
+
                     <div>
                       <a type="button" href="#" class="btn btn-light-tag">#tag</a>
                       <a type="button" href="#" class="btn btn-light-tag">#tag</a>
                       <a type="button" href="#" class="btn btn-light-tag">#tag</a>
                     </div>
+
                     <br>
                     <br>
+
                     <div class="meta d-flex align-items-center">
                       <div class="d-flex align-items-center">
                         <i class="bi bi-clock"></i> <span class="ps-2">截單日期：' . $row['close_order_date'] . '</span>
