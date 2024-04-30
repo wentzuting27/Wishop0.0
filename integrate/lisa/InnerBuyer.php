@@ -339,11 +339,12 @@
                       </tr>
                     </thead>
                     <?php
-                    $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    $sql = "select *
-                    from commodity natural join commodity_photo
-                    where commodity_state=1";
+                    $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
+                    FROM commodity
+                    JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
+                    WHERE commodity.commodity_state = 1
+                    GROUP BY commodity.commodity_id;";
                     $result = mysqli_query($link, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo '
@@ -352,9 +353,9 @@
                         <td data-th="Product">
                           <div class="row">
                             <div class="col-sm-4 hidden-xs">
-                              <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
+                              <a href="doll.php?commodity_id=', $row["commodity_id"], '" class="portfolio-details-lightbox" data-glightbox="type: external"
                                 title="Portfolio Details">
-                                <img src="', $row["commodity_photo"], '"
+                                <img src="', $row["first_photo"], '"
                                   alt="..." class="img-responsive" /></a>
                             </div>
                             <div class="col-sm-8">
@@ -389,19 +390,22 @@
                 <div id="slider-carouse2" class="owl-carousel">
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "select *
-                    from commodity natural join commodity_photo
-                    where commodity_state=2";
+                  $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
+                  FROM commodity
+                  JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
+                  WHERE commodity.commodity_state = 2
+                  GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
+                       <a href="doll.php?commodity_id=', $row["commodity_id"], '" class="portfolio-details-lightbox" data-glightbox="type: external"
+                      title="Portfolio Details">
                       <div class="card-head">
-                        <img
-                          src="', $row["commodity_photo"], '"
+                     <img src="', $row["first_photo"], '"
                           class="card-img-top" alt="...">
-                      </div>
+                      </div></a>
                       <div class="card-body">
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
                         <p class="card-text">', $row["commodity_narrate"], '</p>
@@ -425,19 +429,23 @@
                 <div id="slider-carouse3" class="owl-carousel">
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "select *
-                    from commodity natural join commodity_photo
-                    where commodity_state=3";
+                  $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
+                  FROM commodity
+                  JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
+                  WHERE commodity.commodity_state = 3
+                  GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
+                    <a href="doll.php?commodity_id=', $row["commodity_id"], '" class="portfolio-details-lightbox" data-glightbox="type: external"
+                      title="Portfolio Details">
                       <div class="card-head">
-                        <img
-                          src="', $row["commodity_photo"], '"
+                      <img
+                          src="', $row["first_photo"], '"
                           class="card-img-top" alt="...">
-                      </div>
+                      </div></a>
                       <div class="card-body">
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
                         <p class="card-text">', $row["commodity_narrate"], '</p>
@@ -485,8 +493,7 @@
               <div id="slider-carousel" class="owl-carousel">
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql = "select *
-                    from commodity_group_announce";
+                $sql = "select * from commodity_group_announce";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
@@ -708,115 +715,109 @@
           <div class="seven">
             <h1>對帳表</h1>
           </div>
-          <div style="height: 400px;overflow-y: auto;">
-            <?php
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            if (!$link) {
-              die('Connection failed: ' . mysqli_connect_error());
-            }
-            $sql = "SELECT `order`.*, MIN(commodity_id) AS pre_order
-            FROM `order`
-            JOIN order_details ON order.order_id = order_details.order_id
-            GROUP BY order.order_id;";
-            $result = mysqli_query($link, $sql);
-            if (!$result) {
-              die('Query failed: ' . mysqli_error($link));
-            }
-            echo '<table id="example" 
-                class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
+          <form action="upsatestate.php" method="post" style="height: 400px;overflow-y: auto;overflow-x: hidden;">
+            <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <thead>
                 <tr>
-                <th>帳號</th>
-                <th>付款帳號</th>
-                <th>下單時間</th>
-                <th>總金額</th>
-                <th>確認付款</th>
-                <th>明細</th>
-            </tr>
-        </thead>
-        <tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-              $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
-            FROM order_details
-            JOIN commodity ON order_details.commodity_id = commodity.commodity_id
-            WHERE `order_details`.order_id = {$row['order_id']}";
-              $result2 = mysqli_query($link, $sql2);
-              $totalprice = 0;
-              if ($result2 && mysqli_num_rows($result2) > 0) {
-                $totalprice_row = mysqli_fetch_assoc($result2);
-                $totalprice = $totalprice_row['totalprice'];
+                  <th>帳號</th>
+                  <th>付款帳號</th>
+                  <th>下單時間</th>
+                  <th>總金額</th>
+                  <th>確認付款</th>
+                  <th>明細</th>
+                </tr>
+              </thead>
+              <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              if (!$link) {
+                die('Connection failed: ' . mysqli_connect_error());
               }
-              echo '<tr>
+              $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           GROUP BY order_details.order_id;
+                  ";
+              $result = mysqli_query($link, $sql);
+
+              if (!$result) {
+                die('Query failed: ' . mysqli_error($link));
+              }
+              while ($row = mysqli_fetch_assoc($result)) {
+                $order_id = $row['order_id']; // 獲取訂單 ID
+              
+                // 在迴圈內部執行第二個查詢
+                $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                $result2 = mysqli_query($link, $sql2);
+                $totalprice = 0;
+                if ($result2 && mysqli_num_rows($result2) > 0) {
+                  $totalprice_row = mysqli_fetch_assoc($result2);
+                  $totalprice = $totalprice_row['totalprice'];
+                }
+                echo '<tbody>
+              <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
             <td>
                   <center>
-                    <input id="box1" type="checkbox" />
-                    <label for="box1" id="label1">未付款</label>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">未付款</label>
                   </center>
                 </td>
                 <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
-                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
-                ' . $row['remark'] . '</td>
-          </tr>';
-            }
-            mysqli_close($link); ?>
-            </tbody>
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button></td>
+                </tr>
+                </tbody>
+                ';
+              }
+              mysqli_close($link); ?>
             </table>
-          </div>
+          </form>
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
           if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
           }
           $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
-
           $result = mysqli_query($link, $sql);
           if (!$result) {
             die('Query failed: ' . mysqli_error($link));
           }
-
           while ($row = mysqli_fetch_assoc($result)) {
-
             echo '<!-- Modal -->
           <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
-            <div class="modal-dialog">
+          <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="detailsLabel">訂單詳細</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>';
-        
-          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-          if (!$link) {
-            die('Connection failed: ' . mysqli_connect_error());
-          }
-          $sql2 = "SELECT *FROM  order_details natural join commodity";
-
-          $result2 = mysqli_query($link, $sql2);
-          if (!$result) {
-            die('Query failed: ' . mysqli_error($link));
-          }
-
-          while ($row = mysqli_fetch_assoc($result2)) {
-
-            echo '<div class="modal-body">
+                </div><div class="modal-body">
                   <form>
                     <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
                       <tr>
                         <th>訂單內容</th>
                         <td>
-                        <ul>
-                        <li>' . $row['commodity_id'] . '/ ' . $row['order_details_num'] . '個</li>
-                        </ul>
+                        <ul>';
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                        $remark = $row['remark']; 
+            $sql2 = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
+            $result2 = mysqli_query($link, $sql2);
+            if (!$result2) {
+              die('Query failed: ' . mysqli_error($link));
+            }
+            while ($row = mysqli_fetch_assoc($result2)) {
+              echo '
+                        <li>' . $row['commodity_name'] . '/ ' . $row['order_details_num'] . '個</li>';}
+              echo '</ul>
                         </td>
                       </tr>
                       <tr>
                         <th>買家備註內容</th>
                         <td>
-                        <p>' . $row['remark'] . '</p>
+                        <p>' . $remark. '</p>
                         </td>
                       </tr>
                       <tr>
@@ -829,7 +830,7 @@
                     </table>
 
                   </form>
-                </div>
+                  </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                   <button type="button" name="delgroup" class="btn btn-primary">確定</button>
@@ -837,8 +838,9 @@
               </div>
             </div>
           </div>';
-          }}
-          mysqli_close($link); 
+            
+          }
+          mysqli_close($link);
           ?>
           <button onclick="showCsv()">Console log csv code</button>
           <button onclick="download()">Download csv file</button>

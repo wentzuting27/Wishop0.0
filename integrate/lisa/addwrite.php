@@ -1,5 +1,6 @@
 <?php
 if(isset($_POST['submit'])) {
+    $commodity_group_id = $_GET["commodity_group_id"];
     $announce_title = $_POST['announce_title'];
     $announce_narrate = $_POST['announce_narrate'];
     // 取得目前的時間戳
@@ -16,7 +17,7 @@ if(isset($_POST['submit'])) {
     // 移除了 'c_original_product_link' 的引號，因為欄位名稱不應該被引號包裹
     $sql = "INSERT INTO commodity_group_announce
      (commodity_group_id,announce_time, announce_title, announce_narrate) 
-     VALUES (3, '$submit_time', '$announce_title', '$announce_narrate')";
+     VALUES ('$commodity_group_id', '$submit_time', '$announce_title', '$announce_narrate')";
 
     $result = mysqli_query($link, $sql);
     if ($result) {

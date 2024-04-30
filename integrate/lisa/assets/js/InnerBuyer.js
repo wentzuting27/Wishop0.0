@@ -20,19 +20,48 @@ $(document).ready(function() {
     // 你的其他事件处理器代码...
   });
   
-  /**訂單按鈕**/
-  const checkbox = document.getElementById('box1');
-  const label1 = document.getElementById('label1');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const labels = document.querySelectorAll('label[name^="box"]');
   
-  // 添加点击事件监听器
-  checkbox.addEventListener('click', function () {
-    // 检查当前按钮文本
-    if (checkbox.checked) {
-      label1.textContent = '已付款';
-    } else {
-      label1.textContent = '未付款';
-    }
+  // 檢查會話存儲中是否有付款狀態，如果有，則根據其值設置複選框的狀態和標籤的內容
+  if (sessionStorage.getItem('paymentStatus') === 'paid') {
+      checkboxes.forEach(checkbox => {
+          checkbox.checked = true;
+      });
+      labels.forEach(label => {
+          label.textContent = '已付款';
+      });
+  }
+  
+  // 複選框點擊事件監聽器
+  checkboxes.forEach((checkbox, index) => {
+      checkbox.addEventListener('change', function () {
+          const isChecked = this.checked ? 1 : 0;
+          const label = labels[index]; // 獲取相應的標籤元素
+          const orderId = label.getAttribute('name'); // 獲取訂單ID
+  
+          // 發送AJAX請求
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', 'updatestatus.php');
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.onload = function () {
+              if (xhr.status === 200) {
+                  // 更新成功後的操作
+                  console.log('更新成功');
+                  // 更新按鈕文本
+                  label.textContent = isChecked ? '已付款' : '未付款';
+                  // 將狀態值存儲到會話存儲中
+                  sessionStorage.setItem('paymentStatus', isChecked ? 'paid' : 'unpaid');
+              } else {
+                  // 處理錯誤
+                  console.error('更新失敗');
+              }
+          };
+          xhr.send('status=' + isChecked + '&order_id=' + orderId); // 發送狀態值和訂單ID
+      });
   });
+  
+
     
 
   
