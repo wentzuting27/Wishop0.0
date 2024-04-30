@@ -194,7 +194,7 @@
             FROM commodity_group
             INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
             INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
-            WHERE commodity_group_state <> 2
+            WHERE commodity_group_state <> 2 and close_order_date is not null
             GROUP BY commodity_group.commodity_group_id, shop.shop_name
             ORDER BY COUNT(*) DESC
             LIMIT 5";
