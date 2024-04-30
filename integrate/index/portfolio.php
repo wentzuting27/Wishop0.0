@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio - Sailor Bootstrap Template</title>
+  <title>WISHOP 商品一覽</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -75,7 +75,7 @@
             </ul>
           </li>
           <li><a href="#">團購</a></li>
-          <li><a href="#">許願池</a></li>
+          <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
             if(!empty($_SESSION['user_name'])){
