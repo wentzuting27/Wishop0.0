@@ -9,6 +9,8 @@
 
 <body>
     <?php
+    session_start(); date_default_timezone_set('Asia/Taipei');
+
     $shop_name = $_POST["shop_name"];
     $shop_narrat = $_POST["shop_narrat"];
 
