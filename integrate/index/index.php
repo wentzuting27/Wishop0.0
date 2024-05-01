@@ -407,6 +407,8 @@
           <h1>推薦店家</h1>
         </div>
 
+        
+
         <div class="row gy-4 mt-3">
 
           <?php
@@ -421,7 +423,7 @@
             <div class="row">
               <?php while ($row = mysqli_fetch_assoc($result2)): ?>
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-2 mb-2" data-aos="fade-up" data-aos-delay="100">
-                  <div class="member">
+                  <div class="member" style="width: 300px;">
                     <div class="member-img">
                       <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">
                       <div class="social">
