@@ -460,26 +460,26 @@
         </section>
         <section id="first">
           <h2>Shipping</h2>
-          <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
-
-            <div class="col-lg-12 mt-5 mt-lg-0">
-              <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form">
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql = "select * from shop natural join account where shop_id=$shop_id";
-                $result = mysqli_query($link, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                  echo '
+            <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
+              <div class="col-lg-12 mt-5 mt-lg-0">
+                <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
+                  role="form">
+                  <?php
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "select * from shop natural join account where shop_id=$shop_id";
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                 <div>
                   <div class="col-md-3">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="'.$row["user_avatar"].'">
+                        src="' . $row["user_avatar"] . '">
                     </div>
                   </div>
                   <div style="float: left;margin-top: 45px; margin-left: 20px;">
-                    <h5>'.$row["account"].'</h5>
+                    <h5>' . $row["account"] . '</h5>
                   </div>
                 </div>
                 <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
@@ -500,15 +500,16 @@
                 <div class="text-center">
                   <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">上傳</button>
                 </div>';
-                }
-                ?>
-              </form>
+                  }
+                  ?>
+                </form>
+
+              </div>
 
             </div>
 
-          </div>
-
         </section><!-- End Contact Section -->
+
 
         <section id="order">
           <h2>Returns</h2>

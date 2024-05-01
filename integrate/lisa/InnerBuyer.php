@@ -557,6 +557,33 @@
               </div>
             </div>
             <br>
+            <?php
+        $commodity_group_id = $_GET["commodity_group_id"];
+
+        // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+        echo '
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var part3 = document.getElementById(\'card0\');
+    
+  part3.addEventListener(\'click\', function () {
+    // 导航到新页面
+    window.location.href = \'../lisa/rewrite.php?commodity_group_id='.$commodity_group_id .'#contact\';
+    
+    // 页面加载后延迟执行滚动到指定区域
+    window.addEventListener(\'load\', function () {
+      setTimeout(function () {
+        var targetElement = document.querySelector(\'#contact\');
+        if (targetElement) {
+          targetElement.scrollIntoView();
+        }
+      }, 1000); // 延迟 1 秒执行滚动操作
+    });
+  });
+});
+</script>';
+
+        ?>
             <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
 
             <div class="part2">

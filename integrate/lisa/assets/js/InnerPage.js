@@ -96,21 +96,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-document.addEventListener("DOMContentLoaded", function () {
-  var part3 = document.getElementById('card0');
-
-  part3.addEventListener('click', function () {
-    // 导航到新页面
-    window.location.href = '../lisa/rewrite.php#contact';
-
-    // 页面加载后延迟执行滚动到指定区域
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        var targetElement = document.querySelector('#contact');
-        if (targetElement) {
-          targetElement.scrollIntoView();
-        }
-      }, 1000); // 延迟 1 秒执行滚动操作
-    });
-  });
-});
