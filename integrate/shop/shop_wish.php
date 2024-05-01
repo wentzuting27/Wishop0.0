@@ -300,18 +300,64 @@
               $result=mysqli_query($link,$sql);
               while($row=mysqli_fetch_assoc($result))
               {
-              if($_SESSION["account"]!=$row["account"] && isset($_SESSION["account"])){
-                echo '
-                <div>
-                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;許願</button>
-              </div>';
-              }
+                $sql_wish="select * from wish where account='{$_SESSION["account"]}' AND MONTH(wish_start) = MONTH(CURRENT_DATE())
+                AND YEAR(wish_start) = YEAR(CURRENT_DATE())";
+                $result_wish = mysqli_query($link, $sql_wish);
+                $count = mysqli_num_rows($result_wish); // 获取结果行数
+                if(!isset($_SESSION["account"])){
+                  echo'
+                  <button class="btn insert_button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                  <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+                }elseif($count>=3){
+                  echo'
+                  <button class="btn insert_button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                  <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+                }else{
+                  echo'
+                  <button class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal">
+                  <i class="fa-solid fa-wand-sparkles"></i>&nbsp;Make A Wish&nbsp;<i class="fa-solid fa-wand-sparkles"></i></button>';
+                }
+              // if($_SESSION["account"]!=$row["account"] && isset($_SESSION["account"])){
+              //   echo '
+              //   <div>
+              //   <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;許願</button>
+              // </div>';
+              // }
               }
               
               ?>
               <?php 
                 $max_date = date('Y-m-d', strtotime('+3 months'));
               ?>
+
+              <!-- Modal 未登入不能許願 -->
+              <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">許願提醒</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    您需要先登入才能新增願望!~
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal 無許願次數 -->
+              <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">許願提醒</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    這個月您已經達到許願次數上限了，請期待下個月再來實現您的願望吧！
+                    </div>
+                  </div>
+                </div>
+              </div>
               
               <!-- insert_group_Modal -->
               <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
