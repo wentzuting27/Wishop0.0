@@ -384,19 +384,19 @@
                                 <div class="item-meta">
                                 ';
 
-                                if($row["commodity_group_state"]==3){
-                                  echo '<div class="item-meta">
-                                  <span class="wishNo-tag">未成團</span>
-                                  </div>';
-                                }elseif(mysqli_num_rows($result__order_YorN)==0){
-                                  echo '<div class="item-meta">
-                                  <span class="wishNo-tag">尚未下單</span>
-                                  </div>';
-                                }else{
-                                  echo '<div class="item-meta">
-                                  <span class="wishYes-tag">已下單</span>
-                                </div>';
-                                }
+                                // if($row["commodity_group_state"]==3){
+                                //   echo '<div class="item-meta">
+                                //   <span class="wishNo-tag">未成團</span>
+                                //   </div>';
+                                // }elseif(mysqli_num_rows($result__order_YorN)==0){
+                                //   echo '<div class="item-meta">
+                                //   <span class="wishNo-tag">尚未下單</span>
+                                //   </div>';
+                                // }else{
+                                //   echo '<div class="item-meta">
+                                //   <span class="wishYes-tag">已下單</span>
+                                // </div>';
+                                // }
                               echo'
                                 </div>
                               </div>
