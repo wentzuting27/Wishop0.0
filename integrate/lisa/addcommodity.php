@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
         }
         $commodity_name = $_POST['commodity_name'];
         $commodity_state = $_POST['commodity_state'];
+        $commodity_group_id = $_GET["commodity_group_id"];
         $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_name='$commodity_name'";
 
 
