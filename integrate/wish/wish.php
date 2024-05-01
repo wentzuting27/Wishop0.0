@@ -149,7 +149,8 @@
             <h2 class="animate__animated animate__fadeInDown">許下您的願望，讓WISHOP替您實現吧!</h2>
             <p class="animate__animated animate__fadeInUp">~每一个心聲都被聽見，每一次的許願都有機會實現~</p>
             <?php
-            $sql="select * from wish where account='{$_SESSION["account"]}'";
+            $sql="select * from wish where account='{$_SESSION["account"]}' AND MONTH(wish_start) = MONTH(CURRENT_DATE())
+            AND YEAR(wish_start) = YEAR(CURRENT_DATE())";
             $result = mysqli_query($link, $sql);
             $count = mysqli_num_rows($result); // 获取结果行数
             if(!isset($_SESSION["account"])){
