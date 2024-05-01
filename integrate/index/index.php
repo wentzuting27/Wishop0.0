@@ -213,8 +213,8 @@
                 echo '<div class="swiper-slide" >
                 <div class="testimonial-wrap" >
                   <div class="testimonial-item" style="height: 400px;">
-                  
-                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="" >
+                  <a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">
+                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="" ></a>
 
                     <div class="demo">
                       <h3><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">' . $row['commodity_group_name'] . '</a></h3>
