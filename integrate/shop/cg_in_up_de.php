@@ -45,7 +45,7 @@
         // }
 
         
-        // header("refresh:1;url=created_ac_detail.php?activity_id=$activity_id");
+        // header("refresh:0;url=created_ac_detail.php?activity_id=$activity_id");
 
     }elseif($method=="in"){
         if ($_FILES['group_bg']['error'] == UPLOAD_ERR_OK){
@@ -85,9 +85,9 @@
         }
 
         if($page=="shop"){
-            header("refresh:1;url=shop.php?shop_id=$shop_id");
+            header("refresh:0;url=shop.php?shop_id=$shop_id");
         }else{
-            header("refresh:1;url=shop_time.php?shop_id=$shop_id");
+            header("refresh:0;url=shop_time.php?shop_id=$shop_id");
         }
         
     }
@@ -108,7 +108,7 @@
         //     echo "<style> body{width: 100%;background: url(8.png) top right;background-size: cover;position: relative;}</style>";
         // }
         
-        // header("refresh:1;url=currently_created.php");
+        // header("refresh:0;url=currently_created.php");
 
     }
 ?>

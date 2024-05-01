@@ -372,62 +372,65 @@
 
                               if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<div class="list-group-item list-group-item-action">
-                                            <div class="item">
-                                            ';
-                                            $sql_img="select * from wish_photo
-                                            WHERE wish_id='{$row["wish_id"]}'";
-                                            $result_img=mysqli_query($link, $sql_img);
-                                            $row_img = mysqli_fetch_assoc($result_img);
-                                            echo'
-                                              <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
-                                              <div class="item-details">
-                                                <div class="product-title">
-                                                  <a href="../shop/wish-details.php?wish_id=',$row['wish_id'].'&shop_id=',$row['wish_shop_id'].'">
-                                                    <h4>', $row["wish_name"], '</h4>
-                                                  </a>';
-                                                    // 設一個下個星期的今天的變數
-                                                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
-                                                    // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
-                                                    if($row["wish_end"]<= $oneweekAgo && $row["wish_end"]>= date('Y-m-d')){
-                                                      echo'
-                                                      <span class="expiring-tag">即將過期</span>
-                                                </div>
-                                                      ';
-                                                    }
-                                                    $sql_shop="select * from shop
-                                                    WHERE shop_id='{$row["wish_shop_id"]}'";
-                                                    $result_shop=mysqli_query($link, $sql_shop);
-                                                    $row_shop = mysqli_fetch_assoc($result_shop);
-                                                    echo '
-                                                  <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
-                                                  class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
-                                                  
-                                                  <p class="deadline">許願時間: ', $row["wish_start"], '</p>
-                                                  <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
-                                              </div>';
+                                  echo '<div class="list-group-item list-group-item-action">
+                                  <div class="item">
+                                  ';
+                                  $sql_img="select * from wish_photo
+                                  WHERE wish_id='{$row["wish_id"]}'";
+                                  $result_img=mysqli_query($link, $sql_img);
+                                  $row_img = mysqli_fetch_assoc($result_img);
+                                  echo'
+                                    <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
+                                    <div class="item-details">
+                                      <div class="product-title">
+                                        <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
+                                          <h4>', $row["wish_name"], '</h4>
+                                        </a>';
 
-                                                $sql_wish_YorN="select * from bid
-                                                WHERE wish_id='{$row["wish_id"]}'";
-                                                $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
-                                                if(mysqli_num_rows($result_wish_YorN)==0){
-                                                  echo '<div class="item-meta">
-                                                  <span class="wishNo-tag"><i
-                                                  class="fa-solid fa-hourglass-start"></i>&nbsp;&nbsp;待接取</span>
-                                                  </div>';
-                                                }else{
-                                                  echo '<div class="item-meta">
-                                                  <span class="wishYes-tag"><i
-                                                  class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                                </div>';
-                                                }
-                                                
+                                        // 設一個下個星期的今天的變數
+                                        $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                        // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                                        if($row["wish_end"]<= $oneweekAgo && $row["wish_end"]>= date('Y-m-d')){
+                                          echo'
+                                          <span class="expiring-tag">即將過期</span>
+                                          ';
+                                        }
 
-                                                
-                                              echo'
-                                              </div>
-                                            </div>';
-                                  }
+                                        echo '
+                                      </div>';
+                                      $sql_shop="select * from wish
+                                      join shop on wish_shop_id=shop_id
+                                      WHERE wish_id='{$row["wish_id"]}'";
+                                      $result_shop=mysqli_query($link,$sql_shop);
+                                      while($row_shop=mysqli_fetch_assoc($result_shop))
+                                      {
+                                        echo '<a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>';
+                                      }
+                                      echo '
+                                      <p class="deadline">許願時間: ', $row["wish_start"], '</p>
+                                      <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
+                                    </div>';
+
+                                    $sql_wish_YorN="select * from bid
+                                    WHERE wish_id='{$row["wish_id"]}'";
+                                    $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
+                                    if(mysqli_num_rows($result_wish_YorN)==0){
+                                      echo '<div class="item-meta">
+                                      <span class="wishNo-tag">無人出價</span>
+                                      </div>';
+                                    }else{
+                                      echo '<div class="item-meta">
+                                      <span class="wishYes-tag">有人出價</span>
+                                    </div>';
+                                    }
+                                    
+
+                                    
+                                  echo'
+                                  </div>
+                                </div>';
+                      }
                               } else {
                                   echo "查無當前進行中許願：" . mysqli_error($link);
                               }

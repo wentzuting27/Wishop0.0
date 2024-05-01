@@ -49,11 +49,21 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
+      <?php
+          $commodity_group_id = $_GET["commodity_group_id"];
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "select *
+        from commodity_group
+        where commodity_group_id=$commodity_group_id";
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $shop_id=$row["shop_id"];
+          } ?>
 
         <div class="d-flex justify-content-between align-items-center">
 
           <ol>
-            <li><a href="../shop/shop.php" style="color: rgb(255, 230, 237);">返回賣場</a></li>
+            <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id;?>" style="color: rgb(255, 230, 237);">返回賣場</a></li>
             <li>團內資訊</li>
           </ol>
         </div>
@@ -556,7 +566,7 @@
             <td>' . $totalprice . '</td>
             <td>
                   <center>
-                    <input id="box1" type="checkbox" />
+                    <input id="box1" type="checkbox" disabled/>
                     <label for="box1" id="label1">未付款</label>
                   </center>
                 </td>
@@ -617,7 +627,7 @@
                         <th >訂單狀態</th>
                         <td>
                         <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
-                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)"></textarea>
+                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)" disabled></textarea>
                         </td>
                       </tr>
                       <tr>
