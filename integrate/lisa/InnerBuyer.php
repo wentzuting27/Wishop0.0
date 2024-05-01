@@ -185,19 +185,22 @@
     }
     ?>
 
-    <?php
-    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+<?php
     $commodity_group_id = $_GET["commodity_group_id"];
-    $sql = "select *
-    from commodity_group
-    where commodity_group_id=$commodity_group_id";
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select * from commodity_group where commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
           <div class="col-md-7">
-            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>
-              <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
-            </h3>
+            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>';
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
+            $result2 = mysqli_query($link, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+            echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）</small>';
+            echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
@@ -205,7 +208,7 @@
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
                     <div id="three" class="button">#xxx</div>
-                    <div id="four" class="button">#xxxxx</div><br>
+                    <div id="four" class="button">#xxx</div><br>
                   </div>
                 </div>
               </div>
@@ -386,6 +389,7 @@
                           <button class="btn btn-danger btn-sm" name="del" value="delete" type="submit" style="background-color: #E9C9D6;border: none;color: white;">
                           <i class="fa-solid fa-trash"></i>
                         </button>
+                        <input type="hidden" name="commodity_name" value="', $row["commodity_name"], '">
                         </td>
                       </tr>';
                     } ?>
@@ -399,8 +403,10 @@
               <div class="seven" id="list-item-2">
                 <h1>待上架商品區</h1>
               </div>
+              <form  method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" enctype="multipart/form-data">
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
+                
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
@@ -424,16 +430,19 @@
                         <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-danger btn-sm" name="del" value="delete" type="submit" style="background-color: #E9C9D6;border: none;color: white;">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <input type="hidden" name="commodity_name" value="', $row["commodity_name"], '">
                       </div>
                     </div>
                   </div>'
                     ;
                   }
                   ?>
+                
                 </div>
-              </div>
+              </div></form>
               <br><br>
               <div class="seven" id="list-item-3">
                 <h1>下架商品區</h1>
@@ -484,12 +493,19 @@
               <div class="card border-secondary mb-12" style="width: 100%;border-radius: 0;">
                 <div class="card-header bg-transparent border-secondary">
                   <div class="col-md-1">
+                  <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $account = $_SESSION["account"];
+                $sql = "select user_avatar from  commodity_group natural join account where account='$account'";
+                $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                  echo '
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+                        src="', $row["user_avatar"], '">
                     </div>
-                  </div>
+                  </div>';?>
                   <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>撰寫內容...</small>
                   </h4>
                   <button class="btn btn-info btn-sm"
@@ -506,7 +522,8 @@
               <div id="slider-carousel" class="owl-carousel">
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql = "select * from commodity_group_announce";
+                $account = $_SESSION["account"];
+                $sql = "select * from commodity_group_announce natural join commodity_group natural join account where account='$account'";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
@@ -518,7 +535,7 @@
                           <div class="profile-picture big-profile-picture clear"
                             style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+                              src="', $row["user_avatar"], '">
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>

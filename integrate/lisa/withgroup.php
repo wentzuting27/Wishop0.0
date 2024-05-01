@@ -29,7 +29,7 @@ if (isset($_POST['addgroup'])) {
     // 在這裡執行刪除操作
     $sql = "INSERT INTO withgroup
         (commodity_group_id,account, withgroup_time) 
-        VALUES (3, '$account', '$add_time')";
+        VALUES ($commodity_group_id, '$account', '$add_time')";
     if (mysqli_query($link, $sql)) {
         echo '<script>alert("跟團成功!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {
