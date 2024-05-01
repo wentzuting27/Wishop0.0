@@ -296,7 +296,7 @@
                   $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                   FROM commodity
                   JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
-                  WHERE commodity.commodity_state = 1
+                  WHERE commodity.commodity_state = 1 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;
                   ";
                   $result = mysqli_query($link, $sql);
