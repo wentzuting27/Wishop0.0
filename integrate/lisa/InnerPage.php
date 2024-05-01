@@ -556,7 +556,7 @@
             <td>' . $totalprice . '</td>
             <td>
                   <center>
-                    <input id="box1" type="checkbox" />
+                    <input id="box1" type="checkbox" disabled/>
                     <label for="box1" id="label1">未付款</label>
                   </center>
                 </td>
@@ -617,7 +617,7 @@
                         <th >訂單狀態</th>
                         <td>
                         <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
-                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)"></textarea>
+                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)" disabled></textarea>
                         </td>
                       </tr>
                       <tr>
