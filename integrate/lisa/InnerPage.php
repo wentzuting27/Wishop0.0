@@ -76,9 +76,7 @@
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $commodity_group_id =  $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
-    //session_start();
-    //$account = $_SESSION["account"];
-    $account = "123";
+    $account = $_SESSION["account"];
     $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
 
@@ -115,12 +113,14 @@
     </div>
     <div class="edit_like_shop_button">
     <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already" id="one1">
     取消跟團</button>
     </div>
-    <p>
-        <i class="fa-solid fa-bullhorn" ></i>
-    </p>
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
+    <p><i class="fa-solid fa-bullhorn"></i></p>
+    </div>
+    <div>
     <center>
     <marquee>
     <span>公告：商品即將寄出，請注意到貨時間！</span>
@@ -135,7 +135,7 @@
 </div>
     </div>
 
-    <form method="post" action="withgroup.php">
+    <form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
       <!-- Modal -->
       <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -155,7 +155,24 @@
         </div>
       </div>
     </form>
-
+<!-- Modal -->
+<div class="modal fade" id="already" tabindex="-1" aria-labelledby="alreadyLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="alreadyLabel">您已經跟團</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h6 style="color:red;padding-left:10px">跟團須知：</h6>
+            <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
+            <h6 style="padding-left:10px">跟團也無法退團</h6>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+              <button type="button"  class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -280,7 +297,7 @@
           <!-- change Section -->
           <div id="app">
             <div class="container">
-              <form method="post" action="order.php">
+              <form method="post" action="order.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
                 <table id="cart" class="table table-hover table-condensed">
                   <thead>
                     <tr>
@@ -337,14 +354,14 @@
                       <td class="hidden-xs text-center" id="totalPrice"><strong>Total $0</strong></td>
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
-                            class="btn btn-success btn-block">
-                            結帳 <i class="fa-solid fa-arrow-right-to-line"></i>
+                            class="btn btn-success btn-block">結帳 <i class="fa-solid fa-arrow-right-to-line"></i>
                           </button></center>
                       </td>
                     </tr>
                   </tfoot>
 
                 </table>
+                </form>
             </div>
           </div>
           <!-- Modal -->

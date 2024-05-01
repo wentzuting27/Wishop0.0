@@ -2,7 +2,6 @@
 $commodity_group_id = $_GET["commodity_group_id"]; // 在哪一個商品團體要用接值得方式,先假設1,之後再改
 // 首先啟動會話
 //session_start();
-session_start();
 $account = $_SESSION["account"];
 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
@@ -32,9 +31,9 @@ if (isset($_POST['addgroup'])) {
         (commodity_group_id,account, withgroup_time) 
         VALUES (3, '$account', '$add_time')";
     if (mysqli_query($link, $sql)) {
-        echo '<script>alert("跟團成功!"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("跟團成功!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {
-        echo '<script>alert("跟團失敗!"); window.location.href = "InnerPage.php";</script>';
+        echo '<script>alert("跟團失敗!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     }
 }
 

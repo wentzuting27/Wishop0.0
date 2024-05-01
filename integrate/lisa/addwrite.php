@@ -21,10 +21,10 @@ if(isset($_POST['submit'])) {
 
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '<script>alert("新增成功!"); window.location.href = "InnerBuyer.php";</script>';
+        echo '<script>alert("新增成功!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
         exit(); 
     } else{
-        echo '<script>alert("新增失敗"); window.location.href = "InnerBuyer.php";</script>'; 
+        echo '<script>alert("新增失敗"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>'; 
     }
     
     mysqli_close($link);
