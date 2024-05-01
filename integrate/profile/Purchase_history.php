@@ -282,7 +282,7 @@
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
                               // 查詢所有進行中的訂單
                               $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
-                                      WHERE order_time <= CURDATE() AND account = '{$_SESSION['account']}' AND order_state <> '訂單完成'
+                                      WHERE account = '{$_SESSION['account']}' AND order_state <> '訂單完成'
                                       GROUP BY order_id";
                                       // 下單時間在今天以前(下單完成)且還沒訂單完成的訂單
                               $result = mysqli_query($link, $sql);
