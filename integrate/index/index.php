@@ -227,7 +227,6 @@
                     <span>' . $row['commodity_group_narrate'] . '</span>
                   </div>
                     <br>
-                    <br>
 
                     <div>
                       <a type="button" href="#" class="btn btn-light-tag">#tag</a>
@@ -235,7 +234,6 @@
                       <a type="button" href="#" class="btn btn-light-tag">#tag</a>
                     </div>
 
-                    <br>
                     <br>
 
                     <div class="meta d-flex align-items-center">
