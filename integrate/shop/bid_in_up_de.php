@@ -10,10 +10,7 @@
     $bid_price=$_POST['bid_price'];
     $bid_people=$_POST['bid_people'];
     $link=mysqli_connect('localhost','root','12345678','wishop');
-    // 取得檔案路徑
-    $sql_select = "SELECT commodity_group_bg FROM commodity_group WHERE user_id='{$_SESSION['user_id']}'";
-    $result_select = mysqli_query($link, $sql_select);
-
+   
     if($method=="up"){
         // if (!empty($_FILES['upload_file']['name'])) {
         //     取得檔案路徑
