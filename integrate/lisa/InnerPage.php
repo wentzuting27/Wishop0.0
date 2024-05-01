@@ -340,7 +340,7 @@
                       <input type="number" name="quantity_', $row["commodity_id"], '" 
                       id="quantityInput', $row["commodity_id"], '" class="form-control text-center" value="0" >
                     </td>
-                    <td data-th="Subtotal" class="text-center" >$0</td>
+                    <td data-th="Subtotal" class="text-center">$0</td>
                   </tr>';
                   } ?>
 
@@ -355,9 +355,7 @@
                       </td>
                     </tr>
                   </tfoot>
-
                 </table>
-                </form>
             </div>
           </div>
           <!-- Modal -->
