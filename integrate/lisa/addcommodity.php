@@ -53,13 +53,17 @@ if (isset($_POST['submit'])) {
     } else {
         echo '<script>alert("新增失敗"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
     }
+    mysqli_close($link); // 關閉資料庫連接
+}
     if (isset($_POST['del'])) {
         $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
         if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
         }
+        $commodity_group_id = $_GET["commodity_group_id"];
         $commodity_name = $_POST['commodity_name'];
+        $commodity_state = $_POST['commodity_state'];
         $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_name='$commodity_name'";
 
 
@@ -67,10 +71,13 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             echo '<script>alert("成功!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            exit();
         } else {
             echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         }
-    }
+    
+
     mysqli_close($link); // 關閉資料庫連接
 }
+
 ?>
