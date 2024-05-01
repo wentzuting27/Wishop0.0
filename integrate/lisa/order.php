@@ -1,20 +1,23 @@
 <?php
 if(isset($_POST['submit']) || isset($_POST['submit2'])) {
-    $shop_id = 1;
-    // 取得目前会话的 Session ID
-    session_start();
-    $account = $_SESSION["account"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-
     if (!$link) {
         die('Connection failed: ' . mysqli_connect_error());
     }
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $sql4= "SELECT shop_id FROM commodity_group WHERE commodity_group_id = '$commodity_group_id'";
+    $result4=mysqli_query($link, $sql4);
+    $row4 = mysqli_fetch_assoc($result4);
+    $shop_id = $row4["shop_id"];
+    // 取得目前会话的 Session ID
+    // session_start();
+    $account = $_SESSION["account"];
+    
     $sql = "SELECT common_payment_account FROM shop NATURAL JOIN account WHERE shop_id = ' $shop_id'";
     $sql1 = "SELECT common_payment_account FROM account WHERE account = '$account'";
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
     $account_to_send_money_to = $row['common_payment_account'];
-    $commodity_group_id = $_GET["commodity_group_id"];
     $result1 = mysqli_query($link, $sql1);
     $row1 = mysqli_fetch_assoc($result1);
     $payment_account = $row1['common_payment_account'];

@@ -62,17 +62,16 @@
     </section><!-- End Breadcrumbs -->
 
     <?php
-  $commodity_group_id = $_GET["commodity_group_id"];
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from commodity_group
   where commodity_group_id=$commodity_group_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
 
-    <section id="hero" style="background-image: url(',$row["commodity_group_bg"],');
+    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
     ;">
       <div class="background-overlay" style="position: absolute;
     top: 0;
@@ -149,26 +148,26 @@
             </marquee>
           </center>
         </div>
-      </div>';}?>
+      </div>';
+    } ?>
 
-      <!-- Showcase -->
-      <?php
-  $shop_id=1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    <!-- Showcase -->
+    <?php
+    $shop_id = 1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from shop
   where shop_id=$shop_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
       <!-- Showcase -->
       <div class="card mb-3" style="width: 100%;border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5" style="padding: 10px;padding-left: 150px;">
             <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="',$row["shop_avatar"],'">
+                src="', $row["shop_avatar"], '">
             </div>
             <br>
             <center>
@@ -176,26 +175,26 @@
                 style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
             </center>
           </div>
-          ';}
-?>
+          ';
+    }
+    ?>
 
-  <?php
-  $commodity_group_id = $_GET["commodity_group_id"];
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+    <?php
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    $sql = "select *
   from commodity_group
   where commodity_group_id=$commodity_group_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo '
+    $result = mysqli_query($link, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo '
           <div class="col-md-7"
             style="padding-left: 40px;padding-right: 40px;background-color:rgb(252, 252, 252);width: 500px;border-radius: 30px;">
-            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>',$row["commodity_group_name"],'</b>
+            <h3 class="card-title" style="font-size: 0.8cm;padding-top: 14px;color: #B0A5C6;"><b>', $row["commodity_group_name"], '</b>
               <small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">88人</span>）</small>
             </h3>
             <div class="card-text" style="font-size: 0.4cm;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);font-weight: bold">
-                <p style="color: #5a5a5a;font-size: 0.3cm">',$row["commodity_group_narrate"],'</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -211,11 +210,12 @@
       </div>
 
     </section>
-    <!-- SECOND navbar -->';}?>
+    <!-- SECOND navbar -->';
+    } ?>
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" >
+      <input type="radio" id="tab1" name="tab-control">
       <input type="radio" id="tab2" name="tab-control">
       <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
@@ -238,13 +238,13 @@
       <div class="content" style="margin-top: -5px;padding: 0%;">
         <section class="addgoods">
           <h2>Features</h2>
-          <div class="container" >
+          <div class="container">
             <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;">
               <table class="table table-hover" width="100%">
                 <tbody>
                   <tr>
-                  <th>商品名稱</th>
-                    <td >
+                    <th>商品名稱</th>
+                    <td>
                       <fieldset>
                         <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
                       </fieldset>
@@ -261,43 +261,43 @@
                   <tr>
                     <th>商品狀態</th>
                     <td>
-                    <div>
-                      <input type="radio" id="1" name="commodity_state" value="1" checked />
-                      <label for="add1">上架</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="2" name="commodity_state" value="2" />
-                      <label for="add2">待上架</label>
-                    </div>
+                      <div>
+                        <input type="radio" id="1" name="commodity_state" value="1" checked />
+                        <label for="add1">上架</label>
+                      </div>
+                      <div>
+                        <input type="radio" id="2" name="commodity_state" value="2" />
+                        <label for="add2">待上架</label>
+                      </div>
                     </td>
-                    </tr>
-                    <tr>
-                      <th >金額</th>
+                  </tr>
+                  <tr>
+                    <th>金額</th>
                     <td>
                       <fieldset>
                         <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
                       </fieldset>
                     </td>
-                    
-                    </tr>
-                    <tr>
-                      <th>連結</th>
-                      <td>
+
+                  </tr>
+                  <tr>
+                    <th>連結</th>
+                    <td>
                       <fieldset>
                         <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
                       </fieldset>
                     </td>
-                    </tr>
-                    <tr>
-                      <th>上傳圖片</th>
+                  </tr>
+                  <tr>
+                    <th>上傳圖片</th>
                     <td>
                       <fieldset>
                         <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                          multiple="multiple" name="commodity_photo"/>
+                          multiple="multiple" name="commodity_photo" />
                       </fieldset>
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td colspan="5">
                       <fieldset>
@@ -342,14 +342,13 @@
                       </tr>
                     </thead>
                     <?php
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=1";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
-                    echo '
+                    $result = mysqli_query($link, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '
                     <tbody>
                       <tr>
                         <td data-th="Product">
@@ -357,16 +356,16 @@
                             <div class="col-sm-4 hidden-xs">
                               <a href="doll.php" class="portfolio-details-lightbox" data-glightbox="type: external"
                                 title="Portfolio Details">
-                                <img src="',$row["commodity_photo"],'"
+                                <img src="', $row["commodity_photo"], '"
                                   alt="..." class="img-responsive" /></a>
                             </div>
                             <div class="col-sm-8">
-                              <h4 class="nomargin"><b>',$row["commodity_name"],'</b></h4>
-                              <p>',$row["commodity_narrate"],'</p>
+                              <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
+                              <p>', $row["commodity_narrate"], '</p>
                             </div>
                           </div>
                         </td>
-                        <td data-th="Price">$',$row["commodity_price"],'</td>
+                        <td data-th="Price">$', $row["commodity_price"], '</td>
                         <td data-th="Quantity">
                           <center>2</center>
                         </td>
@@ -377,8 +376,9 @@
                           <button class="btn btn-danger btn-sm"
                           style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                         </td>
-                      </tr>';}?>
-                     
+                      </tr>';
+                    } ?>
+
                     </tbody>
                   </table>
                 </div>
@@ -389,25 +389,24 @@
               </div>
               <div class="row">
                 <div id="slider-carouse2" class="owl-carousel">
-                <?php
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                  <?php
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=2";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="',$row["commodity_photo"],'"
+                          src="', $row["commodity_photo"], '"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">',$row["commodity_name"],'</h5>
-                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <h5 class="card-title">', $row["commodity_name"], '</h5>
+                        <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
@@ -415,7 +414,8 @@
                       </div>
                     </div>
                   </div>'
-                  ;}
+                    ;
+                  }
                   ?>
                 </div>
               </div>
@@ -425,25 +425,24 @@
               </div>
               <div class="row">
                 <div id="slider-carouse3" class="owl-carousel">
-                <?php
-                    $link=mysqli_connect('localhost','root','12345678','wishop');
-                    $sql="select *
+                  <?php
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "select *
                     from commodity natural join commodity_photo
                     where commodity_state=3";
-                    $result=mysqli_query($link,$sql);
-                    while($row=mysqli_fetch_assoc($result))
-                    {
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                       <div class="card-head">
                         <img
-                          src="',$row["commodity_photo"],'"
+                          src="', $row["commodity_photo"], '"
                           class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title">',$row["commodity_name"],'</h5>
-                        <p class="card-text">',$row["commodity_narrate"],'</p>
+                        <h5 class="card-title">', $row["commodity_name"], '</h5>
+                        <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btn btn-danger btn-sm"
@@ -451,7 +450,8 @@
                       </div>
                     </div>
                   </div>'
-                  ;}
+                    ;
+                  }
                   ?>
                 </div>
               </div>
@@ -463,18 +463,23 @@
           <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
 
             <div class="col-lg-12 mt-5 mt-lg-0">
-              <form action="addwrite.php" method="post" role="form" >
-
+              <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form">
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "select * from shop natural join account where shop_id=$shop_id";
+                $result = mysqli_query($link, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '
                 <div>
                   <div class="col-md-3">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+                        src="'.$row["user_avatar"].'">
                     </div>
                   </div>
                   <div style="float: left;margin-top: 45px; margin-left: 20px;">
-                    <h5>用戶暱稱</h5>
+                    <h5>'.$row["account"].'</h5>
                   </div>
                 </div>
                 <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
@@ -494,7 +499,9 @@
                 </div>
                 <div class="text-center">
                   <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">上傳</button>
-                </div>
+                </div>';
+                }
+                ?>
               </form>
 
             </div>

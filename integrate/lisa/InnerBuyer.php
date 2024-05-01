@@ -235,7 +235,7 @@
         <section class="addgoods">
           <h2>Features</h2>
           <div class="container">
-            <form id="contact" method="post" action="addcommodity.php" style="padding: 5%;"
+            <form id="contact" method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" style="padding: 5%;"
               enctype="multipart/form-data">
               <table class="table table-hover" width="100%">
                 <tbody>
@@ -329,6 +329,7 @@
               </div>
               <div id="app">
                 <div class="container">
+                <form  method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" enctype="multipart/form-data">
                   <table id="cart" class="table table-hover table-condensed">
                     <thead>
                       <tr>
@@ -372,7 +373,7 @@
                         <td class="actions" data-th="">
                           <button class="btn btn-info btn-sm"
                           style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm"
+                          <button class="btn btn-danger btn-sm" name="del" type="submit"
                           style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
                         </td>
                       </tr>';
@@ -380,6 +381,7 @@
 
                     </tbody>
                   </table>
+                  </form>
                 </div>
               </div>
               <br><br>
@@ -715,7 +717,7 @@
           <div class="seven">
             <h1>對帳表</h1>
           </div>
-          <form action="upsatestate.php" method="post" style="height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <div style="height: 400px;overflow-y: auto;overflow-x: hidden;">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -767,15 +769,17 @@
                     <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">未付款</label>
                   </center>
                 </td>
-                <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
-                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button></td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
                 </tr>
                 </tbody>
                 ';
               }
               mysqli_close($link); ?>
             </table>
-          </form>
+            </div>
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
           if (!$link) {
