@@ -371,10 +371,12 @@
                         </td>
                         <td data-th="Subtotal" class="text-center">5</td>
                         <td class="actions" data-th="">
+                        <input type="hidden" name="del" value="1">
                           <button class="btn btn-info btn-sm"
                           style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button class="btn btn-danger btn-sm" name="del" type="submit"
-                          style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                          <button class="btn btn-danger btn-sm" name="del" value="delete" type="submit" style="background-color: #E9C9D6;border: none;color: white;">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
                         </td>
                       </tr>';
                     } ?>
