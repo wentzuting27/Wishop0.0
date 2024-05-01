@@ -49,11 +49,21 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
+      <?php
+          $commodity_group_id = $_GET["commodity_group_id"];
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "select *
+        from commodity_group
+        where commodity_group_id=$commodity_group_id";
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $shop_id=$row["shop_id"];
+          } ?>
 
         <div class="d-flex justify-content-between align-items-center">
 
           <ol>
-            <li><a href="../shop/shop.php" style="color: rgb(255, 230, 237);">返回賣場</a></li>
+            <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id;?>" style="color: rgb(255, 230, 237);">返回賣場</a></li>
             <li>團內資訊</li>
           </ol>
         </div>
