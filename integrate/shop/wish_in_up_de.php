@@ -92,7 +92,7 @@
         //     echo "<style> body{width: 100%;background: url(8.png) top right;background-size: cover;position: relative;}</style>";
         // }
         
-        // header("refresh:1;url=currently_created.php");
+        // header("refresh:0;url=currently_created.php");
 
     }
 ?>

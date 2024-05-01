@@ -44,7 +44,7 @@
         value('$wish_id','{$_SESSION["user_shop_id"]}','$new_id','$bid_price','$bid_people',NOW())";
 
         if(mysqli_query($link, $sql_insert) && mysqli_query($link, $sql_insert_bid)){
-            header("refresh:1;url=wish-details.php?wish_id=$wish_id");
+            header("refresh:0;url=wish-details.php?wish_id=$wish_id");
         }else{
             echo "失敗";
         }
@@ -62,7 +62,7 @@
         }
         
         if(mysqli_query($link, $sql)){
-            header("refresh:1;url=wish-details.php?wish_id=$wish_id");
+            header("refresh:0;url=wish-details.php?wish_id=$wish_id");
         }else{
             echo $sql;
             echo "失敗";
@@ -71,7 +71,7 @@
         $sql="update wish set wish_state=1
         where wish_id=$wish_id";
         if(mysqli_query($link, $sql)){
-            header("refresh:1;url=wish-details.php?wish_id=$wish_id");
+            header("refresh:0;url=wish-details.php?wish_id=$wish_id");
         }else{
             echo $sql;
             echo "失敗";
@@ -82,7 +82,7 @@
         $sql="insert into withgroup(commodity_group_id,account,withgroup_time)
         value('$commodity_group_id','{$_SESSION["account"]}',NOW())";
         if(mysqli_query($link, $sql)){
-            header("refresh:1;url=wish-details.php?wish_id=$wish_id");
+            header("refresh:0;url=wish-details.php?wish_id=$wish_id");
         }else{
             echo "失敗";
         }
