@@ -179,10 +179,13 @@
         <div class="seven">
           <h1>熱門團購</h1>
         </div>
-
         <style>
-          
-        </style>
+            .testimonial-item img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+          </style>
 
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
