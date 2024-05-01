@@ -88,4 +88,5 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
 
     mysqli_close($link);
 }
+
 ?>

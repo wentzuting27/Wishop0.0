@@ -466,7 +466,8 @@
                   role="form">
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "select * from shop natural join account where shop_id=$shop_id";
+                  $account = $_SESSION["account"];
+                  $sql = "select * from shop natural join account where account='$account'";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '

@@ -386,6 +386,7 @@
                           <button class="btn btn-danger btn-sm" name="del" value="delete" type="submit" style="background-color: #E9C9D6;border: none;color: white;">
                           <i class="fa-solid fa-trash"></i>
                         </button>
+                        <input type="hidden" name="commodity_name" value="', $row["commodity_name"], '">
                         </td>
                       </tr>';
                     } ?>

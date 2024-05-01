@@ -61,7 +61,6 @@ if (isset($_POST['submit'])) {
         if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
         }
-        $commodity_group_id = $_GET["commodity_group_id"];
         $commodity_name = $_POST['commodity_name'];
         $commodity_state = $_POST['commodity_state'];
         $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_name='$commodity_name'";
