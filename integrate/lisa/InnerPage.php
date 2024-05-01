@@ -68,6 +68,7 @@
   where commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
+      $shop_id=$row["shop_id"];
       echo '
     <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
     ;">';
@@ -157,7 +158,6 @@
 
 
     <?php
-    $shop_id = 1;//在哪一個商品團體要用接值得方式,先假設1,之後再改
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     $sql = "select * from shop where shop_id=$shop_id";
     $result = mysqli_query($link, $sql);
@@ -174,7 +174,7 @@
             <br>
             <center>
               <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-                style="text-decoration: none;font-weight: 600;">三麗鷗快樂購</a>
+                style="text-decoration: none;font-weight: 600;">', $row["shop_name"], '</a>
             </center>
           </div>
           ';
@@ -198,8 +198,8 @@
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
                   <div class="buttons">
-                    <div id="three" class="button">#三麗鷗</div>
-                    <div id="four" class="button">#美少女戰士</div><br>
+                    <div id="three" class="button">#xxx</div>
+                    <div id="four" class="button">#xxx</div><br>
                   </div>
                 </div>
               </div>
