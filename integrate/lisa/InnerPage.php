@@ -341,16 +341,12 @@
                       id="quantityInput', $row["commodity_id"], '" class="form-control text-center" value="0" >
                     </td>
                     <td data-th="Subtotal" class="text-center" >$0</td>
-                    <td class="actions" data-th="">
-                    <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
-                    </td>
                   </tr>';
                   } ?>
 
                   <tfoot>
                     <tr>
-                      <td colspan="3" class="hidden-xs text-center"></td>
+                      <td colspan="2" class="hidden-xs text-center"></td>
                       <td class="hidden-xs text-center" id="totalPrice"><strong>Total $0</strong></td>
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
@@ -532,6 +528,7 @@
               }
               $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
            GROUP BY order_details.order_id;
                   ";
               $result = mysqli_query($link, $sql);

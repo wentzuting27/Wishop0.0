@@ -49,9 +49,18 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-
+        <?php
+          $commodity_group_id = $_GET["commodity_group_id"];
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "select *
+        from commodity_group
+        where commodity_group_id=$commodity_group_id";
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $shop_id=$row["shop_id"];
+          } ?>
           <ol>
-            <li><a href="../shop/shop.php" style="color: rgb(255, 230, 237);">返回賣場</a></li>
+            <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id;?>" style="color: rgb(255, 230, 237);">返回賣場</a></li>
             <li>團內資訊</li>
           </ol>
         </div>
@@ -344,7 +353,7 @@
                     $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                     FROM commodity
                     JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
-                    WHERE commodity.commodity_state = 1
+                    WHERE commodity.commodity_state = 1 AND commodity_group_id=$commodity_group_id
                     GROUP BY commodity.commodity_id;";
                     $result = mysqli_query($link, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -395,7 +404,7 @@
                   $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                   FROM commodity
                   JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
-                  WHERE commodity.commodity_state = 2
+                  WHERE commodity.commodity_state = 2 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
@@ -434,7 +443,7 @@
                   $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                   FROM commodity
                   JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
-                  WHERE commodity.commodity_state = 3
+                  WHERE commodity.commodity_state = 3 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
@@ -736,6 +745,7 @@
               }
               $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
            GROUP BY order_details.order_id;
                   ";
               $result = mysqli_query($link, $sql);
