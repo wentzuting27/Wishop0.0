@@ -344,6 +344,13 @@
                         </div>
                       </a>
 
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text"><i class="fa-solid fa-bars"></i>&nbsp;其他</div>
+                        </div>
+                      </a>
+
                     </div>
 
                   </div>
