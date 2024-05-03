@@ -811,6 +811,14 @@ section {
 }
 
 
+.btn-light-tag2 {
+  border-radius: 15px;
+  border: 2px solid #B0A5C6;
+  color: #B0A5C6;
+}
+
+
+
 .btn-light-more {
   --bs-btn-color: #fff;
   --bs-btn-bg: #E9C9D6;
