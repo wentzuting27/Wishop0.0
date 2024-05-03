@@ -45,8 +45,8 @@
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
-      <div class="container align-items-center" style="height:400px;">
-        <div class="row gy-4 " style="margin-top:-100px">
+      <div class="container align-items-center">
+        <div class="row gy-4 ">
           <div class="col-lg-6">
             <div class="portfolio-details-slider swiper" style="transform: scale(0.8);background-color: beige;">
               <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -59,7 +59,7 @@
                     $active = true;
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo '<div class="carousel-item  ' . ($active ? 'active' : '') . '">
-                                <img src="' . $row["commodity_photo"] . '" class="d-block w-100" alt="...">
+                                <img src="' . $row["commodity_photo"] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">
                             </div>';
                       $active = false;
                     }
