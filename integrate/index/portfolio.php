@@ -44,7 +44,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -56,8 +56,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
+          <li><a href="index.php">首頁</a></li>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i
+                class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
               <li><a href="team.php">Team</a></li>
@@ -78,13 +79,13 @@
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
@@ -92,9 +93,9 @@
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
 
 
@@ -235,43 +236,41 @@
                   .topicbox {
                     position: relative;
                     width: 70px;
-                    height: 70px;
+                    height: 50px;
                     overflow: hidden;
                     margin: 10px;
+                    border-radius: 5px;
+                    padding:0 3px 0 3px;
                   }
-                  
-                  .image {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: opacity 0.3s ease-in-out;
-                  }
-                  
+
+
                   .overlay {
                     position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: #B0A5C6; /* 黑色透明背景 */
+                    background-color: #B0A5C6;
+                    /* 黑色透明背景 */
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     opacity: 1;
                     transition: opacity 0.3s ease-in-out;
                   }
-                  
+
                   .text {
                     color: white;
                     font-size: 16px;
                     font-weight: bold;
                     text-align: center;
                   }
-                  
+
                   .topicbox:hover .overlay {
-                    background-color:#E9C9D6; /* 黑色透明背景 */
+                    background-color: #E9C9D6;
+                    /* 黑色透明背景 */
                   }
-                  </style>
+                </style>
 
 
                 <div class="col-6">
@@ -279,85 +278,85 @@
                     <h5>主題</h5>
                     <div class="row">
 
-                      
 
 
-                    <a href="#" class="topicbox">
-                      <img src="" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">服飾</div>
-                      </div>
-                    </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">美妝</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text"><i class="fa-solid fa-shirt">&nbsp;</i>服飾</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">動漫</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">美妝</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">明星</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">動漫</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">日常</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">明星</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">數位3C</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">日常</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">美食</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text"><i class="fa-solid fa-shirt"></i>數位3C</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">運動</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">美食</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">精品</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">運動</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">家電</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">精品</div>
+                        </div>
+                      </a>
 
-                    <a href="#" class="topicbox">
-                      <img src="your-image-url.jpg" alt="Image" class="image">
-                      <div class="overlay">
-                        <div class="text">保健食品</div>
-                      </div>
-                    </a>
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">家電</div>
+                        </div>
+                      </a>
+
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text">保健食品</div>
+                        </div>
+                      </a>
                     </div>
 
                   </div>
@@ -373,15 +372,36 @@
                     </ul>
                   </div>
                 </div>
+                <style>
+                  .btn-tag {
+                    border-radius: 50px;
+                    border: 2px solid #B0A5C6;
+                    color: #B0A5C6;
+                    background-color: transparent;
+                    padding: 3px 15px;
+                    margin: 3px;
+                    transition: border-color 0.3s, color 0.3s;
+                    /* 添加過渡效果 */
+
+                  }
+
+                  .btn-tag:hover {
+                    border-color: #E9C9D6;
+                    /* 滑鼠移過去時框線顏色 */
+                    color: #E9C9D6;
+                    /* 滑鼠移過去時字體顏色 */
+                  }
+                </style>
+
                 <div class="col">
                   <div class="filtertag">
                     <h5>熱門標籤</h5>
                   </div>
-                  <a type="button" href="tag.php" class="btn btn-light-tag">#排球少年</a>
-                  <a type="button" href="#" class="btn btn-light-tag">#火影忍者</a>
-                  <a type="button" href="#" class="btn btn-light-tag">#ATEEZ</a>
-                  <a type="button" href="#" class="btn btn-light-tag">#偶像夢幻季</a>
-                  <a type="button" href="#" class="btn btn-light-tag">#BTS</a>
+                  <a type="button" href="tag.php" class="btn-tag">#排球少年</a>
+                  <a type="button" href="tag.php" class="btn-tag">#火影忍者</a>
+                  <a type="button" href="tag.php" class="btn-tag">#ATEEZ</a>
+                  <a type="button" href="tag.php" class="btn-tag">#偶像夢幻季</a>
+                  <a type="button" href="tag.php" class="btn-tag">#BTS</a>
                 </div>
               </div>
 
@@ -597,7 +617,7 @@
 
   </main><!-- End #main -->
 
-  
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
