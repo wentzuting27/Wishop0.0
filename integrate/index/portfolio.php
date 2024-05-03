@@ -235,12 +235,12 @@
                 <style>
                   .topicbox {
                     position: relative;
-                    width: 70px;
+                    width: 90px;
                     height: 50px;
                     overflow: hidden;
                     margin: 10px;
                     border-radius: 5px;
-                    padding:0 3px 0 3px;
+                    padding:0 5px 0 5px;
                   }
 
 
@@ -291,72 +291,59 @@
                       <a href="#" class="topicbox">
                         <img src="" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">美妝</div>
+                          <div class="text"><i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">動漫</div>
+                          <div class="text"><i class="fa-solid fa-heart"></i>&nbsp;動漫</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">明星</div>
+                          <div class="text"><i class="fa-solid fa-star"></i>&nbsp;明星</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">日常</div>
+                          <div class="text"><i class="fa-solid fa-house-chimney-window"></i>&nbsp;日常</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-shirt"></i>數位3C</div>
+                          <div class="text"><i class="fa-solid fa-gamepad"></i>&nbsp;數位3C</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">美食</div>
+                          <div class="text"><i class="fa-solid fa-utensils"></i>&nbsp;美食</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">運動</div>
+                          <div class="text"><i class="fa-solid fa-person-biking"></i>&nbsp;運動</div>
                         </div>
                       </a>
 
                       <a href="#" class="topicbox">
                         <img src="your-image-url.jpg" alt="Image" class="image">
                         <div class="overlay">
-                          <div class="text">精品</div>
+                          <div class="text"><i class="fa-solid fa-gift"></i>&nbsp;精品</div>
                         </div>
                       </a>
 
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text">家電</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text">保健食品</div>
-                        </div>
-                      </a>
                     </div>
 
                   </div>
