@@ -584,7 +584,6 @@ document.addEventListener("DOMContentLoaded", function () {
               $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           AND order_state = '已成立'
            GROUP BY order_details.order_id
                   ";
               $result = mysqli_query($link, $sql);
@@ -676,16 +675,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         </td>
                       </tr>
                       <tr>
-                        <th>買家備註內容</th>
+                        <th>備註內容</th>
                         <td>
                         <p>' . $remark . '</p>
                         </td>
                       </tr>
                       <tr >
-                        <th >訂單狀態說明</th>
-                        <td style="width: 290px;">
-
+                        <th>訂單狀態說明</th>
+                        <td>
                         <p>' . $order_state. '</p>
+                        </td>
+                      </tr>
+                      <tr >
+                        <th >訂單狀況</th>
+                        <td>
+                        <p style="color:red;">請在確認好收貨後再點擊</p>
+                        <button class="btn btn-primary" name="complete"
+                        style="background-color: #E9C9D6;border: none;color: white;">完成訂單</button>
                         </td>
                       </tr>
                     </table>
