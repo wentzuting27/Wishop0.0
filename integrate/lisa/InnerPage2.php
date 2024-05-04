@@ -946,8 +946,8 @@
             </tbody>
           </table>
 
-          <button onclick="showCsv()">Console log csv code</button>
-          <button onclick="download()">Download csv file</button>
+          <button onclick="showCsv()"class="btn btn-block" style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
+          <button onclick="download()" class="btn btn-block" style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
           <br><br><br>
         </section>
       </div>

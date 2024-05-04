@@ -218,13 +218,13 @@
       echo '
           <div class="col-md-7">
             <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>';
-            $commodity_group_id = $_GET["commodity_group_id"];
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
-            $result2 = mysqli_query($link, $sql2);
-            $row2 = mysqli_fetch_assoc($result2);
-            echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）</small>';
-            echo '</h3>
+      $commodity_group_id = $_GET["commodity_group_id"];
+      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+      $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
+      $result2 = mysqli_query($link, $sql2);
+      $row2 = mysqli_fetch_assoc($result2);
+      echo '<small style="font-size: 0.4cm;font-weight: bold;"><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+      echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
 
@@ -328,10 +328,10 @@
                 <table id="cart" class="table table-hover table-condensed">
                   <thead>
                     <tr>
-                      <th style="width:50%">Product</th>
-                      <th>Price</th>
-                      <th style="width:10%">Quantity</th>
-                      <th class="text-center">Subtotal</th>
+                      <th style="width:50%">商品名稱</th>
+                      <th>價錢</th>
+                      <th style="width:10%">數量</th>
+                      <th class="text-center">合計</th>
                     </tr>
                   </thead>
                   <?php
@@ -374,11 +374,13 @@
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
-                      <td class="hidden-xs text-center" id="totalPrice"><strong>Total $0</strong></td>
+                      <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
-                            class="btn btn-success btn-block">結帳 <i class="fa-solid fa-arrow-right-to-line"></i>
-                          </button></center>
+                            class="btn btn-block" style="background-color: #B0A5C6; color: white;">結帳 <i
+                              class="fa-solid fa-arrow-right-to-line"></i>
+                          </button>
+                        </center>
                       </td>
                     </tr>
                   </tfoot>
@@ -713,8 +715,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           mysqli_close($link);
           ?>
-          <button onclick="showCsv()">Console log csv code</button>
-          <button onclick="download()">Download csv file</button>
+          <button onclick="showCsv()"class="btn btn-block" style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
+          <button onclick="download()" class="btn btn-block" style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
           <br><br><br>
         </section>
       </div>
