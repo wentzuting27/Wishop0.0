@@ -1328,9 +1328,6 @@ section {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
-  background: #e24d55;
-}
 
 @keyframes animate-loading {
   0% {
@@ -1341,7 +1338,6 @@ section {
     transform: rotate(360deg);
   }
 }
-
 #btn1 .btn-toggle {
   margin: 0 4rem;
   padding: 0;

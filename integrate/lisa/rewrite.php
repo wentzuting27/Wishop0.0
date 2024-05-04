@@ -485,10 +485,9 @@
         <section id="first">
           <h2>Shipping</h2>
           <center>
-            <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
-              <div class="col-lg-12 mt-5 mt-lg-0">
-                <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
+                <form id="contact" class="contact" action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
                   role="form">
+                  <div class="col-lg-12 mt-5 mt-lg-0">
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $account = $_SESSION["account"];
@@ -496,7 +495,6 @@
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
-                <div>
                   <div class="col-md-3">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
@@ -509,7 +507,6 @@
                   </div>
                 </div>
                 <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
-
                   <div class="col-sm-5" id="btn1">
                     <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
                       autocomplete="off">
@@ -527,12 +524,8 @@
                   <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">上傳</button>
                 </div>';
                   }
-                  ?>
+                  ?> 
                 </form>
-
-              </div>
-
-            </div>
           </center>
         </section><!-- End Contact Section -->
 
