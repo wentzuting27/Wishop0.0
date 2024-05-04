@@ -437,8 +437,7 @@
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
-                            <h5>', $row["announce_title"], '<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;" data-bs-toggle="modal" data-bs-target="#del"></i></h5>
+                            <h5>', $row["announce_title"], '</h5>
                           </div>
                         </div>
                       </div>
@@ -453,22 +452,6 @@
                 </div>';
                 }
                 ?>
-                <!-- Modal -->
-                <div class="modal fade" id="del" tabindex="-1" aria-labelledby="delLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="delLabel">想要刪除嗎？</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                        <button type="button" name="delgroup" class="btn btn-primary"
-                          data-bs-dismiss="modal">刪除</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <br>
@@ -580,9 +563,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
-          <!-- Actual search box -->
-          <!--<form action="upsatestate.php" method="post" style="height: 400px;overflow-y: auto;overflow-x: hidden;"-->
-          <div style="height: 400px;overflow-y: auto;">
+          
+          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -602,7 +584,8 @@ document.addEventListener("DOMContentLoaded", function () {
               $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           GROUP BY order_details.order_id;
+           AND order_state = '已成立'
+           GROUP BY order_details.order_id
                   ";
               $result = mysqli_query($link, $sql);
 
@@ -617,26 +600,30 @@ document.addEventListener("DOMContentLoaded", function () {
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                
                 $result2 = mysqli_query($link, $sql2);
                 $totalprice = 0;
                 if ($result2 && mysqli_num_rows($result2) > 0) {
                   $totalprice_row = mysqli_fetch_assoc($result2);
                   $totalprice = $totalprice_row['totalprice'];
                 }
-                echo '<tbody>
+                echo '
+                <tbody>
               <tr>
+              <td>' . $row['order_id'] . '</td>
             <td>' . $row['account'] . '</td>
-            <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
             <td>
                   <center>
-                    <input id="box1" type="checkbox" disabled/>
-                    <label for="box1" id="label1">未付款</label>
+                    <input type="checkbox" id="box' . $row['order_id'] . '"  data-order-id="' . $row['order_id'] . '" />
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">未付款</label>
                   </center>
                 </td>
-                <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
-                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button></td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
                 </tr>
                 </tbody>
                 ';
@@ -650,26 +637,31 @@ document.addEventListener("DOMContentLoaded", function () {
             die('Connection failed: ' . mysqli_connect_error());
           }
           $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
+          $commodity_group_id = $_GET["commodity_group_id"];
           $result = mysqli_query($link, $sql);
           if (!$result) {
             die('Query failed: ' . mysqli_error($link));
           }
           while ($row = mysqli_fetch_assoc($result)) {
-            echo '<!-- Modal -->
+            echo '
+            <form  method="post" action="orderdetail.php?commodity_group_id='.$commodity_group_id.'">
+            <input type="hidden" name="order_id" value="', $row["order_id"], '">
           <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="detailsLabel">訂單詳細</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div><div class="modal-body">
-                  <form>
+                </div>
+                <div class="modal-body">
+                
                     <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
                       <tr>
                         <th>訂單內容</th>
                         <td>
                         <ul>';
             $order_id = $row['order_id']; // 獲取訂單 ID
+            $order_state = $row['order_state'];
             $remark = $row['remark'];
             $sql2 = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
             $result2 = mysqli_query($link, $sql2);
@@ -689,28 +681,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p>' . $remark . '</p>
                         </td>
                       </tr>
-                      <tr>
-                        <th >訂單狀態</th>
-                        <td>
-                        <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
-                        placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)" disabled></textarea>
+                      <tr >
+                        <th >訂單狀態說明</th>
+                        <td style="width: 290px;">
+
+                        <p>' . $order_state. '</p>
                         </td>
                       </tr>
-                      <tr>
-                        <th >訂單確認</th>
-                        <td> <button class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;">完成訂單</button></td>
-                        
-                      </tr>
                     </table>
-                  </form>
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="button" name="delgroup" class="btn btn-primary">確定</button>
+                  <button type="submit" name="submit" class="btn btn-primary">確定</button>
                 </div>
               </div>
             </div>
-          </div>';
+          </div>
+          </form>';
 
           }
           mysqli_close($link);
@@ -733,10 +720,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div> <!-- col end -->
     </div> <!-- row end -->
 
-    <!-- container end -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
     <!-- 这里是你的 JavaScript 代码 -->
     <!-- JQERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
