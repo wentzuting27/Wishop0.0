@@ -468,7 +468,7 @@
                   </div>'
                       ;
                     }
-                    ?>
+                    mysqli_close($link); ?>
 
                   </div>
                 </div>
@@ -510,7 +510,7 @@
                   </div>'
                     ;
                   }
-                  ?>
+                  mysqli_close($link); ?>
                 </div>
               </div>
             </div>
@@ -526,6 +526,7 @@
                     <?php
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                     $account = $_SESSION["account"];
+
                     $sql = "select user_avatar from  commodity_group natural join account where account='$account'";
                     $result = mysqli_query($link, $sql);
                     $row = mysqli_fetch_assoc($result);
@@ -535,7 +536,8 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
                         src="', $row["user_avatar"], '">
                     </div>
-                  </div>'; ?>
+                  </div>';
+                    mysqli_close($link); ?>
                     <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>撰寫內容...</small>
                     </h4>
                     <button class="btn btn-info btn-sm"
@@ -544,6 +546,19 @@
                   </div>
                 </div>
               </div>
+               <?php
+              $commodity_group_id = $_GET["commodity_group_id"];
+              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+              echo '<script>
+              window.addEventListener("DOMContentLoaded", function () {
+                  var part3 = document.getElementById(\'card0\');
+                  part3.addEventListener(\'click\', function () {
+                      // 導航到新頁面
+                      window.location.href = \'../lisa/rewrite.php?commodity_group_id=' . $commodity_group_id . '#contact\';
+                  });
+              });
+          </script>';
+              ?>
               <h3><i class="fa-solid fa-star"></i>團主公告
                 <button id="pra" style="float: right; border-radius: 50%;"><i
                     class="fa-solid fa-arrow-right"></i></button>
@@ -553,7 +568,10 @@
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $account = $_SESSION["account"];
-                  $sql = "select * from commodity_group_announce natural join commodity_group natural join account where account='$account'";
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $sql = "select * from commodity_group_announce natural join commodity_group natural join account 
+                  where account='$account'
+                  and commodity_group_id=$commodity_group_id";
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
@@ -569,9 +587,10 @@
                           </div>
                           <div style="flex-grow: 7;">
                             <p>團主：</p>
-                            <h5>', $row["announce_title"], '<i class="fa-solid fa-ellipsis-vertical"
-                                style="float: right; margin-top: -15px;"
-                                 data-bs-toggle="modal" data-bs-target="#del', $row["commodity_group_announce_id"], '"></i></h5>
+                            <h5>', $row["announce_title"], '
+                            <i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"
+                                 data-bs-toggle="modal" data-bs-target="#del', $row["commodity_group_announce_id"], '"></i>
+                                 </h5>
                           </div>
                         </div>
                       </div>
@@ -584,7 +603,21 @@
                     </div>
                   </div>
                 </div>';
-                    echo '
+                  }
+                  mysqli_close($link);
+                  ?>
+                </div>
+              </div>
+              <br>
+              <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $sql = "select * from commodity_group_announce ";
+              $result = mysqli_query($link, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '
+              <form method="post" action="addwrite.php?commodity_group_id=' . $commodity_group_id . ' ">
+                    <input type="hidden" name="announce_id" value="', $row["commodity_group_announce_id"], '">
                   <!-- Modal -->
                   <div class="modal fade" id="del', $row["commodity_group_announce_id"], '" tabindex="-1" aria-labelledby="delLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -595,41 +628,16 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                          <button type="button" name="delgroup" class="btn btn-primary"
-                            data-bs-dismiss="modal">刪除</button>
+                          <button type="submit" name="delrewrite" class="btn btn-primary" >刪除</button>
                         </div>
                       </div>
                     </div>
                   </div>
-                ';
-                  }
-                  ?>
-                </div>
-              </div>
-              <br>
-              <?php
-              $commodity_group_id = $_GET["commodity_group_id"];
-
-              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
-              echo '<script>
-              .addEventListener("DOMContentLoaded", function () {
-                var part3 = document.getElementById(\'card0\');
-                part3.addEventListener(\'click\', function () {
-                  // 导航到新页面
-                  window.location.href = \'../lisa/rewrite.php?commodity_group_id=' . $commodity_group_id . '#contact\';
-                // 页面加载后延迟执行滚动到指定区域
-                 window.addEventListener(\'load\', function () {
-                   setTimeout(function () {
-                    var targetElement = document.querySelector(\'#contact\');
-                    if (targetElement) {
-                      targetElement.scrollIntoView();
-                    }
-                   }, 1000); // 延迟 1 秒执行滚动操作
-                  });
-                });
-              });
-              </script>';
+                  </form>';
+              }
+              mysqli_close($link);
               ?>
+             
               <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
 
               <div class="part2">
@@ -823,8 +831,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state = '已成立'
-           GROUP BY order_details.order_id
-                  ";
+           GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
                 if (!$result) {
@@ -941,7 +948,6 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                
                     <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
                       <tr>
                         <th>訂單內容</th>

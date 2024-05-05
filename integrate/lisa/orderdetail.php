@@ -51,9 +51,9 @@ if(isset($_POST['complete'])) {
     $result=mysqli_query($link, $sql);
     // 根據成功標誌顯示結果
     if ($result) {
-        echo '<script>alert("接收成功!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        echo '<script>alert("訂單完成!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {
-        echo '<script>alert("接收失敗"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        echo '<script>alert("訂單完成失敗"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     }
 
     
