@@ -224,9 +224,9 @@
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" checked>
+      <input type="radio" id="tab1" name="tab-control" >
       <input type="radio" id="tab2" name="tab-control">
-      <input type="radio" id="tab3" name="tab-control">
+      <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
       <div id="subject">
         <ul>
@@ -485,10 +485,8 @@
         <section id="first">
           <h2>Shipping</h2>
           <center>
-            <div id="contact" class="contact" style="margin-bottom: 60px;margin-left: 40px;padding:10px;">
-              <div class="col-lg-12 mt-5 mt-lg-0">
-                <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
-                  role="form">
+                <form  action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form">
+                <div class="card" style="width:80%">
                   <?php
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $account = $_SESSION["account"];
@@ -496,20 +494,17 @@
                   $result = mysqli_query($link, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
-                <div>
-                  <div class="col-md-3">
+                    <div class="card-header">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture"
                         src="' . $row["user_avatar"] . '">
                     </div>
-                  </div>
                   <div style="float: left;margin-top: 45px; margin-left: 20px;">
                     <h5>' . $row["account"] . '</h5>
                   </div>
                 </div>
                 <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
-
                   <div class="col-sm-5" id="btn1">
                     <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
                       autocomplete="off">
@@ -517,22 +512,18 @@
                     </button>
                   </div>
                 </div>-->
-                <div class="form-group mt-3">
+                <div class="card-body">
                   <input type="text" class="form-control" name="announce_title" placeholder="標題" required>
-                </div>
-                <div class="form-group mt-3">
+                  <br>
                   <textarea class="form-control" name="announce_narrate" rows="5" placeholder="內容" required></textarea>
                 </div>
-                <div class="text-center">
-                  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">上傳</button>
+                <div class="card-footer">
+                  <button class="btn btn-primary" name="submit" type="submit"
+                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
                 </div>';
                   }
-                  ?>
+                  ?> 
                 </form>
-
-              </div>
-
-            </div>
           </center>
         </section><!-- End Contact Section -->
 

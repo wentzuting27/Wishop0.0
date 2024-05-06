@@ -61,16 +61,16 @@ if (isset($_POST['submit'])) {
         if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
         }
-        $commodity_name = $_POST['commodity_name'];
+        $commodity_id = $_POST['commodity_id'];
         $commodity_state = $_POST['commodity_state'];
         $commodity_group_id = $_GET["commodity_group_id"];
-        $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_name='$commodity_name'";
+        $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_id='$commodity_id'";
 
 
         $result = mysqli_query($link, $sql);
 
         if ($result) {
-            echo '<script>alert("成功!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            echo '<script>alert("' . $commodity_id . '!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
             exit();
         } else {
             echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
