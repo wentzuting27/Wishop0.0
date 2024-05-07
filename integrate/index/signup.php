@@ -204,7 +204,7 @@
                                             <div class="col-md-4">
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="clothes">
+                                                    <input type="checkbox" name="topic[]" value="1">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-shirt"></i>
                                                     </div>
@@ -213,7 +213,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="makeup">
+                                                    <input type="checkbox" name="topic[]" value="2">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-face-smile-beam"></i>
                                                     </div>
@@ -222,7 +222,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="annime">
+                                                    <input type="checkbox" name="topic[]" value="3">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-heart"></i>
                                                     </div>
@@ -233,7 +233,7 @@
                                             <div class="col-md-4">
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="star">
+                                                    <input type="checkbox" name="topic[]" value="4">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-star"></i>
                                                     </div>
@@ -242,7 +242,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="daily">
+                                                    <input type="checkbox" name="topic[]" value="5">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-house-chimney-window"></i>
                                                     </div>
@@ -251,7 +251,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="3c">
+                                                    <input type="checkbox" name="topic[]" value="6">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-gamepad"></i>
                                                     </div>
@@ -262,7 +262,7 @@
                                             <div class="col-md-4">
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="food">
+                                                    <input type="checkbox" name="topic[]" value="7">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-utensils"></i>
                                                     </div>
@@ -271,7 +271,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="sport">
+                                                    <input type="checkbox" name="topic[]" value="8">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-person-biking"></i>
                                                     </div>
@@ -280,7 +280,7 @@
 
                                                 <div class="choice" data-toggle="wizard-checkbox" rel="tooltip"
                                                     title="">
-                                                    <input type="checkbox" name="topic[]" value="gift">
+                                                    <input type="checkbox" name="topic[]" value="9">
                                                     <div class="icon">
                                                         <i class="fa-solid fa-gift"></i>
                                                     </div>

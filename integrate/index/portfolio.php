@@ -240,7 +240,7 @@
                     overflow: hidden;
                     margin: 10px;
                     border-radius: 5px;
-                    padding:0 5px 0 5px;
+                    padding: 0 5px 0 5px;
                   }
 
 
@@ -421,6 +421,7 @@
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">發現</li>
               <li data-filter=".filter-follow">追蹤店家</li>
+              <li data-filter=".filter-tag">關注標籤</li>
             </ul>
           </div>
         </div>
@@ -447,7 +448,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-tag  wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
 
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
@@ -605,6 +606,8 @@
           </div>
 
         </div>
+
+
 
       </div>
     </section><!-- End Portfolio Section -->
