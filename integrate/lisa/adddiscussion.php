@@ -419,7 +419,7 @@
                     <center>
                         <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
                             role="form" enctype="multipart/form-data">
-                            
+
                             <div class="card" style="width:80%">
                                 <?php
                                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -440,23 +440,23 @@
                   </div>
                   <div class="row" style="float: right;margin-top:44px;margin-right:10px;">
                   <div class="col-sm-5" id="btn1">
-                    <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
-                      autocomplete="off">
-                      <div class="handle"></div>
-                    </button>
-                  </div>
+                  <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
+                    autocomplete="off">
+                    <div class="handle"></div>
+                  </button>
+                </div>
                 </div>
                 </div>
                 
                 <div class="card-body">
-                  <input type="text" class="form-control" name="ask_title" placeholder="標題" required>
+                  <input type="text" class="form-control" name="question_title" placeholder="標題" required>
                   <br>
-                  <textarea class="form-control" name="ask_narrate" rows="5" placeholder="內容"
+                  <textarea class="form-control" name="question_narrate" rows="5" placeholder="內容"
                   style="max-height:250px;overflow-y:scroll;" required></textarea>
                   <br>
                   <div class="mb-3">
                   <input  class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                  name="ask_photo[]" multiple required />
+                  name="question_photo[]" multiple/>
                 </div>
                 </div>
                 <div class="card-footer">
@@ -466,15 +466,54 @@
                 </div>';
                                 }
                                 ?>
-                                </div>
+                            </div>
                         </form>
                     </center>
                 </section><!-- End Contact Section -->
+                <script>
+                    const toggleSwitch = document.querySelector('.btn-toggle');
+
+                    toggleSwitch.addEventListener('click', function () {
+                        const isChecked = this.classList.contains('active');
+                        updateToggleContent(isChecked);
+                        sendDataToBackend(isChecked);
+                    });
+
+                    function updateToggleContent(isChecked) {
+                        const beforeContent = document.querySelector('#btn1 .btn-toggle:before');
+                        const afterContent = document.querySelector('#btn1 .btn-toggle:after');
+
+                        if (isChecked) {
+                            beforeContent.textContent = '公開';
+                            afterContent.textContent = '不公開';
+                        } else {
+                            beforeContent.textContent = '不公開';
+                            afterContent.textContent = '公開';
+                        }
+                    }
+
+                    function sendDataToBackend(isChecked) {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'adddis.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    console.log('Data sent to backend successfully.');
+                                } else {
+                                    console.error('Failed to send data to backend.');
+                                }
+                            }
+                        };
+                        const formData = new FormData();
+                        formData.append('isChecked', isChecked ? '不公開' : '公開');
+                        xhr.send(formData);
+                    }
+                </script>
 
                 <section id="order">
                     <h2>Returns</h2>
                     <h4>對帳表:</h4>
-
                     <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
                         <table id="example" class="table table-hover" cellspacing="0" width="100%">
                             <thead>
@@ -523,13 +562,8 @@
               <td>' . $row['order_id'] . '</td>
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
-            <td>' . $totalprice . '</td>';
-
-                                    $sql3 = "SELECT `state` FROM payment_state  WHERE payment_state_id='" . $row['payment_state'] . "'";
-                                    $result3 = mysqli_query($link, $sql3);
-                                    while ($row3 = mysqli_fetch_assoc($result3)) {
-                                        echo '<td>' . $row3['state'] . '</td>';
-                                    }
+            <td>' . $totalprice . '</td>
+            <td>' . $row['payment_state'] . '</td>';
                                     echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
