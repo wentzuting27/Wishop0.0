@@ -13,7 +13,7 @@ if ($link->connect_error) {
 // 獲取前端傳來的參數
 if (isset($_POST["submit2"])) {
     // 在這裡執行刪除操作
-    $sql = "DELETE FROM save_group WHERE commodity_group_id = $commodity_group_id";
+    $sql = "DELETE FROM like_group WHERE commodity_group_id = $commodity_group_id";
     if (mysqli_query($link, $sql)) {
         echo '<script>alert("取消收藏成功!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {
@@ -27,8 +27,8 @@ if (isset($_POST['submit'])) {
     // 將時間戳格式化為日期時間字串
     $add_time = date("Y-m-d H:i:s", $timestamp);
     // 在這裡執行刪除操作
-    $sql = "INSERT INTO save_group
-        (account,commodity_group_id,save_group_time) 
+    $sql = "INSERT INTO like_group
+        (account,commodity_group_id,`time`) 
         VALUES ('$account',$commodity_group_id, '$add_time')";
     if (mysqli_query($link, $sql)) {
         echo '<script>alert("收藏成功!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';

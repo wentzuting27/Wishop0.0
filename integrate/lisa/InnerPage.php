@@ -85,28 +85,29 @@
     ;">';
     } ?>
     <form method="post" action="save_group.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
-  <?php
-    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
-    $account = $_SESSION["account"];
-    $sql2 = "SELECT * FROM save_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-    $result2 = mysqli_query($link, $sql2);
+      <?php
+      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+      $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
+      $account = $_SESSION["account"];
+      $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result2 = mysqli_query($link, $sql2);
 
-    if ($result2 && mysqli_num_rows($result2) == 0) {
-    echo'
+      if ($result2 && mysqli_num_rows($result2) == 0) {
+        echo '
     <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
     </div>
     <div class="edit_like_shop_button">
-    <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';}
-    
-    $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-    $result = mysqli_query($link, $sql);
+    <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
+      }
 
-    if ($result && mysqli_num_rows($result) == 0) {
-      echo '
+      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result = mysqli_query($link, $sql);
+
+      if ($result && mysqli_num_rows($result) == 0) {
+        echo '
     <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">我要跟團</button>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
@@ -122,19 +123,21 @@
     </marquee>
     </center>
     ';
-    }    if ($result2 && mysqli_num_rows($result2) != 0) {
-      echo'
+      }
+      if ($result2 && mysqli_num_rows($result2) != 0) {
+        echo '
       <div class="background-overlay" style="position: absolute;
       top: 0;
       width: 100%;
       height: 100%;background-color: rgba(237, 237, 237, 0.733)">
       </div>
       <div class="edit_like_shop_button">
-      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';}
-      
+      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
+      }
+
       $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
-  
+
       if ($result && mysqli_num_rows($result) != 0) {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">取消跟團</button>
@@ -154,8 +157,8 @@
       ';
       }
 
-    mysqli_close($link);
-    ?>
+      mysqli_close($link);
+      ?>
     </form>
     </div>
     </div>
@@ -501,10 +504,10 @@
             </div>'; ?>
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $sql = "select * from ask natural join commodity_group natural join account";
+            $sql = "select * from question natural join commodity_group natural join account";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-              $ask_id = $row["ask_id"];
+              $question_id = $row["question_id"];
               echo '
             <div class="part2">
               <div class="card border-secondary mb-12" style="width: 100%;">
@@ -516,27 +519,27 @@
                         src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h4><B>', $row["ask_title"], '</B></h4>
+                    <h4><B>', $row["question_title"], '</B></h4>
                   </div>
                   <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
                   </h4>
                 </div>
                 
-                <div class="card-body " id="card' . $ask_id . '">
-                  <p>', $row["ask_narrate"], '</p>';
-              
-              $sql = "SELECT ask_photo FROM ask_photo WHERE ask_id = '$ask_id'";
+                <div class="card-body " id="card' . $question_id . '">
+                  <p>', $row["question_narrate"], '</p>';
+
+              $sql = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
               $result = mysqli_query($link, $sql);
-              // 逐行顯示 ask_photo
+              // 逐行顯示 question_photo
               while ($photo_row = mysqli_fetch_assoc($result)) {
-                echo '<img src="' . $photo_row["ask_photo"] . '" alt="Ask Photo">';
+                echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
               }
               echo '<div id="overlay"></div>
                 </div>
                 <div class="card-footer bg-transparent border-secondary">
                   <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["ask_time"], '</small>&nbsp;
+                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
                     <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
                   </h4>
                 </div>
@@ -563,19 +566,14 @@
             </div>
             <?php
             $commodity_group_id = $_GET["commodity_group_id"];
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $sql = "select * from ask";
-            $result = mysqli_query($link, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-            $ask_id = $row["ask_id"];
-            // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
-            echo '
+              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+              echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var part3 = document.getElementById(\'card' . $ask_id . '\');
+              var part3 = document.getElementById(\'card\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
-                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '#blog\';
+                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '\';
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener(\'load\', function () {
                   setTimeout(function () {
@@ -587,7 +585,7 @@
                   });
                 });
               });
-              </script>';}
+              </script>';
 
             ?>
         </section>
@@ -616,8 +614,7 @@
                 $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           GROUP BY order_details.order_id
-                  ";
+           GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
                 if (!$result) {
@@ -643,13 +640,8 @@
               <td>' . $row['order_id'] . '</td>
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
-            <td>' . $totalprice . '</td>';
-
-                  $sql3 = "SELECT `state` FROM payment_state  WHERE payment_state_id='" . $row['payment_state'] . "'";
-                  $result3 = mysqli_query($link, $sql3);
-                  while ($row3 = mysqli_fetch_assoc($result3)) {
-                    echo '<td>' . $row3['state'] . '</td>';
-                  }
+            <td>' . $totalprice . '</td>
+            <td>' . $row['payment_state'] . '</td>';
                   echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
