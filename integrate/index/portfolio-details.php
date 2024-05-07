@@ -47,7 +47,7 @@
   <main id="main">
 
 
-  
+
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
@@ -60,15 +60,15 @@
               <div class="swiper-wrapper align-items-center">
 
 
-              <?php
-          if ($_GET['commodity_id'] != '') {
-            $commodity_id = $_GET['commodity_id'];
+                <?php
+                if ($_GET['commodity_id'] != '') {
+                  $commodity_id = $_GET['commodity_id'];
 
-          }
+                }
 
 
-          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-          $sql = "SELECT 
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT 
                     cp.commodity_photo,
 
                     c.commodity_id,
@@ -96,45 +96,45 @@
                     where c.commodity_id='$commodity_id'";
 
 
-          $result = mysqli_query($link, $sql);
+                $result = mysqli_query($link, $sql);
 
-          if ($row = mysqli_fetch_assoc($result)) {
-            $commodity_id = $row['commodity_id'];
-            $commodity_name = $row['commodity_name'];
-            $commodity_price = $row['commodity_price'];
-            $c_original_product_link = $row['c_original_product_link'];
-            $commodity_narrate = $row['commodity_narrate'];
+                if ($row = mysqli_fetch_assoc($result)) {
+                  $commodity_id = $row['commodity_id'];
+                  $commodity_name = $row['commodity_name'];
+                  $commodity_price = $row['commodity_price'];
+                  $c_original_product_link = $row['c_original_product_link'];
+                  $commodity_narrate = $row['commodity_narrate'];
 
-            $commodity_photo = $row['commodity_photo'];
+                  $commodity_photo = $row['commodity_photo'];
 
-            $shop_name = $row['shop_name'];
-            $shop_id = $row['shop_id'];
+                  $shop_name = $row['shop_name'];
+                  $shop_id = $row['shop_id'];
 
-            $commodity_group_id = $row['commodity_group_id'];
-            $commodity_group_name = $row['commodity_group_name'];
-            $nation = $row['nation'];
+                  $commodity_group_id = $row['commodity_group_id'];
+                  $commodity_group_name = $row['commodity_group_name'];
+                  $nation = $row['nation'];
 
-          }
+                }
 
-          if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="swiper-slide">';
-                echo '<img src="' . $row['commodity_photo'] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">';
-                echo '</div>';
-            }
-        }
-        
-
-          ?>
+                if ($result) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<div class="swiper-slide">';
+                    echo '<img src="' . $row['commodity_photo'] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">';
+                    echo '</div>';
+                  }
+                }
 
 
-<!-- 圖片還有問題 -->
+                ?>
+
+
+                <!-- 圖片還有問題 -->
                 <div class="swiper-slide">
                   <img src="<?php echo $commodity_photo; ?>"
                     style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">
                 </div>
 
-                
+
 
               </div>
               <div class="swiper-pagination"></div>
@@ -142,7 +142,7 @@
           </div>
 
 
-          
+
 
           <div class="col-lg-4">
 
@@ -160,23 +160,7 @@
               </ul>
               <p><?php echo $commodity_narrate; ?></p>
 
-              <a type="button" href="#" class="btn btn-light-like" onclick="toggleHeartIcon(this)"><i id="heartIcon"
-                  class="fa-regular fa-heart"></i>&nbsp;收藏</a>
 
-              <script>
-                function toggleHeartIcon(button) {
-                  var heartIcon = document.getElementById('heartIcon');
-                  if (heartIcon.classList.contains('fa-regular')) {
-                    heartIcon.classList.remove('fa-regular');
-                    heartIcon.classList.add('fa-solid');
-                    button.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-btn-bg-solid');
-                  } else {
-                    heartIcon.classList.remove('fa-solid');
-                    heartIcon.classList.add('fa-regular');
-                    button.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-btn-bg-regular');
-                  }
-                }
-              </script>
 
 
             </div>
@@ -184,31 +168,73 @@
 
             <style>
               .category {
-                background: #b9b0c8;
-                color: #fff;
-                font-size: 14px;
-                font-weight: bold;
-                padding: 6px 14px;
-                margin: 0;
+                border-radius: 50px;
+                border: 2px solid #B0A5C6;
+                color: #B0A5C6;
+                background-color: transparent;
+                padding: 2px 15px;
+                margin: 3px;
+                transition: border-color 0.3s, color 0.3s;
+                /* 添加過渡效果 */
+
+                display: inline-block;
+                /* 将<a>标签转换为内联块级元素 */
+                margin-right: 5px;
+                /* 增加<a>标签之间的空间 */
+                margin-bottom: 5px;
+                /* 增加底部间距 */
+
+              }
+
+              .category:hover {
+                border-color: #E9C9D6;
+                /* 滑鼠移過去時框線顏色 */
+                color: #E9C9D6;
+                /* 滑鼠移過去時字體顏色 */
+              }
+
+
+              .topic {
                 border-radius: 5px;
+                color: #FFF;
+                background-color: #B0A5C6;
+                padding: 3px 10px;
+                margin: 3px;
+                transition: border-color 0.3s, color 0.3s;
+                /* 添加過渡效果 */
+              }
+
+              .topic:hover {
+                background-color: #E9C9D6;
               }
             </style>
             <div class="portfolio-info">
               <h3><?php echo $commodity_group_name; ?></h3>
               <ul>
-                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
-                <?php echo $shop_name; ?></a></li>
-                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <?php echo $nation; ?></li>
+                <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a
+                    href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
+                    <?php echo $shop_name; ?></a></li>
+                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a
+                    href="#"><?php echo $nation; ?></a></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
-                <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>: 主題</li>
+                <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
+                  <a href="#"><span class="topic">主題</span></a>
+                  <a href="#"><span class="topic">主題</span></a>
+                  <a href="#"><span class="topic">主題</span></a>
                 <li><i class="fa-solid fa-tags"></i>&nbsp;<strong>標籤</strong>:
-                  <span class="category">tag</span>
-                  <span class="category">tag</span>
+                  <div>
+                    <a href="#"><span class="category">#標籤</span></a>
+                    <a href="#"><span class="category">#標籤</span></a>
+                    <a href="#"><span class="category">#標籤</span></a>
+                    <a href="#"><span class="category">#標籤</span></a>
+                    <a href="#"><span class="category">#標籤</span></a>
+                  </div>
                 </li>
               </ul>
               <hr>
               <div style="text-align: center;">
-                <a type="button" href="../lisa/InnerPage.php?commodity_group_id=<?php echo $commodity_group_id; ?>" target="_blank" class="btn btn-light-more">前往團購購買</a>
+                <a type="button" href="../lisa/InnerPage.php?commodity_group_id=<?php echo $commodity_group_id; ?>"
+                  target="_blank" class="btn btn-light-more">前往團購購買</a>
               </div>
             </div>
 

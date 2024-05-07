@@ -20,7 +20,7 @@ a {
 }
 
 a:hover {
-  color: #5D5769;
+  color: #E9C9D6;
   text-decoration: none;
 }
 
@@ -811,11 +811,25 @@ section {
 }
 
 
-.btn-light-tag2 {
-  border-radius: 15px;
+.btn-tag {
+  border-radius: 50px;
   border: 2px solid #B0A5C6;
   color: #B0A5C6;
+  background-color: transparent;
+  padding: 3px 15px;
+  margin: 3px;
+  transition: border-color 0.3s, color 0.3s;
+  /* 添加過渡效果 */
+
 }
+
+.btn-tag:hover {
+  border-color: #E9C9D6;
+  /* 滑鼠移過去時框線顏色 */
+  color: #E9C9D6;
+  /* 滑鼠移過去時字體顏色 */
+}
+
 
 
 
