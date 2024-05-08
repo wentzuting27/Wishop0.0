@@ -63,6 +63,7 @@
                 <div class="d-flex justify-content-between align-items-center">
 
                     <ol>
+                        <li><a href="../index/index.php" style="color:black">首頁</a></li>
                         <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>"
                                 style="color: rgb(255, 230, 237);">返回賣場</a>
                         </li>
