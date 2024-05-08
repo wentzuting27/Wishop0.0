@@ -641,169 +641,97 @@
              
               <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
 
+              <div style="max-height:600px;overflow-y:scroll;">
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $sql = "SELECT * FROM question NATURAL JOIN account 
+            WHERE commodity_group_id ='$commodity_group_id' 
+            AND public='公開';";
+            $result = mysqli_query($link, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $question_id = $row["question_id"];
+              echo '
               <div class="part2">
-                <div class="card border-secondary mb-12" style="width: 100%;">
-                  <div class="card-header bg-transparent border-secondary">
-                    <div class="col-md-12">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                      </div>
-                      <p>團主：</p>
-                      <h4><B>關於出貨通知</B></h4>
-                    </div>
-                    <h4 style="float: right;margin-top:-70px;">
-                      <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
-                    </h4>
-                  </div>
-                  <!-- Modal -->
-                  <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
-                          <button type="button" name="delgroup" class="btn btn-primary"
-                            data-bs-dismiss="modal">刪除</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body " id="card1">
-                    <p>尊敬的客戶:</p>
-                    <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                    <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
-                    <p>祝您购物愉快！</p>
-                    <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                    <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                    <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                    <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                    <div id="overlay"></div>
-                  </div>
-                  <div class="card-footer bg-transparent border-secondary">
-                    <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                      <i class="bi bi-clock"></i><a href="blog-single.php">&nbsp;<small datetime="2020-01-01">Jan 1,
-                          2020</small></a>&nbsp;
-                      <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
-                    </h4>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="part2" id="card2">
-              <div class="card border-secondary mb-12" style="width: 100%;">
+              <div class="card border-secondary mb-12">
                 <div class="card-header bg-transparent border-secondary">
                   <div class="col-md-12">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
-                    <p>團主：</p>
-                    <h4><B>關於出貨通知</B></h4>
+                    <p>', $row["account"], '：</p>
+                    <h4><B>', $row["question_title"], '</B></h4>
                   </div>
-                  <h4 style="float: right;margin-top:-70px;"><i class="fa-solid fa-ellipsis-vertical"></i></h4>
-                </div>
-                <div class="card-body ">
-
-                  <p>尊敬的客戶:</p>
-                  <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
-                  <p>祝您购物愉快！</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <div id="overlay"></div>
-                </div>
-                <div class="card-footer bg-transparent border-secondary">
-                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i><a href="blog-single.php">&nbsp;<small datetime="2020-01-01">Jan 1,
-                        2020</small></a>&nbsp;
-                    <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
+                  <h4 style="float: right;margin-top:-70px;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
                   </h4>
-
                 </div>
-              </div>
-            </div>
-            <div class="part2">
-              <div class="card border-secondary mb-12" style="width: 100%;">
-                <div class="card-header bg-transparent border-secondary">
-                  <div class="col-md-12">
-                    <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                    </div>
-                    <p>團主：</p>
-                    <h4><B>關於出貨通知</B></h4>
-                  </div>
-                  <h4 style="float: right;margin-top:-70px;"><i class="fa-solid fa-ellipsis-vertical"></i></h4>
-                </div>
-                <div class="card-body ">
+                
+                <div class="card-body " id="card' . $question_id . '">
+                  <p>', $row["question_narrate"], '</p>';
 
-                  <p>尊敬的客戶:</p>
-                  <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
-                  <p>祝您购物愉快！</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <div id="overlay"></div>
+              $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+              $result2 = mysqli_query($link, $sql2);
+              // 逐行顯示 question_photo
+              while ($photo_row = mysqli_fetch_assoc($result2)) {
+                echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+              }
+              echo '<div id="overlay"></div>
                 </div>
                 <div class="card-footer bg-transparent border-secondary">
                   <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i><a href="blog-single.php">&nbsp;<small datetime="2020-01-01">Jan 1,
-                        2020</small></a>&nbsp;
+                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
                     <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
                   </h4>
                 </div>
               </div>
             </div>
-            <div class="part2">
-              <div class="card border-secondary mb-12" style="width: 100%;">
-                <div class="card-header bg-transparent border-secondary">
-                  <div class="col-md-12">
-                    <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://i.pinimg.com/736x/c4/22/64/c42264dccbc7371567ebe9db019082cb.jpg">
-                    </div>
-                    <p>團主：</p>
-                    <h4><B>關於出貨通知</B></h4>
+          ';
+            }
+            mysqli_close($link);
+            ?>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <h4 style="float: right;margin-top:-70px;"><i class="fa-solid fa-ellipsis-vertical"></i></h4>
-                </div>
-                <div class="card-body ">
-
-                  <p>尊敬的客戶:</p>
-                  <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
-                  <p>祝您购物愉快！</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                  <div id="overlay"></div>
-                </div>
-                <div class="card-footer bg-transparent border-secondary">
-                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i><a href="blog-single.php">&nbsp;<small datetime="2020-01-01">Jan 1,
-                        2020</small></a>&nbsp;
-                    <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
-                  </h4>
-
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  </div>
                 </div>
               </div>
             </div>
+            <?php
+            $commodity_group_id = $_GET["commodity_group_id"];
+              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+              echo '
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var part3 = document.getElementById(\'card\');
+               part3.addEventListener(\'click\', function () {
+                // 导航到新页面
+                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '\';
+                // 页面加载后延迟执行滚动到指定区域
+                window.addEventListener(\'load\', function () {
+                  setTimeout(function () {
+                     var targetElement = document.querySelector(\'#first\');
+                     if (targetElement) {
+                      targetElement.scrollIntoView();
+                     }
+                    }, 1000); // 延迟 1 秒执行滚动操作
+                  });
+                });
+              });
+              </script>';
 
+            ?>
         </section>
         <section id="order">
           <h2>Returns</h2>
@@ -831,7 +759,7 @@
                 $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           AND order_state = '已成立'
+           AND order_state != '未成立'
            GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
@@ -986,7 +914,7 @@
                         <div class="collapse" id="collapse' . $order_id . '">
                         
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
-                           placeholder="訂單狀態敘述(點擊確認買家即可確認狀態)" name="order_state"></textarea>
+                           placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
                         </div>
                         </td>
                       </tr>
