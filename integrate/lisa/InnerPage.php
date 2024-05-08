@@ -502,22 +502,24 @@
                       class="fa-solid fa-pen-to-square"></i></button>
                 </div>
               </div>
-            </div>'; ?>
+            </div>'; 
+            mysqli_close($link);
+            ?>
+            <div style="max-height:600px;overflow-y:scroll;">
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $sql = "select * from question natural join commodity_group natural join account";
+            $sql = "select * from question natural join commodity_group natural join account where commodity_group_id ='$commodity_group_id'";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
               $question_id = $row["question_id"];
               echo '
-            <div class="part2">
-              <div class="card border-secondary mb-12" style="width: 100%;">
+              <div class="part2">
+              <div class="card border-secondary mb-12">
                 <div class="card-header bg-transparent border-secondary">
                   <div class="col-md-12">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="', $row["user_avatar"], '">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
                     <h4><B>', $row["question_title"], '</B></h4>
@@ -530,10 +532,10 @@
                 <div class="card-body " id="card' . $question_id . '">
                   <p>', $row["question_narrate"], '</p>';
 
-              $sql = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
-              $result = mysqli_query($link, $sql);
+              $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+              $result2 = mysqli_query($link, $sql2);
               // 逐行顯示 question_photo
-              while ($photo_row = mysqli_fetch_assoc($result)) {
+              while ($photo_row = mysqli_fetch_assoc($result2)) {
                 echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
               }
               echo '<div id="overlay"></div>
@@ -546,10 +548,12 @@
                 </div>
               </div>
             </div>
-          </div>';
+          ';
             }
             mysqli_close($link);
             ?>
+            </div>
+            
             <!-- Modal -->
             <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">

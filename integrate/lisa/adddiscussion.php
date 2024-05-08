@@ -439,16 +439,12 @@
                   <div style="float: left;margin-top: 45px; margin-left: 20px;font-size:0.7cm;">
                     <h5>' . $row["account"] . '</h5>
                   </div>
-                  <div class="row" style="float: right;margin-top:44px;margin-right:10px;">
-                  <div class="col-sm-5" id="btn1">
-                  <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
-                    autocomplete="off">
-                    <div class="handle"></div>
-                  </button>
-                </div>
-                </div>
-                </div>
-                
+                  <select class="form-select" aria-label="Default select example" style="width:100px;float:right;margin-top:30px;"
+                  name="public">
+                  <option value="公開">公開</option>
+                  <option value="不公開">不公開</option>
+                  </select>
+                  </div>
                 <div class="card-body">
                   <input type="text" class="form-control" name="question_title" placeholder="標題" required>
                   <br>
@@ -461,7 +457,6 @@
                 </div>
                 </div>
                 <div class="card-footer">
-                
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
                 </div>';
@@ -471,47 +466,6 @@
                         </form>
                     </center>
                 </section><!-- End Contact Section -->
-                <script>
-                    const toggleSwitch = document.querySelector('.btn-toggle');
-
-                    toggleSwitch.addEventListener('click', function () {
-                        const isChecked = this.classList.contains('active');
-                        updateToggleContent(isChecked);
-                        sendDataToBackend(isChecked);
-                    });
-
-                    function updateToggleContent(isChecked) {
-                        const beforeContent = document.querySelector('#btn1 .btn-toggle:before');
-                        const afterContent = document.querySelector('#btn1 .btn-toggle:after');
-
-                        if (isChecked) {
-                            beforeContent.textContent = '公開';
-                            afterContent.textContent = '不公開';
-                        } else {
-                            beforeContent.textContent = '不公開';
-                            afterContent.textContent = '公開';
-                        }
-                    }
-
-                    function sendDataToBackend(isChecked) {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('POST', 'adddis.php', true);
-                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhr.onreadystatechange = function () {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.status === 200) {
-                                    console.log('Data sent to backend successfully.');
-                                } else {
-                                    console.error('Failed to send data to backend.');
-                                }
-                            }
-                        };
-                        const formData = new FormData();
-                        formData.append('isChecked', isChecked ? '不公開' : '公開');
-                        xhr.send(formData);
-                    }
-                </script>
-
                 <section id="order">
                     <h2>Returns</h2>
                     <h4>對帳表:</h4>
