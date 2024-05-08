@@ -180,12 +180,19 @@
           <h1>熱門團購</h1>
         </div>
         <style>
-            .testimonial-item img {
-              object-fit: cover;
-              width: 100%;
-              height: 100%;
-            }
-          </style>
+          .testimonial-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+
+          .tags-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 5px 0;
+            /* 根據需要添加其他樣式 */
+          }
+        </style>
 
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -212,7 +219,7 @@
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="swiper-slide" >
                 <div class="testimonial-wrap" >
-                  <div class="testimonial-item" style="height: 400px;">
+                  <div class="testimonial-item" style="height: 450px;">
                   <a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">
                     <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="" title="' . $row['commodity_group_name'] . '"></a>
 
@@ -228,12 +235,18 @@
                   </div>
                     <br>
 
-                    <div>
-                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
-                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
-                      <a type="button" href="#" class="btn btn-light-tag">#tag</a>
+                    <div style="height:50px">
+                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
+                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
+                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
+                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
+                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
+                     
                     </div>
 
+
+                    <br>
+                    <br>
                     <br>
 
                     <div class="meta d-flex align-items-center">
@@ -241,6 +254,7 @@
                         <i class="bi bi-clock"></i> <span class="ps-2">截單日期：' . $row['close_order_date'] . '</span>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>';
@@ -251,6 +265,7 @@
 
             mysqli_close($link);
             ?>
+            <script></script>
 
 
             <!-- item -->
@@ -395,7 +410,7 @@
       </div>
     </section><!-- End Portfolio Section -->
 
-    
+
 
 
     <!-- ======= Team Section ======= -->
@@ -407,7 +422,7 @@
           <h1>推薦店家</h1>
         </div>
 
-        
+
 
         <div class="row gy-4 mt-3">
 
@@ -422,7 +437,8 @@
           <div class="container">
             <div class="row">
               <?php while ($row = mysqli_fetch_assoc($result2)): ?>
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-2 mb-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-2 mb-2" data-aos="fade-up"
+                  data-aos-delay="100">
                   <div class="member" style="width: 300px;">
                     <div class="member-img">
                       <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">

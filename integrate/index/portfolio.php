@@ -195,6 +195,44 @@
           </script>
 
           <style>
+            .topicbox {
+              position: relative;
+              width: 90px;
+              height: 50px;
+              overflow: hidden;
+              margin: 10px;
+              border-radius: 5px;
+              padding: 0 5px 0 5px;
+            }
+
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: #B0A5C6;
+              /* 黑色透明背景 */
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              opacity: 1;
+              transition: opacity 0.3s ease-in-out;
+            }
+
+            .text {
+              color: white;
+              font-size: 16px;
+              font-weight: bold;
+              text-align: center;
+            }
+
+            .topicbox:hover .overlay {
+              background-color: #E9C9D6;
+              /* 黑色透明背景 */
+            }
+
             .filtertag h5 {
               padding: 0.25em 0.5em;
               /*上下 左右の余白*/
@@ -229,57 +267,13 @@
           <div class="collapse" id="collapseExample1">
             <div class="card card-body">
 
+
               <div class="row">
-
-
-                <style>
-                  .topicbox {
-                    position: relative;
-                    width: 90px;
-                    height: 50px;
-                    overflow: hidden;
-                    margin: 10px;
-                    border-radius: 5px;
-                    padding:0 5px 0 5px;
-                  }
-
-
-                  .overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: #B0A5C6;
-                    /* 黑色透明背景 */
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    opacity: 1;
-                    transition: opacity 0.3s ease-in-out;
-                  }
-
-                  .text {
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-align: center;
-                  }
-
-                  .topicbox:hover .overlay {
-                    background-color: #E9C9D6;
-                    /* 黑色透明背景 */
-                  }
-                </style>
-
 
                 <div class="col-6">
                   <div class="filtertag">
                     <h5>主題</h5>
                     <div class="row">
-
-
-
 
                       <a href="#" class="topicbox">
                         <img src="" alt="Image" class="image">
@@ -344,21 +338,44 @@
                         </div>
                       </a>
 
+                      <a href="#" class="topicbox">
+                        <img src="your-image-url.jpg" alt="Image" class="image">
+                        <div class="overlay">
+                          <div class="text"><i class="fa-solid fa-bars"></i>&nbsp;其他</div>
+                        </div>
+                      </a>
+
                     </div>
 
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-3">
                   <div class="filtertag">
                     <h5>國家</h5>
-                    <ul>
-                      <li><a href="#">日本</a></li>
-                      <li><a href="#">韓國</a></li>
-                      <li><a href="#">美國</a></li>
-                      <li><a href="#">中國</a></li>
-                    </ul>
+                    <div class="row">
+                      <div class="col">
+                        <ul>
+                          <li><a href="1">日本</a></li>
+                          <li><a href="2">韓國</a></li>
+                          <li><a href="3">台灣</a></li>
+                          <li><a href="4">法國</a></li>
+                          <li><a href="5">美國</a></li>
+                        </ul>
+                      </div>
+                      <div class="col">
+                        <ul>
+                          <li><a href="6">義大利</a></li>
+                          <li><a href="7">中國</a></li>
+                          <li><a href="8">泰國</a></li>
+                          <li><a href="9">英國</a></li>
+                          <li><a href="10">加拿大</a></li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+
                 <style>
                   .btn-tag {
                     border-radius: 50px;
@@ -380,7 +397,7 @@
                   }
                 </style>
 
-                <div class="col">
+                <div class="col-3">
                   <div class="filtertag">
                     <h5>熱門標籤</h5>
                   </div>
@@ -414,6 +431,7 @@
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">發現</li>
               <li data-filter=".filter-follow">追蹤店家</li>
+              <li data-filter=".filter-tag">關注標籤</li>
             </ul>
           </div>
         </div>
@@ -440,7 +458,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-tag  wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
 
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
@@ -598,6 +616,8 @@
           </div>
 
         </div>
+
+
 
       </div>
     </section><!-- End Portfolio Section -->
