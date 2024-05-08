@@ -214,8 +214,45 @@
                 <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a
                     href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
                     <?php echo $shop_name; ?></a></li>
-                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a
-                    href="#"><?php echo $nation; ?></a></li>
+                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a href="#">
+                    <?php
+                    
+                    switch ($nation) {
+                      case 1:
+                        echo "日本";
+                        break;
+                      case 2:
+                        echo "韓國";
+                        break;
+                      case 3:
+                        echo "台灣";
+                        break;
+                      case 4:
+                        echo "法國";
+                        break;
+                      case 5:
+                        echo "美國";
+                        break;
+                      case 6:
+                        echo "義大利";
+                        break;
+                      case 7:
+                        echo "中國";
+                        break;
+                      case 8:
+                        echo "泰國";
+                        break;
+                      case 9:
+                        echo "英國";
+                        break;
+                      case 10:
+                        echo "加拿大";
+                        break;
+                      default:
+                        echo "其他";
+                    }
+                    ?>
+                  </a></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
                   <a href="#"><span class="topic">主題</span></a>
@@ -223,8 +260,6 @@
                   <a href="#"><span class="topic">主題</span></a>
                 <li><i class="fa-solid fa-tags"></i>&nbsp;<strong>標籤</strong>:
                   <div>
-                    <a href="#"><span class="category">#標籤</span></a>
-                    <a href="#"><span class="category">#標籤</span></a>
                     <a href="#"><span class="category">#標籤</span></a>
                     <a href="#"><span class="category">#標籤</span></a>
                     <a href="#"><span class="category">#標籤</span></a>
