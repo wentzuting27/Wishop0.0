@@ -1331,7 +1331,14 @@ section {
   right: -5.5rem;
   opacity: 0.5;
 }
+/* 激活状态 */
+.btn-toggle.active:before {
+  content: '不公開';
+}
 
+.btn-toggle.active:after {
+  content: '公開';
+}
 #btn1 .btn-toggle>.handle {
   position: absolute;
   top: 0.1875rem;
