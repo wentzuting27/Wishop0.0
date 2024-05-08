@@ -108,7 +108,8 @@
 
       if ($result && mysqli_num_rows($result) == 0) {
         echo '
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">我要跟團</button>
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
     <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
@@ -140,7 +141,8 @@
 
       if ($result && mysqli_num_rows($result) != 0) {
         echo '
-      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">取消跟團</button>
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+      <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
       <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
@@ -507,10 +509,14 @@
             <div style="max-height:600px;overflow-y:scroll;">
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $sql = "select * from question natural join commodity_group natural join account where commodity_group_id ='$commodity_group_id'";
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $sql = "SELECT * FROM question NATURAL JOIN account 
+            WHERE commodity_group_id ='$commodity_group_id' 
+            AND public='公開';";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-              $question_id = $row["question_id"];
+              $question_id = $row["question_id"]; 
+             
               echo '
               <div class="part2">
               <div class="card border-secondary mb-12">
@@ -524,7 +530,8 @@
                     <h4><B>', $row["question_title"], '</B></h4>
                   </div>
                   <h4 style="float: right;margin-top:-70px;">
-                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
                   </h4>
                 </div>
                 
@@ -546,15 +553,9 @@
                   </h4>
                 </div>
               </div>
-            </div>
-          ';
-            }
-            mysqli_close($link);
-            ?>
-            </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+            </div>';
+            echo'<!-- Modal -->
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -567,6 +568,29 @@
                   </div>
                 </div>
               </div>
+            </div>
+          ';
+             echo '
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var part3 = document.getElementById(\'card'.$question_id.'\');
+               part3.addEventListener(\'click\', function () {
+                // 导航到新页面
+                window.location.href = \'../lisa/discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
+                // 页面加载后延迟执行滚动到指定区域
+                window.addEventListener(\'load\', function () {
+                  setTimeout(function () {
+                     var targetElement = document.querySelector(\'#blog\');
+                     if (targetElement) {
+                      targetElement.scrollIntoView();
+                     }
+                    }, 1000); // 延迟 1 秒执行滚动操作
+                  });
+                });
+              });
+              </script>';}
+            mysqli_close($link);
+            ?>
             </div>
             <?php
             $commodity_group_id = $_GET["commodity_group_id"];
@@ -581,7 +605,7 @@
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener(\'load\', function () {
                   setTimeout(function () {
-                     var targetElement = document.querySelector(\'#blog\');
+                     var targetElement = document.querySelector(\'#first\');
                      if (targetElement) {
                       targetElement.scrollIntoView();
                      }
@@ -645,7 +669,7 @@
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
-            <td>' . $row['payment_state'] . '</td>';
+            <td>' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</td>';
                   echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>

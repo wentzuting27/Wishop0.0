@@ -88,23 +88,32 @@
     <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
     ;">';
     } ?>
-    <?php
-    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
-    $account = $_SESSION["account"];
-    $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-    $result = mysqli_query($link, $sql);
+    <form method="post" action="save_group.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
+      <?php
+      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+      $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
+      $account = $_SESSION["account"];
+      $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result2 = mysqli_query($link, $sql2);
 
-    if ($result && mysqli_num_rows($result) == 0) {
-      echo '
+      if ($result2 && mysqli_num_rows($result2) == 0) {
+        echo '
     <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
     </div>
     <div class="edit_like_shop_button">
-    <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">我要跟團</button>
+    <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
+      }
+
+      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result = mysqli_query($link, $sql);
+
+      if ($result && mysqli_num_rows($result) == 0) {
+        echo '
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
     <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
@@ -119,34 +128,44 @@
     </marquee>
     </center>
     ';
-    } else {
-      echo '
-    <div class="background-overlay" style="position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-    </div>
-    <div class="edit_like_shop_button">
-    <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already" id="one1">
-    取消跟團</button>
-    </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn"></i></p>
-    </div>
-    <div>
-    <center>
-    <marquee>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    </marquee>
-    </center>';
-    }
+      }
+      if ($result2 && mysqli_num_rows($result2) != 0) {
+        echo '
+      <div class="background-overlay" style="position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+      </div>
+      <div class="edit_like_shop_button">
+      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
+      }
 
-    mysqli_close($link);
-    ?>
+      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result = mysqli_query($link, $sql);
+
+      if ($result && mysqli_num_rows($result) != 0) {
+        echo '
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+      <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;">
+      <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
+      <p><i class="fa-solid fa-bullhorn"></i></p>
+      </div>
+      <div>
+      <center>
+      <marquee>
+      <span>公告：商品即將寄出，請注意到貨時間！</span>
+      <span>公告：商品即將寄出，請注意到貨時間！</span>
+      <span>公告：商品即將寄出，請注意到貨時間！</span>
+      </marquee>
+      </center>
+      ';
+      }
+
+      mysqli_close($link);
+      ?>
+    </form>
     </div>
     </div>
 
@@ -251,9 +270,9 @@
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" checked>
+      <input type="radio" id="tab1" name="tab-control">
       <input type="radio" id="tab2" name="tab-control">
-      <input type="radio" id="tab3" name="tab-control">
+      <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
       <div id="subject">
         <ul>
@@ -311,6 +330,7 @@
                     </li>';
                       $i++;
                     }
+                    mysqli_close($link);
                     ?>
 
                   </ul>
@@ -373,8 +393,8 @@
                     </td>
                     <td data-th="Subtotal" class="text-center">$0</td>
                   </tr>';
-                  } ?>
-
+                  }
+                  mysqli_close($link); ?>
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
@@ -413,175 +433,214 @@
         </section>
         <section id="blog" class="blog">
           <h2>Shipping</h2>
-          <div class="container" data-aos="fade-up">
+          
             <div class="row">
-              <div class="col-lg-8 entries">
+              <div class="col-lg-12" style="padding-left:50px;padding-right:50px;">
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
+                        href="團內介面2.php#first">
+                        回上一頁</a></li>
+                  </ul>
+                </div>
 
-                <article class="entry entry-single">
-
-
-                  <h2 class="entry-title">
-                    <a href="blog-single.php">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam
-                      quia</a>
-                  </h2>
-
-                  <div class="entry-meta">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a href="團內介面2.php#first">
-                          回上一頁</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="entry-content">
-                    <div class="part2">
-                      <div class="card border-secondary mb-12" style="width: 100%;">
-                        <div class="card-header bg-transparent border-secondary">
-                          <div class="col-md-3">
-                            <div class="profile-picture big-profile-picture clear"
-                              style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -20px;">
-                              <img width="100%" height="100%" alt="Anne Hathaway picture"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                            </div>
-                            <p>團主：</p>
-                            <h4><B>關於出貨通知</B></h4>
-                          </div>
-                        </div>
-                        <div class="col-md-9">
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title">Success card title</h5>
-                          <p class="card-text">
-                          <p>尊敬的客戶:</p>
-                          <p>感謝您的訂單！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                          <p>您可以通过订单追踪链接来查看包裹的最新状态。如果您有任何问题或需要帮助，请随时与我们的客服团队联系。</p>
-                          <p>祝您购物愉快！</p>
-                          <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                          <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                          <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                          <p>感谢您的订单！我们很高兴地通知您，您的商品已经准备好并已出货。</p>
-                          </p>
-                          <div id="overlay"></div>
-                        </div>
-                        <div class="card-footer bg-transparent border-secondary">
-                          <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                            <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
-                          </h4>
-
-                        </div>
-                      </div>
-
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $commodity_group_id = $_GET["commodity_group_id"];
+                $question_id = $_GET["question_id"];
+                $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
+                $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                echo '
+              <div class="part2">
+              <div class="card border-secondary mb-12">
+                <div class="card-header bg-transparent border-secondary">
+                  <div class="col-md-12">
+                    <div class="profile-picture big-profile-picture clear"
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
+                    <p>', $row["account"], '：</p>
+                    <h4><B>', $row["question_title"], '</B></h4>
+                  </div>
+                  <h4 style="float: right;margin-top:-50px;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
+                  </h4>
+                </div>
+                
+                <div class="card-body " id="card' . $question_id . '" 
+                style="max-height: 600px;overflow-y: scroll;">
+                  <p>', $row["question_narrate"], '</p>';
 
-                </article><!-- End blog entry -->
+                $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+                $result2 = mysqli_query($link, $sql2);
+                // 逐行顯示 question_photo
+                while ($photo_row = mysqli_fetch_assoc($result2)) {
+                  echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+                }
+                echo '
+                </div>
+                <div class="card-footer bg-transparent border-secondary">
+                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
+                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
+                    <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
+                  </h4>
+                </div>
+              </div>
+            </div>';
+                echo '<!-- Modal -->
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ';
+                mysqli_close($link);
+                ?>
+              </div>
 
 
-                <div class="blog-comments">
-                  <h4 class="comments-count">2 Comments</h4>
-                  <div id="comment-1" class="comment">
-                    <div class="d-flex">
-                      <div class="comment-img"><div class="profile-picture big-profile-picture clear">
+              <div class="blog-comments">
+                <h4 class="comments-count">2 Comments</h4>
+                <div id="comment-1" class="comment">
+                  <div class="d-flex">
+                    <div class="comment-img">
+                      <div class="profile-picture big-profile-picture clear">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
                           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                      </div></div>
-                      <div class="comment2">
-                        <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
-                        <p>
-                          Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
-                          Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                        </p> 
                       </div>
                     </div>
-                  </div><!-- End comment #1 --><sh> 
-    
+                    <div class="comment2">
+                      <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                          Reply</a></h5>
+                      <time datetime="2020-01-01">01 Jan, 2020</time>
+                      <p>
+                        Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
+                        molestiae est qui cum soluta.
+                        Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                      </p>
+                    </div>
+                  </div>
+                </div><!-- End comment #1 -->
+                <sh>
+
                   <div id="comment-2" class="comment">
                     <div class="d-flex">
-                      <div class="comment-img"><div class="profile-picture big-profile-picture clear">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                      </div></div>
-                      <div class="comment2">
-                        <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
-                        <p>
-                          Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                        </p>
-                      </div>
-                    </div><hr />
-    
-                    <div id="comment-reply-1" class="comment comment-reply">
-                      <div class="d-flex">
-                        <div class="comment-img"><div class="profile-picture big-profile-picture clear">
+                      <div class="comment-img">
+                        <div class="profile-picture big-profile-picture clear">
                           <img width="100%" height="100%" alt="Anne Hathaway picture"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                        </div></div>
-                        <div class="comment2">
-                          <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                          <time datetime="2020-01-01">01 Jan, 2020</time>
-                          <p>
-                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-    
-                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-    
-                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
-                          </p>
                         </div>
-                      </div><hr />
-    
-                      <div id="comment-reply-2" class="comment comment-reply">
-                        <div class="d-flex">
-                          <div class="comment-img"><div class="profile-picture big-profile-picture clear">
+                      </div>
+                      <div class="comment2">
+                        <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                            Reply</a></h5>
+                        <time datetime="2020-01-01">01 Jan, 2020</time>
+                        <p>
+                          Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut
+                          beatae.
+                        </p>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div id="comment-reply-1" class="comment comment-reply">
+                      <div class="d-flex">
+                        <div class="comment-img">
+                          <div class="profile-picture big-profile-picture clear">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
                           </div>
                         </div>
+                        <div class="comment2">
+                          <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                              Reply</a></h5>
+                          <time datetime="2020-01-01">01 Jan, 2020</time>
+                          <p>
+                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae
+                            quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed
+                            repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor
+                            recusandae.
+
+                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam
+                            qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis
+                            incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
+
+                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non
+                            autem quisquam vero rerum neque.
+                          </p>
+                        </div>
+                      </div>
+                      <hr />
+
+                      <div id="comment-reply-2" class="comment comment-reply">
+                        <div class="d-flex">
+                          <div class="comment-img">
+                            <div class="profile-picture big-profile-picture clear">
+                              <img width="100%" height="100%" alt="Anne Hathaway picture"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                            </div>
+                          </div>
                           <div class="comment2">
-                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                                Reply</a></h5>
                             <time datetime="2020-01-01">01 Jan, 2020</time>
                             <p>
-                              Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores cupiditate et. Ut unde qui eligendi sapiente omnis ullam. Placeat porro est commodi est officiis voluptas repellat quisquam possimus. Perferendis id consectetur necessitatibus.
+                              Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores cupiditate et.
+                              Ut unde qui eligendi sapiente omnis ullam. Placeat porro est commodi est officiis voluptas
+                              repellat quisquam possimus. Perferendis id consectetur necessitatibus.
                             </p>
                           </div>
-                        </div><hr />
-    
-                  </div><!-- End comment #2-->
+                        </div>
+                        <hr />
 
+                      </div><!-- End comment #2-->
 
-                <div class="reply-form">
-                  <h4>留言區</h4>
-                  <form action="">
-                    <div class="row">
-                      <div class="col-md-6 form-group">
-                        <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                      </div>
-                      <div class="col-md-6 form-group">
-                        <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col form-group">
-                        <input name="comment" class="form-control" placeholder="回復對象">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col form-group">
-                        <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                      <center>
+                        <div class="reply-form">
+                          <h4>留言區</h4>
+                          <form action="">
+                            <div class="row">
+                              <div class="col-md-6 form-group">
+                                <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                              </div>
+                              <div class="col-md-6 form-group">
+                                <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col form-group">
+                                <input name="comment" class="form-control" placeholder="回復對象">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col form-group">
+                                <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                              </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
 
-                  </form>
+                          </form>
 
-                </div>
-
-              </div><!-- End blog comments -->
+                        </div>
+                      </center>
+                    </div><!-- End blog comments -->
         </section>
         </section>
 
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
-
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
@@ -625,26 +684,21 @@
                     $totalprice_row = mysqli_fetch_assoc($result2);
                     $totalprice = $totalprice_row['totalprice'];
                   }
-                  echo'<tr>';
+                  echo '<tr>';
                   echo '
               <td>' . $row['order_id'] . '</td>
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
-            <td>' . $totalprice . '</td>';
-
-            $sql3 = "SELECT `state` FROM payment_state  WHERE payment_state_id='" . $row['payment_state'] . "'";
-                  $result3 = mysqli_query($link, $sql3);
-                  while ($row3 = mysqli_fetch_assoc($result3)) {
-                    echo '<td>' . $row3['state'] . '</td>';
-                }
-                  echo'
+            <td>' . $totalprice . '</td>
+            <td>' . $row['payment_state'] . '</td>';
+                  echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
                 </td>
                 ';
-                echo'</tr>';
-              }
-                mysqli_close($link); 
+                  echo '</tr>';
+                }
+                mysqli_close($link);
                 ?>
               </tbody>
             </table>
