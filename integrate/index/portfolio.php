@@ -43,6 +43,175 @@
   ======================================================== -->
 </head>
 
+
+<style>
+  .topicbox {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    overflow: hidden;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 0 5px 0 5px;
+  }
+
+
+  .filtertag h5 {
+    padding: 0.25em 0.5em;
+    /*上下 左右の余白*/
+    color: #494949;
+    /*文字色*/
+    background: transparent;
+    /*背景透明に*/
+    border-left: solid 5px #B0A5C6;
+    /*左線*/
+    font-weight: bold;
+  }
+
+
+  .filtertag ul li {
+    font-size: 18px;
+    /* 设置列表项文字大小 */
+    margin-top: 5px;
+  }
+
+  .filtertag a {
+    color: #B0A5C6
+  }
+
+  /* 滑鼠移過去時的顏色 */
+  .filtertag a:hover {
+    color: #E9C9D6;
+    /* 替換為您想要的顏色 */
+  }
+
+  /* 側邊欄項目 */
+  .sidebar-item.search-form {
+    margin-bottom: 20px;
+    /* 將搜索框和篩選框並排 */
+  }
+
+  /* 搜索表單 */
+  .sidebar-item.search-form form {
+    display: flex;
+    align-items: center;
+  }
+
+  /* 搜索輸入框 */
+  .sidebar-item.search-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+  }
+
+  /* 搜索按鈕 */
+  .sidebar-item.search-form button[type="submit"] {
+    background-color: #B0A5C6;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* 滑鼠懸停時的搜索按鈕 */
+  .sidebar-item.search-form button[type="submit"]:hover {
+    background-color: #E9C9D6;
+  }
+
+  /* 調整篩選框與搜索框的間距 */
+  .filtertag {
+    margin-left: 10px;
+  }
+
+  .btn-tag {
+    border-radius: 50px;
+    border: 2px solid #B0A5C6;
+    color: #B0A5C6;
+    background-color: transparent;
+    padding: 3px 15px;
+    margin: 3px;
+    transition: border-color 0.3s, color 0.3s;
+    /* 添加過渡效果 */
+
+  }
+
+  .btn-tag:hover {
+    border-color: #E9C9D6;
+    /* 滑鼠移過去時框線顏色 */
+    color: #E9C9D6;
+    /* 滑鼠移過去時字體顏色 */
+  }
+
+  /* 自定義按鈕樣式的 checkbox */
+  .checkbox-label {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .checkbox-label input {
+    position: absolute;
+    left: -9999px;
+  }
+
+
+
+  .checkbox-button {
+    display: inline-block;
+    padding: 10px;
+    width: 90px;
+    text-align: center;
+    background-color: #B0A5C6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+  }
+
+  .checkbox-label input:checked+.checkbox-button {
+    background-color: #E9C9D6;
+  }
+</style>
+
+
+<style>
+  .row .col ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  /* Checkbox美化 */
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  /* Checkbox的自訂樣式 */
+  input[type="checkbox"]+label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid #B0A5C6;
+    color: #B0A5C6;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  /* Checkbox被勾選時的樣式 */
+  input[type="checkbox"]:checked+label {
+    background-color: #E9C9D6;
+    border: 2px solid #E9C9D6;
+    color: #fff;
+  }
+</style>
+
 <body>
   <?php session_start(); ?>
 
@@ -112,314 +281,7 @@
   <main id="main">
 
 
-
-    <style>
-      /* 側邊欄項目 */
-      .sidebar-item.search-form {
-        margin-bottom: 20px;
-        /* 將搜索框和篩選框並排 */
-      }
-
-      /* 搜索表單 */
-      .sidebar-item.search-form form {
-        display: flex;
-        align-items: center;
-      }
-
-      /* 搜索輸入框 */
-      .sidebar-item.search-form input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px 0 0 5px;
-        outline: none;
-      }
-
-      /* 搜索按鈕 */
-      .sidebar-item.search-form button[type="submit"] {
-        background-color: #B0A5C6;
-        color: #fff;
-        border: none;
-        border-radius: 0 5px 5px 0;
-        padding: 11px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      /* 滑鼠懸停時的搜索按鈕 */
-      .sidebar-item.search-form button[type="submit"]:hover {
-        background-color: #E9C9D6;
-      }
-
-      /* 調整篩選框與搜索框的間距 */
-      .filtertag {
-        margin-left: 10px;
-      }
-    </style>
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-
-        <div class="row">
-
-
-          <div class="col-10">
-
-
-            <div class="sidebar-item search-form">
-              <form action="">
-                <input type="text" placeholder="輸入關鍵字">
-                <button type="submit"><i class="bi bi-search"></i></button>
-              </form>
-            </div><!-- End sidebar search formn-->
-          </div>
-
-
-          <div style="text-align: center;" class="col-2">
-
-            <p>
-              <button class="btn-tri" onclick="toggleTriangle(this)" data-bs-toggle="collapse" href="#collapseExample1"
-                role="button" aria-expanded="false" aria-controls="collapseExample1">
-                <i class="fa-solid fa-filter"></i>
-                篩選
-              </button>
-            </p>
-          </div>
-
-          <script>
-            function toggleTriangle(btn) {
-              btn.classList.toggle('clicked');
-            }
-          </script>
-
-          <style>
-            .topicbox {
-              position: relative;
-              width: 90px;
-              height: 50px;
-              overflow: hidden;
-              margin: 10px;
-              border-radius: 5px;
-              padding: 0 5px 0 5px;
-            }
-
-
-            .overlay {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-color: #B0A5C6;
-              /* 黑色透明背景 */
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              opacity: 1;
-              transition: opacity 0.3s ease-in-out;
-            }
-
-            .text {
-              color: white;
-              font-size: 16px;
-              font-weight: bold;
-              text-align: center;
-            }
-
-            .topicbox:hover .overlay {
-              background-color: #E9C9D6;
-              /* 黑色透明背景 */
-            }
-
-            .filtertag h5 {
-              padding: 0.25em 0.5em;
-              /*上下 左右の余白*/
-              color: #494949;
-              /*文字色*/
-              background: transparent;
-              /*背景透明に*/
-              border-left: solid 5px #B0A5C6;
-              /*左線*/
-              font-weight: bold;
-            }
-
-
-            .filtertag ul li {
-              font-size: 18px;
-              /* 设置列表项文字大小 */
-              margin-top: 5px;
-            }
-
-            .filtertag a {
-              color: #B0A5C6
-            }
-
-            /* 滑鼠移過去時的顏色 */
-            .filtertag a:hover {
-              color: #E9C9D6;
-              /* 替換為您想要的顏色 */
-            }
-          </style>
-
-
-          <div class="collapse" id="collapseExample1">
-            <div class="card card-body">
-
-
-              <div class="row">
-
-                <div class="col-6">
-                  <div class="filtertag">
-                    <h5>主題</h5>
-                    <div class="row">
-
-                      <a href="#" class="topicbox">
-                        <img src="" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-shirt">&nbsp;</i>服飾</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-heart"></i>&nbsp;動漫</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-star"></i>&nbsp;明星</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-house-chimney-window"></i>&nbsp;日常</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-gamepad"></i>&nbsp;數位3C</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-utensils"></i>&nbsp;美食</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-person-biking"></i>&nbsp;運動</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-gift"></i>&nbsp;精品</div>
-                        </div>
-                      </a>
-
-                      <a href="#" class="topicbox">
-                        <img src="your-image-url.jpg" alt="Image" class="image">
-                        <div class="overlay">
-                          <div class="text"><i class="fa-solid fa-bars"></i>&nbsp;其他</div>
-                        </div>
-                      </a>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="col-3">
-                  <div class="filtertag">
-                    <h5>國家</h5>
-                    <div class="row">
-                      <div class="col">
-                        <ul>
-                          <li><a href="1">日本</a></li>
-                          <li><a href="2">韓國</a></li>
-                          <li><a href="3">台灣</a></li>
-                          <li><a href="4">法國</a></li>
-                          <li><a href="5">美國</a></li>
-                        </ul>
-                      </div>
-                      <div class="col">
-                        <ul>
-                          <li><a href="6">義大利</a></li>
-                          <li><a href="7">中國</a></li>
-                          <li><a href="8">泰國</a></li>
-                          <li><a href="9">英國</a></li>
-                          <li><a href="10">加拿大</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <style>
-                  .btn-tag {
-                    border-radius: 50px;
-                    border: 2px solid #B0A5C6;
-                    color: #B0A5C6;
-                    background-color: transparent;
-                    padding: 3px 15px;
-                    margin: 3px;
-                    transition: border-color 0.3s, color 0.3s;
-                    /* 添加過渡效果 */
-
-                  }
-
-                  .btn-tag:hover {
-                    border-color: #E9C9D6;
-                    /* 滑鼠移過去時框線顏色 */
-                    color: #E9C9D6;
-                    /* 滑鼠移過去時字體顏色 */
-                  }
-                </style>
-
-                <div class="col-3">
-                  <div class="filtertag">
-                    <h5>熱門標籤</h5>
-                  </div>
-                  <a type="button" href="tag.php" class="btn-tag">#排球少年</a>
-                  <a type="button" href="tag.php" class="btn-tag">#火影忍者</a>
-                  <a type="button" href="tag.php" class="btn-tag">#ATEEZ</a>
-                  <a type="button" href="tag.php" class="btn-tag">#偶像夢幻季</a>
-                  <a type="button" href="tag.php" class="btn-tag">#BTS</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-        </div>
-
-      </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
+    
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
@@ -430,15 +292,69 @@
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">發現</li>
-              <li data-filter=".filter-follow">追蹤店家</li>
-              <li data-filter=".filter-tag">關注標籤</li>
-            </ul>
+
+
+              <?php
+
+              if (!empty($_SESSION['account'])) {
+                // 使用者已登入，顯示 HTML 元素
+                echo '<li data-filter=".filter-follow">追蹤店家</li>';
+                echo '<li data-filter=".filter-tag">關注標籤</li>';
+              } else
+                '<a href="login.php" class="getstarted" style="color: white;">登入</a>'
+                  ?>
+
+
+
+
+
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div class="row portfolio-container">
+          <div class="row portfolio-container">
+            <style>
+              .img-fluid {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+              }
+            </style>
 
-          <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
+            <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+              $sql3 = "SELECT c.*, cg.*, cp.commodity_photo 
+              FROM commodity c 
+              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
+              JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+              GROUP BY c.commodity_id
+              ORDER BY RAND() 
+              ";
+
+              $result3 = mysqli_query($link, $sql3);
+
+              while ($row = mysqli_fetch_assoc($result3)) {
+                echo '
+              <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' wow fadeInUp">
+                  <div class="portfolio-wrap">
+                      <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
+                          data-glightbox="type: external" title="' . $row['commodity_name'] . '">
+                          <figure>
+                              <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                          </figure>
+                      </a>
+                      <div class="portfolio-info">
+                          <h4>' . $row['commodity_name'] . '</h4>
+                          <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                      </div>
+                  </div>
+              </div>
+              ';
+              }
+              ?>
+
+          <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
             <div class="portfolio-wrap">
 
               <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
@@ -456,164 +372,16 @@
 
 
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-tag  wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品2</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;300</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img
-                    src="https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品3</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;200</i></p>
-              </div>
+          </div> -->
 
 
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
 
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品4</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;199</i></p>
-              </div>
 
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
 
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品5</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;350</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1670537995115-1c4c9184821b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品6</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;299</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品7</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;79</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-follow wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品8</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;200</i></p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品9</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;450</i></p>
-              </div>
-
-            </div>
-          </div>
 
         </div>
 

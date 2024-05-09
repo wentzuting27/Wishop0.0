@@ -93,7 +93,9 @@
                 JOIN 
                     shop s ON cg.shop_id = s.shop_id
                     
-                    where c.commodity_id='$commodity_id'";
+                    where c.commodity_id='$commodity_id
+                '";
+
 
 
                 $result = mysqli_query($link, $sql);
@@ -216,7 +218,7 @@
                     <?php echo $shop_name; ?></a></li>
                 <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a href="#">
                     <?php
-                    
+
                     switch ($nation) {
                       case 1:
                         echo "日本";
@@ -255,9 +257,59 @@
                   </a></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
-                  <a href="#"><span class="topic">主題</span></a>
-                  <a href="#"><span class="topic">主題</span></a>
-                  <a href="#"><span class="topic">主題</span></a>
+
+                  <?php
+                   if ($_GET['commodity_id'] != '') {
+                    $commodity_id = $_GET['commodity_id'];
+
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    $sql2 = "SELECT * From group_topic gt JOIN commodity_group cg ON cg.commodity_group_id = gt.commodity_group_id";
+                    $result2 = mysqli_query($link, $sql2);
+
+                    if ($result2) {
+                      while ($row2 = mysqli_fetch_assoc($result2)) {
+                        switch ($row2['topic']) {
+                          case 1:
+                            echo '<a href="#"><span class="topic">服飾</span></a>';
+                            break;
+                          case 2:
+                            echo '<a href="#"><span class="topic">美妝</span></a>';
+                            break;
+                          case 3:
+                            echo '<a href="#"><span class="topic">動漫</span></a>';
+                            break;
+                          case 4:
+                            echo '<a href="#"><span class="topic">明星</span></a>';
+                            break;
+                          case 5:
+                            echo '<a href="#"><span class="topic">日常</span></a>';
+                            break;
+                          case 6:
+                            echo '<a href="#"><span class="topic">數位3C</span></a>';
+                            break;
+                          case 7:
+                            echo '<a href="#"><span class="topic">美食</span></a>';
+                            break;
+                          case 8:
+                            echo '<a href="#"><span class="topic">運動</span></a>';
+                            break;
+                          case 9:
+                            echo '<a href="#"><span class="topic">精品</span></a>';
+                            break;
+                          case 10:
+                            echo '<a href="#"><span class="topic">其他</span></a>';
+                            break;
+                          default:
+                            echo '無';
+                        }
+                      }
+                    }
+                  }
+                  ?>
+
+                  
+
+
                 <li><i class="fa-solid fa-tags"></i>&nbsp;<strong>標籤</strong>:
                   <div>
                     <a href="#"><span class="category">#標籤</span></a>
