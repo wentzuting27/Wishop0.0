@@ -1,4 +1,5 @@
 <?php
+session_start();
 // 獲取 AJAX 請求中傳遞的資料
 $order_id = $_POST['order_id']; // 從 JavaScript 中發送的 order_id
 $payment_state = $_POST['payment_state']; // 從 JavaScript 中發送的 payment_state

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_POST['method'];
     $page=$_POST['page'];
     $shop_id=$_POST['shop_id'];

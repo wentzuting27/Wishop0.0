@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_POST['method'];
     $rule_type=$_POST['rule_type'];
     $shop_id=$_POST['shop_id'];
