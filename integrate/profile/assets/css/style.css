@@ -2534,11 +2534,17 @@ p.middle {
 	 top: 72px;
 }
  .account-container .form-container {
-	 padding: 40px 80px 80px 80px;
-   margin:  0px 100px 30px 100px;
+	 padding: 40px 60px 80px 60px;
+   margin:  0px 50px 30px 50px;
 	 background-color: #fff;
 	 position: relative;
 	 box-shadow: 0 0 7px rgba(0, 0, 0, 0.13);
+}
+@media (max-width: 768px) {
+  .account-container .form-container {
+    padding: 10px 10px 10px 10px;
+    margin:  0px 20px 30px 20px;
+ }
 }
  .account-container .form-container .user-avatar, .account-container .form-container .user-avatar img {
 	 border-radius: 50%;
