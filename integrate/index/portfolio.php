@@ -306,6 +306,8 @@
 
         outline: none;
         box-shadow: none;
+
+        height: 50px;
       }
 
 
@@ -337,13 +339,11 @@
 
                 <div class="accordion accordion-flush" id="accordionFlushExample" >
                   <div class="accordion-item">
-
-                  
                     
 
-                    <div class="input-group mb-3" style="background-color:#F8F9FA;">
+                    <div class="input-group mb-3" style="background-color:#F8F9FA;  justify-content: center;">
                     
-                      <div  class="col-10">
+                      <div  class="col-8">
                       
                       <input type="text" placeholder="輸入商品名稱" name="commodity_name" style="border: none; height:50px;">
                       </div>
@@ -351,12 +351,12 @@
                       <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
-                          style="border-radius:0px;" style="width:100px;  ">
+                          style="border-radius:0px;" style="width:100px;   ">
                           <i class="fa-solid fa-angle-down"></i>&nbsp;&nbsp;篩選&nbsp;&nbsp;&nbsp;
                         </button>
                       </h2>
 
-                      <button type="submit"><i class="bi bi-search"></i></button>
+                      <button type="submit" style="height:50px;"><i class="bi bi-search"></i></button>
                     </div>
 
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
