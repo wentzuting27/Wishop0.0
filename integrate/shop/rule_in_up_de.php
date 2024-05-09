@@ -55,7 +55,7 @@
         
     }
     else{
-        // $activity_id=$_GET['activity_id'];
+        $shop_rule_id=$_GET['shop_rule_id'];
         // $o_file=$_GET['o_file'];
         // // 取得檔案路徑
         // $file_path = $o_file;
