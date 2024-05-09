@@ -337,27 +337,28 @@
             <form method=post action="portfolio.php">
               <div class="row" style="width:100%;">
 
-                <div class="accordion accordion-flush" id="accordionFlushExample" >
+                <div class="accordion accordion-flush" id="accordionFlushExample">
                   <div class="accordion-item">
-                    
 
-                    <div class="input-group mb-3" style="background-color:#F8F9FA;  justify-content: center;">
-                    
-                      <div  class="col-8">
-                      
-                      <input type="text" placeholder="輸入商品名稱" name="commodity_name" style="border: none; height:50px;">
+
+                    <div class="input-group mb-4"
+                      style="background-color:#F8F9FA;  justify-content: center; margin-bottom: 20px;">
+                      <div class="col-8">
+                        <input type="text" placeholder="輸入商品名稱" name="commodity_name"
+                          style="border: none; height:50px;">
                       </div>
 
-                      <h2 class="accordion-header" id="flush-headingOne">
+                      <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 10px;">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
-                          style="border-radius:0px;" style="width:100px;   ">
-                          <i class="fa-solid fa-angle-down"></i>&nbsp;&nbsp;篩選&nbsp;&nbsp;&nbsp;
+                          style="border-radius:0px; width:100px;">
+                          <i class="fa-solid fa-angle-down"></i>&nbsp;&nbsp;篩選&nbsp;
                         </button>
                       </h2>
 
                       <button type="submit" style="height:50px;"><i class="bi bi-search"></i></button>
                     </div>
+
 
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                       data-bs-parent="#accordionFlushExample">
