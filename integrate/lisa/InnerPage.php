@@ -122,8 +122,6 @@
 
       $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result = mysqli_query($link, $sql);
 
       if ($result && mysqli_num_rows($result) == 0) {
         echo '
