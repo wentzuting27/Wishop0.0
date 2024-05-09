@@ -280,8 +280,233 @@
 
   <main id="main">
 
+    <style>
+      .breadcrumbs {
+        padding: 40px 0;
+        background: #f8f9fa;
+        min-height: 90px;
+        margin-top: 50px;
+      }
 
-    
+      /* 修改手風琴篩選按鈕的背景顏色、文字顏色和邊框顏色 */
+      .accordion-header {
+        background-color: #F8F9FA;
+        /* 這裡可以換成你想要的背景顏色 */
+      }
+
+
+      /* 修改手風琴篩選按鈕的激活（展開）狀態的背景顏色、文字顏色和邊框顏色 */
+      .accordion-button[aria-expanded="true"] {
+        background-color: #B0A5C6;
+        /* 這裡可以換成你想要的激活背景顏色 */
+        color: #FFF;
+        /* 這裡可以換成你想要的激活文字顏色 */
+        border-color: #FFF;
+        /* 這裡可以換成你想要的激活邊框顏色 */
+
+        outline: none;
+        box-shadow: none;
+      }
+
+
+
+
+
+      /* 禁用按鈕點擊時的焦點效果 */
+      .accordion-button:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      /* 隱藏 Bootstrap 手風琴元素展開時的箭頭 */
+      .accordion-button::after {
+        display: none !important;
+      }
+    </style>
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="row">
+
+
+          <div class="sidebar-item search-form">
+            <form method=post action="portfolio.php">
+              <div class="row" style="width:100%;">
+
+                <div class="accordion accordion-flush" id="accordionFlushExample" >
+                  <div class="accordion-item">
+
+                  
+                    
+
+                    <div class="input-group mb-3" style="background-color:#F8F9FA;">
+                    
+                      <div  class="col-10">
+                      
+                      <input type="text" placeholder="輸入商品名稱" name="commodity_name" style="border: none; height:50px;">
+                      </div>
+
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                          style="border-radius:0px;" style="width:100px;  ">
+                          <i class="fa-solid fa-angle-down"></i>&nbsp;&nbsp;篩選&nbsp;&nbsp;&nbsp;
+                        </button>
+                      </h2>
+
+                      <button type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                      data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <div class="row">
+
+                          <div class="col-6">
+                            <div class="filtertag">
+                              <h5>主題</h5>
+                              <div class="row">
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="1" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-shirt"></i>&nbsp;服飾
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="2" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="3" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-heart"></i>&nbsp;動漫
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="4" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-star"></i>&nbsp;明星
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="5" name="topic[]">
+                                    <div class="checkbox-button"><i
+                                        class="fa-solid fa-house-chimney-window"></i>&nbsp;日常
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="6" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-gamepad"></i>&nbsp;3C
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="7" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-utensils"></i>&nbsp;美食
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="8" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-person-biking"></i>&nbsp;運動
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="9" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-gift"></i>&nbsp;精品
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div class="topicbox">
+                                  <label class="checkbox-label">
+                                    <input type="checkbox" value="10" name="topic[]">
+                                    <div class="checkbox-button"><i class="fa-solid fa-bars"></i>&nbsp;其他
+                                    </div>
+                                  </label>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="filtertag">
+                              <h5>國家</h5>
+                              <div class="row">
+                                <div class="col">
+                                  <input type="checkbox" name="nation" id="1"><label for="1">&nbsp;日本</label>
+                                  <input type="checkbox" name="nation" id="2"><label for="2">&nbsp;韓國</label>
+                                  <input type="checkbox" name="nation" id="3"><label for="3">&nbsp;台灣</label>
+                                  <input type="checkbox" name="nation" id="4"><label for="4">&nbsp;法國</label>
+                                  <input type="checkbox" name="nation" id="5"><label for="5">&nbsp;美國</label>
+                                  <input type="checkbox" name="nation" id="6"><label for="6">&nbsp;義大利</label>
+                                  <input type="checkbox" name="nation" id="7"><label for="7">&nbsp;中國</label>
+                                  <input type="checkbox" name="nation" id="8"><label for="8">&nbsp;泰國</label>
+                                  <input type="checkbox" name="nation" id="9"><label for="9">&nbsp;英國</label>
+                                  <input type="checkbox" name="nation" id="10"><label for="10">&nbsp;加拿大</label>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="col-3">
+                            <div class="filtertag">
+                              <h5>熱門標籤</h5>
+                            </div>
+                            <a type="button" href="tag.php" class="btn-tag">#排球少年</a>
+                            <a type="button" href="tag.php" class="btn-tag">#火影忍者</a>
+                            <a type="button" href="tag.php" class="btn-tag">#ATEEZ</a>
+                            <a type="button" href="tag.php" class="btn-tag">#偶像夢幻季</a>
+                            <a type="button" href="tag.php" class="btn-tag">#BTS</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
