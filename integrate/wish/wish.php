@@ -287,24 +287,37 @@
     <section id="features" class="features">
       <div class="container" data-aos="fade-up">
 
+      <?php
+        $tab=$_POST['tab_num'];
+
+        if($tab=='all_wish'){
+          $nowtab=$tab;
+        }elseif($tab=='coming_wish'){
+          $nowtab=$tab;
+        }elseif($tab=='end_wish'){
+          $nowtab=$tab;
+        }else{
+          $nowtab=$all_wish;
+        }
+      ?>
         <ul  class="nav justify-content-center">
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1" href="#tab-1" onclick="scrollToTab('tab-1')">
+            <a class="nav-link <?php echo ($nowtab=='all_wish') ? 'active show' : ''; ?> " data-bs-toggle="tab" data-bs-target="#tab-1" href="#tab-1" onclick="scrollToTab('tab-1')">
               <i class="bi bi-binoculars color-cyan"></i>
               <h4>許願區</h4>
             </a>
           </li><!-- End Tab 1 Nav -->
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2" href="#tab-2" onclick="scrollToTab('tab-2')">
+            <a class="nav-link <?php echo ($nowtab=='coming_wish') ? 'active show' : ''; ?>" data-bs-toggle="tab" data-bs-target="#tab-2" href="#tab-2" onclick="scrollToTab('tab-2')">
               <i class="bi bi-box-seam color-indigo"></i>
               <h4>即將結束區</h4>
             </a>
           </li><!-- End Tab 2 Nav -->
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3" href="#tab-3" onclick="scrollToTab('tab-3')">
+            <a class="nav-link <?php echo ($nowtab=='end_wish') ? 'active show' : ''; ?>" data-bs-toggle="tab" data-bs-target="#tab-3" href="#tab-3" onclick="scrollToTab('tab-3')">
               <i class="bi bi-brightness-high color-teal"></i>
               <h4>歷史許願區</h4>
             </a>
@@ -328,7 +341,7 @@
 
         <div class="tab-content">
 
-          <div class="tab-pane active show" id="tab-1">
+          <div class="tab-pane <?php echo ($nowtab=='all_wish') ? 'active show' : ''; ?>" id="tab-1">
             <div class="row gy-4">    
                   
                   <!-- Courses List Section -->
@@ -340,10 +353,12 @@
                             <section id="blog2" class="blog2">                     
                                 <center><div class="col-lg-12">
                                   <div class="sidebar">                 
-                                    <h3 class="sidebar-title">Search</h3>
+                                    <h3 class="sidebar-title">Search (願望名稱)</h3>
                                     <div class="sidebar-item search-form">
-                                      <form action="">
-                                        <input type="text" class="form-control">
+                                      <form method=post action="../wish/wish.php">
+                                        <input type="hidden" name="tab_num" value="all_wish">
+                                        <input type="hidden" name="search1" value="yes">
+                                        <input type="text" name="wish_name" class="form-control">
                                         <button type="submit"><i class="bi bi-search"></i></button>
                                       </form>
                                     </div><!-- End sidebar search formn-->               
@@ -351,11 +366,190 @@
                                 </div><!-- End blog sidebar --></center>                     
                             </section>  
                         <?php
-                          $wish_num=1;         
-                          $sql="select * from wish
+                          $wish_name="%".$_POST['wish_name']."%";
+                          $sql="select * from wish 
                           natural join account
-                          where wish_shop_id IS null AND wish_end >= CURDATE()
+                          where wish_name like '$wish_name' 
+                          and wish_shop_id IS null 
+                          and wish_end >= CURDATE()
                           order by wish_start";
+                          if($_POST['search1']=='yes'){
+                            $wish_num=1;         
+                            $result=mysqli_query($link,$sql);
+                            while($row=mysqli_fetch_assoc($result))
+                            {
+                              $wish_id=$row["wish_id"];
+                              echo '
+
+                              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="course-item">
+                                  <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner fixed-image">';
+                                      $a=1;
+                                      $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                      $result_photo=mysqli_query($link,$sql_photo);
+                                      while($row_photo=mysqli_fetch_assoc($result_photo))
+                                      {
+                                      echo '
+                                      <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                        <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                      </div>';
+                                      $a++;
+                                      }
+                                      echo'
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Next</span>
+                                    </button>
+                                  </div>
+                                  
+                                  <div class="course-content">
+                                    <div class="justify-content-between align-items-center mb-3">
+                                      <span class="category">韓國</span>
+                                      <span class="category">明星</span>
+                                      <span class="category">ATEEZ</span>
+                                    </div>
+
+                                    <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                    <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                      <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期:',$row["wish_end"],'</span>
+                                    </div>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                      <div class="trainer-profile d-flex align-items-center">
+                                        <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
+                                        <a href="" class="trainer-link">',$row["user_name"],'</a>
+                                      </div>
+                                      <div class="trainer-rank d-flex align-items-center">
+                                        <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>  
+                              </div><!-- End Course Item-->';
+                              $wish_num++;
+                            }
+                          }else{
+                            $wish_num=1;         
+                            $sql="select * from wish
+                            natural join account
+                            where wish_shop_id IS null AND wish_end >= CURDATE()
+                            order by wish_start";
+                            $result=mysqli_query($link,$sql);
+                            while($row=mysqli_fetch_assoc($result))
+                            {
+                              $wish_id=$row["wish_id"];
+                              echo '
+
+                              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="course-item">
+                                  <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner fixed-image">';
+                                      $a=1;
+                                      $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                      $result_photo=mysqli_query($link,$sql_photo);
+                                      while($row_photo=mysqli_fetch_assoc($result_photo))
+                                      {
+                                      echo '
+                                      <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                        <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                      </div>';
+                                      $a++;
+                                      }
+                                      echo'
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Next</span>
+                                    </button>
+                                  </div>
+                                  
+                                  <div class="course-content">
+                                    <div class="justify-content-between align-items-center mb-3">
+                                      <span class="category">韓國</span>
+                                      <span class="category">明星</span>
+                                      <span class="category">ATEEZ</span>
+                                    </div>
+
+                                    <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                    <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                      <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期:',$row["wish_end"],'</span>
+                                    </div>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                      <div class="trainer-profile d-flex align-items-center">
+                                        <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
+                                        <a href="" class="trainer-link">',$row["user_name"],'</a>
+                                      </div>
+                                      <div class="trainer-rank d-flex align-items-center">
+                                        <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>  
+                              </div><!-- End Course Item-->';
+                              $wish_num++;
+                            }
+                          }
+
+                          
+                        ?>
+
+                      </div>
+                    </div>
+                  </section><!-- /Courses List Section -->
+
+                  
+
+            </div>
+          </div><!-- End Tab Content 1 -->
+
+          <div class="tab-pane <?php echo ($nowtab=='coming_wish') ? 'active show' : ''; ?>" id="tab-2">
+            <div class="row gy-4">
+
+                <!-- Courses List Section -->
+                <section id="courses-list" class="section courses-list">
+                  <div class="container">
+                    <div class="row">
+                      <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-paw"></i>&nbsp;即將結束區</h3>
+                      <p class="p">願望們快要結束了，趕快去看看他們吧!</p></center>
+                      
+                      <section id="blog2" class="blog2">                     
+                          <center><div class="col-lg-12">
+                            <div class="sidebar">                 
+                            <h3 class="sidebar-title">Search (願望名稱)</h3>
+                              <div class="sidebar-item search-form">
+                                <form method=post action="../wish/wish.php">
+                                  <input type="hidden" name="tab_num" class="form-control" value="coming_wish">
+                                  <input type="hidden" name="search2" value="yes">
+                                  <input type="text" name="wish_name" class="form-control">
+                                  <button type="submit"><i class="bi bi-search"></i></button>
+                                </form>
+                              </div><!-- End sidebar search formn-->                 
+                            </div><!-- End sidebar -->              
+                          </div><!-- End blog sidebar --></center>                     
+                      </section>  
+
+                      <?php
+                        $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
+                        $wish_name="%".$_POST['wish_name']."%";
+                        $sql="select * from wish 
+                        natural join account
+                        where wish_name like '$wish_name' 
+                        and wish_shop_id IS null 
+                        and wish_end <= '$oneweek' and wish_end >= CURDATE()
+                        order by wish_start";
+                        if($_POST['search2']=='yes'){
+                          $wish_num=$wish_num+1;
                           $result=mysqli_query($link,$sql);
                           while($row=mysqli_fetch_assoc($result))
                           {
@@ -403,7 +597,7 @@
                                   </div>
                                   <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
-                                      <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
+                                      <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">
@@ -415,45 +609,9 @@
                             </div><!-- End Course Item-->';
                             $wish_num++;
                           }
-                        ?>
-
-                      </div>
-                    </div>
-                  </section><!-- /Courses List Section -->
-
-                  
-
-            </div>
-          </div><!-- End Tab Content 1 -->
-
-          <div class="tab-pane" id="tab-2">
-            <div class="row gy-4">
-
-                <!-- Courses List Section -->
-                <section id="courses-list" class="section courses-list">
-                  <div class="container">
-                    <div class="row">
-                      <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-paw"></i>&nbsp;即將結束區</h3>
-                      <p class="p">願望們快要結束了，趕快去看看他們吧!</p></center>
-                      
-                      <section id="blog2" class="blog2">                     
-                          <center><div class="col-lg-12">
-                            <div class="sidebar">                 
-                              <h3 class="sidebar-title">Search</h3>
-                              <div class="sidebar-item search-form">
-                                <form action="">
-                                  <input type="text" class="form-control">
-                                  <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                              </div><!-- End sidebar search formn-->               
-                            </div><!-- End sidebar -->              
-                          </div><!-- End blog sidebar --></center>                     
-                      </section>  
-
-                      <?php
+                        }else{
                           $wish_num=$wish_num+1;
                           $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
-                          $link=mysqli_connect('localhost','root','12345678','wishop');
                           $sql="select * from wish
                           natural join account
                           where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= CURDATE()
@@ -517,6 +675,8 @@
                             </div><!-- End Course Item-->';
                             $wish_num++;
                           }
+                        }  
+                          
                         ?>                      
   
                     </div>
@@ -527,7 +687,7 @@
             </div>
           </div><!-- End Tab Content 2 -->
 
-          <div class="tab-pane" id="tab-3">
+          <div class="tab-pane <?php echo ($nowtab=='end_wish') ? 'active show' : ''; ?>" id="tab-3">
             <div class="row gy-4">
               
               <!-- Courses List Section -->
@@ -541,10 +701,12 @@
                           <div class="sidebar">                 
                             <h3 class="sidebar-title">Search</h3>
                             <div class="sidebar-item search-form">
-                              <form action="">
-                                <input type="text" class="form-control">
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>選擇時間</option>
+                              <form method=post action="../wish/wish.php">
+                                <input type="hidden" name="tab_num" class="form-control" value="end_wish">
+                                <input type="hidden" name="search3" value="yes">
+                                <input type="text" name="wish_name" class="form-control">
+                                <select class="form-select" aria-label="Default select example" name="wish_end">
+                                  <option selected value="%">選擇時間</option>
                                   <option value="1個月內">1個月內</option>
                                   <option value="3個月內">3個月內</option>
                                   <option value="半年內">半年內</option>
@@ -557,81 +719,185 @@
                           </div><!-- End sidebar -->              
                         </div><!-- End blog sidebar --></center>                     
                     </section> 
-                    <?php  
-                      $wish_num=$wish_num+1;
-                      $link=mysqli_connect('localhost','root','12345678','wishop');
-                      $sql="select * from wish
+                    <?php
+                    
+                      $time_range = $_POST['wish_end'];
+                      // 根据用户选择的时间范围设置日期
+                      switch($time_range) {
+                          case '1個月內':
+                              $start_date = date('Y-m-d H:i:s', strtotime('-1 month'));
+                              break;
+                          case '3個月內':
+                              $start_date = date('Y-m-d H:i:s', strtotime('-3 months'));
+                              break;
+                          case '半年內':
+                              $start_date = date('Y-m-d H:i:s', strtotime('-6 months'));
+                              break;
+                          case '1年內':
+                              $start_date = date('Y-m-d H:i:s', strtotime('-1 year'));
+                              break;
+                          default:
+                              // 默认为一年内
+                              $start_date = date('Y-m-d H:i:s', strtotime('-1 year'));
+                              break;
+                      }
+
+                      $wish_name="%".$_POST['wish_name']."%";
+
+                      
+                      $sql="select * from wish 
                       natural join account
-                      where wish_shop_id IS null AND wish_end <= CURDATE()
+                      where wish_name like '$wish_name' 
+                      and wish_shop_id IS null 
+                      and wish_end BETWEEN '$start_date' AND NOW()
                       order by wish_start";
-                      $result=mysqli_query($link,$sql);
-                      while($row=mysqli_fetch_assoc($result))
-                      {
-                        $wish_id=$row["wish_id"];
-                        echo'
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                          <div class="course-item">
-                            <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
-                              <div class="carousel-inner fixed-image">';
-                                $a=1;
-                                $sql_photo="select * from wish_photo where wish_id='$wish_id'";
-                                $result_photo=mysqli_query($link,$sql_photo);
-                                while($row_photo=mysqli_fetch_assoc($result_photo))
-                                {
-                                echo '
-                                <div class="carousel-item '; if($a==1){echo 'active';}echo'">
-                                  <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
-                                </div>';
-                                $a++;
-                                }
-                                echo'
-                              </div>
-                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                            </div> 
-                          
+
+                      if($_POST['search3']=='yes'){                        
+                        $wish_num=$wish_num+1;
+                        $result=mysqli_query($link,$sql);
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+                          $wish_id=$row["wish_id"];
+                          echo'
+                          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="course-item">
+                              <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner fixed-image">';
+                                  $a=1;
+                                  $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                  $result_photo=mysqli_query($link,$sql_photo);
+                                  while($row_photo=mysqli_fetch_assoc($result_photo))
+                                  {
+                                  echo '
+                                  <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                    <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                  </div>';
+                                  $a++;
+                                  }
+                                  echo'
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div> 
                             
-                            <div class="course-content">
-                              <div class="justify-content-between align-items-center mb-3">
-                                <span class="category">韓國</span>
-                                <span class="category">三麗鷗</span>
-                              </div>
+                              
+                              <div class="course-content">
+                                <div class="justify-content-between align-items-center mb-3">
+                                  <span class="category">韓國</span>
+                                  <span class="category">三麗鷗</span>
+                                </div>
 
-                              <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
-                              <p class="description">',nl2br($row["wish_narrat"]),'</p>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
-                              </div>
-                              <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                  <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
-                                  <a href="" class="trainer-link">',$row["user_name"],'</a>
-                                </div>';
-                                if($row["wish_state"]==1){
-                                  echo'
-                                  <div class="trainer-rank d-flex align-items-center">
-                                    <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                <p class="description">',nl2br($row["wish_narrat"]),'</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                  <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
+                                </div>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                  <div class="trainer-profile d-flex align-items-center">
+                                    <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                    <a href="" class="trainer-link">',$row["user_name"],'</a>
                                   </div>';
-                                }else{
-                                  echo'
-                                  <div class="trainer-rank d-flex align-items-center">
-                                    <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
-                                  </div>';
-                                }
+                                  if($row["wish_state"]==1){
+                                    echo'
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                    </div>';
+                                  }else{
+                                    echo'
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                    </div>';
+                                  }
 
-                                echo'
+                                  echo'
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div> <!-- End Course Item-->';
-                        $wish_num++;
-                      } 
+                          </div> <!-- End Course Item-->';
+                          $wish_num++;
+                        }                                                                   
+                      }else{
+                        $wish_num=$wish_num+1;
+                        $sql="select * from wish
+                        natural join account
+                        where wish_shop_id IS null AND wish_end <= CURDATE()
+                        order by wish_start";
+                        $result=mysqli_query($link,$sql);
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+                          $wish_id=$row["wish_id"];
+                          echo'
+                          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="course-item">
+                              <div id="carouselExampleIndicators',$wish_num,'" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner fixed-image">';
+                                  $a=1;
+                                  $sql_photo="select * from wish_photo where wish_id='$wish_id'";
+                                  $result_photo=mysqli_query($link,$sql_photo);
+                                  while($row_photo=mysqli_fetch_assoc($result_photo))
+                                  {
+                                  echo '
+                                  <div class="carousel-item '; if($a==1){echo 'active';}echo'">
+                                    <img src="',$row_photo["wish_photo_link"],'" class="d-block w-100" alt="...">
+                                  </div>';
+                                  $a++;
+                                  }
+                                  echo'
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators',$wish_num,'" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div> 
+                            
+                              
+                              <div class="course-content">
+                                <div class="justify-content-between align-items-center mb-3">
+                                  <span class="category">韓國</span>
+                                  <span class="category">三麗鷗</span>
+                                </div>
+
+                                <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
+                                <p class="description">',nl2br($row["wish_narrat"]),'</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                  <span class="price"><i class="fa-regular fa-clock"></i>&nbsp;許願截止日期: ',$row["wish_end"],'</span>
+                                </div>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                  <div class="trainer-profile d-flex align-items-center">
+                                    <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
+                                    <a href="" class="trainer-link">',$row["user_name"],'</a>
+                                  </div>';
+                                  if($row["wish_state"]==1){
+                                    echo'
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                    </div>';
+                                  }else{
+                                    echo'
+                                    <div class="trainer-rank d-flex align-items-center">
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                    </div>';
+                                  }
+
+                                  echo'
+                                </div>
+                              </div>
+                            </div>
+                          </div> <!-- End Course Item-->';
+                          $wish_num++;
+                        } 
+                      }  
+                      
                     ?>
                   </div>
                 </div>
