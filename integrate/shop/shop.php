@@ -130,15 +130,15 @@
     while($row_social=mysqli_fetch_assoc($result_social))
     {
       if($row_social["social_type"]==1){
-        $social_type="twitter";
+        $social_type='<i class="bx bxl-twitter"></i>';
       }elseif($row_social["social_type"]==2){
-        $social_type="facebook";
+        $social_type='<i class="bx bxl-facebook"></i>';
       }elseif($row_social["social_type"]==3){
-        $social_type="instagram";
+        $social_type='<i class="bx bxl-instagram"></i>';
       }elseif($row_social["social_type"]==4){
-        $social_type="line";
+        $social_type='<i class="fa-brands fa-line"></i>';
       }
-      echo '<a href="',$row_social["social_link"],'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="',$row_social["social_name"],'" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-',$social_type,'"></i></a>';
+      echo '<a href="',$row_social["social_link"],'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="',$row_social["social_name"],'" data-bs-arrow-color="#B0A5C6">',$social_type,'</a>';
     
     }
     if($shop_id==$_SESSION["user_shop_id"]){
@@ -589,17 +589,17 @@
                           <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
                           ';
                           if($row_social["social_type"]==1){
-                            $social_type="twitter";
+                            $social_type='<i class="bx bxl-twitter"></i>';
                           }elseif($row_social["social_type"]==2){
-                            $social_type="facebook";
+                            $social_type='<i class="bx bxl-facebook"></i>';
                           }elseif($row_social["social_type"]==3){
-                            $social_type="instagram";
+                            $social_type='<i class="bx bxl-instagram"></i>';
                           }elseif($row_social["social_type"]==4){
-                            $social_type="line";
+                            $social_type='<i class="fa-brands fa-line"></i>';
                           }
                           echo '
                         <tr>
-                          <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-',$social_type,'"></i></label></td>
+                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
                           <td width="30%"><input type="text" class="form-control" name="social_name[]" value="',$row_social["social_name"],'"></td>
                           <td width="50%"><input type="text" class="form-control" name="social_link[]" value="',$row_social["social_link"],'"></td>
                         </tr>';
@@ -617,16 +617,34 @@
                   <!-- Schdule Day 3 -->
                   <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
                     <table width="100%" class="social_link_table">
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                        <td width="80%">官方推特</td>
-                        <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                        <td width="80%">三麗鷗快樂購facebook官方社群</td>
-                        <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                      </tr>
+                    <?php
+                        $sql_social="select *
+                        from social
+                        where shop_id=$shop_id";
+                        $result_social=mysqli_query($link,$sql_social);
+                        while($row_social=mysqli_fetch_assoc($result_social))
+                        {
+                          echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
+                          ';
+                          if($row_social["social_type"]==1){
+                            $social_type='<i class="bx bxl-twitter"></i>';
+                          }elseif($row_social["social_type"]==2){
+                            $social_type='<i class="bx bxl-facebook"></i>';
+                          }elseif($row_social["social_type"]==3){
+                            $social_type='<i class="bx bxl-instagram"></i>';
+                          }elseif($row_social["social_type"]==4){
+                            $social_type='<i class="fa-brands fa-line"></i>';
+                          }
+                          echo '
+                        <tr>
+                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
+                          <td width="80%">',$row_social["social_name"],'</td>
+                          <td width="10%"><a href="social_in_up_de.php?social_id=',$row_social["social_id"],'&page=shop" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
+                        </tr>';
+                        }
+                        ?>
+                     
                       
                     </table>
                  

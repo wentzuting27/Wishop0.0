@@ -123,11 +123,29 @@
       <h1 class="text-light"><a href="index.php">',$row["shop_name"],'</a></h1>
       
   </div>
-  <div class="social-links">
-    <a href="./shop_time.php" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="官方推特" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-twitter"></i></a>
-    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="三麗鷗快樂購facebook官方社群"><i class="bx bxl-facebook"></i></a>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>
+  <div class="social-links">';
+    $sql_social="select *
+    from social
+    where shop_id=$shop_id";
+    $result_social=mysqli_query($link,$sql_social);
+    while($row_social=mysqli_fetch_assoc($result_social))
+    {
+      if($row_social["social_type"]==1){
+        $social_type='<i class="bx bxl-twitter"></i>';
+      }elseif($row_social["social_type"]==2){
+        $social_type='<i class="bx bxl-facebook"></i>';
+      }elseif($row_social["social_type"]==3){
+        $social_type='<i class="bx bxl-instagram"></i>';
+      }elseif($row_social["social_type"]==4){
+        $social_type='<i class="fa-brands fa-line"></i>';
+      }
+      echo '<a href="',$row_social["social_link"],'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="',$row_social["social_name"],'" data-bs-arrow-color="#B0A5C6">',$social_type,'</a>';
     
+    }
+    if($shop_id==$_SESSION["user_shop_id"]){
+      echo '<a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>';
+    }
+    echo ' 
   </div>
 
   <div class="edit_like_shop_button">
@@ -170,113 +188,158 @@
   
   <!-- 連結管理Modal -->
   <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- ======= Schedule Section ======= -->
-          <section id="schedule" class="section-with-bg">
-            
-            <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-              <li class="nav-item">
-                <a class="nav-link active" href="#insert_social" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#update_social" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#delete_social" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
-              </li>
-            </ul>
-
-            <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-              <!-- Schdule Day 1 -->
-              <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="insert_social">
-                <form>
-                  <table width="100%" class="insert_group_form">
-                    <tr>
-                      <td>連結類型</td>
-                      <td align="left">
-                        <input type="radio" name="link_type" class="link_radio" id="twitter"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
-                        <input type="radio" name="link_type" class="link_radio" id="facebook"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
-                        <input type="radio" name="link_type" class="link_radio" id="instagram"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
-                        <input type="radio" name="link_type" class="link_radio" id="line"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>連結敘述</td>
-                      <td><input type="text" id="group_name" class="form-control"></td>
-                    </tr>
-                    <tr>
-                      <td width="10%">連結網址</td>
-                      <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                    </tr>
-                  </table>
-                </form>
-              </div>
-              <!-- End Schdule Day 1 -->
-
-              <!-- Schdule Day 2 -->
-              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="update_social">
-                <form>
-                  <table width="100%" class="social_link_table">
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                      <td width="30%"><input type="text" class="form-control" value="官方推特"></td>
-                      <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
-                    </tr>
-                    <tr>
-                      <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                      <td width="30%"><input type="text" class="form-control" value="三麗鷗快樂購facebook官方社群"></td>
-                      <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                    </tr>
-                    
-                  </table>
-                </form>
-              </div>
-              <!-- End Schdule Day 2 -->
-
-              <!-- Schdule Day 3 -->
-              <div role="tabpanel" class="col-lg-12  tab-pane fade" id="delete_social">
-                <table width="100%" class="social_link_table">
-                  <tr>
-                    <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                    <td width="80%">官方推特</td>
-                    <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                    <td width="80%">三麗鷗快樂購facebook官方社群</td>
-                    <td width="10%"><a href="./shop_evaluate.php" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                  </tr>
-                  
-                </table>
-            
-              </div>
-              <!-- End Schdule Day  3-->
-
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <!-- ======= Schedule Section ======= -->
+              <section id="schedule" class="section-with-bg">
+                
+                <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
+                  </li>
+                </ul>
 
-          
+                <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
-          </section><!-- End Schedule Section -->
-          
-          
-          
+                  <!-- Schdule Day 1 -->
+                  <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
+                  <form method="post" action="social_in_up_de.php" enctype="multipart/form-data">
+                    <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                    <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop_time">
+                      <table width="100%" class="insert_group_form">
+                        <tr>
+                          <td>連結類型</td>
+                          <td align="left">
+                            <input type="radio" name="social_type" class="link_radio" id="twitter" value="1"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="facebook" value="2"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="instagram" value="3"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="line" value="4"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
+                          </td>
+                          <style>
+                            .icon-label:hover {
+                            background-color: #B0A5C6;
+                            color: #fff;
+                          }
+                          </style>
+                        </tr>
+                        <tr>
+                          <td>連結名稱</td>
+                          <td><input type="text" name="social_name" class="form-control"></td>
+                        </tr>
+                        <tr>
+                          <td width="10%">連結網址</td>
+                          <td width="90%"><input type="text" name="social_link" class="form-control"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
+                        </tr>
+                      </table>
+                    </form>
+                  </div>
+                  <!-- End Schdule Day 1 -->
+
+                  <!-- Schdule Day 2 -->
+                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
+                  <form method="post" action="social_in_up_de.php">
+                    <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
+                    <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop_time">
+                      <table width="100%" class="social_link_table">
+                        <?php
+                        $sql_social="select *
+                        from social
+                        where shop_id=$shop_id";
+                        $result_social=mysqli_query($link,$sql_social);
+                        while($row_social=mysqli_fetch_assoc($result_social))
+                        {
+                          echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
+                          ';
+                          if($row_social["social_type"]==1){
+                            $social_type='<i class="bx bxl-twitter"></i>';
+                          }elseif($row_social["social_type"]==2){
+                            $social_type='<i class="bx bxl-facebook"></i>';
+                          }elseif($row_social["social_type"]==3){
+                            $social_type='<i class="bx bxl-instagram"></i>';
+                          }elseif($row_social["social_type"]==4){
+                            $social_type='<i class="fa-brands fa-line"></i>';
+                          }
+                          echo '
+                        <tr>
+                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
+                          <td width="30%"><input type="text" class="form-control" name="social_name[]" value="',$row_social["social_name"],'"></td>
+                          <td width="50%"><input type="text" class="form-control" name="social_link[]" value="',$row_social["social_link"],'"></td>
+                        </tr>';
+                        }
+                        ?>
+                        <tr>
+                          <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
+                        </tr>
+                        
+                      </table>
+                    </form>
+                  </div>
+                  <!-- End Schdule Day 2 -->
+
+                  <!-- Schdule Day 3 -->
+                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
+                    <table width="100%" class="social_link_table">
+                    <?php
+                        $sql_social="select *
+                        from social
+                        where shop_id=$shop_id";
+                        $result_social=mysqli_query($link,$sql_social);
+                        while($row_social=mysqli_fetch_assoc($result_social))
+                        {
+                          echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
+                          ';
+                          if($row_social["social_type"]==1){
+                            $social_type='<i class="bx bxl-twitter"></i>';
+                          }elseif($row_social["social_type"]==2){
+                            $social_type='<i class="bx bxl-facebook"></i>';
+                          }elseif($row_social["social_type"]==3){
+                            $social_type='<i class="bx bxl-instagram"></i>';
+                          }elseif($row_social["social_type"]==4){
+                            $social_type='<i class="fa-brands fa-line"></i>';
+                          }
+                          echo '
+                        <tr>
+                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
+                          <td width="80%">',$row_social["social_name"],'</td>
+                          <td width="10%"><a href="social_in_up_de.php?social_id=',$row_social["social_id"],'&page=shop_time" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
+                        </tr>';
+                        }
+                        ?>
+                     
+                      
+                    </table>
+                 
+                  </div>
+                  <!-- End Schdule Day  3-->
+
+                </div>
+
+              
+
+              </section><!-- End Schedule Section -->
+              
+              
+              
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
   <main id="main">
 
