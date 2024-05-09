@@ -362,8 +362,8 @@ marquee span:before {
 .big-profile-picture {
   margin: 0 auto;
   border: 5px solid #b0a5c6a8;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }
 
 @media(max-width:904px) {
@@ -1133,64 +1133,6 @@ a:hover {
 
 /* Add more CSS rules based on your SCSS variables */
 
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 100% 100%;
-  background-color: rgba(0, 0, 0, 0.103);
-}
-
-.portfolio-details {
-  padding-top: 80px;
-}
-
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  opacity: 1;
-  border: 1px solid #E9C9D6;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #E9C9D6;
-}
-
-.portfolio-details .portfolio-info {
-  padding: 30px;
-  box-shadow: 0px 0 30px rgba(85, 98, 112, 0.08);
-}
-
-.portfolio-details .portfolio-info h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
-.portfolio-details .portfolio-info #subject ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.portfolio-details .portfolio-info #subject ul li+li {
-  margin-top: 15px;
-}
 
 
 /*** custom checkboxes ***/

@@ -468,25 +468,20 @@
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
                   </h4>
+                  <div style="float:right;margin-top:-20px;""><i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div>
                 
-                <div class="card-body " id="card' . $question_id . '" 
-                style="max-height: 600px;overflow-y: scroll;">
-                  <h4 >', $row["question_narrate"], '</h4>';
+                <div class="card-body " id="card' . $question_id . '" style="max-height: 600px;overflow-y: scroll;">
+                  <h4>', $row["question_narrate"], '</h4>';
 
                 $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
                 $result2 = mysqli_query($link, $sql2);
                 // 逐行顯示 question_photo
                 while ($photo_row = mysqli_fetch_assoc($result2)) {
-                  echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+                  echo '
+                  <img src="' . $photo_row["question_photo_link"] . '" alt="question Photo" style="max-width: 200px;max-height: 200px;">';
                 }
                 echo '
-                </div>
-                <div class="card-footer bg-transparent border-secondary">
-                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
-                    <i class="bi bi-chat-dots"></i>&nbsp;<small>2</small>
-                  </h4>
                 </div>
               </div>
             </div>';
@@ -511,9 +506,9 @@
               </div>
 
 
-              <div class="blog-comments">
+              <div class="blog-comments" style="padding:20px">
                 <h4 class="comments-count">2 Comments</h4>
-                <div id="comment-1" class="comment">
+                <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
                   <div class="d-flex">
                     <div class="comment-img">
                       <div class="profile-picture big-profile-picture clear">
@@ -533,80 +528,7 @@
                     </div>
                   </div>
                 </div><!-- End comment #1 -->
-                <sh>
-
-                  <div id="comment-2" class="comment">
-                    <div class="d-flex">
-                      <div class="comment-img">
-                        <div class="profile-picture big-profile-picture clear">
-                          <img width="100%" height="100%" alt="Anne Hathaway picture"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                        </div>
-                      </div>
-                      <div class="comment2">
-                        <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
-                            Reply</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
-                        <p>
-                          Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut
-                          beatae.
-                        </p>
-                      </div>
-                    </div>
-                    <hr />
-
-                    <div id="comment-reply-1" class="comment comment-reply">
-                      <div class="d-flex">
-                        <div class="comment-img">
-                          <div class="profile-picture big-profile-picture clear">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                          </div>
-                        </div>
-                        <div class="comment2">
-                          <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
-                              Reply</a></h5>
-                          <time datetime="2020-01-01">01 Jan, 2020</time>
-                          <p>
-                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae
-                            quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed
-                            repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor
-                            recusandae.
-
-                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam
-                            qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis
-                            incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-
-                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non
-                            autem quisquam vero rerum neque.
-                          </p>
-                        </div>
-                      </div>
-                      <hr />
-
-                      <div id="comment-reply-2" class="comment comment-reply">
-                        <div class="d-flex">
-                          <div class="comment-img">
-                            <div class="profile-picture big-profile-picture clear">
-                              <img width="100%" height="100%" alt="Anne Hathaway picture"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                            </div>
-                          </div>
-                          <div class="comment2">
-                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
-                                Reply</a></h5>
-                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                            <p>
-                              Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores cupiditate et.
-                              Ut unde qui eligendi sapiente omnis ullam. Placeat porro est commodi est officiis voluptas
-                              repellat quisquam possimus. Perferendis id consectetur necessitatibus.
-                            </p>
-                          </div>
-                        </div>
-                        <hr />
-
-                      </div><!-- End comment #2-->
-
+                <hr />
                       <center>
                         <div class="reply-form">
                           <h4>留言區</h4>
