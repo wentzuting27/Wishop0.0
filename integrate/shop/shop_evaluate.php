@@ -197,22 +197,22 @@
               <!-- ======= Schedule Section ======= -->
               <section id="schedule" class="section-with-bg">
                 
-                <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+              <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
+                    <a class="nav-link active" href="#social_in" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
+                    <a class="nav-link" href="#social_up" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
+                    <a class="nav-link" href="#social_de" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
                   </li>
                 </ul>
 
                 <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
                   <!-- Schdule Day 1 -->
-                  <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
+                  <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="social_in">
                   <form method="post" action="social_in_up_de.php" enctype="multipart/form-data">
                     <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
                     <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop_evaluate">
@@ -249,7 +249,7 @@
                   <!-- End Schdule Day 1 -->
 
                   <!-- Schdule Day 2 -->
-                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
+                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_up">
                   <form method="post" action="social_in_up_de.php">
                     <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
                     <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop_evaluate">
@@ -291,7 +291,7 @@
                   <!-- End Schdule Day 2 -->
 
                   <!-- Schdule Day 3 -->
-                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-3">
+                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_de">
                     <table width="100%" class="social_link_table">
                     <?php
                         $sql_social="select *
