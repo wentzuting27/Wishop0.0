@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['submit'])) {
     $commodity_group_id = $_GET["commodity_group_id"];
     $question_title = $_POST['question_title'];
