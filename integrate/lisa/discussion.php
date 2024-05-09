@@ -472,7 +472,7 @@
                 
                 <div class="card-body " id="card' . $question_id . '" 
                 style="max-height: 600px;overflow-y: scroll;">
-                  <p>', $row["question_narrate"], '</p>';
+                  <h4 >', $row["question_narrate"], '</h4>';
 
                 $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
                 $result2 = mysqli_query($link, $sql2);

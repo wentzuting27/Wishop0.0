@@ -22,14 +22,10 @@ if (isset($_POST["delgroup"])) {
 }
 
 if (isset($_POST['addgroup'])) {
-    // 取得目前的時間戳
-    $timestamp = time();
-    // 將時間戳格式化為日期時間字串
-    $add_time = date("Y-m-d H:i:s", $timestamp);
     // 在這裡執行刪除操作
     $sql = "INSERT INTO withgroup
         (commodity_group_id,account, withgroup_time) 
-        VALUES ($commodity_group_id, '$account', '$add_time')";
+        VALUES ($commodity_group_id, '$account', now())";
     if (mysqli_query($link, $sql)) {
         echo '<script>alert("跟團成功!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {

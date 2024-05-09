@@ -132,12 +132,16 @@
     <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
     <p><i class="fa-solid fa-bullhorn"></i></p>
     </div>
-    <div>
+    <div>';
+    $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+    $result3 = mysqli_query($link, $sql3);
+    $row3 = mysqli_fetch_assoc($result3);
+    echo'
     <center>
     <marquee>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
     </marquee>
     </center>
     ';
@@ -151,13 +155,18 @@
       <p><i class="fa-solid fa-bullhorn"></i></p>
       </div>
       <div>
-      <center>
-      <marquee>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      </marquee>
-      </center>
+      ';
+    $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+    $result3 = mysqli_query($link, $sql3);
+    $row3 = mysqli_fetch_assoc($result3);
+    echo'
+    <center>
+    <marquee>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    </marquee>
+    </center>
       ';
       }
       mysqli_close($link);
@@ -602,7 +611,7 @@
               var part3 = document.getElementById(\'card\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
-                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '\';
+                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '#first\';
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener(\'load\', function () {
                   setTimeout(function () {

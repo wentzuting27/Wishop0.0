@@ -948,7 +948,7 @@
             <h1>接收訂單</h1>
           </div>
           <table id="example" class="table table-hover" cellspacing="0" width="100%"
-            style="height:300px;overflow: scroll;">
+            style="max-height:300px;overflow-y: scroll;">
             <thead>
               <tr>
                 <th>訂單編號</th>
@@ -998,7 +998,9 @@
                 <button type="submit" name="submit2" class="btn btn-primary" 
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
             </td>
-          </tr></tbody></form>';
+          </tr>
+          </tbody>
+          </form>';
             }
             mysqli_close($link); ?>
           </table>
