@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_POST['method'];
     $rule_type=$_POST['rule_type'];
     $shop_id=$_POST['shop_id'];
@@ -54,7 +55,7 @@
         
     }
     else{
-        // $activity_id=$_GET['activity_id'];
+        $shop_rule_id=$_GET['shop_rule_id'];
         // $o_file=$_GET['o_file'];
         // // 取得檔案路徑
         // $file_path = $o_file;

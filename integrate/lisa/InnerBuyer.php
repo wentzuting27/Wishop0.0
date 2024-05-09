@@ -44,7 +44,7 @@
     crossorigin="anonymous"></script>
 
 </head>
-
+<?php session_start(); ?>
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->

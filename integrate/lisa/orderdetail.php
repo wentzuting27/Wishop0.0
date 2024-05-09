@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['submit'])) {
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     if (!$link) {

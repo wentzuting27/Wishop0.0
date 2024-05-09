@@ -45,7 +45,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+<?php session_start();?>
 <body>
   <main id="main" >
 

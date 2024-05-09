@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_POST['method'];
     $shop_id=$_POST['shop_id'];
     $wish_name=$_POST['wish_name'];

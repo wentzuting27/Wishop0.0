@@ -456,11 +456,17 @@ profile2(頭貼、名字)
   margin-right: 10px; /* 设置图标之间的间距 */
 }
 
-/* 设置选择框的样式 */
-.link_radio:checked + .icon-label {
+.icon-label:hover {
   background-color: #B0A5C6;
   color: #fff;
 }
+
+/* 设置选择框的样式 */
+.link_radio:checked + .icon-label{
+  background-color: #B0A5C6;
+  color: #fff;
+}
+
 
 /* 图标的样式 */
 .icon-label i {
