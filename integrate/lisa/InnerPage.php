@@ -5,7 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>團內介面(買家)</title>
+  <?php
+  $commodity_group_id=$_GET["commodity_group_id"];
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $sql = "select commodity_group_name from commodity_group where commodity_group_id='$commodity_group_id'";
+  $result = mysqli_query($link, $sql);
+  $row = mysqli_fetch_assoc($result);
+  echo '<title>'.$row["commodity_group_name"],'</title>'; ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -103,7 +109,19 @@
     <div class="edit_like_shop_button">
     <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
       }
+      else {
+        echo '
+      <div class="background-overlay" style="position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+      </div>
+      <div class="edit_like_shop_button">
+      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
+      }
 
+      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $result = mysqli_query($link, $sql);
       $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
 
@@ -125,22 +143,7 @@
     </marquee>
     </center>
     ';
-      }
-      if ($result2 && mysqli_num_rows($result2) != 0) {
-        echo '
-      <div class="background-overlay" style="position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-      </div>
-      <div class="edit_like_shop_button">
-      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
-      }
-
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result = mysqli_query($link, $sql);
-
-      if ($result && mysqli_num_rows($result) != 0) {
+      }else {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
       <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
@@ -159,7 +162,6 @@
       </center>
       ';
       }
-
       mysqli_close($link);
       ?>
     </form>

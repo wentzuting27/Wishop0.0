@@ -5,7 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>團內介面(賣家)</title>
+  <?php
+  $commodity_group_id=$_GET["commodity_group_id"];
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $sql = "select commodity_group_name from commodity_group where commodity_group_id='$commodity_group_id'";
+  $result = mysqli_query($link, $sql);
+  $row = mysqli_fetch_assoc($result);
+  echo '<title>'.$row["commodity_group_name"],'</title>'; ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 

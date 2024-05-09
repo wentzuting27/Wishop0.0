@@ -456,7 +456,7 @@
               <div class="part2">
               <div class="card border-secondary mb-12">
                 <div class="card-header bg-transparent border-secondary">
-                  <div class="col-md-12">
+                  <div class="col-md-12" >
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">

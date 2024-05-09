@@ -5,7 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>玩偶吊飾</title>
+  <?php
+  $commodity_id=$_GET["commodity_id"];
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $sql = "select commodity_name from commodity where commodity_id='$commodity_id'";
+  $result = mysqli_query($link, $sql);
+  $row = mysqli_fetch_assoc($result);
+  echo '<title>'.$row["commodity_name"],'</title>'; ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
