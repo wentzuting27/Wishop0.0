@@ -122,11 +122,29 @@
       <h1 class="text-light"><a href="index.php">',$row["shop_name"],'</a></h1>
       
   </div>
-  <div class="social-links">
-    <a href="./shop_time.php" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="官方推特" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-twitter"></i></a>
-    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="三麗鷗快樂購facebook官方社群"><i class="bx bxl-facebook"></i></a>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>
+  <div class="social-links">';
+    $sql_social="select *
+    from social
+    where shop_id=$shop_id";
+    $result_social=mysqli_query($link,$sql_social);
+    while($row_social=mysqli_fetch_assoc($result_social))
+    {
+      if($row_social["social_type"]==1){
+        $social_type="twitter";
+      }elseif($row_social["social_type"]==2){
+        $social_type="facebook";
+      }elseif($row_social["social_type"]==3){
+        $social_type="instagram";
+      }elseif($row_social["social_type"]==4){
+        $social_type="line";
+      }
+      echo '<a href="',$row_social["social_link"],'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="',$row_social["social_name"],'" data-bs-arrow-color="#B0A5C6"><i class="bx bxl-',$social_type,'"></i></a>';
     
+    }
+    if($shop_id==$_SESSION["user_shop_id"]){
+      echo '<a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>';
+    }
+    echo '
   </div>
 
   <div class="edit_like_shop_button">
@@ -519,24 +537,32 @@
 
                   <!-- Schdule Day 1 -->
                   <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="day-1">
-                    <form>
+                  <form method="post" action="social_in_up_de.php" enctype="multipart/form-data">
+                    <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                    <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
                       <table width="100%" class="insert_group_form">
                         <tr>
                           <td>連結類型</td>
                           <td align="left">
-                            <input type="radio" name="link_type" class="link_radio" id="twitter"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
-                            <input type="radio" name="link_type" class="link_radio" id="facebook"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
-                            <input type="radio" name="link_type" class="link_radio" id="instagram"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
-                            <input type="radio" name="link_type" class="link_radio" id="line"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
+                            <input type="radio" name="social_type" class="link_radio" id="twitter" value="1"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="facebook" value="2"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="instagram" value="3"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
+                            <input type="radio" name="social_type" class="link_radio" id="line" value="4"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
                           </td>
+                          <style>
+                            .icon-label:hover {
+                            background-color: #B0A5C6;
+                            color: #fff;
+                          }
+                          </style>
                         </tr>
                         <tr>
-                          <td>連結敘述</td>
-                          <td><input type="text" id="group_name" class="form-control"></td>
+                          <td>連結名稱</td>
+                          <td><input type="text" name="social_name" class="form-control"></td>
                         </tr>
                         <tr>
                           <td width="10%">連結網址</td>
-                          <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                          <td width="90%"><input type="text" name="social_link" class="form-control"></td>
                         </tr>
                         <tr>
                           <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
@@ -548,18 +574,37 @@
 
                   <!-- Schdule Day 2 -->
                   <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
-                    <form>
+                  <form method="post" action="social_in_up_de.php">
+                    <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
+                    <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
                       <table width="100%" class="social_link_table">
+                        <?php
+                        $sql_social="select *
+                        from social
+                        where shop_id=$shop_id";
+                        $result_social=mysqli_query($link,$sql_social);
+                        while($row_social=mysqli_fetch_assoc($result_social))
+                        {
+                          echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
+                          ';
+                          if($row_social["social_type"]==1){
+                            $social_type="twitter";
+                          }elseif($row_social["social_type"]==2){
+                            $social_type="facebook";
+                          }elseif($row_social["social_type"]==3){
+                            $social_type="instagram";
+                          }elseif($row_social["social_type"]==4){
+                            $social_type="line";
+                          }
+                          echo '
                         <tr>
-                          <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-twitter"></i></label></td>
-                          <td width="30%"><input type="text" class="form-control" value="官方推特"></td>
-                          <td width="50%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
-                        </tr>
-                        <tr>
-                          <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-facebook"></i></label></td>
-                          <td width="30%"><input type="text" class="form-control" value="三麗鷗快樂購facebook官方社群"></td>
-                          <td width="60%"><input type="text" class="form-control" value="file:///D:/data/Desktop/%E8%A8%B1%E9%A1%98%E4%BB%A3%E8%B3%BCvar0.0/%E8%B3%A3%E5%A0%B4%E4%BB%8B%E9%9D%A2/shop.php"></td>
-                        </tr>
+                          <td width="10%" align="center"><label class="icon-label"><i class="bx bxl-',$social_type,'"></i></label></td>
+                          <td width="30%"><input type="text" class="form-control" name="social_name[]" value="',$row_social["social_name"],'"></td>
+                          <td width="50%"><input type="text" class="form-control" name="social_link[]" value="',$row_social["social_link"],'"></td>
+                        </tr>';
+                        }
+                        ?>
                         <tr>
                           <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
                         </tr>
