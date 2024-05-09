@@ -9,12 +9,12 @@
         <?php
         $method = $_POST["method"];
         $account = $_POST["account"];
-        $user_name = $_POST["user_name"];
-        $email = $_POST["email"];
+        $telephone_number = $_POST["telephone_number"];
+        $common_payment_account = $_POST["common_payment_account"];
 
         $link = mysqli_connect("localhost", "root", "12345678", "wishop");
         if ($method == "update") {
-            $sql = "update account set user_name='$user_name', email='$email'";
+            $sql = "update account set telephone_number='$telephone_number', common_payment_account='$common_payment_account'";
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Profile_settings.php");
             } else {

@@ -9,12 +9,11 @@
         <?php
         $method = $_POST["method"];
         $account = $_POST["account"];
-        $user_name = $_POST["user_name"];
-        $email = $_POST["email"];
+        $password = $_POST["password"];
 
         $link = mysqli_connect("localhost", "root", "12345678", "wishop");
         if ($method == "update") {
-            $sql = "update account set user_name='$user_name', email='$email'";
+            $sql = "update account set password='$password'";
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Profile_settings.php");
             } else {
