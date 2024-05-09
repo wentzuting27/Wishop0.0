@@ -451,8 +451,8 @@
                             <div id="accordion-list-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list">
                               <p>',nl2br($row['narrate']),'</p>
                               <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal">編輯規則</button>
+                                <button type="button" class="btn insert_button" onclick="redirectToRulePage(',$row["shop_rule_id"],')">刪除規則</button>
                               </div>
                               <!-- insert_group_Modal -->
                               <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
@@ -491,7 +491,7 @@
                           $i++;
                         }
                         ?>
-    
+                        
                         </ul>
                       </div>
     
@@ -529,8 +529,8 @@
                             <div id="accordion-list2-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list2">
                               <p>',nl2br($row['narrate']),'</p>
                               <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i class="bi bi-patch-plus"></i>&nbsp;編輯規則</button>
-                                <button type="button" class="btn insert_button"><i class="bi bi-patch-plus"></i>&nbsp;刪除規則</button>
+                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal">編輯規則</button>
+                                <button type="button" class="btn insert_button" onclick="redirectToRulePage(',$row["shop_rule_id"],')">刪除規則</button>
                               </div>
                               <!-- insert_group_Modal -->
                               <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
@@ -602,7 +602,11 @@
     
     
       </main><!-- End #main -->
-
+      <script>
+        function redirectToRulePage(ruleId) {
+            window.location.href = "rule_in_up_de.php?shop_rule_id=" + ruleId;
+        }
+      </script>
   
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

@@ -56,22 +56,12 @@
     }
     else{
         $shop_rule_id=$_GET['shop_rule_id'];
-        // $o_file=$_GET['o_file'];
-        // // 取得檔案路徑
-        // $file_path = $o_file;
-
-        // // 刪除檔案
-        // if (file_exists($file_path)) {
-        //     unlink($file_path);
-        // }
-        // $sql="DELETE FROM activitys WHERE activity_id = $activity_id";
-        // if(mysqli_query($link, $sql)){
-        //     echo "<style> body{width: 100%;background: url(7.png) top right;background-size: cover;position: relative;}</style>";
-        // }else{
-        //     echo "<style> body{width: 100%;background: url(8.png) top right;background-size: cover;position: relative;}</style>";
-        // }
+       
+        $sql="DELETE FROM shop_rule WHERE shop_rule_id = $shop_rule_id";
+        mysqli_query($link, $sql);
         
-        // header("refresh:0;url=currently_created.php");
+        
+        header("refresh:0;url=shop_rule.php?shop_id={$_SESSION["user_shop_id"]}");
 
     }
 ?>
