@@ -45,10 +45,9 @@
     <!-- End Header -->
 
     <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
         <?php
         $commodity_group_id = $_GET["commodity_group_id"];
         $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
