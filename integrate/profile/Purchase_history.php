@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -54,7 +54,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="../index/index.php" >首頁</a></li>
+          <li><a href="../index/index.php">首頁</a></li>
           <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
@@ -76,13 +76,13 @@
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
@@ -90,9 +90,9 @@
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
 
 
@@ -116,7 +116,13 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-          <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
+          <img id="profilePic" class="pic" src="';
+            if (isset($_SESSION["user_avatar"])) {
+              echo $_SESSION["user_avatar"];
+            } else {
+              echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";
+            }
+            echo '">
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
 
@@ -142,7 +148,7 @@
             echo '
               <a class="btn btn-outline-secondary btn-lg profile-button"
               style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-              href="../shop/shop.php?shop_id=',$_SESSION['user_shop_id'].'" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
+              href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
             ';
           } else {
             echo '
@@ -196,242 +202,242 @@
           ';
           }
           ?>
-      </div>
-      <div class="container">
-        <header id="header2" class="d-flex flex-column justify-content-center">
-          <nav id="navbar2" class="navbar2 nav-menu2">
-            <ul>
-              <li><a href="./Profile_settings.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
-              </li>
-              <li><a href="./TransactionInfo_settings.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-credit-card"></i><span>交易資訊設定</span></a>
-              </li>
-              <li><a href="./Wishlist.php" class="nav-link scrollto"><i class="fa-solid fa-heart"></i><span>收藏清單</span></a>
-              </li>
-              <li><a href="./My_Wish.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
-              <li><a href="./Purchase_history.php" class="nav-link scrollto active"><i
-                    class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
-              </li>
-            </ul>
-          </nav><!-- .nav-menu -->
+        </div>
+        <div class="container">
+          <header id="header2" class="d-flex flex-column justify-content-center">
+            <nav id="navbar2" class="navbar2 nav-menu2">
+              <ul>
+                <li><a href="./Profile_settings.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
+                </li>
+                <li><a href="./Wishlist.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-heart"></i><span>收藏清單</span></a>
+                </li>
+                <li><a href="./My_Wish.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
+                <li><a href="./Purchase_history.php" class="nav-link scrollto active"><i
+                      class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
+                </li>
+              </ul>
+            </nav><!-- .nav-menu -->
 
-          <div class="min_nav">
-            <button id="triggerBtn"><i class="fa-solid fa-cart-shopping"></i></button>
-            <div id="slideContainer">
-              <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
-              <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
-              <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
-              <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
-              <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
-              <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+            <div class="min_nav">
+              <button id="triggerBtn"><i class="fa-solid fa-cart-shopping"></i></button>
+              <div id="slideContainer">
+                <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
+                <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
+                <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
+                <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+                <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
+                <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+              </div>
             </div>
-          </div>
 
 
-        </header><!-- End Header -->
+          </header><!-- End Header -->
 
 
 
-        <div class="row">
-          <div class="col-lg-3 features">
-            <ul class="nav nav-tabs flex-column" style="text-align: center; background-color: #b3a4bd;">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-4">
-                  <h5 style="padding-top: 40px; padding-bottom: 20px;"><i class="fa-solid fa-list-check"></i>&nbsp;&nbsp;當前訂單
-                  </h5>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">
-                  <h5 style="padding-top: 40px; padding-bottom: 20px;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;歷史購買紀錄</h5>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <div class="row">
+            <div class="col-lg-3 features">
+              <ul class="nav nav-tabs flex-column" style="text-align: center; background-color: #b3a4bd;">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-bs-toggle="tab" href="#tab-4">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-list-check"></i>&nbsp;&nbsp;當前訂單
+                    </h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#tab-5">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;歷史購買紀錄</h5>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          <div class="col-lg-9 mt-4 mt-lg-0">
-            <div class="tab-content" style="vertical-align: middle;">
-              <div class="tab-pane active show" id="tab-4">
-                <div class="row mt-4">
-                  <div class="tab-menu-container">
+            <div class="col-lg-9 mt-4 mt-lg-0">
+              <div class="tab-content" style="vertical-align: middle;">
+                <div class="tab-pane active show" id="tab-4">
+                  <div class="row mt-4">
+                    <div class="tab-menu-container">
 
-                    <ul class="nav nav-tabs flex-row">
-                      <li class="nav-item">
-                        <a class="nav-link active show" data-bs-toggle="tab" href="#tab-6">
-                          <i class="fa-solid fa-shoe-prints"></i>&nbsp;&nbsp;進行中
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab-7">
-                          <i class="fa-solid fa-hand"></i>&nbsp;&nbsp;我也想買(跟團)
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                      <ul class="nav nav-tabs flex-row">
+                        <li class="nav-item">
+                          <a class="nav-link active show" data-bs-toggle="tab" href="#tab-6">
+                            <i class="fa-solid fa-shoe-prints"></i>&nbsp;&nbsp;進行中
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#tab-7">
+                            <i class="fa-solid fa-hand"></i>&nbsp;&nbsp;我也想買(跟團)
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
 
-                  <div class="tab-content" style="vertical-align: middle;">
+                    <div class="tab-content" style="vertical-align: middle;">
 
-                    <div class="tab-pane active show" id="tab-6">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
+                      <div class="tab-pane active show" id="tab-6">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
 
-                          <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
                               // 查詢所有進行中的訂單
                               $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
                                       WHERE account = '{$_SESSION['account']}' AND order_state <> '訂單完成'
                                       GROUP BY order_id";
-                                      // 下單時間在今天以前(下單完成)且還沒訂單完成的訂單
+                              // 下單時間在今天以前(下單完成)且還沒訂單完成的訂單
                               $result = mysqli_query($link, $sql);
                               if ($result) {
-                                  while ($row = mysqli_fetch_assoc($result)) {
-                                      echo '
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                  echo '
 
                             <div class="list-group-item list-group-item-action">
                               <div class="item">
                                 <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                                 <div class="item-details">
                                   <div class="product-title">
-                                    <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                    <a href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '">
                                       <h4>', $row["commodity_group_name"], '</h4>
                                     </a>
                                   </div>';
-                                  $sql_shop="select * from shop
+                                  $sql_shop = "select * from shop
                                   WHERE shop_id='{$row["shop_id"]}'";
-                                  $result_shop=mysqli_query($link, $sql_shop);
+                                  $result_shop = mysqli_query($link, $sql_shop);
                                   $row_shop = mysqli_fetch_assoc($result_shop);
                                   echo '
-                                <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                 class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                 ';
-                                echo'
+                                  echo '
                                   <p class="deadline">下單時間: ', $row["order_time"], '</p>
                                 </div>
                                 <div class="item-meta">
-                                  <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=',$_SESSION['commodity_group_id'].'"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
+                                  <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $_SESSION['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
                                 </div>
                               </div>
                             </div>';
-                                  }
+                                }
                               } else {
-                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中許願：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
                               ?>
 
-                          </ul>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="tab-pane" id="tab-7">
-                      <div class="row mt-5">
-                        <div class="scrollable-container">
-                          <ul class="list-group list-group-flush">
+                      <div class="tab-pane" id="tab-7">
+                        <div class="row mt-5">
+                          <div class="scrollable-container">
+                            <ul class="list-group list-group-flush">
 
-                          <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
                               // 查詢所有我也想買(跟團)
                               $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group
                                       WHERE commodity_group_state <> 2 AND account = '{$_SESSION['account']}'";
-                                      // 團體狀態不等於已結束的跟團
+                              // 團體狀態不等於已結束的跟團
                               $result = mysqli_query($link, $sql);
                               if ($result) {
-                                  while ($row = mysqli_fetch_assoc($result)) {
-                                      echo '
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                  echo '
 
                             <div class="list-group-item list-group-item-action">
                               <div class="item">
                                 <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                                 <div class="item-details">
                                   <div class="product-title">
-                                    <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                    <a href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '">
                                       <h4>', $row["commodity_group_name"], '</h4>
                                     </a>';
-                                    $sql_order_YorN = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+                                  $sql_order_YorN = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
                                     WHERE account = '{$_SESSION['account']}'
                                     GROUP BY order_id";
-                                    $result_order_YorN = mysqli_query($link, $sql_order_YorN);
+                                  $result_order_YorN = mysqli_query($link, $sql_order_YorN);
 
-                                    // 設一個下個星期的今天的變數
-                                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
-                                    // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
-                                    if($row["close_order_date"]<= $oneweekAgo && $row["close_order_date"]>= date('Y-m-d') && mysqli_num_rows($result__order_YorN)==0){
-                                      echo'
+                                  // 設一個下個星期的今天的變數
+                                  $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                  // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                                  if ($row["close_order_date"] <= $oneweekAgo && $row["close_order_date"] >= date('Y-m-d') && mysqli_num_rows($result__order_YorN) == 0) {
+                                    echo '
                                       <span class="expiring-tag">下單期限即將結束</span>
                                       ';
-                                    }
-                                    echo'
+                                  }
+                                  echo '
                                   </div>
                                   ';
 
-                                  $sql_shop="select * from shop
+                                  $sql_shop = "select * from shop
                                   WHERE shop_id='{$row["shop_id"]}'";
-                                  $result_shop=mysqli_query($link, $sql_shop);
+                                  $result_shop = mysqli_query($link, $sql_shop);
                                   $row_shop = mysqli_fetch_assoc($result_shop);
                                   echo '
-                                <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                 class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                 ';
 
-                                echo'
+                                  echo '
                                   <p class="deadline">下單截止時間: ', $row["close_order_date"], '</p>
                                 </div>
                                 <div class="item-meta">
                                 ';
 
-                                // if($row["commodity_group_state"]==3){
-                                //   echo '<div class="item-meta">
-                                //   <span class="wishNo-tag">未成團</span>
-                                //   </div>';
-                                // }elseif(mysqli_num_rows($result__order_YorN)==0){
-                                //   echo '<div class="item-meta">
-                                //   <span class="wishNo-tag">尚未下單</span>
-                                //   </div>';
-                                // }else{
-                                //   echo '<div class="item-meta">
-                                //   <span class="wishYes-tag">已下單</span>
-                                // </div>';
-                                // }
-                              echo'
+                                  // if($row["commodity_group_state"]==3){
+                                  //   echo '<div class="item-meta">
+                                  //   <span class="wishNo-tag">未成團</span>
+                                  //   </div>';
+                                  // }elseif(mysqli_num_rows($result__order_YorN)==0){
+                                  //   echo '<div class="item-meta">
+                                  //   <span class="wishNo-tag">尚未下單</span>
+                                  //   </div>';
+                                  // }else{
+                                  //   echo '<div class="item-meta">
+                                  //   <span class="wishYes-tag">已下單</span>
+                                  // </div>';
+                                  // }
+                                  echo '
                                 </div>
                               </div>
                             </div>';
-                          }
-                      } else {
-                          echo "查無當前進行中許願：" . mysqli_error($link);
-                      }
+                                }
+                              } else {
+                                echo "查無當前進行中許願：" . mysqli_error($link);
+                              }
 
-                      mysqli_close($link);
-                      ?>
-                          </ul>
+                              mysqli_close($link);
+                              ?>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="tab-pane" id="tab-5">
-                <div class="row mt-5">
-                  <div class="scrollable-container">
-                    <ul class="list-group list-group-flush">
+                <div class="tab-pane" id="tab-5">
+                  <div class="row mt-5">
+                    <div class="scrollable-container">
+                      <ul class="list-group list-group-flush">
 
-                    <?php
-                      $link = mysqli_connect("localhost", "root", "12345678", "wishop");
-                              // 查詢所有進行中的訂單
-                      $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+                        <?php
+                        $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                        // 查詢所有進行中的訂單
+                        $sql = "SELECT * FROM `order` NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
                                       WHERE account = '{$_SESSION['account']}' AND order_state = '訂單完成'
                                       GROUP BY order_id";
-                                      // 所有已經訂單完成的訂單
-                                      $result = mysqli_query($link, $sql);
-                                      if ($result) {
-                                          while ($row = mysqli_fetch_assoc($result)) {
-                                              echo '
+                        // 所有已經訂單完成的訂單
+                        $result = mysqli_query($link, $sql);
+                        if ($result) {
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            echo '
         
                                     <div class="list-group-item list-group-item-action">
                                       <div class="item">
@@ -440,45 +446,45 @@
                                         <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                                         <div class="item-details">
                                           <div class="product-title">
-                                            <a href="../lisa/innerPage.php?commodity_group_id=',$row['commodity_group_id'].'">
+                                            <a href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '">
                                               <h4>', $row["commodity_group_name"], '</h4>
                                             </a>
                                           </div>';
-                                          $sql_shop="select * from shop
+                            $sql_shop = "select * from shop
                                           WHERE shop_id='{$row["shop_id"]}'";
-                                          $result_shop=mysqli_query($link, $sql_shop);
-                                          $row_shop = mysqli_fetch_assoc($result_shop);
-                                          echo '
-                                        <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                            $result_shop = mysqli_query($link, $sql_shop);
+                            $row_shop = mysqli_fetch_assoc($result_shop);
+                            echo '
+                                        <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                         class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                         ';
-                                        echo'
+                            echo '
                                           <p class="deadline">下單時間: ', $row["order_time"], '</p>
                                           <p class="deadline">訂單完成時間: ', $row["order_time"], '</p>
                                         </div>
                                         <div class="item-meta">
-                                          <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=',$_SESSION['commodity_group_id'].'"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
+                                          <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $_SESSION['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
                                         </div>
                                       </div>
                                     </div>';
-                                          }
-                                      } else {
-                                          echo "查無當前進行中許願：" . mysqli_error($link);
-                                      }
-        
-                                      mysqli_close($link);
-                                      ?>
+                          }
+                        } else {
+                          echo "查無當前進行中許願：" . mysqli_error($link);
+                        }
 
-                    </ul>
+                        mysqli_close($link);
+                        ?>
+
+                      </ul>
+                    </div>
                   </div>
                 </div>
+
               </div>
-
             </div>
+
+
           </div>
-
-
-        </div>
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->

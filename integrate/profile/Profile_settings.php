@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -54,9 +54,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a href="../index/index.php">首頁</a></li>
-          <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i
-                class="bi bi-chevron-down"></i></a>
+          <li><a href="../index/index.php">首頁</a></li>
+          <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
               <li><a href="team.php">Team</a></li>
@@ -77,13 +76,13 @@
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
               <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
@@ -91,9 +90,9 @@
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
 
 
@@ -117,7 +116,13 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-          <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
+          <img id="profilePic" class="pic" src="';
+            if (isset($_SESSION["user_avatar"])) {
+              echo $_SESSION["user_avatar"];
+            } else {
+              echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";
+            }
+            echo '">
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
 
@@ -143,7 +148,7 @@
             echo '
               <a class="btn btn-outline-secondary btn-lg profile-button"
               style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-              href="../shop/shop.php?shop_id=',$_SESSION['user_shop_id'].'" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
+              href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
             ';
           } else {
             echo '
@@ -197,91 +202,214 @@
           ';
           }
           ?>
-      </div>
-      <div class="container">
-        <header id="header2" class="d-flex flex-column justify-content-center">
-          <nav id="navbar2" class="navbar2 nav-menu2">
-            <ul>
-              <li><a href="./Profile_settings.php" class="nav-link scrollto active"><i
-                    class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
-              </li>
-              <li><a href="./TransactionInfo_settings.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-credit-card"></i><span>交易資訊設定</span></a>
-              </li>
-              <li><a href="./Wishlist.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-heart"></i><span>收藏清單</span></a></li>
-              <li><a href="./My_Wish.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
-              <li><a href="./Purchase_history.php" class="nav-link scrollto"><i
-                    class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
-              </li>
-            </ul>
-          </nav><!-- .nav-menu -->
-
-          <div class="min_nav">
-            <button id="triggerBtn"><i class="fa-solid fa-user"></i></button>
-            <div id="slideContainer">
-              <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
-              <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
-              <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
-              <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
-              <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
-              <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
-            </div>
-          </div>
-
-
-        </header><!-- End Header -->
-
-        <div class="account-container">
-          <div class="header">
-            <h1><i class="fa-solid fa-user"></i>&nbsp;&nbsp;編輯個人資訊</h1>
-          </div>
-
-          <form action="">
-
-            <div class="form-container">
-
-              <div class="form-group">
-                <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;編輯用戶名(暱稱)</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="請輸入用戶名(暱稱)" required>
-              </div>
-
-              <div class="form-group">
-                <label for="inputUserName"><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;編輯電子信箱</label>
-                <input type="email" name="name" class="form-control" id="name" placeholder="請輸入電子信箱" required>
-              </div>
-
-              <!-- <div class="form-group">
-                <label for="inputBackground"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;上傳背景圖片</label>
-                <input type="file" name="background" class="form-control" id="background">
-              </div> -->
-
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="inputUserName"><i class="fa-solid fa-lock"></i>&nbsp;&nbsp;修改密碼</label>
-                  <input type="password" name="name" class="form-control" id="name" placeholder="***********" required>
-                </div>
-
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <label for="inputUserName">請再次輸入密碼</label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="***********"
-                    required>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-footer text-right">
-              <button type="reset">重制</button>
-              <button type="submit">確認編輯</button>
-            </div>
-
-          </form>
-
         </div>
+        <div class="container">
+          <header id="header2" class="d-flex flex-column justify-content-center">
+            <nav id="navbar2" class="navbar2 nav-menu2">
+              <ul>
+                <li><a href="./Profile_settings.php" class="nav-link scrollto active"><i
+                      class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
+                </li>
+                <li><a href="./Wishlist.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-heart"></i><span>收藏清單</span></a></li>
+                <li><a href="./My_Wish.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-wand-magic-sparkles"></i><span>我的願望</span></a></li>
+                <li><a href="./Purchase_history.php" class="nav-link scrollto"><i
+                      class="fa-solid fa-cart-shopping"></i><span>購買紀錄</span></a>
+                </li>
+              </ul>
+            </nav><!-- .nav-menu -->
+
+            <div class="min_nav">
+              <button id="triggerBtn"><i class="fa-solid fa-user"></i></button>
+              <div id="slideContainer">
+                <a href="./Profile_settings.php" class="slideItem"><i class="fa-solid fa-user"></i></a>
+                <a href="./TransactionInfo_settings.php" class="slideItem"><i class="fa-solid fa-credit-card"></i></a>
+                <a href="./Wishlist.php" class="slideItem"><i class="fa-solid fa-heart"></i></a>
+                <a href="./My_Wish.php" class="slideItem"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+                <a href="./Purchase_history.php" class="slideItem"><i class="fa-solid fa-cart-shopping"></i></a>
+                <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+              </div>
+            </div>
 
 
-      </div>
+          </header><!-- End Header -->
+          <div class="row">
+            <div class="col-lg-3 features">
+              <ul class="nav nav-tabs flex-column" style="text-align: center; background-color: #b3a4bd;">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-user"></i>&nbsp;&nbsp;編輯帳戶資訊</h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-lock"></i>&nbsp;&nbsp;修改密碼</h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
+                        class="fa-solid fa-credit-card"></i>&nbsp;&nbsp;編輯交易資訊</h5>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-9 mt-4 mt-lg-0">
+              <div class="tab-content" style="vertical-align: middle;">
+
+                <div class="tab-pane active show" id="tab-1">
+                  <div class="row">
+
+                    <div class="account-container">
+                      <div class="header">
+                        <h1><i class="fa-solid fa-user"></i>&nbsp;&nbsp;編輯帳戶資訊</h1>
+                      </div>
+
+                      <?php
+                      $e_id = $_GET['e_id'];
+                      $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                      $sql = "select * from account where account = '{$_SESSION['account']}'";
+                      $result = mysqli_query($link, $sql);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $user_name = $row["user_name"];
+                        $email = $row["email"];
+                        $password = $row["password"];
+                      }
+                      ?>
+
+                      <form method="post" action="editProfile.php">
+                        <input type="hidden" name="method" value="update">
+                        <div class="form-container">
+
+                          <div class="form-group">
+                            <label for="inputUserName"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;編輯用戶名(暱稱)</label>
+                            <input type="text" name="user_name" class="form-control" value="<?php echo $user_name; ?>"
+                              placeholder="請輸入用戶名(暱稱)">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputUserName"><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;編輯電子信箱</label>
+                            <input type="email" name="email" class="form-control" value="<?php echo $email; ?>"
+                              placeholder="請輸入電子信箱">
+                          </div>
+                        </div>
+
+                        <div class="form-footer text-right">
+                          <button type="reset">重制</button>
+                          <button type="submit">確認編輯</button>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab-2">
+                  <div class="row">
+
+                    <div class="account-container">
+                      <div class="header">
+                        <h1><i class="fa-solid fa-lock"></i>&nbsp;&nbsp;修改密碼</h1>
+                      </div>
+
+                      <form method="post" action="editProfile.php">
+                        <input type="hidden" name="method" value="update">
+                        <div class="form-container">
+
+                          <div class="form-group">
+                            <label for="inputUserName">請先輸入原密碼</label>
+                            <input type="text" name="user_name" class="form-control" placeholder="***********">
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6 form-group">
+                              <label for="inputUserName">修改密碼</label>
+                              <input type="password" name="password" class="form-control" id="password"
+                                placeholder="***********">
+                            </div>
+
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                              <label for="inputUserName">請再次輸入密碼</label>
+                              <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                                placeholder="***********">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-footer text-right">
+                          <button type="reset">重制</button>
+                          <button type="submit">確認編輯</button>
+                        </div>
+
+                      </form>
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab-3">
+                  <div class="row">
+
+                    <div class="account-container">
+                      <div class="header">
+                        <h1><i class="fa-solid fa-credit-card"></i>&nbsp;&nbsp;編輯交易資訊</h1>
+                      </div>
+
+                      <?php
+                      $e_id = $_GET['e_id'];
+                      $link = mysqli_connect("localhost", "root", "12345678", "wishop");
+                      $sql = "select * from account where account = '{$_SESSION['account']}'";
+                      $result = mysqli_query($link, $sql);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $telephone_number = $row["telephone_number"];
+                        $common_payment_account = $row["common_payment_account"];
+                      }
+                      ?>
+
+
+
+                      <form method="post" action="editProfile.php">
+                        <input type="hidden" name="method" value="update">
+                        <div class="form-container">
+
+                          <div class="form-group">
+                            <label for="inputUserName"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;編輯電話號碼</label>
+                            <input type="text" name="telephone_number" class="form-control" placeholder="請輸入電話號碼"
+                              value="<?php echo $telephone_number; ?>">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputUserName"><i
+                                class="fa-regular fa-credit-card"></i>&nbsp;&nbsp;編輯匯款帳號</label>
+                            <input type="text" name="common_payment_account" class="form-control" placeholder="請輸入匯款帳號"
+                              value="<?php echo $common_payment_account; ?>">
+                          </div>
+                        </div>
+
+                        <div class="form-footer text-right">
+                          <button type="reset">重制</button>
+                          <button type="submit">確認編輯</button>
+                        </div>
+
+                      </form>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->

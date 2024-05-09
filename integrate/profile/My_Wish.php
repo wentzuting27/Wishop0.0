@@ -43,7 +43,8 @@
 </head>
 
 <body>
-  <?php session_start(); date_default_timezone_set('Asia/Taipei');?>
+  <?php session_start();
+  date_default_timezone_set('Asia/Taipei'); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -55,8 +56,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="../index/index.php">首頁</a></li>
-          <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i
-                class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="../index/portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="about.php">About</a></li>
               <li><a href="team.php">Team</a></li>
@@ -117,7 +117,13 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-          <img id="profilePic" class="pic" src="';if(isset($_SESSION["user_avatar"])){echo $_SESSION["user_avatar"];}else{echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";} echo '">
+          <img id="profilePic" class="pic" src="';
+            if (isset($_SESSION["user_avatar"])) {
+              echo $_SESSION["user_avatar"];
+            } else {
+              echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";
+            }
+            echo '">
             
           <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
@@ -145,7 +151,7 @@
             echo '
               <a class="btn btn-outline-secondary btn-lg profile-button"
               style="--bs-btn-hover-bg: #b3a4bd; --bs-btn-hover-border-color: #f6effb; color: #ffffff; border-color: #ffffff;"
-              href="../shop/shop.php?shop_id=',$_SESSION['user_shop_id'].'" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
+              href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" role="button"><i class="fa-solid fa-store"></i>&nbsp;&nbsp;我的賣場</a>
             ';
           } else {
             echo '
@@ -206,9 +212,6 @@
               <ul>
                 <li><a href="./Profile_settings.php" class="nav-link scrollto"><i
                       class="fa-solid fa-user"></i><span>個人資訊設定</span></a>
-                </li>
-                <li><a href="./TransactionInfo_settings.php" class="nav-link scrollto"><i
-                      class="fa-solid fa-credit-card"></i><span>交易資訊設定</span></a>
                 </li>
                 <li><a href="./Wishlist.php" class="nav-link scrollto"><i
                       class="fa-solid fa-heart"></i><span>收藏清單</span></a>
@@ -284,68 +287,68 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                            <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
                               // 查詢所有進行中的許願
                               $sql = "SELECT * FROM wish
                                       WHERE wish_end >= CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NULL";
-                                      // is null 代表沒有向特定賣場許願=>公共許願池
+                              // is null 代表沒有向特定賣場許願=>公共許願池
                               $result = mysqli_query($link, $sql);
 
                               if ($result) {
-                                  while ($row = mysqli_fetch_assoc($result)) {
-                                      echo '<div class="list-group-item list-group-item-action">
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                  echo '<div class="list-group-item list-group-item-action">
                                               <div class="item">
                                               ';
-                                              $sql_img="select * from wish_photo
+                                  $sql_img = "select * from wish_photo
                                               WHERE wish_id='{$row["wish_id"]}'";
-                                              $result_img=mysqli_query($link, $sql_img);
-                                              $row_img = mysqli_fetch_assoc($result_img);
-                                              echo'
+                                  $result_img = mysqli_query($link, $sql_img);
+                                  $row_img = mysqli_fetch_assoc($result_img);
+                                  echo '
                                                 <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                                 <div class="item-details">
                                                   <div class="product-title">
-                                                    <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
+                                                    <a href="../wish/wish-details.php?wish_id=', $row['wish_id'] . '">
                                                       <h4>', $row["wish_name"], '</h4>
                                                     </a>';
 
-                                                    // 設一個下個星期的今天的變數
-                                                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
-                                                    // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
-                                                    if($row["wish_end"]<= $oneweekAgo && $row["wish_end"]>= date('Y-m-d')){
-                                                      echo'
+                                  // 設一個下個星期的今天的變數
+                                  $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                  // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                                  if ($row["wish_end"] <= $oneweekAgo && $row["wish_end"] >= date('Y-m-d')) {
+                                    echo '
                                                       <span class="expiring-tag">即將過期</span>
                                                       ';
-                                                    }
+                                  }
 
-                                                    echo '
+                                  echo '
                                                   </div>
                                                   <p class="deadline">許願時間: ', $row["wish_start"], '</p>
                                                   <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
                                                 </div>';
 
-                                                $sql_wish_YorN="select * from bid
+                                  $sql_wish_YorN = "select * from bid
                                                 WHERE wish_id='{$row["wish_id"]}'";
-                                                $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
-                                                if(mysqli_num_rows($result_wish_YorN)==0){
-                                                  echo '<div class="item-meta">
+                                  $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
+                                  if (mysqli_num_rows($result_wish_YorN) == 0) {
+                                    echo '<div class="item-meta">
                                                   <span class="wishNo-tag">無人出價</span>
                                                   </div>';
-                                                }else{
-                                                  echo '<div class="item-meta">
+                                  } else {
+                                    echo '<div class="item-meta">
                                                   <span class="wishYes-tag">有人出價</span>
                                                 </div>';
-                                                }
-                                                
+                                  }
 
-                                                
-                                              echo'
+
+
+                                  echo '
                                               </div>
                                             </div>';
-                                  }
+                                }
                               } else {
-                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中許願：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
@@ -361,13 +364,13 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                            <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
                               // 查詢所有進行中的許願
                               $sql = "SELECT * FROM wish
                                       WHERE wish_end >= CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NOT NULL";
-                                      // is not null 代表有向特定賣場許願
+                              // is not null 代表有向特定賣場許願
                               $result = mysqli_query($link, $sql);
 
                               if ($result) {
@@ -375,64 +378,63 @@
                                   echo '<div class="list-group-item list-group-item-action">
                                   <div class="item">
                                   ';
-                                  $sql_img="select * from wish_photo
+                                  $sql_img = "select * from wish_photo
                                   WHERE wish_id='{$row["wish_id"]}'";
-                                  $result_img=mysqli_query($link, $sql_img);
+                                  $result_img = mysqli_query($link, $sql_img);
                                   $row_img = mysqli_fetch_assoc($result_img);
-                                  echo'
+                                  echo '
                                     <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                     <div class="item-details">
                                       <div class="product-title">
-                                        <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
+                                        <a href="../wish/wish-details.php?wish_id=', $row['wish_id'] . '">
                                           <h4>', $row["wish_name"], '</h4>
                                         </a>';
 
-                                        // 設一個下個星期的今天的變數
-                                        $oneweekAgo = date('Y-m-d', strtotime('7 days'));
-                                        // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
-                                        if($row["wish_end"]<= $oneweekAgo && $row["wish_end"]>= date('Y-m-d')){
-                                          echo'
+                                  // 設一個下個星期的今天的變數
+                                  $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                                  // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                                  if ($row["wish_end"] <= $oneweekAgo && $row["wish_end"] >= date('Y-m-d')) {
+                                    echo '
                                           <span class="expiring-tag">即將過期</span>
                                           ';
-                                        }
+                                  }
 
-                                        echo '
+                                  echo '
                                       </div>';
-                                      $sql_shop="select * from wish
+                                  $sql_shop = "select * from wish
                                       join shop on wish_shop_id=shop_id
                                       WHERE wish_id='{$row["wish_id"]}'";
-                                      $result_shop=mysqli_query($link,$sql_shop);
-                                      while($row_shop=mysqli_fetch_assoc($result_shop))
-                                      {
-                                        echo '<a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                  $result_shop = mysqli_query($link, $sql_shop);
+                                  while ($row_shop = mysqli_fetch_assoc($result_shop)) {
+                                    echo '<a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                         class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>';
-                                      }
-                                      echo '
+                                  }
+                                  echo '
                                       <p class="deadline">許願時間: ', $row["wish_start"], '</p>
                                       <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
                                     </div>';
 
-                                    $sql_wish_YorN="select * from bid
+                                  $sql_wish_YorN = "select * from bid
                                     WHERE wish_id='{$row["wish_id"]}'";
-                                    $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
-                                    if(mysqli_num_rows($result_wish_YorN)==0){
-                                      echo '<div class="item-meta">
+                                  $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
+                                  if (mysqli_num_rows($result_wish_YorN) == 0) {
+                                    echo '<div class="item-meta">
                                       <span class="wishNo-tag">無人出價</span>
                                       </div>';
-                                    }else{
-                                      echo '<div class="item-meta">
+                                  } else {
+                                    echo '<div class="item-meta">
                                       <span class="wishYes-tag">有人出價</span>
                                     </div>';
-                                    }
-                                    
+                                  }
 
-                                    
-                                  echo'
+
+
+                                  echo '
                                   </div>
                                 </div>';
-                      }
+                                }
                               } else {
-                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中許願：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
@@ -471,28 +473,28 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                            <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
                               // 查詢所有歷史的許願
                               $sql = "SELECT * FROM wish
                                       WHERE wish_end < CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NULL";
-                                      // is null 代表沒有向特定賣場許願=>公共許願池
+                              // is null 代表沒有向特定賣場許願=>公共許願池
                               $result = mysqli_query($link, $sql);
                               if ($result) {
-                                  while ($row = mysqli_fetch_assoc($result)) {
-                                      echo '<div class="list-group-item list-group-item-action">
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                  echo '<div class="list-group-item list-group-item-action">
                                               <div class="item">
                                               ';
-                                              $sql_img="select * from wish_photo
+                                  $sql_img = "select * from wish_photo
                                               WHERE wish_id='{$row["wish_id"]}'";
-                                              $result_img=mysqli_query($link, $sql_img);
-                                              $row_img = mysqli_fetch_assoc($result_img);
-                                              echo'
+                                  $result_img = mysqli_query($link, $sql_img);
+                                  $row_img = mysqli_fetch_assoc($result_img);
+                                  echo '
                                                 <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                                 <div class="item-details">
                                                   <div class="product-title">
-                                                    <a href="../wish/wish-details.php?wish_id=',$row['wish_id'].'">
+                                                    <a href="../wish/wish-details.php?wish_id=', $row['wish_id'] . '">
                                                       <h4>', $row["wish_name"], '</h4>
                                                     </a>
                                                   </div>
@@ -500,25 +502,25 @@
                                                   <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
                                                 </div>';
 
-                                                $sql_wish_YorN="select wish_state from wish
+                                  $sql_wish_YorN = "select wish_state from wish
                                                 WHERE wish_id='{$row["wish_id"]}'";
-                                                $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
-                                                $row_wish_YorN = mysqli_fetch_assoc($result_wish_YorN);
-                                                if($row_wish_YorN["wish_state"]==2){
-                                                  echo '<div class="item-meta">
+                                  $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
+                                  $row_wish_YorN = mysqli_fetch_assoc($result_wish_YorN);
+                                  if ($row_wish_YorN["wish_state"] == 2) {
+                                    echo '<div class="item-meta">
                                                   <span class="wishNo-tag">許願失敗</span>
                                                   </div>';
-                                                }elseif($row_wish_YorN["wish_state"]==1){
-                                                  echo '<div class="item-meta">
+                                  } elseif ($row_wish_YorN["wish_state"] == 1) {
+                                    echo '<div class="item-meta">
                                                   <span class="wishYes-tag">許願成功</span>
                                                 </div>';
-                                                }
-                                              echo'
+                                  }
+                                  echo '
                                               </div>
                                             </div>';
-                                  }
+                                }
                               } else {
-                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中許願：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
@@ -533,63 +535,63 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                            <?php
+                              <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
                               // 查詢所有歷史的許願
                               $sql = "SELECT * FROM wish
                                       WHERE wish_end < CURDATE() AND account = '{$_SESSION['account']}' AND wish_shop_id IS NOT NULL";
-                                      // is not null 代表有向特定賣場許願
+                              // is not null 代表有向特定賣場許願
                               $result = mysqli_query($link, $sql);
                               if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<div class="list-group-item list-group-item-action">
+                                  echo '<div class="list-group-item list-group-item-action">
                                             <div class="item">
                                             ';
-                                            $sql_img="select * from wish_photo
+                                  $sql_img = "select * from wish_photo
                                             WHERE wish_id='{$row["wish_id"]}'";
-                                            $result_img=mysqli_query($link, $sql_img);
-                                            $row_img = mysqli_fetch_assoc($result_img);
-                                            echo'
+                                  $result_img = mysqli_query($link, $sql_img);
+                                  $row_img = mysqli_fetch_assoc($result_img);
+                                  echo '
                                               <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                               <div class="item-details">
                                                 <div class="product-title">
-                                                <a href="../shop/wish-details.php?wish_id=',$row['wish_id'].'&shop_id=',$row['wish_shop_id'].'">
+                                                <a href="../shop/wish-details.php?wish_id=', $row['wish_id'] . '&shop_id=', $row['wish_shop_id'] . '">
                                                     <h4>', $row["wish_name"], '</h4>
                                                   </a>
                                                   </div>';
-                                                  $sql_shop="select * from shop
+                                  $sql_shop = "select * from shop
                                                   WHERE shop_id='{$row["wish_shop_id"]}'";
-                                                  $result_shop=mysqli_query($link, $sql_shop);
-                                                  $row_shop = mysqli_fetch_assoc($result_shop);
-                                                  echo '
-                                                  <a href="../shop/shop.php?shop_id=',$row_shop['shop_id'].'" class="seller"><i
+                                  $result_shop = mysqli_query($link, $sql_shop);
+                                  $row_shop = mysqli_fetch_assoc($result_shop);
+                                  echo '
+                                                  <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                                   class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                                 ';
-                                                echo'
+                                  echo '
                                                   <p class="deadline">許願時間: ', $row["wish_start"], '</p>
                                                   <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
                                                 </div>';
 
-                                                $sql_wish_YorN="select wish_state from wish
+                                  $sql_wish_YorN = "select wish_state from wish
                                                 WHERE wish_id='{$row["wish_id"]}'";
-                                                $result_wish_YorN=mysqli_query($link, $sql_wish_YorN);
-                                                $row_wish_YorN = mysqli_fetch_assoc($result_wish_YorN);
-                                                if($row_wish_YorN["wish_state"]==2){
-                                                  echo '<div class="item-meta">
+                                  $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
+                                  $row_wish_YorN = mysqli_fetch_assoc($result_wish_YorN);
+                                  if ($row_wish_YorN["wish_state"] == 2) {
+                                    echo '<div class="item-meta">
                                                   <span class="wishNo-tag">許願失敗</span>
                                                   </div>';
-                                                }elseif($row_wish_YorN["wish_state"]==1){
-                                                  echo '<div class="item-meta">
+                                  } elseif ($row_wish_YorN["wish_state"] == 1) {
+                                    echo '<div class="item-meta">
                                                   <span class="wishYes-tag">許願成功</span>
                                                 </div>';
-                                                }
-                                              echo'
+                                  }
+                                  echo '
                                               </div>
                                             </div>';
-                                  }
+                                }
                               } else {
-                                  echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中許願：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
