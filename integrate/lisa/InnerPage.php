@@ -128,45 +128,41 @@
     <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
     <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn"></i></p>
-    </div>
-    <div>';
+    ';
     $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
     $result3 = mysqli_query($link, $sql3);
     $row3 = mysqli_fetch_assoc($result3);
     echo'
+    <div class="marquee-container">
     <center>
-    <marquee>
+    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     </marquee>
     </center>
+     </div>
     ';
       }else {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
       <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
       </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
-      <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-      <p><i class="fa-solid fa-bullhorn"></i></p>
-      </div>
-      <div>
+     
       ';
     $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
     $result3 = mysqli_query($link, $sql3);
     $row3 = mysqli_fetch_assoc($result3);
     echo'
+    <div class="marquee-container">
     <center>
-    <marquee>
+    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     <span>公告：'.$row3["announce_narrate"].'！</span>
     </marquee>
     </center>
+     </div>
       ';
       }
       mysqli_close($link);

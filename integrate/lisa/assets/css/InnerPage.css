@@ -17,14 +17,6 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
-.icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-}
 
 /*--------------------------------------------------------------
   # Breadcrumbs
@@ -81,7 +73,6 @@ h6 {
 }
 
 
-
 marquee {
   font-size: 20px;
   background-color: #ffffffc1;
@@ -89,7 +80,7 @@ marquee {
   /* 修改文字颜色 */
   padding: 10px;
   /* 调整内边距 */
-  width: 65%;
+  width: 50%;
   /* 设置左右居中 */
   border-radius: 20px;
   /* 调整圆角 */
@@ -97,9 +88,6 @@ marquee {
   /* 文字居中 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* 添加阴影效果 */
-  margin-top: -20px;
-  margin-bottom: 15px;
-  margin-left: -260px;
 }
 
 marquee span {
@@ -127,29 +115,43 @@ marquee span:before {
   /* 添加阴影效果 */
 }
 
-.fa-solid.fa-bullhorn {
-  font-size: 30px;
-  color: #B0A5C6;
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .fa-solid.fa-bullhorn {
-    font-size: 30px;
-    color: #B0A5C6;
-    margin-top: 20px;
-    margin-right: 100px;
+@media (max-width: 780px) {
+  marquee {
+    font-size: 17px;
+    background-color: #ffffffc1;
+    color: #333;
+    /* 修改文字颜色 */
+    padding: 10px;
+    /* 调整内边距 */
+    width: 50%;
+    /* 设置左右居中 */
+    border-radius: 20px;
+    /* 调整圆角 */
+    text-align: center;
+    /* 文字居中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
   }
 
 }
-
-@media screen and (min-width: 769px) and (max-width: 904px) {
-  .fa-solid.fa-bullhorn {
-    font-size: 30px;
-    color: #B0A5C6;
-    margin-top: 20px;
-    margin-left: -80px;
+@media (max-width: 500px) {
+  marquee {
+    font-size: 14px;
+    background-color: #ffffffc1;
+    color: #333;
+    /* 修改文字颜色 */
+    padding: 10px;
+    /* 调整内边距 */
+    width: 50%;
+    /* 设置左右居中 */
+    border-radius: 20px;
+    /* 调整圆角 */
+    text-align: center;
+    /* 文字居中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
   }
+
 }
 
 /*--------------------------------------------------------------
@@ -241,6 +243,7 @@ marquee span:before {
   height: 150px;
 }
 
+
 @media(max-width:904px) {
   .big-profile-picture {
     margin: 0 auto;
@@ -249,12 +252,18 @@ marquee span:before {
     height: 120px;
   }
 }
+@media(max-width:780px) {
+  .big-profile-picture {
+    margin: 0 auto;
+    border: 5px solid #b0a5c6a8;
+    width: 80px;
+    height: 80px;
+  }
 
-
-
+}
 #hero .btn-get-started {
   font-family: "Raleway", sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 14px 32px;
@@ -266,6 +275,8 @@ marquee span:before {
   background: #E9C9D6;
 }
 
+
+
 #hero .btn-get-started:hover {
   background: #B0A5C6;
 }
@@ -276,7 +287,7 @@ marquee span:before {
     font-size: 13px;
     letter-spacing: 1px;
     display: inline-block;
-    padding: 14px 32px;
+    padding: 14px 20px;
     border-radius: 30px;
     transition: 0.5s;
     line-height: 1;
@@ -354,6 +365,32 @@ marquee span:before {
 .buttons #four {
   font-size: 15px;
   font-weight: bold;
+}
+/* 媒體查詢：小型屏幕設備 */
+@media screen and (max-width: 600px) {
+  .row.g-0 .col-md-5 {
+    width: 40%;
+    padding: 10px;
+    padding-right: 20px;
+  }
+
+  .row.g-0 .col-md-7 {
+    width: 60%; /* 調整右側欄位寬度為60% */
+    background-color: rgb(252, 252, 252);
+    border-radius: 30px;
+  }
+
+  .row.g-0 .col-md-7 .card-title {
+    font-size: 12px; /* 調整卡片標題字體大小 */
+    padding-top: 14px;
+    color: #B0A5C6;
+  }
+
+  .buttons #three,
+  .buttons #four {
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
 
 /* 媒体查询：小屏幕设备 */
