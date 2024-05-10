@@ -144,6 +144,14 @@
                 <li><a href="shop_time.php?shop_id=<?php echo $shop_id; ?>">返回賣場</a></li>
                 <li>預告詳情</li>
               </ol>
+              <div class="d-flex">
+                <?php
+                if($shop_id==$_SESSION["user_shop_id"]){
+                  echo '<a href="preview_in_up_de.php?method=de&preview_id=',$preview_id,'&shop_id=',$shop_id,'"><button type="button" class="btn insert_button">刪除預告</button></a>';
+                }
+                
+                ?>                      
+              </div>
               
             </div>
           </div>
