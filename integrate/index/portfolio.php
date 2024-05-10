@@ -282,10 +282,8 @@
 
     <style>
       .breadcrumbs {
-        padding: 40px 0;
-        background: #f8f9fa;
-        min-height: 90px;
-        margin-top: 50px;
+        padding: 20px 0;
+
       }
 
       /* 修改手風琴篩選按鈕的背景顏色、文字顏色和邊框顏色 */
@@ -341,12 +339,12 @@
                   <div class="accordion-item">
 
 
-                    <div class="input-group mb-4"
-                      style="background-color:#F8F9FA;  justify-content: center; margin-bottom: 20px;">
+                    <div class="input-group mb-4" style="background-color:#F8F9FA;  justify-content: center;">
                       <div class="col-8">
                         <input type="text" placeholder="輸入商品名稱" name="commodity_name"
                           style="border: none; height:50px;">
                       </div>
+
 
                       <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 10px;">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -547,38 +545,88 @@
               }
             </style>
 
+
             <?php
-              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-
-              $sql3 = "SELECT c.*, cg.*, cp.commodity_photo 
-              FROM commodity c 
-              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
-              JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+              $sql = "select * from commodity c
+              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
+              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+              where commodity_name like'%{$_POST['commodity_name']}%'
               GROUP BY c.commodity_id
-              ORDER BY RAND() 
-              ";
-
-              $result3 = mysqli_query($link, $sql3);
-
-              while ($row = mysqli_fetch_assoc($result3)) {
-                echo '
-              <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' wow fadeInUp">
-                  <div class="portfolio-wrap">
-                      <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
-                          data-glightbox="type: external" title="' . $row['commodity_name'] . '">
-                          <figure>
-                              <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
-                          </figure>
-                      </a>
-                      <div class="portfolio-info">
-                          <h4>' . $row['commodity_name'] . '</h4>
-                          <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
-                      </div>
-                  </div>
-              </div>
-              ';
-              }
+              ORDER BY RAND() ";
               ?>
+
+
+
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+          // $sql = "SELECT c.*, cg.*, cp.commodity_photo 
+          //     FROM commodity c 
+          //     JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
+          //     JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+          //     GROUP BY c.commodity_id
+          //     ORDER BY RAND() 
+          //     ";
+          
+          $result = mysqli_query($link, $sql);
+
+
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+
+
+
+
+              //topic複選
+              $commodity_group_id = $row["commodity_group_id"];
+              $alltopic = array();
+              $sql_alltopic = "select topic from group_topic where commodity_group_id = '$commodity_group_id'";
+              $result_alltopic = mysqli_query($link, $sql_alltopic);
+
+              while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
+                $alltopic[] = $row_alltopic['topic'];
+              }
+              ;
+
+              $checkselect = 'yes';
+              $topic = $_POST['topic'];
+              foreach ($topic as $check) {
+
+                if (!in_array($check, $alltopic)) {
+                  $checkselect = 'no';
+                  break;
+                }
+              }
+
+
+
+
+
+              echo '
+                <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' wow fadeInUp">
+                    <div class="portfolio-wrap">
+                        <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
+                            data-glightbox="type: external" title="' . $row['commodity_name'] . '">
+                            <figure>
+                                <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                            </figure>
+                        </a>
+                        <div class="portfolio-info">
+                            <h4>' . $row['commodity_name'] . '</h4>
+                            <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                        </div>
+                    </div>
+                </div>
+                ';
+            }
+          } else {
+
+            echo '<h5><b>查無資料</b></h5>';
+
+          }
+
+
+          ?>
 
           <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
             <div class="portfolio-wrap">
