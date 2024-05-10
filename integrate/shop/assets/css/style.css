@@ -1500,25 +1500,24 @@ profile2(頭貼、名字)
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 10px;
+  height: auto;
 }
 
-.people_photo{
+.preview_people_photo{
   aspect-ratio: 1/1;
   width: 100%;
   border-radius: 50%;
 }
 
+.preview_photo{
+  aspect-ratio: 1/1;
+  width: 100%;
+  margin-top: 20px;
+}
+
 .preview_table {
   width: 100%; /* 让表格的宽度充满卡片的宽度 */
   table-layout: fixed; /* 让表格的列宽度按照指定的宽度分配 */
-}
-
-.preview_table h1 {
-  color: #fff;
-  font-size: 20px;
-  padding-top: 10px;
-  font-weight: 600;
-  word-wrap: break-word; /* 让表格中的文字自动换行 */
 }
 
 .preview_table td {
@@ -1536,76 +1535,45 @@ profile2(頭貼、名字)
 }
 
 .preview_table p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #B0A5C6;
+}
+
+.preview_table i {
   font-size: 15px;
   font-weight: 600;
   color: #B0A5C6;
 }
 
-.preview_table a {
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
+.preview_card .description {
+  height: 100px; /* 设置宽度，超出部分将隐藏 */
+  overflow: hidden; /* 隐藏超出部分 */
+  text-overflow: ellipsis; /* 文本超出时显示省略号 */
 }
 
-.preview_table a:hover {
+.preview_title {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap; /* 確保文字不換行 */
+}
+
+.preview_title a{
+  color: #B0A5C6;
+}
+
+.preview_title a:hover{
   color: #e6d0d9;
 }
 
-.goods_photo{
-  margin: 1px;
-  height: 50px;
-  width: 50px;
-}
-
-.preview_card .scrollable-row {
-  height: 200px;
-  max-height: 200px; /* 设置最大高度 */
+.pre_scrollable-row {
+  font-weight: 600;
+  color: #666666;
+  margin-top: 20px;
+  height: 290px;
+  max-height: 290px; /* 设置最大高度 */
   overflow-y: auto; /* 当内容溢出时显示滚动条 */
 }
-
-.scrollable-row::-webkit-scrollbar {
-  width: 12px;
-}
-
-.scrollable-row {
-  scrollbar-width: thin;
-  scrollbar-color: #B0A5C6 #f1f1f1;
-}
-
-.preview_card .scrollable-row-no-photo {
-  height: 270px;
-  max-height: 270px; /* 设置最大高度 */
-  overflow-y: auto; /* 当内容溢出时显示滚动条 */
-}
-
-.preview_card .scrollable-row-no-photo::-webkit-scrollbar {
-  width: 12px;
-}
-
-.preview_card .scrollable-row-no-photo {
-  scrollbar-width: thin;
-  scrollbar-color: #B0A5C6 #f1f1f1;
-}
-
-.scrollable-img {
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: grab; /* 设置光标样式为手型 */
-}
-
-.scrollable-img img {
-  display: inline-block;
-  width: 50px; /* 调整图片大小 */
-  height: auto;
-  margin-right: 10px; /* 调整图片间距 */
-}
-
-.preview_tr {
-  color: #fff;
-  background: url(https://i.pinimg.com/564x/63/7d/a4/637da4bfb85cb92ed537189165803d41.jpg);
-  background-size: cover;
-}
-
 /*--------------------------------------------------------------
 # Courses List Section
 --------------------------------------------------------------*/
