@@ -226,9 +226,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span><i
-                class="bi bi-chevron-down"></i></a>
-            <ul>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
+            <!-- <ul>
               <li><a href="about.php">About</a></li>
               <li><a href="team.php">Team</a></li>
               <li><a href="testimonials.php">Testimonials</a></li>
@@ -242,7 +241,7 @@
                   <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <li><a href="#">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
