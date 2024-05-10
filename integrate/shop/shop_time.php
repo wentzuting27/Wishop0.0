@@ -531,258 +531,57 @@
               <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
     
                 <div class="row">
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
+                  <?php
+                    $sql="select *
+                    from preview
+                    natural join shop
+                    where shop_id='$shop_id'
+                    order by time";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                      echo'
+                      <div class="col-lg-6">
+                        
+                        <div class="preview_card">
+                          <table class="preview_table">
+                            <tr>
+                              <td width="15%"><img src="',$row["shop_avatar"],'" class="preview_people_photo"></td>
+                              <td width="80%">
+                                <span>',$row["shop_name"],'</span><br>
+                                <i class="fa-regular fa-clock"></i>&nbsp;',$row["time"],'</span>
+                                <div class="preview_title">
+                                  <p><a href="preview-details.php?preview_id=',$row["preview_id"],'&shop_id=',$shop_id,'">',$row["preview_title"],'</a></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2" >
+                                <div class="description" width="70%">',nl2br($row["preview_narrate"]),'</div>
+                                <img src="';
+                                $sql_photo="select *
+                                from preview_photo
+                                where preview_id='{$row["preview_id"]}'
+                                order by preview_photo_id
+                                limit 1";
+                                $result_photo=mysqli_query($link,$sql_photo);
+                                while($row_photo=mysqli_fetch_assoc($result_photo))
+                                {
+                                  echo $row_photo["preview_photo_link"];
+                                }
+                                echo '" class="preview_photo">
+                              </td>
+                            </tr>
                             
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-    
-                  <div class="col-lg-6">
-                    
-                    <div class="preview_card">
-                      <table class="preview_table">
-                        <tr class="preview_tr">
-                          <td width="85%">
-                            <h1>熱烈預告！獨家團購：排球少年日本聯名衣服！</h1>
-                          </td>
-                          <td width="15%" style="vertical-align: top;" align="right"><p><a href="#"><i class="bi bi-suit-heart"></i>&nbsp;1004</a></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" >
-                            <div class="scrollable-row-no-photo">
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            大家好！準備好了嗎？我們即將展開一場精彩絕倫的活動！我們將開團販售最新最潮的排球少年日本聯名衣服，讓你成為最矚目的焦點！<br>
-                            🔥 這是一個難得的機會，能夠擁有這款獨特的聯名衣服，展現你對排球少年的熱愛，更加凸顯你的時尚品味！不要錯過這個機會！<br>
-                            📅 開團時間：[日期] [時間]<br>
-                            🛒 販售價格：[價格]<br>
-                            🚀 數量有限，先到先得！立即加入我們的團購，讓排球少年的風采成為你的獨特風景！<br>
-                            <br>
-                            敬請期待更多詳細資訊的公佈，一起為我們的熱情共鳴！記得留意我們的專頁，不要錯過任何一個重要消息！<br>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>
-                  
-                    
+                          </table>
+                        </div>
+                        
+                      </div>';
+                    }
+                  ?>
+
+
                 </div>
-    
     
               </div>
               <!-- End Schdule Day 2 -->
