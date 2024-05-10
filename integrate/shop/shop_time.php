@@ -431,19 +431,21 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                    <form method="post" action="preview_in_up_de.php" enctype="multipart/form-data">
+                      <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                      <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
                         <table width="100%" class="insert_group_form">
                           <tr>
                             <td width="10%">預告標題</td>
-                            <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                            <td width="90%"><input type="text" name="preview_title" class="form-control" required></td>
                           </tr>
                           <tr>
                             <td>預告敘述</td>
-                            <td><textarea class="form-control" rows="5"></textarea></td>
+                            <td><textarea class="form-control" rows="5" name="preview_narrate" required></textarea></td>
                           </tr>
                           <tr>
                             <td>預告圖片</td>
-                            <td><input class="form-control" type="file" id="group_cover"></td>
+                            <td><input class="form-control" type="file" name="preview_photo_link[]" multiple required></td>
                           </tr>
                           <tr>
                             <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
