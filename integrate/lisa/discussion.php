@@ -28,22 +28,19 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/discussion.css" rel="stylesheet">
+  <link href="assets/css/InnerPage.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
     crossorigin="anonymous"></script>
 
 </head>
 <?php session_start(); ?>
+
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -67,7 +64,7 @@
         <div class="d-flex justify-content-between align-items-center">
 
           <ol>
-          <li><a href="../index/index.php" style="color:black">首頁</a></li>
+            <li><a href="../index/index.php" style="color:black">首頁</a></li>
             <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" style="color: rgb(255, 230, 237);">返回賣場</a>
             </li>
             <li>團內資訊</li>
@@ -106,31 +103,7 @@
     </div>
     <div class="edit_like_shop_button">
     <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
-      }
-
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result = mysqli_query($link, $sql);
-
-      if ($result && mysqli_num_rows($result) == 0) {
-        echo '
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-    <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
-    </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn"></i></p>
-    </div>
-    <div>
-    <center>
-    <marquee>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    </marquee>
-    </center>
-    ';
-      }
-      if ($result2 && mysqli_num_rows($result2) != 0) {
+      } else {
         echo '
       <div class="background-overlay" style="position: absolute;
       top: 0;
@@ -144,26 +117,48 @@
       $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
 
-      if ($result && mysqli_num_rows($result) != 0) {
+      if ($result && mysqli_num_rows($result) == 0) {
+        echo '
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
+    </div>
+    ';
+        $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+        $result3 = mysqli_query($link, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        echo '
+    <div class="marquee-container">
+    <center>
+    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    </marquee>
+    </center>
+     </div>
+    ';
+      } else {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
       <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
       </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
-      <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-      <p><i class="fa-solid fa-bullhorn"></i></p>
-      </div>
-      <div>
-      <center>
-      <marquee>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      </marquee>
-      </center>
+     
+      ';
+        $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+        $result3 = mysqli_query($link, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        echo '
+    <div class="marquee-container">
+    <center>
+    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    </marquee>
+    </center>
+     </div>
       ';
       }
-
       mysqli_close($link);
       ?>
     </form>
@@ -219,7 +214,7 @@
       <div class="card mb-3" style="border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5">
-            <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
+            <div class="profile-picture big-profile-picture clear">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
                 src="', $row["shop_avatar"], '">
             </div>
@@ -247,7 +242,7 @@
       $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
-      echo '<small style="font-size: 0.4cm;font-weight: bold;"><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+      echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
       echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
@@ -396,6 +391,7 @@
                   </tr>';
                   }
                   mysqli_close($link); ?>
+
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
@@ -432,29 +428,28 @@
           </div>
           </form>
         </section>
+
         <section id="blog" class="blog">
           <h2>Shipping</h2>
-          
-            <div class="row">
-              <div class="col-lg-12" style="padding-left:50px;padding-right:50px;">
-                <div class="entry-meta">
-                  <ul>
-                    <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                        href="團內介面2.php#first">
-                        回上一頁</a></li>
-                  </ul>
-                </div>
+          <div class="row">
+            <div class="col-lg-12" style="padding-left:50px;padding-right:50px;">
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
+                      href="團內介面2.php#first">
+                      回上一頁</a></li>
+                </ul>
+              </div>
 
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $commodity_group_id = $_GET["commodity_group_id"];
-                $question_id = $_GET["question_id"];
-                $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
-                $result = mysqli_query($link, $sql);
-                $row = mysqli_fetch_assoc($result);
-                echo '
-              <div class="part2">
-              <div class="card border-secondary mb-12">
+              <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $question_id = $_GET["question_id"];
+              $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
+              $result = mysqli_query($link, $sql);
+              $row = mysqli_fetch_assoc($result);
+              echo '
+              <div class="card text-bg-light mb-3">
                 <div class="card-header bg-transparent border-secondary">
                   <div class="col-md-12" >
                     <div class="profile-picture big-profile-picture clear"
@@ -462,30 +457,30 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h4><B>', $row["question_title"], '</B></h4>
+                    <h3><B>', $row["question_title"], '</B></h3>
                   </div>
-                  <h4 style="float: right;margin-top:-50px;">
+                  <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
                   </h4>
-                  <div style="float:right;margin-top:-20px;""><i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
+                  <div style="float:right;margin-top:-15px;""><i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div>
                 
                 <div class="card-body " id="card' . $question_id . '" style="max-height: 600px;overflow-y: scroll;">
                   <h4>', $row["question_narrate"], '</h4>';
 
-                $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
-                $result2 = mysqli_query($link, $sql2);
-                // 逐行顯示 question_photo
-                while ($photo_row = mysqli_fetch_assoc($result2)) {
-                  echo '
-                  <img src="' . $photo_row["question_photo_link"] . '" alt="question Photo" style="max-width: 200px;max-height: 200px;">';
-                }
+              $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+              $result2 = mysqli_query($link, $sql2);
+              // 逐行顯示 question_photo
+              while ($photo_row = mysqli_fetch_assoc($result2)) {
                 echo '
+                  <img src="' . $photo_row["question_photo_link"] . '" alt="question Photo" style="max-width: 200px;max-height: 200px;">';
+              }
+              echo '
                 </div>
               </div>
             </div>';
-                echo '<!-- Modal -->
+              echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -499,71 +494,96 @@
                   </div>
                 </div>
               </div>
-            </div>
           ';
-                mysqli_close($link);
-                ?>
-              </div>
+              mysqli_close($link);
+              ?>
+            </div>
 
 
-              <div class="blog-comments" style="padding:20px">
-                <h4 class="comments-count">2 Comments</h4>
-                <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
-                  <div class="d-flex">
-                    <div class="comment-img">
-                      <div class="profile-picture big-profile-picture clear">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+            <div class="blog-comments">
+              <h4 class="comments-count">2 Comments</h4>
+              <div class="card mb-3" style="max-width: 100%;">
+                <div class="row g-0">
+                  <div class="col-md-2">
+                      <div class="comment-img">
+                        <div class="profile-picture big-profile-picture clear">
+                          <img width="100%" height="100%" alt="Anne Hathaway picture"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">
+                      <div class="comment2">
+                        <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                            Reply</a></h5>
+                        <time datetime="2020-01-01">01 Jan, 2020</time>
+                        <p>
+                          Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
+                          molestiae est qui cum soluta.
+                          Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                        </p>
                       </div>
                     </div>
-                    <div class="comment2">
-                      <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
-                          Reply</a></h5>
-                      <time datetime="2020-01-01">01 Jan, 2020</time>
-                      <p>
-                        Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
-                        molestiae est qui cum soluta.
-                        Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                      </p>
+                  </div>
+                </div>
+              </div>
+              <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
+                <div class="d-flex">
+                  <div class="comment-img">
+                    <div class="profile-picture big-profile-picture clear">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
                     </div>
                   </div>
-                </div><!-- End comment #1 -->
-                <hr />
-                      <center>
-                        <div class="reply-form">
-                          <h4>留言區</h4>
-                          <form action="">
-                            <div class="row">
-                              <div class="col-md-6 form-group">
-                                <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                              </div>
-                              <div class="col-md-6 form-group">
-                                <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col form-group">
-                                <input name="comment" class="form-control" placeholder="回復對象">
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col form-group">
-                                <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                              </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Post Comment</button>
-
-                          </form>
-
+                  <div class="comment2">
+                    <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                        Reply</a></h5>
+                    <time datetime="2020-01-01">01 Jan, 2020</time>
+                    <p>
+                      Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
+                      molestiae est qui cum soluta.
+                      Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                    </p>
+                  </div>
+                </div>
+              </div><!-- End comment #1 -->
+              <center>
+                <div class="reply-form">
+                  <form action="">
+                    <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
+                      <div class="d-flex">
+                        <div class="comment-img">
+                          <div class="profile-picture big-profile-picture clear">
+                            <img width="100%" height="100%" alt="Anne Hathaway picture"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                          </div>
                         </div>
-                      </center>
-                    </div><!-- End blog comments -->
-        </section>
+                        <div class="comment2" style="padding-left:20px;">
+                          <div class="row">
+                            <div class="col form-group" style="width:600px;">
+                              <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                            </div>
+                            <div class="mb-3">
+                              <input class="form-control" type="file" id="file-uploader" data-target="file-uploader"
+                                accept="image/*" name="question_photo[]" multiple />
+                            </div>
+                          </div><button type="submit" class="btn btn-primary" style="float:right;">Post Comment</button>
+                        </div>
+                      </div>
+
+
+                  </form>
+
+                </div>
+              </center>
+            </div><!-- End blog comments -->
         </section>
 
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
+
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
@@ -585,8 +605,7 @@
                 $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           GROUP BY order_details.order_id
-                  ";
+           GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
                 if (!$result) {
@@ -613,7 +632,7 @@
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
-            <td>' . $row['payment_state'] . '</td>';
+            <td>' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</td>';
                   echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>

@@ -11,13 +11,6 @@ $(document).ready(function () {
       pagination: false
     });
   });
-
-  /**对于滑动的上一个和下一个按钮，我假设你使用的是相同的类名进行操作**/
-  $('#pra').click(function () {
-    $("#slider-carousel").trigger('prev.owl.carousel');
-  });
-
-  // 你的其他事件处理器代码...
 });
 
 // 获取按钮元素
