@@ -563,7 +563,20 @@
                                 <a class="trainer-link">',$row["user_name"],'</a>
                               </div>
                               <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;<button class="button">收藏許願</button>
+                              <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;';
+                              $sql_likewish="select *
+                              from like_wish
+                              where wish_id='{$row["wish_id"]}' and account='{$_SESSION["account"]}'";
+                              $result_likewish=mysqli_query($link,$sql_likewish);
+                              if(isset($_SESSION["account"])){
+                                if(mysqli_num_rows($result_likewish)==0){
+                                  echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$row["wish_id"],'&page=shop_wish&method=in&like=wish"><button type="button" class="btn insert_button">收藏許願</button></a>';
+                                }else{
+                                  echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$row["wish_id"],'&page=shop_wish&method=de&like=wish"><button type="button" class="btn delike_button">取消收藏</button></a>';
+                                }
+                              }
+                                
+                                echo '
                               </div>
                             </div>
                             
@@ -646,7 +659,20 @@
                                 <a class="trainer-link">',$row["user_name"],'</a>
                               </div>
                               <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;<button class="button">收藏許願</button>
+                              <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;';
+                              $sql_likewish="select *
+                              from like_wish
+                              where wish_id='{$row["wish_id"]}' and account='{$_SESSION["account"]}'";
+                              $result_likewish=mysqli_query($link,$sql_likewish);
+                              if(isset($_SESSION["account"])){
+                                if(mysqli_num_rows($result_likewish)==0){
+                                  echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$row["wish_id"],'&page=shop_wish&method=in&like=wish"><button type="button" class="btn insert_button">收藏許願</button></a>';
+                                }else{
+                                  echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$row["wish_id"],'&page=shop_wish&method=de&like=wish"><button type="button" class="btn delike_button">取消收藏</button></a>';
+                                }
+                              }
+                                
+                                echo '
                               </div>
                             </div>
                             
