@@ -2862,10 +2862,13 @@ p.middle {
 
 .product-title h4 {
   margin-right: 13px;
+  padding-right: 30px;
 }
 
 .product-title h4:hover {
   margin-right: 13px;
+  padding-right: 30px;
+
 }
 /* 標題和標籤排版 */
 
