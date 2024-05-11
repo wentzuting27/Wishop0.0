@@ -1009,6 +1009,25 @@ profile2(頭貼、名字)
 }
 
 /*--------------------------------------------------------------
+# delike_button(e6d0d9)
+--------------------------------------------------------------*/
+.delike_button{
+  background-color: #B0A5C6;
+  height: 40px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.delike_button:hover{
+  background-color: #e6d0d9;
+  height: 40px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/*--------------------------------------------------------------
 # insert_group_form
 --------------------------------------------------------------*/
 .insert_group_form{

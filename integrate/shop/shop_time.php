@@ -148,11 +148,23 @@
     echo ' 
   </div>
 
-  <div class="edit_like_shop_button">
+  <div class="edit_like_shop_button">';
+  $sql_likeshop="select *
+  from like_shop
+  where shop_id='$shop_id' and account='{$_SESSION["account"]}'";
+  $result_likeshop=mysqli_query($link,$sql_likeshop);
+  if(isset($_SESSION["account"])){
+    if(mysqli_num_rows($result_likeshop)==0){
+      echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop_time&method=in&like=shop"><button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;收藏賣場</button></a>';
+    }else{
+      echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop_time&method=de&like=shop"><button type="button" class="btn delike_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button></a>';
+    }
+  }
+  echo '
     <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
     <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
-    <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;已關注</button>
-    <button type="button" class="btn insert_button"><i class="fa-regular fa-comments"></i>&nbsp;聯絡賣家</button>
+    <!-- <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;已關注</button>-->
+    <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-comments"></i>&nbsp;聯絡賣家</button>-->
   </div>
   <!-- End shop_bg Section -->';
   }
