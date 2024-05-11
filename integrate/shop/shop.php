@@ -700,8 +700,19 @@
       <div class="col-lg-4 col-md-6 shop_group-item">
         <div class="shop_group-wrap">
           <figure>
-            <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">
-            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></i></a>
+            <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">';
+            $sql_likegroup="select *
+            from like_group
+            where commodity_group_id='{$row["commodity_group_id"]}' and account='{$_SESSION["account"]}'";
+            $result_likegroup=mysqli_query($link,$sql_likegroup);
+            if(isset($_SESSION["account"])){
+              if(mysqli_num_rows($result_likegroup)==0){
+                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
+              }else{
+                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
+              }
+            }
+            echo '
             <a href="',$group_link,'" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
           </figure>
 
