@@ -461,7 +461,7 @@
       
                             mysqli_close($link);
                               ?>
-                              
+
                             </ul>
                           </div>
                         </div>
@@ -472,94 +472,86 @@
                           <div class="scrollable-container">
                             <ul class="list-group list-group-flush">
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>許願商品名稱</h4>
-                                      </a>
-                                      <span class="expiring-tag">即將過期</span>
-                                    </div>
-                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</a>
-                                    <p class="neirong">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag"><i
-                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                    <a class="remove-btn" href="#取消收藏"><i
-                                        class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                                  </div>
-                                </div>
-                              </div>
+                            <?php
+                            $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>許願商品名稱</h4>
-                                      </a>
-                                    </div>
-                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</a>
-                                    <p class="neirong">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishNo-tag"><i
-                                        class="fa-solid fa-hourglass-start"></i>&nbsp;&nbsp;待接取</span>
-                                    <a class="remove-btn" href="#取消收藏"><i
-                                        class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                                  </div>
-                                </div>
-                              </div>
+                            $sql = "SELECT * FROM like_wish ls
+                                    INNER JOIN wish ON ls.wish_id = wish.wish_id
+                                    WHERE ls.account = '{$_SESSION['account']}' AND wish_shop_id IS NOT NULL";
+                                    // is not null 代表有向特定賣場許願=>特定賣場
+                            $result = mysqli_query($link, $sql);
 
-                              <div class="list-group-item list-group-item-action">
-                                <div class="item">
-                                  <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                                  <div class="item-details">
-                                    <div class="product-title">
-                                      <a href="#">
-                                        <h4>許願商品名稱</h4>
-                                      </a>
-                                    </div>
-                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</a>
-                                    <p class="neirong">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag"><i
-                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                    <a class="remove-btn" href="#取消收藏"><i
-                                        class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                                  </div>
-                                </div>
-                              </div>
+                            if ($result) {
+                              while ($row = mysqli_fetch_assoc($result)) {
 
-                              <div class="list-group-item list-group-item-action">
+                                echo '<div class="list-group-item list-group-item-action">
                                 <div class="item">
-                                  <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
+                                ';
+                                  $sql_img = "select * from wish_photo
+                                              WHERE wish_id='{$row["wish_id"]}'";
+                                  $result_img = mysqli_query($link, $sql_img);
+                                  $row_img = mysqli_fetch_assoc($result_img);
+                                  echo '
+                                  <img src="', $row_img["wish_photo_link"], '" alt="Product 1">
                                   <div class="item-details">
                                     <div class="product-title">
-                                      <a href="#">
-                                        <h4>許願商品名稱</h4>
-                                      </a>
-                                    </div>
-                                    <a href="#" class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</a>
-                                    <p class="neirong">許願時間: 2023/06/30</p>
-                                    <p class="deadline">許願到期時間: 2023/09/30</p>
-                                  </div>
-                                  <div class="item-meta">
-                                    <span class="wishYes-tag"><i
-                                        class="fa-solid fa-square-check"></i>&nbsp;&nbsp;已接取</span>
-                                    <a class="remove-btn" href="#取消收藏"><i
-                                        class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
+                                      <a href="../wish/wish-details.php?wish_id=', $row['wish_id'] . '">
+                                        <h4>', $row["wish_name"], '</h4>
+                                      </a>';
+
+                    // 設一個下個星期的今天的變數
+                    $oneweekAgo = date('Y-m-d', strtotime('7 days'));
+                    // 判斷截止日期是不是在今天到下個禮拜的今天這段時間
+                    if ($row["wish_end"] <= $oneweekAgo && $row["wish_end"] >= date('Y-m-d')) {
+                      echo '
+                                        <span class="expiring-tag">即將過期</span>
+                                        ';
+                    }
+                      echo '
+                      </div>';
+                  $sql_shop = "select * from wish
+                      join shop on wish_shop_id=shop_id
+                      WHERE wish_id='{$row["wish_id"]}'";
+                  $result_shop = mysqli_query($link, $sql_shop);
+                  while ($row_shop = mysqli_fetch_assoc($result_shop)) {
+                    echo '<a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
+                        class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>';
+                  }
+
+
+                    echo '
+                                    <p class="deadline">許願到期時間: ', $row["wish_end"], '</p>
+                                  </div>';
+
+                    $sql_wish_YorN = "select * from bid
+                                  WHERE wish_id='{$row["wish_id"]}'";
+                    $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
+                    if (mysqli_num_rows($result_wish_YorN) == 0) {
+                      echo '<div class="item-meta">
+                                    <span class="wishNo-tag">待接取</span>
+                                    ';
+                    } else {
+                      echo '<div class="item-meta">
+                                    <span class="wishYes-tag">已開團</span>
+                                  ';
+                    }
+
+
+
+                    echo '
+                    <a class="remove-btn" href="deleteLike_wish.php?wish_id=' . $row['wish_id'] . '"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
                                   </div>
                                 </div>
-                              </div>
+                              </div>';
+                  }
+                            } else {
+                              echo "尚無收藏許願：" . mysqli_error($link);
+                            }
+      
+                            mysqli_close($link);
+                              ?>
+
+
                             </ul>
                           </div>
                         </div>

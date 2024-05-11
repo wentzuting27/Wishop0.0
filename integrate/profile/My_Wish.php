@@ -419,11 +419,11 @@
                                   $result_wish_YorN = mysqli_query($link, $sql_wish_YorN);
                                   if (mysqli_num_rows($result_wish_YorN) == 0) {
                                     echo '<div class="item-meta">
-                                      <span class="wishNo-tag">無人出價</span>
+                                      <span class="wishNo-tag">待接取</span>
                                       </div>';
                                   } else {
                                     echo '<div class="item-meta">
-                                      <span class="wishYes-tag">有人出價</span>
+                                      <span class="wishYes-tag">已開團</span>
                                     </div>';
                                   }
 
