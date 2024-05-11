@@ -8,10 +8,10 @@
 <body>
     <?php
         session_start(); 
-            $shop_id = $_GET['shop_id'];
+            $commodity_group_id = $_GET['commodity_group_id'];
             $account = $_SESSION['account'];
             $link = mysqli_connect("localhost", "root", "12345678", "wishop");
-            $sql = "DELETE FROM like_shop WHERE shop_id = '$shop_id' AND account = '$account'";
+            $sql = "DELETE FROM like_group WHERE commodity_group_id = '$commodity_group_id' AND account = '$account'";
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Wishlist.php");
             } else {

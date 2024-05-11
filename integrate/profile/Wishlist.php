@@ -318,100 +318,49 @@
                     <div class="scrollable-container">
                       <ul class="list-group list-group-flush">
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品團體名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                      <?php
+                                $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品團體名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                                $sql = "SELECT * FROM like_group lg
+                                        INNER JOIN commodity_group cg ON lg.commodity_group_id = cg.commodity_group_id
+                                        WHERE lg.account = '{$_SESSION['account']}'";
+                                $result = mysqli_query($link, $sql);
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品團體名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                                if ($result) {
+                                  while ($row = mysqli_fetch_assoc($result)) {
 
+                                    echo '
                         <div class="list-group-item list-group-item-action">
                           <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
+                            <img src="', $row["commodity_group_bg"], '" alt="Product 1">
                             <div class="item-details">
-                              <a href="#">
-                                <h4>商品團體名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                              <a href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '">
+                                <h4>', $row["commodity_group_name"], '</h4>
+                              </a>';
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品團體名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
+                              $sql_shop = "select * from shop
+                              WHERE shop_id='{$row["shop_id"]}'";
+                              $result_shop = mysqli_query($link, $sql_shop);
+                              $row_shop = mysqli_fetch_assoc($result_shop);
+                              echo '
+                            <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
+                            class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
+                            ';
+
+                              echo '
+                              <p class="deadline">下單截止時間: ', $row["close_order_date"], '</p>
                             </div>
                             <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
+                              <a class="remove-btn" href="deleteLike_cg.php?commodity_group_id=' . $row['commodity_group_id'] . '"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
                             </div>
                           </div>
-                        </div>
+                        </div>';}
+                      } else {
+                        echo "尚無收藏商品團體：" . mysqli_error($link);
+                      }
+
+                      mysqli_close($link);
+                        ?>
 
                       </ul>
                     </div>
