@@ -290,7 +290,20 @@
               <div class="container" data-aos="fade-up">    
                 <div class="wish-info">
                   <div class="wish-details-title flex-container">
-                    <h3>許願資訊</h3><button type="button" class="btn insert_button">收藏許願</button>
+                    <h3>許願資訊</h3>
+                    <?php
+                    $sql_likewish="select *
+                    from like_wish
+                    where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                    $result_likewish=mysqli_query($link,$sql_likewish);
+                    if(isset($_SESSION["account"])){
+                      if(mysqli_num_rows($result_likewish)==0){
+                        echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$wish_id,'&page=wish-details&method=in&like=wish"><button type="button" class="btn insert_button">收藏許願</button></a>';
+                      }else{
+                        echo '<a href="like_in_de.php?shop_id=',$shop_id,'&wish_id=',$wish_id,'&page=wish-details&method=de&like=wish"><button type="button" class="btn delike_button">取消收藏</button></a>';
+                      }
+                    }
+                    ?>
                   </div>
                   <br>
                   <ul>
