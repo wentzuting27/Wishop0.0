@@ -255,12 +255,6 @@
                 <li class="nav-item">
                   <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
                     <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
-                        class="fa-solid fa-heart"></i>&nbsp;&nbsp;收藏商品</h5>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
-                    <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
                         class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;&nbsp;收藏許願</h5>
                   </a>
                 </li>
@@ -275,99 +269,44 @@
                     <div class="scrollable-container">
                       <ul class="list-group list-group-flush">
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="https://i.pinimg.com/564x/92/19/18/9219184f7722f46823d5334e0355230c.jpg"
-                              alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>三麗鷗快樂購</h4>
-                                <p class="seller">@yutinglu506</p>
-                              </a>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                        <?php
+                                $link = mysqli_connect("localhost", "root", "12345678", "wishop");
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="https://i.pinimg.com/564x/23/c6/5a/23c65a508cb97bae758dd7ebefbe0ed8.jpg"
-                              alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>日本藥妝、零食、動漫現地代購</h4>
-                                <p class="seller">@oikawa</p>
-                              </a>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i></p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                                $sql = "SELECT * FROM like_shop ls 
+                                        INNER JOIN shop s ON ls.shop_id = s.shop_id
+                                        WHERE ls.account = '{$_SESSION['account']}'";
+                                $result = mysqli_query($link, $sql);
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="https://i.pinimg.com/564x/ab/90/cd/ab90cdbe69acb9fe82c0662adf0dac6e.jpg"
-                              alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>韓國正品代購團</h4>
-                                <p class="seller">@yjh1004</p>
-                              </a>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i></p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                                if ($result) {
+                                  while ($row = mysqli_fetch_assoc($result)) {
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="https://i.pinimg.com/564x/a7/1a/1b/a71a1b32f10dc07f58a6d0bea7955fb0.jpg"
-                              alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>FLZ義大利精品</h4>
-                                <p class="seller">@sena1102</p>
-                              </a>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                                    echo '
+                          <div class="list-group-item list-group-item-action">
+                            <div class="item">
+                              <img src="', $row["shop_avatar"], '"
+                                alt="Product 1">
+                              <div class="item-details">
+                                <a href="../shop/shop.php?shop_id=', $row['shop_id'] . '">
+                                  <h4>', $row["shop_name"], '</h4>
+                                  <p class="seller">@', $row["account"], '</p>
+                                </a>
+                              </div>
+                              <div class="item-meta">
+                                <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
+                                    class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
+                                    class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></p>
+                                    <a class="remove-btn" href="deleteLike_shop.php?shop_id=' . $row['shop_id'] . '"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
 
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img
-                              src="https://thumbs.dreamstime.com/b/alice-female-name-gold-d-icon-white-background-decorative-font-template-signature-logo-240656817.jpg"
-                              alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>Alice's客製化代購</h4>
-                                <p class="seller">@stolas0</p>
-                              </a>
+                              </div>
                             </div>
-                            <div class="item-meta">
-                              <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                  class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
+                          </div>';}
+                        } else {
+                          echo "尚無收藏賣場：" . mysqli_error($link);
+                        }
+
+                        mysqli_close($link);
+                          ?>
+
 
                       </ul>
                     </div>
@@ -479,92 +418,8 @@
                   </div>
                 </div>
 
+
                 <div class="tab-pane" id="tab-3">
-                  <div class="row mt-5">
-                    <div class="scrollable-container">
-                      <ul class="list-group list-group-flush">
-
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="list-group-item list-group-item-action">
-                          <div class="item">
-                            <img src="../assets/img/blog/blog-recent-2.jpg" alt="Product 1">
-                            <div class="item-details">
-                              <a href="#">
-                                <h4>商品名稱</h4>
-                              </a>
-                              <a href="#">
-                                <p class="seller"><i class="fa-solid fa-shop"></i>&nbsp;&nbsp;賣場名稱</p>
-                              </a>
-                              <p class="deadline">截止時間: 2023/06/30</p>
-                            </div>
-                            <div class="item-meta">
-                              <p class="price">$99.99</p>
-                              <a class="remove-btn" href="#取消收藏"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
-                            </div>
-                          </div>
-                        </div>
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane" id="tab-4">
                   <div class="row mt-4">
                     <div class="tab-menu-container">
 

@@ -316,7 +316,7 @@
                         <h1><i class="fa-solid fa-lock"></i>&nbsp;&nbsp;修改密碼</h1>
                       </div>
 
-                      <form method="post" action="editProfile.php">
+                      <form method="post" action="editPassword.php">
                         <input type="hidden" name="method" value="update">
                         <div class="form-container">
 
@@ -374,7 +374,7 @@
 
 
 
-                      <form method="post" action="editProfile.php">
+                      <form method="post" action="editTransaction.php">
                         <input type="hidden" name="method" value="update">
                         <div class="form-container">
 
