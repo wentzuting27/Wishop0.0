@@ -133,7 +133,7 @@ marquee {
   /* 修改文字颜色 */
   padding: 10px;
   /* 调整内边距 */
-  width: 65%;
+  width: 50%;
   /* 设置左右居中 */
   border-radius: 20px;
   /* 调整圆角 */
@@ -141,9 +141,6 @@ marquee {
   /* 文字居中 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* 添加阴影效果 */
-  margin-top: -20px;
-  margin-bottom: 15px;
-  margin-left: -260px;
 }
 
 marquee span {
@@ -171,29 +168,43 @@ marquee span:before {
   /* 添加阴影效果 */
 }
 
-.fa-solid.fa-bullhorn {
-  font-size: 30px;
-  color: #B0A5C6;
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .fa-solid.fa-bullhorn {
-    font-size: 30px;
-    color: #B0A5C6;
-    margin-top: 20px;
-    margin-right: 100px;
+@media (max-width: 780px) {
+  marquee {
+    font-size: 17px;
+    background-color: #ffffffc1;
+    color: #333;
+    /* 修改文字颜色 */
+    padding: 10px;
+    /* 调整内边距 */
+    width: 50%;
+    /* 设置左右居中 */
+    border-radius: 20px;
+    /* 调整圆角 */
+    text-align: center;
+    /* 文字居中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
   }
 
 }
-
-@media screen and (min-width: 769px) and (max-width: 904px) {
-  .fa-solid.fa-bullhorn {
-    font-size: 30px;
-    color: #B0A5C6;
-    margin-top: 20px;
-    margin-left: -80px;
+@media (max-width: 500px) {
+  marquee {
+    font-size: 14px;
+    background-color: #ffffffc1;
+    color: #333;
+    /* 修改文字颜色 */
+    padding: 10px;
+    /* 调整内边距 */
+    width: 50%;
+    /* 设置左右居中 */
+    border-radius: 20px;
+    /* 调整圆角 */
+    text-align: center;
+    /* 文字居中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
   }
+
 }
 /*--------------------------------------------------------------
 # insert_group_form
@@ -284,16 +295,6 @@ marquee span:before {
   height: 150px;
 }
 
-@media(max-width:904px) {
-  .big-profile-picture {
-    margin: 0 auto;
-    border: 5px solid #b0a5c6a8;
-    width: 120px;
-    height: 120px;
-  }
-}
-
-
 
 #hero .btn-get-started {
   font-family: "Raleway", sans-serif;
@@ -313,21 +314,6 @@ marquee span:before {
   background: #B0A5C6;
 }
 
-@media(max-width:780px) {
-  #hero .btn-get-started {
-    font-family: "Raleway", sans-serif;
-    font-size: 13px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 14px 32px;
-    border-radius: 30px;
-    transition: 0.5s;
-    line-height: 1;
-    color: #ffffff;
-    animation-delay: 0.8s;
-    background: #E9C9D6;
-  }
-}
 
 .row.g-0 .col-md-5 {
   padding: 10px;
@@ -398,6 +384,44 @@ marquee span:before {
   font-weight: bold;
 }
 
+/* 媒體查詢：小型屏幕設備 */
+@media screen and (max-width: 660px) {
+  .row.g-0 .col-md-5 {
+    width: 30%;
+    padding: 10px;
+    margin-right: 20px;
+  }
+
+  .row.g-0 .col-md-7 {
+    width: 60%; /* 調整右側欄位寬度為60% */
+    background-color: rgb(252, 252, 252);
+    border-radius: 30px;
+    margin-left: 20px;
+  }
+
+  .row.g-0 .col-md-7 .card-title {
+    font-size: 8px; /* 調整卡片標題字體大小 */
+    padding-top: 14px;
+    color: #B0A5C6;
+  }
+
+  .buttons #three,
+  .buttons #four {
+    font-size: 8px;
+    font-weight: bold;
+  }
+  .col-md-7 .card-title small{
+    font-size: 0.33cm;
+    font-weight: bold;
+  }
+  .big-profile-picture {
+    margin-right: 20px;
+    border: 5px solid #b0a5c6a8;
+    width: 90px;
+    height: 90px;
+  }
+}
+
 /* 媒体查询：小屏幕设备 */
 @media screen and (max-width: 768px) {
   .row.g-0 {
@@ -416,7 +440,7 @@ marquee span:before {
     }
 
     .col-md-7 .card-title {
-      font-size: 0.6cm;
+      font-size: 0.5cm;
       padding-top: 14px;
       color: #B0A5C6;
     }
@@ -430,6 +454,29 @@ marquee span:before {
   .buttons #four {
     font-size: 12px;
     font-weight: bold;
+  }
+  .col-md-7 .card-title small{
+    font-size: 0.37cm;
+    font-weight: bold;
+  }
+  .big-profile-picture {
+    margin: 0 auto;
+    border: 5px solid #b0a5c6a8;
+    width: 100px;
+    height: 100px;
+  }
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 30px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #ffffff;
+    animation-delay: 0.8s;
+    background: #E9C9D6;
   }
 }
 
@@ -452,20 +499,26 @@ marquee span:before {
     }
 
     .col-md-7 .card-title {
-      font-size: 0.7cm;
+      font-size: 0.6cm;
       padding-top: 14px;
       color: #B0A5C6;
     }
   }
 
   .buttons #three {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
   }
 
   .buttons #four {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
+  }
+  .big-profile-picture {
+    margin: 0 auto;
+    border: 5px solid #b0a5c6a8;
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -780,7 +833,6 @@ marquee span:before {
 .addgoods #contact {
   background: #F9F9F9;
   padding: 25px;
-  margin: 10px 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   width: 900px;
   margin-left: -270px;
@@ -909,6 +961,7 @@ fieldset {
   overflow: scroll;
 }
 
+
 @media screen and (max-width: 1000px) {
   #app table#cart tbody td .form-control {
     width: 20%;
@@ -939,7 +992,7 @@ fieldset {
   }
 
   #app table#cart tbody tr td:first-child {
-    background: #333;
+    background: #E9C9D6;
     color: #fff;
   }
 
@@ -956,6 +1009,129 @@ fieldset {
 
   #app table#cart tfoot td .btn {
     display: block;
+  }
+}
+
+@media screen and (max-width: 572px) {
+  #app table#cart tbody td .form-control {
+    width: 20%;
+    display: inline !important;
+  }
+
+  #app .actions .btn {
+    width: 36%;
+    margin: 1.5em 0;
+  }
+
+  #app .actions .btn-info {
+    float: left;
+  }
+
+  #app .actions .btn-danger {
+    float: right;
+  }
+
+  #app table#cart thead {
+    display: none;
+  }
+
+  #app table#cart tbody td {
+    display: block;
+    padding: .6rem;
+    min-width: 320px;
+  }
+
+  #app table#cart tbody tr td:first-child {
+    background: #E9C9D6;
+    color: #fff;
+  }
+
+  #app table#cart tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    display: inline-block;
+    width: 8rem;
+  }
+
+  #app table#cart tfoot td {
+    display: block;
+  }
+
+  #app table#cart tfoot td .btn {
+    display: block;
+  }
+  .col-sm-4.hidden-xs img {
+    max-width: 60%;
+    /* 最大宽度为父容器的宽度 */
+    height: auto;
+    /* 自适应高度，保持图片比例 */
+  }
+  .nomargin{
+    font-size: 0.48cm;
+  }
+  p{
+    font-size: 0.4cm;
+  }
+}
+@media screen and (max-width: 510px) {
+  #app table#cart tbody td .form-control {
+    width: 16%;
+    display: inline !important;
+  }
+
+  #app .actions .btn {
+    width: 36%;
+    margin: 1.5em 0;
+  }
+
+  #app .actions .btn-info {
+    float: left;
+  }
+
+  #app .actions .btn-danger {
+    float: right;
+  }
+
+  #app table#cart thead {
+    display: none;
+  }
+
+  #app table#cart tbody td {
+    display: block;
+    padding: .6rem;
+    min-width: 320px;
+  }
+
+  #app table#cart tbody tr td:first-child {
+    background: #E9C9D6;
+    color: #fff;
+  }
+
+  #app table#cart tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    display: inline-block;
+    width: 8rem;
+  }
+
+  #app table#cart tfoot td {
+    display: block;
+  }
+
+  #app table#cart tfoot td .btn {
+    display: block;
+  }
+  .col-sm-4.hidden-xs img {
+    max-width: 60%;
+    /* 最大宽度为父容器的宽度 */
+    height: auto;
+    /* 自适应高度，保持图片比例 */
+  }
+  .nomargin{
+    display: none;
+  }
+  p{
+    display: none;
   }
 }
 

@@ -103,20 +103,21 @@
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
         <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <div style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-        <p><i class="fa-solid fa-bullhorn"></i></p>
-      </div>
-      <div>
-        <center>
-          <marquee>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-            <span>公告：商品即將寄出，請注意到貨時間！</span>
-          </marquee>
-        </center>
-      </div>
-    </div>
+    <?php
+    $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+    $result3 = mysqli_query($link, $sql3);
+    $row3 = mysqli_fetch_assoc($result3);
+    echo'
+    <div class="marquee-container">
+    <center>
+    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：'.$row3["announce_narrate"].'！</span>
+    </marquee>
+    </center>
+     </div>
+    ';?>
     <!-- insert_group_Modal -->
     <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -646,8 +647,7 @@
               ?>
              
               <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
-
-              <div style="max-height:600px;overflow-y:scroll;">
+            <div style="max-height:600px;overflow-y:scroll;">
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $commodity_group_id = $_GET["commodity_group_id"];
@@ -656,7 +656,8 @@
             AND public='公開';";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-              $question_id = $row["question_id"];
+              $question_id = $row["question_id"]; 
+             
               echo '
               <div class="part2">
               <div class="card border-secondary mb-12">
@@ -670,7 +671,8 @@
                     <h4><B>', $row["question_title"], '</B></h4>
                   </div>
                   <h4 style="float: right;margin-top:-70px;">
-                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit"></i>
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
                   </h4>
                 </div>
                 
@@ -692,15 +694,9 @@
                   </h4>
                 </div>
               </div>
-            </div>
-          ';
-            }
-            mysqli_close($link);
-            ?>
-            </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="deloredit" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+            </div>';
+            echo'<!-- Modal -->
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -714,20 +710,18 @@
                 </div>
               </div>
             </div>
-            <?php
-            $commodity_group_id = $_GET["commodity_group_id"];
-              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
-              echo '
+          ';
+             echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var part3 = document.getElementById(\'card\');
+              var part3 = document.getElementById(\'card'.$question_id.'\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
-                window.location.href = \'../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '\';
+                window.location.href = \'../lisa/discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener(\'load\', function () {
                   setTimeout(function () {
-                     var targetElement = document.querySelector(\'#first\');
+                     var targetElement = document.querySelector(\'#blog\');
                      if (targetElement) {
                       targetElement.scrollIntoView();
                      }
@@ -735,8 +729,8 @@
                   });
                 });
               });
-              </script>';
-
+              </script>';}
+            mysqli_close($link);
             ?>
         </section>
         <section id="order">

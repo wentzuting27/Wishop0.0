@@ -14,25 +14,3 @@ $(document).ready(function() {
   
     // 你的其他事件处理器代码...
   });
-
-
-  
-  /**切換頁面**/
-  document.addEventListener("DOMContentLoaded", function () {
-    var part2 = document.getElementById('card1');
-  
-    part2.addEventListener('click', function () {
-      // 导航到新页面
-      window.location.href = '../lisa/discussion.php#blog';
-  
-      // 页面加载后延迟执行滚动到指定区域
-      window.addEventListener('load', function () {
-        setTimeout(function () {
-          var targetElement = document.querySelector('#blog');
-          if (targetElement) {
-            targetElement.scrollIntoView();
-          }
-        }, 1000); // 延迟 1 秒执行滚动操作
-      });
-    });
-  });

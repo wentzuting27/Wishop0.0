@@ -220,7 +220,7 @@
       <div class="card mb-3" style="border: none;background-color: #ffffff00;">
         <div class="row g-0">
           <div class="col-md-5">
-            <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
+            <div class="profile-picture big-profile-picture clear">
               <img width="100%" height="100%" alt="Anne Hathaway picture"
                 src="', $row["shop_avatar"], '">
             </div>
@@ -248,7 +248,7 @@
       $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
-      echo '<small style="font-size: 0.4cm;font-weight: bold;"><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+      echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
       echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
