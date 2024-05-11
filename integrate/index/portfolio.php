@@ -620,7 +620,7 @@
             }
           } else {
 
-            echo '<h5><b>查無資料</b></h5>';
+            echo '<h5 style="text-align: center;"><b>查無資料</b></h5>';
 
           }
 

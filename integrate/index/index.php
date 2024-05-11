@@ -347,9 +347,9 @@
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-日本">日本</li>
-              <li data-filter=".filter-韓國">韓國</li>
-              <li data-filter=".filter-美國">美國</li>
+              <li data-filter=".filter-1">日本</li>
+              <li data-filter=".filter-2">韓國</li>
+              <li data-filter=".filter-3">台灣</li>
             </ul>
           </div>
         </div>
