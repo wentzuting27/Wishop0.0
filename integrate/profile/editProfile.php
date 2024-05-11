@@ -18,7 +18,7 @@
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Profile_settings.php");
             } else {
-                echo'編輯失敗';
+                header("refresh:0;url=Profile_settings.php");
             }
 
         } else {
