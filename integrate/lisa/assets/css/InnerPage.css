@@ -1672,3 +1672,6 @@ input[type=checkbox]:checked+label:before {
   width: 90px;
   height: 90px;
 }
+.row{
+  justify-content: center;
+}

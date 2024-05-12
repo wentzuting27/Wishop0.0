@@ -527,27 +527,33 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
-                <div class="d-flex">
-                  <div class="comment-img">
-                    <div class="profile-picture big-profile-picture clear">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                </div>
+              <div class="card mb-3" style="max-width: 100%;">
+                <div class="row g-0">
+                  <div class="col-md-2">
+                      <div class="comment-img">
+                        <div class="profile-picture big-profile-picture clear">
+                          <img width="100%" height="100%" alt="Anne Hathaway picture"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">
+                      <div class="comment2">
+                        <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
+                            Reply</a></h5>
+                        <time datetime="2020-01-01">01 Jan, 2020</time>
+                        <p>
+                          Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
+                          molestiae est qui cum soluta.
+                          Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div class="comment2">
-                    <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i>
-                        Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                    <p>
-                      Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
-                      molestiae est qui cum soluta.
-                      Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                    </p>
-                  </div>
                 </div>
-              </div><!-- End comment #1 -->
+                </div>
               <center>
                 <div class="reply-form">
                   <form action="">
@@ -571,10 +577,7 @@
                           </div><button type="submit" class="btn btn-primary" style="float:right;">Post Comment</button>
                         </div>
                       </div>
-
-
                   </form>
-
                 </div>
               </center>
             </div><!-- End blog comments -->
