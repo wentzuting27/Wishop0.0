@@ -76,11 +76,19 @@
         $sql_insert_bid="insert into bid(wish_id,shop_id,commodity_group_id,bid_price,bid_people,bid_time)
         value('$wish_id','{$_SESSION["user_shop_id"]}','$new_id','$bid_price','$bid_people',NOW())";
 
+        foreach ($_POST["cg_theme"] as $theme) {
+            $theme = $theme;
+            $insert_theme = "INSERT INTO group_topic (commodity_group_id,topic) VALUES ('$new_id','$theme')";
+            mysqli_query($link, $insert_theme);
+            
+        }
+
         if(mysqli_query($link, $sql_insert) && mysqli_query($link, $sql_insert_bid)){
             header("refresh:0;url=wish-details.php?shop_id=$shop_id&wish_id=$wish_id");
         }else{
             echo "失敗";
         }
+
         
     }elseif($_POST["method"]=="成團"){
         $commodity_group_id=$_POST["commodity_group_id"];
