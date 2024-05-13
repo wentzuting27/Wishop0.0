@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($link, $sql);
 
         if ($result) {
-            echo '<script>alert("' . $commodity_id . '!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            echo '<script>alert("已下架!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
             exit();
         } else {
             echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
@@ -80,5 +80,52 @@ if (isset($_POST['submit'])) {
 
     mysqli_close($link); // 關閉資料庫連接
 }
+if (isset($_POST['up'])) {
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $commodity_id = $_POST['commodity_id'];
+    $commodity_state = $_POST['commodity_state'];
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $sql = "UPDATE commodity SET commodity_state=1 WHERE commodity_id='$commodity_id'";
+
+
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        echo '<script>alert("已上架!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    } else {
+        echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+    }
+
+
+mysqli_close($link); // 關閉資料庫連接
+}
+if (isset($_POST['up2'])) {
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $commodity_id = $_POST['commodity_id'];
+    $commodity_state = $_POST['commodity_state'];
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $sql = "UPDATE commodity SET commodity_state=2 WHERE commodity_id='$commodity_id'";
+
+
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        echo '<script>alert("已移至待上架區!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    } else {
+        echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+    }
+
+
+mysqli_close($link); // 關閉資料庫連接
+}
 ?>

@@ -440,11 +440,9 @@
               <div class="seven" id="list-item-2">
                 <h1>待上架商品區</h1>
               </div>
-              <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>"
-                enctype="multipart/form-data">
+              
                 <div class="row">
                   <div id="slider-carouse2" class="owl-carousel">
-
                     <?php
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                     $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
@@ -466,8 +464,10 @@
                       <div class="card-body">
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
                         <p class="card-text">', $row["commodity_narrate"], '</p>
-                        <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"
+                        data-bs-toggle="modal" data-bs-target="#up', $row["commodity_id"], '">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        </button>
                         <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;">
                           <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#down', $row["commodity_id"], '"></i>
                         </button>
@@ -477,10 +477,36 @@
                       ;
                     }
                     mysqli_close($link); ?>
-
+                  <?php
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="up_rule_ModalLabel">確認上架？</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                            <form method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '">
+                            <input type="hidden" name="commodity_id" value="', $row["commodity_id"], '">
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            <button type="submit" name="up" class="btn btn-primary">確定</button>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                             </div>';
+                  }
+                  mysqli_close($link);
+                  ?>
                   </div>
                 </div>
-              </form>
               <br><br>
               <div class="seven" id="list-item-3">
                 <h1>下架商品區</h1>
@@ -510,15 +536,46 @@
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
                         <p class="card-text">', $row["commodity_narrate"], '</p>
                         <button class="btn btn-info btn-sm"
-                        style="background-color: #b0a5c6a8;border: none;color: white;"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"
-                        style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-trash"></i></button>
+                        style="background-color: #b0a5c6a8;border: none;color: white;"
+                        data-bs-toggle="modal" data-bs-target="#ups', $row["commodity_id"], '">
+                        <i class="fa-solid fa-arrow-up"></i></button>
+                        <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;">
+                          <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#down', $row["commodity_id"], '"></i>
+                        </button>
                       </div>
                     </div>
                   </div>'
                     ;
                   }
                   mysqli_close($link); ?>
+                  <?php
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="up_rule_ModalLabel">移至待上架區？</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                            <form method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '">
+                            <input type="hidden" name="commodity_id" value="', $row["commodity_id"], '">
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            <button type="submit" name="up2" class="btn btn-primary">確定</button>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                             </div>';
+                  }
+                  mysqli_close($link);
+                  ?>
                 </div>
               </div>
             </div>
