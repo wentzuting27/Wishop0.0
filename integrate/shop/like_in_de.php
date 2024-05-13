@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_GET["method"];
     $shop_id=$_GET["shop_id"];
     $page=$_GET["page"];
