@@ -409,12 +409,6 @@
                                   </div>
                                   
                                   <div class="course-content">
-                                    <div class="justify-content-between align-items-center mb-3">
-                                      <span class="category">韓國</span>
-                                      <span class="category">明星</span>
-                                      <span class="category">ATEEZ</span>
-                                    </div>
-
                                     <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                     <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
@@ -425,9 +419,18 @@
                                         <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
                                         <a href="" class="trainer-link">',$row["user_name"],'</a>
                                       </div>
-                                      <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
-                                      </div>
+                                      <div class="trainer-rank d-flex align-items-center">';
+                                        $sql_likewish="select * from like_wish
+                                        where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                                        $result_likewish=mysqli_query($link,$sql_likewish);
+                                        if(isset($_SESSION["account"])){
+                                          if(mysqli_num_rows($result_likewish)==0){
+                                            echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                                          }else{
+                                            echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                                          } 
+                                        }
+                                      echo '</div>
                                     </div>
                                   </div>
                                 </div>  
@@ -474,12 +477,6 @@
                                   </div>
                                   
                                   <div class="course-content">
-                                    <div class="justify-content-between align-items-center mb-3">
-                                      <span class="category">韓國</span>
-                                      <span class="category">明星</span>
-                                      <span class="category">ATEEZ</span>
-                                    </div>
-
                                     <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                     <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
@@ -490,9 +487,18 @@
                                         <img src="',$row["user_avatar"],'" style="aspect-ratio: 1/1;" class="img-fluid" alt="">
                                         <a href="" class="trainer-link">',$row["user_name"],'</a>
                                       </div>
-                                      <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
-                                      </div>
+                                      <div class="trainer-rank d-flex align-items-center">';
+                                        $sql_likewish="select * from like_wish
+                                        where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                                        $result_likewish=mysqli_query($link,$sql_likewish);
+                                        if(isset($_SESSION["account"])){
+                                          if(mysqli_num_rows($result_likewish)==0){
+                                            echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                                          }else{
+                                            echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                                          } 
+                                        }
+                                      echo '</div>
                                     </div>
                                   </div>
                                 </div>  
@@ -584,12 +590,6 @@
                                 </div>
                                 
                                 <div class="course-content">
-                                  <div class="justify-content-between align-items-center mb-3">
-                                    <span class="category">韓國</span>
-                                    <span class="category">明星</span>
-                                    <span class="category">ATEEZ</span>
-                                  </div>
-
                                   <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                   <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
                                   <div class="trainer d-flex justify-content-between align-items-center">
@@ -600,9 +600,18 @@
                                       <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
-                                    </div>
+                                    <div class="trainer-rank d-flex align-items-center">';
+                                      $sql_likewish="select * from like_wish
+                                      where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                                      $result_likewish=mysqli_query($link,$sql_likewish);
+                                      if(isset($_SESSION["account"])){
+                                        if(mysqli_num_rows($result_likewish)==0){
+                                          echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                                        }else{
+                                          echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                                        } 
+                                      }
+                                    echo '</div>
                                   </div>
                                 </div>
                               </div>  
@@ -650,12 +659,6 @@
                                 </div>
                                 
                                 <div class="course-content">
-                                  <div class="justify-content-between align-items-center mb-3">
-                                    <span class="category">韓國</span>
-                                    <span class="category">明星</span>
-                                    <span class="category">ATEEZ</span>
-                                  </div>
-
                                   <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                   <p class="description scrollable-row">',nl2br($row["wish_narrat"]),'</p>
                                   <div class="trainer d-flex justify-content-between align-items-center">
@@ -667,8 +670,19 @@
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;<button class="button">收藏許願</button>
-                                    </div>
+                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;';
+                                      $sql_likewish="select * from like_wish
+                                      where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                                      $result_likewish=mysqli_query($link,$sql_likewish);
+                                      if(isset($_SESSION["account"])){
+                                        if(mysqli_num_rows($result_likewish)==0){
+                                          echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                                        }else{
+                                          echo '<a href="like_in_de.php?wish_id=',$row["wish_id"],'&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                                        } 
+                                      }
+
+                                    echo '</div>
                                   </div>
                                 </div>
                               </div>  
@@ -699,7 +713,7 @@
                     <section id="blog2" class="blog2">                     
                         <center><div class="col-lg-12">
                           <div class="sidebar">                 
-                            <h3 class="sidebar-title">Search</h3>
+                            <h3 class="sidebar-title">Search (願望名稱&時間)</h3>
                             <div class="sidebar-item search-form">
                               <form method=post action="../wish/wish.php">
                                 <input type="hidden" name="tab_num" class="form-control" value="end_wish">
@@ -788,11 +802,6 @@
                             
                               
                               <div class="course-content">
-                                <div class="justify-content-between align-items-center mb-3">
-                                  <span class="category">韓國</span>
-                                  <span class="category">三麗鷗</span>
-                                </div>
-
                                 <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                 <p class="description">',nl2br($row["wish_narrat"]),'</p>
                                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -862,11 +871,6 @@
                             
                               
                               <div class="course-content">
-                                <div class="justify-content-between align-items-center mb-3">
-                                  <span class="category">韓國</span>
-                                  <span class="category">三麗鷗</span>
-                                </div>
-
                                 <h3><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h3>
                                 <p class="description">',nl2br($row["wish_narrat"]),'</p>
                                 <div class="trainer d-flex justify-content-between align-items-center">

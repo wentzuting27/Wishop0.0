@@ -227,9 +227,9 @@
                             <input type="hidden" name="wish_id" class="form-control" style="width: 100%;" value="<?php echo $wish_id; ?>">  
                             <div class="modal-body">
                               <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">商品團名</label>
+                                <label class="col-sm-3 col-form-label">商品團名*</label>
                                 <div class="col-sm-8">
-                                <input type="text" name="group_name" class="form-control">
+                                <input type="text" name="group_name" class="form-control" required>
                                 </div>
                               </div>
                               <div class="mb-3 row">
@@ -239,15 +239,15 @@
                                 </div>
                               </div>
                               <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">商團封面</label>
+                                <label class="col-sm-3 col-form-label">商團封面*</label>
                                 <div class="col-sm-8">
-                                <input class="form-control" type="file" name="group_bg" style="width:503px;">
+                                <input class="form-control" type="file" name="group_bg" style="width:503px;" required>
                                 </div>
                               </div>
                               <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">商團敘述</label>
+                                <label class="col-sm-3 col-form-label">商團敘述*</label>
                                 <div class="col-sm-8">
-                                <textarea name="commodity_group_narrate" class="form-control"></textarea>
+                                <textarea name="commodity_group_narrate" class="form-control" required></textarea>
                                 </div>
                               </div>
                               <div class="mb-3 row">
@@ -329,7 +329,18 @@
                 <div class="wish-info">
                   <div class="wish-details-title flex-container">
                     <h3 style="display: flex; justify-content: space-between;">許願資訊</h3>
-                    <button type="button" class="btn insert_button">收藏許願</button>                    
+                    <?php 
+                      $sql_likewish="select * from like_wish
+                      where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                      $result_likewish=mysqli_query($link,$sql_likewish);
+                      if(isset($_SESSION["account"])){
+                        if(mysqli_num_rows($result_likewish)==0){
+                          echo '<a href="like_in_de.php?wish_id=',$wish_id,'&page=wish-details&method=in&like=wish2"><button type="button" class="btn insert_button">收藏許願</button></a>';
+                        }else{
+                          echo '<a href="like_in_de.php?wish_id=',$wish_id,'&page=wish-details&method=de&like=wish2"><button type="button" class="btn insert_button">取消收藏</button></a>';
+                        }
+                      }
+                    ?>                   
                   </div>
                   <br>
                   <ul>
@@ -354,9 +365,9 @@
               <h3 class="sidebar-title">Tags</h3>
               <div class="sidebar-item tags">
                 <ul>
-                  <li><a href="#">韓國</a></li>
-                  <li><a href="#">明星</a></li>
-                  <li><a href="#">ATEEZ</a></li>
+                  <li><a href="#">xx</a></li>
+                  <li><a href="#">xx</a></li>
+                  <li><a href="#">xxxxx</a></li>
                 </ul>
               </div><!-- End sidebar tags-->
 
