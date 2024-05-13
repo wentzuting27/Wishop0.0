@@ -76,7 +76,7 @@
             echo $sql;
             echo "失敗";
         }
-    }elseif($_GET["method"]=="跟團"){
+    }elseif($_GET["method"]=="喊單"){
         $commodity_group_id=$_GET["commodity_group_id"];
         $wish_id=$_GET["wish_id"];
         $sql="insert into withgroup(commodity_group_id,account,withgroup_time)
