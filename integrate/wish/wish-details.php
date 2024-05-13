@@ -179,9 +179,17 @@
                           echo '
                           <button type="button" class="btn button_fail" style="background-color:#d55858" disabled>許願失敗</button>';
                         }
-                      }elseif($_SESSION["account"]==$row["account"]){
-                        echo '
-                        <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>';
+                      }elseif($_SESSION["account"]==$row["account"]){//登入的是許願的人
+                        $sql_bid="select * from bid where wish_id='$wish_id'";
+                        $result_bid=mysqli_query($link,$sql_bid);
+                        $count_bid=mysqli_num_rows($result_bid);
+                        if($count_bid==0){
+                          echo '
+                          <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">刪除願望</button>';
+                        }else{
+                          echo '
+                          <button class="button-cancel me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">刪除願望</button>';
+                        }
                       }elseif($_SESSION["account"]!=$row["account"] && $count_shop==0){
                         echo'
                         <button type="button" class="btn insert_button" disabled>欲出價請先建立賣場</button>&nbsp;&nbsp;';
@@ -191,7 +199,7 @@
                         $result_bid_y_or_n=mysqli_query($link,$sql_bid_y_or_n);
                         if(mysqli_num_rows($result_bid_y_or_n)==0){
                           echo '
-                          <button class="button-cancel" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;我要出價</button>';
+                          <button class="button-cancel" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;我要出價</button>';
                         }else{
                           echo '
                           <button type="button" class="btn insert_button" disabled>已出價</button>&nbsp;&nbsp;';
@@ -200,12 +208,29 @@
                     }
                   ?>  
 
-                    <!-- Modal 刪除願望 -->
+                    <!-- Modal 刪除願望(無人出價) -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
                           <h5 class="modal-title" id="staticBackdropLabel">刪除願望</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          當前沒有賣家出價，您確定要刪除這個願望嗎？請注意，一旦刪除，您的許願次數將無法回復！
+                          </div>
+                          <div class="modal-footer">
+                            <a href="wish_in_de.php?wish_id=<?php echo $wish_id; ?>&method=刪除願望"><button type="button" class="btn insert_button">確定刪除</button></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal 刪除願望 -->
+                    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel2">刪除願望</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
@@ -215,11 +240,11 @@
                       </div>
                     </div>
                     <!-- Modal 填寫出價資訊 -->
-                    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">填寫出價資訊</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel3">填寫出價資訊</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <form method="post" action="bid_in_up.php" enctype="multipart/form-data"><!--用於檔案圖片上傳-->
@@ -497,14 +522,16 @@
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
                               }
                             }else{
-                              if($state==2){
+                              if($state==3){
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>待成團</button>';
+                              }elseif($state==2){
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
                               }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
-                              }elseif($_SESSION["account"]!=$row["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有按過跟團
-                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
+                              }elseif($_SESSION["account"]!=$row["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有喊過單(跟團)
+                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=喊單><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要喊單</button></a>';
                               }else{
-                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
+                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已喊單</button>';
                               }
                             }
                           

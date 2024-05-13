@@ -5,6 +5,7 @@
     $wish_narrat=$_POST['wish_narrat'];
     $end=$_POST['end'];
     $wish_link=$_POST['wish_link'];
+    $wish_state=$_POST['wish_state'];
     $link=mysqli_connect('localhost','root','12345678','wishop');
 
     if($method=="in"){
@@ -59,7 +60,14 @@
 
         }
         
-    }else{
-        
+    }elseif($_GET["method"]=="刪除願望"){
+        $wish_id=$_GET["wish_id"];
+        $sql="update wish set wish_state=4
+        where wish_id=$wish_id";
+        if(mysqli_query($link, $sql)){
+            header("refresh:0;url=wish.php");
+        }else{
+            echo "失敗";
+        }
     }
 ?>
