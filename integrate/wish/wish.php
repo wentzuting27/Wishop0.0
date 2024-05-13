@@ -371,6 +371,7 @@
                           natural join account
                           where wish_name like '$wish_name' 
                           and wish_shop_id IS null 
+                          and wish_state != 4
                           and wish_end >= CURDATE()
                           order by wish_start";
                           if($_POST['search1']=='yes'){
@@ -441,7 +442,7 @@
                             $wish_num=1;         
                             $sql="select * from wish
                             natural join account
-                            where wish_shop_id IS null AND wish_end >= CURDATE()
+                            where wish_shop_id IS null and wish_state != 4 AND wish_end >= CURDATE()
                             order by wish_start";
                             $result=mysqli_query($link,$sql);
                             while($row=mysqli_fetch_assoc($result))
@@ -552,6 +553,7 @@
                         natural join account
                         where wish_name like '$wish_name' 
                         and wish_shop_id IS null 
+                        and wish_state != 4
                         and wish_end <= '$oneweek' and wish_end >= CURDATE()
                         order by wish_start";
                         if($_POST['search2']=='yes'){
@@ -623,7 +625,7 @@
                           $oneweek=date('Y-m-d H:i:s',strtotime('7 days'));//先去找7天前的日期
                           $sql="select * from wish
                           natural join account
-                          where wish_shop_id IS null AND wish_end <= '$oneweek' and wish_end >= CURDATE()
+                          where wish_shop_id IS null and wish_state != 4 AND wish_end <= '$oneweek' and wish_end >= CURDATE()
                           order by wish_start";
                           $result=mysqli_query($link,$sql);
                           while($row=mysqli_fetch_assoc($result))
@@ -762,7 +764,8 @@
                       $sql="select * from wish 
                       natural join account
                       where wish_name like '$wish_name' 
-                      and wish_shop_id IS null 
+                      and wish_shop_id IS null
+                      and wish_state != 4 
                       and wish_end BETWEEN '$start_date' AND NOW()
                       order by wish_start";
 
@@ -835,7 +838,7 @@
                         $wish_num=$wish_num+1;
                         $sql="select * from wish
                         natural join account
-                        where wish_shop_id IS null AND wish_end <= CURDATE()
+                        where wish_shop_id IS null and wish_state != 4 AND wish_end <= CURDATE()
                         order by wish_start";
                         $result=mysqli_query($link,$sql);
                         while($row=mysqli_fetch_assoc($result))

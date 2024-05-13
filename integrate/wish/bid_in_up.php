@@ -73,7 +73,6 @@
         if(mysqli_query($link, $sql)){
             header("refresh:0;url=wish-details.php?wish_id=$wish_id");
         }else{
-            echo $sql;
             echo "失敗";
         }
     }elseif($_GET["method"]=="喊單"){
