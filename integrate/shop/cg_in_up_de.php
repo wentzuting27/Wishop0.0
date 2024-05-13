@@ -83,6 +83,13 @@
             echo "新增失敗";
         }
 
+        foreach ($_POST["cg_theme"] as $theme) {
+            $theme = $theme;
+            $insert_theme = "INSERT INTO group_topic (commodity_group_id,topic) VALUES ('$new_id','$theme')";
+            mysqli_query($link, $insert_theme);
+            
+        }
+
         if($page=="shop"){
             header("refresh:0;url=shop.php?shop_id=$shop_id");
         }else{

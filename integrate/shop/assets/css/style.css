@@ -2155,3 +2155,37 @@ profile2(頭貼、名字)
   border: 0px;
   background-color: #ec6b6b;
 }
+
+/*--------------------------------------------------------------
+# 主題的選項
+--------------------------------------------------------------*/
+/* 隐藏原始的复选框 */
+.link_ch {
+  display: none;
+}
+
+/* 自定义样式 */
+.icon-label2 {
+  display: inline-block;
+  width: 30px; /* 设置圆形的直径 */
+  height: 30px;
+  border-radius: 50%; /* 将形状设置为圆形 */
+  background-color: #e6d0d9;
+  text-align: center;
+  color: #fff;
+  line-height: 30px; /* 设置图标垂直居中 */
+  margin-right: 10px; /* 设置图标之间的间距 */
+  display: inline-block;
+}
+
+/* 复选框选中时的样式 */
+.link_ch:checked + .icon-label2 {
+  background-color: #B0A5C6;
+  color: #fff;
+}
+
+/* 可以添加悬停样式等其他效果 */
+.icon-label2:hover {
+  background-color: #B0A5C6;
+  color: #fff;
+}
