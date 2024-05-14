@@ -374,7 +374,7 @@
           JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
           GROUP BY c.commodity_id
           ORDER BY RAND() 
-          LIMIT 16";
+          LIMIT 12";
 
           $result3 = mysqli_query($link, $sql3);
 
