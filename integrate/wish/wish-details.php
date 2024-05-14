@@ -568,7 +568,7 @@
                               }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                               }elseif($_SESSION["account"]!=$row["account"] && mysqli_num_rows($result_withgroup_y_or_n)==0){ //登入的人不是出價的賣家且沒有喊過單(跟團)
-                                echo' <a href=bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
+                                echo' <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#staticBackdrop4" style="display: block;width: 100%;">我要跟團</button></a>';
                               }else{
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
                               }
@@ -585,6 +585,23 @@
               
             } 
           ?>
+          <!-- Modal 我要跟團提醒 -->
+          <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel4"><span style="color: #B0A5C6; font-weight:bold;">確定跟團?</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <span style="color: #d55858;">跟團須知：</span>請勿跟團後不購買產品，否則列入黑名單！！！跟團也無法退團
+                </div>
+                <div class="modal-footer">
+                  <a href='bid_in_up.php?commodity_group_id=<?php echo $commodity_group_id?>&wish_id=<?php echo $wish_id ?>&method=跟團'><button type="button" class="btn insert_button">確定跟團</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
 
         
       </div>
