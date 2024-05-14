@@ -146,7 +146,7 @@
       }else {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-      <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
+      <i class="fa-solid fa-share-from-square"></i>已跟團</button>
       </div>
      
       ';
@@ -396,22 +396,29 @@
                     <td data-th="Subtotal" class="text-center">$0</td>
                   </tr>';
                   }
-                  mysqli_close($link); ?>
-
+                  echo'
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
-                      <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>
+                      <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>';
+                      $commodity_group_id = $_GET["commodity_group_id"];
+                      $account = $_SESSION["account"];
+                      $sql2 = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+                      $result2 = mysqli_query($link, $sql2);
+                
+                      if ($result2 && mysqli_num_rows($result2) != 0) {
+                      echo'
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
                             class="btn btn-block" style="background-color: #B0A5C6; color: white;">結帳 <i
                               class="fa-solid fa-arrow-right-to-line"></i>
                           </button>
                         </center>
-                      </td>
-                    </tr>
+                      </td>';}
+                      echo'</tr>
                   </tfoot>
-                </table>
+                </table>';
+                mysqli_close($link); ?>
             </div>
           </div>
           <!-- Modal -->

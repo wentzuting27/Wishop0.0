@@ -63,7 +63,6 @@ if (isset($_POST['submit'])) {
             die('Connection failed: ' . mysqli_connect_error());
         }
         $commodity_id = $_POST['commodity_id'];
-        $commodity_state = $_POST['commodity_state'];
         $commodity_group_id = $_GET["commodity_group_id"];
         $sql = "UPDATE commodity SET commodity_state=3 WHERE commodity_id='$commodity_id'";
 
@@ -87,7 +86,6 @@ if (isset($_POST['up'])) {
         die('Connection failed: ' . mysqli_connect_error());
     }
     $commodity_id = $_POST['commodity_id'];
-    $commodity_state = $_POST['commodity_state'];
     $commodity_group_id = $_GET["commodity_group_id"];
     $sql = "UPDATE commodity SET commodity_state=1 WHERE commodity_id='$commodity_id'";
 
@@ -111,7 +109,6 @@ if (isset($_POST['up2'])) {
         die('Connection failed: ' . mysqli_connect_error());
     }
     $commodity_id = $_POST['commodity_id'];
-    $commodity_state = $_POST['commodity_state'];
     $commodity_group_id = $_GET["commodity_group_id"];
     $sql = "UPDATE commodity SET commodity_state=2 WHERE commodity_id='$commodity_id'";
 

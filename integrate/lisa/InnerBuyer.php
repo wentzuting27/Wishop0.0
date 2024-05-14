@@ -355,7 +355,6 @@
                         <th style="width:50%">商品</th>
                         <th>價格</th>
                         <th style="width:10%">已賣出</th>
-                        <th class="text-center">收藏次數</th>
                       </tr>
                     </thead>
                     <?php
@@ -367,7 +366,14 @@
                     WHERE commodity.commodity_state = 1 AND commodity_group_id=$commodity_group_id
                     GROUP BY commodity.commodity_id;";
                     $result = mysqli_query($link, $sql);
+                    
                     while ($row = mysqli_fetch_assoc($result)) {
+                    $sql2 = "SELECT commodity_id, SUM(order_details_num) AS total_purchases
+                    FROM order_details
+                    WHERE commodity_id = " . $row["commodity_id"] . "
+                    GROUP BY commodity_id;";
+                    $result2 = mysqli_query($link, $sql2);
+                    $row2= mysqli_fetch_assoc($result2);
                       echo '
                     <tbody>
                       <tr>
@@ -387,9 +393,8 @@
                         </td>
                         <td data-th="Price">$', $row["commodity_price"], '</td>
                         <td data-th="Quantity">
-                          <center>2</center>
+                          <center>',( empty($row2["total_purchases"]) ? 0 : $row2["total_purchases"] ), '</center>
                         </td>
-                        <td data-th="Subtotal" class="text-center">5</td>
                         <td class="actions" data-th=""> 
                         <button class="btn btn-info btn-sm" 
                           style="background-color: #b0a5c6a8;border: none;color: white;">
@@ -474,16 +479,7 @@
                       </div>
                     </div>
                   </div>'
-                      ;
-                    }
-                    mysqli_close($link); ?>
-                  <?php
-                  $commodity_group_id = $_GET["commodity_group_id"];
-                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "SELECT * FROM commodity;";
-                  $result = mysqli_query($link, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo '
+                      ; echo '
                     <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -503,8 +499,9 @@
                             </div>
                              </div>';
                   }
-                  mysqli_close($link);
-                  ?>
+                    
+                    mysqli_close($link); ?>
+                  
                   </div>
                 </div>
               <br><br>
@@ -545,15 +542,7 @@
                       </div>
                     </div>
                   </div>'
-                    ;
-                  }
-                  mysqli_close($link); ?>
-                  <?php
-                  $commodity_group_id = $_GET["commodity_group_id"];
-                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "SELECT * FROM commodity;";
-                  $result = mysqli_query($link, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
+                    ; 
                     echo '
                     <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
                       aria-hidden="true">
@@ -574,8 +563,8 @@
                             </div>
                              </div>';
                   }
-                  mysqli_close($link);
-                  ?>
+                  mysqli_close($link); ?>
+                 
                 </div>
               </div>
             </div>
