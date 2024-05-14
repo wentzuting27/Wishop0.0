@@ -519,7 +519,22 @@
 
               <?php
 
-              if (!empty($_SESSION['account'])) {
+              $search_y_n = "no";
+              if ($_POST["search_y_n"] == "yes") {
+                $search_y_n = "yes";
+                echo '<h5 style="text-align: center;"><b>';
+
+                if (empty($_POST['commodity_name'])) {
+                  echo '全部一覽';
+                } else {
+                  echo $_POST['commodity_name'];
+                }
+
+                echo '&nbsp;<i class="fa-solid fa-magnifying-glass"></i></b></h5>
+                <hr>';
+              }
+
+              if (!empty($_SESSION['account']) and $search_y_n == "no") {
                 // 使用者已登入，顯示 HTML 元素
               
                 echo '<li data-filter="*" class="filter-active">發現</li>';
@@ -642,7 +657,8 @@
             }
           } else {
 
-            echo '<h5 style="text-align: center;"><b>查無資料</b></h5>';
+            echo '
+            <h5 style="text-align: center;"><b>查無資料</b></h5>';
 
           }
 
