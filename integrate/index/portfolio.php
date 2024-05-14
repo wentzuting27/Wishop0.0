@@ -601,8 +601,9 @@
 
 
 
+
               echo '
-                <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' wow fadeInUp">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' filter-' . $row['follow'] . ' wow fadeInUp">
                     <div class="portfolio-wrap">
                         <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
                             data-glightbox="type: external" title="' . $row['commodity_name'] . '">
