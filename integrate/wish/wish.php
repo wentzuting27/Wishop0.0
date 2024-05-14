@@ -421,6 +421,11 @@
                                         <a href="" class="trainer-link">',$row["user_name"],'</a>
                                       </div>
                                       <div class="trainer-rank d-flex align-items-center">';
+                                        $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                                        $result_likepeople=mysqli_query($link,$sql_likepeople);
+                                        $count_likepeople = mysqli_num_rows($result_likepeople);
+                                        echo '<i class="bi bi-heart heart-icon"></i>&nbsp;',$count_likepeople,'&nbsp;';
+
                                         $sql_likewish="select * from like_wish
                                         where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
                                         $result_likewish=mysqli_query($link,$sql_likewish);
@@ -489,6 +494,11 @@
                                         <a href="" class="trainer-link">',$row["user_name"],'</a>
                                       </div>
                                       <div class="trainer-rank d-flex align-items-center">';
+                                        $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                                        $result_likepeople=mysqli_query($link,$sql_likepeople);
+                                        $count_likepeople = mysqli_num_rows($result_likepeople);
+                                        echo '<i class="bi bi-heart heart-icon"></i>&nbsp;',$count_likepeople,'&nbsp;';
+
                                         $sql_likewish="select * from like_wish
                                         where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
                                         $result_likewish=mysqli_query($link,$sql_likewish);
@@ -603,6 +613,11 @@
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">';
+                                      $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                                      $result_likepeople=mysqli_query($link,$sql_likepeople);
+                                      $count_likepeople = mysqli_num_rows($result_likepeople);
+                                      echo '<i class="bi bi-heart heart-icon"></i>&nbsp;',$count_likepeople,'&nbsp;';
+
                                       $sql_likewish="select * from like_wish
                                       where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
                                       $result_likewish=mysqli_query($link,$sql_likewish);
@@ -671,8 +686,12 @@
                                       <img src="',$row["user_avatar"],'" class="img-fluid" alt="">
                                       <a href="" class="trainer-link">',$row["user_name"],'</a>
                                     </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;10&nbsp;';
+                                    <div class="trainer-rank d-flex align-items-center">';
+                                      $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                                      $result_likepeople=mysqli_query($link,$sql_likepeople);
+                                      $count_likepeople = mysqli_num_rows($result_likepeople);
+                                      echo '<i class="bi bi-heart heart-icon"></i>&nbsp;',$count_likepeople,'&nbsp;';
+
                                       $sql_likewish="select * from like_wish
                                       where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
                                       $result_likewish=mysqli_query($link,$sql_likewish);
@@ -818,12 +837,12 @@
                                   if($row["wish_state"]==1){
                                     echo'
                                     <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                      <button class="btn button_success" disabled>許願成功</button>
                                     </div>';
                                   }else{
                                     echo'
                                     <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                      <button class="btn button_fail" disabled>許願失敗</button>
                                     </div>';
                                   }
 
@@ -887,12 +906,12 @@
                                   if($row["wish_state"]==1){
                                     echo'
                                     <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_success" disabled>許願成功</button>
+                                      <button class="btn button_success" disabled>許願成功</button>
                                     </div>';
                                   }else{
                                     echo'
                                     <div class="trainer-rank d-flex align-items-center">
-                                      <i class="bi bi-heart heart-icon"></i>&nbsp;3&nbsp;<button class="btn button_fail" disabled>許願失敗</button>
+                                      <button class="btn button_fail" disabled>許願失敗</button>
                                     </div>';
                                   }
 

@@ -260,7 +260,22 @@
                               <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">國家</label>
                                 <div class="col-sm-8">
-                                <input type="text" name="nation" class="form-control">
+                                <table width="100%">
+                                  <tr>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation1" value="1"><label class="icon-label3" for="nation1"><img src="https://cdn-icons-png.flaticon.com/128/197/197604.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">日本</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation2" value="2"><label class="icon-label3" for="nation2"><img src="https://cdn-icons-png.flaticon.com/128/10597/10597854.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">韓國</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation3" value="3"><label class="icon-label3" for="nation3"><img src="https://cdn-icons-png.flaticon.com/128/5373/5373308.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">台灣</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation4" value="4"><label class="icon-label3" for="nation4"><img src="https://cdn-icons-png.flaticon.com/128/197/197560.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">法國</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation5" value="5"><label class="icon-label3" for="nation5"><img src="https://cdn-icons-png.flaticon.com/128/12339/12339692.png" width="30px" height="30px" style="line-height: 30px;;"></label><p style="display: inline-block;">美國</p></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation6" value="6"><label class="icon-label3" for="nation6"><img src="https://cdn-icons-png.flaticon.com/128/9906/9906483.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">義大利</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation7" value="7"><label class="icon-label3" for="nation7"><img src="https://cdn-icons-png.flaticon.com/128/197/197375.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">中國</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation8" value="8"><label class="icon-label3" for="nation8"><img src="https://cdn-icons-png.flaticon.com/128/197/197452.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">泰國</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation9" value="9"><label class="icon-label3" for="nation9"><img src="https://cdn-icons-png.flaticon.com/128/197/197374.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">英國</p></td>
+                                    <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation10" value="10"><label class="icon-label3" for="nation10"><img src="https://cdn-icons-png.flaticon.com/128/4238/4238090.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">其他</p></td>
+                                  </tr>
+                                </table>
                                 </div>
                               </div>
                               <div class="mb-3 row">
