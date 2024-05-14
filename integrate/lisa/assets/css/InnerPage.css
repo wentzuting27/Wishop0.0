@@ -1675,3 +1675,15 @@ input[type=checkbox]:checked+label:before {
 .row{
   justify-content: center;
 }
+.blog-comments.card{
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.wish-details .scrollable-row {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #646464;
+  height: 150px;
+  max-height: 150px; /* 设置最大高度 */
+  overflow-y: auto; /* 当内容溢出时显示滚动条 */
+}
