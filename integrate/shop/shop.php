@@ -199,223 +199,263 @@
 
 
 <main id="main">
-
-<section id="testimonials" class="testimonials">
-  <div class="container" data-aos="fade-up">
-
-    <div class="seven">
-      <h1>熱門商品</h1>
-    </div>
-
-
-    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-
-
-      <div class="swiper-wrapper">
-
-
-        <div class="swiper-slide">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div id="carouselExample" class="carousel slide"><!--圖片輪播-->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-ll7zea2rdiox5c" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visual...ly-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden"></span>
-                </button>
-              </div><!--end 圖片輪播-->
-              <div class="demo">
-                <h3>玩偶吊飾</h3>
-              </div>
-                <a href="#">日本「美少女戰士X三麗鷗」</a>
-              <br>
-              <div class="flex-container">
-                <div>
-                  <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>750</span>
-                </div>
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>429</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- End testimonial item -->
-
-        <div class="swiper-slide">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div id="carouselExample2" class="carousel slide"><!--圖片輪播-->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r992-lqo4uzigxc0279" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-lqo4uzigyqkidc" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-lrxwgpycct8o58" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r992-lrxwgpyce7t49f" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r990-lrxwgpycfmdkb1" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visual...ly-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden"></span>
-                </button>
-              </div><!--end 圖片輪播-->
-              <div class="demo">
-                <h3>拉鍊收納包</h3>
-              </div>
-              <a href="#">日本「美少女戰士X三麗鷗」</a>
-              <br>
-              <div class="flex-container">
-                <div>
-                  <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>260</span>
-                </div>
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>256</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- End testimonial item -->
-
-        <div class="swiper-slide">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div id="carouselExample3" class="carousel slide"><!--圖片輪播-->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample3" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visual...ly-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample3" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden"></span>
-                </button>
-              </div><!--end 圖片輪播-->
-              <div class="demo">
-                <h3>壓克力吊飾盲盒</h3>
-              </div>
-                <a href="#">日本「美少女戰士X三麗鷗」</a>
-              <br>
-              <div class="flex-container">
-                <div>
-                  <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>300</span>
-                </div>
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>208</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- End testimonial item -->
-
-        <div class="swiper-slide">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div id="carouselExample4" class="carousel slide"><!--圖片輪播-->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://gw.alicdn.com/imgextra/i3/55510288/O1CN017yLxEc1Dzwy2sJtCP_!!55510288.jpg_Q75.jpg_.webp" class="d-block w-100" alt="...">
-                  </div>
-                  
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample4" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visual...ly-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample4" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden"></span>
-                </button>
-              </div><!--end 圖片輪播-->
-              <div class="demo">
-                <h3>原子筆</h3>
-              </div>
-                <a href="#">日本「美少女戰士X三麗鷗」</a>
-              <br>
-              <div class="flex-container">
-                <div>
-                  <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>140</span>
-                </div>
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>136</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- End testimonial item -->
-
-        <div class="swiper-slide">
-          <div class="testimonial-wrap">
-            <div class="testimonial-item">
-              <div id="carouselExample5" class="carousel slide"><!--圖片輪播-->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98o-lnv400gmqkgt96" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample5" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visual...ly-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample5" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden"></span>
-                </button>
-              </div><!--end 圖片輪播-->
-              <div class="demo">
-                <h3>多層資料夾</h3>
-              </div>
-                <a href="#">日本「美少女戰士X三麗鷗」</a>
-              <br>
-              <div class="flex-container">
-                <div>
-                  <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>145</span>
-                </div>
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>125</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- End testimonial item -->
-
+<?php
+  $sql="select *
+  from commodity
+  where commodity_group_id in (select commodity_group_id from commodity_group where shop_id='$shop_id')";
+  $result=mysqli_query($link,$sql);
+  if(mysqli_num_rows($result)>=5){
+    
+    echo '<section id="testimonials" class="testimonials">
+    <div class="container" data-aos="fade-up">
+  
+      <div class="seven">
+        <h1>熱門商品</h1>
       </div>
-      <div class="swiper-pagination"></div>
-    </div>
+  
+  
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+  
+  
+        <div class="swiper-wrapper">';
+          $cn=1;
+          $sql_c="select *,sum(order_details_num)
+          from commodity
+          natural join commodity_group
+          natural join order_details
+          where commodity_group_id in (select commodity_group_id from commodity_group where shop_id='$shop_id')
+          group by commodity_id 
+          order by sum(order_details_num) DESC 
+          limit 5";
+          $result_c=mysqli_query($link,$sql_c);
+          while($row_c=mysqli_fetch_assoc($result_c))
+          {
+            $commodity_group_id=$row_c["commodity_group_id"];
+            if($_SESSION["user_shop_id"]==$shop_id){
+              $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+            }else{
+              $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+            }
+          echo '
+          <div class="swiper-slide">
+            <div class="testimonial-wrap">
+              <div class="testimonial-item">
+                <div id="carouselExample',$cn,'" class="carousel slide"><!--圖片輪播-->
+                  <div class="carousel-inner">';
+                  $a=1;
+                  $sql_photo="select *
+                  from commodity_photo
+                  where commodity_id='{$row_c["commodity_id"]}'";
+                  $result_photo=mysqli_query($link,$sql_photo);
+                  while($row_photo=mysqli_fetch_assoc($result_photo))
+                  {
+                    echo '
+                  <div class="carousel-item ';if($a==1){echo 'active"';}echo '">
+                    <img src="',$row_photo["commodity_photo"],'" class="d-block w-100" alt="...">
+                  </div>';
+                  $a++;
+                  }
+                  echo '
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample',$cn,'" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visual...ly-hidden"></span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample',$cn,'" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"></span>
+                  </button>
+                </div><!--end 圖片輪播-->
+                <div class="demo">
+                  <h3>',$row_c["commodity_name"],'</h3>
+                </div>
+                  <a href="',$group_link,'">',$row_c["commodity_group_name"],'</a>
+                <br>
+                <div class="flex-container">
+                  <div>
+                    <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>',$row_c["commodity_price"],'</span>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>',$row_c["sum(order_details_num)"],'</span>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div><!-- End testimonial item -->';
+          $cn++;
+        }
 
-  </div>
-</section><!-- End Testimonials Section -->
+  
+  //         <div class="swiper-slide">
+  //           <div class="testimonial-wrap">
+  //             <div class="testimonial-item">
+  //               <div id="carouselExample2" class="carousel slide"><!--圖片輪播-->
+  //                 <div class="carousel-inner">
+  //                   <div class="carousel-item active">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r992-lqo4uzigxc0279" class="d-block w-100" alt="...">
+  //                   </div>
+  //                   <div class="carousel-item">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-lqo4uzigyqkidc" class="d-block w-100" alt="...">
+  //                   </div>
+  //                   <div class="carousel-item">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98x-lrxwgpycct8o58" class="d-block w-100" alt="...">
+  //                   </div>
+  //                   <div class="carousel-item">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r992-lrxwgpyce7t49f" class="d-block w-100" alt="...">
+  //                   </div>
+  //                   <div class="carousel-item">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r990-lrxwgpycfmdkb1" class="d-block w-100" alt="...">
+  //                   </div>
+  //                 </div>
+  //                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
+  //                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //                   <span class="visual...ly-hidden"></span>
+  //                 </button>
+  //                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
+  //                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //                   <span class="visually-hidden"></span>
+  //                 </button>
+  //               </div><!--end 圖片輪播-->
+  //               <div class="demo">
+  //                 <h3>拉鍊收納包</h3>
+  //               </div>
+  //               <a href="#">日本「美少女戰士X三麗鷗」</a>
+  //               <br>
+  //               <div class="flex-container">
+  //                 <div>
+  //                   <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>260</span>
+  //                 </div>
+  //                 <div>
+  //                   <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>256</span>
+  //                 </div>
+  //               </div>
+  
+  //             </div>
+  //           </div>
+  //         </div><!-- End testimonial item -->
+  
+  //         <div class="swiper-slide">
+  //           <div class="testimonial-wrap">
+  //             <div class="testimonial-item">
+  //               <div id="carouselExample3" class="carousel slide"><!--圖片輪播-->
+  //                 <div class="carousel-inner">
+  //                   <div class="carousel-item active">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98w-lmbzxx10l57fe5" class="d-block w-100" alt="...">
+  //                   </div>
+  //                 </div>
+  //                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample3" data-bs-slide="prev">
+  //                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //                   <span class="visual...ly-hidden"></span>
+  //                 </button>
+  //                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample3" data-bs-slide="next">
+  //                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //                   <span class="visually-hidden"></span>
+  //                 </button>
+  //               </div><!--end 圖片輪播-->
+  //               <div class="demo">
+  //                 <h3>壓克力吊飾盲盒</h3>
+  //               </div>
+  //                 <a href="#">日本「美少女戰士X三麗鷗」</a>
+  //               <br>
+  //               <div class="flex-container">
+  //                 <div>
+  //                   <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>300</span>
+  //                 </div>
+  //                 <div>
+  //                   <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>208</span>
+  //                 </div>
+  //               </div>
+  
+  //             </div>
+  //           </div>
+  //         </div><!-- End testimonial item -->
+  
+  //         <div class="swiper-slide">
+  //           <div class="testimonial-wrap">
+  //             <div class="testimonial-item">
+  //               <div id="carouselExample4" class="carousel slide"><!--圖片輪播-->
+  //                 <div class="carousel-inner">
+  //                   <div class="carousel-item active">
+  //                     <img src="https://gw.alicdn.com/imgextra/i3/55510288/O1CN017yLxEc1Dzwy2sJtCP_!!55510288.jpg_Q75.jpg_.webp" class="d-block w-100" alt="...">
+  //                   </div>
+                    
+  //                 </div>
+  //                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample4" data-bs-slide="prev">
+  //                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //                   <span class="visual...ly-hidden"></span>
+  //                 </button>
+  //                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample4" data-bs-slide="next">
+  //                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //                   <span class="visually-hidden"></span>
+  //                 </button>
+  //               </div><!--end 圖片輪播-->
+  //               <div class="demo">
+  //                 <h3>原子筆</h3>
+  //               </div>
+  //                 <a href="#">日本「美少女戰士X三麗鷗」</a>
+  //               <br>
+  //               <div class="flex-container">
+  //                 <div>
+  //                   <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>140</span>
+  //                 </div>
+  //                 <div>
+  //                   <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>136</span>
+  //                 </div>
+  //               </div>
+  
+  //             </div>
+  //           </div>
+  //         </div><!-- End testimonial item -->
+  
+  //         <div class="swiper-slide">
+  //           <div class="testimonial-wrap">
+  //             <div class="testimonial-item">
+  //               <div id="carouselExample5" class="carousel slide"><!--圖片輪播-->
+  //                 <div class="carousel-inner">
+  //                   <div class="carousel-item active">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98p-lnv400gmp5wd07" class="d-block w-100" alt="...">
+  //                   </div>
+  //                   <div class="carousel-item">
+  //                     <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7r98o-lnv400gmqkgt96" class="d-block w-100" alt="...">
+  //                   </div>
+  //                 </div>
+  //                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample5" data-bs-slide="prev">
+  //                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //                   <span class="visual...ly-hidden"></span>
+  //                 </button>
+  //                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample5" data-bs-slide="next">
+  //                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //                   <span class="visually-hidden"></span>
+  //                 </button>
+  //               </div><!--end 圖片輪播-->
+  //               <div class="demo">
+  //                 <h3>多層資料夾</h3>
+  //               </div>
+  //                 <a href="#">日本「美少女戰士X三麗鷗」</a>
+  //               <br>
+  //               <div class="flex-container">
+  //                 <div>
+  //                   <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>145</span>
+  //                 </div>
+  //                 <div>
+  //                   <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>125</span>
+  //                 </div>
+  //               </div>
+  
+  //             </div>
+  //           </div>
+  //         </div><!-- End testimonial item -->
+        echo '
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+  
+    </div>
+  </section><!-- End Testimonials Section -->';
+  }
+?>
+
 
 
 <!-- ======= shop_group Section ======= -->
@@ -439,6 +479,8 @@
         <div>
         <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
       </div>';
+      echo $sql_c;
+
       }
       }
       
