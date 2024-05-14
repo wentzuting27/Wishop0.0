@@ -549,7 +549,7 @@
               $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%'
+              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               ?>
