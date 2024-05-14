@@ -301,11 +301,8 @@
                           case 9:
                             echo '<a href="portfolio.php?topic=9" target="_blank"><span class="topic" name="topic" value="9">精品</span></a>';
                             break;
-                          case 10:
-                            echo '<a href="portfolio.php?topic=10" target="_blank"><span class="topic" name="topic" value="10">其他</span></a>';
-                            break;
                           default:
-                            echo '無';
+                            echo '<a href="portfolio.php?topic=10" target="_blank"><span class="topic" name="topic" value="10">其他</span></a>';
                         }
                       }
                     }
