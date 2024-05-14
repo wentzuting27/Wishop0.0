@@ -248,10 +248,10 @@
                         echo "英國";
                         break;
                       case 10:
-                        echo "加拿大";
+                        echo "其他";
                         break;
                       default:
-                        echo "其他";
+                        echo "無";
                     }
                     ?>
                 </a></li>
@@ -264,10 +264,11 @@
 
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                     $sql2 = "SELECT * from commodity 
-                    natural JOIN commodity_group 
-                    natural JOIN group_topic
+                    natural JOIN commodity_group cg
+                    LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
                     where commodity_id = '$commodity_id'
                     ";
+
 
                     $result2 = mysqli_query($link, $sql2);
 
