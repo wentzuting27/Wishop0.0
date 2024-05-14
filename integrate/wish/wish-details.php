@@ -522,9 +522,7 @@
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已成團</button>';
                               }
                             }else{
-                              if($state==3){
-                                echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>待成團</button>';
-                              }elseif($state==2){
+                              if($state==2){
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結束</button>';
                               }elseif($close_order_date !== NULL && strtotime($close_order_date) < strtotime('now')){ //有結單時間且時間已過
                                 echo'<button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
