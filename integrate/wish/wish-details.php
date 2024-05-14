@@ -368,12 +368,17 @@
                     ?>                   
                   </div>
                   <br>
+                  <?php
+                    $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                    $result_likepeople=mysqli_query($link,$sql_likepeople);
+                    $count_likepeople = mysqli_num_rows($result_likepeople);
+                  ?>
                   <ul>
                     <li><strong><i class="bi bi-person"></i>&nbsp;許願者</strong>: <a href="#"><img src="<?php echo $user_avatar ?>" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;<?php echo $user_name ?></a></li>
                     <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: <?php echo $wish_start ?></li>
                     <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: <?php echo $wish_end ?></li>
                     <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="<?php echo $wish_link ?>" target="_blank">相關連結</a></li>
-                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>: &nbsp;10&nbsp;</li>
+                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;收藏人數</strong>: &nbsp;<?php echo $count_likepeople ?>&nbsp;</li>
                     <li><strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>: </li>
                       <p class="scrollable-row"><?php echo nl2br($wish_narrat) ?></p>
                   </ul>
