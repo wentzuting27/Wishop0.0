@@ -293,6 +293,27 @@
                                 <input type="number" name="bid_people" class="form-control" required>
                                 </div>
                               </div>
+                              <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">主題</label>
+                                <div class="col-sm-8">
+                                <table width="100%">
+                                  <tr>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1" value="1"><label class="icon-label2" for="theme1"><i class="fa-solid fa-shirt"></i></label><p style="display: inline-block;">服飾</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2" value="2"><label class="icon-label2" for="theme2"><i class="fa-solid fa-face-smile-beam"></i></label><p style="display: inline-block;">美妝</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3" value="3"><label class="icon-label2" for="theme3"><i class="fa-solid fa-heart"></i></label><p style="display: inline-block;">動漫</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4" value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label><p style="display: inline-block;">明星</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5" value="5"><label class="icon-label2" for="theme5"><i class="fa-solid fa-house-chimney-window"></i></label><p style="display: inline-block;">日常</p></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6" value="6"><label class="icon-label2" for="theme6"><i class="fa-solid fa-gamepad"></i></label><p style="display: inline-block;">數位</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;">美食</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;">運動</p></td>
+                                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;">精品</p></td>
+                                    <td width="20%"></td>
+                                  </tr>
+                                </table>
+                                </div>
+                              </div>
                             </div>  
                             <div class="modal-footer">
                               <button type="submit" class="btn insert_button">確定出價</button>
