@@ -641,9 +641,39 @@
                   echo $_POST['commodity_name'];
                 }
 
-                echo '&nbsp;<i class="fa-solid fa-magnifying-glass"></i></b></h5>
-                
-                <hr>';
+                echo '&nbsp;<i class="fa-solid fa-magnifying-glass"></i></b></h5>';
+
+
+                //篩選主題顯示
+                if (in_array("1", $alltopic)) {
+                  echo "服飾";
+                }
+                if (in_array("2", $alltopic)) {
+                  echo "美妝";
+                }
+                if (in_array("3", $alltopic)) {
+                  echo "動漫";
+                }
+                if (in_array("4", $alltopic)) {
+                  echo "明星";
+                }
+                if (in_array("5", $alltopic)) {
+                  echo "日常";
+                }
+                if (in_array("6", $alltopic)) {
+                  echo "數位3C";
+                }
+                if (in_array("7", $alltopic)) {
+                  echo "美食";
+                }
+                if (in_array("8", $alltopic)) {
+                  echo "運動";
+                }
+                if (in_array("9", $alltopic)) {
+                  echo "精品";
+                }
+
+                echo '<hr>';
               }
 
               if (!empty($_SESSION['account']) and $search_y_n == "no") {
@@ -711,6 +741,13 @@
 
 
 
+              $sql2 = "select * from commodity c
+              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
+              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
+              GROUP BY c.commodity_id";
+              $result2 = mysqli_query($link, $sql2);
+
 
               //topic複選
               $commodity_group_id = $row["commodity_group_id"];
@@ -733,25 +770,16 @@
                 }
               }
 
+              if ($checkselect == 'yes') {
 
 
 
-              $sql2 = "select * from commodity c
-              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
-              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
-              GROUP BY c.commodity_id";
-              $result2 = mysqli_query($link, $sql2);
-
-
-
-
-              echo '
+                echo '
                 <div class="col-lg-4 col-md-6 portfolio-item  filter-';
-              if (mysqli_num_rows($result2)) {
-                echo 'follow';
-              }
-              echo ' wow fadeInUp">
+                if (mysqli_num_rows($result2)) {
+                  echo 'follow';
+                }
+                echo ' wow fadeInUp">
                     <div class="portfolio-wrap">
                         <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
                             data-glightbox="type: external" title="' . $row['commodity_name'] . '">
@@ -765,7 +793,10 @@
                         </div>
                     </div>
                 </div>
-                ';
+
+                '
+                ;
+              }
             }
           } else {
 
