@@ -510,6 +510,117 @@
     <section id="portfolio" class="portfolio">
       <div class="container">
 
+        <?php
+        if (!empty($_SESSION['account'])) {
+          echo '
+          <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
+          <i class="fa-regular fa-circle-question fa-lg" style="float: right;" aria-hidden="true"></i>
+          </a>';
+        } ?>
+
+        <!-- 連結管理Modal -->
+        <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="update_socialLabel">操作教學</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- ======= Schedule Section ======= -->
+
+                <style>
+                  /* 主體顏色設置 */
+                  .section-with-bg {
+                    padding: 20px;
+                  }
+
+                  /* 標籤導航樣式 */
+                  .nav-pills .nav-link {
+                    color: #ffffff;
+                    /* 文字顏色 */
+                    background-color: #B0A5C6;
+                    /* 背景顏色 */
+                    border-radius: 10px;
+                    /* 可以選擇是否設置圓角 */
+                    margin-right: 15px;
+                    /* 調整按鈕間距 */
+                    font-size: 18px;
+                  }
+
+                  /* 激活狀態下的標籤樣式 */
+                  .nav-pills .nav-link.active,
+                  .nav-pills .nav-link.active:focus,
+                  .nav-pills .nav-link.active:hover {
+                    color: #ffffff;
+                    /* 激活狀態下的文字顏色 */
+                    background-color: #E9C9D6;
+                    /* 激活狀態下的背景顏色 */
+                  }
+
+                  /* 標籤內容樣式 */
+                  .tab-content {
+                    background-color: #ffffff;
+                    /* 標籤內容背景顏色 */
+                    padding: 20px;
+                    border-radius: 5px;
+                    /* 可以選擇是否設置圓角 */
+                    margin-top: 10px;
+                    /* 調整標籤內容與標籤之間的間距 */
+                  }
+                </style>
+
+                <section id="schedule" class="section-with-bg">
+                  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">功能&nbsp;&nbsp;<i class="fa-solid fa-gears"></i></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">搜尋&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                        aria-selected="false">標籤&nbsp;&nbsp;<i class="fa-solid fa-tag"></i></button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                      aria-labelledby="pills-home-tab">
+                      <div class="d-flex justify-content-center">
+                        <img src="../files/發現.jpg" alt="發現功能" style="min-width:100px; height:60%">
+                      </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      敬啟期待...
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                      功能開發中...
+                    </div>
+
+                  </div>
+
+
+
+
+
+
+                </section><!-- End Schedule Section -->
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <div class="row">
@@ -531,6 +642,7 @@
                 }
 
                 echo '&nbsp;<i class="fa-solid fa-magnifying-glass"></i></b></h5>
+                
                 <hr>';
               }
 
