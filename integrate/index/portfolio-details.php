@@ -121,7 +121,7 @@
                 if ($result) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="swiper-slide">';
-                    echo '<img src="' . $row['commodity_photo'] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">';
+                    echo '<img src="' . $row['commodity_photo'] . '" style="width: 60%; height: auto; display: block; margin: 0 auto;" alt="">';
                     echo '</div>';
                   }
                 }
@@ -133,7 +133,7 @@
                 <!-- 圖片還有問題 -->
                 <div class="swiper-slide">
                   <img src="<?php echo $commodity_photo; ?>"
-                    style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">
+                    style="width: 60%; height: auto; display: block; margin: 0 auto;" alt="">
                 </div>
 
 
