@@ -15,6 +15,9 @@
     $email = $_POST['email'];
     $user_name = $_POST['user_name'];
     $telephone_number = $_POST['telephone_number'];
+
+    echo $_POST["topic"];
+
     
     
     if ($_FILES['user_avatar']['error'] == UPLOAD_ERR_OK){
@@ -55,6 +58,16 @@
         </script>
 
         <?php
+    }
+
+    foreach($_POST["topic"] as $rep) {
+        $topic = $rep;
+        echo $topic;
+        $insertrep = "INSERT INTO like_topic (account,topic) values ('$account','$topic')";
+        if(mysqli_query($link, $insertrep)) {
+        } else {
+        }
+
     }
 
 
