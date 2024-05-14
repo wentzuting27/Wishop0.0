@@ -340,6 +340,8 @@
 
                     <div class="input-group mb-4" style="background-color:#F8F9FA;  justify-content: center;">
                       <div class="col-8">
+                        <input type="hidden" name="search_y_n" value="yes"
+                          style="border: none; height:50px;">
                         <input type="text" placeholder="輸入商品名稱" name="commodity_name"
                           style="border: none; height:50px;">
                       </div>
@@ -546,27 +548,34 @@
 
 
             <?php
+            $search_y_n="no";
+            if($_POST["search_y_n"]=="yes"){
+              $search_y_n="yes";
+            }
+            if($_POST["search_y_n"]=="yes" or !isset($_SESSION["account"])){
               $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')
+              where commodity_name like'%{$_POST['commodity_name']}%'
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
+            }elseif($search_y_n=="no"){
+              $sql = "select * from commodity c
+              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
+              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+              where commodity_name like'%{$_POST['commodity_name']}%' and (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}'))
+              GROUP BY c.commodity_id
+              ORDER BY RAND() ";
+            }
+              
+
               ?>
 
-
+              
 
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-          // $sql = "SELECT c.*, cg.*, cp.commodity_photo 
-          //     FROM commodity c 
-          //     JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
-          //     JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
-          //     GROUP BY c.commodity_id
-          //     ORDER BY RAND() 
-          //     ";
-          
           $result = mysqli_query($link, $sql);
 
 
@@ -600,10 +609,22 @@
 
 
 
+              $sql2= "select * from commodity c
+              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
+              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
+              GROUP BY c.commodity_id";
+          $result2 = mysqli_query($link, $sql2);
+
+
 
 
               echo '
-                <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row['nation'] . ' filter-' . $row['follow'] . ' wow fadeInUp">
+                <div class="col-lg-4 col-md-6 portfolio-item  filter-' ;
+                if(mysqli_num_rows($result2)){
+                  echo 'follow';
+                }
+                echo ' wow fadeInUp">
                     <div class="portfolio-wrap">
                         <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
                             data-glightbox="type: external" title="' . $row['commodity_name'] . '">
@@ -625,8 +646,8 @@
 
           }
 
-
           ?>
+
 
           <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
             <div class="portfolio-wrap">

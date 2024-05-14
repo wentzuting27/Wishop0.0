@@ -271,7 +271,7 @@
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-bs-toggle="tab" href="#tab-7">
-                            <i class="fa-solid fa-hand"></i>&nbsp;&nbsp;我也想買(跟團)
+                            <i class="fa-solid fa-hand"></i>&nbsp;&nbsp;我要跟團
                           </a>
                         </li>
                       </ul>
