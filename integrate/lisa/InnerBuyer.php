@@ -6,12 +6,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <?php
-  $commodity_group_id=$_GET["commodity_group_id"];
+  $commodity_group_id = $_GET["commodity_group_id"];
   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
   $sql = "select commodity_group_name from commodity_group where commodity_group_id='$commodity_group_id'";
   $result = mysqli_query($link, $sql);
   $row = mysqli_fetch_assoc($result);
-  echo '<title>'.$row["commodity_group_name"],'</title>'; ?>
+  echo '<title>' . $row["commodity_group_name"], '</title>'; ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,6 +45,7 @@
 
 </head>
 <?php session_start(); ?>
+
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -66,7 +67,7 @@
             $shop_id = $row["shop_id"];
           } ?>
           <ol>
-          <li><a href="../index/index.php" style="color:black">首頁</a></li>
+            <li><a href="../index/index.php" style="color:black">首頁</a></li>
             <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" style="color: rgb(255, 230, 237);">返回賣場</a>
             </li>
             <li>團內資訊</li>
@@ -107,17 +108,17 @@
     $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
     $result3 = mysqli_query($link, $sql3);
     $row3 = mysqli_fetch_assoc($result3);
-    echo'
+    echo '
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>公告：' . $row3["announce_narrate"] . '！</span>
     </marquee>
     </center>
      </div>
-    ';?>
+    '; ?>
     <!-- insert_group_Modal -->
     <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -366,14 +367,14 @@
                     WHERE commodity.commodity_state = 1 AND commodity_group_id=$commodity_group_id
                     GROUP BY commodity.commodity_id;";
                     $result = mysqli_query($link, $sql);
-                    
+
                     while ($row = mysqli_fetch_assoc($result)) {
-                    $sql2 = "SELECT commodity_id, SUM(order_details_num) AS total_purchases
+                      $sql2 = "SELECT commodity_id, SUM(order_details_num) AS total_purchases
                     FROM order_details
                     WHERE commodity_id = " . $row["commodity_id"] . "
                     GROUP BY commodity_id;";
-                    $result2 = mysqli_query($link, $sql2);
-                    $row2= mysqli_fetch_assoc($result2);
+                      $result2 = mysqli_query($link, $sql2);
+                      $row2 = mysqli_fetch_assoc($result2);
                       echo '
                     <tbody>
                       <tr>
@@ -393,7 +394,7 @@
                         </td>
                         <td data-th="Price">$', $row["commodity_price"], '</td>
                         <td data-th="Quantity">
-                          <center>',( empty($row2["total_purchases"]) ? 0 : $row2["total_purchases"] ), '</center>
+                          <center>', (empty($row2["total_purchases"]) ? 0 : $row2["total_purchases"]), '</center>
                         </td>
                         <td class="actions" data-th=""> 
                         <button class="btn btn-info btn-sm" 
@@ -445,19 +446,19 @@
               <div class="seven" id="list-item-2">
                 <h1>待上架商品區</h1>
               </div>
-              
-                <div class="row">
-                  <div id="slider-carouse2" class="owl-carousel">
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
+              <div class="row">
+                <div id="slider-carouse2" class="owl-carousel">
+                  <?php
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $sql = "SELECT commodity.*, MIN(commodity_photo.commodity_photo) AS first_photo
                   FROM commodity
                   JOIN commodity_photo ON commodity.commodity_id = commodity_photo.commodity_id
                   WHERE commodity.commodity_state = 2 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;";
-                    $result = mysqli_query($link, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      echo '
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                   <div class="waiting">
                     <div class="card" style="width: 18rem;">
                        <a href="doll.php?commodity_id=', $row["commodity_id"], '" class="portfolio-details-lightbox" data-glightbox="type: external"
@@ -478,14 +479,26 @@
                         </button>
                       </div>
                     </div>
-                  </div>'
-                      ; echo '
-                    <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
+                  </div>'; 
+                  
+                  }
+
+                  mysqli_close($link); ?>
+                 
+                </div>
+              </div> <?php
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                   echo '
+                    <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
+                        <div class="modal-content"> 
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="up_rule_ModalLabel">確認上架？</h1>
+                            <h1 class="modal-title fs-5" id="up">確認上架？</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                             <form method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '">
@@ -499,11 +512,8 @@
                             </div>
                              </div>';
                   }
-                    
-                    mysqli_close($link); ?>
-                  
-                  </div>
-                </div>
+                  mysqli_close($link);
+                  ?>
               <br><br>
               <div class="seven" id="list-item-3">
                 <h1>下架商品區</h1>
@@ -542,14 +552,27 @@
                       </div>
                     </div>
                   </div>'
-                    ; 
+                    ;
+
+                  }
+                  
+                  mysqli_close($link); ?>
+
+                </div>
+              </div>
+              <?php
+              $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
                     echo '
-                    <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
+                    <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="ups"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="up_rule_ModalLabel">移至待上架區？</h1>
+                            <h1 class="modal-title fs-5" id="ups">移至待上架區？</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                             <form method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '">
@@ -560,13 +583,9 @@
                             </form>
                             </div>
                             </div>
-                            </div>
+                            </div>  
                              </div>';
-                  }
-                  mysqli_close($link); ?>
-                 
-                </div>
-              </div>
+                  }?>
             </div>
           </div>
         </section>
@@ -600,7 +619,7 @@
                   </div>
                 </div>
               </div>
-               <?php
+              <?php
               $commodity_group_id = $_GET["commodity_group_id"];
               // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
               echo '<script>
@@ -691,19 +710,19 @@
               }
               mysqli_close($link);
               ?>
-             
+
               <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
-            <div style="max-height:600px;overflow-y:scroll;">
-            <?php
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $commodity_group_id = $_GET["commodity_group_id"];
-            $sql = "SELECT * FROM question NATURAL JOIN account 
+              <div style="max-height:600px;overflow-y:scroll;">
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $commodity_group_id = $_GET["commodity_group_id"];
+                $sql = "SELECT * FROM question NATURAL JOIN account 
             WHERE commodity_group_id ='$commodity_group_id' ;";
-            $result = mysqli_query($link, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-              $question_id = $row["question_id"]; 
-             
-              echo '
+                $result = mysqli_query($link, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $question_id = $row["question_id"];
+
+                  echo '
               <div class="part2">
               <div class="card border-secondary mb-12">
                 <div class="card-header bg-transparent border-secondary">
@@ -724,13 +743,13 @@
                 <div class="card-body " id="card' . $question_id . '">
                   <p>', $row["question_narrate"], '</p>';
 
-              $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
-              $result2 = mysqli_query($link, $sql2);
-              // 逐行顯示 question_photo
-              while ($photo_row = mysqli_fetch_assoc($result2)) {
-                echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
-              }
-              echo '<div id="overlay"></div>
+                  $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+                  $result2 = mysqli_query($link, $sql2);
+                  // 逐行顯示 question_photo
+                  while ($photo_row = mysqli_fetch_assoc($result2)) {
+                    echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+                  }
+                  echo '<div id="overlay"></div>
                 </div>
                 <div class="card-footer bg-transparent border-secondary">
                   <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
@@ -740,7 +759,7 @@
                 </div>
               </div>
             </div>';
-            echo'<!-- Modal -->
+                  echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -756,10 +775,10 @@
               </div>
             </div>
           ';
-             echo '
+                  echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var part3 = document.getElementById(\'card'.$question_id.'\');
+              var part3 = document.getElementById(\'card' . $question_id . '\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
                 window.location.href = \'../lisa/discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
@@ -774,9 +793,10 @@
                   });
                 });
               });
-              </script>';}
-            mysqli_close($link);
-            ?>
+              </script>';
+                }
+                mysqli_close($link);
+                ?>
         </section>
         <section id="order">
           <h2>Returns</h2>
