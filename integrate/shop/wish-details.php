@@ -517,7 +517,29 @@
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                         }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
                           echo '
-                          <a href=bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&shop_id=',$shop_id,'&wish_id=',$wish_id,'&method=跟團><button type="button" class="btn insert_button" style="display: block;width: 100%;">我要跟團</button></a>';
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#withgroup">我要跟團</button>';
+                          echo '<!-- insert_group_Modal -->
+                          <div class="modal fade" id="withgroup" tabindex="-1" aria-labelledby="withgroupLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="withgroupLabel">確定跟團?</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <p style="font-size:18px;color:#d55858">跟團須知：</p>
+                                  <p>請勿跟團後不購買產品，否則列入黑名單！！！</p>
+                                  <p>跟團也無法退團</p>
+                                  <p style="color:#b9b0c8">跟團前請深思熟慮!若還在觀望可改選擇收藏此團~</p>
+                                      
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                <a href="bid_in_up_de.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團&shop_id=',$shop_id,'"><button type="button" class="btn insert_button" data-bs-dismiss="modal">確定跟團</button></a>
+                              </div>
+                              </div>
+                            </div>
+                          </div><!-- End insert_group_Modal -->';
                         }else{
                           echo '
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已跟團</button>';
