@@ -811,15 +811,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                         
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
                            placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
-                        </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="submit" name="submit" class="btn btn-primary">確定</button>
-                </div>
+                          <button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;float:left;">確定</button>
+                           </div>
+                           
+                           </td>
+                         </tr>
+                       </table>
+                     </div>
+                   <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                     <button type="button"  class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+                   </div>
                 
               </div>
             </div>
