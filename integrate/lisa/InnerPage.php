@@ -765,7 +765,7 @@
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="submit" name="submit" class="btn btn-primary">確定</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
                 </div>
               </div>
             </div>

@@ -977,17 +977,18 @@
                         data-bs-toggle="collapse" data-bs-target="#collapse' . $order_id . '" aria-expanded="false" aria-controls="collapse' . $order_id . '">
                         <i class="fa-solid fa-pen-to-square"></i></button></p>
                         <div class="collapse" id="collapse' . $order_id . '">
-                        
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
                            placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
+                        <center><button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;">確定</button></center>
                         </div>
+                        
                         </td>
                       </tr>
                     </table>
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="submit" name="submit" class="btn btn-primary">確定</button>
+                  <button type="button"  class="btn btn-primary" data-bs-dismiss="modal">確定</button>
                 </div>
                 
               </div>
