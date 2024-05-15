@@ -412,7 +412,7 @@
                       echo'
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
-                            class="btn btn-block" style="background-color: #B0A5C6; color: white;">結帳 <i
+                            class="btn btn-block" style="background-color: #B0A5C6; color: white;">喊單 <i
                               class="fa-solid fa-arrow-right-to-line"></i>
                           </button>
                         </center>
