@@ -212,7 +212,7 @@
       echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）</small>';
       echo '</h3>
             <div class="card-text">
-                <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -388,7 +388,7 @@
                             </div>
                             <div class="col-sm-8">
                               <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
-                              <p>', $row["commodity_narrate"], '</p>
+                              <p>', nl2br($row["commodity_narrate"]), '</p>
                             </div>
                           </div>
                         </td>
@@ -469,7 +469,7 @@
                       </div></a>
                       <div class="card-body">
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
-                        <p class="card-text">', $row["commodity_narrate"], '</p>
+                        <p class="card-text">', nl2br($row["commodity_narrate"]), '</p>
                         <button class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"
                         data-bs-toggle="modal" data-bs-target="#up', $row["commodity_id"], '">
                         <i class="fa-solid fa-arrow-up"></i>
@@ -541,7 +541,7 @@
                       </div></a>
                       <div class="card-body">
                         <h5 class="card-title">', $row["commodity_name"], '</h5>
-                        <p class="card-text">', $row["commodity_narrate"], '</p>
+                        <p class="card-text">', nl2br($row["commodity_narrate"]), '</p>
                         <button class="btn btn-info btn-sm"
                         style="background-color: #b0a5c6a8;border: none;color: white;"
                         data-bs-toggle="modal" data-bs-target="#ups', $row["commodity_id"], '">
@@ -670,7 +670,7 @@
                       <div class="card-body">
                         <p class="card-text">
                         <p>尊敬的客戶:</p>
-                        ', $row["announce_narrate"], '
+                        ', nl2br($row["announce_narrate"]), '
                         </p>
                       </div>
                     </div>
@@ -741,7 +741,7 @@
                 </div>
                 
                 <div class="card-body " id="card' . $question_id . '">
-                  <p>', $row["question_narrate"], '</p>';
+                  <p>',nl2br($row["question_narrate"]), '</p>';
 
                   $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
                   $result2 = mysqli_query($link, $sql2);
@@ -965,7 +965,7 @@
                       <tr>
                         <th>買家備註內容</th>
                         <td>
-                        <p>' . $remark . '</p>
+                        <p>' . nl2br($remark) . '</p>
                         </td>
                       </tr>
                       <tr >
