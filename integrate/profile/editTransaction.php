@@ -14,7 +14,8 @@
 
         $link = mysqli_connect("localhost", "root", "12345678", "wishop");
         if ($method == "update") {
-            $sql = "update account set telephone_number='$telephone_number', common_payment_account='$common_payment_account'";
+            $sql = "update account set telephone_number='$telephone_number', common_payment_account='$common_payment_account'
+            where account='{$_SESSION["account"]}'";
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Profile_settings.php");
             } else {
