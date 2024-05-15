@@ -112,6 +112,8 @@
     <section id="contact" class="contact">
       <div class="profile-pic-wrapper"
         style="border:0; width: 100%; height: 400px; background-color:#e9e4ee; background-image: url('./assets/img/background2.jpg'); background-size: cover; background-position: center; padding-top: 100px;">
+        <form id="uploadForm" method="post" action="uploadProfile.php" enctype="multipart/form-data"> 
+        <Input type="hidden" name="method" value="update"/>
         <div class="pic-holder">
           <!-- uploaded pic shown here -->
           <?php
@@ -124,8 +126,8 @@
               echo "https://imgs.gotrip.hk/wp-content/uploads/2017/11/nhv4dxh3MJN7gxp/blank-profile-picture-973460_960_720_2583405935a02dfab699c6.png";
             }
             echo '">
-            
-          <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*"
+
+          <Input class="uploadProfileInput" type="file" name="user_avatar" id="newProfilePhoto" accept="image/*"
             style="opacity: 0;" />
 
           <label for="newProfilePhoto" class="upload-file-block">
@@ -137,6 +139,9 @@
                 <h5>上傳相片</h5>
               </div>
             </div>
+          </label>
+        </div>
+        </form>
           </label>
         </div>
         <h5 style="color: #ffffff;">', $_SESSION["user_name"], '</h5>
