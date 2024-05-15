@@ -6,12 +6,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <?php
-  $commodity_group_id=$_GET["commodity_group_id"];
+  $commodity_group_id = $_GET["commodity_group_id"];
   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
   $sql = "select commodity_group_name from commodity_group where commodity_group_id='$commodity_group_id'";
   $result = mysqli_query($link, $sql);
   $row = mysqli_fetch_assoc($result);
-  echo '<title>'.$row["commodity_group_name"],'</title>'; ?>
+  echo '<title>' . $row["commodity_group_name"], '</title>'; ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,7 +45,8 @@
     crossorigin="anonymous"></script>
 
 </head>
-<?php session_start();?>
+<?php session_start(); ?>
+
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -108,8 +109,7 @@
     </div>
     <div class="edit_like_shop_button">
     <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
-      }
-      else {
+      } else {
         echo '
       <div class="background-overlay" style="position: absolute;
       top: 0;
@@ -129,11 +129,11 @@
     <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
     ';
-    $sql3 = "SELECT announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
+        $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
     order by announce_time DESC";
-    $result3 = mysqli_query($link, $sql3);
-    $row3 = mysqli_fetch_assoc($result3);
-    echo'
+        $result3 = mysqli_query($link, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        echo '
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
@@ -144,18 +144,18 @@
     </center>
      </div>
     ';
-      }else {
+      } else {
         echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
       <i class="fa-solid fa-share-from-square"></i>已跟團</button>
       </div>
      
       ';
-    $sql3 = "SELECT announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
+        $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
      order by announce_time DESC";
-    $result3 = mysqli_query($link, $sql3);
-    $row3 = mysqli_fetch_assoc($result3);
-    echo'
+        $result3 = mysqli_query($link, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        echo '
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
@@ -179,15 +179,20 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="leaveLabel">確定跟團？</h1>
+              <h1 class="modal-title fs-5" id="withgroupLabel">確定跟團?</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <h6 style="color:red;padding-left:10px">跟團須知：</h6>
-            <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
-            <h6 style="padding-left:10px">跟團也無法退團</h6>
+            <div class="modal-body">
+              <p style="font-size:18px;color:#d55858">跟團須知：</p>
+              <p>請勿跟團後不購買產品，否則列入黑名單！！！</p>
+              <p>跟團也無法退團</p>
+              <p style="color:#b9b0c8">跟團前請深思熟慮!若還在觀望可改選擇收藏此團~</p>
+
+
+            </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="submit" name="addgroup" class="btn btn-primary" id="one">確定</button>
+              <button type="submit" name="addgroup" class="btn btn-primary" id="one"  style="background-color: #B0A5C6; color: white;">確定</button>
             </div>
           </div>
         </div>
@@ -398,29 +403,30 @@
                     <td data-th="Subtotal" class="text-center">$0</td>
                   </tr>';
                   }
-                  echo'
+                  echo '
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
                       <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>';
-                      $commodity_group_id = $_GET["commodity_group_id"];
-                      $account = $_SESSION["account"];
-                      $sql2 = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-                      $result2 = mysqli_query($link, $sql2);
-                
-                      if ($result2 && mysqli_num_rows($result2) != 0) {
-                      echo'
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $account = $_SESSION["account"];
+                  $sql2 = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+                  $result2 = mysqli_query($link, $sql2);
+
+                  if ($result2 && mysqli_num_rows($result2) != 0) {
+                    echo '
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
                             class="btn btn-block" style="background-color: #B0A5C6; color: white;">喊單 <i
                               class="fa-solid fa-arrow-right-to-line"></i>
                           </button>
                         </center>
-                      </td>';}
-                      echo'</tr>
+                      </td>';
+                  }
+                  echo '</tr>
                   </tfoot>
                 </table>';
-                mysqli_close($link); ?>
+                  mysqli_close($link); ?>
             </div>
           </div>
           <!-- Modal -->
@@ -481,7 +487,7 @@
                       <div class="card-body">
                         <p class="card-text">
                         <p>尊敬的客戶:</p>
-                        ',nl2br($row["announce_narrate"]) , '
+                        ', nl2br($row["announce_narrate"]), '
                         </p>
                       </div>
                     </div>
@@ -518,24 +524,24 @@
                       class="fa-solid fa-pen-to-square"></i></button>
                 </div>
               </div>
-            </div>'; 
+            </div>';
             mysqli_close($link);
             ?>
             <div style="max-height:600px;overflow-y:scroll;">
-            <?php
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-            $account = $_SESSION["account"];
-            $commodity_group_id = $_GET["commodity_group_id"];
-            $sql = "SELECT * FROM question NATURAL JOIN account 
+              <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $account = $_SESSION["account"];
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $sql = "SELECT * FROM question NATURAL JOIN account 
             WHERE commodity_group_id ='$commodity_group_id' 
             AND public='公開'
             OR account= '$account';";
 
-            $result = mysqli_query($link, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-              $question_id = $row["question_id"]; 
-             
-              echo '
+              $result = mysqli_query($link, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $question_id = $row["question_id"];
+
+                echo '
               <div class="part2">
               <div class="card border-secondary mb-12">
                 <div class="card-header bg-transparent border-secondary">
@@ -556,13 +562,13 @@
                 <div class="card-body " id="card' . $question_id . '">
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
-              $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
-              $result2 = mysqli_query($link, $sql2);
-              // 逐行顯示 question_photo
-              while ($photo_row = mysqli_fetch_assoc($result2)) {
-                echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
-              }
-              echo '<div id="overlay"></div>
+                $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+                $result2 = mysqli_query($link, $sql2);
+                // 逐行顯示 question_photo
+                while ($photo_row = mysqli_fetch_assoc($result2)) {
+                  echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+                }
+                echo '<div id="overlay"></div>
                 </div>
                 <div class="card-footer bg-transparent border-secondary">
                   <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
@@ -572,7 +578,7 @@
                 </div>
               </div>
             </div>';
-            echo'<!-- Modal -->
+                echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -588,10 +594,10 @@
               </div>
             </div>
           ';
-             echo '
+                echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var part3 = document.getElementById(\'card'.$question_id.'\');
+              var part3 = document.getElementById(\'card' . $question_id . '\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
                 window.location.href = \'../lisa/discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
@@ -606,9 +612,10 @@
                   });
                 });
               });
-              </script>';}
-            mysqli_close($link);
-            ?>
+              </script>';
+              }
+              mysqli_close($link);
+              ?>
             </div>
             <?php
             $commodity_group_id = $_GET["commodity_group_id"];
@@ -747,7 +754,7 @@
                       <tr>
                         <th>備註內容</th>
                         <td>
-                        <p>' . nl2br($remark ). '</p>
+                        <p>' . nl2br($remark) . '</p>
                         </td>
                       </tr>
                       <tr >
@@ -768,7 +775,7 @@
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;">確定</button>
                 </div>
               </div>
             </div>

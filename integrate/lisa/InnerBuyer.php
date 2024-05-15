@@ -105,7 +105,7 @@
         <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
     </div>
     <?php
-    $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+    $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce order by announce_time DESC";
     $result3 = mysqli_query($link, $sql3);
     $row3 = mysqli_fetch_assoc($result3);
     echo '
@@ -979,7 +979,7 @@
                         <div class="collapse" id="collapse' . $order_id . '">
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
                            placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
-                        <center><button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;">確定</button></center>
+                        <button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;float:left">確定</button>
                         </div>
                         
                         </td>
