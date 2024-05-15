@@ -216,7 +216,8 @@
                 <li><i class="fa-solid fa-user"></i>&nbsp;<strong>賣家</strong>: <a
                     href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
                     <?php echo $shop_name; ?></a></li>
-                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a href="portfolio.php?nation=<?php echo $nation; ?>" target="_blank">
+                <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a
+                    href="portfolio.php?nation=<?php echo $nation; ?>" target="_blank">
                     <?php
 
                     switch ($nation) {
@@ -254,7 +255,7 @@
                         echo "無";
                     }
                     ?>
-                </a></li>
+                  </a></li>
                 <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
 
@@ -302,8 +303,11 @@
                           case 9:
                             echo '<a href="portfolio.php?topic=9" target="_blank"><span class="topic" name="topic" value="9">精品</span></a>';
                             break;
+                          case 10:
+                            echo '<a href="portfolio.php?topic=10" target="_blank"><span class="topic" name="topic" value="9">其他</span></a>';
+                            break;
                           default:
-                            echo '<a href="portfolio.php?topic=10" target="_blank"><span class="topic" name="topic" value="10">其他</span></a>';
+                            echo '<a href="#"><span class="topic" name="topic" value="10">無</span></a>';
                         }
                       }
                     }

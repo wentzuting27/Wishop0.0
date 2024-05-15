@@ -179,6 +179,17 @@
   .checkbox-label input:checked+.checkbox-button {
     background-color: #E9C9D6;
   }
+
+  .topic-label {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #B0A5C6;
+    color: #fff;
+    padding: 3px 10px;
+    margin: 5px;
+  }
+
+  
 </style>
 
 
@@ -189,12 +200,12 @@
   }
 
   /* Checkbox美化 */
-  input[type="checkbox"] {
+  input[type="radio"] {
     display: none;
   }
 
   /* Checkbox的自訂樣式 */
-  input[type="checkbox"]+label {
+  input[type="radio"]+label {
     display: inline-block;
     cursor: pointer;
     padding: 5px 10px;
@@ -205,7 +216,7 @@
   }
 
   /* Checkbox被勾選時的樣式 */
-  input[type="checkbox"]:checked+label {
+  input[type="radio"]:checked+label {
     background-color: #E9C9D6;
     border: 2px solid #E9C9D6;
     color: #fff;
@@ -458,17 +469,31 @@
                               <h5>國家</h5>
                               <div class="row">
                                 <div class="col">
-                                  <input type="checkbox" name="nation" id="1"><label for="1">&nbsp;日本</label>
-                                  <input type="checkbox" name="nation" id="2"><label for="2">&nbsp;韓國</label>
-                                  <input type="checkbox" name="nation" id="3"><label for="3">&nbsp;台灣</label>
-                                  <input type="checkbox" name="nation" id="4"><label for="4">&nbsp;法國</label>
-                                  <input type="checkbox" name="nation" id="5"><label for="5">&nbsp;美國</label>
-                                  <input type="checkbox" name="nation" id="6"><label for="6">&nbsp;義大利</label>
-                                  <input type="checkbox" name="nation" id="7"><label for="7">&nbsp;中國</label>
-                                  <input type="checkbox" name="nation" id="8"><label for="8">&nbsp;泰國</label>
-                                  <input type="checkbox" name="nation" id="9"><label for="9">&nbsp;英國</label>
-                                  <input type="checkbox" name="nation" id="10"><label for="10">&nbsp;加拿大</label>
+
+                                  <input type="radio" name="nation" id="nation_all" value="%"><label
+                                    for="nation_all">&nbsp;ALL</label>
+                                  <input type="radio" name="nation" id="nation1" value="1"><label
+                                    for="nation1">&nbsp;日本</label>
+                                  <input type="radio" name="nation" id="nation2" value="2"><label
+                                    for="nation2">&nbsp;韓國</label>
+                                  <input type="radio" name="nation" id="nation3" value="3"><label
+                                    for="nation3">&nbsp;台灣</label>
+                                  <input type="radio" name="nation" id="nation4" value="4"><label
+                                    for="nation4">&nbsp;法國</label>
+                                  <input type="radio" name="nation" id="nation5" value="5"><label
+                                    for="nation5">&nbsp;美國</label>
+                                  <input type="radio" name="nation" id="nation6" value="6"><label
+                                    for="nation6">&nbsp;義大利</label>
+                                  <input type="radio" name="nation" id="nation7" value="7"><label
+                                    for="nation7">&nbsp;中國</label>
+                                  <input type="radio" name="nation" id="nation8" value="8"><label
+                                    for="nation8">&nbsp;泰國</label>
+                                  <input type="radio" name="nation" id="nation9" value="9"><label
+                                    for="nation9">&nbsp;英國</label>
+                                  <input type="radio" name="nation" id="nation10" value="10"><label
+                                    for="nation10">&nbsp;其他</label>
                                 </div>
+
                               </div>
 
                             </div>
@@ -630,6 +655,12 @@
 
               <?php
 
+              if ($_POST['nation'] != '') {
+                $nation = $_POST['nation'];
+              } else {
+                $nation = '%';
+              }
+
               $search_y_n = "no";
               if ($_POST["search_y_n"] == "yes") {
                 $search_y_n = "yes";
@@ -638,40 +669,99 @@
                 if (empty($_POST['commodity_name'])) {
                   echo '全部一覽';
                 } else {
+                  echo'『';
                   echo $_POST['commodity_name'];
+                  echo'』';
+
                 }
 
                 echo '&nbsp;<i class="fa-solid fa-magnifying-glass"></i></b></h5>';
 
 
+
+
+                if (empty($_POST['nation'])) {
+                  echo '';
+                } else {
+                  echo '<i class="fa-solid fa-location-dot"></i>&nbsp;<b>';
+                  //篩選國家顯示
+                  switch ($_POST["nation"]) {
+                    case 1:
+                      echo "日本";
+                      break;
+                    case 2:
+                      echo "韓國";
+                      break;
+                    case 3:
+                      echo "台灣";
+                      break;
+                    case 4:
+                      echo "法國";
+                      break;
+                    case 5:
+                      echo "美國";
+                      break;
+                    case 6:
+                      echo "義大利";
+                      break;
+                    case 7:
+                      echo "中國";
+                      break;
+                    case 8:
+                      echo "泰國";
+                      break;
+                    case 9:
+                      echo "英國";
+                      break;
+                    case 10:
+                      echo "其他";
+                      break;
+                    default:
+                      echo "ALL";
+                  }
+                  echo '<br>';
+                }
+
+
+
+
+                echo '</b>';
+                
+
+
                 //篩選主題顯示
-                if (in_array("1", $alltopic)) {
-                  echo "服飾";
+                if (in_array("1", $_POST["topic"])) {
+                  echo '<span class="topic-label">服飾</span>&nbsp;';
                 }
-                if (in_array("2", $alltopic)) {
-                  echo "美妝";
+                if (in_array("2", $_POST["topic"])) {
+                  echo '<span class="topic-label">美妝</span>&nbsp;';
                 }
-                if (in_array("3", $alltopic)) {
-                  echo "動漫";
+                if (in_array("3", $_POST["topic"])) {
+                  echo '<span class="topic-label">動漫</span>&nbsp;';
                 }
-                if (in_array("4", $alltopic)) {
-                  echo "明星";
+                if (in_array("4", $_POST["topic"])) {
+                  echo '<span class="topic-label">明星</span>&nbsp;';
                 }
-                if (in_array("5", $alltopic)) {
-                  echo "日常";
+                if (in_array("5", $_POST["topic"])) {
+                  echo '<span class="topic-label">日常</span>&nbsp;';
                 }
-                if (in_array("6", $alltopic)) {
-                  echo "數位3C";
+                if (in_array("6", $_POST["topic"])) {
+                  echo '<span class="topic-label">數位3C</span>&nbsp;';
                 }
-                if (in_array("7", $alltopic)) {
-                  echo "美食";
+                if (in_array("7", $_POST["topic"])) {
+                  echo '<span class="topic-label">美食</span>&nbsp;';
                 }
-                if (in_array("8", $alltopic)) {
-                  echo "運動";
+                if (in_array("8", $_POST["topic"])) {
+                  echo '<span class="topic-label">運動</span>&nbsp;';
                 }
-                if (in_array("9", $alltopic)) {
-                  echo "精品";
+                if (in_array("9", $_POST["topic"])) {
+                  echo '<span class="topic-label">精品</span>&nbsp;';
                 }
+                if (in_array("10", $_POST["topic"])) {
+                  echo '<span class="topic-label">其它</span>&nbsp;';
+                }
+
+
 
                 echo '<hr>';
               }
@@ -713,14 +803,14 @@
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%'
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation'
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}'))
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}'))
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               }
@@ -739,18 +829,18 @@
           if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
 
+              $commodity_group_id = $row["commodity_group_id"];
 
 
               $sql2 = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
+              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
               GROUP BY c.commodity_id";
               $result2 = mysqli_query($link, $sql2);
 
 
               //topic複選
-              $commodity_group_id = $row["commodity_group_id"];
               $alltopic = array();
               $sql_alltopic = "select topic from group_topic where commodity_group_id = '$commodity_group_id'";
               $result_alltopic = mysqli_query($link, $sql_alltopic);
@@ -758,7 +848,7 @@
               while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
                 $alltopic[] = $row_alltopic['topic'];
               }
-              ;
+
 
               $checkselect = 'yes';
               $topic = $_POST['topic'];
