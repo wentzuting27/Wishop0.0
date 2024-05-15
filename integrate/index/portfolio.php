@@ -618,7 +618,7 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                       aria-labelledby="pills-home-tab">
                       <div class="d-flex justify-content-center">
-                        <img src="../files/發現.jpg" alt="發現功能" style="min-width:100px; height:60%">
+                        <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
                       </div>
 
                     </div>
