@@ -28,7 +28,7 @@
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/discussion.css" rel="stylesheet">
+    <link href="assets/css/InnerPage.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
@@ -45,223 +45,224 @@
     <!-- End Header -->
 
     <main id="main">
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
-        <?php
-        $commodity_group_id = $_GET["commodity_group_id"];
-        $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-        $sql = "select *
-        from commodity_group
-        where commodity_group_id=$commodity_group_id";
-        $result = mysqli_query($link, $sql);
-        while ($row = mysqli_fetch_assoc($result)) {
-          $shop_id = $row["shop_id"];
-        } ?>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <ol>
-            <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" style="color: rgb(255, 230, 237);">返回賣場</a>
-            </li>
-            <li>團內資訊</li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-    <?php
-    $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
-    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $sql = "select *
-  from commodity_group
-  where commodity_group_id=$commodity_group_id";
-    $result = mysqli_query($link, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-      $shop_id = $row["shop_id"];
-      echo '
-    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
-    ;">';
-    } ?>
-    <form method="post" action="save_group.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
-      <?php
-      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-      $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
-      $account = $_SESSION["account"];
-      $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result2 = mysqli_query($link, $sql2);
-
-      if ($result2 && mysqli_num_rows($result2) == 0) {
-        echo '
-    <div class="background-overlay" style="position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-    </div>
-    <div class="edit_like_shop_button">
-    <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
-      }
-
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result = mysqli_query($link, $sql);
-
-      if ($result && mysqli_num_rows($result) == 0) {
-        echo '
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-    <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
-    </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-    <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-    <p><i class="fa-solid fa-bullhorn"></i></p>
-    </div>
-    <div>
-    <center>
-    <marquee>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    <span>公告：商品即將寄出，請注意到貨時間！</span>
-    </marquee>
-    </center>
-    ';
-      }
-      if ($result2 && mysqli_num_rows($result2) != 0) {
-        echo '
-      <div class="background-overlay" style="position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-      </div>
-      <div class="edit_like_shop_button">
-      <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
-      }
-
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
-      $result = mysqli_query($link, $sql);
-
-      if ($result && mysqli_num_rows($result) != 0) {
-        echo '
-      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
-      <i class="fa-solid fa-share-from-square"></i>取消跟團</button>
-      </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
-      <div  style="margin-left: 300px; margin-top: -50px;z-index: 9;">
-      <p><i class="fa-solid fa-bullhorn"></i></p>
-      </div>
-      <div>
-      <center>
-      <marquee>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      <span>公告：商品即將寄出，請注意到貨時間！</span>
-      </marquee>
-      </center>
-      ';
-      }
-
-      mysqli_close($link);
-      ?>
-    </form>
-    </div>
-    </div>
-
-    <form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
-      <!-- Modal -->
-      <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="leaveLabel">確定跟團？</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <h6 style="color:red;padding-left:10px">跟團須知：</h6>
-            <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
-            <h6 style="padding-left:10px">跟團也無法退團</h6>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="submit" name="addgroup" class="btn btn-primary" id="one">確定</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    <!-- Modal -->
-    <div class="modal fade" id="already" tabindex="-1" aria-labelledby="alreadyLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="alreadyLabel">您已經跟團</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <h6 style="color:red;padding-left:10px">跟團須知：</h6>
-          <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
-          <h6 style="padding-left:10px">跟團也無法退團</h6>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php
-    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $sql = "select * from shop where shop_id=$shop_id";
-    $result = mysqli_query($link, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo '
-      <!-- Showcase -->
-      <div class="card mb-3" style="border: none;background-color: #ffffff00;">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <div class="profile-picture big-profile-picture clear" style="text-align: center;margin-top: 10px;">
-              <img width="100%" height="100%" alt="Anne Hathaway picture"
-                src="', $row["shop_avatar"], '">
-            </div>
-            <br>
-            <center>
-              <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-                style="text-decoration: none;font-weight: 600;">', $row["shop_name"], '</a>
-            </center>
-          </div>
-          ';
-    }
-    ?>
-
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
     <?php
     $commodity_group_id = $_GET["commodity_group_id"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $sql = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+    $sql = "select *
+    from commodity_group
+    where commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-      echo '
-          <div class="col-md-7">
-            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>';
-      $commodity_group_id = $_GET["commodity_group_id"];
-      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-      $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
-      $result2 = mysqli_query($link, $sql2);
-      $row2 = mysqli_fetch_assoc($result2);
-      echo '<small style="font-size: 0.4cm;font-weight: bold;"><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
-      echo '</h3>
-            <div class="card-text">
-                <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
+      $shop_id = $row["shop_id"];
+    } ?>
 
-              <div class="card-text" style="position: absolute; bottom: 0;">
-                <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
-                  <div class="buttons">
-                    <div id="three" class="button">#xxx</div>
-                    <div id="four" class="button">#xxx</div><br>
-                  </div>
-                </div>
+    <div class="d-flex justify-content-between align-items-center">
+
+      <ol>
+        <li><a href="../index/index.php" style="color:black">首頁</a></li>
+        <li><a href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" style="color: rgb(255, 230, 237);">返回賣場</a>
+        </li>
+        <li>團內資訊</li>
+      </ol>
+    </div>
+
+  </div>
+</section><!-- End Breadcrumbs -->
+<?php
+$commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+$sql = "select *
+from commodity_group
+where commodity_group_id=$commodity_group_id";
+$result = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+  $shop_id = $row["shop_id"];
+  echo '
+<section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
+;">';
+} ?>
+<form method="post" action="save_group.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
+  <?php
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $commodity_group_id = $_GET["commodity_group_id"];//在哪一個商品團體要用接值得方式,先假設1,之後再改
+  $account = $_SESSION["account"];
+  $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+  $result2 = mysqli_query($link, $sql2);
+
+  if ($result2 && mysqli_num_rows($result2) == 0) {
+    echo '
+<div class="background-overlay" style="position: absolute;
+top: 0;
+width: 100%;
+height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+</div>
+<div class="edit_like_shop_button">
+<button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
+  }
+  else {
+    echo '
+  <div class="background-overlay" style="position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+  </div>
+  <div class="edit_like_shop_button">
+  <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
+  }
+
+  $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+  $result = mysqli_query($link, $sql);
+
+  if ($result && mysqli_num_rows($result) == 0) {
+    echo '
+<button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+<i class="fa-solid fa-share-from-square"></i>我要跟團</button>
+</div>
+';
+$sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+$result3 = mysqli_query($link, $sql3);
+$row3 = mysqli_fetch_assoc($result3);
+echo'
+<div class="marquee-container">
+<center>
+<marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+</marquee>
+</center>
+ </div>
+';
+  }else {
+    echo '
+  <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+  <i class="fa-solid fa-share-from-square"></i>已跟團</button>
+  </div>
+ 
+  ';
+$sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+$result3 = mysqli_query($link, $sql3);
+$row3 = mysqli_fetch_assoc($result3);
+echo'
+<div class="marquee-container">
+<center>
+<marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+<span>公告：'.$row3["announce_narrate"].'！</span>
+</marquee>
+</center>
+ </div>
+  ';
+  }
+  mysqli_close($link);
+  ?>
+</form>
+</div>
+</div>
+
+<form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
+  <!-- Modal -->
+  <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="leaveLabel">確定跟團？</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <h6 style="color:red;padding-left:10px">跟團須知：</h6>
+        <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
+        <h6 style="padding-left:10px">跟團也無法退團</h6>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+          <button type="submit" name="addgroup" class="btn btn-primary" id="one">確定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="already" tabindex="-1" aria-labelledby="alreadyLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="alreadyLabel">您已經跟團</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h6 style="color:red;padding-left:10px">跟團須知：</h6>
+      <h6 style="padding-left:10px">請勿跟團後不購買產品，否則列入黑名單！！！</h6>
+      <h6 style="padding-left:10px">跟團也無法退團</h6>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+$sql = "select * from shop where shop_id=$shop_id";
+$result = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+  echo '
+  <!-- Showcase -->
+  <div class="card mb-3" style="border: none;background-color: #ffffff00;">
+    <div class="row g-0">
+      <div class="col-md-5">
+        <div class="profile-picture big-profile-picture clear">
+          <img width="100%" height="100%" alt="Anne Hathaway picture"
+            src="', $row["shop_avatar"], '">
+        </div>
+        <br>
+        <center>
+          <a href="../shop/shop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+            style="text-decoration: none;font-weight: 600;">', $row["shop_name"], '</a>
+        </center>
+      </div>
+      ';
+}
+?>
+
+<?php
+$commodity_group_id = $_GET["commodity_group_id"];
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+$sql = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+$result = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+  echo '
+      <div class="col-md-7">
+        <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>';
+  $commodity_group_id = $_GET["commodity_group_id"];
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
+  $result2 = mysqli_query($link, $sql2);
+  $row2 = mysqli_fetch_assoc($result2);
+  echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+  echo '</h3>
+        <div class="card-text">
+            <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
+
+          <div class="card-text" style="position: absolute; bottom: 0;">
+            <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
+              <div class="buttons">
+                <div id="three" class="button">#xxx</div>
+                <div id="four" class="button">#xxx</div><br>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-    </section>
-    <!-- SECOND navbar -->';
-    } ?>
-
+</section>
+<!-- SECOND navbar -->';
+} ?>
     <div class="tabs" role="tablist">
 
       <input type="radio" id="tab1" name="tab-control" >
@@ -388,22 +389,29 @@
                     <td data-th="Subtotal" class="text-center">$0</td>
                   </tr>';
                   }
-                  mysqli_close($link); ?>
-
+                  echo'
                   <tfoot>
                     <tr>
                       <td colspan="2" class="hidden-xs text-center"></td>
-                      <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>
+                      <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>';
+                      $commodity_group_id = $_GET["commodity_group_id"];
+                      $account = $_SESSION["account"];
+                      $sql2 = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+                      $result2 = mysqli_query($link, $sql2);
+                
+                      if ($result2 && mysqli_num_rows($result2) != 0) {
+                      echo'
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
                             class="btn btn-block" style="background-color: #B0A5C6; color: white;">結帳 <i
                               class="fa-solid fa-arrow-right-to-line"></i>
                           </button>
                         </center>
-                      </td>
-                    </tr>
+                      </td>';}
+                      echo'</tr>
                   </tfoot>
-                </table>
+                </table>';
+                mysqli_close($link); ?>
             </div>
           </div>
           <!-- Modal -->
@@ -481,80 +489,79 @@
                     <h2>Returns</h2>
                     <h4>對帳表:</h4>
                     <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
-                        <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>訂單編號</th>
-                                    <th>帳號</th>
-                                    <th>下單時間</th>
-                                    <th>總金額</th>
-                                    <th>確認付款</th>
-                                    <th>明細</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                                if (!$link) {
-                                    die('Connection failed: ' . mysqli_connect_error());
-                                }
-                                $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+            <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>訂單編號</th>
+                  <th>帳號</th>
+                  <th>下單時間</th>
+                  <th>總金額</th>
+                  <th>確認付款</th>
+                  <th>明細</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                if (!$link) {
+                  die('Connection failed: ' . mysqli_connect_error());
+                }
+                $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           GROUP BY order_details.order_id
-                  ";
-                                $result = mysqli_query($link, $sql);
+           GROUP BY order_details.order_id";
+                $result = mysqli_query($link, $sql);
 
-                                if (!$result) {
-                                    die('Query failed: ' . mysqli_error($link));
-                                }
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    $order_id = $row['order_id']; // 獲取訂單 ID
-                                
-                                    // 在迴圈內部執行第二個查詢
-                                    $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                if (!$result) {
+                  die('Query failed: ' . mysqli_error($link));
+                }
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $order_id = $row['order_id']; // 獲取訂單 ID
+                
+                  // 在迴圈內部執行第二個查詢
+                  $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                                
-                                    $result2 = mysqli_query($link, $sql2);
-                                    $totalprice = 0;
-                                    if ($result2 && mysqli_num_rows($result2) > 0) {
-                                        $totalprice_row = mysqli_fetch_assoc($result2);
-                                        $totalprice = $totalprice_row['totalprice'];
-                                    }
-                                    echo '<tr>';
-                                    echo '
+                
+                  $result2 = mysqli_query($link, $sql2);
+                  $totalprice = 0;
+                  if ($result2 && mysqli_num_rows($result2) > 0) {
+                    $totalprice_row = mysqli_fetch_assoc($result2);
+                    $totalprice = $totalprice_row['totalprice'];
+                  }
+                  echo '<tr>';
+                  echo '
               <td>' . $row['order_id'] . '</td>
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
-            <td>' . $row['payment_state'] . '</td>';
-                                    echo '
+            <td>' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</td>';
+                  echo '
                   <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
                 </td>
                 ';
-                                    echo '</tr>';
-                                }
-                                mysqli_close($link);
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                        die('Connection failed: ' . mysqli_connect_error());
-                    }
-                    $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
-                    $commodity_group_id = $_GET["commodity_group_id"];
-                    $result = mysqli_query($link, $sql);
-                    if (!$result) {
-                        die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                  echo '</tr>';
+                }
+                mysqli_close($link);
+                ?>
+              </tbody>
+            </table>
+          </div>
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          if (!$link) {
+            die('Connection failed: ' . mysqli_connect_error());
+          }
+          $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
+          $commodity_group_id = $_GET["commodity_group_id"];
+          $result = mysqli_query($link, $sql);
+          if (!$result) {
+            die('Query failed: ' . mysqli_error($link));
+          }
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '
             <form  method="post" action="orderdetail.php?commodity_group_id=' . $commodity_group_id . '">
             <input type="hidden" name="order_id" value="', $row["order_id"], '">
           <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
@@ -571,19 +578,19 @@
                         <th>訂單內容</th>
                         <td>
                         <ul>';
-                        $order_id = $row['order_id']; // 獲取訂單 ID
-                        $order_state = $row['order_state'];
-                        $remark = $row['remark'];
-                        $sql2 = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
-                        $result2 = mysqli_query($link, $sql2);
-                        if (!$result2) {
-                            die('Query failed: ' . mysqli_error($link));
-                        }
-                        while ($row = mysqli_fetch_assoc($result2)) {
-                            echo '
+            $order_id = $row['order_id']; // 獲取訂單 ID
+            $order_state = $row['order_state'];
+            $remark = $row['remark'];
+            $sql2 = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
+            $result2 = mysqli_query($link, $sql2);
+            if (!$result2) {
+              die('Query failed: ' . mysqli_error($link));
+            }
+            while ($row = mysqli_fetch_assoc($result2)) {
+              echo '
                         <li>' . $row['commodity_name'] . '/ ' . $row['order_details_num'] . '個</li>';
-                        }
-                        echo '</ul>
+            }
+            echo '</ul>
                         </td>
                       </tr>
                       <tr>
@@ -617,15 +624,15 @@
           </div>
           </form>';
 
-                    }
-                    mysqli_close($link);
-                    ?>
-                    <button onclick="showCsv()" class="btn btn-block"
-                        style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
-                    <button onclick="download()" class="btn btn-block"
-                        style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
-                    <br><br><br>
-                </section>
+          }
+          mysqli_close($link);
+          ?>
+          <button onclick="showCsv()" class="btn btn-block"
+            style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
+          <button onclick="download()" class="btn btn-block"
+            style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
+          <br><br><br>
+        </section>
             </div>
         </div>
 

@@ -698,8 +698,7 @@
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $commodity_group_id = $_GET["commodity_group_id"];
             $sql = "SELECT * FROM question NATURAL JOIN account 
-            WHERE commodity_group_id ='$commodity_group_id' 
-            AND public='公開';";
+            WHERE commodity_group_id ='$commodity_group_id' ;";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
               $question_id = $row["question_id"]; 
