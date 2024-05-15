@@ -188,8 +188,6 @@
     padding: 3px 10px;
     margin: 5px;
   }
-
-  
 </style>
 
 
@@ -594,6 +592,19 @@
                     margin-top: 10px;
                     /* 調整標籤內容與標籤之間的間距 */
                   }
+
+                  mark {
+                    background-color: #E9C9D6;
+                    color:#FFF;
+                    border-radius: 20px;
+                    display: inline-block;
+                    line-height: 0.8;
+                    overflow: visible;
+                    padding: 0.5em 0.5em;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
+                  }
+
                 </style>
 
                 <section id="schedule" class="section-with-bg">
@@ -601,7 +612,7 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                        aria-selected="true">功能&nbsp;&nbsp;<i class="fa-solid fa-gears"></i></button>
+                        aria-selected="true">功能&nbsp;</button>
                     </li>
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
@@ -617,6 +628,11 @@
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                       aria-labelledby="pills-home-tab">
+                      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;推薦您感興趣的商品！</mark>
+                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                      <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
+                      <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
+                      </div>
                       <div class="d-flex justify-content-center">
                         <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
                       </div>
@@ -624,7 +640,13 @@
                     </div>
 
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                      敬啟期待...
+                      <p>您可以透過</p>
+                      <ul>
+                        <li>關鍵字查詢</li>
+                        <li>主題查詢</li>
+                        <li>國家查詢</li>
+                      </ul>
+                      <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
                     </div>
 
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
@@ -669,9 +691,9 @@
                 if (empty($_POST['commodity_name'])) {
                   echo '全部一覽';
                 } else {
-                  echo'『';
+                  echo '『';
                   echo $_POST['commodity_name'];
-                  echo'』';
+                  echo '』';
 
                 }
 
@@ -726,7 +748,7 @@
 
 
                 echo '</b>';
-                
+
 
 
                 //篩選主題顯示
