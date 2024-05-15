@@ -14,13 +14,13 @@
             value('$shop_id','{$_SESSION["account"]}',now())";
         mysqli_query($link, $sql_insert);
 
-        header("refresh:0;url=$page.php?shop_id=$shop_id");
+        echo '<script>window.history.go(-1);</script>';
         
     }elseif($method=="de" & $like=='shop'){
         
         $sql="DELETE FROM like_shop WHERE shop_id='$shop_id' and account='{$_SESSION["account"]}'";
         mysqli_query($link, $sql);
-        header("refresh:0;url=$page.php?shop_id=$shop_id");
+        echo '<script>window.history.go(-1);</script>';
         
     }elseif($method=="in" & $like=='group'){
         
@@ -28,14 +28,14 @@
             value('$commodity_group_id','{$_SESSION["account"]}',now())";
         mysqli_query($link, $sql_insert);
 
-        header("refresh:0;url=$page.php?shop_id=$shop_id");
+        echo '<script>window.history.go(-1);</script>';
         
     }elseif($method=="de" & $like=='group'){
         
         $sql="DELETE FROM like_group WHERE commodity_group_id='$commodity_group_id' and account='{$_SESSION["account"]}'";
         mysqli_query($link, $sql);
 
-        header("refresh:0;url=$page.php?shop_id=$shop_id");
+        echo '<script>window.history.go(-1);</script>';
         
     }elseif($method=="in" & $like=='wish'){
         

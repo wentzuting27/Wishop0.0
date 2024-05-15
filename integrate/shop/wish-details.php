@@ -257,7 +257,7 @@
                           <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;">美食</p></td>
                           <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;">運動</p></td>
                           <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;">精品</p></td>
-                          <td width="20%"></td>
+                          <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10" value="10"><label class="icon-label2" for="theme10"><i class="fa-solid fa-bars"></i></label><p style="display: inline-block;">其他</p></td>
                         </tr>
                         </table>
                       </td>
@@ -349,7 +349,14 @@
                     <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: <?php echo $wish_start; ?></li>
                     <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: <?php echo $wish_end; ?></li>
                     <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="<?php echo $wish_link; ?>" target="_blank" style="word-wrap: break-word;overflow-wrap: break-word;">相關連結</a></li>
-                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>: &nbsp;100&nbsp;</li>
+                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;收藏人數</strong>: &nbsp;
+                    <?php
+                    $sql_alllikewish="select *
+                    from like_wish
+                    where wish_id='$wish_id'";
+                    $result_alllikewish=mysqli_query($link,$sql_alllikewish);
+                    echo mysqli_num_rows($result_alllikewish);
+                    ?>&nbsp;</li>
                     <li><strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>: </li>
                       <p class="scrollable-row"><?php echo nl2br($wish_narrat); ?></p>
                   </ul>
