@@ -14,9 +14,12 @@
 
         $link = mysqli_connect("localhost", "root", "12345678", "wishop");
         if ($method == "update") {
-            $sql = "update account set user_name='$user_name', email='$email'";
+            $sql = "update account set user_name='$user_name', email='$email'
+            where account='{$_SESSION["account"]}'
+            ";
             if (mysqli_query($link, $sql)) {
                 header("refresh:0;url=Profile_settings.php");
+                $_SESSION["user_name"]=$user_name;
             } else {
                 header("refresh:0;url=Profile_settings.php");
             }
