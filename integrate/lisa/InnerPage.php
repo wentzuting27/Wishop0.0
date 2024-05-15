@@ -137,9 +137,9 @@
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
     </marquee>
     </center>
      </div>
@@ -159,9 +159,9 @@
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
-    <span>公告：'.$row3["announce_narrate"].'！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
     </marquee>
     </center>
      </div>
