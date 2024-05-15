@@ -636,7 +636,19 @@
 
           <div class="shop_group-info">
             <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
-            <p><i class="fa-regular fa-heart"></i>1000&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>500</p>
+            <p><i class="fa-regular fa-heart"></i>&nbsp;';
+            $sql_likegroup_num="select *
+            from like_group
+            where commodity_group_id='{$row["commodity_group_id"]}'";
+            $result_likegroup_num=mysqli_query($link,$sql_likegroup_num);
+            echo mysqli_num_rows($result_likegroup_num);
+            echo '&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>&nbsp;';
+            $sql_group_commodity_num="select *
+            from commodity
+            where commodity_group_id='{$row["commodity_group_id"]}' and commodity_state=1";
+            $result_group_commodity_num=mysqli_query($link,$sql_group_commodity_num);
+            echo mysqli_num_rows($result_group_commodity_num);
+            echo '</p>
           </div>
         </div>
       </div>
