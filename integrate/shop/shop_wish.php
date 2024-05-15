@@ -549,10 +549,6 @@
                             </div>
                               
                           <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">xxx</span>
-                              <span class="category">xxxxx</span>
-                            </div>
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
@@ -563,7 +559,13 @@
                                 <a class="trainer-link">',$row["user_name"],'</a>
                               </div>
                               <div class="trainer-rank d-flex align-items-center">
-                              <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;';
+                              <i class="bi bi-heart heart-icon"></i>&nbsp;';
+                              $sql_alllikewish="select *
+                              from like_wish
+                              where wish_id='{$row["wish_id"]}'";
+                              $result_alllikewish=mysqli_query($link,$sql_alllikewish);
+                              echo mysqli_num_rows($result_alllikewish);
+                              echo '&nbsp;';
                               $sql_likewish="select *
                               from like_wish
                               where wish_id='{$row["wish_id"]}' and account='{$_SESSION["account"]}'";
@@ -645,10 +647,6 @@
                             </div>
                               
                           <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">xxx</span>
-                              <span class="category">xxxxx</span>
-                            </div>
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
@@ -659,7 +657,13 @@
                                 <a class="trainer-link">',$row["user_name"],'</a>
                               </div>
                               <div class="trainer-rank d-flex align-items-center">
-                              <i class="bi bi-heart heart-icon"></i>&nbsp;100&nbsp;';
+                              <i class="bi bi-heart heart-icon"></i>&nbsp;';
+                              $sql_alllikewish="select *
+                              from like_wish
+                              where wish_id='{$row["wish_id"]}'";
+                              $result_alllikewish=mysqli_query($link,$sql_alllikewish);
+                              echo mysqli_num_rows($result_alllikewish);
+                              echo '&nbsp;';
                               $sql_likewish="select *
                               from like_wish
                               where wish_id='{$row["wish_id"]}' and account='{$_SESSION["account"]}'";
@@ -739,10 +743,6 @@
                             </div>
                               
                           <div class="course-content">
-                            <div class="justify-content-between align-items-center mb-3">
-                              <span class="category">xxx</span>
-                              <span class="category">xxxxx</span>
-                            </div>
     
                             <h3><a href="wish-details.php?wish_id=',$wish_id,'&shop_id=',$shop_id,'">',$row["wish_name"],'</a></h3>
                             <p class="description">',nl2br($row['wish_narrat']),'</p>
@@ -755,12 +755,12 @@
                               if($row["wish_state"]==1){
                                 echo '
                                 <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;350&nbsp;<button type="button" class="btn button_success" disabled>許願成功</button>
+                                <button type="button" class="btn button_success" disabled>許願成功</button>
                               </div>';
                               }else{
                                 echo '
                                 <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;350&nbsp;<button type="button" class="btn button_fail" disabled>許願失敗</button>
+                                <button type="button" class="btn button_fail" disabled>許願失敗</button>
                               </div>';
                               }
                               echo '
