@@ -349,7 +349,14 @@
                     <li><strong><i class="bi bi-clock"></i>&nbsp;許願日期</strong>: <?php echo $wish_start; ?></li>
                     <li><strong><i class="fa-regular fa-calendar-xmark"></i>&nbsp;許願截止日期</strong>: <?php echo $wish_end; ?></li>
                     <li><strong><i class="fa-solid fa-link"></i>&nbsp;相關連結</strong>: <a href="<?php echo $wish_link; ?>" target="_blank" style="word-wrap: break-word;overflow-wrap: break-word;">相關連結</a></li>
-                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>: &nbsp;100&nbsp;</li>
+                    <li><strong><i class="bi bi-heart heart-icon"></i>&nbsp;收藏人數</strong>: &nbsp;
+                    <?php
+                    $sql_alllikewish="select *
+                    from like_wish
+                    where wish_id='$wish_id'";
+                    $result_alllikewish=mysqli_query($link,$sql_alllikewish);
+                    echo mysqli_num_rows($result_alllikewish);
+                    ?>&nbsp;</li>
                     <li><strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>: </li>
                       <p class="scrollable-row"><?php echo nl2br($wish_narrat); ?></p>
                   </ul>
