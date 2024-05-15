@@ -1010,89 +1010,53 @@
           
                   <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                     <div class="swiper-wrapper">
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <img src="./assets/img/1st-prize.png" class="testimonial-img" alt="">
-                                <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
-                                <h4>2024-04-02</h4>
-                                <p class="scrollable-row">
-                                    <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
-                                    <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
-                                    <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
-                    
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/2nd-place.png" class="testimonial-img" alt="">
-                            <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
-                            <h4>2024-04-02</h4>
-                            <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
-                              <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
-                                    <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
-                            </p>
-                          </div>
-                        </div>
-                      </div><!-- End testimonial item -->
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/3rd-place.png" class="testimonial-img" alt="">
-                            <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
-                            <h4>2024-04-02</h4>
-                            <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
-                              <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
-                              <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
-                            </p>
-                          </div>
-                        </div>
-                      </div><!-- End testimonial item -->
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/4th-prize.png" class="testimonial-img" alt="">
-                            <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
-                            <h4>2024-04-02</h4>
-                            <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
-                              <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
-                              <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
-                            </p>
-                          </div>
-                        </div>
-                      </div><!-- End testimonial item -->
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/5th-prize.png" class="testimonial-img" alt="">
-                            <h6>ATEEZ 星和玩偶DDEONGbyeoli</h6>
-                            <h4>2024-04-02</h4>
-                            <p class="scrollable-row">
-                              <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： <a href="wish-details.php"><img src="https://i.pinimg.com/564x/34/16/1d/34161d9ecd3d64f087e4d5cd1a319dd5.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;杏花麻麻</a><br>
-                              <strong><i class="bi bi-heart heart-icon"></i>&nbsp;我有興趣人數</strong>： &nbsp;65&nbsp;<button class="button">收藏許願</button><br>
-                              <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>： 想收圖上的的大娃，有拆封過也沒關係，可先匯款
-                            </p>
-                          </div>
-                        </div>
-                      </div><!-- End testimonial item -->
+                      <?php
+                        $startOfMonth = date('Y-m-01'); // 當月的第一天
+                        $endOfMonth = date('Y-m-t 23:59:59'); // 當月的最後一天
+                        $sql="select wish.*,user_name, COUNT(like_wish.wish_id) as like_count  from wish
+                        natural join account
+                        INNER JOIN like_wish ON wish.wish_id = like_wish.wish_id
+                        where time between '{$startOfMonth}' and '{$endOfMonth}'
+                        and wish_shop_id IS null 
+                        and wish_state != 4
+                        GROUP BY wish.wish_id
+                        ORDER BY like_count DESC
+                        LIMIT 5";
+                        $result = mysqli_query($link, $sql);
+
+                        
+
+                        while($row=mysqli_fetch_assoc($result))
+                        { 
+                          $wish_id=$row["wish_id"];
+                          $sql_likepeople="select * from like_wish where wish_id='$wish_id'";
+                          $result_likepeople=mysqli_query($link,$sql_likepeople);
+                          $count_likepeople = mysqli_num_rows($result_likepeople);      
+                          echo '
+                
+                            <div class="swiper-slide">
+                              <div class="testimonial-wrap">
+                                  <div class="testimonial-item">
+                                      <img src="./assets/img/1st-prize.png" class="testimonial-img" alt="">
+                                      <h6><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h6>
+                                      <h4>',$row['wish_start'],'</h4>
+                                      <p class="scrollable-row">
+                                          <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： &nbsp;',$row['user_name'],'<br>
+                                          <strong><i class="bi bi-heart heart-icon"></i>&nbsp;收藏人數</strong>： &nbsp;',$count_likepeople,'<br>
+                                          <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>：',$row['wish_narrat'],'
+                                      </p>
+                                  </div>
+                              </div>
+                            </div><!-- End testimonial item -->';
+                        }
+                      ?>
           
                     </div>
-                    <div class="swiper-pagination"></div>
-                  </div><br><br>
+                  <div class="swiper-pagination"></div>
+                </div><br><br>
 
 
-                  <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-award"></i>&nbsp;當月賣家許願完成數排名</h3></center>
+                  <!-- <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-award"></i>&nbsp;當月賣家許願完成數排名</h3></center>
                   <ul class="carousel-indicators" id="hero-carousel-indicators"></ul>
           
                   <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -1109,7 +1073,7 @@
                             </p>
                           </div>
                         </div>
-                      </div><!-- End testimonial item -->
+                      </div>
           
                       <div class="swiper-slide">
                         <div class="testimonial-wrap">
@@ -1122,7 +1086,7 @@
                             </p>
                           </div>
                         </div>
-                      </div><!-- End testimonial item -->
+                      </div>
           
                       <div class="swiper-slide">
                         <div class="testimonial-wrap">
@@ -1135,7 +1099,7 @@
                             </p>
                           </div>
                         </div>
-                      </div><!-- End testimonial item -->
+                      </div>
           
                       <div class="swiper-slide">
                         <div class="testimonial-wrap">
@@ -1148,7 +1112,7 @@
                             </p>
                           </div>
                         </div>
-                      </div><!-- End testimonial item -->
+                      </div>
           
                       <div class="swiper-slide">
                         <div class="testimonial-wrap">
@@ -1161,11 +1125,11 @@
                             </p>
                           </div>
                         </div>
-                      </div><!-- End testimonial item -->
+                      </div>
           
                     </div>
                     <div class="swiper-pagination"></div>
-                  </div>
+                  </div> -->
           
                 </div>
               </section><!-- End Testimonials Section -->
