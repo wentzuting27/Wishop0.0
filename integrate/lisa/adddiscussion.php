@@ -123,7 +123,8 @@ height: 100%;background-color: rgba(237, 237, 237, 0.733)">
 <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
 </div>
 ';
-$sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+$sql3 = "SELECT announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
+order by announce_time DESC";
 $result3 = mysqli_query($link, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 echo'
@@ -144,7 +145,8 @@ echo'
   </div>
  
   ';
-$sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+$sql3 = "SELECT announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
+ order by announce_time DESC";
 $result3 = mysqli_query($link, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 echo'
@@ -245,7 +247,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
   echo '</h3>
         <div class="card-text">
-            <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
+            <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
           <div class="card-text" style="position: absolute; bottom: 0;">
             <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -486,9 +488,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 </section><!-- End Contact Section -->
                 <section id="order">
-                    <h2>Returns</h2>
-                    <h4>對帳表:</h4>
-                    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <h2>Returns</h2>
+          <h4>對帳表:</h4>
+
+          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -596,7 +599,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                       <tr>
                         <th>備註內容</th>
                         <td>
-                        <p>' . $remark . '</p>
+                        <p>' . nl2br($remark ). '</p>
                         </td>
                       </tr>
                       <tr >

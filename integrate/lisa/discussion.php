@@ -245,7 +245,7 @@
       echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
       echo '</h3>
             <div class="card-text">
-                <p style="color: #5a5a5a;font-size: 0.3cm">', $row["commodity_group_narrate"], '</p>
+                <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
                 <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
@@ -378,7 +378,7 @@
                       </div>
                       <div class="col-sm-8">
                           <h4 class="nomargin"><b>', $row["commodity_name"], '</b></h4>
-                          <p>', $row["commodity_narrate"], '</p>
+                          <p>', nl2br($row["commodity_narrate"]), '</p>
                       </div>
                       </div>
                     </td>
@@ -498,7 +498,7 @@
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div><hr>
                 <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;">
-                  <p>', $row["question_narrate"], '</p>           
+                  <p>', nl2br($row["question_narrate"]), '</p>           
                   </div>
                 </div><!-- End blog sidebar --> 
               ';
@@ -717,7 +717,7 @@
                       <tr>
                         <th>備註內容</th>
                         <td>
-                        <p>' . $remark . '</p>
+                        <p>' . nl2br($remark) . '</p>
                         </td>
                       </tr>
                       <tr >
