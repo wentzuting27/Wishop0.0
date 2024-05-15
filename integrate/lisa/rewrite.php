@@ -228,9 +228,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <div class="tabs" role="tablist">
 
-<input type="radio" id="tab1" name="tab-control" checked>
+<input type="radio" id="tab1" name="tab-control" >
 <input type="radio" id="tab2" name="tab-control">
-<input type="radio" id="tab3" name="tab-control">
+<input type="radio" id="tab3" name="tab-control" checked>
 <input type="radio" id="tab4" name="tab-control">
 <div id="subject">
   <ul>

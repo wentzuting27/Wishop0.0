@@ -112,9 +112,9 @@
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
-    <span>公告：' . $row3["announce_narrate"] . '！</span>
-    <span>公告：' . $row3["announce_narrate"] . '！</span>
-    <span>公告：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
+    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
     </marquee>
     </center>
      </div>
@@ -627,7 +627,7 @@
                   var part3 = document.getElementById(\'card0\');
                   part3.addEventListener(\'click\', function () {
                       // 導航到新頁面
-                      window.location.href = \'../lisa/rewrite.php?commodity_group_id=' . $commodity_group_id . '#contact\';
+                      window.location.href = \'../lisa/rewrite.php?commodity_group_id=' . $commodity_group_id . '#first\';
                   });
               });
           </script>';
