@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $method=$_POST['method'];
     $page=$_POST['page'];
     $social_type=$_POST['social_type'];
