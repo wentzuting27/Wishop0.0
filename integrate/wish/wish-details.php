@@ -594,7 +594,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <span style="color: #d55858;">跟團須知：</span>請勿跟團後不購買產品，否則列入黑名單！！！跟團也無法退團
+                <p style="font-size:18px;color:#d55858">跟團須知：</p>
+                <p>請勿跟團後不購買產品，否則列入黑名單！！！</p>
+                <p>跟團也無法退團</p>
+                <p style="color:#b9b0c8">跟團前請深思熟慮!若還在觀望可改選擇收藏此團~</p>
                 </div>
                 <div class="modal-footer">
                   <a href='bid_in_up.php?commodity_group_id=<?php echo $commodity_group_id?>&wish_id=<?php echo $wish_id ?>&method=跟團'><button type="button" class="btn insert_button">確定跟團</button></a>

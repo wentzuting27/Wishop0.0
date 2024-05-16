@@ -1013,8 +1013,9 @@
                       <?php
                         $startOfMonth = date('Y-m-01'); // 當月的第一天
                         $endOfMonth = date('Y-m-t 23:59:59'); // 當月的最後一天
-                        $sql="select wish.*,user_name, COUNT(like_wish.wish_id) as like_count  from wish
+                        $sql="select wish.*,user_name,wish_photo_link, COUNT(like_wish.wish_id) as like_count  from wish
                         natural join account
+                        natural join wish_photo
                         INNER JOIN like_wish ON wish.wish_id = like_wish.wish_id
                         where time between '{$startOfMonth}' and '{$endOfMonth}'
                         and wish_shop_id IS null 
@@ -1037,7 +1038,7 @@
                             <div class="swiper-slide">
                               <div class="testimonial-wrap">
                                   <div class="testimonial-item">
-                                      <img src="./assets/img/1st-prize.png" class="testimonial-img" alt="">
+                                      <img src="',$row['wish_photo_link'],'" class="testimonial-img" alt="">
                                       <h6><a href="wish-details.php?wish_id=',$wish_id,'">',$row["wish_name"],'</a></h6>
                                       <h4>',$row['wish_start'],'</h4>
                                       <p class="scrollable-row">
