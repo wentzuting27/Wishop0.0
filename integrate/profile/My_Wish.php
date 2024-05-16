@@ -142,8 +142,6 @@
           </label>
         </div>
         </form>
-          </label>
-        </div>
         <h5 style="color: #ffffff;">', $_SESSION["user_name"], '</h5>
         <p class="text-center middle" style="color: #cfcfcf; display: inline-block;">@', $_SESSION["account"], '</p>
         ';
