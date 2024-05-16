@@ -144,7 +144,7 @@
       </div>
      
       ';
-        $sql3 = "SELECT announce_narrate FROM commodity_group_announce order by announce_time DESC";
+        $sql3 = "SELECT announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id' order by announce_time DESC";
         $result3 = mysqli_query($link, $sql3);
         $row3 = mysqli_fetch_assoc($result3);
         echo '
