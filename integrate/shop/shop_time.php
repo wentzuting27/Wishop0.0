@@ -51,23 +51,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="../index/index.php" >首頁</a></li>
-          <li class="dropdown"><a href="../index/portfolio.php" class="active"><span>購物</span><i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="about.php">About</a></li>
-              <li><a href="team.php">Team</a></li>
-              <li><a href="testimonials.php">Testimonials</a></li>
-
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <li><a href="../index/portfolio.php">購物</a></li>
           <li><a href="#">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
