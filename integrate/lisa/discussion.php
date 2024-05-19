@@ -580,7 +580,7 @@
 
             <div class="blog-comments">
               <h4 class="comments-count">2 Comments</h4>
-              <div class="card mb-3" style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+              <div class="card mb-3 " style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
                   <div class="col-md-2">
                     <div class="comment-img">
