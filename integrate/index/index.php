@@ -117,9 +117,9 @@
           style="background-image: url(https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">限時團購</h2>
-              <p class="animate__animated animate__fadeInUp">本周熱門的團購都在這裡，快來看看哦！</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>前往查看</b></a>
+              <h2 class="animate__animated animate__fadeInDown">團購</h2>
+              <p class="animate__animated animate__fadeInUp">團購都在這裡，快來看看哦！</p>
+              <a href="groupshop.php" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>前往查看</b></a>
             </div>
           </div>
         </div>

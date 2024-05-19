@@ -808,12 +808,14 @@
               if ($_POST["search_y_n"] == "yes" or !isset($_SESSION["account"])) {
                 $sql = "select * from commodity_group
                 JOIN shop on commodity_group.shop_id = shop.shop_id
-              where commodity_group_name like'%{$_POST['commodity_group_name']}%' and nation like'$nation' AND close_order_date > NOW()
+              where commodity_group_name like'%{$_POST['commodity_group_name']}%' and nation like'$nation' 
+              AND close_order_date > NOW() OR close_order_date is null
               ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
                 $sql = "SELECT * FROM commodity_group
                         JOIN shop ON commodity_group.shop_id = shop.shop_id
-                        WHERE commodity_group_name LIKE '%{$_POST['commodity_group_name']}%' AND nation LIKE '$nation' AND close_order_date > NOW()
+                        WHERE commodity_group_name LIKE '%{$_POST['commodity_group_name']}%' AND nation LIKE '$nation' 
+                        AND close_order_date > NOW() OR close_order_date is null
                           AND (
                             commodity_group_id IN (
                               SELECT commodity_group_id 
@@ -853,7 +855,7 @@
               $sql2 = "SELECT * FROM commodity_group
               JOIN shop ON commodity_group.shop_id = shop.shop_id
               where commodity_group_name like'%{$_POST['commodity_group_name']}%' 
-              and commodity_group.shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and commodity_group_id='{$row["commodity_group_id"]}' AND close_order_date > NOW()
+              and commodity_group.shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and commodity_group_id='{$row["commodity_group_id"]}' 
               GROUP BY commodity_group_id
               ";
 
