@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WISHOP 商品一覽</title>
+  <title>WISHOP 團購一覽</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -235,8 +235,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a></li>
-          <li><a href="groupshop.php">團購</a></li>
+          <li class="dropdown"><a href="portfolio.php"><span>購物</span></a>
+          </li>
+          <li><a href="groupshop.php" class="active">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
@@ -324,7 +325,7 @@
 
 
           <div class="sidebar-item search-form">
-            <form method=post action="portfolio.php">
+            <form method=post action="groupshop.php">
               <div class="row" style="width:100%;">
 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -334,7 +335,7 @@
                     <div class="input-group mb-4" style="background-color:#F8F9FA;  justify-content: center;">
                       <div class="col-8">
                         <input type="hidden" name="search_y_n" value="yes" style="border: none; height:50px;">
-                        <input type="text" placeholder="輸入商品名稱" name="commodity_name"
+                        <input type="text" placeholder="輸入商品名稱" name="commodity_group_name"
                           style="border: none; height:50px;">
                       </div>
 
@@ -579,7 +580,7 @@
 
                   mark {
                     background-color: #E9C9D6;
-                    color:#FFF;
+                    color: #FFF;
                     border-radius: 20px;
                     display: inline-block;
                     line-height: 0.8;
@@ -588,7 +589,6 @@
                     margin-top: 5px;
                     margin-bottom: 10px;
                   }
-
                 </style>
 
                 <section id="schedule" class="section-with-bg">
@@ -614,8 +614,8 @@
                       aria-labelledby="pills-home-tab">
                       <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;推薦您感興趣的商品！</mark>
                       <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                      <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
-                      <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
+                        <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
+                        <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
                       </div>
                       <div class="d-flex justify-content-center">
                         <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
@@ -672,11 +672,11 @@
                 $search_y_n = "yes";
                 echo '<h5 style="text-align: center;"><b>';
 
-                if (empty($_POST['commodity_name'])) {
+                if (empty($_POST['commodity_group_name'])) {
                   echo '全部一覽';
                 } else {
                   echo '『';
-                  echo $_POST['commodity_name'];
+                  echo $_POST['commodity_group_name'];
                   echo '』';
 
                 }
@@ -806,19 +806,31 @@
                 $search_y_n = "yes";
               }
               if ($_POST["search_y_n"] == "yes" or !isset($_SESSION["account"])) {
-                $sql = "select * from commodity c
-              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
-              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and close_order_date > NOW()
-              GROUP BY c.commodity_id
+                $sql = "select * from commodity_group
+                JOIN shop on commodity_group.shop_id = shop.shop_id
+              where commodity_group_name like'%{$_POST['commodity_group_name']}%' and nation like'$nation' AND close_order_date > NOW()
               ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
-                $sql = "select * from commodity c
-              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
-              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')) and close_order_date > NOW()
-              GROUP BY c.commodity_id
-              ORDER BY RAND() ";
+                $sql = "SELECT * FROM commodity_group
+                        JOIN shop ON commodity_group.shop_id = shop.shop_id
+                        WHERE commodity_group_name LIKE '%{$_POST['commodity_group_name']}%' AND nation LIKE '$nation' AND close_order_date > NOW()
+                          AND (
+                            commodity_group_id IN (
+                              SELECT commodity_group_id 
+                              FROM group_topic 
+                              WHERE topic IN (
+                                SELECT topic 
+                                FROM like_topic 
+                                WHERE account = '{$_SESSION["account"]}'
+                              )
+                            ) 
+                            OR commodity_group.shop_id IN (
+                              SELECT shop_id 
+                              FROM like_shop 
+                              WHERE account = '{$_SESSION["account"]}'
+                            )
+                          )
+                        ORDER BY RAND()";
               }
 
 
@@ -838,11 +850,13 @@
               $commodity_group_id = $row["commodity_group_id"];
 
 
-              $sql2 = "select * from commodity c
-              JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
-              JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}' and close_order_date > NOW()
-              GROUP BY c.commodity_id";
+              $sql2 = "SELECT * FROM commodity_group
+              JOIN shop ON commodity_group.shop_id = shop.shop_id
+              where commodity_group_name like'%{$_POST['commodity_group_name']}%' 
+              and commodity_group.shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and commodity_group_id='{$row["commodity_group_id"]}' AND close_order_date > NOW()
+              GROUP BY commodity_group_id
+              ";
+
               $result2 = mysqli_query($link, $sql2);
 
 
@@ -877,15 +891,15 @@
                 }
                 echo ' wow fadeInUp">
                     <div class="portfolio-wrap">
-                        <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
-                            data-glightbox="type: external" title="' . $row['commodity_name'] . '">
+                        <a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"
+                            data-glightbox="type: external" title="' . $row['commodity_group_name'] . '">
                             <figure>
-                                <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                                <img src="' . $row['commodity_group_bg'] . '" class="img-fluid" alt="">
                             </figure>
                         </a>
                         <div class="portfolio-info">
-                            <h4>' . $row['commodity_name'] . '</h4>
-                            <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                            <h4>' . $row['commodity_group_name'] . '</h4>
+                            <p><a href="../shop/shop.php?shop_id=' . $row['shop_id'] . '">' . $row['shop_name'] . '</a></p>
                         </div>
                     </div>
                 </div>

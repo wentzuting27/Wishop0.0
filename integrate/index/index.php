@@ -56,7 +56,7 @@
         <ul>
           <li><a href="index.php" class="active">首頁</a></li>
           <li><a href="portfolio.php">購物</a></li>
-          <li><a href="#">團購</a></li>
+          <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
 
@@ -192,7 +192,7 @@
             FROM commodity_group
             INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
             INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
-            WHERE commodity_group_state <> 2 and close_order_date is not null
+            WHERE commodity_group_state <> 2 AND close_order_date > NOW() and close_order_date is not null
             GROUP BY commodity_group.commodity_group_id, shop.shop_name
             ORDER BY COUNT(*) DESC
             LIMIT 5";
