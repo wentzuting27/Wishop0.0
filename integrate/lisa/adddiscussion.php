@@ -244,7 +244,13 @@ while ($row = mysqli_fetch_assoc($result)) {
   $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
   $result2 = mysqli_query($link, $sql2);
   $row2 = mysqli_fetch_assoc($result2);
-  echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+  echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
+      if($row["commodity_group_state"]== 2){
+      echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
+      if($row["commodity_group_state"]== 1){
+        echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
+      else{
+          echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
   echo '</h3>
         <div class="card-text">
             <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>

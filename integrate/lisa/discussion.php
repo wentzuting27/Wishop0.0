@@ -242,7 +242,13 @@
       $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
-      echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+      echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
+      if($row["commodity_group_state"]== 2){
+      echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
+      if($row["commodity_group_state"]== 1){
+        echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
+      else{
+          echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
       echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -456,6 +462,7 @@
             $a = 1;
             $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
             $result2 = mysqli_query($link, $sql2);
+            if($result2 && mysqli_num_rows($result2) != 0){
             while ($row_photo = mysqli_fetch_assoc($result2)) {
               echo '
                     <div class="carousel-item ';
@@ -518,13 +525,62 @@
                 </div>
               </div>
           ';
+        }
+          else{
+           echo '
+            <div class="row gy-4">
+            <div class="col-lg-5 entries">
+              <article class="entry">
+              </div>             
+                </article><!-- End blog entry -->
+              </div><!-- End blog entries list -->';
+            echo '
+              <div class="col-lg-12" style="border:1.25px solid 	#5B5B5B;border-radius:10px;margin-top:-10px;">
+                  <div class="card-header">    
+                      <div class="profile-picture big-profile-picture clear"
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
+                    </div>
+                    <p>', $row["account"], '：</p>
+                    <h3><B>', $row["question_title"], '</B></h3>
+                  <h4 style="float: right;margin-top:-70px;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
+                  </h4>
+                  <div style="float:right;margin-top:-15px;"">
+                  <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
+                </div><hr>
+                <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;">
+                  <p>', nl2br($row["question_narrate"]), '</p>           
+                  </div>
+                </div><!-- End blog sidebar --> 
+                
+              ';
+
+            echo '<!-- Modal -->
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  </div>
+                </div>
+              </div>
+          ';
+
+          }
             mysqli_close($link);
             ?>
 </div>
 
             <div class="blog-comments">
               <h4 class="comments-count">2 Comments</h4>
-              <div class="card mb-3" style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+              <div class="card mb-3 " style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
                   <div class="col-md-2">
                     <div class="comment-img">

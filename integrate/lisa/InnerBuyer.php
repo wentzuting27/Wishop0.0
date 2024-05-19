@@ -209,7 +209,15 @@
       $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
-      echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）</small>';
+      echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
+      if ($row["commodity_group_state"] == 2) {
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';
+      }
+      if ($row["commodity_group_state"] == 1) {
+        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
+      } else {
+        echo '<button type="button" class="btn-floating"  disabled>未成團</button></small>';
+      }
       echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -233,7 +241,7 @@
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" checked>
+      <input type="radio" id="tab1" name="tab-control">
       <input type="radio" id="tab2" name="tab-control">
       <input type="radio" id="tab3" name="tab-control">
       <input type="radio" id="tab4" name="tab-control">
@@ -479,20 +487,20 @@
                         </button>
                       </div>
                     </div>
-                  </div>'; 
-                  
+                  </div>';
+
                   }
 
                   mysqli_close($link); ?>
-                 
+
                 </div>
               </div> <?php
-                  $commodity_group_id = $_GET["commodity_group_id"];
-                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "SELECT * FROM commodity;";
-                  $result = mysqli_query($link, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                   echo '
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $sql = "SELECT * FROM commodity;";
+              $result = mysqli_query($link, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '
                     <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -511,9 +519,9 @@
                             </div>
                             </div>
                              </div>';
-                  }
-                  mysqli_close($link);
-                  ?>
+              }
+              mysqli_close($link);
+              ?>
               <br><br>
               <div class="seven" id="list-item-3">
                 <h1>下架商品區</h1>
@@ -555,18 +563,18 @@
                     ;
 
                   }
-                  
+
                   mysqli_close($link); ?>
 
                 </div>
               </div>
               <?php
               $commodity_group_id = $_GET["commodity_group_id"];
-                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                  $sql = "SELECT * FROM commodity;";
-                  $result = mysqli_query($link, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo '
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $sql = "SELECT * FROM commodity;";
+              $result = mysqli_query($link, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '
                     <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="ups"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -585,7 +593,7 @@
                             </div>
                             </div>  
                              </div>';
-                  }?>
+              } ?>
             </div>
           </div>
         </section>
@@ -741,7 +749,7 @@
                 </div>
                 
                 <div class="card-body " id="card' . $question_id . '">
-                  <p>',nl2br($row["question_narrate"]), '</p>';
+                  <p>', nl2br($row["question_narrate"]), '</p>';
 
                   $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
                   $result2 = mysqli_query($link, $sql2);
@@ -804,6 +812,71 @@
             <h1>對帳表</h1>
           </div>
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="all"
+                  onclick="navigateWithParams('all')">All</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="week"
+                  onclick="navigateWithParams('week')">近一週</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="month"
+                  onclick="navigateWithParams('month')">近一個月</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="three-months"
+                  onclick="navigateWithParams('three-months')">近三個月</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="unpaid"
+                  onclick="navigateWithParams('unpaid')">未付款</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="paid"
+                  onclick="navigateWithParams('paid')">已付款</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn" style="color: #e9c9d6;border: 1px solid #e9c9d6;" data-tab="completed"
+                  onclick="navigateWithParams('completed')">已完成</button>
+              </li>
+            </ul>
+
+
+            <script>
+              function navigateWithParams(filter) {
+                // 获取商品组 ID
+                var commodity_group_id = <?php echo $_GET["commodity_group_id"]; ?>;
+                // 构建 URL
+                var url = 'InnerBuyer.php?commodity_group_id=' + commodity_group_id + '&filter=' + filter;
+
+                // 移除所有选项卡的 "active" 类
+                $(".nav-link").removeClass("active");
+
+                // 给当前选项卡添加 "active" 类
+                $("[data-tab='" + filter + "']").addClass("active");
+
+                // 导航到带有参数的 URL
+                window.location.href = url;
+              }
+              $(document).ready(function () {
+                // 获取当前页面的 filter 值
+                var currentFilter = "<?php echo isset($_GET['filter']) ? $_GET['filter'] : 'all'; ?>";
+                // 设置选项卡状态
+                setNavActive(currentFilter);
+              });
+
+              function setNavActive(filter) {
+                // 移除所有选项卡的 "active" 类
+                $(".nav-link").removeClass("active");
+
+                // 给指定 filter 的选项卡添加 "active" 类
+                $("[data-tab='" + filter + "']").addClass("active");
+              }
+
+            </script>
+
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -821,10 +894,39 @@
                 if (!$link) {
                   die('Connection failed: ' . mysqli_connect_error());
                 }
+                $commodity_group_id = $_GET["commodity_group_id"];
+                $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+                $whereClause = "";
+
+                switch ($filter) {
+                  case 'week':
+                    $whereClause = "AND order_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+                    break;
+                  case 'month':
+                    $whereClause = "AND order_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                    break;
+                  case 'three-months':
+                    $whereClause = "AND order_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)";
+                    break;
+                  case 'unpaid':
+                    $whereClause = "AND payment_state = 1";
+                    break;
+                  case 'paid':
+                    $whereClause = "AND payment_state = 2";
+                    break;
+                  case 'completed':
+                    $whereClause = "AND order_state = '已完成'";
+                    break;
+                  default:
+                    $whereClause = ""; // No additional filter for "All"
+                }
+
+
                 $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           $whereClause
            GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
@@ -867,56 +969,6 @@
                 mysqli_close($link); ?>
               </tbody>
             </table>
-            <script>
-              // 獲取所有 checkbox 元素
-              var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-              checkboxes.forEach(function (checkbox) {
-                var label = document.querySelector('label[for="' + checkbox.id + '"]');
-                var isChecked = localStorage.getItem("checkbox" + checkbox.dataset.orderId);
-
-                if (isChecked === "true") {
-                  checkbox.checked = true;
-                  label.textContent = "已付款"; // 修改 label 的內容
-                }
-
-                checkbox.addEventListener("click", function () {
-                  if (checkbox.checked) {
-                    localStorage.setItem("checkbox" + checkbox.dataset.orderId, "true");
-                    label.textContent = "已付款"; // 修改 label 的內容
-
-                    // 使用 AJAX 發送資料到後端 PHP 腳本
-                    var orderId = checkbox.dataset.orderId;
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update_payment_state.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                      if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 在此處處理後端 PHP 回應
-                        console.log(xhr.responseText);
-                      }
-                    };
-                    xhr.send("order_id=" + orderId + "&payment_state=2");
-                  } else {
-                    localStorage.removeItem("checkbox" + checkbox.dataset.orderId);
-                    label.textContent = "未付款"; // 修改 label 的內容
-
-                    // 使用 AJAX 發送資料到後端 PHP 腳本
-                    var orderId = checkbox.dataset.orderId;
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update_payment_state.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                      if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 在此處處理後端 PHP 回應
-                        console.log(xhr.responseText);
-                      }
-                    };
-                    xhr.send("order_id=" + orderId + "&payment_state=1");
-                  }
-                });
-              });
-            </script>
 
           </div>
           <?php
@@ -1170,8 +1222,10 @@
 
 
     <!-- JQERY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -1179,19 +1233,6 @@
       crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.php5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js"></script>
-
-    <!-- DataTables extra libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
