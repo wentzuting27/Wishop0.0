@@ -809,14 +809,15 @@
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and close_order_date > NOW()
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and close_order_date > NOW() OR close_order_date is null
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')) and close_order_date > NOW()
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')) 
+              and close_order_date > NOW() OR close_order_date is null
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               }
@@ -841,7 +842,7 @@
               $sql2 = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}' and close_order_date > NOW()
+              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}' 
               GROUP BY c.commodity_id";
               $result2 = mysqli_query($link, $sql2);
 

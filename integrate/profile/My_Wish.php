@@ -57,7 +57,7 @@
         <ul>
           <li><a href="../index/index.php">首頁</a></li>
           <li><a href="../index/portfolio.php">購物</a></li>
-          <li><a href="#">團購</a></li>
+          <li><a href="../index/groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
