@@ -851,12 +851,6 @@
                 // 构建 URL
                 var url = 'InnerBuyer.php?commodity_group_id=' + commodity_group_id + '&filter=' + filter;
 
-                // 移除所有选项卡的 "active" 类
-                $(".nav-link").removeClass("active");
-
-                // 给当前选项卡添加 "active" 类
-                $("[data-tab='" + filter + "']").addClass("active");
-
                 // 导航到带有参数的 URL
                 window.location.href = url;
               }
