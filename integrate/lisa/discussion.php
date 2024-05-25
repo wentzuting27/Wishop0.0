@@ -578,9 +578,9 @@
             ?>
 </div>
 
-            <div class="blog-comments">
+            <div class="blog-comments" style="max-height: 800px;overflow-y: scroll;overflow-x: hidden;">
               <h4 class="comments-count">2 Comments</h4>
-              <div class="card mb-3 " style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+              <div class="card mb-3 " style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
                   <div class="col-md-2">
                     <div class="comment-img">
@@ -592,7 +592,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">
-                      <div class="comment2">
+                      <di class="comment2">
                         <h5><a href="">Georgia Reader</a></h5>
                         <time datetime="2020-01-01">01 Jan, 2020</time>
                         <p>
@@ -600,12 +600,29 @@
                           molestiae est qui cum soluta.
                           Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
                         </p>
-                        <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
+                        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
+                      <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">
+                      <div class="carousel-item active">
+                      <img src="https://media.gq.com.tw/photos/6517ff9d63b2e9a3b2ea1c3d/master/w_1600%2Cc_limit/F6ybr-1bQAA9lXo.jpeg" class="d-block w-100" alt="..." >
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://media.gq.com.tw/photos/6517ff9d63b2e9a3b2ea1c3d/master/w_1600%2Cc_limit/F6ybr-1bQAA9lXo.jpeg" class="d-block w-100" alt="..." >
+                    </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" >
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
+                </div>            
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
               <div class="card mb-3" style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
                   <div class="col-md-2">
@@ -632,7 +649,9 @@
                   </div>
                 </div>
               </div>
+              </div><!-- End blog comments -->
               <center>
+              <div class="blog-comments" style="margin-top:-50px;">
                 <div class="reply-form">
                   <form action="">
                     <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
@@ -657,8 +676,8 @@
                       </div>
                   </form>
                 </div>
-              </center>
-            </div><!-- End blog comments -->
+              </div>
+        </center>
         </section>
 
         <section id="order">

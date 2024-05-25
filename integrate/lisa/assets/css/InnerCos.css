@@ -233,6 +233,11 @@ marquee span:before {
   }
 
 }
+@media screen and (max-width: 768px) {
+  .edit_like_shop_button button {
+    font-size: 14px; 
+  }
+  }
 
 /*--------------------------------------------------------------
     # Hero Section
@@ -812,38 +817,29 @@ marquee span:before {
     # 新增商品
     --------------------------------------------------------------*/
 
-.addgoods .container {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
 
-.addgoods #contact input[type="text"],
-.addgoods #contact input[type="email"],
-.addgoods #contact input[type="tel"],
-.addgoods #contact input[type="url"],
-.addgoods #contact textarea,
-.addgoods #contact button[type="submit"] {
+.addgoods .card input[type="text"],
+.addgoods .card input[type="email"],
+.addgoods .card input[type="tel"],
+.addgoods .card input[type="url"],
+.addgoods .card textarea,
+.addgoods .card button[type="submit"] {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
 }
 
-.addgoods #contact {
+.addgoods .card {
   background: #F9F9F9;
-  padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  width: 900px;
-  margin-left: -270px;
 }
 
-.addgoods #contact h3 {
+.addgoods .card h3 {
   display: block;
   font-size: 30px;
   font-weight: 300;
   margin-bottom: 10px;
 }
 
-.addgoods #contact h4 {
+.addgoods .card h4 {
   margin: 5px 0 15px;
   display: block;
   font-size: 13px;
@@ -858,11 +854,11 @@ fieldset {
   width: 100%;
 }
 
-.addgoods  #contact input[type="text"],
-.addgoods #contact input[type="email"],
-.addgoods #contact input[type="tel"],
-.addgoods #contact input[type="url"],
-.addgoods #contact textarea {
+.addgoods  .card input[type="text"],
+.addgoods .card input[type="email"],
+.addgoods .card input[type="tel"],
+.addgoods .card input[type="url"],
+.addgoods .card textarea {
   width: 100%;
   border: 1px solid #ccc;
   background: #FFF;
@@ -870,24 +866,24 @@ fieldset {
   padding: 10px;
 }
 
-.addgoods #contact input[type="text"]:hover,
-.addgoods #contact input[type="email"]:hover,
-.addgoods #contact input[type="tel"]:hover,
-.addgoods #contact input[type="url"]:hover,
-.addgoods #contact textarea:hover {
+.addgoods .card input[type="text"]:hover,
+.addgoods .card input[type="email"]:hover,
+.addgoods .card input[type="tel"]:hover,
+.addgoods .card input[type="url"]:hover,
+.addgoods .card textarea:hover {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
   border: 1px solid #aaa;
 }
 
-.addgoods #contact textarea {
+.addgoods .card textarea {
   height: 100px;
   max-width: 100%;
   resize: none;
 }
 
-.addgoods #contact button[type="submit"] {
+.addgoods .card button[type="submit"] {
   cursor: pointer;
   width: 100%;
   border: none;
@@ -898,14 +894,14 @@ fieldset {
   font-size: 15px;
 }
 
-.addgoods #contact button[type="submit"]:hover {
+.addgoods .card button[type="submit"]:hover {
   background: #E9C9D6;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
 }
 
-.addgoods #contact button[type="submit"]:active {
+.addgoods .card button[type="submit"]:active {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -913,8 +909,8 @@ fieldset {
   text-align: center;
 }
 
-.addgoods #contact input:focus,
-.addgoods #contact textarea:focus {
+.addgoods .card input:focus,
+.addgoods .card textarea:focus {
   outline: 0;
   border: 1px solid #aaa;
 }
@@ -1689,3 +1685,5 @@ input[type=checkbox]:checked+label:before {
   pointer-events: none;
   color: #aaa;
 }
+
+
