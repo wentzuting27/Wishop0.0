@@ -1,3 +1,54 @@
+ /* 主體顏色設置 */
+ .section-with-bg {
+  padding: 20px;
+}
+
+/* 標籤導航樣式 */
+#schedule .nav-pills .nav-link {
+  color: #ffffff;
+  /* 文字顏色 */
+  background-color: #B0A5C6;
+  /* 背景顏色 */
+  border-radius: 10px;
+  /* 可以選擇是否設置圓角 */
+  margin-right: 15px;
+  /* 調整按鈕間距 */
+  font-size: 18px;
+}
+
+/* 激活狀態下的標籤樣式 */
+#schedule  .nav-pills .nav-link.active,
+#schedule  .nav-pills .nav-link.active:focus,
+#schedule  .nav-pills .nav-link.active:hover {
+  color: #ffffff;
+  /* 激活狀態下的文字顏色 */
+  background-color: #E9C9D6;
+  /* 激活狀態下的背景顏色 */
+}
+
+/* 標籤內容樣式 */
+#schedule  .tab-content {
+  background-color: #ffffff;
+  /* 標籤內容背景顏色 */
+  padding: 20px;
+  border-radius: 5px;
+  /* 可以選擇是否設置圓角 */
+  margin-top: 10px;
+  /* 調整標籤內容與標籤之間的間距 */
+}
+
+#schedule  mark {
+  background-color: #E9C9D6;
+  color:#FFF;
+  border-radius: 20px;
+  display: inline-block;
+  line-height: 0.8;
+  overflow: visible;
+  padding: 0.5em 0.5em;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 a {
   text-decoration: none;
   color: #E9C9D6;
@@ -386,13 +437,12 @@ marquee span:before {
   font-size: 15px;
   font-weight: bold;
 }
-
 /* 媒體查詢：小型屏幕設備 */
 @media screen and (max-width: 660px) {
+  
   .row.g-0 .col-md-5 {
     width: 30%;
     padding: 10px;
-    margin-right: 20px;
   }
 
   .row.g-0 .col-md-7 {
@@ -403,12 +453,16 @@ marquee span:before {
   }
 
   .row.g-0 .col-md-7 .card-title {
-    font-size: 8px; /* 調整卡片標題字體大小 */
+    font-size: 7px; /* 調整卡片標題字體大小 */
     padding-top: 14px;
     color: #B0A5C6;
   }
 
-  .buttons #three,
+  .buttons #three {
+    font-size: 8px;
+    font-weight: bold;
+  }
+
   .buttons #four {
     font-size: 8px;
     font-weight: bold;
@@ -1266,7 +1320,57 @@ section {
   max-height: 200px;
   /* 自适应高度 */
 }
+.waiting .col-sm-10 {
+  width: 300px;
+  height: 280px;
 
+}
+@media(min-width: 920px) {
+
+  .waiting .col-sm-10 {
+    width: 300px;
+    height: 280px;
+  
+  }
+  .waiting .card-head {
+    display: grid;
+    /* 使用 Grid 布局 */
+    place-items: center;
+    /* 在容器中居中 */
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 200px;
+    /* 设置外框的高度 */
+  }
+
+}
+
+@media(max-width: 823px) {
+
+  .item .card .card-header {
+    border-radius: 0;
+    /* 移除卡片標頭的邊框半徑 */
+  }
+
+  .waiting .card .card-body {
+    font-size: 0.4cm;
+  }
+  .waiting .col-sm-10 {
+    width: 250px;
+    height: 200px;
+  
+  }
+  .waiting .card-head {
+    display: grid;
+    /* 使用 Grid 布局 */
+    place-items: center;
+    /* 在容器中居中 */
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 200px;
+    /* 设置外框的高度 */
+  }
+}
 
 
 
@@ -1282,6 +1386,29 @@ section {
 
 .owl-carousel .owl-item {
   float: left;
+  margin: 20px;
+}
+.item .col-sm-10 {
+  width: 300px;
+  height: 280px;
+
+}
+
+.item .card {
+  border-radius: 10%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+
+.item .card .card-header {
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  margin-bottom: 0;
+  color: var(--bs-card-cap-color);
+  background-color: var(--bs-card-cap-bg);
+  border-bottom: none;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  /* 设置与.card相同的边框半径 */
 }
 
 @media(min-width: 920px) {
@@ -1324,10 +1451,8 @@ section {
   .item .card {
     border-radius: 0;
     /* 移除邊框半徑 */
-    box-shadow: none;
-    /* 移除陰影 */
-    border: 1px solid #ddd;
-    /* 添加細邊框 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: none;
   }
 
   .item .card .card-header {
@@ -1668,22 +1793,6 @@ input[type=checkbox]:checked+label:before {
   transform: scale(2.5);
 }
 
-.has-search .form-control {
-  padding-left: 2.375rem;
-  margin-left: 40px;
-  width: 900px;
-}
 
-.has-search .form-control-feedback {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  color: #aaa;
-}
 
 

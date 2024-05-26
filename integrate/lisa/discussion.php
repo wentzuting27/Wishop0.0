@@ -683,8 +683,7 @@
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
-
-          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <div class="table-responsive">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>

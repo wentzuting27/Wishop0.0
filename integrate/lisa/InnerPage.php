@@ -263,7 +263,7 @@
       else{
           echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
       echo '</h3>
-            <div class="card-text">
+            <div class="card-text"  style="height:120px;overflow-y:scroll;">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
@@ -651,8 +651,7 @@
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
-
-          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <div class="table-responsive">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>

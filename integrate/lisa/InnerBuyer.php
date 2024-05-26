@@ -228,7 +228,7 @@
         echo '<button type="button" class="btn-floating"  disabled>未成團</button></small>';
       }
       echo '</h3>
-            <div class="card-text">
+            <div class="card-text" style="height:120px;overflow-y:scroll;">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
               <div class="card-text" style="position: absolute; bottom: 0;">
@@ -271,12 +271,13 @@
         <div class="indicator"></div>
       </div>
       <div class="content" style="margin-top: -5px;padding: 0%;">
-        <section class="addgoods">
+        <section class="addgoods ">
           <h2>Features</h2>
             <div class="card" style="margin-left:40px;margin-right:40px;">
               <div class="card-body">
                 <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" enctype="multipart/form-data">
-                  <table class="table table-hover" width="100%">
+                <div class="table-responsive">
+                <table class="table table-hover" width="100%">
                     <tbody>
                       <tr>
                         <th>商品名稱</th>
@@ -343,6 +344,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </form>
               </div>
             </div>
@@ -820,6 +822,126 @@
           <div class="seven">
             <h1>對帳表</h1>
           </div>
+          <?php
+        if (!empty($_SESSION['account'])) {
+          echo '
+          <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
+          <i class="fa-regular fa-circle-question fa-lg" style="float: right;" aria-hidden="true"></i>
+          </a>';
+        } ?>
+        <style>
+                  /* 主體顏色設置 */
+                  .section-with-bg {
+                    padding: 20px;
+                  }
+
+                  /* 標籤導航樣式 */
+                  .section-with-bg .nav-pills .nav-link {
+                    color: #ffffff;
+                    /* 文字顏色 */
+                    background-color: #B0A5C6;
+                    /* 背景顏色 */
+                    border-radius: 10px;
+                    /* 可以選擇是否設置圓角 */
+                    margin-right: 15px;
+                    /* 調整按鈕間距 */
+                    font-size: 18px;
+                  }
+
+                  /* 激活狀態下的標籤樣式 */
+                  .section-with-bg .nav-pills .nav-link.active,
+                  .section-with-bg .nav-pills .nav-link.active:focus,
+                  .section-with-bg .nav-pills .nav-link.active:hover {
+                    color: #ffffff;
+                    /* 激活狀態下的文字顏色 */
+                    background-color: #E9C9D6;
+                    /* 激活狀態下的背景顏色 */
+                  }
+
+                  /* 標籤內容樣式 */
+                  .section-with-bg .tab-content {
+                    background-color: #ffffff;
+                    /* 標籤內容背景顏色 */
+                    padding: 20px;
+                    border-radius: 5px;
+                    /* 可以選擇是否設置圓角 */
+                    margin-top: 10px;
+                    /* 調整標籤內容與標籤之間的間距 */
+                  }
+
+                  .section-with-bg mark {
+                    background-color: #E9C9D6;
+                    color:#FFF;
+                    border-radius: 20px;
+                    display: inline-block;
+                    line-height: 0.8;
+                    overflow: visible;
+                    padding: 0.5em 0.5em;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
+                  }
+                </style>
+          <!-- 連結管理Modal -->
+        <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="update_social_ModalLabel">操作教學</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- ======= Schedule Section ======= -->
+                <div id="schedule" class="section-with-bg">
+                  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">功能&nbsp;</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">搜尋&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                        aria-selected="false">標籤&nbsp;&nbsp;<i class="fa-solid fa-tag"></i></button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                      aria-labelledby="pills-home-tab">
+                      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;推薦您感興趣的商品！</mark>
+                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                      <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
+                      <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
+                      </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      <p>您可以透過</p>
+                      <ul>
+                        <li>關鍵字查詢</li>
+                        <li>主題查詢</li>
+                        <li>國家查詢</li>
+                      </ul>
+                      <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                      功能開發中...
+                    </div>
+                  </div>
+                </div><!-- End Schedule Section -->
+              </div>
+            </div>
+          </div>
+        </div>
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -842,6 +964,7 @@
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
                 tabindex="0">
+                <div class="table-responsive">
                 <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
@@ -907,8 +1030,10 @@
                   </tbody>
                 </table>
               </div>
+              </div>
               <div class="tab-pane fade" id="nav-week" role="tabpanel" aria-labelledby="nav-week-tab" tabindex="0">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>帳號</th>
@@ -973,9 +1098,11 @@
                     mysqli_close($link); ?>
                   </tbody>
                 </table>
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab" tabindex="0">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>帳號</th>
@@ -1040,9 +1167,11 @@
                     mysqli_close($link); ?>
                   </tbody>
                 </table>
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab" tabindex="0">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>帳號</th>
@@ -1107,9 +1236,11 @@
                     mysqli_close($link); ?>
                   </tbody>
                 </table>
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-nopay" role="tabpanel" aria-labelledby="nav-nopay-tab" tabindex="0">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>帳號</th>
@@ -1175,8 +1306,10 @@
                   </tbody>
                 </table>
               </div>
+              </div>
               <div class="tab-pane fade" id="nav-ispay" role="tabpanel" aria-labelledby="nav-ispay-tab" tabindex="0">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+              <div class="table-responsive"> 
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>帳號</th>
@@ -1242,8 +1375,10 @@
                   </tbody>
                 </table>
               </div>
+            </div> 
               <div class="tab-pane fade" id="nav-complete" role="tabpanel" aria-labelledby="nav-complete-tab"
                 tabindex="0">
+                <div class="table-responsive">
                 <table id="example" class="table table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
@@ -1309,7 +1444,7 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div></div>
 
           </div>
           <?php

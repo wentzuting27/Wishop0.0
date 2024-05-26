@@ -4,11 +4,11 @@ $(document).ready(function() {
       var owl = $(this);
       owl.owlCarousel({
         items: 3,
-        itemsDesktop: [1000, 4],
+        itemsDesktop: [1000, 2],
         itemsDesktopSmall: [900, 2],
-        itemsTablet: [600, 1],
+        itemsTablet: [800, 1],
         itemsMobile: false,
-        pagination: false
+        pagination: false,
       });
     });
   
@@ -64,13 +64,3 @@ $(document).ready(function() {
      });
    });
    
-
-  //對帳表
-  $(document).ready(function() {
-    $(".nav-link").click(function(e) {
-        $(".nav-link").removeClass("active");
-        $(this).addClass("active");
-        e.preventDefault();
-        // 这里放置您希望执行的代码，例如处理传值等
-    });
-});
