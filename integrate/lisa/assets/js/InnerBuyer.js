@@ -3,12 +3,16 @@ $(document).ready(function() {
     $("#slider-carousel, #slider-carouse2, #slider-carouse3, #slider-carouse4").each(function() {
       var owl = $(this);
       owl.owlCarousel({
-        items: 3,
-        itemsDesktop: [1000, 4],
+        items: 3.5,
+        itemsDesktop: [1020, 2],
         itemsDesktopSmall: [900, 2],
-        itemsTablet: [600, 1],
+        itemsTablet: [800, 1],
         itemsMobile: false,
-        pagination: false
+        pagination: false,
+        loop: true, // 启用循环
+      autoplay: false, // 禁用自动播放
+      mouseDrag: true, // 启用鼠标拖动
+      touchDrag: true, // 启用触摸拖动
       });
     });
   
@@ -64,13 +68,3 @@ $(document).ready(function() {
      });
    });
    
-
-  //對帳表
-  $(document).ready(function() {
-    $(".nav-link").click(function(e) {
-        $(".nav-link").removeClass("active");
-        $(this).addClass("active");
-        e.preventDefault();
-        // 这里放置您希望执行的代码，例如处理传值等
-    });
-});

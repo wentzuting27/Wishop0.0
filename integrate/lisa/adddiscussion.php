@@ -472,7 +472,30 @@ while ($row = mysqli_fetch_assoc($result)) {
                   <option value="不公開">不公開</option>
                   </select>
                   </div>
-                <div class="card-body">
+                <div class="card-body">';
+                if(isset($_GET["question_id"])){
+                  $question_id=$_GET["question_id"];
+                  $sql2 = "select * from  question natural join question_photo  where question_id='$question_id'";
+                  $result2 = mysqli_query($link, $sql2);
+                  $row2 = mysqli_fetch_assoc($result2);
+                  echo'
+                  <input type="text" class="form-control" name="question_title" placeholder="'.$row2["question_title"].'" required>
+                  <br>
+                  <textarea class="form-control" name="question_narrate" rows="5" placeholder="'.$row2["question_narrate"].'"
+                  style="max-height:250px;overflow-y:scroll;" required></textarea>
+                  <br>
+                  <div class="mb-3">
+                  <input class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                  name="question_photo[]" multiple/>
+                </div>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-primary" name="editdis" type="submit"
+                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
+                </div>';
+                                }
+                                else{
+                                echo'
                   <input type="text" class="form-control" name="question_title" placeholder="標題" required>
                   <br>
                   <textarea class="form-control" name="question_narrate" rows="5" placeholder="內容"
@@ -486,7 +509,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="card-footer">
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>';
+                </div>';}
                                 ?>
                             </div>
                         </center>
@@ -497,7 +520,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           <h2>Returns</h2>
           <h4>對帳表:</h4>
 
-          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <div class="table-responsive">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>

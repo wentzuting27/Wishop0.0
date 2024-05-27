@@ -4,9 +4,9 @@ $(document).ready(function () {
     var owl = $(this);
     owl.owlCarousel({
       items: 3,
-      itemsDesktop: [1000, 4],
+      itemsDesktop: [1000, 2],
       itemsDesktopSmall: [900, 2],
-      itemsTablet: [600, 1],
+      itemsTablet: [800, 1],
       itemsMobile: false,
       pagination: false
     });
