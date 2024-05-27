@@ -146,7 +146,7 @@
     ';
       } else {
         echo '
-      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already" id="one1">
       <i class="fa-solid fa-share-from-square"></i>已跟團</button>
       </div>
      
@@ -192,7 +192,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-              <button type="submit" name="addgroup" class="btn btn-primary" id="one"  style="background-color: #B0A5C6; color: white;">確定</button>
+              <button type="submit" name="addgroup" class="btn btn-primary" id="one"
+                style="background-color: #B0A5C6; color: white;border:none;">確定</button>
             </div>
           </div>
         </div>
@@ -211,7 +212,8 @@
           <h6 style="padding-left:10px">跟團也無法退團</h6>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+              style="background-color: #B0A5C6; color: white;border:none;">確定</button>
           </div>
         </div>
       </div>
@@ -256,12 +258,14 @@
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
       echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
-      if($row["commodity_group_state"]== 2){
-      echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
-      if($row["commodity_group_state"]== 1){
-        echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
-      else{
-          echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
+      if ($row["commodity_group_state"] == 2) {
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';
+      }
+      if ($row["commodity_group_state"] == 1) {
+        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
+      } else {
+        echo '<button type="button" class="btn-floating"  disabled>未成團</button></small>';
+      }
       echo '</h3>
             <div class="card-text"  style="height:120px;overflow-y:scroll;">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -441,14 +445,19 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="remarkLabel">有需要備註的內容嗎？</h1>
+                  <h1 class="modal-title fs-5" id="remarkLabel">備註內容及付款帳戶</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <label for="remark" style="margin-left:10px;">備註內容填寫：</label>
                 <textarea id="w3review" name="remark" rows="4" cols="50" style="margin:10px;"
                   placeholder="備註內容..."></textarea>
+                <label for="name2" style="margin-left:10px;">確認付款帳戶:</label>
+                <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
+                  style="margin:0 10px 10px 10px" />
                 <div class="modal-footer">
-                  <button class="btn btn-secondary" data-bs-dismiss="modal" name="submit2" type="submit">無</button>
-                  <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit">確認</button>
+                  <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
+                  <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
+                    style="background-color: #B0A5C6; color: white;border:none;">確認</button>
                 </div>
               </div>
             </div>
@@ -585,6 +594,7 @@
               </div>
             </div>';
                 echo '<!-- Modal -->
+                <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '; ?>" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -593,12 +603,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
-                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  <input type="hidden" name="question_id" value="', $row["question_id"], '">
+                    <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal"><a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;color: #fff;">編輯</a></button>
+                    <button type="submit" name="deldis" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
                   </div>
                 </div>
               </div>
             </div>
+            </form>
           ';
                 echo '
             <script>
@@ -771,16 +783,17 @@
                       <tr >
                         <th >訂單狀況</th>
                         <td>
-                        <p style="color:red;">請在確認好收貨後再點擊</p>
-                        <button class="btn btn-primary" name="complete"
-                        style="background-color: #E9C9D6;border: none;color: white;">完成訂單</button>
-                        </td>
+                        <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
+                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>
+                        <button class="btn btn-primary" name="delorder" style="background-color: 	#D9B3B3; border: none; color: white;">刪除訂單</button>
+                        <button class="btn btn-primary" name="complete" style="background-color: #CF9E9E; border: none; color: white;">完成訂單</button>
+                        
                       </tr>
                     </table>
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;">確定</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
                 </div>
               </div>
             </div>

@@ -1378,16 +1378,17 @@ section {
   # 商品
   -*/
 
-.owl-carousel .owl-wrapper-outer {
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.owl-carousel .owl-item {
-  float: left;
-  margin: 20px;
-}
+  .owl-carousel .owl-wrapper-outer {
+    overflow: hidden; /* 隐藏滚动条 */
+    position: relative; /* 确保子元素定位正确 */
+    width: 100%;
+  }
+  
+  .owl-carousel .owl-item {
+    float: left;
+    margin: 20px;
+  }
+  
 .item .col-sm-10 {
   width: 300px;
   height: 280px;

@@ -3,12 +3,16 @@ $(document).ready(function() {
     $("#slider-carousel, #slider-carouse2, #slider-carouse3, #slider-carouse4").each(function() {
       var owl = $(this);
       owl.owlCarousel({
-        items: 3,
-        itemsDesktop: [1000, 2],
+        items: 3.5,
+        itemsDesktop: [1020, 2],
         itemsDesktopSmall: [900, 2],
         itemsTablet: [800, 1],
         itemsMobile: false,
         pagination: false,
+        loop: true, // 启用循环
+      autoplay: false, // 禁用自动播放
+      mouseDrag: true, // 启用鼠标拖动
+      touchDrag: true, // 启用触摸拖动
       });
     });
   

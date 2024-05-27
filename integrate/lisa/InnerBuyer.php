@@ -895,47 +895,43 @@
                 <div id="schedule" class="section-with-bg">
                   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                        aria-selected="true">功能&nbsp;</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                      <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                        aria-selected="false">搜尋&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
+                        aria-selected="false">接收訂單&nbsp;&nbsp;<i class="fa-solid fa-check"></i></button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                        aria-selected="false">標籤&nbsp;&nbsp;<i class="fa-solid fa-tag"></i></button>
+                      <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">對帳表&nbsp;<i class="fa-solid fa-pen"></i></button>
                     </li>
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                      aria-labelledby="pills-home-tab">
-                      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;推薦您感興趣的商品！</mark>
+                    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;接收訂單</mark>
                       <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                      <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
-                      <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
+                      <h5><b>接收訂單：</b>點擊接受訂單後訂單會跑到對帳表</h5>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
+                        <img src="../files/@media(min-width 920px) { (2).png" alt="發現功能" style="min-width:100px; height:60%">
                       </div>
-
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                      <p>您可以透過</p>
-                      <ul>
-                        <li>關鍵字查詢</li>
-                        <li>主題查詢</li>
-                        <li>國家查詢</li>
-                      </ul>
-                      <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
+                    <div class="tab-pane fade " id="pills-home" role="tabpanel"
+                      aria-labelledby="pills-home-tab">
+                      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;查詢、編輯訂單資訊</mark>
+                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                      <h5><b>明細查看：</b>查看訂單的詳情，包括買家購買的物品以及買家的備註</h5>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <img src="../files/@media(min-width 920px) {.png" alt="發現功能" style="min-width:100px; height:60%">
+                      </div>
+                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                      <h5><b>編輯訂單狀態：</b>點擊圖標輸入編輯資訊，點擊確定更改成功</h5>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <img src="../files/@media(min-width 920px) { (1).png" alt="發現功能" style="min-width:100px; height:60%">
+                      </div>
                     </div>
-
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                      功能開發中...
-                    </div>
+                    
                   </div>
                 </div><!-- End Schedule Section -->
               </div>
