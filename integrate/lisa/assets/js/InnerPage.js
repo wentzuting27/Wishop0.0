@@ -63,6 +63,12 @@ quantityInputs.forEach(input => {
   });
 });
 
+$(document).ready(function(){
+  $('.d-grid .btn').click(function(){
+    $('.btn').removeClass('active');
+    $(this).addClass('active');
+  });
+});
 
 
 /**

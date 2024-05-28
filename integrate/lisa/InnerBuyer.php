@@ -229,17 +229,8 @@
       }
       echo '</h3>
             <div class="card-text" style="height:120px;overflow-y:scroll;">
-                <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
+                <p style="color: #5a5a5a;font-size: 0.4cm">', nl2br($row["commodity_group_narrate"]), '</p>
 
-              <div class="card-text" style="position: absolute; bottom: 0;">
-                <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
-                  <div class="buttons">
-                    <div id="three" class="button">#xxx</div>
-                    <div id="four" class="button">#xxx</div><br>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1581,6 +1572,8 @@
             <td>
                 <button type="submit" name="submit2" class="btn btn-primary" 
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
+                <button type="submit" name="submit3" class="btn btn-primary" 
+                style="background-color: #E9C9D6;border: none;color: white;">拒絕接收</button>
             </td>
           </tr>
           </tbody>
