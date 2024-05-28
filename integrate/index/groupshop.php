@@ -447,7 +447,7 @@
 
                             </div>
                           </div>
-                          <div class="col-3">
+                          <div class="col-6">
                             <div class="filtertag">
                               <h5>國家</h5>
                               <div class="row">
@@ -482,16 +482,7 @@
                             </div>
                           </div>
 
-                          <div class="col-3">
-                            <div class="filtertag">
-                              <h5>熱門標籤</h5>
-                            </div>
-                            <a type="button" href="tag.php" class="btn-tag">#排球少年</a>
-                            <a type="button" href="tag.php" class="btn-tag">#火影忍者</a>
-                            <a type="button" href="tag.php" class="btn-tag">#ATEEZ</a>
-                            <a type="button" href="tag.php" class="btn-tag">#偶像夢幻季</a>
-                            <a type="button" href="tag.php" class="btn-tag">#BTS</a>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -603,11 +594,7 @@
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">搜尋&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                        aria-selected="false">標籤&nbsp;&nbsp;<i class="fa-solid fa-tag"></i></button>
-                    </li>
+                    
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
@@ -633,9 +620,7 @@
                       <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
                     </div>
 
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                      功能開發中...
-                    </div>
+                    
 
                   </div>
 
@@ -777,7 +762,7 @@
               
                 echo '<li data-filter="*" class="filter-active">發現</li>';
                 echo '<li data-filter=".filter-follow">追蹤店家</li>';
-                echo '<li data-filter=".filter-tag">關注標籤</li>';
+               
               } else
                 '<a href="login.php" class="getstarted" style="color: white;">登入</a>'
                   ?>
@@ -919,26 +904,6 @@
 
           ?>
 
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品1</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
-              </div>
-
-
-            </div>
-          </div> -->
 
 
 
