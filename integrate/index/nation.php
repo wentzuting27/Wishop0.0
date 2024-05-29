@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>主題商品</title>
+  <title>國家商品</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,7 +57,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php"  class="active"><span>購物</span></a>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
           </li>
           <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
@@ -172,39 +172,40 @@
 
         <div style="text-align: center; color:#B0A5C6;">
           <h2><b><?php
-          if ($_GET['topic'] != '') {
-            $topic = $_GET['topic'];
-            switch ($topic) {
+          if ($_GET['nation'] != '') {
+            $nation = $_GET['nation'];
+            switch ($nation) {
               case 1:
-                echo '<i class="fa-solid fa-shirt"></i>&nbsp;服飾';
+                echo "日本";
                 break;
               case 2:
-                echo '<i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝';
+                echo "韓國";
                 break;
               case 3:
-                echo '<i class="fa-solid fa-heart"></i>&nbsp;動漫';
+                echo "台灣";
                 break;
               case 4:
-                echo '<i class="fa-solid fa-star"></i>&nbsp;明星';
+                echo "法國";
                 break;
               case 5:
-                echo '<i class="fa-solid fa-house-chimney-window"></i>&nbsp;日常';
+                echo "美國";
                 break;
               case 6:
-                echo '<i class="fa-solid fa-gamepad"></i>&nbsp;數位3C';
+                echo "義大利";
                 break;
               case 7:
-                echo '<i class="fa-solid fa-utensils"></i>&nbsp;美食';
+                echo "中國";
                 break;
               case 8:
-                echo '<i class="fa-solid fa-person-biking"></i>&nbsp;運動';
+                echo "泰國";
                 break;
               case 9:
-                echo '<i class="fa-solid fa-gift"></i>&nbsp;精品';
+                echo "英國";
                 break;
               case 10:
-                echo '<i class="fa-solid fa-bars"></i>&nbsp;其他';
+                echo "其他";
                 break;
+              
             }
           }
 
@@ -247,8 +248,8 @@
 
 
                 <?php
-                if (isset($_GET['topic']) && $_GET['topic'] != '') {
-                  $topic = $_GET['topic'];
+                if (isset($_GET['nation']) && $_GET['nation'] != '') {
+                  $topic = $_GET['nation'];
                 }
 
                 // 結單日期最晚
@@ -257,8 +258,7 @@
                           FROM commodity c
                           JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
                           JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-                          LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
-                          WHERE gt.topic = '$topic'
+                          WHERE cg.nation = '$nation'
                           and (close_order_date > NOW() OR close_order_date is null)
                           GROUP BY c.commodity_id
                           ORDER BY cg.close_order_date DESC;";
@@ -303,8 +303,8 @@
 
 
                 <?php
-                if (isset($_GET['topic']) && $_GET['topic'] != '') {
-                  $topic = $_GET['topic'];
+                if (isset($_GET['nation']) && $_GET['nation'] != '') {
+                  $topic = $_GET['nation'];
                 }
 
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -312,9 +312,8 @@
                         FROM commodity c
                         JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
                         JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-                        LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
                         LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
-                        WHERE gt.topic = '$topic'
+                        WHERE cg.nation = '$nation'
                         and (close_order_date > NOW() OR close_order_date is null)
                         GROUP BY c.commodity_id
                         ORDER BY sum(order_details_num) DESC;";

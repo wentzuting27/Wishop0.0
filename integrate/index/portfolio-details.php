@@ -220,7 +220,7 @@
                     href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
                     <?php echo $shop_name; ?></a></li>
                 <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a
-                    href="portfolio.php?nation=<?php echo $nation; ?>" target="_blank">
+                    href="nation.php?nation=<?php echo $nation; ?>" target="_blank">
                     <?php
 
                     switch ($nation) {
