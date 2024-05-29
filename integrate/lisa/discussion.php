@@ -438,12 +438,7 @@
         <section id="blog" class="blog">
           <h2>Shipping</h2>
           <div class="row">
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="團內介面2.php#first">回上一頁</a></li>
-              </ul>
-            </div>
+           
 
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -452,7 +447,12 @@
             $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
-            echo '
+            echo ' <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
+                    href="../lisa/InnerPage.php?commodity_group_id='.$commodity_group_id.'">回上一頁</a></li>
+              </ul>
+            </div>
               <div class="row gy-4">
               <div class="col-lg-5 entries">
                 <article class="entry">
@@ -618,7 +618,6 @@
                         <span class="visually-hidden">Next</span>
                       </button>
                     </div>
-                  <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
                 </div>            
                       </div>
                     </div>
@@ -643,7 +642,6 @@
                           molestiae est qui cum soluta.
                           Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
                         </p>
-                        <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
                       </div>
                     </div>
                   </div>
@@ -652,30 +650,42 @@
               </div><!-- End blog comments -->
               <center>
               <div class="blog-comments" style="margin-top:-50px;">
+              <?php
+              $account=$_SESSION["account"];
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $question_id = $_GET["question_id"];
+              $sql = "SELECT * FROM account ;";
+              $result = mysqli_query($link, $sql);
+              $row = mysqli_fetch_assoc($result);
+              echo'
                 <div class="reply-form">
-                  <form action="">
-                    <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
+                  <form action="reply.php?commodity_group_id='.$commodity_group_id.'" method="post" role="form" enctype="multipart/form-data">
+                  <input type="hidden" name="question_id" value="'. $question_id. '" >
+                  <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
                       <div class="d-flex">
                         <div class="comment-img">
                           <div class="profile-picture big-profile-picture clear">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="'.$row["user_avatar"].'">
                           </div>
                         </div>
                         <div class="comment2" style="padding-left:20px;">
                           <div class="row">
                             <div class="col form-group" style="width:600px;">
-                              <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                              <textarea name="comment" class="form-control" placeholder="評論內容"></textarea>
                             </div>
                             <div class="mb-3">
                               <input class="form-control" type="file" id="file-uploader" data-target="file-uploader"
-                                accept="image/*" name="question_photo[]" multiple />
+                                accept="image/*" name="reply_photo[]" multiple />
                             </div>
-                          </div><button type="submit" class="btn btn-primary" style="float:right;">Post Comment</button>
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary" style="float:right;font-size:0.35cm;">上傳</button>
                         </div>
                       </div>
                   </form>
-                </div>
+                </div>'
+                ?>
               </div>
         </center>
         </section>

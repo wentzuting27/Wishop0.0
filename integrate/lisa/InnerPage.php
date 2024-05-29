@@ -431,7 +431,13 @@
             </div>
           </div>
           <!-- Modal -->
-
+          <?php
+          $account=$_SESSION["account"];
+           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+           $sql = "SELECT common_payment_account FROM account WHERE account= '$account';";
+           $result = mysqli_query($link, $sql);
+           $row = mysqli_fetch_assoc($result);
+          echo '
           <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -444,7 +450,7 @@
                   placeholder="備註內容..."></textarea>
                 <label for="name2" style="margin-left:10px;">確認付款帳戶:</label>
                 <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px" />
+                  style="margin:0 10px 10px 10px" value="'.$row["common_payment_account"].'"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
@@ -452,7 +458,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>'; ?>
           </form>
         </section>
 
@@ -585,7 +591,7 @@
               </div>
             </div>';
                 echo '<!-- Modal -->
-                <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '; ?>" method="post" role="form" >
+                <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -716,7 +722,7 @@
             </table>
           </div>
           <style>
-            .btn.active { 
+            .btn.active {
               background-color: #CF9E9E;
               border-color: #CF9E9E;
             }

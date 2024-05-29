@@ -264,11 +264,12 @@
       <div class="content" style="margin-top: -5px;padding: 0%;">
         <section class="addgoods ">
           <h2>Features</h2>
-            <div class="card" style="margin-left:40px;margin-right:40px;">
-              <div class="card-body">
-                <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" enctype="multipart/form-data">
+          <div class="card" style="margin-left:40px;margin-right:40px;">
+            <div class="card-body">
+              <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>"
+                enctype="multipart/form-data">
                 <div class="table-responsive">
-                <table class="table table-hover" width="100%">
+                  <table class="table table-hover" width="100%">
                     <tbody>
                       <tr>
                         <th>商品名稱</th>
@@ -335,10 +336,10 @@
                       </tr>
                     </tbody>
                   </table>
-                  </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
+          </div>
         </section>
 
         <section>
@@ -814,121 +815,124 @@
             <h1>對帳表</h1>
           </div>
           <?php
-        if (!empty($_SESSION['account'])) {
-          echo '
+          if (!empty($_SESSION['account'])) {
+            echo '
           <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
           <i class="fa-regular fa-circle-question fa-lg" style="float: right;" aria-hidden="true"></i>
           </a>';
-        } ?>
-        <style>
-                  /* 主體顏色設置 */
-                  .section-with-bg {
-                    padding: 20px;
-                  }
+          } ?>
+          <style>
+            /* 主體顏色設置 */
+            .section-with-bg {
+              padding: 20px;
+            }
 
-                  /* 標籤導航樣式 */
-                  .section-with-bg .nav-pills .nav-link {
-                    color: #ffffff;
-                    /* 文字顏色 */
-                    background-color: #B0A5C6;
-                    /* 背景顏色 */
-                    border-radius: 10px;
-                    /* 可以選擇是否設置圓角 */
-                    margin-right: 15px;
-                    /* 調整按鈕間距 */
-                    font-size: 18px;
-                  }
+            /* 標籤導航樣式 */
+            .section-with-bg .nav-pills .nav-link {
+              color: #ffffff;
+              /* 文字顏色 */
+              background-color: #B0A5C6;
+              /* 背景顏色 */
+              border-radius: 10px;
+              /* 可以選擇是否設置圓角 */
+              margin-right: 15px;
+              /* 調整按鈕間距 */
+              font-size: 18px;
+            }
 
-                  /* 激活狀態下的標籤樣式 */
-                  .section-with-bg .nav-pills .nav-link.active,
-                  .section-with-bg .nav-pills .nav-link.active:focus,
-                  .section-with-bg .nav-pills .nav-link.active:hover {
-                    color: #ffffff;
-                    /* 激活狀態下的文字顏色 */
-                    background-color: #E9C9D6;
-                    /* 激活狀態下的背景顏色 */
-                  }
+            /* 激活狀態下的標籤樣式 */
+            .section-with-bg .nav-pills .nav-link.active,
+            .section-with-bg .nav-pills .nav-link.active:focus,
+            .section-with-bg .nav-pills .nav-link.active:hover {
+              color: #ffffff;
+              /* 激活狀態下的文字顏色 */
+              background-color: #E9C9D6;
+              /* 激活狀態下的背景顏色 */
+            }
 
-                  /* 標籤內容樣式 */
-                  .section-with-bg .tab-content {
-                    background-color: #ffffff;
-                    /* 標籤內容背景顏色 */
-                    padding: 20px;
-                    border-radius: 5px;
-                    /* 可以選擇是否設置圓角 */
-                    margin-top: 10px;
-                    /* 調整標籤內容與標籤之間的間距 */
-                  }
+            /* 標籤內容樣式 */
+            .section-with-bg .tab-content {
+              background-color: #ffffff;
+              /* 標籤內容背景顏色 */
+              padding: 20px;
+              border-radius: 5px;
+              /* 可以選擇是否設置圓角 */
+              margin-top: 10px;
+              /* 調整標籤內容與標籤之間的間距 */
+            }
 
-                  .section-with-bg mark {
-                    background-color: #E9C9D6;
-                    color:#FFF;
-                    border-radius: 20px;
-                    display: inline-block;
-                    line-height: 0.8;
-                    overflow: visible;
-                    padding: 0.5em 0.5em;
-                    margin-top: 5px;
-                    margin-bottom: 10px;
-                  }
-                </style>
+            .section-with-bg mark {
+              background-color: #E9C9D6;
+              color: #FFF;
+              border-radius: 20px;
+              display: inline-block;
+              line-height: 0.8;
+              overflow: visible;
+              padding: 0.5em 0.5em;
+              margin-top: 5px;
+              margin-bottom: 10px;
+            }
+          </style>
           <!-- 連結管理Modal -->
-        <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="update_social_ModalLabel">操作教學</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <!-- ======= Schedule Section ======= -->
-                <div id="schedule" class="section-with-bg">
-                  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                        aria-selected="false">接收訂單&nbsp;&nbsp;<i class="fa-solid fa-check"></i></button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                        aria-selected="true">對帳表&nbsp;<i class="fa-solid fa-pen"></i></button>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;接收訂單</mark>
-                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                      <h5><b>接收訂單：</b>點擊接受訂單後訂單會跑到對帳表</h5>
+          <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="update_social_ModalLabel">操作教學</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- ======= Schedule Section ======= -->
+                  <div id="schedule" class="section-with-bg">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
+                          data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                          aria-selected="false">接收訂單&nbsp;&nbsp;<i class="fa-solid fa-check"></i></button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                          type="button" role="tab" aria-controls="pills-home" aria-selected="true">對帳表&nbsp;<i
+                            class="fa-solid fa-pen"></i></button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;接收訂單</mark>
+                        <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                          <h5><b>接收訂單：</b>點擊接受訂單後訂單會跑到對帳表</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <img src="../files/@media(min-width 920px) { (2).png" alt="發現功能"
+                            style="min-width:100px; height:60%">
+                        </div>
                       </div>
-                      <div class="d-flex justify-content-center">
-                        <img src="../files/@media(min-width 920px) { (2).png" alt="發現功能" style="min-width:100px; height:60%">
+                      <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;查詢、編輯訂單資訊</mark>
+                        <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                          <h5><b>明細查看：</b>查看訂單的詳情，包括買家購買的物品以及買家的備註</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <img src="../files/@media(min-width 920px) {.png" alt="發現功能"
+                            style="min-width:100px; height:60%">
+                        </div>
+                        <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                          <h5><b>編輯訂單狀態：</b>點擊圖標輸入編輯資訊，點擊確定更改成功</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <img src="../files/@media(min-width 920px) { (1).png" alt="發現功能"
+                            style="min-width:100px; height:60%">
+                        </div>
                       </div>
+
                     </div>
-                    <div class="tab-pane fade " id="pills-home" role="tabpanel"
-                      aria-labelledby="pills-home-tab">
-                      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;查詢、編輯訂單資訊</mark>
-                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                      <h5><b>明細查看：</b>查看訂單的詳情，包括買家購買的物品以及買家的備註</h5>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                        <img src="../files/@media(min-width 920px) {.png" alt="發現功能" style="min-width:100px; height:60%">
-                      </div>
-                      <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                      <h5><b>編輯訂單狀態：</b>點擊圖標輸入編輯資訊，點擊確定更改成功</h5>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                        <img src="../files/@media(min-width 920px) { (1).png" alt="發現功能" style="min-width:100px; height:60%">
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div><!-- End Schedule Section -->
+                  </div><!-- End Schedule Section -->
+                </div>
               </div>
             </div>
           </div>
-        </div>
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -952,49 +956,49 @@
               <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
                 tabindex="0">
                 <div class="table-responsive">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1012,58 +1016,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
-              </div>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-week" role="tabpanel" aria-labelledby="nav-week-tab" tabindex="0">
-              <div class="table-responsive">
-              <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            AND order_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1081,58 +1085,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab" tabindex="0">
-              <div class="table-responsive">
-              <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            AND order_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1150,58 +1154,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab" tabindex="0">
-              <div class="table-responsive">
-              <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            AND order_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1219,58 +1223,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-nopay" role="tabpanel" aria-labelledby="nav-nopay-tab" tabindex="0">
-              <div class="table-responsive">
-              <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            AND payment_state = 1
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1288,58 +1292,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
-              </div>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-ispay" role="tabpanel" aria-labelledby="nav-ispay-tab" tabindex="0">
-              <div class="table-responsive"> 
-              <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            AND payment_state = 2
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1357,58 +1361,58 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div> 
               <div class="tab-pane fade" id="nav-complete" role="tabpanel" aria-labelledby="nav-complete-tab"
                 tabindex="0">
                 <div class="table-responsive">
-                <table id="example" class="table table-hover" cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th>帳號</th>
-                      <th>付款帳號</th>
-                      <th>下單時間</th>
-                      <th>總金額</th>
-                      <th>確認付款</th>
-                      <th>明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                    if (!$link) {
-                      die('Connection failed: ' . mysqli_connect_error());
-                    }
+                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>帳號</th>
+                        <th>付款帳號</th>
+                        <th>下單時間</th>
+                        <th>總金額</th>
+                        <th>確認付款</th>
+                        <th>明細</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                      if (!$link) {
+                        die('Connection failed: ' . mysqli_connect_error());
+                      }
 
-                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+                      $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state = '已完成'
            GROUP BY order_details.order_id";
-                    $result = mysqli_query($link, $sql);
+                      $result = mysqli_query($link, $sql);
 
-                    if (!$result) {
-                      die('Query failed: ' . mysqli_error($link));
-                    }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $order_id = $row['order_id']; // 獲取訂單 ID
-                    
-                      // 在迴圈內部執行第二個查詢
-                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                      if (!$result) {
+                        die('Query failed: ' . mysqli_error($link));
+                      }
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $order_id = $row['order_id']; // 獲取訂單 ID
+                      
+                        // 在迴圈內部執行第二個查詢
+                        $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                      $result2 = mysqli_query($link, $sql2);
-                      $totalprice = 0;
-                      if ($result2 && mysqli_num_rows($result2) > 0) {
-                        $totalprice_row = mysqli_fetch_assoc($result2);
-                        $totalprice = $totalprice_row['totalprice'];
-                      }
-                      echo '
+                        $result2 = mysqli_query($link, $sql2);
+                        $totalprice = 0;
+                        if ($result2 && mysqli_num_rows($result2) > 0) {
+                          $totalprice_row = mysqli_fetch_assoc($result2);
+                          $totalprice = $totalprice_row['totalprice'];
+                        }
+                        echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -1426,12 +1430,13 @@
                 </td>
                 </tr>
                 ';
-                    }
-                    mysqli_close($link); ?>
-                  </tbody>
-                </table>
+                      }
+                      mysqli_close($link); ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div></div>
+            </div>
 
           </div>
           <?php
@@ -1554,12 +1559,12 @@
             FROM order_details
             JOIN commodity ON order_details.commodity_id = commodity.commodity_id
             WHERE `order_details`.order_id = {$row['order_id']}";
-              $result2 = mysqli_query($link, $sql2);
-              $totalprice = 0;
-              if ($result2 && mysqli_num_rows($result2) > 0) {
-                $totalprice_row = mysqli_fetch_assoc($result2);
-                $totalprice = $totalprice_row['totalprice'];
-              }
+            $result2 = mysqli_query($link, $sql2);
+            $totalprice = 0;
+            if ($result2 && mysqli_num_rows($result2) > 0) {
+              $totalprice_row = mysqli_fetch_assoc($result2);
+              $totalprice = $totalprice_row['totalprice'];
+            }
               echo '<form method="post" action="orderdetail.php?commodity_group_id=' . $commodity_group_id . '" style="height: 400px;overflow-y: auto;">
           <input type="hidden" name="order_id" value="', $row["order_id"], '">
           
@@ -1574,10 +1579,33 @@
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
                 <button type="submit" name="submit3" class="btn btn-primary" 
                 style="background-color: #E9C9D6;border: none;color: white;">拒絕接收</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#client' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;"><i class="fa-solid fa-address-book"></i></button>
             </td>
           </tr>
           </tbody>
           </form>';
+              $sql3="SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']}; ";
+              $result3 = mysqli_query($link, $sql3);
+              $row3 = mysqli_fetch_assoc($result3);
+              echo '<!-- Modal -->
+              <div class="modal fade" id="client' . $row['order_id'] . '" tabindex="-1" aria-labelledby="clientLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="clientLabel">'.$row3['account'].'的信用紀錄</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <li>完成訂單數：'.$row3['allorder'].'</li>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                      <button type="button" class="btn btn-primary">確認</button>
+                    </div>
+                  </div>
+                </div>
+              </div>';
             }
             mysqli_close($link); ?>
           </table>
