@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/logo2.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -57,9 +57,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php"><span>購物</span></a>
+          <li class="dropdown"><a href="portfolio.php"  class="active"><span>購物</span></a>
           </li>
-          <li><a href="groupshop.php" class="active">團購</a></li>
+          <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
@@ -254,13 +254,13 @@
                 // 結單日期最晚
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "SELECT * 
-        FROM commodity c
-        JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
-        JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-        LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
-        WHERE gt.topic = '$topic'
-        GROUP BY c.commodity_id
-        ORDER BY cg.close_order_date DESC;";
+                          FROM commodity c
+                          JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+                          JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+                          LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
+                          WHERE gt.topic = '$topic'
+                          GROUP BY c.commodity_id
+                          ORDER BY cg.close_order_date DESC;";
 
                 $result = mysqli_query($link, $sql);
 
@@ -269,15 +269,14 @@
                     echo '
                           <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
                               <div class="portfolio-wrap">
-                                  <a href="portfolio-details.php" class="portfolio-details-lightbox"
-                                    data-glightbox="type: external" title="Portfolio Details">
+                              <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
+                              data-glightbox="type: external" title="' . $row['commodity_name'] . '">
                                       <figure>
                                           <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
                                       </figure>
                                   </a>
                                   <div class="portfolio-info">
-                                      <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
-                                            data-glightbox="type: external" title="Portfolio Details">' . $row['commodity_name'] . '</a></h4>
+                                      <h4>' . $row['commodity_name'] . '</h4>
                                       <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
                                   </div>
                               </div>
@@ -325,15 +324,14 @@
                     echo '
                       <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
                           <div class="portfolio-wrap">
-                              <a href="portfolio-details.php" class="portfolio-details-lightbox"
-                                data-glightbox="type: external" title="Portfolio Details">
+                          <a href="portfolio-details.php?commodity_id=' . $row['commodity_id'] . '" class="portfolio-details-lightbox"
+                          data-glightbox="type: external" title="' . $row['commodity_name'] . '">
                                   <figure>
                                       <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
                                   </figure>
                               </a>
                               <div class="portfolio-info">
-                                  <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
-                                        data-glightbox="type: external" title="Portfolio Details">' . $row['commodity_name'] . '</a></h4>
+                                  <h4>' . $row['commodity_name'] . '</h4>
                                   <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
                               </div>
                           </div>
