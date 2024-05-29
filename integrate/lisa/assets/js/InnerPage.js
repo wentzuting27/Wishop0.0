@@ -19,12 +19,6 @@ const text = document.getElementById('one1');
 
 
 
-document.getElementById('pra').addEventListener('click', function () {
-  var owl = document.getElementById("slider-carousel");
-  $(owl).owlCarousel(); // 初始化 Owl Carousel
-  $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
-});
-
 /**商品**/
 // 获取所有输入框元素
 const quantityInputs = document.querySelectorAll('[id^="quantityInput"]');
@@ -63,15 +57,25 @@ quantityInputs.forEach(input => {
   });
 });
 
-$(document).ready(function(){
-  $('.d-grid .btn').click(function(){
-    $('.btn').removeClass('active');
-    $(this).addClass('active');
-  });
+
+var buttons = document.querySelectorAll('.sparkle-button');
+
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+
+        buttons.forEach(function(btn) {
+            btn.classList.remove('active');
+            btn.style.backgroundColor = '#B0A5C6';
+        });
+
+        this.classList.add('active');
+        this.style.backgroundColor = '#E9C9D6';
+
+        var selectedStar = this.getAttribute('id'); // 获取选定的星级值
+        document.getElementById('star123').value = selectedStar;
+        console.log('Selected Star: ',document.getElementById('star123').getAttribute('value'));
+    });
 });
 
 
-/**
- * 賣家
- * **/
 

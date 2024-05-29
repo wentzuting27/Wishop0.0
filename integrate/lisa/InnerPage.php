@@ -432,11 +432,11 @@
           </div>
           <!-- Modal -->
           <?php
-          $account=$_SESSION["account"];
-           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-           $sql = "SELECT common_payment_account FROM account WHERE account= '$account';";
-           $result = mysqli_query($link, $sql);
-           $row = mysqli_fetch_assoc($result);
+          $account = $_SESSION["account"];
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "SELECT common_payment_account FROM account WHERE account= '$account';";
+          $result = mysqli_query($link, $sql);
+          $row = mysqli_fetch_assoc($result);
           echo '
           <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -450,7 +450,7 @@
                   placeholder="備註內容..."></textarea>
                 <label for="name2" style="margin-left:10px;">確認付款帳戶:</label>
                 <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px" value="'.$row["common_payment_account"].'"/>
+                  style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
@@ -721,12 +721,6 @@
               </tbody>
             </table>
           </div>
-          <style>
-            .btn.active {
-              background-color: #CF9E9E;
-              border-color: #CF9E9E;
-            }
-          </style>
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
           if (!$link) {
@@ -798,10 +792,15 @@
               </div>
             </div>
           </div>';
-
+            $selectedStar = ''; // 初始化为空字符串
+            if (isset($_POST['star123'])) {
+              $selectedStar = $_POST['star123']; // 如果有从表单提交过来的值，则赋给 $selectedStar
+            }
             echo
-              ' <form  method="post" action="orderdetail.php?commodity_group_id=' . $commodity_group_id . '">
+              ' 
+              <form  method="post" action="evaluate.php?commodity_group_id=' . $commodity_group_id . '">
               <input type="hidden" name="order_id" value="', $order_id, '">
+              
           <div class="modal fade" id="eva' . $order_id . '" tabindex="-1" aria-labelledby="evaLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -810,37 +809,44 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                
                 <div class="d-grid gap-2 d-md-block">
-                <button class="btn btn-primary" type="button"
-                style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></button>
-                <button class="btn btn-primary" type="button"style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></button>
-                <button class="btn btn-primary" type="button"style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></button>
-                <button class="btn btn-primary" type="button"style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></button>
-                <button class="btn btn-primary" type="button"style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i></button></div>
+                <input type="radio" name="star123" id="5" class="btn-check" autocomplete="off">
+                        <label class="btn btn-primary sparkle-button" for="5" style="background-color: #B0A5C6; color: white;border:none;">
+                            <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                        </label>
+                        <label class="btn btn-primary sparkle-button" type="button" id="4" style="background-color: #B0A5C6; color: white;border:none;">
+                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
+                <label class="btn btn-primary sparkle-button" type="button" id="3" style="background-color: #B0A5C6; color: white;border:none;">
+                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
+                <label class="btn btn-primary sparkle-button" type="button" id="2" style="background-color: #B0A5C6; color: white;border:none;">
+                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
+                <label class="btn btn-primary sparkle-button" type="button" id="1" style="background-color: #B0A5C6; color: white;border:none;">
+                <i class="fa-solid fa-wand-sparkles"></i></label>
+                </div>
                 <label for="remark" style="margin-left:10px;">評價內容：</label>
-                <textarea id="w3review" name="remark" rows="4" cols="50" style="margin:10px;"
+                <textarea id="eva_narrate" name="eva_narrate" rows="4" cols="50" style="margin:10px;"
                   placeholder="評價內容..."></textarea>
-                
+                  <fieldset>
+                  <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                    name="evaluate_photo[]" multiple  />
+                </fieldset>
                 </div>
                 <div class="modal-footer">
+                <input type="hidden" name="star123" id="star123" value="' . $selectedStar . '" >
                   <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
-                  <button type="button"  name="complete" class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+                  <button type="submit"  name="submit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
                 </div>
               </div>
             </div>
           </div>
+          
           </form>
           ';
 
           }
           mysqli_close($link);
           ?>
+
           <button onclick="showCsv()" class="btn btn-block"
             style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
           <button onclick="download()" class="btn btn-block"

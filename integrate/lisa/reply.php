@@ -103,23 +103,23 @@ if(isset($_POST['editreply'])) {
     }
 }
 
-if(isset($_POST['delreply'])) {
+if(isset($_POST['delcom'])) {
     $commodity_group_id = $_GET["commodity_group_id"];
-    $question_id = $_POST["question_id"];
+    $reply_id = $_POST["reply_id"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
     if (!$link) {
         die('Connection failed: ' . mysqli_connect_error());
     }
-    $sql = "DELETE FROM question WHERE question_id=$question_id";
+    $sql = "DELETE FROM reply WHERE reply_id=$reply_id";
 
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo'<script>alert("刪除成功"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        echo'<script>alert("刪除成功"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         exit();
     } 
     else {
-        echo'<script>alert("刪除失敗"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        echo'<script>alert("刪除失敗"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         exit();
     }
 }
