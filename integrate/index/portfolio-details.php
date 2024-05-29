@@ -82,7 +82,8 @@
 
                     cg.commodity_group_id,
                     cg.commodity_group_name,
-                    cg.nation
+                    cg.nation,
+                    cg.close_order_date
                     
                 FROM 
                     commodity c
@@ -115,6 +116,8 @@
                   $commodity_group_id = $row['commodity_group_id'];
                   $commodity_group_name = $row['commodity_group_name'];
                   $nation = $row['nation'];
+                  $close_order_date = $row['close_order_date'];
+
 
                 }
 
@@ -256,7 +259,7 @@
                     }
                     ?>
                   </a></li>
-                <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
+                <li><i class="fa-solid fa-clock"></i>&nbsp;<strong>截單日期</strong>: <?php echo $close_order_date; ?></li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
 
                   <?php
