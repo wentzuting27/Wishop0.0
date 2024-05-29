@@ -44,7 +44,7 @@
 </head>
 
 <body>
-<?php session_start(); ?>
+  <?php session_start(); ?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -93,61 +93,300 @@
     </div>
   </header><!-- End Header -->
 
+  <style>
+    /* 主體顏色設置 */
+    .section-with-bg {
+      padding: 20px;
+    }
+
+    /* 標籤導航樣式 */
+    .nav-pills .nav-link {
+      margin: 0 15px 15px 0;
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      line-height: 20px;
+      color: #444444;
+      border-radius: 4px;
+      text-transform: uppercase;
+      background: #fff;
+      margin-bottom: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* 激活狀態下的標籤樣式 */
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link.active:focus,
+    .nav-pills .nav-link.active:hover {
+      color: #ffffff;
+      /* 激活狀態下的文字顏色 */
+      background-color: #E9C9D6;
+      /* 激活狀態下的背景顏色 */
+    }
+
+    /* 標籤內容樣式 */
+    .tab-content {
+      background-color: #ffffff;
+      /* 標籤內容背景顏色 */
+      padding: 20px;
+      border-radius: 5px;
+      /* 可以選擇是否設置圓角 */
+      margin-top: 10px;
+      /* 調整標籤內容與標籤之間的間距 */
+    }
+
+    mark {
+      background-color: #E9C9D6;
+      color: #FFF;
+      border-radius: 20px;
+      display: inline-block;
+      line-height: 0.8;
+      overflow: visible;
+      padding: 0.5em 0.5em;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <style>
+    .img-fluid {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+
   <main id="main">
 
-  <br>
-  <br>
-  <br>
+    <br>
+    <br>
+    <br>
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
 
-        <div class="seven">
-          <h1>#主題</h1>
+
+
+
+        <div style="text-align: center; color:#B0A5C6;">
+          <h2><b><?php
+          if ($_GET['topic'] != '') {
+            $topic = $_GET['topic'];
+            switch ($topic) {
+              case 1:
+                echo '<i class="fa-solid fa-shirt"></i>&nbsp;服飾';
+                break;
+              case 2:
+                echo '<i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝';
+                break;
+              case 3:
+                echo '<i class="fa-solid fa-heart"></i>&nbsp;動漫';
+                break;
+              case 4:
+                echo '<i class="fa-solid fa-star"></i>&nbsp;明星';
+                break;
+              case 5:
+                echo '<i class="fa-solid fa-house-chimney-window"></i>&nbsp;日常';
+                break;
+              case 6:
+                echo '<i class="fa-solid fa-gamepad"></i>&nbsp;數位3C';
+                break;
+              case 7:
+                echo '<i class="fa-solid fa-utensils"></i>&nbsp;美食';
+                break;
+              case 8:
+                echo '<i class="fa-solid fa-person-biking"></i>&nbsp;運動';
+                break;
+              case 9:
+                echo '<i class="fa-solid fa-gift"></i>&nbsp;精品';
+                break;
+              case 10:
+                echo '<i class="fa-solid fa-bars"></i>&nbsp;其他';
+                break;
+            }
+          }
+
+
+          ?>
+            </b></h2>
         </div>
 
-        <div class="row">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">最新</li>
-              <li data-filter=".filter-follow">最熱</li>
-              <li data-filter=".filter-wish">願望</li>
-            </ul>
+
+        <section id="schedule" class="section-with-bg">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">最新</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">最熱&nbsp;<i
+                      class="fa-solid fa-fire"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-wish-tab" data-bs-toggle="pill" data-bs-target="#pills-wish"
+                    type="button" role="tab" aria-controls="pills-wish" aria-selected="false">願望&nbsp;<i
+                      class="fa-solid fa-wand-sparkles"></i></button>
+                </li>
+              </ul>
+            </div>
+
           </div>
-        </div>
 
-        <div class="row portfolio-container">
 
-          <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-            <div class="portfolio-wrap">
+          <div class="tab-content" id="pills-tabContent">
 
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品1</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
+              <div class="row portfolio-container">
+
+
+                <?php
+                if (isset($_GET['topic']) && $_GET['topic'] != '') {
+                  $topic = $_GET['topic'];
+                }
+
+                // 結單日期最晚
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT * 
+        FROM commodity c
+        JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+        JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+        LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
+        WHERE gt.topic = '$topic'
+        GROUP BY c.commodity_id
+        ORDER BY cg.close_order_date DESC;";
+
+                $result = mysqli_query($link, $sql);
+
+                if ($result) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                          <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
+                              <div class="portfolio-wrap">
+                                  <a href="portfolio-details.php" class="portfolio-details-lightbox"
+                                    data-glightbox="type: external" title="Portfolio Details">
+                                      <figure>
+                                          <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                                      </figure>
+                                  </a>
+                                  <div class="portfolio-info">
+                                      <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
+                                            data-glightbox="type: external" title="Portfolio Details">' . $row['commodity_name'] . '</a></h4>
+                                      <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                                  </div>
+                              </div>
+                          </div>';
+                  }
+                }
+                ?>
+
+
+
+
+
+
+
+
+
               </div>
 
+            </div>
+
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div class="row portfolio-container">
+
+
+                <?php
+                if (isset($_GET['topic']) && $_GET['topic'] != '') {
+                  $topic = $_GET['topic'];
+                }
+
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql2 = "SELECT * , sum(order_details_num)
+                        FROM commodity c
+                        JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+                        JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+                        LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
+                        LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
+                        WHERE gt.topic = '$topic'
+                        GROUP BY c.commodity_id
+                        ORDER BY sum(order_details_num) DESC;";
+
+                $result2 = mysqli_query($link, $sql2);
+
+                if ($result2) {
+                  while ($row = mysqli_fetch_assoc($result2)) {
+                    echo '
+                      <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
+                          <div class="portfolio-wrap">
+                              <a href="portfolio-details.php" class="portfolio-details-lightbox"
+                                data-glightbox="type: external" title="Portfolio Details">
+                                  <figure>
+                                      <img src="' . $row['commodity_photo'] . '" class="img-fluid" alt="">
+                                  </figure>
+                              </a>
+                              <div class="portfolio-info">
+                                  <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
+                                        data-glightbox="type: external" title="Portfolio Details">' . $row['commodity_name'] . '</a></h4>
+                                  <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+                              </div>
+                          </div>
+                      </div>';
+                  }
+                }
+                ?>
+
+
+              </div>
 
             </div>
+
+            <div class="tab-pane fade" id="pills-wish" role="tabpanel" aria-labelledby="pills-wish-tab">
+
+              <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
+                <div class="portfolio-wrap">
+
+                  <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details">
+                    <figure>
+                      <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                    </figure>
+                  </a>
+
+                  <div class="portfolio-info">
+                    <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
+                        data-glightbox="type: external" title="Portfolio Details">願望</a></h4>
+                    <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
           </div>
 
-          
-        </div>
+
+
+
+
+
+        </section><!-- End Schedule Section -->
+
 
       </div>
     </section><!-- End Portfolio Section -->
 
   </main><!-- End #main -->
 
-  
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
