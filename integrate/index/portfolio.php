@@ -891,35 +891,6 @@
           ?>
 
 
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品1</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
-              </div>
-
-
-            </div>
-          </div> -->
-
-
-
-
-
-
-
-
-
-
         </div>
 
 
