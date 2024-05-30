@@ -544,13 +544,13 @@
                         $result_likegroup=mysqli_query($link,$sql_likegroup);
                         if(isset($_SESSION["account"])){
                           if(mysqli_num_rows($result_likegroup)==0){
-                            echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
+                            echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
                           }else{
                             echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
                           }
+                          echo '<a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
                         }
                         echo '
-                        <a href="',$group_link,'" class="link-details" title="查看詳情"><i class="bx bx-link"></i></a>
                       </figure>
 
                       <div class="shop_group-info">
@@ -727,14 +727,66 @@
     
       </div>
     </section><!-- End Portfolio Section -->
+
+<!-- insert_Preview_Modal -->
+<div class="modal fade" id="report_Modal" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="report_ModalLabel">新增預告</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="report_in_up_de.php" enctype="multipart/form-data">
+        <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
+        <input type="hidden" name="commodity_group_id" id="commodity_group_id" class="form-control" style="width: 100%;" value="">
+          <table width="100%" class="insert_group_form">
+            <tr>
+              <td width="10%">檢舉類型</td>
+              <td width="90%"><select name="report_type" class="form-control" required>
+                  <option value="1" class="report_option">酒類 / 菸類商品</option>
+                  <option value="2" class="report_option">武器 / 彈藥 / 軍事用品</option>
+                  <option value="3" class="report_option">藥品、醫療器材</option>
+                  <option value="4" class="report_option">此商品可能令人感到不適或違反善良風俗</option>
+                  <option value="5" class="report_option">活體動物、保育動物及其製品</option>
+                  <option value="6" class="report_option">仿冒品</option>
+                  <option value="7" class="report_option">濫用文字誤導搜尋</option>
+                  <option value="8" class="report_option">重覆刊登</option>
+                  <option value="9" class="report_option">複製他人商品圖文</option>
+                  <option value="10" class="report_option">其他</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>詳細原因</td>
+              <td><textarea class="form-control" rows="5" name="report_why" required></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
+            </tr>
+          </table>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div><!-- insert_Preview_Modal -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var reportModal = document.getElementById('report_Modal');
+  reportModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget; // Button that triggered the modal
+    var commodityGroupId = button.getAttribute('data-commodity-group-id'); // Extract info from data-* attributes
+    var inputCommodityGroupId = document.getElementById('commodity_group_id'); // Find the input in the modal
+    inputCommodityGroupId.value = commodityGroupId; // Update the input value
+  });
+});
+</script>
     
     
-    
-    
-      
-    
-    
-      </main><!-- End #main -->
+</main><!-- End #main -->
 
   
 
