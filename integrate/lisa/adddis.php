@@ -8,10 +8,6 @@ if(isset($_POST['submit'])) {
     $public = $_POST['public'];
     $account = $_SESSION["account"];
     
-    // 获取当前时间戳
-    $timestamp = time();
-    // 将时间戳格式化为日期时间字符串
-    $submit_time = date("Y-m-d H:i:s", $timestamp);
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
     if (!$link) {
@@ -20,7 +16,7 @@ if(isset($_POST['submit'])) {
 
     // 插入问题到数据库
     $sql = "INSERT INTO question (commodity_group_id, account , question_title, question_narrate, `time`,`public`) 
-            VALUES ('$commodity_group_id', '$account', '$question_title', '$question_narrate', '$submit_time', '$public')";
+            VALUES ('$commodity_group_id', '$account', '$question_title', '$question_narrate', NOW(), '$public')";
 
     $result = mysqli_query($link, $sql);
     if ($result) {
@@ -76,6 +72,55 @@ if(isset($_POST['submit'])) {
     } 
     else {
         echo '<script>alert("上傳失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    }
+}
+
+if(isset($_POST['editdis'])) {
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $question_id= $_POST['question_id'];
+    $question_title = $_POST['question_title'];
+    $question_narrate = $_POST['question_narrate'];
+    $public = $_POST['public'];
+    $account = $_SESSION["account"];
+    
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+
+    // 插入问题到数据库
+    $sql = "UPDATE question SET question_title='$question_title',question_narrate='$question_narrate',public='$public' WHERE question_id=$question_id";
+
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        echo'<script>alert("更新成功"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    } 
+    else {
+        echo '<script>alert("更新失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    }
+}
+
+if(isset($_POST['deldis'])) {
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $question_id = $_POST["question_id"];
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $sql = "DELETE FROM question WHERE question_id=$question_id";
+
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        echo'<script>alert("刪除成功"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    } 
+    else {
+        echo'<script>alert("刪除失敗"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         exit();
     }
 }

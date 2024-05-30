@@ -40,6 +40,17 @@
 
 </head>
 <?php session_start();?>
+<style>
+  .nav-link {
+    color: #B19CD9;
+    /* 紫色文字 */
+  }
+
+  .nav-link:hover {
+    color: #8A6BBE;
+    /* 鼠标悬停时的更深的紫色文字 */
+  }
+</style>
 <body>
   <!-- ======= Header ======= -->
   <!-- End Header -->
@@ -204,7 +215,13 @@ while ($row = mysqli_fetch_assoc($result)) {
   $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
   $result2 = mysqli_query($link, $sql2);
   $row2 = mysqli_fetch_assoc($result2);
-  echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）</small>';
+  echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
+  if($row["commodity_group_state"]== 2){
+  echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
+  if($row["commodity_group_state"]== 1){
+    echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
+  else{
+      echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
   echo '</h3>
         <div class="card-text">
             <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -251,80 +268,82 @@ while ($row = mysqli_fetch_assoc($result)) {
 <div class="content" style="margin-top: -5px;padding: 0%;">
   <section class="addgoods">
     <h2>Features</h2>
-    <div class="container">
-      <form id="contact" method="post"
-        action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" style="padding: 5%;"
-        enctype="multipart/form-data">
-        <table class="table table-hover" width="100%">
-          <tbody>
-            <tr>
-              <th>商品名稱</th>
-              <td>
-                <fieldset>
-                  <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
-                </fieldset>
-              </td>
-            </tr>
-            <tr>
-              <th>商品敘述</th>
-              <td>
-                <fieldset>
-                  <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
-                </fieldset>
-              </td>
-            </tr>
-            <tr>
-              <th>商品狀態</th>
-              <td>
-                <div>
-                  <input type="radio" id="1" name="commodity_state" value="1" checked />
-                  <label for="add1">上架</label>
-                </div>
-                <div>
-                  <input type="radio" id="2" name="commodity_state" value="2" />
-                  <label for="add2">待上架</label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>金額</th>
-              <td>
-                <fieldset>
-                  <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
-                </fieldset>
-              </td>
+    <div class="card" style="margin-left:40px;margin-right:40px;">
+              <div class="card-body">
+                <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>" enctype="multipart/form-data">
+                <div class="table-responsive">
+                <table class="table table-hover" width="100%">
+                    <tbody>
+                      <tr>
+                        <th>商品名稱</th>
+                        <td>
+                          <fieldset>
+                            <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
+                          </fieldset>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>商品敘述</th>
+                        <td>
+                          <fieldset>
+                            <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
+                          </fieldset>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>商品狀態</th>
+                        <td>
+                          <div>
+                            <input type="radio" id="1" name="commodity_state" value="1" checked />
+                            <label for="add1">上架</label>
+                          </div>
+                          <div>
+                            <input type="radio" id="2" name="commodity_state" value="2" />
+                            <label for="add2">待上架</label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>金額</th>
+                        <td>
+                          <fieldset>
+                            <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
+                          </fieldset>
+                        </td>
 
-            </tr>
-            <tr>
-              <th>連結</th>
-              <td>
-                <fieldset>
-                  <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
-                </fieldset>
-              </td>
-            </tr>
-            <tr>
-              <th>上傳圖片</th>
-              <td>
-                <fieldset>
-                  <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                    name="commodity_photo[]" multiple required />
-                </fieldset>
-              </td>
-            </tr>
+                      </tr>
+                      <tr>
+                        <th>連結</th>
+                        <td>
+                          <fieldset>
+                            <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
+                          </fieldset>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>上傳圖片</th>
+                        <td>
+                          <fieldset>
+                            <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                              name="commodity_photo[]" multiple required />
+                          </fieldset>
+                        </td>
+                      </tr>
 
-            <tr>
-              <td colspan="5">
-                <fieldset>
-                  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
-                </fieldset>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-  </section>
+                      <tr>
+                        <td colspan="5">
+                          <fieldset>
+                            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
+                          </fieldset>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </section>
 
   <section>
     <h2>Delivery Contents</h2>
@@ -635,48 +654,71 @@ while ($row = mysqli_fetch_assoc($result)) {
             <h1>對帳表</h1>
           </div>
           <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
-            <table id="example" class="table table-hover" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>帳號</th>
-                  <th>付款帳號</th>
-                  <th>下單時間</th>
-                  <th>總金額</th>
-                  <th>確認付款</th>
-                  <th>明細</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                if (!$link) {
-                  die('Connection failed: ' . mysqli_connect_error());
-                }
-                $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all"
+                  type="button" role="tab" aria-controls="nav-all" aria-selected="true">All</button>
+                <button class="nav-link" id="nav-week-tab" data-bs-toggle="tab" data-bs-target="#nav-week" type="button"
+                  role="tab" aria-controls="nav-week" aria-selected="false">近一週</button>
+                <button class="nav-link" id="nav-month-tab" data-bs-toggle="tab" data-bs-target="#nav-month"
+                  type="button" role="tab" aria-controls="nav-month" aria-selected="false">近一個月</button>
+                <button class="nav-link" id="nav-three-tab" data-bs-toggle="tab" data-bs-target="#nav-three"
+                  type="button" role="tab" aria-controls="nav-three" aria-selected="false">近三個月</button>
+                <button class="nav-link" id="nav-nopay-tab" data-bs-toggle="tab" data-bs-target="#nav-nopay"
+                  type="button" role="tab" aria-controls="nav-nopay" aria-selected="false">未付款</button>
+                <button class="nav-link" id="nav-ispay-tab" data-bs-toggle="tab" data-bs-target="#nav-ispay"
+                  type="button" role="tab" aria-controls="nav-ispay" aria-selected="false">已付款</button>
+                <button class="nav-link" id="nav-complete-tab" data-bs-toggle="tab" data-bs-target="#nav-complete"
+                  type="button" role="tab" aria-controls="nav-complete" aria-selected="false">已完成</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
+                tabindex="0">
+                <div class="table-responsive">
+                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
            GROUP BY order_details.order_id";
-                $result = mysqli_query($link, $sql);
+                    $result = mysqli_query($link, $sql);
 
-                if (!$result) {
-                  die('Query failed: ' . mysqli_error($link));
-                }
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $order_id = $row['order_id']; // 獲取訂單 ID
-                
-                  // 在迴圈內部執行第二個查詢
-                  $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
                        FROM order_details
                        JOIN commodity ON order_details.commodity_id = commodity.commodity_id
                        WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
-                  $result2 = mysqli_query($link, $sql2);
-                  $totalprice = 0;
-                  if ($result2 && mysqli_num_rows($result2) > 0) {
-                    $totalprice_row = mysqli_fetch_assoc($result2);
-                    $totalprice = $totalprice_row['totalprice'];
-                  }
-                  echo '
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
+                      }
+                      echo '
               <tr>
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
@@ -685,7 +727,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <td>
                   <center>
                     <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
-                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">未付款</label>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
                   </center>
                 </td>
                 <td>
@@ -694,60 +736,426 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </td>
                 </tr>
                 ';
-                }
-                mysqli_close($link); ?>
-              </tbody>
-            </table>
-            <script>
-              // 獲取所有 checkbox 元素
-              var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="nav-week" role="tabpanel" aria-labelledby="nav-week-tab" tabindex="0">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
 
-              checkboxes.forEach(function (checkbox) {
-                var label = document.querySelector('label[for="' + checkbox.id + '"]');
-                var isChecked = localStorage.getItem("checkbox" + checkbox.dataset.orderId);
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state != '未成立'
+           AND order_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
 
-                if (isChecked === "true") {
-                  checkbox.checked = true;
-                  label.textContent = "已付款"; // 修改 label 的內容
-                }
-
-                checkbox.addEventListener("click", function () {
-                  if (checkbox.checked) {
-                    localStorage.setItem("checkbox" + checkbox.dataset.orderId, "true");
-                    label.textContent = "已付款"; // 修改 label 的內容
-
-                    // 使用 AJAX 發送資料到後端 PHP 腳本
-                    var orderId = checkbox.dataset.orderId;
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update_payment_state.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                      if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 在此處處理後端 PHP 回應
-                        console.log(xhr.responseText);
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
                       }
-                    };
-                    xhr.send("order_id=" + orderId + "&payment_state=2");
-                  } else {
-                    localStorage.removeItem("checkbox" + checkbox.dataset.orderId);
-                    label.textContent = "未付款"; // 修改 label 的內容
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab" tabindex="0">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
 
-                    // 使用 AJAX 發送資料到後端 PHP 腳本
-                    var orderId = checkbox.dataset.orderId;
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update_payment_state.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                      if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 在此處處理後端 PHP 回應
-                        console.log(xhr.responseText);
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state != '未成立'
+           AND order_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
+
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
                       }
-                    };
-                    xhr.send("order_id=" + orderId + "&payment_state=1");
-                  }
-                });
-              });
-            </script>
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab" tabindex="0">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state != '未成立'
+           AND order_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
+
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
+                      }
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-nopay" role="tabpanel" aria-labelledby="nav-nopay-tab" tabindex="0">
+              <div class="table-responsive">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state != '未成立'
+           AND payment_state = 1
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
+
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
+                      }
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="nav-ispay" role="tabpanel" aria-labelledby="nav-ispay-tab" tabindex="0">
+              <div class="table-responsive"> 
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state != '未成立'
+           AND payment_state = 2
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
+
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
+                      }
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+              </div>
+            </div> 
+              <div class="tab-pane fade" id="nav-complete" role="tabpanel" aria-labelledby="nav-complete-tab"
+                tabindex="0">
+                <div class="table-responsive">
+                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>帳號</th>
+                      <th>付款帳號</th>
+                      <th>下單時間</th>
+                      <th>總金額</th>
+                      <th>確認付款</th>
+                      <th>明細</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    if (!$link) {
+                      die('Connection failed: ' . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
+           FROM order_details natural JOIN `order` natural JOIN commodity
+           WHERE commodity_group_id=$commodity_group_id
+           AND order_state = '已完成'
+           GROUP BY order_details.order_id";
+                    $result = mysqli_query($link, $sql);
+
+                    if (!$result) {
+                      die('Query failed: ' . mysqli_error($link));
+                    }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $order_id = $row['order_id']; // 獲取訂單 ID
+                    
+                      // 在迴圈內部執行第二個查詢
+                      $sql2 = "SELECT SUM(order_details.order_details_num * commodity.commodity_price) AS totalprice
+                       FROM order_details
+                       JOIN commodity ON order_details.commodity_id = commodity.commodity_id
+                       WHERE `order_details`.order_id = $order_id"; // 使用訂單 ID
+                      $result2 = mysqli_query($link, $sql2);
+                      $totalprice = 0;
+                      if ($result2 && mysqli_num_rows($result2) > 0) {
+                        $totalprice_row = mysqli_fetch_assoc($result2);
+                        $totalprice = $totalprice_row['totalprice'];
+                      }
+                      echo '
+              <tr>
+            <td>' . $row['account'] . '</td>
+            <td>' . $row['payment_account'] . '</td>
+            <td>' . $row['order_time'] . '</td>
+            <td>' . $totalprice . '</td>
+            <td>
+                  <center>
+                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  </center>
+                </td>
+                <td>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
+                style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
+                </td>
+                </tr>
+                ';
+                    }
+                    mysqli_close($link); ?>
+                  </tbody>
+                </table>
+              </div>
+            </div></div>
 
           </div>
           <?php
@@ -808,20 +1216,19 @@ while ($row = mysqli_fetch_assoc($result)) {
                         data-bs-toggle="collapse" data-bs-target="#collapse' . $order_id . '" aria-expanded="false" aria-controls="collapse' . $order_id . '">
                         <i class="fa-solid fa-pen-to-square"></i></button></p>
                         <div class="collapse" id="collapse' . $order_id . '">
-                        
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
                            placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
-                          <button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;float:left;">確定</button>
-                           </div>
-                           
-                           </td>
-                         </tr>
-                       </table>
-                     </div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                     <button type="button"  class="btn btn-primary" data-bs-dismiss="modal">確定</button>
-                   </div>
+                        <button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;float:left">確定</button>
+                        </div>
+                        
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                  <button type="button"  class="btn btn-primary" data-bs-dismiss="modal">確定</button>
+                </div>
                 
               </div>
             </div>
@@ -1033,7 +1440,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <script src="../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Your Custom JS Files -->
-    <script src="../lisa/assets/js/InnerPage.js"></script>
+    <script src="../lisa/assets/js/InnerBuyer.js"></script>
     <script src="../lisa/assets/js/cvs.js"></script>
     <script src="assets/js/main.js"></script>
 

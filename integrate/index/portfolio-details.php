@@ -82,7 +82,8 @@
 
                     cg.commodity_group_id,
                     cg.commodity_group_name,
-                    cg.nation
+                    cg.nation,
+                    cg.close_order_date
                     
                 FROM 
                     commodity c
@@ -115,6 +116,8 @@
                   $commodity_group_id = $row['commodity_group_id'];
                   $commodity_group_name = $row['commodity_group_name'];
                   $nation = $row['nation'];
+                  $close_order_date = $row['close_order_date'];
+
 
                 }
 
@@ -217,7 +220,7 @@
                     href="../shop/shop.php?shop_id=<?php echo $shop_id; ?>" target="_blank">
                     <?php echo $shop_name; ?></a></li>
                 <li><i class="fa-solid fa-earth-asia"></i>&nbsp;<strong>國家</strong>: <a
-                    href="portfolio.php?nation=<?php echo $nation; ?>" target="_blank">
+                    href="nation.php?nation=<?php echo $nation; ?>" target="_blank">
                     <?php
 
                     switch ($nation) {
@@ -256,7 +259,7 @@
                     }
                     ?>
                   </a></li>
-                <li><i class="fa-solid fa-credit-card"></i>&nbsp;<strong>付款方式</strong>:</li>
+                <li><i class="fa-solid fa-clock"></i>&nbsp;<strong>截單日期</strong>: <?php echo $close_order_date; ?></li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
 
                   <?php
@@ -277,34 +280,34 @@
                       while ($row2 = mysqli_fetch_assoc($result2)) {
                         switch ($row2['topic']) {
                           case 1:
-                            echo '<a href="portfolio.php?topic=1" target="_blank"><span class="topic" name="topic" value="1">服飾</span></a>                            ';
+                            echo '<a href="topic.php?topic=1" target="_blank"><span class="topic" name="topic" value="1">服飾</span></a>                            ';
                             break;
                           case 2:
-                            echo '<a href="portfolio.php?topic=2" target="_blank"><span class="topic" name="topic" value="2">美妝</span></a>';
+                            echo '<a href="topic.php?topic=2" target="_blank"><span class="topic" name="topic" value="2">美妝</span></a>';
                             break;
                           case 3:
-                            echo '<a href="portfolio.php?topic=3" target="_blank"><span class="topic" name="topic" value="3">動漫</span></a>';
+                            echo '<a href="topic.php?topic=3" target="_blank"><span class="topic" name="topic" value="3">動漫</span></a>';
                             break;
                           case 4:
-                            echo '<a href="portfolio.php?topic=4" target="_blank"><span class="topic" name="topic" value="4">明星</span></a>';
+                            echo '<a href="topic.php?topic=4" target="_blank"><span class="topic" name="topic" value="4">明星</span></a>';
                             break;
                           case 5:
-                            echo '<a href="portfolio.php?topic=5" target="_blank"><span class="topic" name="topic" value="5">日常</span></a>';
+                            echo '<a href="topic.php?topic=5" target="_blank"><span class="topic" name="topic" value="5">日常</span></a>';
                             break;
                           case 6:
-                            echo '<a href="portfolio.php?topic=6" target="_blank"><span class="topic" name="topic" value="6">數位3C</span></a>';
+                            echo '<a href="topic.php?topic=6" target="_blank"><span class="topic" name="topic" value="6">數位3C</span></a>';
                             break;
                           case 7:
-                            echo '<a href="portfolio.php?topic=7" target="_blank"><span class="topic" name="topic" value="7">美食</span></a>';
+                            echo '<a href="topic.php?topic=7" target="_blank"><span class="topic" name="topic" value="7">美食</span></a>';
                             break;
                           case 8:
-                            echo '<a href="portfolio.php?topic=8" target="_blank"><span class="topic" name="topic" value="8">運動</span></a>';
+                            echo '<a href="topic.php?topic=8" target="_blank"><span class="topic" name="topic" value="8">運動</span></a>';
                             break;
                           case 9:
-                            echo '<a href="portfolio.php?topic=9" target="_blank"><span class="topic" name="topic" value="9">精品</span></a>';
+                            echo '<a href="topic.php?topic=9" target="_blank"><span class="topic" name="topic" value="9">精品</span></a>';
                             break;
                           case 10:
-                            echo '<a href="portfolio.php?topic=10" target="_blank"><span class="topic" name="topic" value="9">其他</span></a>';
+                            echo '<a href="topic.php?topic=10" target="_blank"><span class="topic" name="topic" value="9">其他</span></a>';
                             break;
                           default:
                             echo '<a href="#"><span class="topic" name="topic" value="10">無</span></a>';
@@ -314,16 +317,6 @@
                   }
                   ?>
 
-
-
-
-                <li><i class="fa-solid fa-tags"></i>&nbsp;<strong>標籤</strong>:
-                  <div>
-                    <a href="#"><span class="category">#標籤</span></a>
-                    <a href="#"><span class="category">#標籤</span></a>
-                    <a href="#"><span class="category">#標籤</span></a>
-                  </div>
-                </li>
               </ul>
               <hr>
               <div style="text-align: center;">

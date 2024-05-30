@@ -244,7 +244,13 @@ while ($row = mysqli_fetch_assoc($result)) {
   $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
   $result2 = mysqli_query($link, $sql2);
   $row2 = mysqli_fetch_assoc($result2);
-  echo '<small><br>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small>';
+  echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
+      if($row["commodity_group_state"]== 2){
+      echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
+      if($row["commodity_group_state"]== 1){
+        echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
+      else{
+          echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
   echo '</h3>
         <div class="card-text">
             <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -439,8 +445,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 <section id="first">
                     <h2>Shipping</h2>
-                    <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
-                        role="form" enctype="multipart/form-data">
+                    <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id;?>" method="post" role="form" enctype="multipart/form-data">
                         <center>
                             <div class="card" style="width:80%">
                                 <?php
@@ -466,7 +471,25 @@ while ($row = mysqli_fetch_assoc($result)) {
                   <option value="不公開">不公開</option>
                   </select>
                   </div>
-                <div class="card-body">
+                <div class="card-body">';
+                if(isset($_GET["question_id"])){
+                  $question_id=$_GET["question_id"];
+                  $sql2 = "select * from  question natural join question_photo  where question_id='$question_id'";
+                  $result2 = mysqli_query($link, $sql2);
+                  $row2 = mysqli_fetch_assoc($result2);
+                  echo'<input type="hidden" name="question_id" value="'. $question_id. '" >
+                  <input type="text" class="form-control" name="question_title" value="'.$row2["question_title"].'" required>
+                  <br>
+                  <textarea class="form-control" name="question_narrate" rows="5"
+                  style="max-height:250px;overflow-y:scroll;" required>'.$row2["question_narrate"].'</textarea>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-primary" name="editdis" type="submit"
+                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
+                </div>';
+                                }
+                                else{
+                                echo'
                   <input type="text" class="form-control" name="question_title" placeholder="標題" required>
                   <br>
                   <textarea class="form-control" name="question_narrate" rows="5" placeholder="內容"
@@ -480,7 +503,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="card-footer">
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>';
+                </div>';}
                                 ?>
                             </div>
                         </center>
@@ -491,7 +514,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           <h2>Returns</h2>
           <h4>對帳表:</h4>
 
-          <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+          <div class="table-responsive">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>

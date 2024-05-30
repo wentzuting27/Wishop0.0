@@ -235,24 +235,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
-            <!-- <ul>
-              <li><a href="about.php">About</a></li>
-              <li><a href="team.php">Team</a></li>
-              <li><a href="testimonials.php">Testimonials</a></li>
-
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul> -->
-          </li>
-          <li><a href="#">團購</a></li>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a></li>
+          <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
@@ -462,7 +446,7 @@
 
                             </div>
                           </div>
-                          <div class="col-3">
+                          <div class="col-6">
                             <div class="filtertag">
                               <h5>國家</h5>
                               <div class="row">
@@ -497,16 +481,8 @@
                             </div>
                           </div>
 
-                          <div class="col-3">
-                            <div class="filtertag">
-                              <h5>熱門標籤</h5>
-                            </div>
-                            <a type="button" href="tag.php" class="btn-tag">#排球少年</a>
-                            <a type="button" href="tag.php" class="btn-tag">#火影忍者</a>
-                            <a type="button" href="tag.php" class="btn-tag">#ATEEZ</a>
-                            <a type="button" href="tag.php" class="btn-tag">#偶像夢幻季</a>
-                            <a type="button" href="tag.php" class="btn-tag">#BTS</a>
-                          </div>
+                          
+
                         </div>
                       </div>
                     </div>
@@ -619,11 +595,7 @@
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">搜尋&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                        aria-selected="false">標籤&nbsp;&nbsp;<i class="fa-solid fa-tag"></i></button>
-                    </li>
+                    
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
@@ -649,9 +621,7 @@
                       <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
                     </div>
 
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                      功能開發中...
-                    </div>
+                    
 
                   </div>
 
@@ -793,7 +763,7 @@
               
                 echo '<li data-filter="*" class="filter-active">發現</li>';
                 echo '<li data-filter=".filter-follow">追蹤店家</li>';
-                echo '<li data-filter=".filter-tag">關注標籤</li>';
+                
               } else
                 '<a href="login.php" class="getstarted" style="color: white;">登入</a>'
                   ?>
@@ -825,14 +795,16 @@
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation'
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' 
+              and (close_order_date > NOW() OR close_order_date is null)
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}'))
+              where commodity_name like'%{$_POST['commodity_name']}%' and nation like'$nation' and  (c.commodity_group_id in(select commodity_group_id from group_topic where topic in(select topic from like_topic where account='{$_SESSION["account"]}')) or shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}')) 
+              and (close_order_date > NOW() OR close_order_date is null)
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
               }
@@ -857,7 +829,7 @@
               $sql2 = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}'
+              where commodity_name like'%{$_POST['commodity_name']}%' and  shop_id in(select shop_id from like_shop where account='{$_SESSION["account"]}') and c.commodity_id='{$row["commodity_id"]}' 
               GROUP BY c.commodity_id";
               $result2 = mysqli_query($link, $sql2);
 
@@ -918,35 +890,6 @@
           }
 
           ?>
-
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-            <div class="portfolio-wrap">
-
-              <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                title="Portfolio Details">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                </figure>
-              </a>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">商品1</a></h4>
-                <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
-              </div>
-
-
-            </div>
-          </div> -->
-
-
-
-
-
-
-
-
 
 
         </div>

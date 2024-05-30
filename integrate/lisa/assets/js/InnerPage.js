@@ -4,9 +4,9 @@ $(document).ready(function () {
     var owl = $(this);
     owl.owlCarousel({
       items: 3,
-      itemsDesktop: [1000, 4],
+      itemsDesktop: [1000, 2],
       itemsDesktopSmall: [900, 2],
-      itemsTablet: [600, 1],
+      itemsTablet: [800, 1],
       itemsMobile: false,
       pagination: false
     });
@@ -18,12 +18,6 @@ const btnOne = document.getElementById('one');
 const text = document.getElementById('one1');
 
 
-
-document.getElementById('pra').addEventListener('click', function () {
-  var owl = document.getElementById("slider-carousel");
-  $(owl).owlCarousel(); // 初始化 Owl Carousel
-  $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
-});
 
 /**商品**/
 // 获取所有输入框元素
@@ -64,8 +58,21 @@ quantityInputs.forEach(input => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var buttons = document.querySelectorAll('.sparkle-button');
 
-/**
- * 賣家
- * **/
+  buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+          buttons.forEach(function(btn) {
+              btn.classList.remove('active');
+              btn.style.backgroundColor = '#B0A5C6';
+          });
+
+          this.classList.add('active');
+          this.style.backgroundColor = '#E9C9D6';
+      });
+  });
+});
+
+
 

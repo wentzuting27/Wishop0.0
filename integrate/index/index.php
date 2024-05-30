@@ -56,7 +56,7 @@
         <ul>
           <li><a href="index.php" class="active">首頁</a></li>
           <li><a href="portfolio.php">購物</a></li>
-          <li><a href="#">團購</a></li>
+          <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
 
@@ -93,7 +93,7 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div id="heroCarousel" data-bs-interval="2800" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
@@ -112,21 +112,9 @@
           </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div class="carousel-item"
-          style="background-image: url(https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">限時團購</h2>
-              <p class="animate__animated animate__fadeInUp">本周熱門的團購都在這裡，快來看看哦！</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>前往查看</b></a>
-            </div>
-          </div>
-        </div>
-
         <!-- Slide 3 -->
         <div class="carousel-item"
-          style="background-image: url(https://images.unsplash.com/photo-1516633886686-2a2ffb459273?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+          style="background-image: url(https://i.pinimg.com/originals/27/b0/41/27b04138dc48c4d5d433f2c5839203c8.jpg)">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">許願池</h2>
@@ -136,6 +124,53 @@
             </div>
           </div>
         </div>
+
+
+        <?php
+        $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+        $sql = "SELECT commodity_group.*, shop.shop_name, COUNT(*) 
+            FROM commodity_group
+            INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
+           
+            INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
+            WHERE commodity_group_state <> 2 AND close_order_date > NOW() and close_order_date is not null
+            GROUP BY commodity_group.commodity_group_id, shop.shop_name
+            ORDER BY COUNT(*) DESC
+            LIMIT 5";
+
+        $result = mysqli_query($link, $sql);
+
+        if ($result) {
+          while ($row = mysqli_fetch_assoc($result)) {
+
+
+
+            echo '
+            <!-- Slide 熱門商品 -->
+            <div class="carousel-item" style="background-image: url(' . $row['commodity_group_bg'] . ')">
+              <div class="carousel-container">
+
+                <div style="padding:40px; text-align:center;" class="col-lg-7">
+                    <h5 class="animate__animated animate__fadeInDown" style="color:#FFF"><i class="fa-solid fa-fire"></i>&nbsp;熱門團購</h5>
+                    <h2 class="animate__animated animate__fadeInDown">' . $row['commodity_group_name'] . '</h2>
+                    <p class="animate__animated animate__fadeInUp"><i class="bi bi-clock"></i>&nbsp;截單日期：' . $row['close_order_date'] . '</p>
+                </div>
+
+                <div class="container"  class="col-lg-5" style="padding-right:100px;">
+                  <p class="animate__animated animate__fadeInUp">' . $row['commodity_group_narrate'] . ' ...</p>
+                  <a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '" class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>前往團購</b></a>
+                </div>
+              
+              </div>
+          </div>';
+          }
+        } else {
+          echo "查詢失敗：" . mysqli_error($link);
+        }
+
+        mysqli_close($link);
+        ?>
 
 
 
@@ -153,169 +188,22 @@
   </section><!-- End Hero -->
 
 
+  <style>
+    .testimonial-item img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
 
+    .tags-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 5px 0;
+      /* 根據需要添加其他樣式 */
+    }
+  </style>
 
   <main id="main">
-
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="fade-up">
-
-        <div class="seven">
-          <h1>熱門團購</h1>
-        </div>
-        <style>
-          .testimonial-item img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
-
-          .tags-container {
-            display: flex;
-            overflow-x: auto;
-            padding: 5px 0;
-            /* 根據需要添加其他樣式 */
-          }
-        </style>
-
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-
-
-          <div class="swiper-wrapper">
-
-
-            <?php
-            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-
-            $sql = "SELECT commodity_group.*, shop.shop_name, COUNT(*) 
-            FROM commodity_group
-            INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
-            INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
-            WHERE commodity_group_state <> 2 and close_order_date is not null
-            GROUP BY commodity_group.commodity_group_id, shop.shop_name
-            ORDER BY COUNT(*) DESC
-            LIMIT 5";
-
-            $result = mysqli_query($link, $sql);
-
-            if ($result) {
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="swiper-slide" >
-                <div class="testimonial-wrap" >
-                  <div class="testimonial-item" style="height: 450px;">
-                  <a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">
-                    <img src="' . $row['commodity_group_bg'] . '" class="testimonial-img" alt="" title="' . $row['commodity_group_name'] . '"></a>
-
-                    <div class="demo">
-                      <h3><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '">' . $row['commodity_group_name'] . '</a></h3>
-                    </div>
-
-                    <h4>' . $row['shop_name'] . '</h4>
-                    <br>
-                    <div style="height: 100px; overflow-y: auto;">
-
-                    <span>' . $row['commodity_group_narrate'] . '</span>
-                  </div>
-                    <br>
-
-                    <div style="height:50px">
-                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
-                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
-                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
-                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
-                      <a type="button" href="tag.php" class="btn-tag">#TAG</a>
-                     
-                    </div>
-
-
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="meta d-flex align-items-center">
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-clock"></i> <span class="ps-2">截單日期：' . $row['close_order_date'] . '</span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>';
-              }
-            } else {
-              echo "查詢失敗：" . mysqli_error($link);
-            }
-
-            mysqli_close($link);
-            ?>
-            <script></script>
-
-
-            <!-- item -->
-            <!-- <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="commodity_group_bg" class="testimonial-img" alt="">
-                  <div class="demo">
-                    <h3><a href='../lisa/InnerPage.php?commodity_group_id=$commodity_group_id'> .
-                        $row['commodity_group_name'] .</a></h3>
-                  </div>
-                  <h4>. $row['shop_name'] .</h4>
-                  <br>
-                  <span>. $row['commodity_group_narrate'] .</span>
-                  <br>
-                  <br>
-                  <div>
-                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
-                    <a type="button" href="#" class="btn btn-light-tag">#tag</a>
-                  </div>
-                  <br>
-                  <br>
-                  <div class="meta d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-clock"></i> <span class="ps-2">截單日期：. $row['close_order_date'] .</span>
-                    </div> -->
-            <!-- <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-calendar4-week"></i> <span class="ps-2">下午6:00</span>
-                    </div> -->
-            <!-- </div>
-
-                </div>
-              </div>
-            </div> -->
-            <!-- End testimonial item -->
-
-
-
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -516,8 +404,8 @@
             <div class="footer-info">
               <h3>WISHOP</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
+                2024<br>
+                Taiwan FJU <br><br>
                 <!-- <strong>Phone:</strong> +1 5589 55488 55<br>
                 <strong>Email:</strong> info@example.com<br> -->
               </p>
@@ -538,7 +426,6 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">購物</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">團購</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">許願池</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">#</a></li>
             </ul>
           </div>
 
@@ -550,12 +437,9 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
+            <h4>聯繫客服</h4>
+            <p>0912345678</p>
+            
           </div>
 
         </div>
@@ -564,14 +448,14 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Sailor</span></strong>. All Rights Reserved
+       
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+       
       </div>
     </div>
   </footer><!-- End Footer -->
