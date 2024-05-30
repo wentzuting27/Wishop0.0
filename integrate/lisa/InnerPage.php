@@ -842,10 +842,10 @@
                   <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
                   <button type="submit"  name="submit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
                 </div>
-              </div></form>
+              </div>
             </div>
           </div>
-          
+          </form>
           
           ';
 
