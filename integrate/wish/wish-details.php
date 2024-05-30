@@ -74,23 +74,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="../index/index.php" >首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php"><span>購物</span><i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="about.php">About</a></li>
-              <li><a href="team.php">Team</a></li>
-              <li><a href="testimonials.php">Testimonials</a></li>
-
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <li><a href="../index/portfolio.php" >購物</a></li>
           <li><a href="../index/groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php" class="active">許願池</a></li>
 
@@ -428,12 +412,62 @@
           <div class="col-lg-12">
             <div class="sidebar">
 
-              <h3 class="sidebar-title">Tags</h3>
+              <h3 class="sidebar-title">主題</h3>
               <div class="sidebar-item tags">
                 <ul>
-                  <li><a href="#">xx</a></li>
-                  <li><a href="#">xx</a></li>
-                  <li><a href="#">xxxxx</a></li>
+                <?php
+                  if ($_GET['wish_id'] != '') {
+                    $wish_id = $_GET['wish_id'];
+
+                    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                    $sql_wishtopic = "SELECT * from wish_topic 
+                    where wish_id = '$wish_id'
+                    ";
+
+
+                    $result_wishtopic = mysqli_query($link, $sql_wishtopic);
+
+                    if ($result_wishtopic) {
+                      while ($row_wishtopic = mysqli_fetch_assoc($result_wishtopic)) {
+                        switch ($row_wishtopic['topic']) {
+                          case 1:
+                            echo '<a href="../index/topic.php?topic=1"><span class="topic" name="topic" value="1">#服飾</span></a>                            ';
+                            break;
+                          case 2:
+                            echo '<a href="../index/topic.php?topic=2"><span class="topic" name="topic" value="2">#美妝</span></a>';
+                            break;
+                          case 3:
+                            echo '<a href="../index/topic.php?topic=3"><span class="topic" name="topic" value="3">#動漫</span></a>';
+                            break;
+                          case 4:
+                            echo '<a href="../index/topic.php?topic=4"><span class="topic" name="topic" value="4">#明星</span></a>';
+                            break;
+                          case 5:
+                            echo '<a href="../index/topic.php?topic=5"><span class="topic" name="topic" value="5">#日常</span></a>';
+                            break;
+                          case 6:
+                            echo '<a href="../index/topic.php?topic=6"><span class="topic" name="topic" value="6">#數位3C</span></a>';
+                            break;
+                          case 7:
+                            echo '<a href="../index/topic.php?topic=7"><span class="topic" name="topic" value="7">#美食</span></a>';
+                            break;
+                          case 8:
+                            echo '<a href="../index/topic.php?topic=8"><span class="topic" name="topic" value="8">#運動</span></a>';
+                            break;
+                          case 9:
+                            echo '<a href="../index/topic.php?topic=9"><span class="topic" name="topic" value="9">#精品</span></a>';
+                            break;
+                          case 10:
+                            echo '<a href="../index/topic.php?topic=10"><span class="topic" name="topic" value="9">#其他</span></a>';
+                            break;
+                          default:
+                            echo '<a href="#"><span class="topic" name="topic" value="10">無</span></a>';
+                        }
+                      }
+                    }
+                  }
+                  ?>
+
                 </ul>
               </div><!-- End sidebar tags-->
 
