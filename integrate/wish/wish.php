@@ -1193,7 +1193,7 @@
                       $wish_num = $wish_num + 1;
                       $sql = "select * from wish
                         natural join account
-                        where wish_shop_id IS null and wish_state != 4 AND wish_end <= CURDATE()
+                        where wish_shop_id IS null and wish_state != 4 AND wish_end < CURDATE()
                         order by wish_start";
                       $result = mysqli_query($link, $sql);
                       while ($row = mysqli_fetch_assoc($result)) {
