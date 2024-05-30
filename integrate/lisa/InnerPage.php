@@ -792,15 +792,10 @@
               </div>
             </div>
           </div>';
-            $selectedStar = ''; // 初始化为空字符串
-            if (isset($_POST['star123'])) {
-              $selectedStar = $_POST['star123']; // 如果有从表单提交过来的值，则赋给 $selectedStar
-            }
             echo
-              ' 
-              <form  method="post" action="evaluate.php?commodity_group_id=' . $commodity_group_id . '">
+              '
+              <form  method="post" action="evaluate.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
               <input type="hidden" name="order_id" value="', $order_id, '">
-              
           <div class="modal fade" id="eva' . $order_id . '" tabindex="-1" aria-labelledby="evaLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -810,18 +805,30 @@
                 </div>
                 <div class="modal-body">
                 <div class="d-grid gap-2 d-md-block">
-                <input type="radio" name="star123" id="5" class="btn-check" autocomplete="off">
-                        <label class="btn btn-primary sparkle-button" for="5" style="background-color: #B0A5C6; color: white;border:none;">
-                            <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
-                        </label>
-                        <label class="btn btn-primary sparkle-button" type="button" id="4" style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
-                <label class="btn btn-primary sparkle-button" type="button" id="3" style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
-                <label class="btn btn-primary sparkle-button" type="button" id="2" style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></label>
-                <label class="btn btn-primary sparkle-button" type="button" id="1" style="background-color: #B0A5C6; color: white;border:none;">
-                <i class="fa-solid fa-wand-sparkles"></i></label>
+                <input type="radio" name="rating" id="rating-5" value="5" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-5" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-4" value="4" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-4" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-3" value="3" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-3" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-2" value="2" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-2" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-1" value="1" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-1" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                </label>
                 </div>
                 <label for="remark" style="margin-left:10px;">評價內容：</label>
                 <textarea id="eva_narrate" name="eva_narrate" rows="4" cols="50" style="margin:10px;"
@@ -832,15 +839,14 @@
                 </fieldset>
                 </div>
                 <div class="modal-footer">
-                <input type="hidden" name="star123" id="star123" value="' . $selectedStar . '" >
                   <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
                   <button type="submit"  name="submit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
                 </div>
-              </div>
+              </div></form>
             </div>
           </div>
           
-          </form>
+          
           ';
 
           }

@@ -9,8 +9,7 @@ if (isset($_POST['submit'])) {
         die("連接失敗: " . $link->connect_error);
     }
 
-    $star = $_POST["star123"];
-    echo''.$star.'';
+    $star = $_POST["rating"];
     $order_id = $_POST["order_id"];
     $evaluate = $_POST["eva_narrate"];
 

@@ -58,23 +58,20 @@ quantityInputs.forEach(input => {
 });
 
 
-var buttons = document.querySelectorAll('.sparkle-button');
+document.addEventListener('DOMContentLoaded', function() {
+  var buttons = document.querySelectorAll('.sparkle-button');
 
-buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
+  buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+          buttons.forEach(function(btn) {
+              btn.classList.remove('active');
+              btn.style.backgroundColor = '#B0A5C6';
+          });
 
-        buttons.forEach(function(btn) {
-            btn.classList.remove('active');
-            btn.style.backgroundColor = '#B0A5C6';
-        });
-
-        this.classList.add('active');
-        this.style.backgroundColor = '#E9C9D6';
-
-        var selectedStar = this.getAttribute('id'); // 获取选定的星级值
-        document.getElementById('star123').value = selectedStar;
-        console.log('Selected Star: ',document.getElementById('star123').getAttribute('value'));
-    });
+          this.classList.add('active');
+          this.style.backgroundColor = '#E9C9D6';
+      });
+  });
 });
 
 
