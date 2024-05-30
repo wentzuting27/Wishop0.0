@@ -268,17 +268,8 @@
       }
       echo '</h3>
             <div class="card-text"  style="height:120px;overflow-y:scroll;">
-                <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
-
-              <div class="card-text" style="position: absolute; bottom: 0;">
-                <div class="content" style="background-color: #ffffff00;margin-left: -10px;">
-                  <div class="buttons">
-                    <div id="three" class="button">#xxx</div>
-                    <div id="four" class="button">#xxx</div><br>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <p style="color: #5a5a5a;font-size: 0.4cm">', nl2br($row["commodity_group_narrate"]), '</p>
+            
           </div>
         </div>
       </div>
@@ -440,7 +431,13 @@
             </div>
           </div>
           <!-- Modal -->
-
+          <?php
+          $account = $_SESSION["account"];
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql = "SELECT common_payment_account FROM account WHERE account= '$account';";
+          $result = mysqli_query($link, $sql);
+          $row = mysqli_fetch_assoc($result);
+          echo '
           <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -453,7 +450,7 @@
                   placeholder="備註內容..."></textarea>
                 <label for="name2" style="margin-left:10px;">確認付款帳戶:</label>
                 <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px" />
+                  style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
@@ -461,7 +458,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>'; ?>
           </form>
         </section>
 
@@ -594,7 +591,7 @@
               </div>
             </div>';
                 echo '<!-- Modal -->
-                <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '; ?>" method="post" role="form" >
+                <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -737,8 +734,6 @@
           }
           while ($row = mysqli_fetch_assoc($result)) {
             echo '
-            <form  method="post" action="orderdetail.php?commodity_group_id=' . $commodity_group_id . '">
-            <input type="hidden" name="order_id" value="', $row["order_id"], '">
           <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
@@ -747,7 +742,6 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                
                     <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
                       <tr>
                         <th>訂單內容</th>
@@ -786,8 +780,8 @@
                         <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
                         <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary" name="delorder" style="background-color: 	#D9B3B3; border: none; color: white;">刪除訂單</button>
-                        <button class="btn btn-primary" name="complete" style="background-color: #CF9E9E; border: none; color: white;">完成訂單</button>
-                        
+                        <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
+                        style="background-color: #CF9E9E; border: none; color: white;">完成訂單</button>
                       </tr>
                     </table>
                   </div>
@@ -797,17 +791,108 @@
                 </div>
               </div>
             </div>
+          </div>';
+            echo
+              '
+              <form  method="post" action="evaluate.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
+              <input type="hidden" name="order_id" value="', $order_id, '">
+          <div class="modal fade" id="eva' . $order_id . '" tabindex="-1" aria-labelledby="evaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="evaLabel">訂單評價</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="d-grid gap-2 d-md-block">
+                <input type="radio" name="rating" id="rating-5" value="5" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-5" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-4" value="4" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-4" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-3" value="3" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-3" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-2" value="2" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-2" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+        
+                <input type="radio" name="rating" id="rating-1" value="1" class="btn-check" autocomplete="off">
+                <label class="btn btn-primary sparkle-button" for="rating-1" style="background-color: #B0A5C6; color: white; border:none;">
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                </label>
+                </div>
+                <label for="remark" style="margin-left:10px;">評價內容：</label>
+                <textarea id="eva_narrate" name="eva_narrate" rows="4" cols="50" style="margin:10px;"
+                  placeholder="評價內容..."></textarea>
+                  <fieldset>
+                  <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                    name="evaluate_photo[]" multiple  />
+                </fieldset>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
+                  <button type="submit"  name="submit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
+                </div>
+              </div>
+            </div>
           </div>
-          </form>';
+          </form>
+          
+          ';
 
           }
           mysqli_close($link);
           ?>
+
           <button onclick="showCsv()" class="btn btn-block"
             style="background-color: #B0A5C6; color: white;">顯示csv檔</button>
           <button onclick="download()" class="btn btn-block"
             style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
           <br><br><br>
+          <div class="seven">
+            <h1>認證上傳區塊</h1>
+          </div>
+          <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form"
+            enctype="multipart/form-data">
+            <center>
+              <div class="card" style="width:80%">
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $account = $_SESSION["account"];
+                $sql = "select * from  account where account='$account'";
+                $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                echo '
+                    <div class="card-header">
+                    <div class="profile-picture big-profile-picture clear"
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture"
+                        src="' . $row["user_avatar"] . '">
+                        
+                    </div>
+                  <div style="float: left;margin-top: 45px; margin-left: 20px;font-size:0.7cm;">
+                    <h5>' . $account . '</h5>
+                  </div>
+                  </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                  <input  class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
+                  name="question_photo[]" multiple/>
+                </div>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-primary" name="submit" type="submit"
+                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
+                </div>'; ?>
         </section>
       </div>
     </div>

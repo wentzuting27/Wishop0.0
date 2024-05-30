@@ -243,12 +243,14 @@
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
       echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
-      if($row["commodity_group_state"]== 2){
-      echo'<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';}
-      if($row["commodity_group_state"]== 1){
-        echo'<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';}
-      else{
-          echo'<button type="button" class="btn-floating"  disabled>未成團</button></small>';}
+      if ($row["commodity_group_state"] == 2) {
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';
+      }
+      if ($row["commodity_group_state"] == 1) {
+        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
+      } else {
+        echo '<button type="button" class="btn-floating"  disabled>未成團</button></small>';
+      }
       echo '</h3>
             <div class="card-text">
                 <p style="color: #5a5a5a;font-size: 0.3cm">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -438,12 +440,7 @@
         <section id="blog" class="blog">
           <h2>Shipping</h2>
           <div class="row">
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="團內介面2.php#first">回上一頁</a></li>
-              </ul>
-            </div>
+
 
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -452,7 +449,12 @@
             $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
-            echo '
+            echo ' <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
+                    href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
+              </ul>
+            </div>
               <div class="row gy-4">
               <div class="col-lg-5 entries">
                 <article class="entry">
@@ -462,19 +464,19 @@
             $a = 1;
             $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
             $result2 = mysqli_query($link, $sql2);
-            if($result2 && mysqli_num_rows($result2) != 0){
-            while ($row_photo = mysqli_fetch_assoc($result2)) {
-              echo '
+            if ($result2 && mysqli_num_rows($result2) != 0) {
+              while ($row_photo = mysqli_fetch_assoc($result2)) {
+                echo '
                     <div class="carousel-item ';
-              if ($a == 1) {
-                echo 'active"';
-              }
-              echo '">
+                if ($a == 1) {
+                  echo 'active"';
+                }
+                echo '">
                       <img src="', $row_photo["question_photo_link"], '" class="d-block w-100" alt="..." style="max-height:300px;width:auto;">
                     </div>';
-              $a++;
-            }
-            echo '
+                $a++;
+              }
+              echo '
                       </div>
                       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -488,7 +490,7 @@
                   </div>             
                 </article><!-- End blog entry -->
               </div><!-- End blog entries list -->';
-            echo '
+              echo '
               <div class="col-lg-7" style="border:1.25px solid 	#5B5B5B;border-radius:10px;">
                   <div class="card-header">    
                       <div class="profile-picture big-profile-picture clear"
@@ -510,7 +512,7 @@
                 </div><!-- End blog sidebar --> 
               ';
 
-            echo '<!-- Modal -->
+              echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -525,16 +527,15 @@
                 </div>
               </div>
           ';
-        }
-          else{
-           echo '
+            } else {
+              echo '
             <div class="row gy-4">
             <div class="col-lg-5 entries">
               <article class="entry">
               </div>             
                 </article><!-- End blog entry -->
               </div><!-- End blog entries list -->';
-            echo '
+              echo '
               <div class="col-lg-12" style="border:1.25px solid 	#5B5B5B;border-radius:10px;margin-top:-10px;">
                   <div class="card-header">    
                       <div class="profile-picture big-profile-picture clear"
@@ -557,7 +558,8 @@
                 
               ';
 
-            echo '<!-- Modal -->
+              echo '<!-- Modal -->
+              <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -571,43 +573,68 @@
                   </div>
                 </div>
               </div>
+              </form>
           ';
 
-          }
+            }
             mysqli_close($link);
             ?>
-</div>
+          </div>
 
-            <div class="blog-comments" style="max-height: 800px;overflow-y: scroll;overflow-x: hidden;">
-              <h4 class="comments-count">2 Comments</h4>
+          <div class="blog-comments" style="max-height: 800px;overflow-y: scroll;overflow-x: hidden;">
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $question_id = $_GET["question_id"];
+            $sql = "SELECT * FROM reply NATURAL JOIN account WHERE question_id ='$question_id' ;";
+            $result = mysqli_query($link, $sql);
+            $sql2 = "SELECT COUNT(reply_id) AS totalcom FROM reply  WHERE question_id ='$question_id' ;";
+            $result2 = mysqli_query($link, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+            echo '
+              <h4 class="comments-count">' . $row2["totalcom"] . ' Comments</h4>';
+            while ($row = mysqli_fetch_assoc($result)) {
+              $reply_id=$row["reply_id"];
+              echo '
               <div class="card mb-3 " style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
                   <div class="col-md-2">
                     <div class="comment-img">
                       <div class="profile-picture big-profile-picture clear">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                          src="' . $row["user_avatar"] . '">
                       </div>
                     </div>
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">
-                      <di class="comment2">
-                        <h5><a href="">Georgia Reader</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
+                    <h4 style="float: right;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>
+                  </h4>
+                        <h5>' . $row["account"] . '</h5>
+                        <time datetime="2020-01-01"><mark>' . $row["reply_time"] . '</mark></time>
                         <p>
-                          Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
-                          molestiae est qui cum soluta.
-                          Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                        ' . nl2br($row["reply_narrate"]) . '
                         </p>
-                        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
+                        ';
+              $a = 1;
+              $sql3 = "SELECT reply_photo FROM reply_photo WHERE reply_id = {$row["reply_id"]}";
+              $result3 = mysqli_query($link, $sql3);
+              if ($result3 && mysqli_num_rows($result3) != 0) {
+                while ($row_photo = mysqli_fetch_assoc($result3)) {
+                  echo '
+                  <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
                       <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">
-                      <div class="carousel-item active">
-                      <img src="https://media.gq.com.tw/photos/6517ff9d63b2e9a3b2ea1c3d/master/w_1600%2Cc_limit/F6ybr-1bQAA9lXo.jpeg" class="d-block w-100" alt="..." >
-                    </div>
-                    <div class="carousel-item">
-                      <img src="https://media.gq.com.tw/photos/6517ff9d63b2e9a3b2ea1c3d/master/w_1600%2Cc_limit/F6ybr-1bQAA9lXo.jpeg" class="d-block w-100" alt="..." >
-                    </div>
+                    <div class="carousel-item ';
+                  if ($a == 1) {
+                    echo 'active"';
+                  }
+                  echo '">
+                      <img src="', $row_photo["reply_photo"], '" class="d-block w-100" alt="..." style="max-height:300px;width:auto;">
+                    </div>';
+                  $a++;
+                }
+                echo '
                       </div>
                       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" >
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -618,66 +645,79 @@
                         <span class="visually-hidden">Next</span>
                       </button>
                     </div>
-                  <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
-                </div>            
-                      </div>
+                </div> 
+                    ';
+              } 
+            
+              echo '
+              <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
+              <!-- Modal -->
+              <div class="modal fade" id="deloredit' . $row["reply_id"] . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                  </div>
-              <div class="card mb-3" style="max-width: 100%;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                <div class="row g-0">
-                  <div class="col-md-2">
-                    <div class="comment-img">
-                      <div class="profile-picture big-profile-picture clear">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="card-body">
-                      <div class="comment2">
-                        <h5><a href="">Georgia Reader</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
-                        <p>
-                          Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis
-                          molestiae est qui cum soluta.
-                          Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                        </p>
-                        <a href="#" class="reply" style="float:right"><i class="bi bi-reply-fill"></i>Reply</a>
-                      </div>
+                    <div class="modal-footer">
+                    <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                      <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
                     </div>
                   </div>
                 </div>
+                </form>
+            ';echo '
               </div>
+              </div>
+                    </div>
+                    </div>
+                    </div>
+              ';}
+               
+              mysqli_close($link);
+              ?>
               </div><!-- End blog comments -->
-              <center>
-              <div class="blog-comments" style="margin-top:-50px;">
+          <center>
+            <div class="blog-comments" style="margin-top:-50px;">
+              <?php
+              $account = $_SESSION["account"];
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $question_id = $_GET["question_id"];
+              $sql = "SELECT * FROM account ;";
+              $result = mysqli_query($link, $sql);
+              $row = mysqli_fetch_assoc($result);
+              echo '
                 <div class="reply-form">
-                  <form action="">
-                    <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
+                  <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" enctype="multipart/form-data">
+                  <input type="hidden" name="question_id" value="' . $question_id . '" >
+                  <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
                       <div class="d-flex">
                         <div class="comment-img">
                           <div class="profile-picture big-profile-picture clear">
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVORHOu-2dkFCpuasWyU46PTb98ZrBT_O7ekad8HU1w&s">
+                              src="' . $row["user_avatar"] . '">
                           </div>
                         </div>
                         <div class="comment2" style="padding-left:20px;">
                           <div class="row">
                             <div class="col form-group" style="width:600px;">
-                              <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                              <textarea name="comment" class="form-control" placeholder="評論內容"></textarea>
                             </div>
                             <div class="mb-3">
                               <input class="form-control" type="file" id="file-uploader" data-target="file-uploader"
-                                accept="image/*" name="question_photo[]" multiple />
+                                accept="image/*" name="reply_photo[]" multiple />
                             </div>
-                          </div><button type="submit" class="btn btn-primary" style="float:right;">Post Comment</button>
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary" style="float:right;font-size:0.35cm;">上傳</button>
                         </div>
                       </div>
                   </form>
-                </div>
-              </div>
-        </center>
+                </div>'
+                ?>
+            </div>
+          </center>
         </section>
 
         <section id="order">

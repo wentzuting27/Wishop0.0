@@ -445,8 +445,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 <section id="first">
                     <h2>Shipping</h2>
-                    <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post"
-                        role="form" enctype="multipart/form-data">
+                    <form action="adddis.php?commodity_group_id=<?php echo $commodity_group_id;?>" method="post" role="form" enctype="multipart/form-data">
                         <center>
                             <div class="card" style="width:80%">
                                 <?php
@@ -478,16 +477,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                   $sql2 = "select * from  question natural join question_photo  where question_id='$question_id'";
                   $result2 = mysqli_query($link, $sql2);
                   $row2 = mysqli_fetch_assoc($result2);
-                  echo'
-                  <input type="text" class="form-control" name="question_title" placeholder="'.$row2["question_title"].'" required>
+                  echo'<input type="hidden" name="question_id" value="'. $question_id. '" >
+                  <input type="text" class="form-control" name="question_title" value="'.$row2["question_title"].'" required>
                   <br>
-                  <textarea class="form-control" name="question_narrate" rows="5" placeholder="'.$row2["question_narrate"].'"
-                  style="max-height:250px;overflow-y:scroll;" required></textarea>
-                  <br>
-                  <div class="mb-3">
-                  <input class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                  name="question_photo[]" multiple/>
-                </div>
+                  <textarea class="form-control" name="question_narrate" rows="5"
+                  style="max-height:250px;overflow-y:scroll;" required>'.$row2["question_narrate"].'</textarea>
                 </div>
                 <div class="card-footer">
                   <button class="btn btn-primary" name="editdis" type="submit"
