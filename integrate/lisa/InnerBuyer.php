@@ -1615,10 +1615,21 @@
           </div>
           <div class="row">
             <div id="slider-carouse4" class="owl-carousel">
+            
+              <?php
+               $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+               if (!$link) {
+                 die('Connection failed: ' . mysqli_connect_error());
+               }
+               $commodity_group_id = $_GET["commodity_group_id"];
+               $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account;";
+               $result = mysqli_query($link, $sql);
+               while($row = mysqli_fetch_assoc($result)){
+              echo'<form  method="post" action="proof.php?commodity_group_id=' . $commodity_group_id . '">
               <div class="waiting3">
                 <div class="card" style="width: 18rem;">
                   <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
+                    <img src="'.$row["proof_of_purchase_photo"].'"
                       class="card-img-top" alt="...">
                   </div>
                   <div class="card-header">
@@ -1626,72 +1637,25 @@
                       <div class="profile-picture big-profile-picture clear"
                         style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg">
+                          src="'.$row["user_avatar"].'">
                       </div>
                       <div style="flex-grow: 7;">
-                        <p>帳號</p>
+                        <p>'.$row["account"].'</p>
                         <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
                         </h5>
                       </div>
                     </div>
                   </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
+                  <input type="hidden" name="order_id" value="'.$row["order_id"].'">
+                  <div class="card-body">
+                  <button type="submit" name=submit" class="btn btn-warning"
                       style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
                   </div>
                 </div>
-              </div>
-              <div class="waiting3">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
-                      class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-header">
-                    <div class="col-md-12" style="display: flex; align-items: center;">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/8c/12/c0/8c12c0f0f6d7c2ee634e7aa541e9911c.jpg">
-                      </div>
-                      <div style="flex-grow: 7;">
-                        <p>帳號</p>
-                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
-                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
-                  </div>
-                </div>
-              </div>
-              <div class="waiting3">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
-                      class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-header">
-                    <div class="col-md-12" style="display: flex; align-items: center;">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg">
-                      </div>
-                      <div style="flex-grow: 7;">
-                        <p>帳號</p>
-                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
-                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
-                  </div>
-                </div>
-              </div>
+              </div></form>';}?>
             </div>
-          </div>
+            </div>
+            
           <br>
 
 
