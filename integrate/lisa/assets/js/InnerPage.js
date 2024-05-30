@@ -19,12 +19,6 @@ const text = document.getElementById('one1');
 
 
 
-document.getElementById('pra').addEventListener('click', function () {
-  var owl = document.getElementById("slider-carousel");
-  $(owl).owlCarousel(); // 初始化 Owl Carousel
-  $(owl).trigger('prev .owl-carousel'); // 觸發向前滑動
-});
-
 /**商品**/
 // 获取所有输入框元素
 const quantityInputs = document.querySelectorAll('[id^="quantityInput"]');
@@ -64,8 +58,21 @@ quantityInputs.forEach(input => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var buttons = document.querySelectorAll('.sparkle-button');
 
-/**
- * 賣家
- * **/
+  buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+          buttons.forEach(function(btn) {
+              btn.classList.remove('active');
+              btn.style.backgroundColor = '#B0A5C6';
+          });
+
+          this.classList.add('active');
+          this.style.backgroundColor = '#E9C9D6';
+      });
+  });
+});
+
+
 

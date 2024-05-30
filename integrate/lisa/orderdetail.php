@@ -40,21 +40,21 @@ if(isset($_POST['submit2'])) {
     
     mysqli_close($link);
 }
-if(isset($_POST['complete'])) {
+if(isset($_POST['submit3'])) {
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
     if (!$link) {
         die('Connection failed: ' . mysqli_connect_error());
     }
     $commodity_group_id = $_GET["commodity_group_id"];
-    $order_state="完成訂單";
+    $order_state="拒絕接收";
     $order_id = $_POST["order_id"];
     $sql= "UPDATE `order` SET order_state='$order_state' WHERE order_id='$order_id'";
     $result=mysqli_query($link, $sql);
     // 根據成功標誌顯示結果
     if ($result) {
-        echo '<script>alert("訂單完成!"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        echo '<script>history.go(-1);</script>';
     } else {
-        echo '<script>alert("訂單完成失敗"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        echo '<script>alert("接收失敗"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
     }
 
     
