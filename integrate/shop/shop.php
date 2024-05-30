@@ -302,6 +302,7 @@
         echo '
         <div>
         <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
+        <a href="cg_report.php?shop_id=',$shop_id,'"><button type="button" class="btn insert_button"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;遭檢舉之商團</button></a>
       </div>';
       }
       }
@@ -650,7 +651,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="report_ModalLabel">新增預告</h1>
+        <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉此商團</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

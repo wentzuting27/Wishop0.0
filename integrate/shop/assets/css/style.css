@@ -2224,3 +2224,10 @@ profile2(頭貼、名字)
   font-weight: bold;
 }
 
+.report_notice{
+  font-size: 25px;
+}
+
+.report_notice:hover{
+  color: #B0A5C6;
+}
