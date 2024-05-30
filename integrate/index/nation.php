@@ -229,11 +229,7 @@
                     type="button" role="tab" aria-controls="pills-profile" aria-selected="false">最熱&nbsp;<i
                       class="fa-solid fa-fire"></i></button>
                 </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-wish-tab" data-bs-toggle="pill" data-bs-target="#pills-wish"
-                    type="button" role="tab" aria-controls="pills-wish" aria-selected="false">願望&nbsp;<i
-                      class="fa-solid fa-wand-sparkles"></i></button>
-                </li>
+               
               </ul>
             </div>
 
@@ -346,29 +342,7 @@
 
             </div>
 
-            <div class="tab-pane fade" id="pills-wish" role="tabpanel" aria-labelledby="pills-wish-tab">
-
-              <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-                <div class="portfolio-wrap">
-
-                  <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">
-                    <figure>
-                      <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                    </figure>
-                  </a>
-
-                  <div class="portfolio-info">
-                    <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
-                        data-glightbox="type: external" title="Portfolio Details">願望</a></h4>
-                    <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
+            
 
           </div>
 
