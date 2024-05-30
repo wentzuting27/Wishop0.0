@@ -126,13 +126,18 @@
               <div class="row shop_group-container">
 
                 <?php
-                $sql = "select *
-                  from report
-                  natural join commodity_group
-                  where report_results = 1
-                  order by report_time";
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT *
+                FROM report r
+                NATURAL JOIN commodity_group
+                WHERE r.report_time = (
+                    SELECT MAX(r2.report_time)
+                    FROM report r2
+                    WHERE r2.commodity_group_id = r.commodity_group_id
+                )
+                AND r.report_results = 1
+                ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
-                echo $sql;
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
                   <div class="col-lg-4 col-md-6 shop_group-item">
@@ -147,7 +152,7 @@
                         <h4><a href="rr_details.php?commodity_group_id=' . $row['commodity_group_id'] . '">', $row["commodity_group_name"], '</a></h4>
                         <div class="flex-container">
                           <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
-                          <p><i class="fa-regular fa-heart"></i>&nbsp;';
+                          <p><i class="fa-regular fa-user"></i>&nbsp;';
 
                   $sql_withgroup_num = "select *
                           from report
@@ -176,6 +181,7 @@
 
               <div class="row">
                 <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "select *
                     from preview
                     natural join shop
