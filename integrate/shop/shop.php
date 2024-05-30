@@ -609,10 +609,11 @@
             $result_likegroup=mysqli_query($link,$sql_likegroup);
             if(isset($_SESSION["account"])){
               if(mysqli_num_rows($result_likegroup)==0){
-                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>
-                      <a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>
-                      ';
+                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
+              }else{
+                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
               }
+              echo '<a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
             }
             echo '
           </figure>
