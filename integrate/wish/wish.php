@@ -214,18 +214,18 @@
                 <div class="col-sm-10">
                 <table width="100%">
                   <tr>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1" value="1"><label class="icon-label2" for="theme1"><i class="fa-solid fa-shirt"></i></label><p style="display: inline-block;">服飾</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2" value="2"><label class="icon-label2" for="theme2"><i class="fa-solid fa-face-smile-beam"></i></label><p style="display: inline-block;">美妝</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3" value="3"><label class="icon-label2" for="theme3"><i class="fa-solid fa-heart"></i></label><p style="display: inline-block;">動漫</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4" value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label><p style="display: inline-block;">明星</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5" value="5"><label class="icon-label2" for="theme5"><i class="fa-solid fa-house-chimney-window"></i></label><p style="display: inline-block;">日常</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1" value="1"><label class="icon-label2" for="theme1"><i class="fa-solid fa-shirt"></i></label><p style="display: inline-block;color: #B0A5C6;">服飾</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2" value="2"><label class="icon-label2" for="theme2"><i class="fa-solid fa-face-smile-beam"></i></label><p style="display: inline-block;color: #B0A5C6;">美妝</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3" value="3"><label class="icon-label2" for="theme3"><i class="fa-solid fa-heart"></i></label><p style="display: inline-block;color: #B0A5C6;">動漫</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4" value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label><p style="display: inline-block;color: #B0A5C6;">明星</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5" value="5"><label class="icon-label2" for="theme5"><i class="fa-solid fa-house-chimney-window"></i></label><p style="display: inline-block;color: #B0A5C6;">日常</p></td>
                   </tr>
                   <tr>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6" value="6"><label class="icon-label2" for="theme6"><i class="fa-solid fa-gamepad"></i></label><p style="display: inline-block;">數位</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;">美食</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;">運動</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;">精品</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10" value="10"><label class="icon-label2" for="theme10"><i class="fa-solid fa-bars"></i></label><p style="display: inline-block;">其他</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6" value="6"><label class="icon-label2" for="theme6"><i class="fa-solid fa-gamepad"></i></label><p style="display: inline-block;color: #B0A5C6;">數位</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;color: #B0A5C6;">美食</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;color: #B0A5C6;">運動</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;color: #B0A5C6;">精品</p></td>
+                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10" value="10"><label class="icon-label2" for="theme10"><i class="fa-solid fa-bars"></i></label><p style="display: inline-block;color: #B0A5C6;">其他</p></td>
                   </tr>
                 </table>
                 </div>
@@ -741,7 +741,7 @@
                                   <option value="3個月內">3個月內</option>
                                   <option value="半年內">半年內</option>
                                   <option value="1年內">1年內</option>
-                                </select> 
+                                </select>
                                 <button type="submit"><i class="bi bi-search"></i></button>
                               </form>
                             </div><!-- End sidebar search formn--> 
@@ -852,7 +852,7 @@
                         $wish_num=$wish_num+1;
                         $sql="select * from wish
                         natural join account
-                        where wish_shop_id IS null and wish_state != 4 AND wish_end <= CURDATE()
+                        where wish_shop_id IS null and wish_state != 4 AND wish_end < CURDATE()
                         order by wish_start";
                         $result=mysqli_query($link,$sql);
                         while($row=mysqli_fetch_assoc($result))
@@ -1068,80 +1068,7 @@
                 </div><br><br>
 
 
-                  <!-- <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-award"></i>&nbsp;當月賣家許願完成數排名</h3></center>
-                  <ul class="carousel-indicators" id="hero-carousel-indicators"></ul>
-          
-                  <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/1st-prize.png" class="testimonial-img" alt="">
-                            <h6>排球少年日本代購</h6>
-                            <p>
-                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
-                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/2nd-place.png" class="testimonial-img" alt="">
-                            <h6>排球少年日本代購</h6>
-                            <p>
-                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
-                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/3rd-place.png" class="testimonial-img" alt="">
-                            <h6>排球少年日本代購</h6>
-                            <p>
-                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
-                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/4th-prize.png" class="testimonial-img" alt="">
-                            <h6>排球少年日本代購</h6>
-                            <p>
-                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
-                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                          <div class="testimonial-item">
-                            <img src="./assets/img/5th-prize.png" class="testimonial-img" alt="">
-                            <h6>排球少年日本代購</h6>
-                            <p>
-                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
-                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-          
-                    </div>
-                    <div class="swiper-pagination"></div>
-                  </div> -->
+                 
           
                 </div>
               </section><!-- End Testimonials Section -->

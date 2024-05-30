@@ -1952,7 +1952,7 @@ section {
 }
 
 .link_ch + label + p {
-  color: #B0A5C6; /* 修改這裡的顏色 */
+  color: #B0A5C6; 
   font-weight: bold;
 }
 
