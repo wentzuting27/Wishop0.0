@@ -113,7 +113,7 @@
                   class="fa-solid fa-hourglass-half"></i>&nbsp;待審核</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i
+              <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i
                   class="fa-solid fa-hourglass-end"></i>&nbsp;已審核</a>
             </li>
           </ul>
@@ -203,9 +203,8 @@
                         <tr>
                           <td width="5%"><img src="', $row["commodity_group_bg"], '" class="people_photo"></td>
                           <td width="60%">
-                            <span><a href="rr_details.php?commodity_group_id=' . $row['commodity_group_id'] . '" class="portfolio-details-lightbox"
-                            data-glightbox="type: external" title="' . $row['commodity_group_name'] . '"></span><br>
-                            <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                          <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
+                            <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
                           </td>
                           <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
                         </tr>
