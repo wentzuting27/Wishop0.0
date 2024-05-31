@@ -67,7 +67,7 @@
                 NATURAL JOIN commodity_group
                 NATURAL JOIN account
                 WHERE commodity_group_id = '$commodity_group_id'
-                AND r.report_results = 1
+                AND r.report_results = 3
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {

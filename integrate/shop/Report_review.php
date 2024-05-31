@@ -135,7 +135,7 @@
                     FROM report r2
                     WHERE r2.commodity_group_id = r.commodity_group_id
                 )
-                AND r.report_results = 1
+                AND r.report_results = 3
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
