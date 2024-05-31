@@ -56,7 +56,9 @@
 
           <!-- 5star -->
           <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star" style="padding: 50px 0px">
-            <div class="row">
+          <div class="flex-container">
+            <!-- Section Title -->
+
 
 
                 <?php
@@ -70,6 +72,22 @@
                 AND r.report_results = 3
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $commodity_group_name = $row["commodity_group_name"];
+                
+                echo '            
+                <div class="section-title" data-aos="fade-up">
+                    <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
+                    <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
+                    </h2>
+                </div><!-- End Section Title -->
+                </div><!-- End flex-container -->
+                <div class="row">';
+                
+                // 重制row
+                mysqli_data_seek($result, 0);
+
+
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '              
                 <div class="col-lg-6">
@@ -82,18 +100,51 @@
                             class="people_photo"></td>
                         <td width="60%">
                           <span>',$row["user_name"],'</span><br>
-                          <p>',$row["commodity_group_name"],' <br>
-                          ',$row["report_time"],'</p>
+                          <p>',$row["report_time"],'</p>
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="3">
-                        <center><p style=color: #B0A5C6;>
-                        ',$row["report_type"],'
-                        </p></center>
-                          <div class="scrollable-row">
+                      <td colspan="3">
+                      <center><p style="color: #B0A5C6;">';
 
-                          ',$row["report_why"],'
+                      switch ($row["report_type"]) {
+                          case 1:
+                              echo "酒類 / 菸類商品";
+                              break;
+                          case 2:
+                              echo "武器 / 彈藥 / 軍事用品";
+                              break;
+                          case 3:
+                              echo "藥品、醫療器材";
+                              break;
+                          case 4:
+                              echo "此商品可能令人感到不適或違反善良風俗";
+                              break;
+                          case 5:
+                              echo "活體動物、保育動物及其製品";
+                              break;
+                          case 6:
+                              echo "仿冒品";
+                              break;
+                          case 7:
+                              echo "濫用文字誤導搜尋";
+                              break;
+                          case 8:
+                              echo "重覆刊登";
+                              break;
+                          case 9:
+                              echo "複製他人商品圖文";
+                              break;
+                          case 10:
+                              echo "其他";
+                              break;
+                          default:
+                              echo "無";
+                      }
+
+echo '                  </p></center>
+                      <div class="scrollable-row">
+                          ' . $row["report_why"] . '
                           </div>
                         </td>
                       </tr>
