@@ -188,6 +188,10 @@
     padding: 3px 10px;
     margin: 5px;
   }
+
+  .topic-label:hover {
+      background-color: #E9C9D6;
+    }
 </style>
 
 
@@ -640,6 +644,7 @@
         </div>
 
 
+
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
@@ -675,41 +680,41 @@
                 if (empty($_POST['nation'])) {
                   echo '';
                 } else {
-                  echo '<i class="fa-solid fa-location-dot"></i>&nbsp;<b>';
+                  echo '<b>';
                   //篩選國家顯示
                   switch ($_POST["nation"]) {
                     case 1:
-                      echo "日本";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;日本</a>';
                       break;
                     case 2:
-                      echo "韓國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;韓國</a>';
                       break;
                     case 3:
-                      echo "台灣";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;台灣</a>';
                       break;
                     case 4:
-                      echo "法國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;法國</a>';
                       break;
                     case 5:
-                      echo "美國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;美國</a>';
                       break;
                     case 6:
-                      echo "義大利";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;義大利</a>';
                       break;
                     case 7:
-                      echo "中國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;中國</a>';
                       break;
                     case 8:
-                      echo "泰國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;泰國</a>';
                       break;
                     case 9:
-                      echo "英國";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;英國</a>';
                       break;
                     case 10:
-                      echo "其他";
+                      echo '<a href="nation.php?nation='.$nation.'"><i class="fa-solid fa-location-dot"></i>&nbsp;其他</a>';
                       break;
                     default:
-                      echo "ALL";
+                      echo 'ALL';
                   }
                   echo '<br>';
                 }
@@ -720,37 +725,36 @@
                 echo '</b>';
 
 
-
                 //篩選主題顯示
                 if (in_array("1", $_POST["topic"])) {
-                  echo '<span class="topic-label">服飾</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=1" style=color:#FFF;>服飾</a></span>&nbsp;';
                 }
                 if (in_array("2", $_POST["topic"])) {
-                  echo '<span class="topic-label">美妝</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=2" style=color:#FFF;>美妝</a></span>&nbsp;';
                 }
                 if (in_array("3", $_POST["topic"])) {
-                  echo '<span class="topic-label">動漫</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=3" style=color:#FFF;>動漫</a></span>&nbsp;';
                 }
                 if (in_array("4", $_POST["topic"])) {
-                  echo '<span class="topic-label">明星</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=4" style=color:#FFF;>明星</a></span>&nbsp;';
                 }
                 if (in_array("5", $_POST["topic"])) {
-                  echo '<span class="topic-label">日常</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=5" style=color:#FFF;>日常</a></span>&nbsp;';
                 }
                 if (in_array("6", $_POST["topic"])) {
-                  echo '<span class="topic-label">數位3C</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=6" style=color:#FFF;>數位3C</a></span>&nbsp;';
                 }
                 if (in_array("7", $_POST["topic"])) {
-                  echo '<span class="topic-label">美食</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=7" style=color:#FFF;>美食</a></span>&nbsp;';
                 }
                 if (in_array("8", $_POST["topic"])) {
-                  echo '<span class="topic-label">運動</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=8" style=color:#FFF;>運動</a></span>&nbsp;';
                 }
                 if (in_array("9", $_POST["topic"])) {
-                  echo '<span class="topic-label">精品</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=9" style=color:#FFF;>精品</a></span>&nbsp;';
                 }
                 if (in_array("10", $_POST["topic"])) {
-                  echo '<span class="topic-label">其它</span>&nbsp;';
+                  echo '<span class="topic-label"><a href="topic.php?topic=10" style=color:#FFF;>其它</a></span>&nbsp;';
                 }
 
 
