@@ -99,58 +99,41 @@
       $account = $_SESSION["account"];
       $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result2 = mysqli_query($link, $sql2);
-
+      echo'<div class="background-overlay" style="position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
+      </div>';
+      if(isset($account)){ 
       if ($result2 && mysqli_num_rows($result2) == 0) {
         echo '
-    <div class="background-overlay" style="position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-    </div>
     <div class="edit_like_shop_button">
     <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
       } else {
         echo '
-      <div class="background-overlay" style="position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-      </div>
+      
       <div class="edit_like_shop_button">
       <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
-      }
+      }}
 
-      $sql = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+      $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
-
+      $row = mysqli_fetch_assoc($result);
+if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3)){
       if ($result && mysqli_num_rows($result) == 0) {
         echo '
-    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave" id="one1">
+    <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
     <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
     ';
-        $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
-    order by announce_time DESC";
-        $result3 = mysqli_query($link, $sql3);
-        $row3 = mysqli_fetch_assoc($result3);
-        echo '
-    <div class="marquee-container">
-    <center>
-    <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
-    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
-    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
-    <span>' . $row3["announce_title"] . '：' . $row3["announce_narrate"] . '！</span>
-    </marquee>
-    </center>
-     </div>
-    ';
       } else {
         echo '
-      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already" id="one1">
+      <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already">
       <i class="fa-solid fa-share-from-square"></i>已跟團</button>
       </div>
      
-      ';
+      ';}
+    }
         $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
      order by announce_time DESC";
         $result3 = mysqli_query($link, $sql3);
@@ -166,7 +149,7 @@
     </center>
      </div>
       ';
-      }
+      
       mysqli_close($link);
       ?>
     </form>
@@ -263,8 +246,11 @@
       }
       if ($row["commodity_group_state"] == 1) {
         echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
-      } else {
-        echo '<button type="button" class="btn-floating"  disabled>未成團</button></small>';
+      } if ($row["commodity_group_state"] == 3){
+        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>未成團</button></small>';
+      }
+      if ($row["commodity_group_state"] == 4) {
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>危險團體</button></small>';
       }
       echo '</h3>
             <div class="card-text"  style="height:120px;overflow-y:scroll;">
@@ -411,9 +397,10 @@
                       <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>';
                   $commodity_group_id = $_GET["commodity_group_id"];
                   $account = $_SESSION["account"];
-                  $sql2 = "SELECT * FROM withgroup WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+                  $sql2 = "SELECT * FROM withgroup NATURAL JOIN commodity_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
                   $result2 = mysqli_query($link, $sql2);
-
+                  $row2 = mysqli_fetch_assoc($result2);
+                  if(isset($account)&& ($row2["commodity_group_state"] == 1 || $row2["commodity_group_state"] == 3) && time() < strtotime($row2["close_order_date"])){
                   if ($result2 && mysqli_num_rows($result2) != 0) {
                     echo '
                       <td class="text-right">
@@ -423,7 +410,7 @@
                           </button>
                         </center>
                       </td>';
-                  }
+                  }}
                   echo '</tr>
                   </tfoot>
                 </table>';
@@ -755,7 +742,7 @@
             $order_state = $row['order_state'];
             $account = $row['account'];
             $remark = $row['remark'];
-            $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
+            $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity natural join commodity_group where order_id=$order_id ";
             $result2 = mysqli_query($link, $sql2);
             if (!$result2) {
               die('Query failed: ' . mysqli_error($link));
@@ -782,13 +769,15 @@
                       <tr >
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀況：</th>
                         <td>
-                        <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
-                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>';
+                       ';
                         if($account==$_SESSION["account"]){
                         echo'
-                        <button class="btn btn-primary" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
+                        <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
+                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>';
+                        if(isset($_SESSION["account"])&& $row["order_state"]!="未成立" && ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3)){
+                        echo'<button class="btn btn-primary" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
-                        style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';
+                        style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';}
                       }
                       echo'</tr>
                     </table>
@@ -886,9 +875,11 @@
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $account = $_SESSION["account"];
-                $sql = "select * from  account where account='$account'";
+                $commodity_group_id = $_GET["commodity_group_id"];
+                $sql = "SELECT * FROM  account NATURAL JOIN `order` NATURAL JOIN order_details NATURAL JOIN commodity  WHERE account='$account' AND commodity_group_id={$commodity_group_id} ";
                 $result = mysqli_query($link, $sql);
                 $row = mysqli_fetch_assoc($result);
+                if(isset($account) && mysqli_num_rows($result) != 0){
                 echo '
                     <div class="card-header">
                     <div class="profile-picture big-profile-picture clear"
@@ -912,7 +903,7 @@
                 <div class="card-footer">
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>'; ?>
+                </div>'; }?>
         </section>
       </div>
     </div>
