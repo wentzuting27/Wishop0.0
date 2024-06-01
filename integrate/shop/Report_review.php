@@ -201,13 +201,6 @@
                     <div class="evaluate_card2">
                       <table class="evaluate_table">
                         <tr>
-                          <td width="15%"><img src="', $row["commodity_group_bg"], '" 
-                          style="  
-                          width: 130px;
-                          height: 130px;
-                          object-fit: cover;
-                          border-radius: 5px;
-                          margin: 20px 30px;"></td>
                           <td width="50%">
                           <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
                             <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
