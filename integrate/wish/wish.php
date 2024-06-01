@@ -580,7 +580,7 @@
                                   <i class="fa-solid fa-angle-down"></i>
                                 </button>
 
-                                <button type="submit"><i class="bi bi-search"></i></button>
+                                <button type="submit" style="z-index:996;"><i class="bi bi-search"></i></button>
                               </form>
                               <div id="flush-collapseOne" class="accordion-collapse collapse"
                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">

@@ -286,7 +286,7 @@
                           WHERE gt.topic = '$topic'
                           and (close_order_date > NOW() OR close_order_date is null)
                           GROUP BY c.commodity_id
-                          ORDER BY cg.close_order_date DESC;";
+                          ORDER BY cg.create_time DESC;";
 
                 $result = mysqli_query($link, $sql);
 
