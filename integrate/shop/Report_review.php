@@ -60,7 +60,7 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+ 
 
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
@@ -68,11 +68,11 @@
                   <hr>';
                   if(isset($_SESSION["user_shop_id"])){
                     echo'
-                    <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
+                    <li><a href="shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
                   }
                   if($_SESSION['permissions']==2){
                     echo'
-                    <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
+                    <li><a href="Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
                   }
                     echo'
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
