@@ -105,8 +105,8 @@
                           <p>',$row["report_time"],'</p>
                         </td>
                         <td>
-                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: #e37e7e" >&nbsp;審核失敗</button></a>
-                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: rgb(123, 195, 150); text-align: right;">&nbsp;審核成功</button></a>
+                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: #e37e7e" >&nbsp;檢舉失敗</button></a>
+                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: rgb(123, 195, 150); text-align: right;">&nbsp;檢舉成功</button></a>
                         </td>
                       </tr>
                       <tr>
