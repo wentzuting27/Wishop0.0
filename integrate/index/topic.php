@@ -57,7 +57,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php"  class="active"><span>購物</span></a>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
           </li>
           <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
@@ -177,6 +177,7 @@
             switch ($topic) {
               case 1:
                 echo '<i class="fa-solid fa-shirt"></i>&nbsp;服飾';
+
                 break;
               case 2:
                 echo '<i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝';
@@ -210,9 +211,24 @@
 
 
           ?>
-            </b></h2>
-        </div>
+            </b>
+          </h2>
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql_liketopic = "SELECT * from like_topic
+          where topic='$topic' and account='{$_SESSION["account"]}'";
+          $result_liketopic = mysqli_query($link, $sql_liketopic);
+          if (isset($_SESSION["account"])) {
+            if (mysqli_num_rows($result_liketopic) == 0) {
+              echo '<a type=button href="like_topic.php?topic=', $topic, '&method=in" class="btn-tag" style="font-size:16px;"><i class="fa-solid fa-plus"></i>&nbsp;關注</a>';
+            } else {
+              echo '<a type=button href="like_topic.php?topic=', $topic, '&method=de" class="btn-tag" style="font-size:16px;"><i class="fa-solid fa-check"></i>&nbsp;已關注</a>';
+            }
+          }
+          ?>
 
+        </div>
+        <hr>
 
         <section id="schedule" class="section-with-bg">
 
@@ -348,26 +364,58 @@
             </div>
 
             <div class="tab-pane fade" id="pills-wish" role="tabpanel" aria-labelledby="pills-wish-tab">
+              <div class="row portfolio-container">
 
-              <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-                <div class="portfolio-wrap">
 
-                  <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">
-                    <figure>
-                      <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                    </figure>
-                  </a>
+                <?php
+                if (isset($_GET['topic']) && $_GET['topic'] != '') {
+                  $topic = $_GET['topic'];
+                }
 
-                  <div class="portfolio-info">
-                    <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
-                        data-glightbox="type: external" title="Portfolio Details">願望</a></h4>
-                    <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql3 = "SELECT * from wish 
+                natural join account
+                natural join wish_topic
+                natural join wish_photo
+                where topic like '$topic'
+                and wish_shop_id IS null 
+                and wish_state != 4
+                and wish_end >= CURDATE()
+                GROUP By wish.wish_id
+                order by wish_start";
+
+                $result3 = mysqli_query($link, $sql3);
+
+                if  (mysqli_num_rows($result3) > 0) {
+                  while ($row = mysqli_fetch_assoc($result3)) {
+                    echo'<div class="col-lg-4 col-md-6 portfolio-item  filter-wow fadeInUp">
+                  <div class="portfolio-wrap">
+                    <a href="../wish/wish-details.php?wish_id=' . $row['wish_id'] . '"
+                      data-glightbox="type: external" title="' . $row['wish_name'] . '">
+                      <figure>
+                        <img src="' . $row['wish_photo_link'] . '" class="img-fluid" alt="">
+                      </figure>
+                    </a>
+                    <div class="portfolio-info">
+                      <h4>' . $row['wish_name'] . '</h4>
+                      <p>' . $row['user_name'] . '</p>
+                    </div>
                   </div>
+                </div>';
+                  }
+                }else {
 
-                </div>
+                  echo '
+                  <h5 style="text-align: center;"><b>尚無願望</b></h5>';
+      
+                }
+                ?>
+
+
+                
+
+
               </div>
-
             </div>
 
 
