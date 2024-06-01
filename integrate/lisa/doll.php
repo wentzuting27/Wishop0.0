@@ -65,7 +65,7 @@
                     $active = true;
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo '<div class="carousel-item  ' . ($active ? 'active' : '') . '">
-                                <img src="' . $row["commodity_photo"] . '" style="width: 70%; height: auto; display: block; margin: 0 auto;" alt="">
+                                <img src="' . $row["commodity_photo"] . '" style="width: 80%; height: auto; display: block; margin: 0 auto;" alt="">
                             </div>';
                       $active = false;
                     }
