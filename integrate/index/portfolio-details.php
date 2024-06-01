@@ -259,7 +259,15 @@
                     }
                     ?>
                   </a></li>
-                <li><i class="fa-solid fa-clock"></i>&nbsp;<strong>截單日期</strong>: <?php echo $close_order_date; ?></li>
+                <li><i class="fa-solid fa-clock"></i>&nbsp;<strong>截單日期</strong>:
+                  <?php
+                  if (is_null($close_order_date)) {
+                    echo '無';
+                  } else {
+                    echo $close_order_date ;
+                  }
+                  ?>
+                </li>
                 <li><i class="fa-solid fa-bars"></i>&nbsp;<strong>主題</strong>:
 
                   <?php

@@ -72,20 +72,20 @@
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>';
-                  if(isset($_SESSION["user_shop_id"])){
-                    echo'
+            if (isset($_SESSION["user_shop_id"])) {
+              echo '
                     <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
-                  }
-                  if($_SESSION['permissions']==2){
-                    echo'
+            }
+            if ($_SESSION['permissions'] == 2) {
+              echo '
                     <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
-                  }
-                    echo'
+            }
+            echo '
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                     <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
-                  
-                echo '  
+
+            echo '  
                 </ul>
               </li>
               ';
@@ -255,6 +255,8 @@
           FROM commodity c 
           JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
           JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+          where (close_order_date > NOW() OR close_order_date is null)
+          and (commodity_group_state = '1')
           GROUP BY c.commodity_id
           ORDER BY RAND() 
           LIMIT 12";
@@ -450,7 +452,7 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>聯繫客服</h4>
             <p>0912345678</p>
-            
+
           </div>
 
         </div>
@@ -459,14 +461,14 @@
 
     <div class="container">
       <div class="copyright">
-       
+
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-       
+
       </div>
     </div>
   </footer><!-- End Footer -->
