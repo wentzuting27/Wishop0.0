@@ -225,7 +225,6 @@
                     </div>
                     <br>
                     <div>
-                        <a href="#" id="forgot"><b>忘記密碼？</b></a>
                         &nbsp;&nbsp;<a href="signup.php"><b>還沒註冊帳號？</b></a>
                     </div>
 

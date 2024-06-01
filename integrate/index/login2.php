@@ -18,6 +18,7 @@
         $user_name=$row['user_name'];
         $user_avatar=$row['user_avatar'];
         $shop_id=$row['shop_id'];
+        $permissions=$row['permissions'];
       }
 
         if ($password == $pass) {
@@ -28,6 +29,8 @@
             $_SESSION["user_name"] = $user_name;
             $_SESSION["user_avatar"] = $user_avatar;
             $_SESSION["user_shop_id"] = $shop_id;
+            $_SESSION["permissions"] = $permissions;
+
            
             // 使用 header 函數進行轉址
             header("Location: index.php");

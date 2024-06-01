@@ -58,12 +58,21 @@
           <?php
             if(!empty($_SESSION['user_name'])){
               echo '
-              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+ 
 
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
-                  <hr>
+                  <hr>';
+                  if(isset($_SESSION["user_shop_id"])){
+                    echo'
+                    <li><a href="shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
+                  }
+                  if($_SESSION['permissions']==2){
+                    echo'
+                    <li><a href="Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
+                  }
+                    echo'
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
@@ -398,11 +407,7 @@
                     if(mysqli_num_rows($result_report_yn)>0){
                     echo'
                   <div class="col-lg-4 col-md-6 shop_group-item">
-                    <div class="shop_group-wrap">';
-                    if(strtotime($row["close_order_date"]) < strtotime(date('Y-m-d H:i:s'))){
-                      echo '<button type="button" class="btn-floating" disabled>已結單</button>';
-                    }
-                    echo '
+                    <div class="shop_group-wrap">
                       <figure>
                         <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">';
                         $sql_likegroup="select *
@@ -415,7 +420,7 @@
                           }else{
                             echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
                           }
-                          echo '<a class="link-details" title="檢舉詳情" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
+                          echo '<a class="link-details" title="檢舉詳情" data-bs-toggle="modal" data-bs-target="#report_Modal'.$row["commodity_group_id"].'"><i class="fa-solid fa-exclamation"></i></a>';
                         }
                         echo '
                       </figure>
@@ -437,10 +442,85 @@
                         echo '</p>
                       </div>
                     </div>
-                  </div>
+                  </div>';
+                
+                  echo '
+                  <div class="modal fade" id="report_Modal',$row["commodity_group_id"],'" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉詳情</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table width="100%" class="insert_group_form">
+                              <tr>
+                                <td width="25%">檢舉類型</td>
+                                <td width="35%">詳細原因</td>
+                                <td width="15%">檢舉時間</td>
+                                <td width="10%">審核結果</td>
+                                <td width="15%">審核時間</td>
+                              </tr>';
+                              $sql_detail="select *
+                              from report
+                              where commodity_group_id='{$row["commodity_group_id"]}'
+                              order by report_time";
+                              $result_detail=mysqli_query($link,$sql_detail);
+                              while($row_detail=mysqli_fetch_assoc($result_detail))
+                              {
+                                echo '
+                                  <tr>
+                                    <td class="report_td">';
+                                    if($row_detail["report_type"]==1){
+                                      echo '酒類 / 菸類商品';
+                                    }elseif($row_detail["report_type"]==2){
+                                      echo '武器 / 彈藥 / 軍事用品';
+                                    }elseif($row_detail["report_type"]==3){
+                                      echo '藥品、醫療器材';
+                                    }elseif($row_detail["report_type"]==4){
+                                      echo '此商品可能令人感到不適或違反善良風俗';
+                                    }elseif($row_detail["report_type"]==5){
+                                      echo '活體動物、保育動物及其製品';
+                                    }elseif($row_detail["report_type"]==6){
+                                      echo '仿冒品';
+                                    }elseif($row_detail["report_type"]==7){
+                                      echo '濫用文字誤導搜尋';
+                                    }elseif($row_detail["report_type"]==8){
+                                      echo '重覆刊登';
+                                    }elseif($row_detail["report_type"]==9){
+                                      echo '複製他人商品圖文';
+                                    }elseif($row_detail["report_type"]==10){
+                                      echo '其他';
+                                    }
+                                    echo '</td>
+                                    <td class="report_td">',$row_detail["report_why"],'</td>
+                                    <td class="report_td">',$row_detail["report_time"],'</td>
+                                    <td class="report_td">';
+                                    if($row_detail["report_results"]==1){
+                                      echo '<i class="fa-solid fa-circle-check" style="color: #83c57e;"></i>';
+                                    }elseif($row_detail["report_results"]==2){
+                                      echo '<i class="fa-solid fa-circle-xmark" style="color: #d55858;"></i>';
+                                    }elseif($row_detail["report_results"]==3){
+                                      echo '待定';
+                                    }
+                                    echo '</td>
+                                    <td class="report_td">',$row_detail["review_time"],'</td>
+                                  </tr>';
+                                }
 
-                  ';}
-                  }
+                              echo '
+                            </table>
+                            
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  ';
+                
+                
+                
+                }
+                }
                 ?>
                   
                   
@@ -495,7 +575,7 @@
                           }else{
                             echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
                           }
-                          echo '<a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
+                          echo '<a class="link-details" title="檢舉詳情" data-bs-toggle="modal" data-bs-target="#report_Modal'.$row["commodity_group_id"].'" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
                         }
                         echo '
                       </figure>
@@ -520,9 +600,81 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>';
+                
+                  echo '
+                  <div class="modal fade" id="report_Modal',$row["commodity_group_id"],'" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉詳情</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table width="100%" class="insert_group_form">
+                              <tr>
+                                <td width="25%">檢舉類型</td>
+                                <td width="35%">詳細原因</td>
+                                <td width="15%">檢舉時間</td>
+                                <td width="10%">審核結果</td>
+                                <td width="15%">審核時間</td>
+                              </tr>';
+                              $sql_detail="select *
+                              from report
+                              where commodity_group_id='{$row["commodity_group_id"]}'
+                              order by report_time";
+                              $result_detail=mysqli_query($link,$sql_detail);
+                              while($row_detail=mysqli_fetch_assoc($result_detail))
+                              {
+                                echo '
+                                  <tr>
+                                    <td class="report_td">';
+                                    if($row_detail["report_type"]==1){
+                                      echo '酒類 / 菸類商品';
+                                    }elseif($row_detail["report_type"]==2){
+                                      echo '武器 / 彈藥 / 軍事用品';
+                                    }elseif($row_detail["report_type"]==3){
+                                      echo '藥品、醫療器材';
+                                    }elseif($row_detail["report_type"]==4){
+                                      echo '此商品可能令人感到不適或違反善良風俗';
+                                    }elseif($row_detail["report_type"]==5){
+                                      echo '活體動物、保育動物及其製品';
+                                    }elseif($row_detail["report_type"]==6){
+                                      echo '仿冒品';
+                                    }elseif($row_detail["report_type"]==7){
+                                      echo '濫用文字誤導搜尋';
+                                    }elseif($row_detail["report_type"]==8){
+                                      echo '重覆刊登';
+                                    }elseif($row_detail["report_type"]==9){
+                                      echo '複製他人商品圖文';
+                                    }elseif($row_detail["report_type"]==10){
+                                      echo '其他';
+                                    }
+                                    echo '</td>
+                                    <td class="report_td">',$row_detail["report_why"],'</td>
+                                    <td class="report_td">',$row_detail["report_time"],'</td>
+                                    <td class="report_td">';
+                                    if($row_detail["report_results"]==1){
+                                      echo '<i class="fa-solid fa-circle-check" style="color: #83c57e;"></i>';
+                                    }elseif($row_detail["report_results"]==2){
+                                      echo '<i class="fa-solid fa-circle-xmark" style="color: #d55858;"></i>';
+                                    }elseif($row_detail["report_results"]==3){
+                                      echo '待定';
+                                    }
+                                    echo '</td>
+                                    <td class="report_td">',$row_detail["review_time"],'</td>
+                                  </tr>';
+                                }
 
+                              echo '
+                            </table>
+                            
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
                   ';
+                  
                   }
 
                   }
@@ -535,8 +687,7 @@
               <!-- End Schdule Day 2 -->
     
     
-              </div>
-              <!-- End Schdule Day  3-->
+              
     
             </div>
     
@@ -550,48 +701,30 @@
 
 <!-- insert_Preview_Modal -->
 <div class="modal fade" id="report_Modal" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉詳情</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="post" action="report_in_up_de.php" enctype="multipart/form-data">
-        <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
-        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
-        <input type="hidden" name="commodity_group_id" id="commodity_group_id" class="form-control" style="width: 100%;" value="">
           <table width="100%" class="insert_group_form">
             <tr>
-              <td width="10%">檢舉類型</td>
-              <td width="90%"><select name="report_type" class="form-control" required>
-                  <option value="1" class="report_option">酒類 / 菸類商品</option>
-                  <option value="2" class="report_option">武器 / 彈藥 / 軍事用品</option>
-                  <option value="3" class="report_option">藥品、醫療器材</option>
-                  <option value="4" class="report_option">此商品可能令人感到不適或違反善良風俗</option>
-                  <option value="5" class="report_option">活體動物、保育動物及其製品</option>
-                  <option value="6" class="report_option">仿冒品</option>
-                  <option value="7" class="report_option">濫用文字誤導搜尋</option>
-                  <option value="8" class="report_option">重覆刊登</option>
-                  <option value="9" class="report_option">複製他人商品圖文</option>
-                  <option value="10" class="report_option">其他</option>
-                </select>
-              </td>
+              <td width="25%">檢舉類型</td>
+              <td width="35%">詳細原因</td>
+              <td width="15%">檢舉時間</td>
+              <td width="10%">審核結果</td>
+              <td width="15%">審核時間</td>
             </tr>
-            <tr>
-              <td>詳細原因</td>
-              <td><textarea class="form-control" rows="5" name="report_why" required></textarea></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-            </tr>
+            
+            
           </table>
           
-        </form>
       </div>
     </div>
-  </div>
-</div><!-- insert_Preview_Modal -->
+  </div> 
+</div>
+
 
 <!-- Modal 無許願次數 -->
 <div class="modal fade" id="report_notice_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="report_notice_modalLabel" aria-hidden="true">
@@ -608,6 +741,7 @@
           <li style="font-size:16px;color: #666666;font-weight: bold;">僅保留討論區之功能供買賣雙方溝通</li>
           <li style="font-size:16px;color: #666666;font-weight: bold;">此商品團體也不會顯示於賣場中</li>
         </ul>
+        <p>點擊此按鈕可查看該團體被檢舉之相關資訊</p>
         <p style="font-size:16px;color: #d55858;font-weight: bold;">
       請您與已喊單的買家自行協調是否繼續交易以及退款、退貨之相關事項<br>
       若有任何糾紛可尋求平台協助處理!!感謝您的配合</p>
@@ -616,19 +750,6 @@
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var reportModal = document.getElementById('report_Modal');
-  reportModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var commodityGroupId = button.getAttribute('data-commodity-group-id'); // Extract info from data-* attributes
-    var inputCommodityGroupId = document.getElementById('commodity_group_id'); // Find the input in the modal
-    inputCommodityGroupId.value = commodityGroupId; // Update the input value
-  });
-});
-</script>
-    
-    
 </main><!-- End #main -->
 
   

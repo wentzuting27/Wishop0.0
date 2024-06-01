@@ -57,7 +57,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php"  class="active"><span>購物</span></a>
+          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
           </li>
           <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
@@ -65,12 +65,21 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+ 
 
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
-                  <hr>
+                  <hr>';
+                  if(isset($_SESSION["user_shop_id"])){
+                    echo'
+                    <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
+                  }
+                  if($_SESSION['permissions']==2){
+                    echo'
+                    <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
+                  }
+                    echo'
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
@@ -177,6 +186,7 @@
             switch ($topic) {
               case 1:
                 echo '<i class="fa-solid fa-shirt"></i>&nbsp;服飾';
+
                 break;
               case 2:
                 echo '<i class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝';
@@ -210,9 +220,24 @@
 
 
           ?>
-            </b></h2>
-        </div>
+            </b>
+          </h2>
+          <?php
+          $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+          $sql_liketopic = "SELECT * from like_topic
+          where topic='$topic' and account='{$_SESSION["account"]}'";
+          $result_liketopic = mysqli_query($link, $sql_liketopic);
+          if (isset($_SESSION["account"])) {
+            if (mysqli_num_rows($result_liketopic) == 0) {
+              echo '<a type=button href="like_topic.php?topic=', $topic, '&method=in" class="btn-tag" style="font-size:16px;"><i class="fa-solid fa-plus"></i>&nbsp;關注</a>';
+            } else {
+              echo '<a type=button href="like_topic.php?topic=', $topic, '&method=de" class="btn-tag" style="font-size:16px;"><i class="fa-solid fa-check"></i>&nbsp;已關注</a>';
+            }
+          }
+          ?>
 
+        </div>
+        <hr>
 
         <section id="schedule" class="section-with-bg">
 
@@ -261,7 +286,7 @@
                           WHERE gt.topic = '$topic'
                           and (close_order_date > NOW() OR close_order_date is null)
                           GROUP BY c.commodity_id
-                          ORDER BY cg.close_order_date DESC;";
+                          ORDER BY cg.create_time DESC;";
 
                 $result = mysqli_query($link, $sql);
 
@@ -348,26 +373,58 @@
             </div>
 
             <div class="tab-pane fade" id="pills-wish" role="tabpanel" aria-labelledby="pills-wish-tab">
+              <div class="row portfolio-container">
 
-              <div class="col-lg-4 col-md-6 portfolio-item  wow fadeInUp">
-                <div class="portfolio-wrap">
 
-                  <a href="portfolio-details.php" class="portfolio-details-lightbox" data-glightbox="type: external"
-                    title="Portfolio Details">
-                    <figure>
-                      <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                    </figure>
-                  </a>
+                <?php
+                if (isset($_GET['topic']) && $_GET['topic'] != '') {
+                  $topic = $_GET['topic'];
+                }
 
-                  <div class="portfolio-info">
-                    <h4><a href="portfolio-details.php" class="portfolio-details-lightbox"
-                        data-glightbox="type: external" title="Portfolio Details">願望</a></h4>
-                    <p><i class="fa-solid fa-dollar-sign">&nbsp;100</i></p>
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql3 = "SELECT * from wish 
+                natural join account
+                natural join wish_topic
+                natural join wish_photo
+                where topic like '$topic'
+                and wish_shop_id IS null 
+                and wish_state != 4
+                and wish_end >= CURDATE()
+                GROUP By wish.wish_id
+                order by wish_start";
+
+                $result3 = mysqli_query($link, $sql3);
+
+                if  (mysqli_num_rows($result3) > 0) {
+                  while ($row = mysqli_fetch_assoc($result3)) {
+                    echo'<div class="col-lg-4 col-md-6 portfolio-item  filter-wow fadeInUp">
+                  <div class="portfolio-wrap">
+                    <a href="../wish/wish-details.php?wish_id=' . $row['wish_id'] . '"
+                      data-glightbox="type: external" title="' . $row['wish_name'] . '">
+                      <figure>
+                        <img src="' . $row['wish_photo_link'] . '" class="img-fluid" alt="">
+                      </figure>
+                    </a>
+                    <div class="portfolio-info">
+                      <h4>' . $row['wish_name'] . '</h4>
+                      <p>' . $row['user_name'] . '</p>
+                    </div>
                   </div>
+                </div>';
+                  }
+                }else {
 
-                </div>
+                  echo '
+                  <h5 style="text-align: center;"><b>尚無願望</b></h5>';
+      
+                }
+                ?>
+
+
+                
+
+
               </div>
-
             </div>
 
 

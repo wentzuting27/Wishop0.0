@@ -60,20 +60,31 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+ 
 
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
-                  <hr>
-                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
-                  <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                  <hr>';
+                  if(isset($_SESSION["user_shop_id"])){
+                    echo'
+                    <li><a href="shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
+                  }
+                  if($_SESSION['permissions']==2){
+                    echo'
+                    <li><a href="Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
+                  }
+                    echo'
+                    <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                    <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
+                    <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                  
+                echo '  
                 </ul>
               </li>
               ';
           } else {
-            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
+            echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
           }
           ?>
 
@@ -181,6 +192,17 @@
             <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
 
               <div class="row">
+              <table> 
+                <tr style="border-bottom: 3px solid #979797;" align="center">
+                <td><b>商品團體</b></td>
+                <td><b>檢舉人</b></td>
+                <td><b>檢舉類型</b></td>
+                <td><b>檢舉理由</b></td>
+                <td><b>檢舉時間</b></td>
+                <td><b>審核時間</b></td>
+                <td><b>審核狀態</b></td>
+                
+                </tr>
               <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "SELECT *
@@ -195,30 +217,20 @@
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
-                  echo '
-                  <div class="col-lg-12">
-                    
-                    <div class="evaluate_card2">
-                      <table class="evaluate_table">
-                        <tr>
-                          <td width="5%"><img src="', $row["commodity_group_bg"], '" class="people_photo"></td>
-                          <td width="60%">
-                          <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
-                            <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
-                          </td>
-                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                        </tr>
-                        <tr>
-                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                        </tr>
-                        <tr>
-                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>';                }
-                ?>
+                  echo "
+                  <tr style='border-bottom: 3px dashed #979797;' align='center'><td>",$row['commodity_group_name'],"</td>
+                      <td>",$row['account'],"</td>
+                      <td>",$row['report_type'],"</td>
+                      <td style='width: 30%; padding: 20px 20px;'>",$row['report_why'],"</td>
+                      <td>",$row['report_time'],"</td>
+                      <td>",$row['review_time'],"</td>
+                      <td>",$row['report_results'],"</td>
+                      </tr>";
+                  };
+                 
+              ?>
+            </table>              
+                
 
 
               </div>
