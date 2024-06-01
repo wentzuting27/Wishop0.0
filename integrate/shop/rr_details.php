@@ -79,8 +79,10 @@
                 <div class="section-title" data-aos="fade-up">
                     <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
                     <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
+
                     </h2>
                 </div><!-- End Section Title -->
+
                 </div><!-- End flex-container -->
                 <div class="row">';
                 
@@ -98,9 +100,13 @@
                         <td width="15%"><img
                             src="',$row["user_avatar"],'"
                             class="people_photo"></td>
-                        <td width="60%">
+                        <td width="44%">
                           <span>',$row["user_name"],'</span><br>
                           <p>',$row["report_time"],'</p>
+                        </td>
+                        <td>
+                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: #e37e7e" >&nbsp;審核失敗</button></a>
+                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: rgb(123, 195, 150); text-align: right;">&nbsp;審核成功</button></a>
                         </td>
                       </tr>
                       <tr>

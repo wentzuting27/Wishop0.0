@@ -201,19 +201,25 @@
                     <div class="evaluate_card2">
                       <table class="evaluate_table">
                         <tr>
-                          <td width="5%"><img src="', $row["commodity_group_bg"], '" class="people_photo"></td>
-                          <td width="60%">
+                          <td width="15%"><img src="', $row["commodity_group_bg"], '" 
+                          style="  
+                          width: 130px;
+                          height: 130px;
+                          object-fit: cover;
+                          border-radius: 5px;
+                          margin: 20px 30px;"></td>
+                          <td width="50%">
                           <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
                             <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
                           </td>
                           <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
                         </tr>
                         <tr>
-                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                          <td colspan="3"><div class="scrollable-row">
+                          ' . $row["report_why"] . '
+                          </div>@1234568: 這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
                         </tr>
-                        <tr>
-                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
+
                       </table>
                     </div>
                     
