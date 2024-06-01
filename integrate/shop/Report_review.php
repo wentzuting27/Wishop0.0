@@ -192,6 +192,17 @@
             <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
 
               <div class="row">
+              <table> 
+                <tr style="border-bottom: 3px solid #979797;" align="center">
+                <td><b>商品團體</b></td>
+                <td><b>檢舉人</b></td>
+                <td><b>檢舉類型</b></td>
+                <td><b>檢舉理由</b></td>
+                <td><b>檢舉時間</b></td>
+                <td><b>審核時間</b></td>
+                <td><b>審核狀態</b></td>
+                
+                </tr>
               <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "SELECT *
@@ -206,30 +217,122 @@
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
-                  echo '
-                  <div class="col-lg-12">
-                    
-                    <div class="evaluate_card2">
-                      <table class="evaluate_table">
-                        <tr>
-                          <td width="5%"><img src="', $row["commodity_group_bg"], '" class="people_photo"></td>
-                          <td width="60%">
-                          <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
-                            <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
-                          </td>
-                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
-                        </tr>
-                        <tr>
-                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
-                        </tr>
-                        <tr>
-                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
-                        </tr>
-                      </table>
-                    </div>
-                    
-                  </div>';                }
-                ?>
+                  echo "
+                  <tr style='border-bottom: 3px dashed #979797;' align='center'><td>",$row['ev_code'],"</td>
+                      <td>",$row['ev_name'],"</td>
+                      <td>",$row['ev_open'],"<br>",$row['ev_end'],"</td>
+                      <td>",$row['ev_place'],"</td>
+                      <td>",$row['count(acc_id)'],"/",$row['ev_num2'],"</td>
+                      <td>";
+                      if($row['ev_state']=="yet"){
+                        echo "未開始";
+                      }elseif($row['ev_state']=="in"){
+                        echo "進行中";
+                      }else{
+                        echo "已圓滿結束";
+                      }
+                      echo "</td>
+                      <td>";
+                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
+                      $result_open=mysqli_query($link,$sql_open);
+                      $hasTeacher = false;
+                      $hasStudent = false;
+                      $hasExternal = false;
+                      while ($row_open = mysqli_fetch_assoc($result_open)) {
+                          switch ($row_open['open_name']) {
+                              case "教職員":
+                                  $hasTeacher = true;
+                                  break;
+                              case "學生":
+                                  $hasStudent = true;
+                                  break;
+                              case "校外人士":
+                                  $hasExternal = true;
+                                  break;
+                          }
+                      }
+                      echo $hasTeacher ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
+                      echo "</td>
+                      <td>";
+                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
+                      $result_open=mysqli_query($link,$sql_open);
+                      $hasTeacher = false;
+                      $hasStudent = false;
+                      $hasExternal = false;
+                      while ($row_open = mysqli_fetch_assoc($result_open)) {
+                          switch ($row_open['open_name']) {
+                              case "教職員":
+                                  $hasTeacher = true;
+                                  break;
+                              case "學生":
+                                  $hasStudent = true;
+                                  break;
+                              case "校外人士":
+                                  $hasExternal = true;
+                                  break;
+                          }
+                      }
+                      echo $hasStudent ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
+                      echo "</td>
+                      <td>";
+                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
+                      $result_open=mysqli_query($link,$sql_open);
+                      $hasTeacher = false;
+                      $hasStudent = false;
+                      $hasExternal = false;
+                      while ($row_open = mysqli_fetch_assoc($result_open)) {
+                          switch ($row_open['open_name']) {
+                              case "教職員":
+                                  $hasTeacher = true;
+                                  break;
+                              case "學生":
+                                  $hasStudent = true;
+                                  break;
+                              case "校外人士":
+                                  $hasExternal = true;
+                                  break;
+                          }
+                      }
+                      echo $hasExternal ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
+                      echo "</td>
+                      <td>";
+                      date_default_timezone_set('Asia/Taipei');
+
+                      $open=array();
+                      $sql_open="select open_name from open_people where ev_code='$ev_code'";
+                      $result_open=mysqli_query($link,$sql_open);
+                      while($row_open=mysqli_fetch_assoc($result_open))
+                      {
+                        $open[]=$row_open["open_name"];
+                      }
+
+                      $sql_acc="select * from sign where acc_id='{$_SESSION['acc_id']}' and ev_code='$ev_code'";
+                      $result_acc=mysqli_query($link,$sql_acc);
+                      if($row['ev_state']=="end"){
+                        echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">場次已結束</a></b>";
+                      }elseif($row['ev_state']=="in"){
+                        if(strtotime($row['ac_time2']) < strtotime('now')){
+                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">報名時間已過</a></b>";
+                        }elseif(in_array($_SESSION['acc_identity'],$open)==false){
+                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">未開放",$_SESSION['acc_identity'],"報名</a></b>";
+                        }elseif($row['ac_sign']=="no"){
+                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">無需報名</a></b>";
+                        }elseif($row['count(acc_id)'] == $row['ev_num2']){
+                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">人數已滿</a></b>";
+                        }elseif(mysqli_num_rows($result_acc) > 0){
+                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">已報名</a></b>";                        
+                        }else{
+                          echo "<b><a href=./sign_in_inner_page.php?ev_code=",$row['ev_code'],">我要報名</a></b>";
+                        }                        
+                      }else{
+                        echo "<b>報名未開放</b>";
+                      }                                           
+                      echo "</td></tr>";
+                  };
+                 
+              ?>
+            </table>              
+                
 
 
               </div>

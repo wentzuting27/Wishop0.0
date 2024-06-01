@@ -14,9 +14,9 @@ if (!$link) {
 $sql = "UPDATE `order` SET payment_state = '$payment_state' WHERE order_id = '$order_id'";
 
 if (mysqli_query($link, $sql)) {
-    echo '<script>alert("修改成功!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+    echo '<script>alert("修改成功!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
 } else {
-    echo '<script>alert("修改失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+    echo '<script>alert("修改失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
 }
 
 mysqli_close($link);

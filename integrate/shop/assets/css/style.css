@@ -740,6 +740,7 @@ profile2(頭貼、名字)
 .shop_group .shop_group-item figure .link-preview:hover,
 .shop_group .shop_group-item figure .link-details:hover {
   background: #B0A5C6;
+  cursor: pointer;
 }
 
 .shop_group .shop_group-item figure .link-preview:hover i,
@@ -2229,4 +2230,8 @@ profile2(頭貼、名字)
 
 .report_notice:hover{
   color: #B0A5C6;
+}
+
+.report_td{
+  color: #666666;
 }

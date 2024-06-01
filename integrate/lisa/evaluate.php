@@ -10,11 +10,13 @@ if (isset($_POST['submit'])) {
     }
 
     $star = $_POST["rating"];
+    echo $star;
     $order_id = $_POST["order_id"];
     $evaluate = $_POST["eva_narrate"];
 
     $sql = "INSERT INTO evaluate (order_id, evaluate, evaluate_time, star) VALUES ('$order_id', '$evaluate', NOW(), '$star')";
     $result = mysqli_query($link, $sql);
+    echo $sql;
 
     if ($result) {
         $new_id = mysqli_insert_id($link);
@@ -64,13 +66,13 @@ if (isset($_POST['submit'])) {
 
             if ($result2) {
                 echo '';
-                exit();
+                // exit();
             }
         }
     }
 
-    echo '<script>alert("評價失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
-    exit();
+    // echo '<script>alert("評價失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+    // exit();
 }
 
 mysqli_close($link);

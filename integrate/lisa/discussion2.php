@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>詢問、通知撰寫</title>
+  <title>詢問內容</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,7 +28,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/InnerCos.css" rel="stylesheet">
+  <link href="assets/css/InnerPage.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
@@ -39,7 +39,7 @@
     crossorigin="anonymous"></script>
 
 </head>
-<?php session_start();?>
+<?php session_start(); ?>
 <style>
   .nav-link {
     color: #B19CD9;
@@ -595,50 +595,292 @@
             </div>
           </div>
         </section>
-        <section id="first">
+
+        <section id="blog" class="blog">
           <h2>Shipping</h2>
-          <center>
-            <form action="addwrite.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form">
-              <div class="card" style="width:80%">
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $account = $_SESSION["account"];
-                $sql = "select * from shop natural join account where account='$account'";
-                $result = mysqli_query($link, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                  echo '
-                    <div class="card-header">
-                    <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
-                      <img width="100%" height="100%" alt="Anne Hathaway picture"
-                        src="' . $row["user_avatar"] . '">
-                    </div>
-                  <div style="float: left;margin-top: 45px; margin-left: 20px;">
-                    <h5>' . $row["account"] . '</h5>
-                  </div>
-                </div>
-                <!--<div class="row" style="float: right;transform: scale(1);margin-top:44px;">
-                  <div class="col-sm-5" id="btn1">
-                    <button type="button" class="btn btn-toggle active" data-toggle="button" aria-pressed="true"
-                      autocomplete="off">
-                      <div class="handle"></div>
-                    </button>
-                  </div>
-                </div>-->
-                <div class="card-body">
-                  <input type="text" class="form-control" name="announce_title" placeholder="標題" required>
-                  <br>
-                  <textarea class="form-control" name="announce_narrate" rows="5" placeholder="內容" required></textarea>
-                </div>
-                <div class="card-footer">
-                  <button class="btn btn-primary" name="submit" type="submit"
-                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>';
+          <div class="row">
+
+
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $question_id = $_GET["question_id"];
+            $sql = "SELECT * FROM question NATURAL JOIN account WHERE question_id ='$question_id' ;";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result);
+            echo ' <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
+                    href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
+              </ul>
+            </div>
+              <div class="row gy-4">
+              <div class="col-lg-5 entries">
+                <article class="entry">
+                  <div class="entry-img">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                      <div class="carousel-inner fixed-image2">';
+            $a = 1;
+            $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+            $result2 = mysqli_query($link, $sql2);
+            if ($result2 && mysqli_num_rows($result2) != 0) {
+              while ($row_photo = mysqli_fetch_assoc($result2)) {
+                echo '
+                    <div class="carousel-item ';
+                if ($a == 1) {
+                  echo 'active"';
                 }
+                echo '">
+                      <img src="', $row_photo["question_photo_link"], '" class="d-block w-100" alt="..." style="max-height:300px;width:auto;">
+                    </div>';
+                $a++;
+              }
+              echo '
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </div>             
+                </article><!-- End blog entry -->
+              </div><!-- End blog entries list -->';
+              echo '
+              <div class="col-lg-7" style="border:1.25px solid 	#5B5B5B;border-radius:10px;">
+                  <div class="card-header">    
+                      <div class="profile-picture big-profile-picture clear"
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
+                    </div>
+                    <p>', $row["account"], '：</p>
+                    <h3><B>', $row["question_title"], '</B></h3>
+                  <h4 style="float: right;margin-top:-70px;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
+                  </h4>
+                  <div style="float:right;margin-top:-15px;"">
+                  <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
+                </div><hr>
+                <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;">
+                  <p>', nl2br($row["question_narrate"]), '</p>           
+                  </div>
+                </div><!-- End blog sidebar --> 
+              ';
+
+              echo '<!-- Modal -->
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  </div>
+                </div>
+              </div>
+          ';
+            } else {
+              echo '
+            <div class="row gy-4">
+            <div class="col-lg-5 entries">
+              <article class="entry">
+              </div>             
+                </article><!-- End blog entry -->
+              </div><!-- End blog entries list -->';
+              echo '
+              <div class="col-lg-12" style="border:1.25px solid 	#5B5B5B;border-radius:10px;margin-top:-10px;">
+                  <div class="card-header">    
+                      <div class="profile-picture big-profile-picture clear"
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+                      <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
+                    </div>
+                    <p>', $row["account"], '：</p>
+                    <h3><B>', $row["question_title"], '</B></h3>
+                  <h4 style="float: right;margin-top:-70px;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#deloredit' . $question_id . '"></i>
+                  </h4>
+                  <div style="float:right;margin-top:-15px;"">
+                  <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
+                </div><hr>
+                <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;">
+                  <p>', nl2br($row["question_narrate"]), '</p>           
+                  </div>
+                </div><!-- End blog sidebar --> 
+                
+              ';
+
+              echo '<!-- Modal -->
+              <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
+            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                  </div>
+                </div>
+              </div>
+              </form>
+          ';
+
+            }
+            mysqli_close($link);
+            ?>
+          </div>
+
+          <div class="blog-comments" style="max-height: 800px;overflow-y: scroll;overflow-x: hidden;">
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $question_id = $_GET["question_id"];
+            $sql = "SELECT * FROM reply NATURAL JOIN account WHERE question_id ='$question_id' ;";
+            $result = mysqli_query($link, $sql);
+            $sql2 = "SELECT COUNT(reply_id) AS totalcom FROM reply  WHERE question_id ='$question_id' ;";
+            $result2 = mysqli_query($link, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+            echo '
+              <h4 class="comments-count">' . $row2["totalcom"] . ' Comments</h4>';
+            while ($row = mysqli_fetch_assoc($result)) {
+              $reply_id=$row["reply_id"];
+              echo '
+              <div class="card mb-3 " style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                <div class="row g-0">
+                  <div class="col-md-2">
+                    <div class="comment-img">
+                      <div class="profile-picture big-profile-picture clear">
+                        <img width="100%" height="100%" alt="Anne Hathaway picture"
+                          src="' . $row["user_avatar"] . '">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">';
+                    if($account==$_SESSION["account"]){
+                      echo'
+                    <h4 style="float: right;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>
+                  </h4>';}
+                  echo'
+                        <h5>' . $row["account"] . '</h5>
+                        <time datetime="2020-01-01"><mark>' . $row["reply_time"] . '</mark></time>
+                        <p>
+                        ' . nl2br($row["reply_narrate"]) . '
+                        </p>
+                        ';
+              $a = 1;
+              $sql3 = "SELECT reply_photo FROM reply_photo WHERE reply_id = {$row["reply_id"]}";
+              $result3 = mysqli_query($link, $sql3);
+              if ($result3 && mysqli_num_rows($result3) != 0) {
+                while ($row_photo = mysqli_fetch_assoc($result3)) {
+                  echo '
+                  <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
+                      <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">
+                    <div class="carousel-item ';
+                  if ($a == 1) {
+                    echo 'active"';
+                  }
+                  echo '">
+                      <img src="', $row_photo["reply_photo"], '" class="d-block w-100" alt="..." style="max-height:300px;width:auto;">
+                    </div>';
+                  $a++;
+                }
+                echo '
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" >
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                </div> 
+                    ';
+              } 
+            
+              echo '
+              <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
+              <!-- Modal -->
+              <div class="modal fade" id="deloredit' . $row["reply_id"] . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
+                      <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                    </div>
+                  </div>
+                </div>
+                </form>
+            ';echo '
+              </div>
+              </div>
+                    </div>
+                    </div>
+                    </div>
+              ';}
+               
+              mysqli_close($link);
+              ?>
+              </div><!-- End blog comments -->
+          <center>
+            <div class="blog-comments" style="margin-top:-50px;">
+              <?php
+              $account = $_SESSION["account"];
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $question_id = $_GET["question_id"];
+              $sql = "SELECT * FROM account ;";
+              $result = mysqli_query($link, $sql);
+              $row = mysqli_fetch_assoc($result);
+              echo '
+                <div class="reply-form">
+                  <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" enctype="multipart/form-data">
+                  <input type="hidden" name="question_id" value="' . $question_id . '" >
+                  <div id="comment-1" class="comment" style="max-height:250px;padding:0;">
+                      <div class="d-flex">
+                        <div class="comment-img">
+                          <div class="profile-picture big-profile-picture clear">
+                            <img width="100%" height="100%" alt="Anne Hathaway picture"
+                              src="' . $row["user_avatar"] . '">
+                          </div>
+                        </div>
+                        <div class="comment2" style="padding-left:20px;">
+                          <div class="row">
+                            <div class="col form-group" style="width:600px;">
+                            <textarea name="comment" class="form-control" placeholder="評論內容"></textarea>
+                            </div>
+                            <div class="mb-3">
+                              <input class="form-control" type="file" id="file-uploader" data-target="file-uploader"
+                                accept="image/*" name="reply_photo[]" multiple />
+                            </div>
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary" style="float:right;font-size:0.38cm;">上傳</button>
+                        </div>
+                      </div>
+                  </form>
+                </div>'
                 ?>
-            </form>
+            </div>
           </center>
-        </section><!-- End Contact Section -->
+        </section>
 
         <section id="order">
           <h2>Returns</h2>
@@ -1499,8 +1741,9 @@
 
       </div>
       </section>
+      </div>
     </div>
-    </div>
+
     </div>
     </div>
     </div>
@@ -1511,8 +1754,6 @@
 
     </div> <!-- col end -->
     </div> <!-- row end -->
-
-    <!-- container end -->
 
     <!-- 这里是你的 JavaScript 代码 -->
 
@@ -1548,9 +1789,8 @@
     <script src="../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Your Custom JS Files -->
-    <script src="../lisa/assets/js/InnerBuyer.js"></script>
+    <script src="../lisa/assets/js/InnerPage.js"></script>
     <script src="../lisa/assets/js/cvs.js"></script>
-    <script src="assets/js/main.js"></script>
 
 </body>
 

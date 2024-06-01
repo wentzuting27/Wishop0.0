@@ -71,10 +71,20 @@
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
-                  <hr>
-                  <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
-                  <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
-                  <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                  <hr>';
+                  if($_SESSION['permissions']==2){
+                    echo'
+                    <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>
+                    <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                    <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
+                    <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                  }else{
+                    echo'
+                    <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
+                    <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
+                    <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                  }
+                echo '  
                 </ul>
               </li>
               ';
