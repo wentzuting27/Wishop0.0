@@ -431,7 +431,7 @@
                     echo '
                     <div class="modal fade" id="down', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="up_rule_ModalLabel">確認下架？</h1>
@@ -506,7 +506,7 @@
                 echo '
                     <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content"> 
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="up">確認上架？</h1>
@@ -580,7 +580,7 @@
                 echo '
                     <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="ups"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="ups">移至待上架區？</h1>
@@ -792,7 +792,7 @@
               var part3 = document.getElementById(\'card' . $question_id . '\');
                part3.addEventListener(\'click\', function () {
                 // 导航到新页面
-                window.location.href = \'../lisa/discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
+                window.location.href = \'../lisa/discussion2.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '#blog\';
                 // 页面加载后延迟执行滚动到指定区域
                 window.addEventListener(\'load\', function () {
                   setTimeout(function () {
@@ -1420,8 +1420,8 @@
             <td>' . $totalprice . '</td>
             <td>
                   <center>
-                    <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
-                    <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
+                  <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
+                  <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
                   </center>
                 </td>
                 <td>
@@ -1559,12 +1559,12 @@
             FROM order_details
             JOIN commodity ON order_details.commodity_id = commodity.commodity_id
             WHERE `order_details`.order_id = {$row['order_id']}";
-            $result2 = mysqli_query($link, $sql2);
-            $totalprice = 0;
-            if ($result2 && mysqli_num_rows($result2) > 0) {
-              $totalprice_row = mysqli_fetch_assoc($result2);
-              $totalprice = $totalprice_row['totalprice'];
-            }
+              $result2 = mysqli_query($link, $sql2);
+              $totalprice = 0;
+              if ($result2 && mysqli_num_rows($result2) > 0) {
+                $totalprice_row = mysqli_fetch_assoc($result2);
+                $totalprice = $totalprice_row['totalprice'];
+              }
               echo '<form method="post" action="orderdetail.php?commodity_group_id=' . $commodity_group_id . '" style="height: 400px;overflow-y: auto;">
           <input type="hidden" name="order_id" value="', $row["order_id"], '">
           
@@ -1585,19 +1585,23 @@
           </tr>
           </tbody>
           </form>';
-              $sql3="SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']}; ";
+              $sql3 = "SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']}; ";
+              $sql4 = "SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']} AND order_state='完成訂單'; ";
               $result3 = mysqli_query($link, $sql3);
+              $result4 = mysqli_query($link, $sql4);
               $row3 = mysqli_fetch_assoc($result3);
+              $row4 = mysqli_fetch_assoc($result4);
               echo '<!-- Modal -->
               <div class="modal fade" id="client' . $row['order_id'] . '" tabindex="-1" aria-labelledby="clientLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="clientLabel">'.$row3['account'].'的信用紀錄</h1>
+                      <h1 class="modal-title fs-5" id="clientLabel">' . $row3['account'] . '的信用紀錄</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <li>完成訂單數：'.$row3['allorder'].'</li>
+                      <li>下訂單數：' . $row3['allorder'] . '</li>
+                      <li>完成訂單數：' . $row4['allorder'] . '</li>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
@@ -1615,10 +1619,22 @@
           </div>
           <div class="row">
             <div id="slider-carouse4" class="owl-carousel">
+              <form method="post" action="proof.php?commodity_group_id=<?php echo '' . $_GET["commodity_group_id"] . ''; ?>">
+                <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                if (!$link) {
+                  die('Connection failed: ' . mysqli_connect_error());
+                }
+                $commodity_group_id = $_GET["commodity_group_id"];
+                $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account;";
+                $result = mysqli_query($link, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '
+              
               <div class="waiting3">
                 <div class="card" style="width: 18rem;">
                   <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
+                    <img src="' . $row["proof_of_purchase_photo"] . '"
                       class="card-img-top" alt="...">
                   </div>
                   <div class="card-header">
@@ -1626,72 +1642,27 @@
                       <div class="profile-picture big-profile-picture clear"
                         style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
                         <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg">
+                          src="' . $row["user_avatar"] . '">
                       </div>
                       <div style="flex-grow: 7;">
-                        <p>帳號</p>
+                        <p>' . $row["account"] . '</p>
                         <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
                         </h5>
                       </div>
                     </div>
                   </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
-                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
+                  <input type="hidden" name="order_id" value="' . $row["order_id"] . '">
+                  <div class="card-body">
+                  <button type="submit" name=submit" class="btn btn-warning" style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
                   </div>
                 </div>
               </div>
-              <div class="waiting3">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
-                      class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-header">
-                    <div class="col-md-12" style="display: flex; align-items: center;">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/8c/12/c0/8c12c0f0f6d7c2ee634e7aa541e9911c.jpg">
-                      </div>
-                      <div style="flex-grow: 7;">
-                        <p>帳號</p>
-                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
-                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
-                  </div>
-                </div>
-              </div>
-              <div class="waiting3">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-head">
-                    <img src="https://kimjinkook.weebly.com/uploads/8/3/4/6/83464970/20160807-07.png"
-                      class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-header">
-                    <div class="col-md-12" style="display: flex; align-items: center;">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="https://i.pinimg.com/236x/d6/a2/07/d6a207f50ebd87603fa7ad342a757104.jpg">
-                      </div>
-                      <div style="flex-grow: 7;">
-                        <p>帳號</p>
-                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body"><button type="button" class="btn btn-warning"
-                      style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
-                  </div>
-                </div>
-              </div>
+              ';
+                } ?>
+              </form>
             </div>
           </div>
+
           <br>
 
 

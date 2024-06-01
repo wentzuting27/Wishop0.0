@@ -30,6 +30,10 @@ $(document).ready(function() {
        checkbox.checked = true;
        label.textContent = "已付款"; // 修改 label 的內容
      }
+     if (label.textContent = "已付款" ) {
+      checkbox.checked = true;
+    }
+
 
      checkbox.addEventListener("click", function () {
        if (checkbox.checked) {
