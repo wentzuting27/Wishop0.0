@@ -441,14 +441,14 @@
           <div class="modal fade" id="remark" tabindex="-1" aria-labelledby="remarkLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="remarkLabel">備註內容及付款帳戶</h1>
+                <div class="modal-header" style="background-color: #B0A5C6;">
+                <h1 class="modal-title fs-5" id="evaLabel" style="font-weight:bold;color:#fff;">備註內容及付款帳戶</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <label for="remark" style="margin-left:10px;">備註內容填寫：</label>
+                <label for="remark" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容填寫：</label>
                 <textarea id="w3review" name="remark" rows="4" cols="50" style="margin:10px;"
                   placeholder="備註內容..."></textarea>
-                <label for="name2" style="margin-left:10px;">確認付款帳戶:</label>
+                <label for="name2" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:</label>
                 <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
                   style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
                 <div class="modal-footer">
@@ -529,8 +529,12 @@
                         src="', $row["user_avatar"], '">
                     </div>
                   </div>
+                  ';
+                  if($row["account"]==$_SESSION["account"]){
+                    echo'
                   <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>詢問內容...</small>
-                  </h4>
+                  </h4>';}
+                  echo'
                   <button class="btn btn-info btn-sm"
                     style="font-size: 0.3cm;float: right;margin-top: 13px;background-color: #b0a5c6a8;border: none;color: white;"><i
                       class="fa-solid fa-pen-to-square"></i></button>
@@ -595,14 +599,14 @@
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                  <div class="modal-header">
+                  <div class="modal-header" >
                     <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-footer">
                   <input type="hidden" name="question_id" value="', $row["question_id"], '">
                     <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal"><a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;color: #fff;">編輯</a></button>
-                    <button type="submit" name="deldis" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                    <button type="submit" name="deldis" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #b0a5c6a8;border: none;color: white;">刪除</button>
                   </div>
                 </div>
               </div>
@@ -726,7 +730,7 @@
           if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
           }
-          $sql = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity";
+          $sql = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity";
           $commodity_group_id = $_GET["commodity_group_id"];
           $result = mysqli_query($link, $sql);
           if (!$result) {
@@ -737,20 +741,21 @@
           <div class="modal fade" id="details' . $row['order_id'] . '" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="detailsLabel">訂單詳細</h1>
+                <div class="modal-header" style="background-color: #B0A5C6;">
+                <h1 class="modal-title fs-5" id="evaLabel" style="font-weight:bold;color:#fff;">訂單詳細</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <table width="100%" class="table table-hover" style="padding:10px;border-radius:5px;">
                       <tr>
-                        <th>訂單內容</th>
+                        <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單內容：</th>
                         <td>
                         <ul>';
             $order_id = $row['order_id']; // 獲取訂單 ID
             $order_state = $row['order_state'];
+            $account = $row['account'];
             $remark = $row['remark'];
-            $sql2 = "SELECT *FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
+            $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
             $result2 = mysqli_query($link, $sql2);
             if (!$result2) {
               die('Query failed: ' . mysqli_error($link));
@@ -763,26 +768,29 @@
                         </td>
                       </tr>
                       <tr>
-                        <th>備註內容</th>
+                        <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容：</th>
                         <td>
                         <p>' . nl2br($remark) . '</p>
                         </td>
                       </tr>
                       <tr >
-                        <th>訂單狀態說明</th>
+                        <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀態說明：</th>
                         <td>
                         <p>' . $order_state . '</p>
                         </td>
                       </tr>
                       <tr >
-                        <th >訂單狀況</th>
+                        <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀況：</th>
                         <td>
                         <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
-                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>
-                        <button class="btn btn-primary" name="delorder" style="background-color: 	#D9B3B3; border: none; color: white;">刪除訂單</button>
+                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>';
+                        if($account==$_SESSION["account"]){
+                        echo'
+                        <button class="btn btn-primary" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
-                        style="background-color: #CF9E9E; border: none; color: white;">完成訂單</button>
-                      </tr>
+                        style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';
+                      }
+                      echo'</tr>
                     </table>
                   </div>
                 <div class="modal-footer">
