@@ -113,7 +113,7 @@
                   class="fa-solid fa-hourglass-half"></i>&nbsp;待審核</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i
+              <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i
                   class="fa-solid fa-hourglass-end"></i>&nbsp;已審核</a>
             </li>
           </ul>
@@ -126,13 +126,18 @@
               <div class="row shop_group-container">
 
                 <?php
-                $sql = "select *
-                  from report
-                  natural join commodity_group
-                  where report_results = 1
-                  order by report_time";
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT *
+                FROM report r
+                NATURAL JOIN commodity_group
+                WHERE r.report_time = (
+                    SELECT MAX(r2.report_time)
+                    FROM report r2
+                    WHERE r2.commodity_group_id = r.commodity_group_id
+                )
+                AND r.report_results = 3
+                ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
-                echo $sql;
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
                   <div class="col-lg-4 col-md-6 shop_group-item">
@@ -144,10 +149,11 @@
                       </figure></a>
 
                       <div class="shop_group-info">
-                        <h4><a href="rr_details.php?commodity_group_id=' . $row['commodity_group_id'] . '">', $row["commodity_group_name"], '</a></h4>
+                        <h4><a href="rr_details.php?commodity_group_id=' . $row['commodity_group_id'] . '" class="portfolio-details-lightbox"
+                        data-glightbox="type: external" title="' . $row['commodity_group_name'] . '">', $row["commodity_group_name"], '</a></h4>
                         <div class="flex-container">
                           <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
-                          <p><i class="fa-regular fa-heart"></i>&nbsp;';
+                          <p><i class="fa-regular fa-user"></i>&nbsp;';
 
                   $sql_withgroup_num = "select *
                           from report
@@ -175,51 +181,43 @@
             <div role="tabpanel" class="col-lg-12  tab-pane fade" id="day-2">
 
               <div class="row">
-                <?php
-                $sql = "select *
-                    from preview
-                    natural join shop
-                    where shop_id='$shop_id'
-                    order by time";
+              <?php
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT *
+                FROM report r
+                NATURAL JOIN commodity_group
+                WHERE r.report_time = (
+                    SELECT MAX(r2.report_time)
+                    FROM report r2
+                    WHERE r2.commodity_group_id = r.commodity_group_id
+                )
+                AND r.report_results != 3
+                ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
-                      <div class="col-lg-6">
-                        
-                        <div class="preview_card">
-                          <table class="preview_table">
-                            <tr>
-                              <td width="15%"><img src="', $row["shop_avatar"], '" class="preview_people_photo"></td>
-                              <td width="80%">
-                                <span>', $row["shop_name"], '</span><br>
-                                <i class="fa-regular fa-clock"></i>&nbsp;', $row["time"], '</span>
-                                <div class="preview_title">
-                                  <p><a href="preview-details.php?preview_id=', $row["preview_id"], '&shop_id=', $shop_id, '">', $row["preview_title"], '</a></p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="2" >
-                                <div class="description" width="70%">', nl2br($row["preview_narrate"]), '</div>
-                                <img src="';
-                  $sql_photo = "select *
-                                from preview_photo
-                                where preview_id='{$row["preview_id"]}'
-                                order by preview_photo_id
-                                limit 1";
-                  $result_photo = mysqli_query($link, $sql_photo);
-                  while ($row_photo = mysqli_fetch_assoc($result_photo)) {
-                    echo $row_photo["preview_photo_link"];
-                  }
-                  echo '" class="preview_photo">
-                              </td>
-                            </tr>
-                            
-                          </table>
-                        </div>
-                        
-                      </div>';
-                }
+                  <div class="col-lg-12">
+                    
+                    <div class="evaluate_card2">
+                      <table class="evaluate_table">
+                        <tr>
+                          <td width="5%"><img src="', $row["commodity_group_bg"], '" class="people_photo"></td>
+                          <td width="60%">
+                          <span><a href="../lisa/InnerPage.php?commodity_group_id=' . $row['commodity_group_id'] . '"  title="' . $row['commodity_group_name'] . '" target="_blank">' . $row['commodity_group_name'] . '</a></span><br>
+                            <p><i class="bi bi-clock-history"></i>&nbsp;', $row["report_time"], '</p>
+                          </td>
+                          <td width="35%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i><i class="fa-solid fa-wand-sparkles" style="font-size: 20px;"></i></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </div>';                }
                 ?>
 
 

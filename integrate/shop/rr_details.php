@@ -51,109 +51,109 @@
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
-      <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="container">
+        <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
-        <!-- 5star -->
-        <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star">
-          <div class="row">
+          <!-- 5star -->
+          <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star" style="padding: 50px 0px">
+          <div class="flex-container">
+            <!-- Section Title -->
 
-            <div class="col-lg-4">
 
-              <div class="evaluate_card">
-                <table class="evaluate_table">
-                  <tr>
-                    <td width="15%"><img src="https://i.pinimg.com/564x/f6/1a/e4/f61ae484b7c56295adbaa4010235cd68.jpg"
-                        class="people_photo"></td>
-                    <td width="60%">
-                      <span>Taro_0106</span><br>
-                      <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                    </td>
-                    <td width="25%" style="vertical-align: top;" align="right"><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i></td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
+
+                <?php
+                $commodity_group_id = $_GET['commodity_group_id'];
+                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                $sql = "SELECT *
+                FROM report r
+                NATURAL JOIN commodity_group
+                NATURAL JOIN account
+                WHERE commodity_group_id = '$commodity_group_id'
+                AND r.report_results = 3
+                ORDER BY r.report_time DESC;";
+                $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $commodity_group_name = $row["commodity_group_name"];
+                
+                echo '            
+                <div class="section-title" data-aos="fade-up">
+                    <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
+                    <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
+                    </h2>
+                </div><!-- End Section Title -->
+                </div><!-- End flex-container -->
+                <div class="row">';
+                
+                // 重制row
+                mysqli_data_seek($result, 0);
+
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '              
+                <div class="col-lg-6">
+                  <div class="portfolio-info">
+                    <div class="evaluate_card" style=" padding: 20px">
+                      <table class="evaluate_table">
+                        <tr>
+                        <td width="15%"><img
+                            src="',$row["user_avatar"],'"
+                            class="people_photo"></td>
+                        <td width="60%">
+                          <span>',$row["user_name"],'</span><br>
+                          <p>',$row["report_time"],'</p>
+                        </td>
+                      </tr>
+                      <tr>
+                      <td colspan="3">
+                      <center><p style="color: #B0A5C6;">';
+
+                      switch ($row["report_type"]) {
+                          case 1:
+                              echo "酒類 / 菸類商品";
+                              break;
+                          case 2:
+                              echo "武器 / 彈藥 / 軍事用品";
+                              break;
+                          case 3:
+                              echo "藥品、醫療器材";
+                              break;
+                          case 4:
+                              echo "此商品可能令人感到不適或違反善良風俗";
+                              break;
+                          case 5:
+                              echo "活體動物、保育動物及其製品";
+                              break;
+                          case 6:
+                              echo "仿冒品";
+                              break;
+                          case 7:
+                              echo "濫用文字誤導搜尋";
+                              break;
+                          case 8:
+                              echo "重覆刊登";
+                              break;
+                          case 9:
+                              echo "複製他人商品圖文";
+                              break;
+                          case 10:
+                              echo "其他";
+                              break;
+                          default:
+                              echo "無";
+                      }
+
+echo '                  </p></center>
                       <div class="scrollable-row">
-                        這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="height: 70px;"><img
-                        src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img
-                        src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img
-                        src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img
-                        src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img
-                        src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg"
-                        class="goods_photo"><img
-                        src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg"
-                        class="goods_photo"><img
-                        src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg"
-                        class="goods_photo"></td>
-                  </tr>
-                </table>
-              </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-              <div class="evaluate_card">
-                <table class="evaluate_table">
-                  <tr>
-                    <td width="15%"><img src="https://i.pinimg.com/564x/1f/c6/6a/1fc66a08447b965a3e1000ccfc784029.jpg"
-                        class="people_photo"></td>
-                    <td width="60%">
-                      <span>Taro_0106</span><br>
-                      <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                    </td>
-                    <td width="25%" style="vertical-align: top;" align="right"><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i></td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <div class="scrollable-row">
-                        這次代購真是太棒了！商品質量超出我的預期，與描述完全一致。包裝非常用心，沒有任何損壞或破損。而且代購商的配送速度也很快，讓我感到非常滿意。強烈推薦給所有需要的朋友！</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="height: 70px;"><img
-                        src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"></td>
-                  </tr>
-                </table>
-              </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-              <div class="evaluate_card">
-                <table class="evaluate_table">
-                  <tr>
-                    <td width="15%"><img src="https://i.pinimg.com/564x/60/cf/43/60cf43172ea279f05b95318ee79e6afe.jpg"
-                        class="people_photo"></td>
-                    <td width="60%">
-                      <span>Taro_0106</span><br>
-                      <p>東京-排球少年×三麗鷗聯名快閃店</p>
-                    </td>
-                    <td width="25%" style="vertical-align: top;" align="right"><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                        class="fa-solid fa-wand-sparkles"></i></td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <div class="scrollable-row">非常感謝</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="height: 70px;"></td>
-                  </tr>
-                </table>
-              </div>
+                          ' . $row["report_why"] . '
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>';
+                }
+              ?>
 
             </div>
           </div>
