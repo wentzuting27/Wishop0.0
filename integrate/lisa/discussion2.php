@@ -28,7 +28,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/InnerPage.css" rel="stylesheet">
+  <link href="assets/css/InnerCos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
@@ -611,7 +611,7 @@
             echo ' <div class="entry-meta">
               <ul>
                 <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
+                    href="../lisa/InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
               </ul>
             </div>
               <div class="row gy-4">
@@ -767,7 +767,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">';
-                    if($account==$_SESSION["account"]){
+                    if($row["account"]==$_SESSION["account"]){
                       echo'
                     <h4 style="float: right;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>

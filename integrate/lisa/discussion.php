@@ -627,7 +627,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">';
-                    if($account==$_SESSION["account"]){
+                    if($row["account"]==$_SESSION["account"]){
                       echo'
                     <h4 style="float: right;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>

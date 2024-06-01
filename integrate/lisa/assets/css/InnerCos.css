@@ -1795,5 +1795,150 @@ input[type=checkbox]:checked+label:before {
 }
 
 
+/* blog */
+.blog .entry .entry-content p {
+  line-height: 24px;
+}
+.blog .blog-comments {
+  margin-bottom: 30px;
+  text-decoration:solid;
+  margin:30px;
+}
 
+.blog .blog-comments .comments-count {
+  font-weight: bold;
+}
+
+.blog .blog-comments .comment {
+  margin-top: 30px;
+  padding:50px;
+  position: relative;
+  border-width: 1px;
+  border: #000000;
+  
+}
+.blog-comments .comment:not(:last-child) {
+  border-bottom: 0.05cm solid #000000; /* Add a solid border at the bottom of all comments except the last one */
+}
+.blog-comments .comment-reply:not(:last-child) {
+  border-bottom: 0.05cm solid #000000; /* Add a solid border at the bottom of all comments except the last one */
+}
+.blog .blog-comments .comment .comment-img {
+  margin-right: 0px;
+}
+
+.blog .blog-comments .comment .comment-img img {
+  width: 100%;
+}
+
+.blog .blog-comments .comment h5 {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.blog .blog-comments .comment h5 a {
+  font-weight: bold;
+  color: #444444;
+  transition: 0.3s;
+}
+
+.blog .blog-comments .comment h5 a:hover {
+  color: #E9C9D6;
+}
+
+.blog .blog-comments .comment h5 .reply {
+  padding-left: 10px;
+  color: #4D96C2;
+}
+
+.blog .blog-comments .comment h5 .reply i {
+  font-size: 20px;
+}
+
+.blog .blog-comments .comment time {
+  display: block;
+  font-size: 14px;
+  color: #6b7b8d;
+  margin-bottom: 5px;
+}
+
+.blog .blog-comments .reply-form {
+  margin-top: 30px;
+  margin-right: 20px;
+  width:90%;
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.blog .blog-comments .reply-form h4 {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.blog .blog-comments .reply-form p {
+  font-size: 14px;
+}
+
+.blog .blog-comments .reply-form input {
+  border-radius: 4px;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.blog .blog-comments .reply-form input:focus {
+  box-shadow: none;
+  border-color: #e9797f;
+}
+
+.blog .blog-comments .reply-form textarea {
+  border-radius: 4px;
+  padding: 10px 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.blog .blog-comments .reply-form textarea:focus {
+  box-shadow: none;
+  border-color: #e9797f;
+}
+
+.blog .blog-comments .reply-form .form-group {
+  margin-bottom: 25px;
+}
+
+.blog .blog-comments .reply-form .btn-primary {
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: 0;
+  background-color: #4D96C2;
+}
+
+.blog .blog-comments .reply-form .btn-primary:hover {
+  background-color: #606f7e;
+}
+
+.blog .row .card-body{
+  max-height: 600px;
+}
+.blog .big-profile-picture {
+  margin-top: 20px;
+  border: 5px solid #b0a5c6a8;
+  width: 90px;
+  height: 90px;
+}
+.blog .row{
+  justify-content: center;
+}
+.blog-comments.card{
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.wish-details .scrollable-row {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #646464;
+  height: 150px;
+  max-height: 150px; /* 设置最大高度 */
+  overflow-y: auto; /* 当内容溢出时显示滚动条 */
+}
 

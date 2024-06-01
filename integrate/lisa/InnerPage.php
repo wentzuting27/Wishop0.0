@@ -903,6 +903,7 @@
                   </div>
                 <div class="card-body">
                   <div class="mb-3">
+                  <h5 style="float:left;color:	#3C3C3C;"><b>無卡付款證明上傳：</b></h5>
                   <input  class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
                   name="proof_photo[]" multiple/>
                   <input type="hidden" name="order_id" value="', $order_id, '">
