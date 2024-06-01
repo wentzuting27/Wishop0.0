@@ -205,7 +205,7 @@
               case 10:
                 echo "其他";
                 break;
-              
+
             }
           }
 
@@ -214,7 +214,7 @@
             </b></h2>
         </div>
 
-
+        <hr>
         <section id="schedule" class="section-with-bg">
 
           <div class="row">
@@ -229,7 +229,7 @@
                     type="button" role="tab" aria-controls="pills-profile" aria-selected="false">最熱&nbsp;<i
                       class="fa-solid fa-fire"></i></button>
                 </li>
-               
+
               </ul>
             </div>
 
@@ -342,7 +342,7 @@
 
             </div>
 
-            
+
 
           </div>
 
