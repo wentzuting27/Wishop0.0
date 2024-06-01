@@ -208,27 +208,7 @@
                 <div class="col-sm-10">
                   <textarea name="wish_narrat" class="form-control" rows="3" required></textarea>
                 </div>
-              </div>
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">主題</label>
-                <div class="col-sm-10">
-                <table width="100%">
-                  <tr>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1" value="1"><label class="icon-label2" for="theme1"><i class="fa-solid fa-shirt"></i></label><p style="display: inline-block;color: #B0A5C6;">服飾</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2" value="2"><label class="icon-label2" for="theme2"><i class="fa-solid fa-face-smile-beam"></i></label><p style="display: inline-block;color: #B0A5C6;">美妝</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3" value="3"><label class="icon-label2" for="theme3"><i class="fa-solid fa-heart"></i></label><p style="display: inline-block;color: #B0A5C6;">動漫</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4" value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label><p style="display: inline-block;color: #B0A5C6;">明星</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5" value="5"><label class="icon-label2" for="theme5"><i class="fa-solid fa-house-chimney-window"></i></label><p style="display: inline-block;color: #B0A5C6;">日常</p></td>
-                  </tr>
-                  <tr>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6" value="6"><label class="icon-label2" for="theme6"><i class="fa-solid fa-gamepad"></i></label><p style="display: inline-block;color: #B0A5C6;">數位</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;color: #B0A5C6;">美食</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;color: #B0A5C6;">運動</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;color: #B0A5C6;">精品</p></td>
-                    <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10" value="10"><label class="icon-label2" for="theme10"><i class="fa-solid fa-bars"></i></label><p style="display: inline-block;color: #B0A5C6;">其他</p></td>
-                  </tr>
-                </table>
-                </div>
+              
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">許願截止日期*</label>
@@ -1067,9 +1047,6 @@
                   <div class="swiper-pagination"></div>
                 </div><br><br>
 
-
-                 
-          
                 </div>
               </section><!-- End Testimonials Section -->
               
