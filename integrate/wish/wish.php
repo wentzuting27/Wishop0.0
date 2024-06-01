@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start(); ?>
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -186,7 +186,7 @@
 </style>
 
 <body>
-  
+  <?php session_start(); ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -335,57 +335,125 @@
         </div>
       </div>
 
-    <?php $max_date = date('Y-m-d', strtotime('+3 months')); ?><!-- 計算從當前日期開始的三個月後的日期-->
-    <!-- Modal 新增願望-->
-    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">我想許願……</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <?php $max_date = date('Y-m-d', strtotime('+3 months')); ?><!-- 計算從當前日期開始的三個月後的日期-->
+      <!-- Modal 新增願望-->
+      <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">我想許願……</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="wish_in_de.php" enctype="multipart/form-data">
+                <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">商品名稱*</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="wish_name" class="form-control" required>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">商品敘述*</label>
+                  <div class="col-sm-10">
+                    <textarea name="wish_narrat" class="form-control" rows="3" required></textarea>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">主題</label>
+                  <div class="col-sm-10">
+                    <style>
+                      .icon-label2 {
+                        cursor: pointer;
+                      }
+                    </style>
+                    <td>
+                      <table width="100%">
+                        <tr>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme1"
+                              value="1"><label class="icon-label2" for="theme1"><i
+                                class="fa-solid fa-shirt"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">服飾</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme2"
+                              value="2"><label class="icon-label2" for="theme2"><i
+                                class="fa-solid fa-face-smile-beam"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">美妝</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme3"
+                              value="3"><label class="icon-label2" for="theme3"><i
+                                class="fa-solid fa-heart"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">動漫</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme4"
+                              value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">明星</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme5"
+                              value="5"><label class="icon-label2" for="theme5"><i
+                                class="fa-solid fa-house-chimney-window"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">日常</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme6"
+                              value="6"><label class="icon-label2" for="theme6"><i
+                                class="fa-solid fa-gamepad"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">數位</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme7"
+                              value="7"><label class="icon-label2" for="theme7"><i
+                                class="fa-solid fa-utensils"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">美食</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme8"
+                              value="8"><label class="icon-label2" for="theme8"><i
+                                class="fa-solid fa-person-biking"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">運動</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme9"
+                              value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">精品</p>
+                          </td>
+                          <td width="20%"><input type="checkbox" name="wish_topic[]" class="link_ch" id="theme10"
+                              value="10"><label class="icon-label2" for="theme10"><i
+                                class="fa-solid fa-bars"></i></label>
+                            <p style="display: inline-block;color:#B0A5C6;font-size:15px;">其他</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">許願截止日期*</label>
+                  <div class="col-sm-10">
+                    <input type="date" name="end" class="form-control" value="<?php echo $max_date ?>"
+                      max="<?php echo $max_date ?>" id="end-date" required>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">參考網址</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="wish_link" class="form-control">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="wish_photo[]" multiple style="width:635px;margin:auto"
+                      required>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn insert_button">確定許願</button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="modal-body">
-            <form method="post" action="wish_in_de.php" enctype="multipart/form-data">
-            <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">  
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">商品名稱*</label>
-                <div class="col-sm-10">
-                  <input type="text" name="wish_name" class="form-control" required>
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">商品敘述*</label>
-                <div class="col-sm-10">
-                  <textarea name="wish_narrat" class="form-control" rows="3" required></textarea>
-                </div>
-              
-              </div>
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">許願截止日期*</label>
-                <div class="col-sm-10">
-                  <input type="date" name="end" class="form-control" value="<?php echo $max_date?>" max="<?php echo $max_date?>" id="end-date" required>
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">參考網址</label>
-                <div class="col-sm-10">
-                  <input type="text" name="wish_link" class="form-control">
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
-                <div class="col-sm-10">
-                <input class="form-control" type="file" name="wish_photo[]" multiple style="width:635px;margin:auto" required>
-                </div>
-              </div>
-            
-              <div class="modal-footer">
-                <button type="submit" class="btn insert_button">確定許願</button>
-              </div>
-            </form>
         </div>
-      </div>
-    </div>
   </section><!-- End Hero --><br>
 
 
@@ -1349,8 +1417,84 @@
                       ?>
 
                     </div>
-                  <div class="swiper-pagination"></div>
-                </div><br><br>
+                    <div class="swiper-pagination"></div>
+                  </div><br><br>
+
+
+                  <!-- <center><h3 style='color:#b9b0c8';><i class="fa-solid fa-award"></i>&nbsp;當月賣家許願完成數排名</h3></center>
+                  <ul class="carousel-indicators" id="hero-carousel-indicators"></ul>
+          
+                  <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+          
+                      <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                          <div class="testimonial-item">
+                            <img src="./assets/img/1st-prize.png" class="testimonial-img" alt="">
+                            <h6>排球少年日本代購</h6>
+                            <p>
+                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
+                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                          <div class="testimonial-item">
+                            <img src="./assets/img/2nd-place.png" class="testimonial-img" alt="">
+                            <h6>排球少年日本代購</h6>
+                            <p>
+                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
+                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                          <div class="testimonial-item">
+                            <img src="./assets/img/3rd-place.png" class="testimonial-img" alt="">
+                            <h6>排球少年日本代購</h6>
+                            <p>
+                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
+                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                          <div class="testimonial-item">
+                            <img src="./assets/img/4th-prize.png" class="testimonial-img" alt="">
+                            <h6>排球少年日本代購</h6>
+                            <p>
+                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
+                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                          <div class="testimonial-item">
+                            <img src="./assets/img/5th-prize.png" class="testimonial-img" alt="">
+                            <h6>排球少年日本代購</h6>
+                            <p>
+                              <strong><i class="fa-solid fa-trophy"></i>&nbsp;完成數</strong>： 8&nbsp;
+                              <button class="button"><img src="https://i.pinimg.com/564x/9e/e7/45/9ee745969f4b2a4bf3e46d0b0f287533.jpg" style="width:20px;height:20px; border-radius: 10px;" alt="">&nbsp;賣場連結</button><br>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+          
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div> -->
 
                 </div>
               </section><!-- End Testimonials Section -->
