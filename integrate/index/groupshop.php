@@ -794,14 +794,17 @@
                 $sql = "SELECT * from commodity_group
                         JOIN shop on commodity_group.shop_id = shop.shop_id
                         where commodity_group_name like'%{$_POST['commodity_group_name']}%' 
-                        and nation ='$nation' 
-                        AND (close_order_date > NOW() OR close_order_date is null)
+                        and nation like'$nation' 
+                        and (close_order_date > NOW() OR close_order_date is null)
+                        and (commodity_group_state = '1')
                         ORDER BY RAND() ";
               } elseif ($search_y_n == "no") {
                 $sql = "SELECT * FROM commodity_group
                         JOIN shop ON commodity_group.shop_id = shop.shop_id
                         WHERE commodity_group_name LIKE '%{$_POST['commodity_group_name']}%' AND nation LIKE '$nation' 
                         AND (close_order_date > NOW() OR close_order_date is null)
+                        and (commodity_group_state = '1')
+
                           AND (
                             commodity_group_id IN (
                               SELECT commodity_group_id 

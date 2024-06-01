@@ -819,7 +819,6 @@ profile2(頭貼、名字)
   margin-bottom: 30px;
   color: #B0A5C6;
   z-index: 2;
-  text-shadow: 0px 0px 3px #c5c5c5;
 }
 
 .section-title p {
@@ -2214,4 +2213,20 @@ profile2(頭貼、名字)
 .icon-label3:hover {
   background-color: #B0A5C6;
   color: #fff;
+}
+
+/*--------------------------------------------------------------
+# 檢舉的選項
+--------------------------------------------------------------*/
+.report_option {
+  color: #666666; 
+  font-weight: bold;
+}
+
+.report_notice{
+  font-size: 25px;
+}
+
+.report_notice:hover{
+  color: #B0A5C6;
 }

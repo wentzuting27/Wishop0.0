@@ -6,6 +6,9 @@
     $end=$_POST['end'];
     $wish_link=$_POST['wish_link'];
     $wish_state=$_POST['wish_state'];
+
+    echo $_POST["wish_topic"];
+
     $link=mysqli_connect('localhost','root','12345678','wishop');
 
     if($method=="in"){
@@ -69,5 +72,16 @@
         }else{
             echo "失敗";
         }
+    }
+
+    foreach($_POST["wish_topic"] as $rep) {
+        $wish_topic = $rep;
+        echo $wish_topic;
+        $insertrep = "INSERT INTO wish_topic (wish_id,topic) values ('$new_id','$wish_topic')";
+        if(mysqli_query($link, $insertrep)) {
+        } else {
+            echo'失敗';
+        }
+
     }
 ?>
