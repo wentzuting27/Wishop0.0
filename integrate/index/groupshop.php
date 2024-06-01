@@ -247,7 +247,7 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
-              <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+ 
 
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
