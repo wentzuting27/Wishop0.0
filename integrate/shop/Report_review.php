@@ -218,116 +218,14 @@
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo "
-                  <tr style='border-bottom: 3px dashed #979797;' align='center'><td>",$row['ev_code'],"</td>
-                      <td>",$row['ev_name'],"</td>
-                      <td>",$row['ev_open'],"<br>",$row['ev_end'],"</td>
-                      <td>",$row['ev_place'],"</td>
-                      <td>",$row['count(acc_id)'],"/",$row['ev_num2'],"</td>
-                      <td>";
-                      if($row['ev_state']=="yet"){
-                        echo "未開始";
-                      }elseif($row['ev_state']=="in"){
-                        echo "進行中";
-                      }else{
-                        echo "已圓滿結束";
-                      }
-                      echo "</td>
-                      <td>";
-                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
-                      $result_open=mysqli_query($link,$sql_open);
-                      $hasTeacher = false;
-                      $hasStudent = false;
-                      $hasExternal = false;
-                      while ($row_open = mysqli_fetch_assoc($result_open)) {
-                          switch ($row_open['open_name']) {
-                              case "教職員":
-                                  $hasTeacher = true;
-                                  break;
-                              case "學生":
-                                  $hasStudent = true;
-                                  break;
-                              case "校外人士":
-                                  $hasExternal = true;
-                                  break;
-                          }
-                      }
-                      echo $hasTeacher ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
-                      echo "</td>
-                      <td>";
-                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
-                      $result_open=mysqli_query($link,$sql_open);
-                      $hasTeacher = false;
-                      $hasStudent = false;
-                      $hasExternal = false;
-                      while ($row_open = mysqli_fetch_assoc($result_open)) {
-                          switch ($row_open['open_name']) {
-                              case "教職員":
-                                  $hasTeacher = true;
-                                  break;
-                              case "學生":
-                                  $hasStudent = true;
-                                  break;
-                              case "校外人士":
-                                  $hasExternal = true;
-                                  break;
-                          }
-                      }
-                      echo $hasStudent ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
-                      echo "</td>
-                      <td>";
-                      $sql_open="SELECT open_name FROM open_people WHERE ev_code='$ev_code'";
-                      $result_open=mysqli_query($link,$sql_open);
-                      $hasTeacher = false;
-                      $hasStudent = false;
-                      $hasExternal = false;
-                      while ($row_open = mysqli_fetch_assoc($result_open)) {
-                          switch ($row_open['open_name']) {
-                              case "教職員":
-                                  $hasTeacher = true;
-                                  break;
-                              case "學生":
-                                  $hasStudent = true;
-                                  break;
-                              case "校外人士":
-                                  $hasExternal = true;
-                                  break;
-                          }
-                      }
-                      echo $hasExternal ? "<i class='fa-solid fa-check' style='color: #416095;'></i>" : "<i class='fa-solid fa-xmark' style='color: #416095;'></i>";
-                      echo "</td>
-                      <td>";
-                      date_default_timezone_set('Asia/Taipei');
-
-                      $open=array();
-                      $sql_open="select open_name from open_people where ev_code='$ev_code'";
-                      $result_open=mysqli_query($link,$sql_open);
-                      while($row_open=mysqli_fetch_assoc($result_open))
-                      {
-                        $open[]=$row_open["open_name"];
-                      }
-
-                      $sql_acc="select * from sign where acc_id='{$_SESSION['acc_id']}' and ev_code='$ev_code'";
-                      $result_acc=mysqli_query($link,$sql_acc);
-                      if($row['ev_state']=="end"){
-                        echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">場次已結束</a></b>";
-                      }elseif($row['ev_state']=="in"){
-                        if(strtotime($row['ac_time2']) < strtotime('now')){
-                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">報名時間已過</a></b>";
-                        }elseif(in_array($_SESSION['acc_identity'],$open)==false){
-                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">未開放",$_SESSION['acc_identity'],"報名</a></b>";
-                        }elseif($row['ac_sign']=="no"){
-                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">無需報名</a></b>";
-                        }elseif($row['count(acc_id)'] == $row['ev_num2']){
-                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">人數已滿</a></b>";
-                        }elseif(mysqli_num_rows($result_acc) > 0){
-                          echo "<b><a href=./sign_in_inner_page_end.php?ev_code=",$row['ev_code'],">已報名</a></b>";                        
-                        }else{
-                          echo "<b><a href=./sign_in_inner_page.php?ev_code=",$row['ev_code'],">我要報名</a></b>";
-                        }                        
-                      }else{
-                        echo "<b>報名未開放</b>";
-                      }                                           
-                      echo "</td></tr>";
+                  <tr style='border-bottom: 3px dashed #979797;' align='center'><td>",$row['commodity_group_name'],"</td>
+                      <td>",$row['account'],"</td>
+                      <td>",$row['report_type'],"</td>
+                      <td style='width: 30%; padding: 20px 20px;'>",$row['report_why'],"</td>
+                      <td>",$row['report_time'],"</td>
+                      <td>",$row['review_time'],"</td>
+                      <td>",$row['report_results'],"</td>
+                      </tr>";
                   };
                  
               ?>
