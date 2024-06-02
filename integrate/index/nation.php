@@ -314,16 +314,16 @@
                 }
 
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql2 = "SELECT * , sum(order_details_num)
-                        FROM commodity c
-                        JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
-                        JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-                        LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
-                        WHERE cg.nation = '$nation'
-                        and (close_order_date > NOW() OR close_order_date is null)
-                        and (commodity_group_state = '1')
-                        GROUP BY c.commodity_id
-                        ORDER BY sum(order_details_num) DESC;";
+                $sql2 = "SELECT c.commodity_id, c.commodity_name, c.commodity_price, cp.commodity_photo, cg.*, SUM(od.order_details_num) AS total_order_details_num
+                FROM commodity c
+                JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+                JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+                LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
+                WHERE cg.nation = '$nation'
+                AND (cg.close_order_date > NOW() OR cg.close_order_date IS NULL)
+                AND cg.commodity_group_state = '1'
+                GROUP BY c.commodity_id
+                ORDER BY total_order_details_num DESC;;";
 
                 $result2 = mysqli_query($link, $sql2);
 

@@ -71,15 +71,15 @@
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>';
-                  if(isset($_SESSION["user_shop_id"])){
-                    echo'
+            if (isset($_SESSION["user_shop_id"])) {
+              echo '
                     <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
-                  }
-                  if($_SESSION['permissions']==2){
-                    echo'
+            }
+            if ($_SESSION['permissions'] == 2) {
+              echo '
                     <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
-                  }
-                    echo'
+            }
+            echo '
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
@@ -276,7 +276,7 @@
                   $topic = $_GET['topic'];
                 }
 
-                // 結單日期最晚
+
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "SELECT * 
                           FROM commodity c
@@ -288,6 +288,7 @@
                           and (commodity_group_state = '1')
                           GROUP BY c.commodity_id
                           ORDER BY cg.create_time DESC;";
+
 
                 $result = mysqli_query($link, $sql);
 
@@ -334,17 +335,18 @@
                 }
 
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql2 = "SELECT * , sum(order_details_num)
-                        FROM commodity c
-                        JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
-                        JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
-                        LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
-                        LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
-                        WHERE gt.topic = '$topic'
-                        and (close_order_date > NOW() OR close_order_date is null)
-                        and (commodity_group_state = '1')
-                        GROUP BY c.commodity_id
-                        ORDER BY sum(order_details_num) DESC;";
+                $sql2 = "SELECT c.*, cp.commodity_photo, cg.*, gt.*, SUM(od.order_details_num) AS total_order_details_num
+                          FROM commodity c
+                          JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+                          JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
+                          LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
+                          LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
+                          WHERE gt.topic = '$topic'
+                          AND (cg.close_order_date > NOW() OR cg.close_order_date IS NULL)
+                          AND cg.commodity_group_state = '1'
+                          GROUP BY c.commodity_id
+                          ORDER BY total_order_details_num DESC;";
+
 
                 $result2 = mysqli_query($link, $sql2);
 
@@ -362,6 +364,7 @@
                               <div class="portfolio-info">
                                   <h4>' . $row['commodity_name'] . '</h4>
                                   <p><i class="fa-solid fa-dollar-sign">&nbsp;' . $row['commodity_price'] . '</i></p>
+
                               </div>
                           </div>
                       </div>';
@@ -397,9 +400,9 @@
 
                 $result3 = mysqli_query($link, $sql3);
 
-                if  (mysqli_num_rows($result3) > 0) {
+                if (mysqli_num_rows($result3) > 0) {
                   while ($row = mysqli_fetch_assoc($result3)) {
-                    echo'<div class="col-lg-4 col-md-6 portfolio-item  filter-wow fadeInUp">
+                    echo '<div class="col-lg-4 col-md-6 portfolio-item  filter-wow fadeInUp">
                   <div class="portfolio-wrap">
                     <a href="../wish/wish-details.php?wish_id=' . $row['wish_id'] . '"
                       data-glightbox="type: external" title="' . $row['wish_name'] . '">
@@ -414,16 +417,16 @@
                   </div>
                 </div>';
                   }
-                }else {
+                } else {
 
                   echo '
                   <h5 style="text-align: center;"><b>尚無願望</b></h5>';
-      
+
                 }
                 ?>
 
 
-                
+
 
 
               </div>
