@@ -80,14 +80,14 @@
                     echo'
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
-                    <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                    <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
                   
                 echo '  
                 </ul>
               </li>
               ';
           } else {
-            echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
           }
           ?>
 
