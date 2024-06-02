@@ -24,7 +24,6 @@
                 header("refresh:0;url=Profile_settings.php");
             }
 
-        } else {
         }
         ?>
 </body>
