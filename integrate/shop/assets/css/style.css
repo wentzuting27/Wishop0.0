@@ -2235,3 +2235,16 @@ profile2(頭貼、名字)
 .report_td{
   color: #666666;
 }
+
+mark {
+  background-color: #E9C9D6;
+  color:#FFF;
+  border-radius: 20px;
+  display: inline-block;
+  line-height: 0.8;
+  overflow: visible;
+  padding: 0.5em 0.5em;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
