@@ -270,3 +270,21 @@ document.getElementById('triggerBtn').addEventListener('click', function() {
     delay += 100; // Adjust the delay time (in milliseconds) based on your preference
   });
 });
+
+
+
+
+
+
+document.querySelector('#shop_bg.form-control').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          const img = document.querySelector('#selectedImage');
+          img.src = e.target.result;
+          img.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+  }
+});
