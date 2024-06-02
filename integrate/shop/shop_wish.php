@@ -458,7 +458,7 @@
                           </tr>
                           <tr>
                             <td>許願截止日期*</td>
-                            <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 100%;" value="<?php echo $max_date;?>" max="<?php echo $max_date; ?>" id="end-date" required></td>
+                            <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 100%;" value="<?php echo $max_date;?>" max="<?php echo $max_date; ?>" min="<?php echo date('Y-m-d'); ?>" id="end-date" required></td>
                           </tr>
                           <tr>
                             <td>參考網址</td>
