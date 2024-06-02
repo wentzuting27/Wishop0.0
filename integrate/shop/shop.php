@@ -523,6 +523,7 @@
                 <div class="modal-body">
                   <form method="post" action="shop_up.php" enctype="multipart/form-data">
                   <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
+                  <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
                     <table width="100%" class="insert_group_form">
                       <tr>
                         <td width="10%">賣場名</td>

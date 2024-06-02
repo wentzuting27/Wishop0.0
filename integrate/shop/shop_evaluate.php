@@ -152,6 +152,10 @@
       echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop_evaluate&method=de&like=shop"><button type="button" class="btn delike_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button></a>';
     }
   }
+
+  if ($shop_id == $_SESSION["user_shop_id"]) {
+    echo '<button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_shop_modal" style="margin-left: 20px;"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button>';
+  }
   echo '
     <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
     <!-- <button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;關注賣場</button> -->
@@ -785,13 +789,135 @@
       </div>
     </section><!-- End shop_group Section -->
     
-    
-    
-    
-      
-    
-    
       </main><!-- End #main -->
+
+<!-- Modal -->
+<?php
+$sql = "select *
+from shop
+where shop_id='$shop_id'";
+$result = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+  $shop_avatar = $row["shop_avatar"];
+  $shop_bg = $row["shop_bg"];
+  $shop_narrat = $row["shop_narrat"];
+  $shop_name = $row["shop_name"];
+}
+?>
+<div class="modal fade" id="up_shop_modal" tabindex="-1" aria-labelledby="update_shop_ModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="update_shopLabel">編輯賣場</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="shop_up.php" enctype="multipart/form-data">
+        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
+        <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop_evaluate">
+          <table width="100%" class="insert_group_form">
+            <tr>
+              <td width="10%">賣場名</td>
+              <td width="90%"><input type="text" name="shop_name" class="form-control" value="<?php echo $shop_name;?>"></td>
+            </tr>
+            <tr>
+              <td>賣場頭貼</td>
+              <td><input class="form-control" type="file" id="shop_avatar" name="shop_avatar"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <td width="30%"><img src="<?php echo $shop_avatar; ?>" class="img-fluid rounded-circle">
+                    </td>
+                    <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px">
+                    </td>
+                    <td width="30%">
+                      <div id="imagePreview"></div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>賣場背景</td>
+              <td>
+                <input class="form-control" type="file" id="shop_bg2" name="shop_bg"
+                  onchange="displaySelectedImage(event)">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <td width="30%"><img src="<?php echo $shop_bg; ?>" class="img-fluid"
+                        style="width: 100%;height: 100px;"></td>
+                    <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px">
+                    </td>
+                    <td width="30%">
+                      <img id="selectedImage" style="display: none; width: 100%;height: 100px;"
+                        alt="Selected Image">
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td width="10%">賣場簡介</td>
+              <td width="90%"><textarea name="shop_narrat" rows="5" cols="50" class="form-control" with="100%"><?php echo htmlspecialchars($shop_narrat);?></textarea></td>
+            </tr>
+
+            <script>
+              function displaySelectedImage(event) {
+                const file = event.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = function (e) {
+                    const selectedImage = document.getElementById('selectedImage');
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block';
+                  }
+                  reader.readAsDataURL(file);
+                }
+              }
+            </script>
+
+            <tr>
+              <td colspan="2"><button type="submit" class="btn insert_button"
+                  style="display: block;width: 100%;">確認修改</button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('shop_avatar').onchange = function (e) {
+    var reader = new FileReader(); // 创建 FileReader 对象
+
+    reader.onload = function (event) {
+      var img = document.createElement('img'); // 创建图片元素
+      img.src = event.target.result; // 设置图片源
+      img.style.width = '220px'; // 设置图片宽度
+      img.style.height = '220px'; // 设置图片高度
+      img.style.borderRadius = '50%'; // 设置图片为圆形
+      img.classList.add('img-fluid'); // 添加样式类
+
+      var previewContainer = document.getElementById('imagePreview');
+      previewContainer.innerHTML = ''; // 清空预览区域
+      previewContainer.appendChild(img); // 添加图片到预览区域
+    };
+
+    // 读取文件内容
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+
+</script>
 
   
 
