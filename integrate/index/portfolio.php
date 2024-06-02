@@ -853,7 +853,6 @@
               $alltopic = array();
               $sql_alltopic = "select topic from group_topic where commodity_group_id = '$commodity_group_id'";
               $result_alltopic = mysqli_query($link, $sql_alltopic);
-
               while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
                 $alltopic[] = $row_alltopic['topic'];
               }
