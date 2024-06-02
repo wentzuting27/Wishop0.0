@@ -222,14 +222,14 @@
             echo '
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
-                    <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                    <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
 
             echo '  
                 </ul>
               </li>
               ';
           } else {
-            echo "<a href='login.php' class='getstarted' style='color: white;'>登入</a>";
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
           }
           ?>
 
@@ -453,7 +453,7 @@
                 <div class="mb-3 row">
                   <label class="col-sm-2 col-form-label">商品圖片(可選多張)*</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" name="wish_photo[]" multiple style="width:635px;margin:auto"
+                    <input class="form-control" id="formFileMultiple" type="file" name="wish_photo[]" multiple style="width:635px;margin:auto"
                       required>
                   </div>
                 </div>
@@ -1735,10 +1735,13 @@
           <div class="tab-pane" id="tab-5">
             <div class="row gy-4">
 
-              <section id="testimonials" class="testimonials" style="margin-top:90px">
+              <section id="testimonials" class="testimonials" style="margin-top:70px">
                 <div class="container" data-aos="fade-up">
                   <center>
-                    <h3 style='color:#b9b0c8' ;><i class="fa-solid fa-award"></i>&nbsp;當月熱門許願排名</h3>
+                    <h3 style='color:#b9b0c8' ;><i class="fa-solid fa-award"></i>&nbsp;當月熱門許願排名
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
+                    <i class="fa-regular fa-circle-question fa-lg" style="float: right;font-size: 1em;margin-top:15px" aria-hidden="true"></i>
+                    </a></h3>
                   </center>
                   <ul class="carousel-indicators" id="hero-carousel-indicators"></ul>
 
@@ -1747,7 +1750,7 @@
                       <?php
                       $startOfMonth = date('Y-m-01'); // 當月的第一天
                       $endOfMonth = date('Y-m-t 23:59:59'); // 當月的最後一天
-                      $sql = "select wish.*,user_name,wish_photo_link, COUNT(like_wish.wish_id) as like_count  from wish
+                      $sql = "select wish.*,user_name,wish_photo_link, COUNT(DISTINCT like_wish.account) as like_count  from wish
                         natural join account
                         natural join wish_photo
                         INNER JOIN like_wish ON wish.wish_id = like_wish.wish_id
@@ -1758,14 +1761,21 @@
                         ORDER BY like_count DESC
                         LIMIT 5";
                       $result = mysqli_query($link, $sql);
-
+                      
+                      //COUNT(DISTINCT like_wish.account)有多少個不同的用戶對該許願按下了收藏
 
 
                       while ($row = mysqli_fetch_assoc($result)) {
                         $wish_id = $row["wish_id"];
-                        $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
+                        $sql_all_likepeople = "select * from like_wish where wish_id='$wish_id'";
+                        $result_all_likepeople = mysqli_query($link, $sql_all_likepeople);
+                        $count_all_likepeople = mysqli_num_rows($result_all_likepeople);
+
+                        $sql_likepeople="select * from like_wish 
+                        where wish_id='$wish_id' and time between '{$startOfMonth}' and '{$endOfMonth}'";
                         $result_likepeople = mysqli_query($link, $sql_likepeople);
                         $count_likepeople = mysqli_num_rows($result_likepeople);
+                       
                         echo '
                 
                             <div class="swiper-slide">
@@ -1776,7 +1786,8 @@
                                       <h4>', $row['wish_start'], '</h4>
                                       <p class="scrollable-row">
                                           <strong><i class="bi bi-person"></i>&nbsp;許願者</strong>： &nbsp;', $row['user_name'], '<br>
-                                          <strong><i class="bi bi-heart heart-icon"></i>&nbsp;收藏人數</strong>： &nbsp;', $count_likepeople, '<br>
+                                          <strong><i class="bi bi-heart heart-icon"></i>&nbsp;總收藏人數</strong>： &nbsp;', $count_all_likepeople, '<br>
+                                          <strong><i class="bi bi-heart heart-icon"></i>&nbsp;當月收藏人數</strong>： &nbsp;', $count_likepeople, '<br>
                                           <strong><i class="bi bi-chat-dots"></i>&nbsp;敘述</strong>：', $row['wish_narrat'], '
                                       </p>
                                   </div>
@@ -1793,7 +1804,28 @@
                 </div>
               </section><!-- End Testimonials Section -->
 
+              <!-- 連結管理Modal -->
+              <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#B0A5C6;color:#FFF;">
+                  <h1 class="modal-title fs-5" id="update_socialLabel" style="font-weight:bold;">"當月熱門許願排名"說明</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                  <div class="modal-body">
+                    <p style="font-size:16px;color: #666666;font-weight: bold;">
+                      ● 此許願排行榜會顯示<span style="color:#B0A5C6;">所有願望在當月</span>被收藏最多的次數<br>
+                      ● 根據當月收藏人數顯示前5名<br>
+                    </p>
+                    
+                  <mark style="font-size:18px;background-color:#e6d0d9;font-weight: bold;color: #666666;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;點擊願望名稱可查看該願望之詳細資訊</mark><br>
+                  <img src="../files/許願排行榜.png" style="width:100%;height:100%;">
 
+                  </div>
+                </div>
+                </div>
+              </div>
 
 
 
