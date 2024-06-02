@@ -1657,31 +1657,26 @@
                           <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                             <p>
                               ◆許願池總共分5區，"許願區"、"即將結束區"、歷史許願區、"許願池介紹"、"許願排行榜"。<br>
-                              ◆"許願區"會有<sapn style="color:#c199a9;">目前正在被許願</sapn>的商品，點擊商品名稱即可進入商品詳情頁。<br>
-                              ◆"商品詳情頁"包含許願者、許願日期、商品圖片、許願敘述、我有興趣人數、商品標籤、賣家出價。<br>
+                              ◆"許願區"會有<sapn style="color:#c199a9;">目前正在被許願</sapn>的商品，點擊願望名稱即可進入許願商品詳情頁。<br>
+                              ◆"許願商品詳情頁"包含許願者、商品圖片、許願日期、許願截止日期、相關連結、收藏人數、敘述、願望主題、賣家出價區。<br>
                               ◆"即將結束區"會有<sapn style="color:#c199a9;">即將在1個禮拜後到期</sapn>的許願商品。<br>
                               ◆"歷史許願區"會有<sapn style="color:#c199a9;">1年內</sapn>的到期許願商品，包含許願成功和許願失敗的商品。<br>
                               ◆"許願成功"表示此願望<sapn style="color:#c199a9;">有賣家出價並成團</sapn>，"許願失敗"表示此願望<sapn
                                 style="color:#c199a9;">無人出價或有賣家出價但沒有成團</sapn>。<br>
-                              ◆"許願排行榜"會顯示當月熱門許願排名和當月賣家許願完成數排名，"當月熱門許願排名"會根據<sapn style="color:#c199a9;">我有興趣的人數</sapn>
-                              來排名。<br>
-                              ◆許願池右上角會顯示"買家當月剩餘許願次數"和"目前平台的總許願次數"。<br>
+                              ◆"許願排行榜"會顯示當月熱門許願排名，"當月熱門許願排名"會根據<sapn style="color:#c199a9;">當月收藏人數</sapn>
+                              來排5名。<br>
+                              ◆許願池右上角會顯示"買家當月剩餘許願次數"和"目前平台的總許願次數"，平台的總許願次數包含"向公共許願池許願和向特定賣家許願"。<br>
                             </p>
                           </div>
                         </li>
 
                         <li>
-                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">許願規則<i
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">許願規則&收藏<i
                               class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                           <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                             <p>
                               ◆每位使用者<sapn style="color:#c199a9;">1個月內都有3次的許願機會</sapn>，3個許願用完就必須等到下個月才能再次許願。<br>
-                              ◆如果對某個許願商品有興趣可以點擊<sapn style="color:#c199a9;">"我有興趣"按鈕</sapn>。<br>
-                              ◆當有賣家願意出價時，買家可以根據賣家的出價價格，點擊<sapn style="color:#c199a9;">"我要跟團"按鈕</sapn>，目前意願人數就會增加，<sapn
-                                style="color:#c199a9;">每個買家只能選擇1位出價賣家</sapn>。<br>
-                              ◆已成團表示此賣家確定開團，可以進行下單的動作。<br>
-                              ◆待成團表示買家還無法進行下單，需等待賣家將狀態改為已成團。<br>
-                              ◆<sapn style="color:#c199a9;">點擊"我要跟團"不代表下單</sapn>，需點擊"賣場連結"才能進行下單。<br>
+                              ◆如果對某個許願商品有興趣可以點擊<sapn style="color:#c199a9;">"收藏許願"按鈕</sapn>，也可以取消收藏。<br>
                             </p>
                           </div>
                         </li>
@@ -1691,28 +1686,71 @@
                               class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                           <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                             <p>
-                              ◆使用者點擊<sapn style="color:#c199a9;">"Make A Wish"按鈕</sapn>，即可進行許願。<br>
-                              ◆每個願望的<sapn style="color:#c199a9;">期限為3個月</sapn>。<br>
-                              ◆使用者填寫完許願資訊後，按下確定許願，即<sapn style="color:#c199a9;">無法更改許願資訊</sapn>。<br>
-                              ◆若使用者想取消此願望，可點擊<sapn style="color:#c199a9;">"取消許願"按鈕</sapn>。<br>
-                              ◆若此願望<sapn style="color:#c199a9;">已有賣家出價</sapn>，使用者就<sapn style="color:#c199a9;">無法點擊
-                              </sapn>"取消許願"按鈕。<br>
-                              ◆若要<sapn style="color:#c199a9;">更改許願資訊</sapn>，請取消該次許願，可按"刪除願望"按鈕並再次進行許願。<br>
-
-
+                              ◆使用者點擊<sapn style="color:#c199a9;font-weight:bold;">"Make A Wish"按鈕</sapn>，即可進行許願。<br>
+                              ◆每個願望的<sapn style="color:#c199a9;">最長期限為3個月</sapn>。<br>
+                              ◆使用者填寫完許願資訊，按下確定許願後，即<sapn style="color:#c199a9;">無法更改許願資訊</sapn>。<br>
                             </p>
                           </div>
                         </li>
 
                         <li>
-                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">如何出價<i
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">刪除願望<i
                               class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                           <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
                             <p>
-                              ◆賣家若願意代購此願望商品，點進商品詳情頁按下<sapn style="color:#c199a9;">"我要出價"按鈕</sapn>，即可出價。<br>
-                              ◆賣家可以根據<sapn style="color:#c199a9;">我有興趣的人數</sapn>來決定是否代購此商品。<br>
+                              ◆若使用者想刪除此願望，可點擊<sapn style="color:#c199a9;">"刪除願望"按鈕</sapn>。<br>
+                              ◆若要<sapn style="color:#c199a9;">更改許願資訊</sapn>，請刪除該次許願，可按"刪除願望"按鈕並再次進行許願。<br>
+                              ◆若此願望<sapn style="color:#c199a9;">已有賣家出價</sapn>，使用者則無法刪除願望。<br>                            
+                            </p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">如何出價<i
+                              class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                          <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
+                            <p>
+                              ◆賣家若願意賣此願望商品，點進許願商品詳情頁並按下<sapn style="color:#c199a9;">"我要出價"按鈕</sapn>，即可出價。<br>
                               ◆賣家填寫完出價資訊後，按下確定出價，即<sapn style="color:#c199a9;">無法更改出價資訊</sapn>。<br>
-                              ◆歷史許願區中的許願是<sapn style="color:#c199a9;">無法出價的</sapn>。<br>
+                              ◆歷史許願區中的許願是<sapn style="color:#c199a9;">無法進行出價的</sapn>。<br>
+                              <br>
+                            </p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-6" class="collapsed">商團狀態<i
+                              class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                          <div id="accordion-list-6" class="collapse" data-bs-parent=".accordion-list">
+                            <p>
+                              ◆賣家點擊成團後，此團的狀態將從"待成團"變"已成團"，<sapn style="color:#c199a9;">且無法取消成團</sapn>。<br>
+                              ◆已成團表示該賣家確定開團，買家可以進行喊單的動作。<br>
+                              ◆待成團表示該賣家還未成團，<sapn style="color:#c199a9;">買家仍然可以喊單，但賣家不會按接收</sapn>，需等待該商團的狀態變已成團。<br>
+                              <br>
+                            </p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-7" class="collapsed">我要跟團<i
+                              class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                          <div id="accordion-list-7" class="collapse" data-bs-parent=".accordion-list">
+                            <p>
+                              ◆當有賣家願意出價時，買家可以根據賣家的出價價格，點擊<sapn style="color:#c199a9;">"我要跟團"按鈕</sapn>，目前意願人數就會增加，<sapn
+                                style="color:#c199a9;">確定跟團後即無法取消跟團</sapn>。<br>
+                              ◆<sapn style="color:#c199a9;">點擊"我要跟團"不代表喊單</sapn>，需點擊<sapn style="color:#c199a9;">"開團連結"</sapn>才能進行喊單。<br>
+                              <br>
+                            </p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <a data-bs-toggle="collapse" data-bs-target="#accordion-list-8" class="collapsed">搜尋願望<i
+                              class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                          <div id="accordion-list-8" class="collapse" data-bs-parent=".accordion-list">
+                            <p>
+                              ◆許願區、即將結束區、歷史許願區皆可以搜尋你想找的願望~<br>
+                              ◆可以依<sapn style="color:#c199a9;">願望名稱和主題</sapn>來搜尋，歷史許願區還可依<sapn style="color:#c199a9;">許願截止的日期</sapn>來搜尋。<br>
                               <br>
                             </p>
                           </div>
