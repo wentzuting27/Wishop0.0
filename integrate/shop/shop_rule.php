@@ -454,42 +454,50 @@
                           <li>
                             <a data-bs-toggle="collapse" ';if($i==1){echo 'class="collapse"';}else{echo 'class="collapsed"';} echo 'data-bs-target="#accordion-list-',$i,'">',$row["title"],'<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list">
-                              <p>',nl2br($row['narrate']),'</p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal">編輯規則</button>
+                              <p>',nl2br($row['narrate']),'</p>';
+                              if($shop_id==$_SESSION["user_shop_id"]){
+                                echo '
+                                <div style="text-align: right;">
+                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule1_Modal',$i,'">編輯規則</button>
                                 <button type="button" class="btn insert_button" onclick="redirectToRulePage(',$row["shop_rule_id"],')">刪除規則</button>
-                              </div>
-                              <!-- insert_group_Modal -->
-                              <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <table width="100%" class="insert_group_form">
-                                          <tr>
-                                            <td>標題</td>
-                                            <td><input type="text" id="group_name" class="form-control" value="注意事項"></td>
-                                          </tr>
-                                          <tr>
-                                            <td>敘述</td>
-                                            <td>
-                                              <textarea class="form-control" rows="5"></textarea>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                                          </tr>
-                                        </table>
-                                        
-                                      </form>
+                                </div>
+                                <!-- insert_group_Modal -->
+                                <div class="modal fade" id="up_rule1_Modal',$i,'" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form method="post" action="rule_in_up_de.php">
+                                        <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
+                                        <input type="hidden" name="shop_rule_id" class="form-control" style="width: 100%;" value="',$row["shop_rule_id"],'">
+                                          <table width="100%" class="insert_group_form">
+                                            <tr>
+                                              <td>標題</td>
+                                              <td><input type="text" name="title" class="form-control" value="',$row["title"],'"></td>
+                                            </tr>
+                                            <tr>
+                                              <td>敘述</td>
+                                              <td>
+                                                <textarea class="form-control" rows="5" name="narrate">',htmlspecialchars($row['narrate']),'</textarea>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
+                                            </tr>
+                                          </table>
+                                          
+                                        </form>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div><!-- End insert_group_Modal -->
+                                </div><!-- End insert_group_Modal -->
+                                ';
+                              }
+                              
+                              echo '
     
                             </div>
                           </li>';
@@ -532,43 +540,50 @@
                           <li>
                             <a data-bs-toggle="collapse" ';if($i==1){echo 'class="collapse"';}else{echo 'class="collapsed"';} echo 'data-bs-target="#accordion-list2-',$i,'">',$row["title"],'<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list2-',$i,'" ';if($i==1){echo 'class="collapse show"';}else{echo 'class="collapse"';} echo ' data-bs-parent=".accordion-list2">
-                              <p>',nl2br($row['narrate']),'</p>
-                              <div style="text-align: right;">
-                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal">編輯規則</button>
+                              <p>',nl2br($row['narrate']),'</p>';
+                              if($shop_id==$_SESSION["user_shop_id"]){
+                                echo '
+                                <div style="text-align: right;">
+                                <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule2_Modal',$i,'">編輯規則</button>
                                 <button type="button" class="btn insert_button" onclick="redirectToRulePage(',$row["shop_rule_id"],')">刪除規則</button>
-                              </div>
-                              <!-- insert_group_Modal -->
-                              <div class="modal fade" id="up_rule_Modal" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <table width="100%" class="insert_group_form">
-                                          <tr>
-                                            <td>標題</td>
-                                            <td><input type="text" id="group_name" class="form-control" value="注意事項"></td>
-                                          </tr>
-                                          <tr>
-                                            <td>敘述</td>
-                                            <td>
-                                              <textarea class="form-control" rows="5"></textarea>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                                          </tr>
-                                        </table>
-                                        
-                                      </form>
+                                </div>
+                                <!-- insert_group_Modal -->
+                                <div class="modal fade" id="up_rule2_Modal',$i,'" tabindex="-1" aria-labelledby="up_rule_ModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="up_rule_ModalLabel">編輯規則</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form method="post" action="rule_in_up_de.php">
+                                          <<input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
+                                          <input type="hidden" name="shop_rule_id" class="form-control" style="width: 100%;" value="',$row["shop_rule_id"],'">
+                                            <table width="100%" class="insert_group_form">
+                                              <tr>
+                                                <td>標題</td>
+                                                <td><input type="text" name="title" class="form-control" value="',$row["title"],'"></td>
+                                              </tr>
+                                              <tr>
+                                                <td>敘述</td>
+                                                <td>
+                                                  <textarea class="form-control" rows="5" name="narrate">',htmlspecialchars($row['narrate']),'</textarea>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
+                                              </tr>
+                                            </table>
+                                            
+                                          </form>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div><!-- End insert_group_Modal -->
-    
+                                </div><!-- End insert_group_Modal -->
+                                ';
+                              }
+                              
+                              echo '
                             </div>
                           </li>';
                           $i++;
