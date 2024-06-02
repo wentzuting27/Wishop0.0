@@ -763,7 +763,12 @@
 
 
                         $checkselect = 'yes';
-                        $topic = $_POST['topic'];
+                        // 確認 $_POST['topic'] 是否存在且是數組
+                        if (isset($_POST['topic']) && is_array($_POST['topic'])) {
+                            $topic = $_POST['topic'];
+                        } else {
+                            $topic = array(); // 初始化為空數組
+                        }
 
                         foreach ($topic as $check) {
 
@@ -1099,7 +1104,12 @@
 
 
                         $checkselect2 = 'yes';
-                        $topic = $_POST['topic'];
+                        // 確認 $_POST['topic'] 是否存在且是數組
+                        if (isset($_POST['topic']) && is_array($_POST['topic'])) {
+                          $topic = $_POST['topic'];
+                        } else {
+                            $topic = array(); // 初始化為空數組
+                        }
 
                         foreach ($topic as $check) {
 
@@ -1469,7 +1479,12 @@
 
 
                         $checkselect3 = 'yes';
-                        $topic = $_POST['topic'];
+                        // 確認 $_POST['topic'] 是否存在且是數組
+                        if (isset($_POST['topic']) && is_array($_POST['topic'])) {
+                          $topic = $_POST['topic'];
+                        } else {
+                            $topic = array(); // 初始化為空數組
+                        }
 
                         foreach ($topic as $check) {
 
