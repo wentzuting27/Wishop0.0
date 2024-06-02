@@ -265,6 +265,7 @@
                           JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
                           WHERE cg.nation = '$nation'
                           and (close_order_date > NOW() OR close_order_date is null)
+                          and (commodity_group_state = '1')
                           GROUP BY c.commodity_id
                           ORDER BY cg.create_time DESC;";
 
@@ -320,6 +321,7 @@
                         LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
                         WHERE cg.nation = '$nation'
                         and (close_order_date > NOW() OR close_order_date is null)
+                        and (commodity_group_state = '1')
                         GROUP BY c.commodity_id
                         ORDER BY sum(order_details_num) DESC;";
 

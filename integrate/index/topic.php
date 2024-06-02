@@ -285,6 +285,7 @@
                           LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
                           WHERE gt.topic = '$topic'
                           and (close_order_date > NOW() OR close_order_date is null)
+                          and (commodity_group_state = '1')
                           GROUP BY c.commodity_id
                           ORDER BY cg.create_time DESC;";
 
@@ -341,6 +342,7 @@
                         LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
                         WHERE gt.topic = '$topic'
                         and (close_order_date > NOW() OR close_order_date is null)
+                        and (commodity_group_state = '1')
                         GROUP BY c.commodity_id
                         ORDER BY sum(order_details_num) DESC;";
 
