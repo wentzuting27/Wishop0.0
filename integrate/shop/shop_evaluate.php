@@ -384,6 +384,45 @@
               <!-- 5star -->
               <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star">
                 <div class="row">
+
+                  <?php
+                    $sql="select *
+                    from evaluate
+                    natural join account
+                    natural join order_details
+                    natural join commodity
+                    natural join commodity_group
+                    where shop_id=$shop_id and star='5'
+                    group by order_id";
+                    $result=mysqli_query($link,$sql);
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                      echo '
+                      <div class="col-lg-4">
+                    
+                        <div class="evaluate_card">
+                          <table class="evaluate_table">
+                            <tr>
+                              <td width="15%"><img src="',$row["user_avatar"],'" class="people_photo"></td>
+                              <td width="60%">
+                                <span>Taro_0106</span><br>
+                                <p>東京-排球少年×三麗鷗聯名快閃店</p>
+                              </td>
+                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" ><div class="scrollable-row">這次的代購經驗真是讓我非常滿意！商品包裝精美，完好無損地送達，而且速度快得令人驚訝。代購商的服務態度也非常好，及時回覆我的疑問並提供了專業的建議。下次有需要我一定會再次光顧！</div></td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" style="height: 70px;"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://img.ws.mms.shopee.tw/tw-11134211-7qukx-li51ahq6fgz8d8" class="goods_photo"><img src="https://i.pinimg.com/564x/f5/fa/ad/f5faadb7550f067819e859b62c3dd784.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/2a/c8/b6/2ac8b69c8f02d00e2a17fa0202cc68d5.jpg" class="goods_photo"><img src="https://i.pinimg.com/236x/6b/c3/a7/6bc3a791734a08b8428b99586cbda1bd.jpg" class="goods_photo"></td>
+                            </tr>
+                          </table>
+                        </div>
+                        
+                      </div>
+                      ';
+                    }
+                  ?>
     
                   <div class="col-lg-4">
                     
