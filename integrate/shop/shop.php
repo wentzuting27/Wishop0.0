@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -39,8 +41,8 @@
 </head>
 
 <body>
-<?php session_start(); ?>
-   <!-- ======= Header ======= -->
+  <?php session_start(); ?>
+  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
@@ -50,38 +52,38 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="../index/index.php" >首頁</a></li>
+          <li><a href="../index/index.php">首頁</a></li>
           <li><a href="../index/portfolio.php">購物</a></li>
           <li><a href="../index/groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
 
           <?php
-            if(!empty($_SESSION['user_name'])){
-              echo '
+          if (!empty($_SESSION['user_name'])) {
+            echo '
  
 
-              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="',$_SESSION["user_avatar"],'" class="nav-photo"></a>
+              <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
-                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">',$_SESSION["user_name"],'</a></li>
+                  <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>';
-                  if(isset($_SESSION["user_shop_id"])){
-                    echo'
+            if (isset($_SESSION["user_shop_id"])) {
+              echo '
                     <li><a href="shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
-                  }
-                  if($_SESSION['permissions']==2){
-                    echo'
+            }
+            if ($_SESSION['permissions'] == 2) {
+              echo '
                     <li><a href="Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
-                  }
-                    echo'
+            }
+            echo '
                   <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                   <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                   <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
               </li>
               ';
-            }else{
-              echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
-            }
+          } else {
+            echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
+          }
           ?>
 
 
@@ -97,66 +99,64 @@
 
   <!-- ======= shop_bg Section ======= -->
   <?php
-  $shop_id=$_GET["shop_id"];//在哪一個shop要用接值得方式,先假設1,之後再改
-  $link=mysqli_connect('localhost','root','12345678','wishop');
-  $sql="select *
+  $shop_id = $_GET["shop_id"];//在哪一個shop要用接值得方式,先假設1,之後再改
+  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+  $sql = "select *
   from shop
   where shop_id=$shop_id";
-  $result=mysqli_query($link,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
+  $result = mysqli_query($link, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
     echo '
-  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(',$row["shop_bg"],');">
+  <section id="shop_bg" class="d-flex justify-cntent-center align-items-center" style="background-image: url(', $row["shop_bg"], ');">
     
   </section><!-- End Hero -->
 
   <div class="profile2">
-      <img src="',$row["shop_avatar"],'" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.php">',$row["shop_name"],'</a></h1>
+      <img src="', $row["shop_avatar"], '" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="index.php">', $row["shop_name"], '</a></h1>
       
   </div>
   <div class="social-links">';
-    $sql_social="select *
+    $sql_social = "select *
     from social
     where shop_id=$shop_id";
-    $result_social=mysqli_query($link,$sql_social);
-    while($row_social=mysqli_fetch_assoc($result_social))
-    {
-      if($row_social["social_type"]==1){
-        $social_type='<i class="bx bxl-twitter"></i>';
-      }elseif($row_social["social_type"]==2){
-        $social_type='<i class="bx bxl-facebook"></i>';
-      }elseif($row_social["social_type"]==3){
-        $social_type='<i class="bx bxl-instagram"></i>';
-      }elseif($row_social["social_type"]==4){
-        $social_type='<i class="fa-brands fa-line"></i>';
+    $result_social = mysqli_query($link, $sql_social);
+    while ($row_social = mysqli_fetch_assoc($result_social)) {
+      if ($row_social["social_type"] == 1) {
+        $social_type = '<i class="bx bxl-twitter"></i>';
+      } elseif ($row_social["social_type"] == 2) {
+        $social_type = '<i class="bx bxl-facebook"></i>';
+      } elseif ($row_social["social_type"] == 3) {
+        $social_type = '<i class="bx bxl-instagram"></i>';
+      } elseif ($row_social["social_type"] == 4) {
+        $social_type = '<i class="fa-brands fa-line"></i>';
       }
-      echo '<a href="',$row_social["social_link"],'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="',$row_social["social_name"],'" data-bs-arrow-color="#B0A5C6">',$social_type,'</a>';
-    
+      echo '<a href="', $row_social["social_link"], '" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="', $row_social["social_name"], '" data-bs-arrow-color="#B0A5C6">', $social_type, '</a>';
+
     }
-    if($shop_id==$_SESSION["user_shop_id"]){
+    if ($shop_id == $_SESSION["user_shop_id"]) {
       echo '<a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal"><i class="fa-solid fa-pen"></i></a>';
     }
     echo '
   </div>
 
   <div class="edit_like_shop_button">';
-  $sql_likeshop="select *
+    $sql_likeshop = "select *
   from like_shop
   where shop_id='$shop_id' and account='{$_SESSION["account"]}'";
-  $result_likeshop=mysqli_query($link,$sql_likeshop);
-  if(isset($_SESSION["account"])){
-    if(mysqli_num_rows($result_likeshop)==0){
-      echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop&method=in&like=shop"><button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;收藏賣場</button></a>';
-    }else{
-      echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop&method=de&like=shop"><button type="button" class="btn delike_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button></a>';
+    $result_likeshop = mysqli_query($link, $sql_likeshop);
+    if (isset($_SESSION["account"])) {
+      if (mysqli_num_rows($result_likeshop) == 0) {
+        echo '<a href="like_in_de.php?shop_id=', $shop_id, '&page=shop&method=in&like=shop"><button type="button" class="btn insert_button"><i class="fa-regular fa-heart"></i>&nbsp;收藏賣場</button></a>';
+      } else {
+        echo '<a href="like_in_de.php?shop_id=', $shop_id, '&page=shop&method=de&like=shop"><button type="button" class="btn delike_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button></a>';
+      }
     }
-  }
 
-  if($shop_id==$_SESSION["user_shop_id"]){
-    echo '<button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_shop_modal" style="margin-left: 20px;"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button>';
-  }
-  echo '
+    if ($shop_id == $_SESSION["user_shop_id"]) {
+      echo '<button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_shop_modal" style="margin-left: 20px;"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button>';
+    }
+    echo '
     <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
     <!--  -->
     <!-- <button type="button" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;已關注</button> -->
@@ -171,39 +171,47 @@
 
     <nav id="navbar2" class="navbar2 nav-menu2">
       <ul>
-        <li><a href="./shop.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto  active"><i class="bi bi-shop"></i><span>代購商品</span></a></li>
-        <li><a href="./shop_time.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="bi bi-clock-history"></i><span>限定開團</span></a></li>
-        <li><a href="./shop_wish.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
-        <li><a href="./shop_rule.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
-        <li><a href="./shop_evaluate.php?shop_id=<?php echo $shop_id;?>" class="nav-link scrollto"><i class="fa-regular fa-comment-dots"></i><span>賣場評價</span></a></li>
+        <li><a href="./shop.php?shop_id=<?php echo $shop_id; ?>" class="nav-link scrollto  active"><i
+              class="bi bi-shop"></i><span>代購商品</span></a></li>
+        <li><a href="./shop_time.php?shop_id=<?php echo $shop_id; ?>" class="nav-link scrollto"><i
+              class="bi bi-clock-history"></i><span>限定開團</span></a></li>
+        <li><a href="./shop_wish.php?shop_id=<?php echo $shop_id; ?>" class="nav-link scrollto"><i
+              class="fa-solid fa-wand-sparkles"></i><span>許願池</span></a></li>
+        <li><a href="./shop_rule.php?shop_id=<?php echo $shop_id; ?>" class="nav-link scrollto"><i
+              class="fa-solid fa-file-circle-question"></i><span>賣場規則</span></a></li>
+        <li><a href="./shop_evaluate.php?shop_id=<?php echo $shop_id; ?>" class="nav-link scrollto"><i
+              class="fa-regular fa-comment-dots"></i><span>賣場評價</span></a></li>
         <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
       </ul>
     </nav><!-- .nav-menu -->
 
   </header><!-- End Header -->
-  
+
   <div class="min_nav">
     <button id="triggerBtn"><i class="bi bi-shop"></i></button>
     <div id="slideContainer">
-      <a href="./shop.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="bi bi-shop"></i></a>
-      <a href="./shop_time.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="bi bi-clock-history"></i></a>
-      <a href="./shop_wish.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-solid fa-wand-sparkles"></i></a>
-      <a href="./shop_rule.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-solid fa-file-circle-question"></i></a>
-      <a href="./shop_evaluate.php?shop_id=<?php echo $shop_id;?>" class="slideItem"><i class="fa-regular fa-comment-dots"></i></a>
+      <a href="./shop.php?shop_id=<?php echo $shop_id; ?>" class="slideItem"><i class="bi bi-shop"></i></a>
+      <a href="./shop_time.php?shop_id=<?php echo $shop_id; ?>" class="slideItem"><i class="bi bi-clock-history"></i></a>
+      <a href="./shop_wish.php?shop_id=<?php echo $shop_id; ?>" class="slideItem"><i
+          class="fa-solid fa-wand-sparkles"></i></a>
+      <a href="./shop_rule.php?shop_id=<?php echo $shop_id; ?>" class="slideItem"><i
+          class="fa-solid fa-file-circle-question"></i></a>
+      <a href="./shop_evaluate.php?shop_id=<?php echo $shop_id; ?>" class="slideItem"><i
+          class="fa-regular fa-comment-dots"></i></a>
       <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
     </div>
   </div>
 
 
-<main id="main">
-<?php
-  $sql="select *
+  <main id="main">
+    <?php
+    $sql = "select *
   from commodity
   where commodity_group_id in (select commodity_group_id from commodity_group where shop_id='$shop_id')";
-  $result=mysqli_query($link,$sql);
-  if(mysqli_num_rows($result)>=5){
-    
-    echo '<section id="testimonials" class="testimonials">
+    $result = mysqli_query($link, $sql);
+    if (mysqli_num_rows($result) >= 5) {
+
+      echo '<section id="testimonials" class="testimonials">
     <div class="container" data-aos="fade-up">
   
       <div class="seven">
@@ -215,8 +223,8 @@
   
   
         <div class="swiper-wrapper">';
-          $cn=1;
-          $sql_c="select *,sum(order_details_num)
+      $cn = 1;
+      $sql_c = "select *,sum(order_details_num)
           from commodity
           natural join commodity_group
           natural join order_details
@@ -224,575 +232,699 @@
           group by commodity_id 
           order by sum(order_details_num) DESC 
           limit 5";
-          $result_c=mysqli_query($link,$sql_c);
-          while($row_c=mysqli_fetch_assoc($result_c))
-          {
-            $commodity_group_id=$row_c["commodity_group_id"];
-            if($_SESSION["user_shop_id"]==$shop_id){
-              $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
-            }else{
-              $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
-            }
-          echo '
+      $result_c = mysqli_query($link, $sql_c);
+      while ($row_c = mysqli_fetch_assoc($result_c)) {
+        $commodity_group_id = $row_c["commodity_group_id"];
+        if ($_SESSION["user_shop_id"] == $shop_id) {
+          $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+        } else {
+          $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+        }
+        echo '
           <div class="swiper-slide">
             <div class="testimonial-wrap">
               <div class="testimonial-item">
-                <div id="carouselExample',$cn,'" class="carousel slide"><!--圖片輪播-->
+                <div id="carouselExample', $cn, '" class="carousel slide"><!--圖片輪播-->
                   <div class="carousel-inner">';
-                  $a=1;
-                  $sql_photo="select *
+        $a = 1;
+        $sql_photo = "select *
                   from commodity_photo
                   where commodity_id='{$row_c["commodity_id"]}'";
-                  $result_photo=mysqli_query($link,$sql_photo);
-                  while($row_photo=mysqli_fetch_assoc($result_photo))
-                  {
-                    echo '
-                  <div class="carousel-item ';if($a==1){echo 'active"';}echo '">
-                    <img src="',$row_photo["commodity_photo"],'" class="d-block w-100" alt="...">
+        $result_photo = mysqli_query($link, $sql_photo);
+        while ($row_photo = mysqli_fetch_assoc($result_photo)) {
+          echo '
+                  <div class="carousel-item ';
+          if ($a == 1) {
+            echo 'active"';
+          }
+          echo '">
+                    <img src="', $row_photo["commodity_photo"], '" class="d-block w-100" alt="...">
                   </div>';
-                  $a++;
-                  }
-                  echo '
+          $a++;
+        }
+        echo '
                   </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample',$cn,'" data-bs-slide="prev">
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample', $cn, '" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visual...ly-hidden"></span>
                   </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample',$cn,'" data-bs-slide="next">
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample', $cn, '" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden"></span>
                   </button>
                 </div><!--end 圖片輪播-->
                 <div class="demo">
-                  <h3>',$row_c["commodity_name"],'</h3>
+                  <h3>', $row_c["commodity_name"], '</h3>
                 </div>
-                  <a href="',$group_link,'">',$row_c["commodity_group_name"],'</a>
+                  <a href="', $group_link, '">', $row_c["commodity_group_name"], '</a>
                 <br>
                 <div class="flex-container">
                   <div>
-                    <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>',$row_c["commodity_price"],'</span>
+                    <i class="fa-solid fa-dollar-sign" ></i>&nbsp;&nbsp;<span>', $row_c["commodity_price"], '</span>
                   </div>
                   <div>
-                    <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>',$row_c["sum(order_details_num)"],'</span>
+                    <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;<span>', $row_c["sum(order_details_num)"], '</span>
                   </div>
                 </div>
   
               </div>
             </div>
           </div><!-- End testimonial item -->';
-          $cn++;
-        }
+        $cn++;
+      }
 
-        echo '
+      echo '
         </div>
         <div class="swiper-pagination"></div>
       </div>
   
     </div>
   </section><!-- End Testimonials Section -->';
-  }
-?>
+    }
+    ?>
 
 
 
-<!-- ======= shop_group Section ======= -->
-<section id="shop_group" class="shop_group">
-  <div class="container">
+    <!-- ======= shop_group Section ======= -->
+    <section id="shop_group" class="shop_group">
+      <div class="container">
 
-    <div class="flex-container">
-      <!-- Section Title -->
-      <div class="section-title" data-aos="fade-up">
-        <h2><i class="bi bi-shop"></i>&nbsp;&nbsp;代購商品</h2>
-      </div><!-- End Section Title -->
-      <?php
-      $sql="select *
+        <div class="flex-container">
+          <!-- Section Title -->
+          <div class="section-title" data-aos="fade-up">
+            <h2><i class="bi bi-shop"></i>&nbsp;&nbsp;代購商品</h2>
+          </div><!-- End Section Title -->
+          <?php
+          $sql = "select *
       from shop
       where shop_id='$shop_id'";
-      $result=mysqli_query($link,$sql);
-      while($row=mysqli_fetch_assoc($result))
-      {
-        $shop_avatar=$row["shop_avatar"];
-        $shop_bg=$row["shop_bg"];
-      if($_SESSION["account"]==$row["account"]){
-        echo '
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $shop_avatar = $row["shop_avatar"];
+            $shop_bg = $row["shop_bg"];
+            if ($_SESSION["account"] == $row["account"]) {
+              echo '
         <div>
         <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="bi bi-bag-plus"></i>&nbsp;新增商品團體</button>
-        <a href="cg_report.php?shop_id=',$shop_id,'"><button type="button" class="btn insert_button"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;遭檢舉之商團</button></a>
+        <a href="cg_report.php?shop_id=', $shop_id, '"><button type="button" class="btn insert_button"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;遭檢舉之商團</button></a>
       </div>';
-      }
-      }
-      
-      ?>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="insert_group_ModalLabel">新增商品團體</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form method="post" action="cg_in_up_de.php" enctype="multipart/form-data">
-              <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
-              <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
-              <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
-                <table width="100%" class="insert_group_form">
-                  <tr>
-                    <td width="10%">商品團名*</td>
-                    <td width="90%"><input type="text" name="group_name" class="form-control" required></td>
-                  </tr>
-                  <tr>
-                    <td>國家*</td>
-                    <td>
-                      <table width="100%">
-                      <tr>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation1" value="1"><label class="icon-label3" for="nation1"><img src="https://cdn-icons-png.flaticon.com/128/197/197604.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">日本</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation2" value="2"><label class="icon-label3" for="nation2"><img src="https://cdn-icons-png.flaticon.com/128/10597/10597854.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">韓國</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation3" value="3"><label class="icon-label3" for="nation3"><img src="https://cdn-icons-png.flaticon.com/128/5373/5373308.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">台灣</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation4" value="4"><label class="icon-label3" for="nation4"><img src="https://cdn-icons-png.flaticon.com/128/197/197560.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">法國</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation5" value="5"><label class="icon-label3" for="nation5"><img src="https://cdn-icons-png.flaticon.com/128/12339/12339692.png" width="30px" height="30px" style="line-height: 30px;;"></label><p style="display: inline-block;">美國</p></td>
-                      </tr>
-                      <tr>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation6" value="6"><label class="icon-label3" for="nation6"><img src="https://cdn-icons-png.flaticon.com/128/9906/9906483.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">義大利</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation7" value="7"><label class="icon-label3" for="nation7"><img src="https://cdn-icons-png.flaticon.com/128/197/197375.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">中國</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation8" value="8"><label class="icon-label3" for="nation8"><img src="https://cdn-icons-png.flaticon.com/128/197/197452.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">泰國</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation9" value="9"><label class="icon-label3" for="nation9"><img src="https://cdn-icons-png.flaticon.com/128/197/197374.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">英國</p></td>
-                        <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation10" value="10"><label class="icon-label3" for="nation10"><img src="https://cdn-icons-png.flaticon.com/128/4238/4238090.png" width="30px" height="30px" style="line-height: 30px;"></label><p style="display: inline-block;">其他</p></td>
-                      </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>商團封面*</td>
-                    <td><input class="form-control" type="file" name="group_bg" required></td>
-                  </tr>
-                  <tr>
-                    <td>商團敘述*</td>
-                    <td><textarea class="form-control" rows="5" name="commodity_group_narrate"required></textarea></td>
-                  </tr>
-                  <tr>
-                    <td>原商品連結</td>
-                    <td><input type="text" name="group_link" class="form-control"></td>
-                  </tr>
-                  <tr>
-                    <td>主題</td>
-                    <td>
-                      <table width="100%">
-                      <tr>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1" value="1"><label class="icon-label2" for="theme1"><i class="fa-solid fa-shirt"></i></label><p style="display: inline-block;">服飾</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2" value="2"><label class="icon-label2" for="theme2"><i class="fa-solid fa-face-smile-beam"></i></label><p style="display: inline-block;">美妝</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3" value="3"><label class="icon-label2" for="theme3"><i class="fa-solid fa-heart"></i></label><p style="display: inline-block;">動漫</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4" value="4"><label class="icon-label2" for="theme4"><i class="fa-solid fa-star"></i></label><p style="display: inline-block;">明星</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5" value="5"><label class="icon-label2" for="theme5"><i class="fa-solid fa-house-chimney-window"></i></label><p style="display: inline-block;">日常</p></td>
-                      </tr>
-                      <tr>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6" value="6"><label class="icon-label2" for="theme6"><i class="fa-solid fa-gamepad"></i></label><p style="display: inline-block;">數位</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7" value="7"><label class="icon-label2" for="theme7"><i class="fa-solid fa-utensils"></i></label><p style="display: inline-block;">美食</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8" value="8"><label class="icon-label2" for="theme8"><i class="fa-solid fa-person-biking"></i></label><p style="display: inline-block;">運動</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9" value="9"><label class="icon-label2" for="theme9"><i class="fa-solid fa-gift"></i></label><p style="display: inline-block;">精品</p></td>
-                        <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10" value="10"><label class="icon-label2" for="theme10"><i class="fa-solid fa-bars"></i></label><p style="display: inline-block;">其他</p></td>
-                      </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                  </tr>
-                </table>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="up_shop_modal" tabindex="-1" aria-labelledby="update_shop_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="update_shopLabel">編輯賣場</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <table width="100%" class="insert_group_form">
-                  <tr>
-                    <td width="10%">賣場名</td>
-                    <td width="90%"><input type="text" id="group_name" class="form-control"></td>
-                  </tr>
-                  <tr>
-                    <td>賣場頭貼</td>
-                    <td><input class="form-control" type="file" id="shop_avatar" name="shop_avatar"></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                      <table width="100%">
-                        <tr>
-                          <td width="30%"><img src="<?php echo $shop_avatar;?>" class="img-fluid rounded-circle"></td>
-                          <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px"></td>
-                          <td width="30%"><div id="imagePreview"></div></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>賣場背景</td>
-                    <td><input type="file" id="shop_bg" class="form-control"></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                      <table width="100%">
-                        <tr>
-                          <td width="30%"><img src="<?php echo $shop_bg;?>" class="img-fluid" style="width: 100%;height:100px"></td>
-                          <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px"></td>
-                          <td width="30%"><img id="selectedImage" style="display: none; width: 100%;height:100px" alt="Selected Image"></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                  </tr>
-                </table>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script>
-      document.getElementById('shop_avatar').onchange = function (e) {
-          var reader = new FileReader(); // 创建 FileReader 对象
-
-          reader.onload = function (event) {
-              var img = document.createElement('img'); // 创建图片元素
-              img.src = event.target.result; // 设置图片源
-              img.style.width = '220px'; // 设置图片宽度
-              img.style.height = '220px'; // 设置图片高度
-              img.style.borderRadius = '50%'; // 设置图片为圆形
-              img.classList.add('img-fluid'); // 添加样式类
-
-              var previewContainer = document.getElementById('imagePreview');
-              previewContainer.innerHTML = ''; // 清空预览区域
-              previewContainer.appendChild(img); // 添加图片到预览区域
-          };
-
-          // 读取文件内容
-          reader.readAsDataURL(e.target.files[0]);
-      };
-
-
-      </script>
-      <script>
-        document.querySelector('#shop_bg.form-control').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.querySelector('#selectedImage');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
             }
-        });
-    </script>
+          }
 
-      <!-- 連結管理Modal -->
-      <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <!-- ======= Schedule Section ======= -->
-              <section id="schedule" class="section-with-bg">
-                
-              <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#social_in" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-plus"></i>&nbsp;新增</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#social_up" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-pen"></i>&nbsp;編輯</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#social_de" role="tab" data-bs-toggle="tab"><i class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
-                  </li>
-                </ul>
+          ?>
 
-                <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-                  <!-- Schdule Day 1 -->
-                  <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="social_in">
-                  <form method="post" action="social_in_up_de.php" enctype="multipart/form-data">
+          <!-- Modal -->
+          <div class="modal fade" id="insert_group_Modal" tabindex="-1" aria-labelledby="insert_group_ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="insert_group_ModalLabel">新增商品團體</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" action="cg_in_up_de.php" enctype="multipart/form-data">
                     <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
                     <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
-                      <table width="100%" class="insert_group_form">
-                        <tr>
-                          <td>連結類型</td>
-                          <td align="left">
-                            <input type="radio" name="social_type" class="link_radio" id="twitter" value="1"><label class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
-                            <input type="radio" name="social_type" class="link_radio" id="facebook" value="2"><label class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
-                            <input type="radio" name="social_type" class="link_radio" id="instagram" value="3"><label class="icon-label" for="instagram"><i class="bx bxl-instagram"></i></label>
-                            <input type="radio" name="social_type" class="link_radio" id="line" value="4"><label class="icon-label" for="line"><i class="fa-brands fa-line"></i>
-                          </td>
-                          <style>
-                            .icon-label:hover {
-                            background-color: #B0A5C6;
-                            color: #fff;
-                          }
-                          </style>
-                        </tr>
-                        <tr>
-                          <td>連結名稱</td>
-                          <td><input type="text" name="social_name" class="form-control"></td>
-                        </tr>
-                        <tr>
-                          <td width="10%">連結網址</td>
-                          <td width="90%"><input type="text" name="social_link" class="form-control"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-                        </tr>
-                      </table>
-                    </form>
-                  </div>
-                  <!-- End Schdule Day 1 -->
-
-                  <!-- Schdule Day 2 -->
-                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_up">
-                  <form method="post" action="social_in_up_de.php">
-                    <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
-                    <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
-                      <table width="100%" class="social_link_table">
-                        <?php
-                        $sql_social="select *
-                        from social
-                        where shop_id=$shop_id";
-                        $result_social=mysqli_query($link,$sql_social);
-                        while($row_social=mysqli_fetch_assoc($result_social))
-                        {
-                          echo '
-                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
-                          ';
-                          if($row_social["social_type"]==1){
-                            $social_type='<i class="bx bxl-twitter"></i>';
-                          }elseif($row_social["social_type"]==2){
-                            $social_type='<i class="bx bxl-facebook"></i>';
-                          }elseif($row_social["social_type"]==3){
-                            $social_type='<i class="bx bxl-instagram"></i>';
-                          }elseif($row_social["social_type"]==4){
-                            $social_type='<i class="fa-brands fa-line"></i>';
-                          }
-                          echo '
-                        <tr>
-                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
-                          <td width="30%"><input type="text" class="form-control" name="social_name[]" value="',$row_social["social_name"],'"></td>
-                          <td width="50%"><input type="text" class="form-control" name="social_link[]" value="',$row_social["social_link"],'"></td>
-                        </tr>';
-                        }
-                        ?>
-                        <tr>
-                          <td colspan="3"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
-                        </tr>
-                        
-                      </table>
-                    </form>
-                  </div>
-                  <!-- End Schdule Day 2 -->
-
-                  <!-- Schdule Day 3 -->
-                  <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_de">
-                    <table width="100%" class="social_link_table">
-                    <?php
-                        $sql_social="select *
-                        from social
-                        where shop_id=$shop_id";
-                        $result_social=mysqli_query($link,$sql_social);
-                        while($row_social=mysqli_fetch_assoc($result_social))
-                        {
-                          echo '
-                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="',$row_social["social_id"],'">
-                          ';
-                          if($row_social["social_type"]==1){
-                            $social_type='<i class="bx bxl-twitter"></i>';
-                          }elseif($row_social["social_type"]==2){
-                            $social_type='<i class="bx bxl-facebook"></i>';
-                          }elseif($row_social["social_type"]==3){
-                            $social_type='<i class="bx bxl-instagram"></i>';
-                          }elseif($row_social["social_type"]==4){
-                            $social_type='<i class="fa-brands fa-line"></i>';
-                          }
-                          echo '
-                        <tr>
-                          <td width="10%" align="center"><label class="icon-label">',$social_type,'</label></td>
-                          <td width="80%">',$row_social["social_name"],'</td>
-                          <td width="10%"><a href="social_in_up_de.php?social_id=',$row_social["social_id"],'&page=shop" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
-                        </tr>';
-                        }
-                        ?>
-                     
-                      
+                    <input type="hidden" name="shop_id" class="form-control" style="width: 100%;"
+                      value="<?php echo $shop_id; ?>">
+                    <table width="100%" class="insert_group_form">
+                      <tr>
+                        <td width="10%">商品團名*</td>
+                        <td width="90%"><input type="text" name="group_name" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>國家*</td>
+                        <td>
+                          <table width="100%">
+                            <tr>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation1"
+                                  value="1"><label class="icon-label3" for="nation1"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/197/197604.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">日本</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation2"
+                                  value="2"><label class="icon-label3" for="nation2"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/10597/10597854.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">韓國</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation3"
+                                  value="3"><label class="icon-label3" for="nation3"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/5373/5373308.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">台灣</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation4"
+                                  value="4"><label class="icon-label3" for="nation4"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/197/197560.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">法國</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation5"
+                                  value="5"><label class="icon-label3" for="nation5"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/12339/12339692.png" width="30px"
+                                    height="30px" style="line-height: 30px;;"></label>
+                                <p style="display: inline-block;">美國</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation6"
+                                  value="6"><label class="icon-label3" for="nation6"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/9906/9906483.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">義大利</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation7"
+                                  value="7"><label class="icon-label3" for="nation7"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/197/197375.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">中國</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation8"
+                                  value="8"><label class="icon-label3" for="nation8"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/197/197452.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">泰國</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation9"
+                                  value="9"><label class="icon-label3" for="nation9"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/197/197374.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">英國</p>
+                              </td>
+                              <td width="20%"><input type="radio" name="nation" class="link_ch" id="nation10"
+                                  value="10"><label class="icon-label3" for="nation10"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/4238/4238090.png" width="30px"
+                                    height="30px" style="line-height: 30px;"></label>
+                                <p style="display: inline-block;">其他</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>商團封面*</td>
+                        <td><input class="form-control" type="file" name="group_bg" required></td>
+                      </tr>
+                      <tr>
+                        <td>商團敘述*</td>
+                        <td><textarea class="form-control" rows="5" name="commodity_group_narrate" required></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>原商品連結</td>
+                        <td><input type="text" name="group_link" class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>主題</td>
+                        <td>
+                          <table width="100%">
+                            <tr>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme1"
+                                  value="1"><label class="icon-label2" for="theme1"><i
+                                    class="fa-solid fa-shirt"></i></label>
+                                <p style="display: inline-block;">服飾</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme2"
+                                  value="2"><label class="icon-label2" for="theme2"><i
+                                    class="fa-solid fa-face-smile-beam"></i></label>
+                                <p style="display: inline-block;">美妝</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme3"
+                                  value="3"><label class="icon-label2" for="theme3"><i
+                                    class="fa-solid fa-heart"></i></label>
+                                <p style="display: inline-block;">動漫</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme4"
+                                  value="4"><label class="icon-label2" for="theme4"><i
+                                    class="fa-solid fa-star"></i></label>
+                                <p style="display: inline-block;">明星</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme5"
+                                  value="5"><label class="icon-label2" for="theme5"><i
+                                    class="fa-solid fa-house-chimney-window"></i></label>
+                                <p style="display: inline-block;">日常</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme6"
+                                  value="6"><label class="icon-label2" for="theme6"><i
+                                    class="fa-solid fa-gamepad"></i></label>
+                                <p style="display: inline-block;">數位</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme7"
+                                  value="7"><label class="icon-label2" for="theme7"><i
+                                    class="fa-solid fa-utensils"></i></label>
+                                <p style="display: inline-block;">美食</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme8"
+                                  value="8"><label class="icon-label2" for="theme8"><i
+                                    class="fa-solid fa-person-biking"></i></label>
+                                <p style="display: inline-block;">運動</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme9"
+                                  value="9"><label class="icon-label2" for="theme9"><i
+                                    class="fa-solid fa-gift"></i></label>
+                                <p style="display: inline-block;">精品</p>
+                              </td>
+                              <td width="20%"><input type="checkbox" name="cg_theme[]" class="link_ch" id="theme10"
+                                  value="10"><label class="icon-label2" for="theme10"><i
+                                    class="fa-solid fa-bars"></i></label>
+                                <p style="display: inline-block;">其他</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><button type="submit" class="btn insert_button"
+                            style="display: block;width: 100%;">確認新增</button></td>
+                      </tr>
                     </table>
-                 
-                  </div>
-                  <!-- End Schdule Day  3-->
-
+                  </form>
                 </div>
-
-              
-
-              </section><!-- End Schedule Section -->
-              
-              
-              
+              </div>
             </div>
           </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="up_shop_modal" tabindex="-1" aria-labelledby="update_shop_ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="update_shopLabel">編輯賣場</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <table width="100%" class="insert_group_form">
+                      <tr>
+                        <td width="10%">賣場名</td>
+                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>賣場頭貼</td>
+                        <td><input class="form-control" type="file" id="shop_avatar" name="shop_avatar"></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>
+                          <table width="100%">
+                            <tr>
+                              <td width="30%"><img src="<?php echo $shop_avatar; ?>" class="img-fluid rounded-circle">
+                              </td>
+                              <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px">
+                              </td>
+                              <td width="30%">
+                                <div id="imagePreview"></div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>賣場背景</td>
+                        <td>
+                          <input class="form-control" type="file" id="shop_bg2" name="shop_bg"
+                            onchange="displaySelectedImage(event)">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>
+                          <table width="100%">
+                            <tr>
+                              <td width="30%"><img src="<?php echo $shop_bg; ?>" class="img-fluid"
+                                  style="width: 100%;height:80%"></td>
+                              <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px">
+                              </td>
+                              <td width="30%">
+                                <img id="selectedImage" style="display: none; width: 100%;height:80%"
+                                  alt="Selected Image">
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <script>
+                        function displaySelectedImage(event) {
+                          const file = event.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                              const selectedImage = document.getElementById('selectedImage');
+                              selectedImage.src = e.target.result;
+                              selectedImage.style.display = 'block';
+                            }
+                            reader.readAsDataURL(file);
+                          }
+                        }
+                      </script>
+
+                      <tr>
+                        <td colspan="2"><button type="submit" class="btn insert_button"
+                            style="display: block;width: 100%;">確認修改</button></td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+            document.getElementById('shop_avatar').onchange = function (e) {
+              var reader = new FileReader(); // 创建 FileReader 对象
+
+              reader.onload = function (event) {
+                var img = document.createElement('img'); // 创建图片元素
+                img.src = event.target.result; // 设置图片源
+                img.style.width = '220px'; // 设置图片宽度
+                img.style.height = '220px'; // 设置图片高度
+                img.style.borderRadius = '50%'; // 设置图片为圆形
+                img.classList.add('img-fluid'); // 添加样式类
+
+                var previewContainer = document.getElementById('imagePreview');
+                previewContainer.innerHTML = ''; // 清空预览区域
+                previewContainer.appendChild(img); // 添加图片到预览区域
+              };
+
+              // 读取文件内容
+              reader.readAsDataURL(e.target.files[0]);
+            };
+
+
+          </script>
+
+
+          <!-- 連結管理Modal -->
+          <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="update_socialLabel">連結管理</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- ======= Schedule Section ======= -->
+                  <section id="schedule" class="section-with-bg">
+
+                    <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#social_in" role="tab" data-bs-toggle="tab"><i
+                            class="fa-solid fa-plus"></i>&nbsp;新增</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#social_up" role="tab" data-bs-toggle="tab"><i
+                            class="fa-solid fa-pen"></i>&nbsp;編輯</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#social_de" role="tab" data-bs-toggle="tab"><i
+                            class="fa-solid fa-xmark"></i>&nbsp;刪除</a>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+                      <!-- Schdule Day 1 -->
+                      <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="social_in">
+                        <form method="post" action="social_in_up_de.php" enctype="multipart/form-data">
+                          <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+                          <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
+                          <table width="100%" class="insert_group_form">
+                            <tr>
+                              <td>連結類型</td>
+                              <td align="left">
+                                <input type="radio" name="social_type" class="link_radio" id="twitter" value="1"><label
+                                  class="icon-label" for="twitter"><i class="bx bxl-twitter"></i></label>
+                                <input type="radio" name="social_type" class="link_radio" id="facebook" value="2"><label
+                                  class="icon-label" for="facebook"><i class="bx bxl-facebook"></i></label>
+                                <input type="radio" name="social_type" class="link_radio" id="instagram"
+                                  value="3"><label class="icon-label" for="instagram"><i
+                                    class="bx bxl-instagram"></i></label>
+                                <input type="radio" name="social_type" class="link_radio" id="line" value="4"><label
+                                  class="icon-label" for="line"><i class="fa-brands fa-line"></i>
+                              </td>
+                              <style>
+                                .icon-label:hover {
+                                  background-color: #B0A5C6;
+                                  color: #fff;
+                                }
+                              </style>
+                            </tr>
+                            <tr>
+                              <td>連結名稱</td>
+                              <td><input type="text" name="social_name" class="form-control"></td>
+                            </tr>
+                            <tr>
+                              <td width="10%">連結網址</td>
+                              <td width="90%"><input type="text" name="social_link" class="form-control"></td>
+                            </tr>
+                            <tr>
+                              <td colspan="2"><button type="submit" class="btn insert_button"
+                                  style="display: block;width: 100%;">確認新增</button></td>
+                            </tr>
+                          </table>
+                        </form>
+                      </div>
+                      <!-- End Schdule Day 1 -->
+
+                      <!-- Schdule Day 2 -->
+                      <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_up">
+                        <form method="post" action="social_in_up_de.php">
+                          <input type="hidden" name="method" class="form-control" style="width: 100%;" value="up">
+                          <input type="hidden" name="page" class="form-control" style="width: 100%;" value="shop">
+                          <table width="100%" class="social_link_table">
+                            <?php
+                            $sql_social = "select *
+                        from social
+                        where shop_id=$shop_id";
+                            $result_social = mysqli_query($link, $sql_social);
+                            while ($row_social = mysqli_fetch_assoc($result_social)) {
+                              echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="', $row_social["social_id"], '">
+                          ';
+                              if ($row_social["social_type"] == 1) {
+                                $social_type = '<i class="bx bxl-twitter"></i>';
+                              } elseif ($row_social["social_type"] == 2) {
+                                $social_type = '<i class="bx bxl-facebook"></i>';
+                              } elseif ($row_social["social_type"] == 3) {
+                                $social_type = '<i class="bx bxl-instagram"></i>';
+                              } elseif ($row_social["social_type"] == 4) {
+                                $social_type = '<i class="fa-brands fa-line"></i>';
+                              }
+                              echo '
+                        <tr>
+                          <td width="10%" align="center"><label class="icon-label">', $social_type, '</label></td>
+                          <td width="30%"><input type="text" class="form-control" name="social_name[]" value="', $row_social["social_name"], '"></td>
+                          <td width="50%"><input type="text" class="form-control" name="social_link[]" value="', $row_social["social_link"], '"></td>
+                        </tr>';
+                            }
+                            ?>
+                            <tr>
+                              <td colspan="3"><button type="submit" class="btn insert_button"
+                                  style="display: block;width: 100%;">確認修改</button></td>
+                            </tr>
+
+                          </table>
+                        </form>
+                      </div>
+                      <!-- End Schdule Day 2 -->
+
+                      <!-- Schdule Day 3 -->
+                      <div role="tabpanel" class="col-lg-12  tab-pane fade" id="social_de">
+                        <table width="100%" class="social_link_table">
+                          <?php
+                          $sql_social = "select *
+                        from social
+                        where shop_id=$shop_id";
+                          $result_social = mysqli_query($link, $sql_social);
+                          while ($row_social = mysqli_fetch_assoc($result_social)) {
+                            echo '
+                          <input type="hidden" name="social_id[]" class="form-control" style="width: 100%;" value="', $row_social["social_id"], '">
+                          ';
+                            if ($row_social["social_type"] == 1) {
+                              $social_type = '<i class="bx bxl-twitter"></i>';
+                            } elseif ($row_social["social_type"] == 2) {
+                              $social_type = '<i class="bx bxl-facebook"></i>';
+                            } elseif ($row_social["social_type"] == 3) {
+                              $social_type = '<i class="bx bxl-instagram"></i>';
+                            } elseif ($row_social["social_type"] == 4) {
+                              $social_type = '<i class="fa-brands fa-line"></i>';
+                            }
+                            echo '
+                        <tr>
+                          <td width="10%" align="center"><label class="icon-label">', $social_type, '</label></td>
+                          <td width="80%">', $row_social["social_name"], '</td>
+                          <td width="10%"><a href="social_in_up_de.php?social_id=', $row_social["social_id"], '&page=shop" class="nav-link scrollto"><i class="fa-solid fa-xmark"></i></a></td>
+                        </tr>';
+                          }
+                          ?>
+
+
+                        </table>
+
+                      </div>
+                      <!-- End Schdule Day  3-->
+
+                    </div>
+
+
+
+                  </section><!-- End Schedule Section -->
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
 
-    </div>
- 
-    
 
-    <div class="row shop_group-container">
 
-    <?php
-      $sql="select *
+        <div class="row shop_group-container">
+
+          <?php
+          $sql = "select *
       from commodity_group
       natural join shop
       where shop_id='$shop_id' AND close_order_date is null and commodity_group_state=1";
-      $result=mysqli_query($link,$sql);
-      while($row=mysqli_fetch_assoc($result))
-      {
-        $commodity_group_id=$row["commodity_group_id"];
-        if($_SESSION["account"]==$row["account"]){
-          $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
-        }else{
-          $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
-        }
-        $sql_report_yn="select *
+          $result = mysqli_query($link, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $commodity_group_id = $row["commodity_group_id"];
+            if ($_SESSION["account"] == $row["account"]) {
+              $group_link = "../lisa/InnerBuyer.php?commodity_group_id=$commodity_group_id";
+            } else {
+              $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
+            }
+            $sql_report_yn = "select *
         from report
         where commodity_group_id='$commodity_group_id' AND report_results =1";
-        $result_report_yn=mysqli_query($link,$sql_report_yn);
-        if(mysqli_num_rows($result_report_yn)==0){
-        echo'
+            $result_report_yn = mysqli_query($link, $sql_report_yn);
+            if (mysqli_num_rows($result_report_yn) == 0) {
+              echo '
       <div class="col-lg-4 col-md-6 shop_group-item">
         <div class="shop_group-wrap">
           <figure>
-            <img src="',$row["commodity_group_bg"],'" alt="" width="100%" height="100%">';
-            $sql_likegroup="select *
+            <img src="', $row["commodity_group_bg"], '" alt="" width="100%" height="100%">';
+              $sql_likegroup = "select *
             from like_group
             where commodity_group_id='{$row["commodity_group_id"]}' and account='{$_SESSION["account"]}'";
-            $result_likegroup=mysqli_query($link,$sql_likegroup);
-            if(isset($_SESSION["account"])){
-              if(mysqli_num_rows($result_likegroup)==0){
-                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
-              }else{
-                echo '<a href="like_in_de.php?shop_id=',$shop_id,'&commodity_group_id=',$row["commodity_group_id"],'&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
+              $result_likegroup = mysqli_query($link, $sql_likegroup);
+              if (isset($_SESSION["account"])) {
+                if (mysqli_num_rows($result_likegroup) == 0) {
+                  echo '<a href="like_in_de.php?shop_id=', $shop_id, '&commodity_group_id=', $row["commodity_group_id"], '&page=shop&method=in&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="收藏"><i class="fa-regular fa-heart"></i></a>';
+                } else {
+                  echo '<a href="like_in_de.php?shop_id=', $shop_id, '&commodity_group_id=', $row["commodity_group_id"], '&page=shop_time&method=de&like=group" data-gallery="portfolioGallery" class="link-preview shop_group-lightbox" title="取消收藏"><i class="fa-solid fa-heart"></i></a>';
+                }
+                echo '<a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
               }
-              echo '<a class="link-details" title="檢舉此商團" data-bs-toggle="modal" data-bs-target="#report_Modal" data-commodity-group-id="' . $row["commodity_group_id"] . '"><i class="fa-solid fa-exclamation"></i></a>';
-            }
-            echo '
+              echo '
           </figure>
 
           <div class="shop_group-info">
-            <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
+            <h4><a href="', $group_link, '">', $row["commodity_group_name"], '</a></h4>
             <p><i class="fa-regular fa-heart"></i>&nbsp;';
-            $sql_likegroup_num="select *
+              $sql_likegroup_num = "select *
             from like_group
             where commodity_group_id='{$row["commodity_group_id"]}'";
-            $result_likegroup_num=mysqli_query($link,$sql_likegroup_num);
-            echo mysqli_num_rows($result_likegroup_num);
-            echo '&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>&nbsp;';
-            $sql_group_commodity_num="select *
+              $result_likegroup_num = mysqli_query($link, $sql_likegroup_num);
+              echo mysqli_num_rows($result_likegroup_num);
+              echo '&nbsp;&nbsp;<i class="ri ri-shopping-bag-line"></i>&nbsp;';
+              $sql_group_commodity_num = "select *
             from commodity
             where commodity_group_id='{$row["commodity_group_id"]}' and commodity_state=1";
-            $result_group_commodity_num=mysqli_query($link,$sql_group_commodity_num);
-            echo mysqli_num_rows($result_group_commodity_num);
-            echo '</p>
+              $result_group_commodity_num = mysqli_query($link, $sql_group_commodity_num);
+              echo mysqli_num_rows($result_group_commodity_num);
+              echo '</p>
           </div>
         </div>
       </div>
 
       ';
-      }
-      }
-    ?>
-    
-    </div>
+            }
+          }
+          ?>
 
-  </div>
-</section><!-- End Portfolio Section -->
-<!-- insert_Preview_Modal -->
-<div class="modal fade" id="report_Modal" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉此商團</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
       </div>
-      <div class="modal-body">
-      <form method="post" action="report_in_up_de.php" enctype="multipart/form-data">
-        <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
-        <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
-        <input type="hidden" name="commodity_group_id" id="commodity_group_id" class="form-control" style="width: 100%;" value="">
-          <table width="100%" class="insert_group_form">
-            <tr>
-              <td width="10%">檢舉類型</td>
-              <td width="90%"><select name="report_type" class="form-control" required>
-                  <option value="1" class="report_option">酒類 / 菸類商品</option>
-                  <option value="2" class="report_option">武器 / 彈藥 / 軍事用品</option>
-                  <option value="3" class="report_option">藥品、醫療器材</option>
-                  <option value="4" class="report_option">此商品可能令人感到不適或違反善良風俗</option>
-                  <option value="5" class="report_option">活體動物、保育動物及其製品</option>
-                  <option value="6" class="report_option">仿冒品</option>
-                  <option value="7" class="report_option">濫用文字誤導搜尋</option>
-                  <option value="8" class="report_option">重覆刊登</option>
-                  <option value="9" class="report_option">複製他人商品圖文</option>
-                  <option value="10" class="report_option">其他</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>詳細原因</td>
-              <td><textarea class="form-control" rows="5" name="report_why" required></textarea></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認新增</button></td>
-            </tr>
-          </table>
-          
-        </form>
+    </section><!-- End Portfolio Section -->
+    <!-- insert_Preview_Modal -->
+    <div class="modal fade" id="report_Modal" tabindex="-1" aria-labelledby="report_ModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="report_ModalLabel">檢舉此商團</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="report_in_up_de.php" enctype="multipart/form-data">
+              <input type="hidden" name="method" class="form-control" style="width: 100%;" value="in">
+              <input type="hidden" name="shop_id" class="form-control" style="width: 100%;"
+                value="<?php echo $shop_id; ?>">
+              <input type="hidden" name="commodity_group_id" id="commodity_group_id" class="form-control"
+                style="width: 100%;" value="">
+              <table width="100%" class="insert_group_form">
+                <tr>
+                  <td width="10%">檢舉類型</td>
+                  <td width="90%"><select name="report_type" class="form-control" required>
+                      <option value="1" class="report_option">酒類 / 菸類商品</option>
+                      <option value="2" class="report_option">武器 / 彈藥 / 軍事用品</option>
+                      <option value="3" class="report_option">藥品、醫療器材</option>
+                      <option value="4" class="report_option">此商品可能令人感到不適或違反善良風俗</option>
+                      <option value="5" class="report_option">活體動物、保育動物及其製品</option>
+                      <option value="6" class="report_option">仿冒品</option>
+                      <option value="7" class="report_option">濫用文字誤導搜尋</option>
+                      <option value="8" class="report_option">重覆刊登</option>
+                      <option value="9" class="report_option">複製他人商品圖文</option>
+                      <option value="10" class="report_option">其他</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>詳細原因</td>
+                  <td><textarea class="form-control" rows="5" name="report_why" required></textarea></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><button type="submit" class="btn insert_button"
+                      style="display: block;width: 100%;">確認新增</button></td>
+                </tr>
+              </table>
+
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div><!-- insert_Preview_Modal -->
+    </div><!-- insert_Preview_Modal -->
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var reportModal = document.getElementById('report_Modal');
-  reportModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var commodityGroupId = button.getAttribute('data-commodity-group-id'); // Extract info from data-* attributes
-    var inputCommodityGroupId = document.getElementById('commodity_group_id'); // Find the input in the modal
-    inputCommodityGroupId.value = commodityGroupId; // Update the input value
-  });
-});
-</script>
-
-  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var reportModal = document.getElementById('report_Modal');
+        reportModal.addEventListener('show.bs.modal', function (event) {
+          var button = event.relatedTarget; // Button that triggered the modal
+          var commodityGroupId = button.getAttribute('data-commodity-group-id'); // Extract info from data-* attributes
+          var inputCommodityGroupId = document.getElementById('commodity_group_id'); // Find the input in the modal
+          inputCommodityGroupId.value = commodityGroupId; // Update the input value
+        });
+      });
+    </script>
 
 
-</main><!-- End #main -->
 
-  
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  </main><!-- End #main -->
+
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
