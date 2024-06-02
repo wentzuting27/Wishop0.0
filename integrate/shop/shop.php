@@ -316,12 +316,14 @@
           </div><!-- End Section Title -->
           <?php
           $sql = "select *
-      from shop
-      where shop_id='$shop_id'";
+          from shop
+          where shop_id='$shop_id'";
           $result = mysqli_query($link, $sql);
           while ($row = mysqli_fetch_assoc($result)) {
             $shop_avatar = $row["shop_avatar"];
             $shop_bg = $row["shop_bg"];
+            $shop_narrat = $row["shop_narrat"];
+            $shop_name = $row["shop_name"];
             if ($_SESSION["account"] == $row["account"]) {
               echo '
         <div>
@@ -519,11 +521,12 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form method="post" action="shop_up.php" enctype="multipart/form-data">
+                  <input type="hidden" name="shop_id" class="form-control" style="width: 100%;" value="<?php echo $shop_id;?>">
                     <table width="100%" class="insert_group_form">
                       <tr>
                         <td width="10%">賣場名</td>
-                        <td width="90%"><input type="text" id="group_name" class="form-control"></td>
+                        <td width="90%"><input type="text" name="shop_name" class="form-control" value="<?php echo $shop_name;?>"></td>
                       </tr>
                       <tr>
                         <td>賣場頭貼</td>
@@ -558,16 +561,20 @@
                           <table width="100%">
                             <tr>
                               <td width="30%"><img src="<?php echo $shop_bg; ?>" class="img-fluid"
-                                  style="width: 100%;height:80%"></td>
+                                  style="width: 100%;height: 100px;"></td>
                               <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px">
                               </td>
                               <td width="30%">
-                                <img id="selectedImage" style="display: none; width: 100%;height:80%"
+                                <img id="selectedImage" style="display: none; width: 100%;height: 100px;"
                                   alt="Selected Image">
                               </td>
                             </tr>
                           </table>
                         </td>
+                      </tr>
+                      <tr>
+                        <td width="10%">賣場簡介</td>
+                        <td width="90%"><textarea name="shop_narrat" rows="5" cols="50" class="form-control" with="100%"><?php echo htmlspecialchars($shop_narrat);?></textarea></td>
                       </tr>
 
                       <script>
