@@ -181,7 +181,7 @@
       </div>
     </div><!-- End insert_group_Modal -->
     <!-- Button trigger modal -->
-
+    <form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
     <!-- Modal -->
     <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -192,11 +192,12 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-            <button type="button" name="delgroup" class="btn btn-primary">確定</button>
+            <button type="submit" name="delgroup" class="btn btn-primary">確定</button>
           </div>
         </div>
       </div>
     </div>
+    </form>
     <!-- Showcase -->
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -1754,7 +1755,8 @@
                 die('Connection failed: ' . mysqli_connect_error());
               }
               $commodity_group_id = $_GET["commodity_group_id"];
-              $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account;";
+              $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
+              WHERE commodity_group_id=$commodity_group_id;";
               $result = mysqli_query($link, $sql);
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<form method="post" action="proof.php?commodity_group_id=' . $commodity_group_id . '"> 
