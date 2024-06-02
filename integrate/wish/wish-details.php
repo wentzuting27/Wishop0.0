@@ -274,7 +274,7 @@
                               <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">商團封面*</label>
                                 <div class="col-sm-8">
-                                <input class="form-control" type="file" name="group_bg" style="width:503px;" required>
+                                <input class="form-control" id="formFile" type="file" name="group_bg" style="width:503px;" required>
                                 </div>
                               </div>
                               <div class="mb-3 row">
