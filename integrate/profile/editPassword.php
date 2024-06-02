@@ -23,10 +23,11 @@ $row = mysqli_fetch_assoc($result);
 $stored_password = $row['password'];
 
 if ($current_password === $stored_password) {
-    // 检查新密码和确认密码是否匹配
+    // 輸入的密碼是否等於原本舊的密碼
     if ($new_password === $confirm_password) {
-        // 更新数据库中的密码
+        // 新密碼是否等於二次確認的密碼
         $update_sql = "UPDATE account SET password='$new_password' WHERE account='$account'";
+        // 更新密碼
         mysqli_query($link, $update_sql);
 
         // 修改密码成功后，重定向到用户资料页面或其他页面
