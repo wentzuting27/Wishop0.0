@@ -535,7 +535,7 @@
           aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header" style="background-color:#B0A5C6;color:#FFF;">
                 <h1 class="modal-title fs-5" id="update_socialLabel">操作教學</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -610,16 +610,20 @@
                     
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                       aria-labelledby="pills-home-tab">
                       <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;推薦您感興趣的商品！</mark>
                       <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
-                        <p><b>發現：</b>將會顯示您註冊時感興趣的主題商品以及您追蹤的店家商品</p>
-                        <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
+                      <p><b>發現：</b>將會顯示您<b>關注的主題</b>以及您<b>追蹤的店家</b>商品</p>
+                      <p><b>追蹤：</b>顯示你所追蹤(收藏)的店家商品</p>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <img src="../files/篩選.jpg" alt="發現功能" style="min-width:100px; height:60%">
+                        <img src="assets\img\12.png" alt="商品細節" style="min-width:100px; height:60%">
+                        <img src="assets\img\13.png" alt="主題標籤頁面" style="min-width:100px; height:60%">
+                        <img src="assets\img\14.png" alt="關注標籤" style="min-width:100px; height:60%">
                       </div>
+                      
 
                     </div>
 
@@ -631,6 +635,15 @@
                         <li>國家查詢</li>
                       </ul>
                       <p>當然也可以同時選擇來篩選以便尋找您需要的商品！</p>
+                      <p><b>搜尋後可點擊主題標籤或國家查看</b></p>
+                      <div class="d-flex justify-content-center">
+                        <img src="assets\img\15.png" alt="搜尋後點選主題標籤" style="min-width:100px; height:60%">
+                        <img src="assets\img\13.png" alt="搜尋後點擊國家" style="min-width:100px; height:60%">
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <img src="assets\img\16.png" alt="搜尋後點擊國家" style="min-width:100px; height:60%">
+                      </div>
+
                     </div>
 
                     
