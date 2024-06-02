@@ -116,25 +116,13 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">WISHOP</h2>
-              <p class="animate__animated animate__fadeInUp">WISH AND BUY U WANT<br>許願代購</p>
-              <a href="portfolio.php"
-                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>開始購物</b></a>
+              <p class="animate__animated animate__fadeInUp">想要什麼卻買不到嗎？歡迎許願讓賣家們看到吧！</p>
+              <a href="../wish/wish.php"
+                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>許願池</b></a>
             </div>
           </div>
         </div>
 
-        <!-- Slide 3 -->
-        <div class="carousel-item"
-          style="background-image: url(https://i.pinimg.com/originals/27/b0/41/27b04138dc48c4d5d433f2c5839203c8.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">許願池</h2>
-              <p class="animate__animated animate__fadeInUp">想要什麼卻買不到嗎？歡迎許願讓賣家們看到吧！</p>
-              <a href="/integrate/wish/wish.php"
-                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>去許願</b></a>
-            </div>
-          </div>
-        </div>
 
 
         <?php
@@ -155,7 +143,15 @@
         if ($result) {
           while ($row = mysqli_fetch_assoc($result)) {
 
+            $commodity_group_narrate = $row['commodity_group_narrate'];
 
+            // 截前200個字
+            $short_narrate = substr($commodity_group_narrate, 0, 200);
+
+            // 超過200個字後面加上點點點
+            if (strlen($commodity_group_narrate) > 100) {
+              $short_narrate .= '...';
+            }
 
             echo '
             <!-- Slide 熱門商品 -->
