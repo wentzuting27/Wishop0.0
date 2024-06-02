@@ -110,7 +110,11 @@
     <div class="edit_like_shop_button">
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i
           class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>';
-      $sql2 = "select * from `order`";
+      $sql2 = "select * from `order`
+      natural join order_details
+      natural join commodity
+      where commodity_group_id=$commodity_group_id
+      order by order_id";
       $result2 = mysqli_query($link, $sql2);
       $allOrdersComplete = true;
       while ($row2 = mysqli_fetch_assoc($result2)) {
