@@ -125,4 +125,96 @@ if (isset($_POST['up2'])) {
 
 mysqli_close($link); // 關閉資料庫連接
 }
+if (isset($_POST['edit'])){
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $commodity_id = $_POST['commodity_id'];
+    $commodity_name = $_POST['commodity_name'];
+    $commodity_narrate = $_POST['commodity_narrate'];
+    $commodity_price = $_POST['commodity_price'];
+    $commodity_link = $_POST['commodity_link'];
+
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+
+    $sql = "UPDATE commodity SET 
+    commodity_name = '$commodity_name', 
+    commodity_narrate = '$commodity_narrate', 
+    commodity_price = '$commodity_price', 
+    c_original_product_link = '$commodity_link'
+WHERE commodity_id = '$commodity_id'";
+
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        $new_id = mysqli_insert_id($link); // 獲取剛剛插入商品的ID
+        // 進行圖片上傳及相關資料庫操作
+        $upload_dir = "../files/"; // 設置上傳檔案的目錄，注意這裡的路徑
+        if (!empty($_FILES['commodity_photo']['name'][0])) {
+            $sql_del = "DELETE FROM commodity_photo WHERE commodity_id=$commodity_id";
+            $result2 = mysqli_query($link, $sql_del);
+            if($result2){
+            // 上传并插入图片到数据库
+            $upload_dir = "../files/";
+            $upload_success = true; // 检查是否所有文件都成功上传
+            foreach ($_FILES['commodity_photo']['tmp_name'] as $key => $file_tmp) {
+                $file_name = $_FILES['commodity_photo']['name'][$key];
+                $dest = $upload_dir . $file_name;
+                if (file_exists($dest)) {
+                    $i = 1;
+                    $info = pathinfo($file_name);
+                    $file_name = $info['filename'];
+                    if (isset($info['extension'])) {
+                        $file_extension = $info['extension'];
+                    } else {
+                        // 如果没有扩展名，则设置默认扩展名
+                        $file_extension = ''; // 设置一个默认值
+                    }
+                    while (file_exists($upload_dir . $file_name . '_' . $i . '.' . $file_extension)) {
+                        $i++;
+                    }
+                    $filename = $file_name . '_' . $i . '.' . $file_extension;
+                    $dest = $upload_dir . $filename;
+                }
+                if (!move_uploaded_file($file_tmp, $dest)) {
+                    $upload_success = false;
+                    break; // 如果有任何一个文件上传失败，就中断循环
+                }
+                $sql_insert = "INSERT INTO commodity_photo (commodity_id, commodity_photo) VALUES ('$commodity_id', '$dest')";
+                if (!mysqli_query($link, $sql_insert)) {
+                    $upload_success = false;
+                    break; // 如果有任何一个文件上传失败，就中断循环
+                }
+            }
+        } 
+        else {
+            echo'<script>alert("更新失敗"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            exit();
+        }
+    }
+        else {
+            $upload_success = true;
+        }
+        // 提示上传成功或失败并导向适当的页面
+        if ($upload_success) {
+            echo'<script>alert("更新成功"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            exit();
+        } else {
+            echo'<script>alert("更新失敗"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            exit();
+        }
+}
+    else {
+        echo '<script>alert("更新失敗！"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    }
+     
+}// 關閉資料庫連接
+mysqli_close($link);
 ?>

@@ -28,7 +28,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/InnerPage.css" rel="stylesheet">
+  <link href="assets/css/InnerCos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/388b3c67c2.js" crossorigin="anonymous"></script>
@@ -57,8 +57,8 @@
   <!-- End Header -->
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+     <!-- ======= Breadcrumbs ======= -->
+     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -90,24 +90,40 @@
   from commodity_group
   where commodity_group_id=$commodity_group_id";
     $result = mysqli_query($link, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-      $shop_id = $row["shop_id"];
-      echo '
-
+    $row = mysqli_fetch_assoc($result);
+    $shop_id = $row["shop_id"];
+    echo '
     <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
-    ;">';
-    } ?>
+    ;">
     <div class="background-overlay" style="position: absolute;
     top: 0;
     width: 100%;
     height: 100%;background-color: rgba(237, 237, 237, 0.733)">
-    </div>
+    </div>';
+    if (isset($_SESSION["account"]) && ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3)) {
+      echo '
     <div class="edit_like_shop_button">
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i
-          class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>
+          class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>';
+      $sql2 = "select * from `order`";
+      $result2 = mysqli_query($link, $sql2);
+      $allOrdersComplete = true;
+      while ($row2 = mysqli_fetch_assoc($result2)) {
+        if ($row2["order_state"] != "完成訂單") {
+          $allOrdersComplete = false;
+          break;
+        }
+      }
+      if ($allOrdersComplete) {
+        echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
-        <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>
+        <i class="fa-solid fa-hourglass-end"></i>&nbsp;結束開團</button>';
+      }
+      echo '
     </div>
+    ';
+    }
+    ?>
     <?php
     $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id' order by announce_time DESC";
     $result3 = mysqli_query($link, $sql3);
@@ -236,9 +252,9 @@
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" checked>
+      <input type="radio" id="tab1" name="tab-control" >
       <input type="radio" id="tab2" name="tab-control">
-      <input type="radio" id="tab3" name="tab-control">
+      <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
       <div id="subject">
         <ul>
@@ -261,8 +277,17 @@
           <h2>Features</h2>
           <div class="card" style="margin-left:40px;margin-right:40px;">
             <div class="card-body">
-              <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>"
-                enctype="multipart/form-data">
+              <form method="post" action="addcommodity.php?commodity_group_id=<?php echo $commodity_group_id; ?>"enctype="multipart/form-data">
+              <?php
+               $commodity_group_id = $_GET["commodity_group_id"];
+               $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+               $sql = "select *
+             from commodity_group
+             where commodity_group_id=$commodity_group_id";
+               $result = mysqli_query($link, $sql);
+               $row = mysqli_fetch_assoc($result);
+               if ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3) {
+              echo'
                 <div class="table-responsive">
                   <table class="table table-hover" width="100%">
                     <tbody>
@@ -332,6 +357,8 @@
                     </tbody>
                   </table>
                 </div>
+              ';}
+              ?>
               </form>
             </div>
           </div>
@@ -373,7 +400,10 @@
                     WHERE commodity.commodity_state = 1 AND commodity_group_id=$commodity_group_id
                     GROUP BY commodity.commodity_id;";
                     $result = mysqli_query($link, $sql);
-
+                    $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                    $result3 = mysqli_query($link, $sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    if ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) {
                     while ($row = mysqli_fetch_assoc($result)) {
                       $sql2 = "SELECT commodity_id, SUM(order_details_num) AS total_purchases
                     FROM order_details
@@ -403,7 +433,7 @@
                           <center>', (empty($row2["total_purchases"]) ? 0 : $row2["total_purchases"]), '</center>
                         </td>
                         <td class="actions" data-th=""> 
-                        <button class="btn btn-info btn-sm" 
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit', $row["commodity_id"], '"
                           style="background-color: #b0a5c6a8;border: none;color: white;">
                           <i class="fa-solid fa-pen-to-square"></i></button>
                           <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"
@@ -413,7 +443,7 @@
                         </td>
                       </tr>
                       </tbody>';
-                    }
+                    }}
                     mysqli_close($link);
                     ?>
                   </table>
@@ -422,11 +452,92 @@
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                   $sql = "SELECT * FROM commodity;";
                   $result = mysqli_query($link, $sql);
+                  $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <form  method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
+                <div class="modal fade" id="edit' . $row["commodity_id"] . '" tabindex="-1" aria-labelledby="evaLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #B0A5C6;">
+                        <h1 class="modal-title fs-5" id="evaLabel" style="font-weight:bold;color:#fff;">編輯商品資訊</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      <table width="100%">
+                      <p style="color:red;">請輸入欲更改之項目就好</p>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品名稱：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_name" name="commodity_name" value="'.$row["commodity_name"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品內容：</p>
+                        </td>
+                        <td>
+                          <textarea id="commodity_narrate" name="commodity_narrate" class="form-control" rows="5" width="100%" >'.nl2br($row["commodity_narrate"]).'</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品連結：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_link" name="commodity_link"  value="'.$row["c_original_product_link"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品價格：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_price" name="commodity_price"  value="'.$row["commodity_price"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">上傳照片：</p>
+                        </td>
+                        <td>
+                          <fieldset>
+                          <input type="file" id="file-uploader" class="form-control" data-target="file-uploader" accept="image/*"
+                            name="commodity_photo[]" multiple  />
+                          </fieldset>
+                        </td>
+                      </tr>
+                      
+                      </table>
+                      </div>
+                      <div class="modal-footer">
+                      <input type="hidden" name="commodity_id" value="', $row["commodity_id"], '">
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
+                        <button type="submit"  name="edit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </form>';
+                  }
+                  mysqli_close($link);
+                  ?>
+                  <?php
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                    $result3 = mysqli_query($link, $sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    if ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                     <div class="modal fade" id="down', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up_rule_ModalLabel"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="up_rule_ModalLabel">確認下架？</h1>
@@ -442,7 +553,7 @@
                             </div>
                             </div>
                              </div>';
-                  }
+                  }}
                   mysqli_close($link);
                   ?>
 
@@ -463,6 +574,10 @@
                   WHERE commodity.commodity_state = 2 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
+                  $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                    $result3 = mysqli_query($link, $sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    if ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
@@ -488,7 +603,7 @@
                   </div>';
 
                   }
-
+                }
                   mysqli_close($link); ?>
 
                 </div>
@@ -501,7 +616,7 @@
                 echo '
                     <div class="modal fade" id="up', $row["commodity_id"], '" tabindex="-1" aria-labelledby="up"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content"> 
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="up">確認上架？</h1>
@@ -534,6 +649,10 @@
                   WHERE commodity.commodity_state = 3 AND commodity_group_id=$commodity_group_id
                   GROUP BY commodity.commodity_id;";
                   $result = mysqli_query($link, $sql);
+                  $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                    $result3 = mysqli_query($link, $sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    if ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                   <div class="waiting">
@@ -560,7 +679,7 @@
                   </div>'
                     ;
 
-                  }
+                  }}
 
                   mysqli_close($link); ?>
 
@@ -575,7 +694,7 @@
                 echo '
                     <div class="modal fade" id="ups', $row["commodity_id"], '" tabindex="-1" aria-labelledby="ups"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="ups">移至待上架區？</h1>
@@ -611,7 +730,7 @@
             echo ' <div class="entry-meta">
               <ul>
                 <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
+                    href="../lisa/InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
               </ul>
             </div>
               <div class="row gy-4">
@@ -767,7 +886,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">';
-                    if($account==$_SESSION["account"]){
+                    if($row["account"]==$_SESSION["account"]){
                       echo'
                     <h4 style="float: right;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>
@@ -1421,14 +1540,16 @@
             <td>' . $row['account'] . '</td>
             <td>' . $row['payment_account'] . '</td>
             <td>' . $row['order_time'] . '</td>
-            <td>' . $totalprice . '</td>
-            <td>
+            <td>' . $totalprice . '</td>';
+            
+            echo'<td>
                   <center>
                     <input id="box' . $row['order_id'] . '" type="checkbox" data-order-id="' . $row['order_id'] . '"/>
                     <label for="box' . $row['order_id'] . '" id="label' . $row['order_id'] . '">' . ($row['payment_state'] == 1 ? '未付款' : '已付款') . '</label>
                   </center>
-                </td>
-                <td>
+                </td>';
+                
+                echo'<td>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details' . $row['order_id'] . '"
                 style="background-color: #E9C9D6;border: none;color: white;">明細查看</button>
                 </td>
@@ -1692,55 +1813,61 @@
           </div>
           <div class="row">
             <div id="slider-carouse4" class="owl-carousel">
-              <form method="post" action="proof.php?commodity_group_id=<?php echo '' . $_GET["commodity_group_id"] . ''; ?>">
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                if (!$link) {
-                  die('Connection failed: ' . mysqli_connect_error());
-                }
-                $commodity_group_id = $_GET["commodity_group_id"];
-                $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account;";
-                $result = mysqli_query($link, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                  echo '
-              
-              <div class="waiting3">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-head">
-                    <img src="' . $row["proof_of_purchase_photo"] . '"
-                      class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-header">
-                    <div class="col-md-12" style="display: flex; align-items: center;">
-                      <div class="profile-picture big-profile-picture clear"
-                        style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                        <img width="100%" height="100%" alt="Anne Hathaway picture"
-                          src="' . $row["user_avatar"] . '">
-                      </div>
-                      <div style="flex-grow: 7;">
-                        <p>' . $row["account"] . '</p>
-                        <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="hidden" name="order_id" value="' . $row["order_id"] . '">
-                  <div class="card-body">
-                  <button type="submit" name=submit" class="btn btn-warning" style="background-color: #E9C9D6;border: none;color: white;">確認收到</button>
-                  </div>
+
+              <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              if (!$link) {
+                die('Connection failed: ' . mysqli_connect_error());
+              }
+              $commodity_group_id = $_GET["commodity_group_id"];
+              $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account;";
+              $result = mysqli_query($link, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '<form method="post" action="proof.php?commodity_group_id=' . $commodity_group_id . '"> 
+        <div class="waiting3">
+          <div class="card" style="width: 18rem;">
+            <div class="card-head">
+              <img src="' . $row["proof_of_purchase_photo"] . '"
+                class="card-img-top" alt="...">
+            </div>
+            <div class="card-header">
+              <div class="col-md-12" style="display: flex; align-items: center;">
+                <div class="profile-picture big-profile-picture clear"
+                  style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
+                  <img width="100%" height="100%" alt="Anne Hathaway picture"
+                    src="' . $row["user_avatar"] . '">
+                </div>
+                <div style="flex-grow: 7;">
+                  <p>' . $row["account"] . '</p>
+                  <h5>無款提款證明<i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"></i>
+                  </h5>
                 </div>
               </div>
-              ';
-                } ?>
-              </form>
+            </div>
+            <input type="hidden" name="order_id" value="' . $row["order_id"] . '">
+            <div class="card-body">
+              <div style="display: inline-block;">
+                <p style="font-size:17px;font-weight:bold;color:#636363;">訂單編號：' . $row["order_id"] . '</p>
+              </div>
+              <div style="display: inline-block; float: right;">
+                <button type="submit" name="submit" class="btn btn-warning" style="background-color: #E9C9D6; border: none; color: white;">確認收到</button>
+              </div>
+            </div>
+          </div>
+        </div></form>
+        ';
+              }
+              mysqli_close($link);
+              ?>
+
             </div>
           </div>
 
-          <br>
-
 
       </div>
-      </section>
+    </div>
+
+    </section>
       </div>
     </div>
 

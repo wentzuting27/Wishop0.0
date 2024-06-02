@@ -15,16 +15,18 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $account = $_SESSION["account"];
     
     $sql = "SELECT common_payment_account FROM shop NATURAL JOIN account WHERE shop_id = ' $shop_id'";
-    $sql1 = "SELECT common_payment_account FROM account WHERE account = '$account'";
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
-    $account_to_send_money_to = $row['common_payment_account'];
-    $result1 = mysqli_query($link, $sql1);
-    $row1 = mysqli_fetch_assoc($result1);
+    $account_to_send_money_to = $_POST['payment_account'];
     $payment_account = $row1['common_payment_account'];
     $payment_state=1;
     $order_state="未成立";
-    $remark = isset($_POST['remark']) ? $_POST['remark'] : '無'; // 检查备注是否设置
+    if($account_to_send_money_to=="無卡交易"){
+        $remark = $_POST['remark'] . "(無卡交易之訂單)";
+    }
+    else{
+       $remark = $_POST['remark']; // 检查备注是否设置 
+    }
     // 取得目前的时间戳
     $timestamp = time();
     // 将时间戳格式化为日期时间字符串
@@ -89,5 +91,22 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
 
     mysqli_close($link);
 }
-
+if(isset($_POST['delorder'])) {
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $order_id=$_POST["order_id"];
+    $sql = "DELETE FROM `order` WHERE order_id=$order_id";
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        echo '<script>alert("刪除成功"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        exit();
+    }
+    else{
+        echo '<script>alert("刪除失敗"); window.location.href = "InnerPage.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        exit();
+    }
+}
 ?>
