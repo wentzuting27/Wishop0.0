@@ -275,7 +275,6 @@
                       </div>
 
                       <?php
-                      $e_id = $_GET['e_id'];
                       $link = mysqli_connect("localhost", "root", "12345678", "wishop");
                       $sql = "select * from account where account = '{$_SESSION['account']}'";
                       $result = mysqli_query($link, $sql);
@@ -323,24 +322,25 @@
 
                       <form method="post" action="editPassword.php">
                         <input type="hidden" name="method" value="update">
+                        <input type="hidden" name="account" value="<?php echo $_SESSION['account']; ?>">
                         <div class="form-container">
 
                           <div class="form-group">
-                            <label for="inputUserName">請先輸入原密碼</label>
-                            <input type="text" name="user_name" class="form-control" placeholder="***********">
+                            <label for="current_password">請先輸入原密碼</label>
+                            <input type="password" id="current_password" name="current_password" class="form-control" placeholder="***********" required>
                           </div>
 
                           <div class="row">
                             <div class="col-md-6 form-group">
-                              <label for="inputUserName">修改密碼</label>
-                              <input type="password" name="password" class="form-control" id="password"
-                                placeholder="***********">
+                              <label for="new_password">修改密碼</label>
+                              <input  type="password" id="new_password" name="new_password" class="form-control"
+                                placeholder="***********" required>
                             </div>
 
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                              <label for="inputUserName">請再次輸入密碼</label>
-                              <input type="password" class="form-control" name="confirm_password" id="confirm_password"
-                                placeholder="***********">
+                              <label for="confirm_password">請再次輸入密碼</label>
+                              <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                                placeholder="***********" required>
                             </div>
                           </div>
                         </div>
