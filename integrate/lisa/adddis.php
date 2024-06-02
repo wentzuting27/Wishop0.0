@@ -58,7 +58,6 @@ if(isset($_POST['submit'])) {
             }
         } 
         else {
-            // 如果没有照片上传，设置上传成功为 false
             $upload_success = true;
         }
         // 提示上传成功或失败并导向适当的页面

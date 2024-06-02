@@ -465,6 +465,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                 $sql = "select * from commodity_group_announce natural join commodity_group 
                 natural join shop natural join account where commodity_group_id ='$commodity_group_id'";
                 $result = mysqli_query($link, $sql);
+                if(isset($_SESSION["account"])){
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
                 <div class="item">
@@ -492,7 +493,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                     </div>
                   </div>
                 </div>';
-                }
+                }}
                 mysqli_close($link);
                 ?>
               </div>
@@ -505,6 +506,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
             $sql = "select * from  account where account='$account'";
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
+            if(isset($account)){
             echo '
             <div class="part2" id="card">
               <div class="card border-secondary mb-12" style="width: 100%;border-radius: 0;">
@@ -527,7 +529,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                       class="fa-solid fa-pen-to-square"></i></button>
                 </div>
               </div>
-            </div>';
+            </div>';}
             mysqli_close($link);
             ?>
             <div style="max-height:600px;overflow-y:scroll;">
@@ -541,6 +543,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
             OR account= '$account';";
 
               $result = mysqli_query($link, $sql);
+              if(isset($account)){
               while ($row = mysqli_fetch_assoc($result)) {
                 $question_id = $row["question_id"];
 
@@ -580,7 +583,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                   </h4>
                 </div>
               </div>
-            </div>';
+            </div>';}
                 echo '<!-- Modal -->
                 <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">

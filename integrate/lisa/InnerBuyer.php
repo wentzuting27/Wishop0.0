@@ -438,7 +438,7 @@
                           <center>', (empty($row2["total_purchases"]) ? 0 : $row2["total_purchases"]), '</center>
                         </td>
                         <td class="actions" data-th=""> 
-                        <button class="btn btn-info btn-sm" 
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit', $row["commodity_id"], '"
                           style="background-color: #b0a5c6a8;border: none;color: white;">
                           <i class="fa-solid fa-pen-to-square"></i></button>
                           <button class="btn btn-danger btn-sm" style="background-color: #E9C9D6;border: none;color: white;"
@@ -452,6 +452,83 @@
                     mysqli_close($link);
                     ?>
                   </table>
+                  <?php
+                  $commodity_group_id = $_GET["commodity_group_id"];
+                  $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+                  $sql = "SELECT * FROM commodity;";
+                  $result = mysqli_query($link, $sql);
+                  $sql3 = "select * from commodity_group where commodity_group_id=$commodity_group_id";
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <form  method="post" action="addcommodity.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
+                <div class="modal fade" id="edit' . $row["commodity_id"] . '" tabindex="-1" aria-labelledby="evaLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #B0A5C6;">
+                        <h1 class="modal-title fs-5" id="evaLabel" style="font-weight:bold;color:#fff;">編輯商品資訊</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      <table width="100%">
+                      <p style="color:red;">請輸入欲更改之項目就好</p>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品名稱：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_name" name="commodity_name" value="'.$row["commodity_name"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品內容：</p>
+                        </td>
+                        <td>
+                          <textarea id="commodity_narrate" name="commodity_narrate" class="form-control" rows="5" width="100%" >'.nl2br($row["commodity_narrate"]).'</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品連結：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_link" name="commodity_link"  value="'.$row["c_original_product_link"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">商品價格：</p>
+                        </td>
+                        <td>
+                        <input class="form-control" type="text" id="commodity_price" name="commodity_price"  value="'.$row["commodity_price"].'"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="font-size:17px;font-weight:bold;color:#B0A5C6;">上傳照片：</p>
+                        </td>
+                        <td>
+                          <fieldset>
+                          <input type="file" id="file-uploader" class="form-control" data-target="file-uploader" accept="image/*"
+                            name="commodity_photo[]" multiple  />
+                          </fieldset>
+                        </td>
+                      </tr>
+                      
+                      </table>
+                      </div>
+                      <div class="modal-footer">
+                      <input type="hidden" name="commodity_id" value="', $row["commodity_id"], '">
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">取消</button>
+                        <button type="submit"  name="edit" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #B0A5C6; color: white;border:none;">確定</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </form>';
+                  }
+                  mysqli_close($link);
+                  ?>
                   <?php
                   $commodity_group_id = $_GET["commodity_group_id"];
                   $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -699,6 +776,7 @@
                   where account='$account'
                   and commodity_group_id=$commodity_group_id";
                   $result = mysqli_query($link, $sql);
+                  if(isset($_SESSION["account"])){
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '
                 <div class="item">
@@ -729,7 +807,7 @@
                     </div>
                   </div>
                 </div>';
-                  }
+                  }}
                   mysqli_close($link);
                   ?>
                 </div>
@@ -740,6 +818,7 @@
               $commodity_group_id = $_GET["commodity_group_id"];
               $sql = "select * from commodity_group_announce ";
               $result = mysqli_query($link, $sql);
+              if(isset($_SESSION["account"])){
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '
               <form method="post" action="addwrite.php?commodity_group_id=' . $commodity_group_id . ' ">
@@ -760,7 +839,7 @@
                     </div>
                   </div>
                   </form>';
-              }
+              }}
               mysqli_close($link);
               ?>
 
@@ -772,6 +851,7 @@
                 $sql = "SELECT * FROM question NATURAL JOIN account 
             WHERE commodity_group_id ='$commodity_group_id' ;";
                 $result = mysqli_query($link, $sql);
+                if(isset($_SESSION["account"])){
                 while ($row = mysqli_fetch_assoc($result)) {
                   $question_id = $row["question_id"];
 
@@ -811,7 +891,7 @@
                   </h4>
                 </div>
               </div>
-            </div>';
+            </div>';}
                   echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
