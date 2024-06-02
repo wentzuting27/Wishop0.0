@@ -208,23 +208,68 @@
                 $sql = "SELECT *
                 FROM report r
                 NATURAL JOIN commodity_group
-                WHERE r.report_time = (
-                    SELECT MAX(r2.report_time)
-                    FROM report r2
-                    WHERE r2.commodity_group_id = r.commodity_group_id
-                )
-                AND r.report_results != 3
-                ORDER BY r.report_time DESC;";
+                WHERE r.report_results != 3
+                -- 審核結果不等於待審核
+                ORDER BY r.review_time DESC;
+                -- 從最新的審核時間開始顯示
+                ";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo "
-                  <tr style='border-bottom: 3px dashed #979797;' align='center'><td>",$row['commodity_group_name'],"</td>
-                      <td>",$row['account'],"</td>
-                      <td>",$row['report_type'],"</td>
+                  <tr style='border-bottom: 3px dashed #979797;' align='center'>
+                  <td><a href='../lisa/InnerPage.php?commodity_group_id=",$row['commodity_group_id'],"' target='_blank'>",$row['commodity_group_name'],"</a></td>
+                      <td>@",$row['account'],"</td>
+                      <td>";                      
+                      switch ($row["report_type"]) {
+                        case 1:
+                            echo "酒類 / 菸類商品";
+                            break;
+                        case 2:
+                            echo "武器 / 彈藥 / 軍事用品";
+                            break;
+                        case 3:
+                            echo "藥品、醫療器材";
+                            break;
+                        case 4:
+                            echo "此商品可能令人感到不適或違反善良風俗";
+                            break;
+                        case 5:
+                            echo "活體動物、保育動物及其製品";
+                            break;
+                        case 6:
+                            echo "仿冒品";
+                            break;
+                        case 7:
+                            echo "濫用文字誤導搜尋";
+                            break;
+                        case 8:
+                            echo "重覆刊登";
+                            break;
+                        case 9:
+                            echo "複製他人商品圖文";
+                            break;
+                        case 10:
+                            echo "其他";
+                            break;
+                        default:
+                            echo "無";
+                    }
+                    echo "</td>
                       <td style='width: 30%; padding: 20px 20px;'>",$row['report_why'],"</td>
                       <td>",$row['report_time'],"</td>
                       <td>",$row['review_time'],"</td>
-                      <td>",$row['report_results'],"</td>
+                      <td>";                      
+                      switch ($row["report_results"]) {
+                        case 1:
+                            echo "成功";
+                            break;
+                        case 2:
+                            echo "失敗";
+                            break;
+                        default:
+                            echo "無";
+                    }
+                    echo "</td>
                       </tr>";
                   };
                  
