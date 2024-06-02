@@ -608,6 +608,11 @@
         }else{
           $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
         }
+        $sql_report_yn="select *
+        from report
+        where commodity_group_id='$commodity_group_id' AND report_results =1";
+        $result_report_yn=mysqli_query($link,$sql_report_yn);
+        if(mysqli_num_rows($result_report_yn)==0){
         echo'
       <div class="col-lg-4 col-md-6 shop_group-item">
         <div class="shop_group-wrap">
@@ -648,6 +653,7 @@
       </div>
 
       ';
+      }
       }
     ?>
     
