@@ -741,10 +741,13 @@
           <li style="font-size:16px;color: #666666;font-weight: bold;">僅保留討論區之功能供買賣雙方溝通</li>
           <li style="font-size:16px;color: #666666;font-weight: bold;">此商品團體也不會顯示於賣場中</li>
         </ul>
-        <p>點擊此按鈕可查看該團體被檢舉之相關資訊</p>
         <p style="font-size:16px;color: #d55858;font-weight: bold;">
       請您與已喊單的買家自行協調是否繼續交易以及退款、退貨之相關事項<br>
-      若有任何糾紛可尋求平台協助處理!!感謝您的配合</p>
+      若有任何糾紛可尋求平台協助處理!!感謝您的配合</p><br>
+      <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;查看該團體被檢舉之相關資訊</mark>
+      <p style="font-size:16px;color: #666666;font-weight: bold;">點擊此按鈕可查看該團體被檢舉之相關資訊</p>
+      <img src="../files/查看檢舉細項.png">
+
       </div>
     </div>
   </div>
