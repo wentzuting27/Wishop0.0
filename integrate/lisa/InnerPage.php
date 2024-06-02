@@ -435,8 +435,8 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                 <label for="remark" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容填寫：</label>
                 <textarea id="w3review" name="remark" rows="4" cols="50" style="margin:10px;"
                   placeholder="備註內容..."></textarea>
-                <label for="name2" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:</label>
-                <input type="text" id="name" name="name2" required minlength="4" maxlength="8" size="10"
+                <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:(欲無卡交易請填無卡交易)</label>
+                <input type="text" id="payment_account" name="payment_account" required minlength="4" maxlength="8" size="10"
                   style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
@@ -672,6 +672,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                 $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
+           AND order_state!='拒絕接收'
            GROUP BY order_details.order_id";
                 $result = mysqli_query($link, $sql);
 
@@ -717,7 +718,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
           if (!$link) {
             die('Connection failed: ' . mysqli_connect_error());
           }
-          $sql = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity";
+          $sql = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity natural join commodity_group";
           $commodity_group_id = $_GET["commodity_group_id"];
           $result = mysqli_query($link, $sql);
           if (!$result) {
@@ -742,14 +743,14 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
             $order_state = $row['order_state'];
             $account = $row['account'];
             $remark = $row['remark'];
-            $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity natural join commodity_group where order_id=$order_id ";
+            $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity natural join commodity_group where order_id=$order_id and commodity_group_id=$commodity_group_id";
             $result2 = mysqli_query($link, $sql2);
             if (!$result2) {
               die('Query failed: ' . mysqli_error($link));
             }
-            while ($row = mysqli_fetch_assoc($result2)) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
               echo '
-                        <li>' . $row['commodity_name'] . '/ ' . $row['order_details_num'] . '個</li>';
+                        <li>' . $row2['commodity_name'] . '/ ' . $row2['order_details_num'] . '個</li>';
             }
             echo '</ul>
                         </td>
@@ -770,15 +771,20 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀況：</th>
                         <td>
                        ';
-                        if($account==$_SESSION["account"]){
+                       $commodity_group_state=$row["commodity_group_state"];
+                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3)){
+                          echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
+                          <form  method="post" action="order.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
+                        <input type="hidden" name="order_id" value="', $order_id, '">
+                        <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
+                        </form>';
+                        }
+                        $commodity_group_state=$row["commodity_group_state"];
+                        if(isset($_SESSION["account"]) && $order_state != "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3)){
                         echo'
-                        <p style="color:red;">訂單已被接收後將不能刪除訂單</p>
-                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>';
-                        if(isset($_SESSION["account"])&& $row["order_state"]!="未成立" && ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3)){
-                        echo'<button class="btn btn-primary" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
+                        <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
                         style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';}
-                      }
                       echo'</tr>
                     </table>
                   </div>
@@ -866,12 +872,12 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
             style="background-color: #B0A5C6; color: white;">下載成excel檔</button>
           <br><br><br>
           <div class="seven">
-            <h1>認證上傳區塊</h1>
+            <h1>無卡付款證明上傳區塊</h1>
           </div>
           <form action="addconform.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form"
             enctype="multipart/form-data">
             <center>
-              <div class="card" style="width:80%">
+              
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $account = $_SESSION["account"];
@@ -879,8 +885,8 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                 $sql = "SELECT * FROM  account NATURAL JOIN `order` NATURAL JOIN order_details NATURAL JOIN commodity  WHERE account='$account' AND commodity_group_id={$commodity_group_id} ";
                 $result = mysqli_query($link, $sql);
                 $row = mysqli_fetch_assoc($result);
-                if(isset($account) && mysqli_num_rows($result) != 0){
-                echo '
+                if(isset($account) && isset($row["order_id"])){
+                echo '<div class="card" style="width:80%">
                     <div class="card-header">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
@@ -894,10 +900,28 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                   </div>
                 <div class="card-body">
                   <div class="mb-3">
-                  <h5 style="float:left;color:	#3C3C3C;"><b>無卡付款證明上傳：</b></h5>
+                  <table width="100%">
+                  <tr>
+                  <td>
+                  <div style="display: inline-block;">
+                    <p style="font-size:17px;font-weight:bold;color:#636363;">訂單編號：</p>
+                  </div>
+                  <div style="display: inline-block;">
+                    <input type="text" id="order_id" name="order_id" required minlength="1" maxlength="10" size="50" placeholder="請輸入訂單編號"/>
+                  </div>
+                </td>
+                
+                </tr>
+                <tr>
+                  <td>
+                    <p style="font-size:17px;font-weight:bold;color:#636363;">上傳照片：</p>
                   <input  class="form-control" type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
                   name="proof_photo[]" multiple/>
-                  <input type="hidden" name="order_id" value="', $order_id, '">
+                  </td>
+                
+                </tr>
+                
+                </table>
                 </div>
                 </div>
                 <div class="card-footer">
