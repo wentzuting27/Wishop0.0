@@ -168,7 +168,9 @@
 
                   $sql_withgroup_num = "select *
                           from report
-                          where commodity_group_id='{$row["commodity_group_id"]}'";
+                          where commodity_group_id='{$row["commodity_group_id"]}'
+                          AND report_results = 3
+                          ";
                   $result_withgroup_num = mysqli_query($link, $sql_withgroup_num);
                   echo mysqli_num_rows($result_withgroup_num);
                   echo '</p>
