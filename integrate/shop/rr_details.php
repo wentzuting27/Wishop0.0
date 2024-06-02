@@ -70,6 +70,7 @@
                 NATURAL JOIN account
                 WHERE commodity_group_id = '$commodity_group_id'
                 AND r.report_results = 3
+                -- 審核結果等於待審核
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -111,7 +112,7 @@
                       </tr>
                       <tr>
                       <td colspan="3">
-                      <center><p style="color: #B0A5C6;">';
+                      <center><p style="color: #fff; background-color: #B0A5C6; border-radius: 5px;">';
 
                       switch ($row["report_type"]) {
                           case 1:
@@ -149,7 +150,7 @@
                       }
 
 echo '                  </p></center>
-                      <div class="scrollable-row">
+                      <div class="scrollable-row" style="background-color: #f0e8ff; border-radius: 5px; padding: 10px">
                           ' . $row["report_why"] . '
                           </div>
                         </td>
