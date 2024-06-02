@@ -9,16 +9,24 @@
     <?php
         session_start(); 
             $method = $_POST["method"];
-            $commodity_group_id = $_POST["commodity_group_id"];
-            $report = $_POST["commodity_group_id"];
+            $report_id = $_POST["report_id"];
+            $report_results = $_POST["report_results"];
+
             $link = mysqli_connect("localhost", "root", "12345678", "wishop");
-            $sql = "DELETE FROM like_wish WHERE wish_id = '$wish_id' AND account = '$account'";
+        if ($method == "update") {
+            $sql = "UPDATE report SET report_results='$report_results', review_time=NOW() WHERE report_id='$report_id'";
             if (mysqli_query($link, $sql)) {
-                header("refresh:0;url=Wishlist.php");
+                $sql2 = "SELECT commodity_group_id FROM report WHERE report_id='$report_id'";
+                $result2 = mysqli_query($link, $sql2);
+                $row2 = mysqli_fetch_assoc($result2);
+                $commodity_group_id = $row2['commodity_group_id'];
+
+                header("Location: rr_details.php?commodity_group_id=$commodity_group_id");
             } else {
-                header("refresh:0;url=Wishlist.php");
+                header("Location: rr_details.php?commodity_group_id=$commodity_group_id");
             }
-            mysqli_close($link);
+
+        }
         ?>
 
 </body>

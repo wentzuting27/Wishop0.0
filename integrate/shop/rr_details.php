@@ -106,8 +106,20 @@
                           <p>',$row["report_time"],'</p>
                         </td>
                         <td>
-                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: #e37e7e" >&nbsp;檢舉失敗</button></a>
-                        <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="background-color: rgb(123, 195, 150); text-align: right;">&nbsp;檢舉成功</button></a>
+
+                        <form action="review.php" method="post" style="display:inline;">
+                            <input type="hidden" name="method" value="update">
+                            <input type="hidden" name="report_id" value="',$row["report_id"],'">
+                            <input type="hidden" name="report_results" value="2">
+                            <button type="submit" class="btn insert_button" style="background-color: #e37e7e;">&nbsp;檢舉失敗</button>
+                        </form>
+
+                        <form action="review.php" method="post" style="display:inline;">
+                            <input type="hidden" name="method" value="update">
+                            <input type="hidden" name="report_id" value="',$row["report_id"],'">
+                            <input type="hidden" name="report_results" value="1">
+                            <button type="submit" class="btn insert_button" style="background-color: rgb(123, 195, 150);">&nbsp;檢舉成功</button>
+                        </form>
                         </td>
                       </tr>
                       <tr>
