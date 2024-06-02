@@ -436,7 +436,7 @@
 
                     $result_wishtopic = mysqli_query($link, $sql_wishtopic);
 
-                    if ($result_wishtopic) {
+                    if (mysqli_num_rows($result_wishtopic) > 0) {
                       while ($row_wishtopic = mysqli_fetch_assoc($result_wishtopic)) {
                         switch ($row_wishtopic['topic']) {
                           case 1:
@@ -473,6 +473,8 @@
                             echo '<a href="#"><span class="topic" name="topic" value="10">無</span></a>';
                         }
                       }
+                    }else{
+                      echo '無';
                     }
                   }
                   ?>

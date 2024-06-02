@@ -72,20 +72,20 @@
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>';
-                  if(isset($_SESSION["user_shop_id"])){
-                    echo'
+            if (isset($_SESSION["user_shop_id"])) {
+              echo '
                     <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
-                  }
-                  if($_SESSION['permissions']==2){
-                    echo'
+            }
+            if ($_SESSION['permissions'] == 2) {
+              echo '
                     <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
-                  }
-                    echo'
+            }
+            echo '
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                     <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
-                  
-                echo '  
+
+            echo '  
                 </ul>
               </li>
               ';
@@ -116,25 +116,13 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">WISHOP</h2>
-              <p class="animate__animated animate__fadeInUp">WISH AND BUY U WANT<br>許願代購</p>
-              <a href="portfolio.php"
-                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>開始購物</b></a>
+              <p class="animate__animated animate__fadeInUp">想要什麼卻買不到嗎？歡迎許願讓賣家們看到吧！</p>
+              <a href="../wish/wish.php"
+                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>許願池</b></a>
             </div>
           </div>
         </div>
 
-        <!-- Slide 3 -->
-        <div class="carousel-item"
-          style="background-image: url(https://i.pinimg.com/originals/27/b0/41/27b04138dc48c4d5d433f2c5839203c8.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">許願池</h2>
-              <p class="animate__animated animate__fadeInUp">想要什麼卻買不到嗎？歡迎許願讓賣家們看到吧！</p>
-              <a href="/integrate/wish/wish.php"
-                class="btn-get-started animate__animated animate__fadeInUp scrollto"><b>去許願</b></a>
-            </div>
-          </div>
-        </div>
 
 
         <?php
@@ -155,7 +143,15 @@
         if ($result) {
           while ($row = mysqli_fetch_assoc($result)) {
 
+            $commodity_group_narrate = $row['commodity_group_narrate'];
 
+            // 截前200個字
+            $short_narrate = substr($commodity_group_narrate, 0, 200);
+
+            // 超過200個字後面加上點點點
+            if (strlen($commodity_group_narrate) > 100) {
+              $short_narrate .= '...';
+            }
 
             echo '
             <!-- Slide 熱門商品 -->
@@ -255,6 +251,8 @@
           FROM commodity c 
           JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id 
           JOIN commodity_photo cp ON c.commodity_id = cp.commodity_id 
+          where (close_order_date > NOW() OR close_order_date is null)
+          and (commodity_group_state = '1')
           GROUP BY c.commodity_id
           ORDER BY RAND() 
           LIMIT 12";
@@ -450,7 +448,7 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>聯繫客服</h4>
             <p>0912345678</p>
-            
+
           </div>
 
         </div>
@@ -459,14 +457,14 @@
 
     <div class="container">
       <div class="copyright">
-       
+
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-       
+
       </div>
     </div>
   </footer><!-- End Footer -->

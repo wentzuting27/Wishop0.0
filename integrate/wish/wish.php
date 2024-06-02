@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php session_start(); ?>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -186,7 +186,7 @@
 </style>
 
 <body>
-  <?php session_start(); ?>
+  
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -211,20 +211,20 @@
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
                   <hr>';
-                  if(isset($_SESSION["user_shop_id"])){
-                    echo'
+            if (isset($_SESSION["user_shop_id"])) {
+              echo '
                     <li><a href="../shop/shop.php?shop_id=', $_SESSION['user_shop_id'] . '" style="font-weight: 600;">我的賣場</a></li>';
-                  }
-                  if($_SESSION['permissions']==2){
-                    echo'
+            }
+            if ($_SESSION['permissions'] == 2) {
+              echo '
                     <li><a href="../shop/Report_review.php" style="font-weight: 600;">檢舉審核</a></li>';
-                  }
-                    echo'
+            }
+            echo '
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                     <li><a href="logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
-                  
-                echo '  
+
+            echo '  
                 </ul>
               </li>
               ';
@@ -561,133 +561,173 @@
                       <h3 style="color:#b9b0c8" ;><i class="fa-solid fa-feather-pointed"></i>&nbsp;許願區</h3>
                     </center>
 
+                    <style>
+                      .search-form .form-control {
+                        width: 300px;
+                        /* Adjust the width as needed */
+                      }
 
+                      .search-form .accordion-button {
+                        width: 100px;
+                        /* Adjust the width as needed */
+                      }
+
+                      .search-form button[type="submit"] {
+                        width: 50px;
+                        /* Adjust the width as needed */
+                      }
+
+                      .btn-group {
+                        display: flex;
+                        align-items: center;
+                      }
+
+                      .accordion-button:hover {
+                        color: #B0A5C6;
+                        /* 滑鼠移過去時的字體顏色 */
+                      }
+
+                      .accordion-button {
+                        height: 50px;
+                        /* 設置具體的高度 */
+                        width: 100px;
+                        margin-left: 30px;
+                        color: #444444;
+                        /* 初始字體顏色 */
+                        display: flex;
+                        /* 使用 Flexbox 排列 */
+                        align-items: center;
+                        /* 垂直居中 */
+                        justify-content: center;
+                        /* 水平居中 */
+                      }
+                    </style>
 
                     <section id="blog2" class="blog2">
                       <center>
                         <div class="col-lg-12">
                           <div class="sidebar">
                             <h3 class="sidebar-title">Search (願望名稱)</h3>
-                            <div class="sidebar-item search-form">
-                              <form method=post action="../wish/wish.php">
-                                <input type="hidden" name="tab_num" value="all_wish">
-                                <input type="hidden" name="search1" value="yes">
-                                <input type="text" name="wish_name" class="form-control">
+                            <form method=post action="../wish/wish.php">
+                              <div class="sidebar-item search-form">
 
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                  aria-controls="flush-collapseOne" style="border-radius:0px; width:100px;">
-                                  <i class="fa-solid fa-angle-down"></i>
-                                </button>
+                                <div class="btn-group">
+                                  <input type="hidden" name="tab_num" value="all_wish">
+                                  <input type="hidden" name="search1" value="yes">
+                                  <input type="text" name="wish_name" class="form-control">
 
-                                <button type="submit" style="z-index:996;"><i class="bi bi-search"></i></button>
-                              </form>
-                              <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                  <div class="row">
-                                    <br>
-                                    <div class="filtertag">
-                                      <h5 style="text-align:left;">主題</h5>
-                                      <div class="row">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne" style="width:100px;margin-left:30px;">
+                                    篩選&nbsp;<i class="fa-solid fa-angle-down"></i>
+                                  </button>
 
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="1" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-shirt"></i>&nbsp;服飾
-                                            </div>
-                                          </label>
+                                  <button type="submit">&nbsp;<i class="bi bi-search"></i></button>
+                                </div>
+
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                    <div class="row">
+                                      <br>
+                                      <div class="filtertag">
+                                        <h5 style="text-align:left;">主題</h5>
+                                        <div class="row">
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="1" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-shirt"></i>&nbsp;服飾
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="2" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="3" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-heart"></i>&nbsp;動漫
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="4" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-star"></i>&nbsp;明星
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="5" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-house-chimney-window"></i>&nbsp;日常
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="6" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-gamepad"></i>&nbsp;3C
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="7" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-utensils"></i>&nbsp;美食
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="8" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-person-biking"></i>&nbsp;運動
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="9" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-gift"></i>&nbsp;精品
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="10" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-bars"></i>&nbsp;其他
+                                              </div>
+                                            </label>
+                                          </div>
+
                                         </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="2" name="topic[]">
-                                            <div class="checkbox-button"><i
-                                                class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="3" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-heart"></i>&nbsp;動漫
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="4" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-star"></i>&nbsp;明星
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="5" name="topic[]">
-                                            <div class="checkbox-button"><i
-                                                class="fa-solid fa-house-chimney-window"></i>&nbsp;日常
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="6" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-gamepad"></i>&nbsp;3C
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="7" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-utensils"></i>&nbsp;美食
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="8" name="topic[]">
-                                            <div class="checkbox-button"><i
-                                                class="fa-solid fa-person-biking"></i>&nbsp;運動
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="9" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-gift"></i>&nbsp;精品
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <div class="topicbox">
-                                          <label class="checkbox-label">
-                                            <input type="checkbox" value="10" name="topic[]">
-                                            <div class="checkbox-button"><i class="fa-solid fa-bars"></i>&nbsp;其他
-                                            </div>
-                                          </label>
-                                        </div>
-
                                       </div>
-
                                     </div>
-
-
-
-
-
-
-
                                   </div>
                                 </div>
+
+
+
+
                               </div>
-                            </div><!-- End sidebar search formn-->
+                            </form><!-- End sidebar search formn-->
 
                           </div><!-- End sidebar -->
 
@@ -703,32 +743,60 @@
                           and wish_state != 4
                           and wish_end >= CURDATE()
                           order by wish_start";
+
+
+
+
                     if ($_POST['search1'] == 'yes') {
                       $wish_num = 1;
                       $result = mysqli_query($link, $sql);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $wish_id = $row["wish_id"];
-                        echo '
+
+                        //topic複選
+                        $alltopic = array();
+                        $sql_alltopic = "select topic from wish_topic where wish_id = '$wish_id'";
+                        $result_alltopic = mysqli_query($link, $sql_alltopic);
+                        while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
+                          $alltopic[] = $row_alltopic['topic'];
+                        }
+
+
+                        $checkselect = 'yes';
+                        $topic = $_POST['topic'];
+
+                        foreach ($topic as $check) {
+
+                          if (!in_array($check, $alltopic)) {
+                            $checkselect = 'no';
+                            break;
+                          }
+                        }
+
+                        if ($checkselect == 'yes') {
+
+
+                          echo '
 
                               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="course-item">
                                   <div id="carouselExampleIndicators', $wish_num, '" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner fixed-image">';
-                        $a = 1;
-                        $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
-                        $result_photo = mysqli_query($link, $sql_photo);
-                        while ($row_photo = mysqli_fetch_assoc($result_photo)) {
-                          echo '
+                          $a = 1;
+                          $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
+                          $result_photo = mysqli_query($link, $sql_photo);
+                          while ($row_photo = mysqli_fetch_assoc($result_photo)) {
+                            echo '
                                       <div class="carousel-item ';
-                          if ($a == 1) {
-                            echo 'active';
-                          }
-                          echo '">
+                            if ($a == 1) {
+                              echo 'active';
+                            }
+                            echo '">
                                         <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
                                       </div>';
-                          $a++;
-                        }
-                        echo '
+                            $a++;
+                          }
+                          echo '
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators', $wish_num, '" data-bs-slide="prev">
                                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -752,27 +820,28 @@
                                         <a href="" class="trainer-link">', $row["user_name"], '</a>
                                       </div>
                                       <div class="trainer-rank d-flex align-items-center">';
-                        $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
-                        $result_likepeople = mysqli_query($link, $sql_likepeople);
-                        $count_likepeople = mysqli_num_rows($result_likepeople);
-                        echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
+                          $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
+                          $result_likepeople = mysqli_query($link, $sql_likepeople);
+                          $count_likepeople = mysqli_num_rows($result_likepeople);
+                          echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
 
-                        $sql_likewish = "select * from like_wish
+                          $sql_likewish = "select * from like_wish
                                         where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
-                        $result_likewish = mysqli_query($link, $sql_likewish);
-                        if (isset($_SESSION["account"])) {
-                          if (mysqli_num_rows($result_likewish) == 0) {
-                            echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
-                          } else {
-                            echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                          $result_likewish = mysqli_query($link, $sql_likewish);
+                          if (isset($_SESSION["account"])) {
+                            if (mysqli_num_rows($result_likewish) == 0) {
+                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                            } else {
+                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                            }
                           }
-                        }
-                        echo '</div>
+                          echo '</div>
                                     </div>
                                   </div>
                                 </div>  
                               </div><!-- End Course Item-->';
-                        $wish_num++;
+                          $wish_num++;
+                        }
                       }
                     } else {
                       $wish_num = 1;
@@ -880,14 +949,126 @@
                         <div class="col-lg-12">
                           <div class="sidebar">
                             <h3 class="sidebar-title">Search (願望名稱)</h3>
-                            <div class="sidebar-item search-form">
-                              <form method=post action="../wish/wish.php">
-                                <input type="hidden" name="tab_num" class="form-control" value="coming_wish">
-                                <input type="hidden" name="search2" value="yes">
-                                <input type="text" name="wish_name" class="form-control">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                              </form>
-                            </div><!-- End sidebar search formn-->
+                            <form method=post action="../wish/wish.php">
+                              <div class="sidebar-item search-form">
+
+                                <div class="btn-group">
+                                  <input type="hidden" name="tab_num" class="form-control" value="coming_wish">
+                                  <input type="hidden" name="search2" value="yes">
+                                  <input type="text" name="wish_name" class="form-control">
+
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne" style="width:100px;margin-left:30px;">
+                                    篩選&nbsp;<i class="fa-solid fa-angle-down"></i>
+                                  </button>
+
+                                  <button type="submit">&nbsp;<i class="bi bi-search"></i></button>
+                                </div>
+
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                    <div class="row">
+                                      <br>
+                                      <div class="filtertag">
+                                        <h5 style="text-align:left;">主題</h5>
+                                        <div class="row">
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="1" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-shirt"></i>&nbsp;服飾
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="2" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="3" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-heart"></i>&nbsp;動漫
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="4" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-star"></i>&nbsp;明星
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="5" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-house-chimney-window"></i>&nbsp;日常
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="6" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-gamepad"></i>&nbsp;3C
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="7" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-utensils"></i>&nbsp;美食
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="8" name="topic[]">
+                                              <div class="checkbox-button"><i
+                                                  class="fa-solid fa-person-biking"></i>&nbsp;運動
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="9" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-gift"></i>&nbsp;精品
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                          <div class="topicbox">
+                                            <label class="checkbox-label">
+                                              <input type="checkbox" value="10" name="topic[]">
+                                              <div class="checkbox-button"><i class="fa-solid fa-bars"></i>&nbsp;其他
+                                              </div>
+                                            </label>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+
+                              </div>
+                            </form><!-- End sidebar search formn-->
                           </div><!-- End sidebar -->
                         </div><!-- End blog sidebar -->
                       </center>
@@ -908,27 +1089,48 @@
                       $result = mysqli_query($link, $sql);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $wish_id = $row["wish_id"];
-                        echo '
+                        //topic複選
+                        $alltopic = array();
+                        $sql_alltopic = "select topic from wish_topic where wish_id = '$wish_id'";
+                        $result_alltopic = mysqli_query($link, $sql_alltopic);
+                        while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
+                          $alltopic[] = $row_alltopic['topic'];
+                        }
+
+
+                        $checkselect2 = 'yes';
+                        $topic = $_POST['topic'];
+
+                        foreach ($topic as $check) {
+
+                          if (!in_array($check, $alltopic)) {
+                            $checkselect2 = 'no';
+                            break;
+                          }
+                        }
+
+                        if ($checkselect2 == 'yes') {
+                          echo '
 
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                               <div class="course-item">
                                 <div id="carouselExampleIndicators', $wish_num, '" class="carousel slide" data-bs-ride="carousel">
                                   <div class="carousel-inner fixed-image">';
-                        $a = 1;
-                        $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
-                        $result_photo = mysqli_query($link, $sql_photo);
-                        while ($row_photo = mysqli_fetch_assoc($result_photo)) {
-                          echo '
+                          $a = 1;
+                          $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
+                          $result_photo = mysqli_query($link, $sql_photo);
+                          while ($row_photo = mysqli_fetch_assoc($result_photo)) {
+                            echo '
                                     <div class="carousel-item ';
-                          if ($a == 1) {
-                            echo 'active';
-                          }
-                          echo '">
+                            if ($a == 1) {
+                              echo 'active';
+                            }
+                            echo '">
                                       <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
                                     </div>';
-                          $a++;
-                        }
-                        echo '
+                            $a++;
+                          }
+                          echo '
                                   </div>
                                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators', $wish_num, '" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -952,27 +1154,28 @@
                                       <a href="" class="trainer-link">', $row["user_name"], '</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">';
-                        $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
-                        $result_likepeople = mysqli_query($link, $sql_likepeople);
-                        $count_likepeople = mysqli_num_rows($result_likepeople);
-                        echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
+                          $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
+                          $result_likepeople = mysqli_query($link, $sql_likepeople);
+                          $count_likepeople = mysqli_num_rows($result_likepeople);
+                          echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
 
-                        $sql_likewish = "select * from like_wish
+                          $sql_likewish = "select * from like_wish
                                       where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
-                        $result_likewish = mysqli_query($link, $sql_likewish);
-                        if (isset($_SESSION["account"])) {
-                          if (mysqli_num_rows($result_likewish) == 0) {
-                            echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
-                          } else {
-                            echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                          $result_likewish = mysqli_query($link, $sql_likewish);
+                          if (isset($_SESSION["account"])) {
+                            if (mysqli_num_rows($result_likewish) == 0) {
+                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                            } else {
+                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                            }
                           }
-                        }
-                        echo '</div>
+                          echo '</div>
                                   </div>
                                 </div>
                               </div>  
                             </div><!-- End Course Item-->';
-                        $wish_num++;
+                          $wish_num++;
+                        }
                       }
                     } else {
                       $wish_num = $wish_num + 1;
@@ -1079,21 +1282,139 @@
                         <div class="col-lg-12">
                           <div class="sidebar">
                             <h3 class="sidebar-title">Search (願望名稱&時間)</h3>
-                            <div class="sidebar-item search-form">
-                              <form method=post action="../wish/wish.php">
-                                <input type="hidden" name="tab_num" class="form-control" value="end_wish">
-                                <input type="hidden" name="search3" value="yes">
-                                <input type="text" name="wish_name" class="form-control">
-                                <select class="form-select" aria-label="Default select example" name="wish_end">
-                                  <option selected value="%">選擇時間</option>
-                                  <option value="1個月內">1個月內</option>
-                                  <option value="3個月內">3個月內</option>
-                                  <option value="半年內">半年內</option>
-                                  <option value="1年內">1年內</option>
-                                </select>
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                              </form>
-                            </div><!-- End sidebar search formn-->
+                            <form method=post action="../wish/wish.php">
+                              <div class="sidebar-item search-form">
+
+                                <div class="btn-group">
+                                  <input type="hidden" name="tab_num" class="form-control" value="end_wish">
+                                  <input type="hidden" name="search3" value="yes">
+                                  <input type="text" name="wish_name" class="form-control">
+
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne" style="width:100px;margin-left:30px;">
+                                    篩選&nbsp;<i class="fa-solid fa-angle-down"></i>
+                                  </button>
+
+                                  <button type="submit">&nbsp;<i class="bi bi-search"></i></button>
+                                </div>
+
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample"
+                                  style="margin-top:10px; padding:20px;">
+                                  <div class="accordion-body">
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="filtertag">
+                                          <h5 style="text-align:left;">主題</h5>
+                                          <div class="row">
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="1" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-shirt"></i>&nbsp;服飾
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="2" name="topic[]">
+                                                <div class="checkbox-button"><i
+                                                    class="fa-solid fa-face-smile-beam"></i>&nbsp;美妝
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="3" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-heart"></i>&nbsp;動漫
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="4" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-star"></i>&nbsp;明星
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="5" name="topic[]">
+                                                <div class="checkbox-button"><i
+                                                    class="fa-solid fa-house-chimney-window"></i>&nbsp;日常
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="6" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-gamepad"></i>&nbsp;3C
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="7" name="topic[]">
+                                                <div class="checkbox-button"><i
+                                                    class="fa-solid fa-utensils"></i>&nbsp;美食
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="8" name="topic[]">
+                                                <div class="checkbox-button"><i
+                                                    class="fa-solid fa-person-biking"></i>&nbsp;運動
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="9" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-gift"></i>&nbsp;精品
+                                                </div>
+                                              </label>
+                                            </div>
+
+                                            <div class="topicbox">
+                                              <label class="checkbox-label">
+                                                <input type="checkbox" value="10" name="topic[]">
+                                                <div class="checkbox-button"><i class="fa-solid fa-bars"></i>&nbsp;其他
+                                                </div>
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="col-6">
+                                        <div class="filtertag">
+                                          <h5 style="text-align:left;">時間</h5>
+                                          <div class="row">
+                                            <select class="form-select" aria-label="Default select example"
+                                              name="wish_end">
+                                              <option selected value="%">選擇時間</option>
+                                              <option value="1個月內">1個月內</option>
+                                              <option value="3個月內">3個月內</option>
+                                              <option value="半年內">半年內</option>
+                                              <option value="1年內">1年內</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </form><!-- End sidebar search formn-->
 
                           </div><!-- End sidebar -->
                         </div><!-- End blog sidebar -->
@@ -1138,26 +1459,47 @@
                       $result = mysqli_query($link, $sql);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $wish_id = $row["wish_id"];
-                        echo '
+                        //topic複選
+                        $alltopic = array();
+                        $sql_alltopic = "select topic from wish_topic where wish_id = '$wish_id'";
+                        $result_alltopic = mysqli_query($link, $sql_alltopic);
+                        while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
+                          $alltopic[] = $row_alltopic['topic'];
+                        }
+
+
+                        $checkselect3 = 'yes';
+                        $topic = $_POST['topic'];
+
+                        foreach ($topic as $check) {
+
+                          if (!in_array($check, $alltopic)) {
+                            $checkselect3 = 'no';
+                            break;
+                          }
+                        }
+
+                        if ($checkselect3 == 'yes') {
+                          echo '
                           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                             <div class="course-item">
                               <div id="carouselExampleIndicators', $wish_num, '" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner fixed-image">';
-                        $a = 1;
-                        $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
-                        $result_photo = mysqli_query($link, $sql_photo);
-                        while ($row_photo = mysqli_fetch_assoc($result_photo)) {
-                          echo '
+                          $a = 1;
+                          $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
+                          $result_photo = mysqli_query($link, $sql_photo);
+                          while ($row_photo = mysqli_fetch_assoc($result_photo)) {
+                            echo '
                                   <div class="carousel-item ';
-                          if ($a == 1) {
-                            echo 'active';
-                          }
-                          echo '">
+                            if ($a == 1) {
+                              echo 'active';
+                            }
+                            echo '">
                                     <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
                                   </div>';
-                          $a++;
-                        }
-                        echo '
+                            $a++;
+                          }
+                          echo '
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators', $wish_num, '" data-bs-slide="prev">
                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1181,24 +1523,25 @@
                                     <img src="', $row["user_avatar"], '" class="img-fluid" alt="">
                                     <a href="" class="trainer-link">', $row["user_name"], '</a>
                                   </div>';
-                        if ($row["wish_state"] == 1) {
-                          echo '
+                          if ($row["wish_state"] == 1) {
+                            echo '
                                     <div class="trainer-rank d-flex align-items-center">
                                       <button class="btn button_success" disabled>許願成功</button>
                                     </div>';
-                        } else {
-                          echo '
+                          } else {
+                            echo '
                                     <div class="trainer-rank d-flex align-items-center">
                                       <button class="btn button_fail" disabled>許願失敗</button>
                                     </div>';
-                        }
+                          }
 
-                        echo '
+                          echo '
                                 </div>
                               </div>
                             </div>
                           </div> <!-- End Course Item-->';
-                        $wish_num++;
+                          $wish_num++;
+                        }
                       }
                     } else {
                       $wish_num = $wish_num + 1;

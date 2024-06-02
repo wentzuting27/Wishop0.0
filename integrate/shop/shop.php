@@ -152,6 +152,10 @@
       echo '<a href="like_in_de.php?shop_id=',$shop_id,'&page=shop&method=de&like=shop"><button type="button" class="btn delike_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button></a>';
     }
   }
+
+  if($shop_id==$_SESSION["user_shop_id"]){
+    echo '<button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_shop_modal" style="margin-left: 20px;"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button>';
+  }
   echo '
     <!-- <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#insert_group_Modal"><i class="fa-solid fa-pen"></i>&nbsp;編輯賣場</button> -->
     <!--  -->
@@ -307,6 +311,8 @@
       $result=mysqli_query($link,$sql);
       while($row=mysqli_fetch_assoc($result))
       {
+        $shop_avatar=$row["shop_avatar"];
+        $shop_bg=$row["shop_bg"];
       if($_SESSION["account"]==$row["account"]){
         echo '
         <div>
@@ -401,7 +407,7 @@
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="update_shop_Modal" tabindex="-1" aria-labelledby="update_shop_ModalLabel" aria-hidden="true">
+      <div class="modal fade" id="up_shop_modal" tabindex="-1" aria-labelledby="update_shop_ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -417,11 +423,35 @@
                   </tr>
                   <tr>
                     <td>賣場頭貼</td>
-                    <td><input class="form-control" type="file" id="group_cover"></td>
+                    <td><input class="form-control" type="file" id="shop_avatar" name="shop_avatar"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <table width="100%">
+                        <tr>
+                          <td width="30%"><img src="<?php echo $shop_avatar;?>" class="img-fluid rounded-circle"></td>
+                          <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px"></td>
+                          <td width="30%"><div id="imagePreview"></div></td>
+                        </tr>
+                      </table>
+                    </td>
                   </tr>
                   <tr>
                     <td>賣場背景</td>
-                    <td><input class="form-control" type="file" id="group_cover"></td>
+                    <td><input type="file" id="shop_bg" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <table width="100%">
+                        <tr>
+                          <td width="30%"><img src="<?php echo $shop_bg;?>" class="img-fluid" style="width: 100%;height:100px"></td>
+                          <td width="30%"><img src="../files/左箭頭.png" class="img-fluid rounded-circle" width="50px"></td>
+                          <td width="30%"><img id="selectedImage" style="display: none; width: 100%;height:100px" alt="Selected Image"></td>
+                        </tr>
+                      </table>
+                    </td>
                   </tr>
                   <tr>
                     <td colspan="2"><button type="submit" class="btn insert_button" style="display: block;width: 100%;">確認修改</button></td>
@@ -432,6 +462,43 @@
           </div>
         </div>
       </div>
+      <script>
+      document.getElementById('shop_avatar').onchange = function (e) {
+          var reader = new FileReader(); // 创建 FileReader 对象
+
+          reader.onload = function (event) {
+              var img = document.createElement('img'); // 创建图片元素
+              img.src = event.target.result; // 设置图片源
+              img.style.width = '220px'; // 设置图片宽度
+              img.style.height = '220px'; // 设置图片高度
+              img.style.borderRadius = '50%'; // 设置图片为圆形
+              img.classList.add('img-fluid'); // 添加样式类
+
+              var previewContainer = document.getElementById('imagePreview');
+              previewContainer.innerHTML = ''; // 清空预览区域
+              previewContainer.appendChild(img); // 添加图片到预览区域
+          };
+
+          // 读取文件内容
+          reader.readAsDataURL(e.target.files[0]);
+      };
+
+
+      </script>
+      <script>
+        document.querySelector('#shop_bg.form-control').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.querySelector('#selectedImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
       <!-- 連結管理Modal -->
       <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel" aria-hidden="true">
@@ -608,6 +675,11 @@
         }else{
           $group_link = "../lisa/InnerPage.php?commodity_group_id=$commodity_group_id";
         }
+        $sql_report_yn="select *
+        from report
+        where commodity_group_id='$commodity_group_id' AND report_results =1";
+        $result_report_yn=mysqli_query($link,$sql_report_yn);
+        if(mysqli_num_rows($result_report_yn)==0){
         echo'
       <div class="col-lg-4 col-md-6 shop_group-item">
         <div class="shop_group-wrap">
@@ -648,6 +720,7 @@
       </div>
 
       ';
+      }
       }
     ?>
     
