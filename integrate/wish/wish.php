@@ -441,7 +441,7 @@
                   <label class="col-sm-2 col-form-label">許願截止日期*</label>
                   <div class="col-sm-10">
                     <input type="date" name="end" class="form-control" value="<?php echo $max_date ?>"
-                      max="<?php echo $max_date ?>" id="end-date" required>
+                      max="<?php echo $max_date ?>" min="<?php echo date('Y-m-d'); ?>"  id="end-date" required>
                   </div>
                 </div>
                 <div class="mb-3 row">
