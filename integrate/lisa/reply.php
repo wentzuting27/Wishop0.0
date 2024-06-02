@@ -62,15 +62,15 @@ if(isset($_POST['submit'])) {
         }
         // 提示上传成功或失败并导向适当的页面
         if ($upload_success) {
-            echo'<script>alert("上傳成功"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            echo'<script>alert("上傳成功"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id='.$question_id.'";</script>';
             exit();
         } else {
-            echo'<script>alert("上傳失敗"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+            echo'<script>alert("上傳失敗"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id='.$question_id.'";</script>';
             exit();
         }
     } 
     else {
-        echo '<script>alert("上傳失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        echo '<script>alert("上傳失敗！"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id='.$question_id.'";</script>';
         exit();
     }
 }
