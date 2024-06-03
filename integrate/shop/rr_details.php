@@ -126,42 +126,29 @@
                       <td colspan="3">
                       <center><p style="color: #fff; background-color: #B0A5C6; border-radius: 5px;">';
 
-                      switch ($row["report_type"]) {
-                          case 1:
-                              echo "酒類 / 菸類商品";
-                              break;
-                          case 2:
-                              echo "武器 / 彈藥 / 軍事用品";
-                              break;
-                          case 3:
-                              echo "藥品、醫療器材";
-                              break;
-                          case 4:
-                              echo "此商品可能令人感到不適或違反善良風俗";
-                              break;
-                          case 5:
-                              echo "活體動物、保育動物及其製品";
-                              break;
-                          case 6:
-                              echo "仿冒品";
-                              break;
-                          case 7:
-                              echo "濫用文字誤導搜尋";
-                              break;
-                          case 8:
-                              echo "重覆刊登";
-                              break;
-                          case 9:
-                              echo "複製他人商品圖文";
-                              break;
-                          case 10:
-                              echo "其他";
-                              break;
-                          default:
-                              echo "無";
+                      if ($row["report_type"] == 1) {
+                        echo "酒類 / 菸類商品";
+                      } elseif ($row["report_type"] == 2) {
+                          echo "武器 / 彈藥 / 軍事用品";
+                      } elseif ($row["report_type"] == 3) {
+                          echo "藥品、醫療器材";
+                      } elseif ($row["report_type"] == 4) {
+                          echo "此商品可能令人感到不適或違反善良風俗";
+                      } elseif ($row["report_type"] == 5) {
+                          echo "活體動物、保育動物及其製品";
+                      } elseif ($row["report_type"] == 6) {
+                          echo "仿冒品";
+                      } elseif ($row["report_type"] == 7) {
+                          echo "濫用文字誤導搜尋";
+                      } elseif ($row["report_type"] == 8) {
+                          echo "重覆刊登";
+                      } elseif ($row["report_type"] == 9) {
+                          echo "複製他人商品圖文";
+                      } else {
+                          echo "其他";
                       }
 
-echo '                  </p></center>
+                      echo '</p></center>
                       <div class="scrollable-row" style="background-color: #f0e8ff; border-radius: 5px; padding: 10px">
                           ' . $row["report_why"] . '
                           </div>

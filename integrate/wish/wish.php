@@ -607,14 +607,14 @@
                       <center>
                         <div class="col-lg-12">
                           <div class="sidebar">
-                            <h3 class="sidebar-title">Search (願望名稱)</h3>
+                            <h3 class="sidebar-title">Search</h3>
                             <form method=post action="../wish/wish.php">
                               <div class="sidebar-item search-form">
 
                                 <div class="btn-group">
                                   <input type="hidden" name="tab_num" value="all_wish">
                                   <input type="hidden" name="search1" value="yes">
-                                  <input type="text" name="wish_name" class="form-control">
+                                  <input type="text" name="wish_name" class="form-control" placeholder="輸入願望名稱">
 
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
@@ -953,14 +953,14 @@
                       <center>
                         <div class="col-lg-12">
                           <div class="sidebar">
-                            <h3 class="sidebar-title">Search (願望名稱)</h3>
+                            <h3 class="sidebar-title">Search</h3>
                             <form method=post action="../wish/wish.php">
                               <div class="sidebar-item search-form">
 
                                 <div class="btn-group">
                                   <input type="hidden" name="tab_num" class="form-control" value="coming_wish">
                                   <input type="hidden" name="search2" value="yes">
-                                  <input type="text" name="wish_name" class="form-control">
+                                  <input type="text" name="wish_name" class="form-control" placeholder="輸入願望名稱">
 
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
@@ -1291,14 +1291,14 @@
                       <center>
                         <div class="col-lg-12">
                           <div class="sidebar">
-                            <h3 class="sidebar-title">Search (願望名稱&時間)</h3>
+                            <h3 class="sidebar-title">Search</h3>
                             <form method=post action="../wish/wish.php">
                               <div class="sidebar-item search-form">
 
                                 <div class="btn-group">
                                   <input type="hidden" name="tab_num" class="form-control" value="end_wish">
                                   <input type="hidden" name="search3" value="yes">
-                                  <input type="text" name="wish_name" class="form-control">
+                                  <input type="text" name="wish_name" class="form-control" placeholder="輸入願望名稱">
 
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
