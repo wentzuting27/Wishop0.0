@@ -78,10 +78,11 @@
         }
         
         if(mysqli_query($link, $sql_insert)){
-            echo "新增成功";
+            echo '<script>alert("商品團體新增成功!"); window.history.go(-1);</script>';
         }else{
-            echo "新增失敗";
+            echo '<script>alert("商品團體新增失敗!"); window.history.go(-1);</script>';
         }
+        
 
         foreach ($_POST["cg_theme"] as $theme) {
             $theme = $theme;
@@ -90,11 +91,11 @@
             
         }
 
-        if($page=="shop"){
-            header("refresh:0;url=shop.php?shop_id=$shop_id");
-        }else{
-            header("refresh:0;url=shop_time.php?shop_id=$shop_id");
-        }
+        // if($page=="shop"){
+        //     header("refresh:0;url=shop.php?shop_id=$shop_id");
+        // }else{
+        //     header("refresh:0;url=shop_time.php?shop_id=$shop_id");
+        // }
         
     }
     else{
