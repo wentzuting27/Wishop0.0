@@ -322,7 +322,7 @@
                             </div>';
                                 }
                               } else {
-                                echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前進行中訂單：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
@@ -408,7 +408,7 @@
                             </div>';
                                 }
                               } else {
-                                echo "查無當前進行中許願：" . mysqli_error($link);
+                                echo "查無當前我要跟團：" . mysqli_error($link);
                               }
 
                               mysqli_close($link);
@@ -468,7 +468,7 @@
                                     </div>';
                           }
                         } else {
-                          echo "查無當前進行中許願：" . mysqli_error($link);
+                          echo "查無歷史訂單：" . mysqli_error($link);
                         }
 
                         mysqli_close($link);
