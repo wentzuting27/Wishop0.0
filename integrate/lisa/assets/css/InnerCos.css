@@ -127,7 +127,7 @@ h6 {
     --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 13px 0;
-  background-color: rgba(175, 162, 199, 0.865);
+  background-color: rgba(175, 162, 199, 1);
   min-height: 30px;
   position: relative;
   z-index: 2;

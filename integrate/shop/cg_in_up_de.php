@@ -70,18 +70,19 @@
         // 計算新的 id
         $new_id = $row['max_id'] + 1;
         if(empty($end)){
-            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link)
-            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','1','$nation','$group_link')";
+            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link,creat_time)
+            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','1','$nation','$group_link',now())";
         }else{
-            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,close_order_date,commodity_group_state,nation,cg_original_product_link)
-            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','$end','1','$nation','$group_link')";
+            $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,close_order_date,commodity_group_state,nation,cg_original_product_link,creat_time)
+            value('$new_id','$shop_id','$group_name','$commodity_group_narrate','$dest','$end','1','$nation','$group_link',now())";
         }
         
         if(mysqli_query($link, $sql_insert)){
-            echo "新增成功";
+            echo '<script>alert("商品團體新增成功!"); window.history.go(-1);</script>';
         }else{
-            echo "新增失敗";
+            echo '<script>alert("商品團體新增失敗!"); window.history.go(-1);</script>';
         }
+        
 
         foreach ($_POST["cg_theme"] as $theme) {
             $theme = $theme;
@@ -90,11 +91,11 @@
             
         }
 
-        if($page=="shop"){
-            header("refresh:0;url=shop.php?shop_id=$shop_id");
-        }else{
-            header("refresh:0;url=shop_time.php?shop_id=$shop_id");
-        }
+        // if($page=="shop"){
+        //     header("refresh:0;url=shop.php?shop_id=$shop_id");
+        // }else{
+        //     header("refresh:0;url=shop_time.php?shop_id=$shop_id");
+        // }
         
     }
     else{

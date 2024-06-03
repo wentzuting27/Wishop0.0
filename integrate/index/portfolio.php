@@ -673,15 +673,18 @@
 
               <?php
 
+              //如果nation有接到值、不是空值
               if ($_POST['nation'] != '') {
                 $nation = $_POST['nation'];
               } else {
+                //沒接到值設為%
                 $nation = '%';
               }
 
               $search_y_n = "no";
               if ($_POST["search_y_n"] == "yes") {
                 $search_y_n = "yes";
+                //有搜尋的話顯示出搜尋甚麼咚咚
                 echo '<h5 style="text-align: center;"><b>';
 
                 if (empty($_POST['commodity_name'])) {
@@ -812,10 +815,13 @@
 
 
             <?php
+              //預設沒有搜尋
               $search_y_n = "no";
               if ($_POST["search_y_n"] == "yes") {
                 $search_y_n = "yes";
               }
+              //狀況一、有搜尋，列出含有搜尋條件的全部商品
+              //狀況二、沒有登入，列出全部商品
               if ($_POST["search_y_n"] == "yes" or !isset($_SESSION["account"])) {
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
@@ -825,7 +831,9 @@
               and (commodity_group_state = '1')
               GROUP BY c.commodity_id
               ORDER BY RAND() ";
-              } elseif ($search_y_n == "no") {
+              } 
+              //有登入而且沒有搜尋，搜該使用者感興趣的主題商品已及追縱的賣家商品
+              elseif ($search_y_n == "no") {
                 $sql = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
@@ -852,7 +860,7 @@
 
               $commodity_group_id = $row["commodity_group_id"];
 
-
+              //搜這個商品是不是登入使用者有追蹤的賣家
               $sql2 = "select * from commodity c
               JOIN commodity_photo cp on c.commodity_id = cp.commodity_id 
               JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
@@ -863,29 +871,39 @@
 
               //topic複選
               $alltopic = array();
+             // $alltopic 中儲存的是這個商品有的主題
               $sql_alltopic = "select topic from group_topic where commodity_group_id = '$commodity_group_id'";
               $result_alltopic = mysqli_query($link, $sql_alltopic);
               while ($row_alltopic = mysqli_fetch_assoc($result_alltopic)) {
+                //該商品有的主題存在$alltopic[]陣列中
                 $alltopic[] = $row_alltopic['topic'];
               }
 
-
+              //預設
               $checkselect = 'yes';
-              $topic = $_POST['topic'];
-              foreach ($topic as $check) {
 
+              // 從POST知道選擇的主題
+              $topic = $_POST['topic'];
+
+              // 每一個選中的topic
+              foreach ($topic as $check) {
+                
+                // 用$check檢查該主題在不在$alltopic裡，沒有的話將$checkselect設置成'no'，代表該商品不含這個條件
                 if (!in_array($check, $alltopic)) {
                   $checkselect = 'no';
                   break;
                 }
               }
 
+              
+              //如果是'yes'，表示所有選中的主题都在$alltopic裡，商品符合篩選條件所以列出來
               if ($checkselect == 'yes') {
 
 
 
                 echo '
                 <div class="col-lg-4 col-md-6 portfolio-item  filter-';
+                //sql2，如果該商品是登入使用者追蹤的賣家，就會加上follow-filter
                 if (mysqli_num_rows($result2)) {
                   echo 'follow';
                 }

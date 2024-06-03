@@ -222,11 +222,14 @@
           ?>
             </b>
           </h2>
+
+
           <?php
           $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
           $sql_liketopic = "SELECT * from like_topic
           where topic='$topic' and account='{$_SESSION["account"]}'";
           $result_liketopic = mysqli_query($link, $sql_liketopic);
+          //看該主題是否有被這個登入者關注
           if (isset($_SESSION["account"])) {
             if (mysqli_num_rows($result_liketopic) == 0) {
               echo '<a type=button href="like_topic.php?topic=', $topic, '&method=in" class="btn-tag" style="font-size:16px;"><i class="fa-solid fa-plus"></i>&nbsp;關注</a>';
@@ -276,7 +279,7 @@
                   $topic = $_GET['topic'];
                 }
 
-
+                //該主題的商品，用創建賣場的時間來排序(最新的會排在最上面)
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql = "SELECT * 
                           FROM commodity c
@@ -334,6 +337,7 @@
                   $topic = $_GET['topic'];
                 }
 
+                //該主題的商品，用下單數來排sum(od.orde_details_num)(下單數最多的會排在最上面)
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql2 = "SELECT c.*, cp.commodity_photo, cg.*, gt.*, SUM(od.order_details_num) AS total_order_details_num
                           FROM commodity c
@@ -386,6 +390,7 @@
                   $topic = $_GET['topic'];
                 }
 
+                //該主題的願望，用許願的時間排序
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $sql3 = "SELECT * from wish 
                 natural join account
