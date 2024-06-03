@@ -89,8 +89,8 @@
     while ($row = mysqli_fetch_assoc($result)) {
       $shop_id = $row["shop_id"];
       echo '
-    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
-    ;">';
+      <section id="hero" style="background-image: url(', $row["commodity_group_bg"], '); background-size: cover; background-position: center;
+      ;">';
     } ?>
     <form method="post" action="save_group.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
       <?php
