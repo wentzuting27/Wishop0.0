@@ -316,7 +316,7 @@
                                   <p class="deadline">下單時間: ', $row["order_time"], '</p>
                                 </div>
                                 <div class="item-meta">
-                                  <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $_SESSION['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
+                                  <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳情</a>
                                 </div>
                               </div>
                             </div>';
@@ -462,7 +462,7 @@
                                           <p class="deadline">訂單完成時間: ', $row["order_time"], '</p>
                                         </div>
                                         <div class="item-meta">
-                                          <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $_SESSION['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳細</a>
+                                          <a class="link-btn" href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '"><i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;訂單詳情</a>
                                         </div>
                                       </div>
                                     </div>';
