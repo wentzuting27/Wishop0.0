@@ -76,7 +76,7 @@
     .modal-reset-password {
         background-color: #fff;
         width: 750px;
-        height: 500px;
+        height: 550px;
         border-radius: 10px;
         box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.57);
         position: relative;
