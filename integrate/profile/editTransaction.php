@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-        <?php
+        <?php session_start();
         $method = $_POST["method"];
         $account = $_POST["account"];
         $telephone_number = $_POST["telephone_number"];

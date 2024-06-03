@@ -105,7 +105,11 @@
     <div class="edit_like_shop_button">
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#up_rule_Modal"><i
           class="fa-solid fa-pen-to-square"></i>&nbsp;編輯</button>';
-      $sql2 = "select * from `order`";
+      $sql2 = "select * from `order`
+      natural join order_details
+      natural join commodity
+      where commodity_group_id=$commodity_group_id
+      order by order_id";
       $result2 = mysqli_query($link, $sql2);
       $allOrdersComplete = true;
       while ($row2 = mysqli_fetch_assoc($result2)) {
@@ -172,7 +176,7 @@
       </div>
     </div><!-- End insert_group_Modal -->
     <!-- Button trigger modal -->
-
+    <form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
     <!-- Modal -->
     <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -183,11 +187,12 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-            <button type="button" name="delgroup" class="btn btn-primary">確定</button>
+            <button type="submit" name="delgroup" class="btn btn-primary">確定</button>
           </div>
         </div>
       </div>
     </div>
+    </form>
     <!-- Showcase -->
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
