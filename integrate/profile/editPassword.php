@@ -27,22 +27,18 @@ if ($current_password === $stored_password) {
     if ($new_password === $confirm_password) {
         // 新密碼是否等於二次確認的密碼
         $update_sql = "UPDATE account SET password='$new_password' WHERE account='$account'";
-        // 更新密碼
+        // 編輯密碼
         mysqli_query($link, $update_sql);
 
-        // 修改密码成功后，重定向到用户资料页面或其他页面
-        // header("Location: Profile_settings.php");
         echo '<script>alert("密碼修改成功！"); window.history.go(-1);</script>';
             exit();
     } else {
-        // 新密码和确认密码不匹配，重定向回修改密码页面并显示错误消息
-        // header("Location: Profile_settings.php?error=confirm_password_mismatch");
+        // 再次輸入的密碼與新密碼不相符
         echo '<script>alert("再次輸入的密碼與新密碼不相符，請檢查是否輸入錯誤！"); window.history.go(-1);</script>';
         exit();
     }
 } else {
-    // 当前密码不正确，重定向回修改密码页面并显示错误消息
-    // header("Location: Profile_settings.php?error=current_password_invalid");
+    // 輸入的密碼不等於原本舊的密碼
     echo '<script>alert("原密碼輸入錯誤，請輸入正確密碼！"); window.history.go(-1);</script>';
     exit();
 }

@@ -19,56 +19,44 @@ $(document).ready(function() {
     // 你的其他事件处理器代码...
   });
 
-   // 獲取所有 checkbox 元素
-   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+// 獲取所有 checkbox 元素
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-   checkboxes.forEach(function (checkbox) {
-     var label = document.querySelector('label[for="' + checkbox.id + '"]');
-     var isChecked = localStorage.getItem("checkbox" + checkbox.dataset.orderId);
+checkboxes.forEach(function (checkbox) {
+  var label = document.querySelector('label[for="' + checkbox.id + '"]');
+  var isChecked = localStorage.getItem("checkbox" + checkbox.dataset.orderId);
 
-     if (isChecked === "true") {
-       checkbox.checked = true;
-       label.textContent = "已付款"; // 修改 label 的內容
-     }
-     if (label.textContent = "已付款" ) {
-      checkbox.checked = true;
+  if (isChecked === "true") {
+    checkbox.checked = true;
+    label.textContent = "已付款"; // 修改 label 的內容
+  }
+
+  if (label.textContent === "已付款") {
+    checkbox.checked = true;
+  }
+
+  checkbox.addEventListener("click", function () {
+    var orderId = checkbox.dataset.orderId;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_payment_state.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // 在此處處理後端 PHP 回應
+        console.log(xhr.responseText);
+      }
+    };
+
+    if (checkbox.checked) {
+      localStorage.setItem("checkbox" + orderId, "true");
+      label.textContent = "已付款"; // 修改 label 的內容
+      xhr.send("order_id=" + orderId + "&payment_state=2");
+    } else {
+      localStorage.removeItem("checkbox" + orderId);
+      label.textContent = "未付款"; // 修改 label 的內容
+      xhr.send("order_id=" + orderId + "&payment_state=1");
     }
+  });
+});
 
-
-     checkbox.addEventListener("click", function () {
-       if (checkbox.checked) {
-         localStorage.setItem("checkbox" + checkbox.dataset.orderId, "true");
-         label.textContent = "已付款"; // 修改 label 的內容
-
-         // 使用 AJAX 發送資料到後端 PHP 腳本
-         var orderId = checkbox.dataset.orderId;
-         var xhr = new XMLHttpRequest();
-         xhr.open("POST", "update_payment_state.php", true);
-         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-         xhr.onreadystatechange = function () {
-           if (xhr.readyState === 4 && xhr.status === 200) {
-             // 在此處處理後端 PHP 回應
-             console.log(xhr.responseText);
-           }
-         };
-         xhr.send("order_id=" + orderId + "&payment_state=2");
-       } else {
-         localStorage.removeItem("checkbox" + checkbox.dataset.orderId);
-         label.textContent = "未付款"; // 修改 label 的內容
-
-         // 使用 AJAX 發送資料到後端 PHP 腳本
-         var orderId = checkbox.dataset.orderId;
-         var xhr = new XMLHttpRequest();
-         xhr.open("POST", "update_payment_state.php", true);
-         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-         xhr.onreadystatechange = function () {
-           if (xhr.readyState === 4 && xhr.status === 200) {
-             // 在此處處理後端 PHP 回應
-             console.log(xhr.responseText);
-           }
-         };
-         xhr.send("order_id=" + orderId + "&payment_state=1");
-       }
-     });
-   });
    
