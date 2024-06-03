@@ -8,6 +8,9 @@ if(isset($_POST['submit'])) {
     if (!$link) {
         die('Connection failed: ' . mysqli_connect_error());
     }
+    $sql = "SELECT * FROM `order` WHERE order_id = '$order_id' AND account='{$_SESSION["account"]}' " ;
+$result=mysqli_query($link, $sql);
+if ( mysqli_num_rows($result)!=0) {
     // 检查是否有文件上传
     if (!empty($_FILES['proof_photo']['name'][0])) {
         // 上传并插入图片到数据库
@@ -55,6 +58,10 @@ if(isset($_POST['submit'])) {
         echo'<script>alert("上傳失敗"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         exit();
     }
-
+}
+else {
+    echo'<script>alert("上傳失敗"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+    exit();
+}
 }
 ?>

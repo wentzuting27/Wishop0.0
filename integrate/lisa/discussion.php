@@ -242,7 +242,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
       $row2 = mysqli_fetch_assoc($result2);
       echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
       if ($row["commodity_group_state"] == 2) {
-        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結束</button></small>';
       }
       if ($row["commodity_group_state"] == 1) {
         echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
@@ -263,6 +263,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
     </section>
     <!-- SECOND navbar -->';
     } ?>
+
 
     <div class="tabs" role="tablist">
 
@@ -397,10 +398,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                       <td class="hidden-xs text-center" id="totalPrice"><strong>總計 $0</strong></td>';
                   $commodity_group_id = $_GET["commodity_group_id"];
                   $account = $_SESSION["account"];
-                  $sql2 = "SELECT * FROM withgroup NATURAL JOIN commodity_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
+                  $sql2 = "SELECT * FROM withgroup  WHERE account = '$account' AND commodity_group_id= $commodity_group_id";
                   $result2 = mysqli_query($link, $sql2);
                   $row2 = mysqli_fetch_assoc($result2);
-                  if(isset($account)&& ($row2["commodity_group_state"] == 1 || $row2["commodity_group_state"] == 3) && time() < strtotime($row2["close_order_date"])){
+                  $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
+                  $result3 = mysqli_query($link, $sql3);
+                  $row3 = mysqli_fetch_assoc($result3);
+                  if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) && (time() < strtotime($row3["close_order_date"]) || time() == null)){
                   if ($result2 && mysqli_num_rows($result2) != 0) {
                     echo '
                       <td class="text-right">
@@ -438,6 +442,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:(欲無卡交易請填無卡交易)</label>
                 <input type="text" id="payment_account" name="payment_account" required minlength="4" maxlength="8" size="10"
                   style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
+                  <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">欲付款之賣家帳戶：</label>
+                <input type="text" id="account_to_send_money_to" name="account_to_send_money_to" required minlength="4" maxlength="8" size="10"
+                  style="margin:0 10px 10px 10px"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
@@ -683,8 +690,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     <div class="modal-footer">
                     <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
                     <input type="hidden" name="question_id" value="', $question_id , '">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
-                      <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">編輯</button>
+                      <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                     </div>
                   </div>
                 </div>
@@ -708,7 +715,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
               $commodity_group_id = $_GET["commodity_group_id"];
               $question_id = $_GET["question_id"];
-              $sql = "SELECT * FROM account ;";
+              $sql = "SELECT * FROM account WHERE account='{$_SESSION["account"]}';";
               $result = mysqli_query($link, $sql);
               $row = mysqli_fetch_assoc($result);
               echo '
@@ -746,6 +753,110 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
         <section id="order">
           <h2>Returns</h2>
           <h4>對帳表:</h4>
+          <?php
+          if (!empty($_SESSION['account'])) {
+            echo '
+          <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
+          <i class="fa-regular fa-circle-question fa-lg" style="float: right;" aria-hidden="true"></i>
+          </a>';
+          } ?>
+          <style>
+            /* 主體顏色設置 */
+            .section-with-bg {
+              padding: 20px;
+            }
+
+            /* 標籤導航樣式 */
+            .section-with-bg .nav-pills .nav-link {
+              color: #ffffff;
+              /* 文字顏色 */
+              background-color: #B0A5C6;
+              /* 背景顏色 */
+              border-radius: 10px;
+              /* 可以選擇是否設置圓角 */
+              margin-right: 15px;
+              /* 調整按鈕間距 */
+              font-size: 18px;
+            }
+
+            /* 激活狀態下的標籤樣式 */
+            .section-with-bg .nav-pills .nav-link.active,
+            .section-with-bg .nav-pills .nav-link.active:focus,
+            .section-with-bg .nav-pills .nav-link.active:hover {
+              color: #ffffff;
+              /* 激活狀態下的文字顏色 */
+              background-color: #E9C9D6;
+              /* 激活狀態下的背景顏色 */
+            }
+
+            /* 標籤內容樣式 */
+            .section-with-bg .tab-content {
+              background-color: #ffffff;
+              /* 標籤內容背景顏色 */
+              padding: 20px;
+              border-radius: 5px;
+              /* 可以選擇是否設置圓角 */
+              margin-top: 10px;
+              /* 調整標籤內容與標籤之間的間距 */
+            }
+
+            .section-with-bg mark {
+              background-color: #E9C9D6;
+              color: #FFF;
+              border-radius: 20px;
+              display: inline-block;
+              line-height: 0.8;
+              overflow: visible;
+              padding: 0.5em 0.5em;
+              margin-top: 5px;
+              margin-bottom: 10px;
+            }
+          </style>
+          <!-- 連結管理Modal -->
+          <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="update_social_ModalLabel">操作教學</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- ======= Schedule Section ======= -->
+                  <div id="schedule" class="section-with-bg">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
+                          data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                          aria-selected="false">對帳表&nbsp;&nbsp;<i class="fa-solid fa-check"></i></button>
+                      </li>
+                    </ul> 
+                    <div class="tab-content" id="pills-tabContent">
+                      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;對帳表</mark>
+                        <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
+                          <h5><b>被接收之訂單：</b>賣家接收訂單後訂單狀態會改為已成立，否則未成立</h5>
+                          <h5><b>被拒絕之訂單：</b>賣家拒絕訂單後訂單狀態會改為拒絕接收，可以在詢問區詢問賣家原因</h5>
+                          <br>
+                          <h5><b>拒絕可能原因如下：</b>
+                          <ul>
+                            <li>未正確填好訂單資料(付款帳號等等)</li>
+                            <li>該訂單商品缺貨</li>
+                            <li>詳細可能原因請參照賣家的規則、注意賣家的通知</li>
+                          </ul></h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <img src="../files/螢幕擷取畫面 2024-06-03 145229.png" alt="發現功能"
+                            style="min-width:100px; height:60%">
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Schedule Section -->
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="table-responsive">
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
               <thead>
@@ -851,6 +962,12 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         </td>
                       </tr>
                       <tr>
+                      <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">買家選擇之匯款帳戶：</th>
+                      <td>
+                      <p>' . $row['account_to_send_money_to'] . '</p>
+                      </td>
+                    </tr>
+                      <tr>
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容：</th>
                         <td>
                         <p>' . nl2br($remark) . '</p>
@@ -866,6 +983,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀況：</th>
                         <td>
                        ';
+                       if($_SESSION["account"]==$account ){
                        $commodity_group_state=$row["commodity_group_state"];
                         if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3)){
                           echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
@@ -880,6 +998,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
                         style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';}
+                      }
                       echo'</tr>
                     </table>
                   </div>
@@ -969,8 +1088,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
           <div class="seven">
             <h1>無卡付款證明上傳區塊</h1>
           </div>
-          <form action="addconform.php?commodity_group_id=<?php echo $commodity_group_id; ?>" method="post" role="form"
-            enctype="multipart/form-data">
+          
             <center>
               
                 <?php
@@ -981,7 +1099,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 $result = mysqli_query($link, $sql);
                 $row = mysqli_fetch_assoc($result);
                 if(isset($account) && isset($row["order_id"])){
-                echo '<div class="card" style="width:80%">
+                echo '<form action="addconform.php?commodity_group_id='.$commodity_group_id.'" method="post" role="form"
+            enctype="multipart/form-data">
+            <div class="card" style="width:80%">
                     <div class="card-header">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-top: 20px; margin-bottom: 20px;">
@@ -1022,7 +1142,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 <div class="card-footer">
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>'; }?>
+                </div>
+                </form>'; }?>
         </section>
       </div>
     </div>

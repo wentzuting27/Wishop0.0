@@ -248,7 +248,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
       $row2 = mysqli_fetch_assoc($result2);
       echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
       if ($row["commodity_group_state"] == 2) {
-        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結單</button></small>';
+        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結束</button></small>';
       }
       if ($row["commodity_group_state"] == 1) {
         echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
@@ -447,9 +447,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:(欲無卡交易請填無卡交易)</label>
                 <input type="text" id="payment_account" name="payment_account" required minlength="4" maxlength="8" size="10"
                   style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
-                  <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:(欲無卡交易請填無卡交易)</label>
+                  <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">欲付款之賣家帳戶：</label>
                 <input type="text" id="account_to_send_money_to" name="account_to_send_money_to" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px" value="' . $row["account_to_send_money_to"] . '"/>
+                  style="margin:0 10px 10px 10px"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
@@ -586,12 +586,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     </div>
                     <p>', $row["account"], '：</p>
                     <h4><B>', $row["question_title"], '</B></h4>
-                  </div>
-                  <h4 style="float: right;margin-top:-70px;">
+                  </div>';
+                  if($row["account"]==$_SESSION["account"]){
+                  echo'<h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>
-                </div>
+                  </h4>';}
+                echo'</div>
                 
                 <div class="card-body " id="card' . $question_id . '">
                   <p>', nl2br($row["question_narrate"]), '</p>';
@@ -893,6 +894,12 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             echo '</ul>
                         </td>
                       </tr>
+                      <tr>
+                      <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">買家選擇之匯款帳戶：</th>
+                      <td>
+                      <p>' . $row['account_to_send_money_to'] . '</p>
+                      </td>
+                    </tr>
                       <tr>
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容：</th>
                         <td>

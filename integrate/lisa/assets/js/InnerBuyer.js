@@ -59,4 +59,16 @@ checkboxes.forEach(function (checkbox) {
   });
 });
 
-   
+   //改團體資訊
+function displaySelectedImage(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const selectedImage = document.getElementById('selectedImage');
+      selectedImage.src = e.target.result;
+      selectedImage.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+  }
+}
