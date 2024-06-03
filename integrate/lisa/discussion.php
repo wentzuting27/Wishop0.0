@@ -667,8 +667,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         <span class="visually-hidden">Next</span>
                       </button>
                     </div>
-                </div> 
-                    ';
+                 ';
               } 
             
               echo '
@@ -683,6 +682,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
+                    <input type="hidden" name="question_id" value="', $question_id , '">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
                       <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
                     </div>
@@ -690,12 +690,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 </div>
                 </form>
             ';echo '
-              </div>
-              </div>
+            </div>
                     </div>
                     </div>
                     </div>
-              ';}
+                    </div>
+                   
+              ';  }
                
               mysqli_close($link);
               ?>

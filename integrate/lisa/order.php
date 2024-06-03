@@ -17,24 +17,20 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $sql = "SELECT common_payment_account FROM shop NATURAL JOIN account WHERE shop_id = ' $shop_id'";
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
-    $account_to_send_money_to = $_POST['payment_account'];
-    $payment_account = $row1['common_payment_account'];
+    $account_to_send_money_to = $_POST['account_to_send_money_to'];
+    $payment_account = $_POST['payment_account'];
     $payment_state=1;
     $order_state="未成立";
-    if($account_to_send_money_to=="無卡交易"){
-        $remark = $_POST['remark'] . "(無卡交易之訂單)";
+    if($payment_account=="無卡交易"){
+        $account_to_send_money_to = "無卡交易";
     }
     else{
        $remark = $_POST['remark']; // 检查备注是否设置 
     }
-    // 取得目前的时间戳
-    $timestamp = time();
-    // 将时间戳格式化为日期时间字符串
-    $order_time = date("Y-m-d H:i:s", $timestamp);
 
     // 插入訂單主要資訊
     $sql2 = "INSERT INTO `order` (account, order_time, account_to_send_money_to, payment_account, payment_state, remark, order_state) 
-                    VALUES ('$account', '$order_time', '$account_to_send_money_to', '$payment_account', '$payment_state', '$remark', '$order_state')";
+                    VALUES ('$account', NOW(), '$account_to_send_money_to', '$payment_account', '$payment_state', '$remark', '$order_state')";
     $result2 = mysqli_query($link, $sql2);
     
     // 如果插入失敗，則提示並退出

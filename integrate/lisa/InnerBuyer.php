@@ -118,7 +118,7 @@
       $result2 = mysqli_query($link, $sql2);
       $allOrdersComplete = true;
       while ($row2 = mysqli_fetch_assoc($result2)) {
-        if ($row2["order_state"] != "完成訂單") {
+        if ($row2["order_state"] != "完成訂單" || $row2["order_state"] !="拒絕接收") {
           $allOrdersComplete = false;
           break;
         }
@@ -400,7 +400,7 @@
                       <tr>
                         <th style="width:50%">商品</th>
                         <th>價格</th>
-                        <th style="width:10%">已賣出</th>
+                        <th style="width:10%">已下單</th>
                       </tr>
                     </thead>
                     <?php
@@ -920,7 +920,7 @@
                 </div>
               </div>
             </div>';
-                  }
+
                   echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -956,7 +956,7 @@
                 });
               });
               </script>';
-                }
+                }}
                 mysqli_close($link);
                 ?>
         </section>
@@ -1054,9 +1054,11 @@
                         <mark style="font-size:18px;"><i class="fa-solid fa-wand-sparkles"></i>&nbsp;接收訂單</mark>
                         <div style="margin-left:5px; margin-right:5px; font-size: 16px;">
                           <h5><b>接收訂單：</b>點擊接受訂單後訂單會跑到對帳表</h5>
+                          <h5><b>拒絕接收：</b>點擊該訂單會不再受理</h5>
+                          <h5><b>買家信用紀錄：</b>最右邊點擊可以看到該買家下單的次數以及完成訂單數</h5>
                         </div>
                         <div class="d-flex justify-content-center">
-                          <img src="../files/@media(min-width 920px) { (2).png" alt="發現功能"
+                          <img src="../files/image.png" alt="發現功能"
                             style="min-width:100px; height:60%">
                         </div>
                       </div>
@@ -1636,6 +1638,12 @@
                         </td>
                       </tr>
                       <tr>
+                        <th>買家選擇之匯款帳戶</th>
+                        <td>
+                        <p>' . nl2br($remark) . '</p>
+                        </td>
+                      </tr>
+                      <tr>
                         <th>買家備註內容</th>
                         <td>
                         <p>' . nl2br($remark) . '</p>
@@ -1738,8 +1746,17 @@
           </tr>
           </tbody>
           </form>';
-              $sql3 = "SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']}; ";
-              $sql4 = "SELECT account,COUNT(order_id) AS allorder FROM `order` WHERE order_id={$row['order_id']} AND order_state='完成訂單'; ";
+              $sql1 = "SELECT account FROM `order` WHERE order_id = '{$row['order_id']}'";
+              $result1 = mysqli_query($link, $sql1);
+              $data1 = mysqli_fetch_assoc($result1);
+              $account = $data1['account'];
+              $sql3 = "SELECT account,COUNT(order_id) AS allorder 
+              FROM `order` 
+              WHERE account = '{$account}';";
+              $sql4 = "SELECT COUNT(order_id) AS allorder2
+              FROM `order` 
+              WHERE account ='{$account}' 
+              AND order_state='完成訂單';";
               $result3 = mysqli_query($link, $sql3);
               $result4 = mysqli_query($link, $sql4);
               $row3 = mysqli_fetch_assoc($result3);
@@ -1754,11 +1771,11 @@
                     </div>
                     <div class="modal-body">
                       <li>下訂單數：' . $row3['allorder'] . '</li>
-                      <li>完成訂單數：' . $row4['allorder'] . '</li>
+                      <li>完成訂單數：' . $row4['allorder2'] . '</li>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                      <button type="button" class="btn btn-primary">確認</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確認</button>
                     </div>
                   </div>
                 </div>
@@ -1779,8 +1796,16 @@
                 die('Connection failed: ' . mysqli_connect_error());
               }
               $commodity_group_id = $_GET["commodity_group_id"];
-              $sql = "SELECT * FROM proof_of_purchase NATURAL JOIN `order` NATURAL JOIN account NATURAL JOIN order_details NATURAL JOIN commodity NATURAL JOIN commodity_group
-              WHERE commodity_group_id=$commodity_group_id;";
+              $sql = "SELECT * 
+              FROM proof_of_purchase 
+              NATURAL JOIN account
+              NATURAL JOIN `order` 
+              NATURAL JOIN order_details 
+              NATURAL JOIN commodity 
+              NATURAL JOIN commodity_group 
+              WHERE commodity_group_id =  $commodity_group_id
+              ORDER BY proof_of_purchase.proof_of_purchase_time DESC 
+              LIMIT 1;";
               $result = mysqli_query($link, $sql);
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<form method="post" action="proof.php?commodity_group_id=' . $commodity_group_id . '"> 
