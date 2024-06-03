@@ -302,13 +302,21 @@
                                   <div class="product-title">
                                     <a href="../lisa/innerPage.php?commodity_group_id=', $row['commodity_group_id'] . '">
                                       <h4>', $row["commodity_group_name"], '</h4>
-                                    </a>
-                                  </div>';
+                                    </a>';                            
+
+                                    $commodity_group_state = $row["commodity_group_state"];
+                                    // commodity_group_state=4 =>被檢舉成功的商團
+                                    if ($commodity_group_state == 4) {
+                                      echo '
+                                                        <span class="expiring-tag" style="background-color: #ff6868;"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;此商品已被檢舉</span>
+                                                        ';
+                                    }
+                                  
                                   $sql_shop = "select * from shop
                                   WHERE shop_id='{$row["shop_id"]}'";
                                   $result_shop = mysqli_query($link, $sql_shop);
                                   $row_shop = mysqli_fetch_assoc($result_shop);
-                                  echo '
+                                  echo '</div>
                                 <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                 class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                 ';
@@ -370,15 +378,21 @@
                                       <span class="expiring-tag">下單期限即將結束</span>
                                       ';
                                   }
-                                  echo '
-                                  </div>
-                                  ';
+                           
+
+                                    $commodity_group_state = $row["commodity_group_state"];
+                                    // commodity_group_state=4 =>被檢舉成功的商團
+                                    if ($commodity_group_state == 4) {
+                                      echo '
+                                                        <span class="expiring-tag" style="background-color: #ff6868;"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;此商品已被檢舉</span>
+                                                        ';
+                                    }
 
                                   $sql_shop = "select * from shop
                                   WHERE shop_id='{$row["shop_id"]}'";
                                   $result_shop = mysqli_query($link, $sql_shop);
                                   $row_shop = mysqli_fetch_assoc($result_shop);
-                                  echo '
+                                  echo '</div>
                                 <a href="../shop/shop.php?shop_id=', $row_shop['shop_id'] . '" class="seller"><i
                                 class="fa-solid fa-shop"></i>&nbsp;&nbsp;', $row_shop["shop_name"], '</a>
                                 ';
@@ -389,19 +403,6 @@
                                 <div class="item-meta">
                                 ';
 
-                                  // if($row["commodity_group_state"]==3){
-                                  //   echo '<div class="item-meta">
-                                  //   <span class="wishNo-tag">未成團</span>
-                                  //   </div>';
-                                  // }elseif(mysqli_num_rows($result__order_YorN)==0){
-                                  //   echo '<div class="item-meta">
-                                  //   <span class="wishNo-tag">尚未下單</span>
-                                  //   </div>';
-                                  // }else{
-                                  //   echo '<div class="item-meta">
-                                  //   <span class="wishYes-tag">已下單</span>
-                                  // </div>';
-                                  // }
                                   echo '
                                 </div>
                               </div>
