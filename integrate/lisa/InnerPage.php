@@ -462,10 +462,25 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
         <section id="first">
           <h2>Shipping</h2>
           <div id="third">
-            <h3><i class="fa-solid fa-star"></i>團主公告
-              <button id="pra" style="float: right; border-radius: 50%;"><i
-                  class="fa-solid fa-arrow-right"></i></button>
-            </h3>
+          <style>
+                .filtertag h4 {
+                  padding: 0.25em 0.5em;
+                  /*上下 左右の余白*/
+                  color: #494949;
+                  /*文字色*/
+                  background: transparent;
+                  /*背景透明に*/
+                  border-left: solid 5px #B0A5C6;
+                  /*左線*/
+                  font-weight: bold;
+                }
+              </style>
+              <div class="filtertag">
+                <h4>團主公告
+                  <button id="pra" style="float: right; border-radius: 50%;"><i
+                      class="fa-solid fa-arrow-right"></i></button>
+                </h4>
+              </div>
             <div class="row">
               <div id="slider-carousel" class="owl-carousel">
                 <?php
@@ -508,7 +523,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
             </div>
             <br>
-            <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
+            <div class="filtertag">
+                <h4>詢問區</h4>
+              </div>
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $account = $_SESSION["account"];
