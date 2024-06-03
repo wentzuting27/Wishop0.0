@@ -632,7 +632,7 @@
                                           
                                       </div>
                                       <div class="modal-footer">
-                                      <a href="bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團&shop_id=',$shop_id,'"><button type="button" class="btn insert_button" data-bs-dismiss="modal">確定跟團</button></a>
+                                      <a href="bid_in_up.php?commodity_group_id=',$commodity_group_id,'&wish_id=',$wish_id,'&method=跟團"><button type="button" class="btn insert_button" data-bs-dismiss="modal">確定跟團</button></a>
                                     </div>
                                     </div>
                                   </div>
