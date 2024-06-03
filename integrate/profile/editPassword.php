@@ -32,16 +32,19 @@ if ($current_password === $stored_password) {
 
         // 修改密码成功后，重定向到用户资料页面或其他页面
         // header("Location: Profile_settings.php");
-        echo'修改成功';
+        echo '<script>alert("密碼修改成功！"); window.history.go(-1);</script>';
+            exit();
     } else {
         // 新密码和确认密码不匹配，重定向回修改密码页面并显示错误消息
         // header("Location: Profile_settings.php?error=confirm_password_mismatch");
-        echo'修改失敗';
+        echo '<script>alert("再次輸入的密碼與新密碼不相符，請檢查是否輸入錯誤！"); window.history.go(-1);</script>';
+        exit();
     }
 } else {
     // 当前密码不正确，重定向回修改密码页面并显示错误消息
     // header("Location: Profile_settings.php?error=current_password_invalid");
-    echo'密碼錯誤';
+    echo '<script>alert("原密碼輸入錯誤，請輸入正確密碼！"); window.history.go(-1);</script>';
+    exit();
 }
 
 
