@@ -93,12 +93,15 @@
       $account = $_SESSION["account"];
       $sql2 = "SELECT * FROM like_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result2 = mysqli_query($link, $sql2);
+      $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
+      $result3 = mysqli_query($link, $sql3);
+      $row3 = mysqli_fetch_assoc($result3);
       echo'<div class="background-overlay" style="position: absolute;
       top: 0;
       width: 100%;
       height: 100%;background-color: rgba(237, 237, 237, 0.733)">
       </div>';
-      if(isset($account)){ 
+      if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)){ 
       if ($result2 && mysqli_num_rows($result2) == 0) {
         echo '
     <div class="edit_like_shop_button">
@@ -112,8 +115,11 @@
 
       $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
+      $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
+      $result3 = mysqli_query($link, $sql3);
       $row = mysqli_fetch_assoc($result);
-if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3)){
+      $row3 = mysqli_fetch_assoc($result3);
+if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)){
       if ($result && mysqli_num_rows($result) == 0) {
         echo '
     <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
@@ -661,8 +667,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                         <span class="visually-hidden">Next</span>
                       </button>
                     </div>
-                </div> 
-                    ';
+                 ';
               } 
             
               echo '
@@ -677,6 +682,7 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
+                    <input type="hidden" name="question_id" value="', $question_id , '">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
                       <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
                     </div>
@@ -684,12 +690,13 @@ if(isset($account) && ($row["commodity_group_state"] == 1 || $row["commodity_gro
                 </div>
                 </form>
             ';echo '
-              </div>
-              </div>
+            </div>
                     </div>
                     </div>
                     </div>
-              ';}
+                    </div>
+                   
+              ';  }
                
               mysqli_close($link);
               ?>

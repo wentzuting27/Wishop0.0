@@ -14,11 +14,11 @@ if ($link->connect_error) {
 // 獲取前端傳來的參數
 if (isset($_POST["delgroup"])) {
     // 在這裡執行刪除操作
-    $sql = "DELETE FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+    $sql = "UPDATE commodity_group SET commodity_group_state = 2 WHERE commodity_group_id=$commodity_group_id";
     if (mysqli_query($link, $sql)) {
-        echo "成功刪除該團體";
+        echo '<script>alert("結束成功!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
     } else {
-        echo "刪除失敗: ";
+        echo '<script>alert("結束失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
     }
 }
 
