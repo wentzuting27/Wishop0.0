@@ -674,7 +674,7 @@
                   $sql="select *
                   from commodity_group
                   natural join shop
-                  where shop_id='$shop_id' AND close_order_date is not null and commodity_group_state=2
+                  where shop_id='$shop_id' AND commodity_group_state=2
                   order by close_order_date";
                   $result=mysqli_query($link,$sql);
                   while($row=mysqli_fetch_assoc($result))
