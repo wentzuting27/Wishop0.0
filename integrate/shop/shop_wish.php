@@ -452,10 +452,7 @@
                             <td>商品敘述*</td>
                             <td><textarea class="form-control" rows="5" name="wish_narrat" required></textarea></td>
                           </tr>
-                          <tr>
-                            <td>商品標籤(最多可填5個)</td>
-                            <td><input type="text" id="group_name" class="form-control" style="margin-bottom: 5px;"><input type="text" id="group_name" class="form-control" style="margin-bottom: 5px;"><input type="text" id="group_name" class="form-control" style="margin-bottom: 5px;"><input type="text" id="group_name" class="form-control" style="margin-bottom: 5px;"><input type="text" id="group_name" class="form-control" style="margin-bottom: 5px;"></td>
-                          </tr>
+                          
                           <tr>
                             <td>許願截止日期*</td>
                             <td style="text-align: left;"><input type="date" name="end" class="form-control" style="width: 100%;" value="<?php echo $max_date;?>" max="<?php echo $max_date; ?>" min="<?php echo date('Y-m-d'); ?>" id="end-date" required></td>
