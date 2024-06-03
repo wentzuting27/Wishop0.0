@@ -79,6 +79,33 @@ if (isset($_POST['submit'])) {
 
     mysqli_close($link); // 關閉資料庫連接
 }
+if (isset($_POST['dels'])) {
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+    $commodity_id = $_POST['commodity_id'];
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $sql = "DELETE FROM commodity WHERE commodity_id='$commodity_id'";
+    $sql2 = "SELECT * FROM order_details WHERE commodity_id='$commodity_id'";
+    $result2 = mysqli_query($link, $sql2);
+if(mysqli_num_rows($result2)==0){
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        echo '<script>alert("已刪除!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        exit();
+    } else {
+        echo '<script>alert("失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+    }
+}
+else {
+    echo '<script>alert("該商品還在交易進行!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+}
+
+mysqli_close($link); // 關閉資料庫連接
+}
 if (isset($_POST['up'])) {
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
