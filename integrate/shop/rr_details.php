@@ -56,37 +56,37 @@
 
           <!-- 5star -->
           <div role="tabpanel" class="col-lg-12 tab-pane fade show active" id="5star" style="padding: 50px 0px">
-          <div class="flex-container">
-            <!-- Section Title -->
+            <div class="flex-container">
+              <!-- Section Title -->
 
 
 
-            <?php
-$commodity_group_id = $_GET['commodity_group_id'];
-$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+              <?php
+              $commodity_group_id = $_GET['commodity_group_id'];
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-$sql = "SELECT *
+              $sql = "SELECT *
         FROM report r
         NATURAL JOIN commodity_group
         NATURAL JOIN account
         WHERE commodity_group_id = '$commodity_group_id'
         AND r.report_results = 3
         ORDER BY r.report_time DESC;";
-$result = mysqli_query($link, $sql);
+              $result = mysqli_query($link, $sql);
 
-if (mysqli_num_rows($result) == 0) {
-    echo '<script>
+              if (mysqli_num_rows($result) == 0) {
+                echo '<script>
     alert("此商品團體目前尚未有待審核的檢舉！");
     window.open("Report_review.php", "_blank");
     window.close();
   </script>';
-    exit();
-}
+                exit();
+              }
 
-$row = mysqli_fetch_assoc($result);
-$commodity_group_name = $row["commodity_group_name"];
+              $row = mysqli_fetch_assoc($result);
+              $commodity_group_name = $row["commodity_group_name"];
 
-echo '            
+              echo '            
 <div class="section-title" data-aos="fade-up">
     <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
     <a href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
@@ -96,10 +96,10 @@ echo '
 </div><!-- End flex-container -->
 <div class="row">';
 
-mysqli_data_seek($result, 0);
+              mysqli_data_seek($result, 0);
 
-while ($row = mysqli_fetch_assoc($result)) {
-  echo '              
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '              
 <div class="col-lg-6">
   <div class="portfolio-info">
     <div class="evaluate_card" style=" padding: 20px">
@@ -133,42 +133,42 @@ while ($row = mysqli_fetch_assoc($result)) {
       <td colspan="3">
       <center><p style="color: #fff; background-color: #B0A5C6; border-radius: 5px;">';
 
-                      switch ($row["report_type"]) {
-                          case 1:
-                              echo "酒類 / 菸類商品";
-                              break;
-                          case 2:
-                              echo "武器 / 彈藥 / 軍事用品";
-                              break;
-                          case 3:
-                              echo "藥品、醫療器材";
-                              break;
-                          case 4:
-                              echo "此商品可能令人感到不適或違反善良風俗";
-                              break;
-                          case 5:
-                              echo "活體動物、保育動物及其製品";
-                              break;
-                          case 6:
-                              echo "仿冒品";
-                              break;
-                          case 7:
-                              echo "濫用文字誤導搜尋";
-                              break;
-                          case 8:
-                              echo "重覆刊登";
-                              break;
-                          case 9:
-                              echo "複製他人商品圖文";
-                              break;
-                          case 10:
-                              echo "其他";
-                              break;
-                          default:
-                              echo "無";
-                      }
+                switch ($row["report_type"]) {
+                  case 1:
+                    echo "酒類 / 菸類商品";
+                    break;
+                  case 2:
+                    echo "武器 / 彈藥 / 軍事用品";
+                    break;
+                  case 3:
+                    echo "藥品、醫療器材";
+                    break;
+                  case 4:
+                    echo "此商品可能令人感到不適或違反善良風俗";
+                    break;
+                  case 5:
+                    echo "活體動物、保育動物及其製品";
+                    break;
+                  case 6:
+                    echo "仿冒品";
+                    break;
+                  case 7:
+                    echo "濫用文字誤導搜尋";
+                    break;
+                  case 8:
+                    echo "重覆刊登";
+                    break;
+                  case 9:
+                    echo "複製他人商品圖文";
+                    break;
+                  case 10:
+                    echo "其他";
+                    break;
+                  default:
+                    echo "無";
+                }
 
-echo '                  </p></center>
+                echo '                  </p></center>
                       <div class="scrollable-row" style="background-color: #f0e8ff; border-radius: 5px; padding: 10px">
                           ' . $row["report_why"] . '
                           </div>
@@ -178,7 +178,7 @@ echo '                  </p></center>
                   </div>
                 </div>
               </div>';
-                }
+              }
               ?>
 
             </div>
