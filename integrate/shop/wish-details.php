@@ -474,9 +474,9 @@
                       }elseif($_SESSION["account"]==$row2["account"]){
                         if($state==3){
                           echo '
-                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#group_state">成團</button>';
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#group_state',$commodity_group_id,'">成團</button>';
                           echo '<!-- insert_group_Modal -->
-                          <div class="modal fade" id="group_state" tabindex="-1" aria-labelledby="group_stateLabel" aria-hidden="true">
+                          <div class="modal fade" id="group_state',$commodity_group_id,'" tabindex="-1" aria-labelledby="group_stateLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -517,9 +517,9 @@
                           <button type="button" class="btn insert_button" style="display: block;width: 100%;" disabled>已結單</button>';
                         }elseif($_SESSION["account"]!=$row2["account"] && mysqli_num_rows($result_withgrup_y_or_n)==0){
                           echo '
-                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#withgroup">我要跟團</button>';
+                          <button type="button" class="btn insert_button" style="display: block;width: 100%;" data-bs-toggle="modal" data-bs-target="#withgroup',$commodity_group_id,'">我要跟團</button>';
                           echo '<!-- insert_group_Modal -->
-                          <div class="modal fade" id="withgroup" tabindex="-1" aria-labelledby="withgroupLabel" aria-hidden="true">
+                          <div class="modal fade" id="withgroup',$commodity_group_id,'" tabindex="-1" aria-labelledby="withgroupLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                 <div class="modal-header">
