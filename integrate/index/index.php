@@ -315,6 +315,8 @@
           $result2 = mysqli_query($link, $sql2);
           ?>
 
+
+
           <div class="container">
             <div class="row">
               <?php while ($row = mysqli_fetch_assoc($result2)): ?>
@@ -324,9 +326,30 @@
                     <div class="member-img">
                       <img src="<?php echo $row['shop_avatar']; ?>" class="img-fluid" alt="">
                       <div class="social">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
+
+                        <?php
+                        $shop_id = $row['shop_id'];
+                        $sql3 = "SELECT * FROM social WHERE shop_id = $shop_id";
+                        $result3 = mysqli_query($link, $sql3);
+
+                        if ($result3) {
+                          while ($row_social = mysqli_fetch_assoc($result3)) {
+                            if ($row_social["social_type"] == 1) {
+                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-twitter"></i></a>';
+                            } elseif ($row_social["social_type"] == 2) {
+                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-facebook"></i></a>';
+                            } elseif ($row_social["social_type"] == 3) {
+                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-instagram"></i></a>';
+                            } elseif ($row_social["social_type"] == 4) {
+                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="fa-brands fa-line"></i></a>';
+                            }
+                            echo $social_type;
+                          }
+                        } 
+                        ?>
+
+
+
                       </div>
                     </div>
                     <div class="member-info">
