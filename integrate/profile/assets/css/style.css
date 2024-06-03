@@ -2802,6 +2802,7 @@ p.middle {
   background-color: #ff9800;
   color: white; /* 白色文字 */
   padding: 4px 8px; /* 內邊距 */
+  margin-left: 3px;
   border-radius: 4px; /* 圓角 */
   font-size: 12px; /* 字體大小 */
   font-weight: bold; /* 粗體 */
