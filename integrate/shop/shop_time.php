@@ -674,7 +674,7 @@
                   $sql="select *
                   from commodity_group
                   natural join shop
-                  where shop_id='$shop_id' AND close_order_date is not null and commodity_group_state=2
+                  where shop_id='$shop_id' AND commodity_group_state=2
                   order by close_order_date";
                   $result=mysqli_query($link,$sql);
                   while($row=mysqli_fetch_assoc($result))
@@ -714,7 +714,35 @@
                       <div class="shop_group-info">
                         <h4><a href="',$group_link,'">',$row["commodity_group_name"],'</a></h4>
                         <div class="flex-container">
-                          <p><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(4.5)</p>
+                          <p>';
+                          $sum=0;
+                          $ordersum=0;
+                          $sql_star="select *
+                          from evaluate
+                          natural join order_details
+                          natural join commodity
+                          where commodity_group_id='{$row["commodity_group_id"]}'
+                          group by order_id";
+                          $result_star=mysqli_query($link,$sql_star);
+                          while($row_star=mysqli_fetch_assoc($result_star))
+                          {
+                            $sum+=$row_star["star"];
+                            $ordersum+=1;
+                          }
+                          $evaluate=$sum/$ordersum;
+                          $evaluate = round($evaluate, 1);
+                          if($evaluate>=4.5){
+                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          }elseif($evaluate>=3.5){
+                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          }elseif($evaluate>=2.5){
+                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          }elseif($evaluate>=1.5){
+                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          }else{
+                            echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          }
+                          echo '
                           <p><i class="fa-regular fa-heart"></i>&nbsp;';
                           $sql_likegroup_num="select *
                           from like_group

@@ -40,7 +40,7 @@
    
 
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    $sql = "insert into account (account,password,email,user_name,telephone_number,user_avatar) values ('$account','$password','$email','$user_name','$telephone_number','$dest')";
+    $sql = "insert into account (account,password,email,user_name,telephone_number,user_avatar,permissions) values ('$account','$password','$email','$user_name','$telephone_number','$dest','1')";
     if(mysqli_query($link, $sql)) {
         ?>
         <script>

@@ -98,7 +98,7 @@
     $row = mysqli_fetch_assoc($result);
     $shop_id = $row["shop_id"];
     echo '
-    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], ');
+    <section id="hero" style="background-image: url(', $row["commodity_group_bg"], '); background-size: cover; background-position: center;
     ;">
     <div class="background-overlay" style="position: absolute;
     top: 0;
@@ -249,6 +249,21 @@
     </div><!-- End insert_group_Modal -->
     <!-- Button trigger modal -->
     <form method="post" action="withgroup.php?commodity_group_id=<?php echo $commodity_group_id; ?>">
+      <!-- Modal -->
+      <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="leaveLabel">確定結束？</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+              <button type="submit" name="delgroup" class="btn btn-primary">確定</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="leaveLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -868,10 +883,25 @@
               });
           </script>';
               ?>
-              <h3><i class="fa-solid fa-star"></i>團主公告
-                <button id="pra" style="float: right; border-radius: 50%;"><i
-                    class="fa-solid fa-arrow-right"></i></button>
-              </h3>
+              <style>
+                .filtertag h4 {
+                  padding: 0.25em 0.5em;
+                  /*上下 左右の余白*/
+                  color: #494949;
+                  /*文字色*/
+                  background: transparent;
+                  /*背景透明に*/
+                  border-left: solid 5px #B0A5C6;
+                  /*左線*/
+                  font-weight: bold;
+                }
+              </style>
+              <div class="filtertag">
+                <h4>團主公告
+                  <button id="pra" style="float: right; border-radius: 50%;"><i
+                      class="fa-solid fa-arrow-right"></i></button>
+                </h4>
+              </div>
               <div class="row">
                 <div id="slider-carousel" class="owl-carousel">
                   <?php
@@ -950,8 +980,9 @@
               }
               mysqli_close($link);
               ?>
-
-              <h3><i class="fa-solid fa-circle-question"></i>詢問區</h3>
+              <div class="filtertag">
+                <h4>詢問區</h4>
+              </div>
               <div style="max-height:600px;overflow-y:scroll;">
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -986,17 +1017,13 @@
                 <div class="card-body " id="card' . $question_id . '">
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
-                    $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
-                    $result2 = mysqli_query($link, $sql2);
-                    $sql3 = "SELECT COUNT(reply_id) AS COM FROM reply WHERE question_id = '$question_id'";
-                $result2 = mysqli_query($link, $sql2);
-                $result3 = mysqli_query($link, $sql3);
-                $row3 = mysqli_fetch_assoc($result3);
-                    // 逐行顯示 question_photo
-                    while ($photo_row = mysqli_fetch_assoc($result2)) {
-                      echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
-                    }
-                    echo '<div id="overlay"></div>
+                  $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+                  $result2 = mysqli_query($link, $sql2);
+                  // 逐行顯示 question_photo
+                  while ($photo_row = mysqli_fetch_assoc($result2)) {
+                    echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
+                  }
+                  echo '<div id="overlay"></div>
                 </div>
                 <div class="card-footer bg-transparent border-secondary">
                   <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
@@ -1006,7 +1033,7 @@
                 </div>
               </div>
             </div>';
-                    echo '<!-- Modal -->
+                  echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">

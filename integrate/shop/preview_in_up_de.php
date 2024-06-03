@@ -18,7 +18,11 @@
         $new_id = $row['max_id'] + 1;
         $sql_preview="insert into preview(preview_id,shop_id,preview_title,preview_narrate,time)
         value('$new_id','$shop_id','$preview_title','$preview_narrate',now())";
-        mysqli_query($link, $sql_preview);
+        if(mysqli_query($link, $sql_preview)){
+            echo '<script>alert("預告新增成功!"); window.history.go(-1);</script>';
+        }else{
+            echo '<script>alert("預告新增失敗!"); window.history.go(-1);</script>';
+        }
         
 
         if ($_FILES['preview_photo_link']['error'][0] == UPLOAD_ERR_OK){
@@ -51,8 +55,6 @@
             }
 
         }
-        header("refresh:0;url=shop_time.php?shop_id=$shop_id");
-
         
     }else{
 
@@ -60,10 +62,14 @@
         $shop_id=$_GET['shop_id'];
        
         $sql="DELETE FROM preview WHERE preview_id = $preview_id";
-        mysqli_query($link, $sql);
+        // mysqli_query($link, $sql);
         
-        
-        header("refresh:0;url=shop_time.php?shop_id=$shop_id");
+        if(mysqli_query($link, $sql)){
+            echo '<script>alert("預告刪除成功!"); window.history.go(-2);</script>';
+        }else{
+            echo '<script>alert("預告刪除失敗!"); window.history.go(-2);</script>';
+        }
+        // header("refresh:0;url=shop_time.php?shop_id=$shop_id");
 
         
     }

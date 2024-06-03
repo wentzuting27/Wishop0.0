@@ -61,118 +61,126 @@
 
 
 
-                <?php
-                $commodity_group_id = $_GET['commodity_group_id'];
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql = "SELECT *
-                FROM report r
-                NATURAL JOIN commodity_group
-                NATURAL JOIN account
-                WHERE commodity_group_id = '$commodity_group_id'
-                AND r.report_results = 3
-                -- 審核結果等於待審核
-                ORDER BY r.report_time DESC;";
-                $result = mysqli_query($link, $sql);
-                $row = mysqli_fetch_assoc($result);
-                $commodity_group_name = $row["commodity_group_name"];
-                
-                echo '            
-                <div class="section-title" data-aos="fade-up">
-                    <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
-                    <a href="../lisa/InnerPage.php?commodity_group_id=',$commodity_group_id,'" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
+            <?php
+$commodity_group_id = $_GET['commodity_group_id'];
+$link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
-                    </h2>
-                </div><!-- End Section Title -->
+$sql = "SELECT *
+        FROM report r
+        NATURAL JOIN commodity_group
+        NATURAL JOIN account
+        WHERE commodity_group_id = '$commodity_group_id'
+        AND r.report_results = 3
+        ORDER BY r.report_time DESC;";
+$result = mysqli_query($link, $sql);
 
-                </div><!-- End flex-container -->
-                <div class="row">';
-                
-                // 重制row
-                mysqli_data_seek($result, 0);
+if (mysqli_num_rows($result) == 0) {
+    echo '<script>
+    alert("此商品團體目前尚未有待審核的檢舉！");
+    window.open("Report_review.php", "_blank");
+    window.close();
+  </script>';
+    exit();
+}
 
+$row = mysqli_fetch_assoc($result);
+$commodity_group_name = $row["commodity_group_name"];
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                  echo '              
-                <div class="col-lg-6">
-                  <div class="portfolio-info">
-                    <div class="evaluate_card" style=" padding: 20px">
-                      <table class="evaluate_table">
-                        <tr>
-                        <td width="15%"><img
-                            src="',$row["user_avatar"],'"
-                            class="people_photo"></td>
-                        <td width="44%">
-                          <span>',$row["user_name"],'</span><br>
-                          <p>',$row["report_time"],'</p>
-                        </td>
-                        <td>
+echo '            
+<div class="section-title" data-aos="fade-up">
+    <h2><i class="fa-solid fa-circle-exclamation"></i>&nbsp;&nbsp;' . $commodity_group_name . '
+    <a href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '" target="_blank"><button type="button" class="btn insert_button" style="margin-left: 10px; margin-bottom: 8px;">&nbsp;商品團體詳細</button></a>
+    </h2>
+</div><!-- End Section Title -->
 
-                        <form action="review.php" method="post" style="display:inline;">
-                            <input type="hidden" name="method" value="update">
-                            <input type="hidden" name="report_id" value="',$row["report_id"],'">
-                            <input type="hidden" name="report_results" value="2">
-                            <button type="submit" class="btn insert_button" style="background-color: #e37e7e;">&nbsp;檢舉失敗</button>
-                        </form>
+</div><!-- End flex-container -->
+<div class="row">';
 
-                        <form action="review.php" method="post" style="display:inline;">
-                            <input type="hidden" name="method" value="update">
-                            <input type="hidden" name="report_id" value="',$row["report_id"],'">
-                            <input type="hidden" name="report_results" value="1">
-                            <button type="submit" class="btn insert_button" style="background-color: rgb(123, 195, 150);">&nbsp;檢舉成功</button>
-                        </form>
-                        </td>
-                      </tr>
-                      <tr>
-                      <td colspan="3">
-                      <center><p style="color: #fff; background-color: #B0A5C6; border-radius: 5px;">';
+mysqli_data_seek($result, 0);
 
-                      switch ($row["report_type"]) {
-                          case 1:
-                              echo "酒類 / 菸類商品";
-                              break;
-                          case 2:
-                              echo "武器 / 彈藥 / 軍事用品";
-                              break;
-                          case 3:
-                              echo "藥品、醫療器材";
-                              break;
-                          case 4:
-                              echo "此商品可能令人感到不適或違反善良風俗";
-                              break;
-                          case 5:
-                              echo "活體動物、保育動物及其製品";
-                              break;
-                          case 6:
-                              echo "仿冒品";
-                              break;
-                          case 7:
-                              echo "濫用文字誤導搜尋";
-                              break;
-                          case 8:
-                              echo "重覆刊登";
-                              break;
-                          case 9:
-                              echo "複製他人商品圖文";
-                              break;
-                          case 10:
-                              echo "其他";
-                              break;
-                          default:
-                              echo "無";
-                      }
+while ($row = mysqli_fetch_assoc($result)) {
+  echo '              
+<div class="col-lg-6">
+  <div class="portfolio-info">
+    <div class="evaluate_card" style=" padding: 20px">
+      <table class="evaluate_table">
+        <tr>
+        <td width="15%"><img
+            src="' . $row["user_avatar"] . '"
+            class="people_photo"></td>
+        <td width="44%">
+          <span>' . $row["user_name"] . '</span><br>
+          <p>' . $row["report_time"] . '</p>
+        </td>
+        <td>
+
+        <form action="review.php" method="post" style="display:inline;">
+            <input type="hidden" name="method" value="update">
+            <input type="hidden" name="report_id" value="' . $row["report_id"] . '">
+            <input type="hidden" name="report_results" value="2">
+            <button type="submit" class="btn insert_button" style="background-color: #e37e7e;">&nbsp;檢舉失敗</button>
+        </form>
+
+        <form action="review.php" method="post" style="display:inline;">
+            <input type="hidden" name="method" value="update">
+            <input type="hidden" name="report_id" value="' . $row["report_id"] . '">
+            <input type="hidden" name="report_results" value="1">
+            <button type="submit" class="btn insert_button" style="background-color: rgb(123, 195, 150);">&nbsp;檢舉成功</button>
+        </form>
+        </td>
+      </tr>
+      <tr>
+      <td colspan="3">
+      <center><p style="color: #fff; background-color: #B0A5C6; border-radius: 5px;">';
+
+      switch ($row["report_type"]) {
+          case 1:
+              echo "酒類 / 菸類商品";
+              break;
+          case 2:
+              echo "武器 / 彈藥 / 軍事用品";
+              break;
+          case 3:
+              echo "藥品、醫療器材";
+              break;
+          case 4:
+              echo "此商品可能令人感到不適或違反善良風俗";
+              break;
+          case 5:
+              echo "活體動物、保育動物及其製品";
+              break;
+          case 6:
+              echo "仿冒品";
+              break;
+          case 7:
+              echo "濫用文字誤導搜尋";
+              break;
+          case 8:
+              echo "重覆刊登";
+              break;
+          case 9:
+              echo "複製他人商品圖文";
+              break;
+          case 10:
+              echo "其他";
+              break;
+          default:
+              echo "無";
+      }
 
 echo '                  </p></center>
-                      <div class="scrollable-row" style="background-color: #f0e8ff; border-radius: 5px; padding: 10px">
-                          ' . $row["report_why"] . '
-                          </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>';
-                }
-              ?>
+      <div class="scrollable-row" style="background-color: #f0e8ff; border-radius: 5px; padding: 10px">
+          ' . $row["report_why"] . '
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>';
+}
+?>
+
 
             </div>
           </div>
