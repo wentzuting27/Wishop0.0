@@ -106,6 +106,7 @@ if(isset($_POST['editreply'])) {
 if(isset($_POST['delcom'])) {
     $commodity_group_id = $_GET["commodity_group_id"];
     $reply_id = $_POST["reply_id"];
+    $question_id = $_POST["question_id"];
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
 
     if (!$link) {
@@ -115,11 +116,11 @@ if(isset($_POST['delcom'])) {
 
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo'<script>alert("刪除成功"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        echo'<script>alert("刪除成功"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id='.$question_id.'";</script>';
         exit();
     } 
     else {
-        echo'<script>alert("刪除失敗"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+        echo'<script>alert("刪除失敗"); window.location.href = "discussion.php?commodity_group_id=' . $commodity_group_id . '&question_id='.$question_id.'";</script>';
         exit();
     }
 }

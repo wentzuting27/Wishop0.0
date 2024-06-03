@@ -18,8 +18,6 @@ if (isset($_POST['order_id'])) {
             echo '<script>alert("確認失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';
         }
     }
-    
-
 }
 else{
     echo '<script>alert("確認失敗!"); window.location.href = "InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '";</script>';

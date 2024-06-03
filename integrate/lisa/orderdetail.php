@@ -7,6 +7,9 @@ if(isset($_POST['submit'])) {
     }
     $commodity_group_id = $_GET["commodity_group_id"];
     $order_state = $_POST["order_state"];
+    if($order_state="完成訂單"){
+        echo '<script>alert("無法設定完成訂單"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+    }
     $order_id = $_POST["order_id"];
     $sql= "UPDATE `order` SET order_state='$order_state' WHERE order_id='$order_id'";
     $result=mysqli_query($link, $sql);
