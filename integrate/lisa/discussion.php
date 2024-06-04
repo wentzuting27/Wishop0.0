@@ -650,11 +650,12 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $sql3 = "SELECT reply_photo FROM reply_photo WHERE reply_id = {$row["reply_id"]}";
               $result3 = mysqli_query($link, $sql3);
               if ($result3 && mysqli_num_rows($result3) != 0) {
+                echo '
+                  <div id="carouselExampleIndicators' . $row["reply_id"] . '" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
+                      <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">';
+                    
                 while ($row_photo = mysqli_fetch_assoc($result3)) {
-                  echo '
-                  <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
-                      <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">
-                    <div class="carousel-item ';
+                  echo'<div class="carousel-item ';
                   if ($a == 1) {
                     echo 'active"';
                   }
@@ -665,11 +666,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 }
                 echo '
                       </div>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" >
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators' . $row["reply_id"] . '" data-bs-slide="prev" >
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                       </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators' . $row["reply_id"] . '" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                       </button>

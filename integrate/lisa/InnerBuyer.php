@@ -1659,7 +1659,7 @@
                       $sql = "SELECT `order`.*, order_details.*, MIN(commodity.commodity_id) AS first_order
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
-           AND order_state = '已h完成'
+           AND order_state = '完成訂單'
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
 
@@ -1769,13 +1769,16 @@
                         <p>' . $order_state . '
                         <button type="button" class="btn btn-info btn-sm" style="background-color: #b0a5c6a8;border: none;color: white;"
                         data-bs-toggle="collapse" data-bs-target="#collapse' . $order_id . '" aria-expanded="false" aria-controls="collapse' . $order_id . '">
-                        <i class="fa-solid fa-pen-to-square"></i></button></p>
+                        <i class="fa-solid fa-pen-to-square"></i></button></p>';
+                        if($order_state!="完成訂單"){
+                        echo'
                         <div class="collapse" id="collapse' . $order_id . '">
                           <textarea  style="font-size:0.35cm;margin-left:-1px;" class="form-control" tabindex="8"
                            placeholder="訂單狀態敘述(點擊確認即可更新狀態)" name="order_state"></textarea>
                         <button type="submit" name="submit" class="btn btn-primary" style="background-color: #E9C9D6;border: none;color: white;margin-top:5px;float:left">確定</button>
                         </div>
-                        
+                        ';}
+                        echo'
                         </td>
                       </tr>
                     </table>
@@ -1847,7 +1850,13 @@
             <td>' . $row['account'] . '</td>
             <td>' . $row['order_time'] . '</td>
             <td>' . $totalprice . '</td>
-            <td>' . $row['remark'] . '</td>
+            <td>' . $row['remark'] . '</td>';
+            $sql3 = "SELECT * FROM commodity_group 
+            WHERE commodity_group_id=$commodity_group_id;";
+            $result3 = mysqli_query($link, $sql3);
+            $row3 = mysqli_fetch_assoc($result3);
+            if($row3["commodity_group_state"]==1){
+              echo'
             <td>
                 <button type="submit" name="submit2" class="btn btn-primary" 
                 style="background-color: #E9C9D6;border: none;color: white;">接收訂單</button>
@@ -1858,15 +1867,16 @@
             </td>
           </tr>
           </tbody>
-          </form>';
+          </form>';}
               $sql1 = "SELECT account FROM `order` WHERE order_id = '{$row['order_id']}'";
               $result1 = mysqli_query($link, $sql1);
               $data1 = mysqli_fetch_assoc($result1);
               $account = $data1['account'];
-              $sql3 = "SELECT account,COUNT(order_id) AS allorder 
+              $sql3 = "SELECT COUNT(order_id) AS allorder 
               FROM `order` 
               WHERE account = '{$account}'
-              AND order_state;";
+              AND order_state !='拒絕接收'
+              AND order_state!='未成立';";
               $sql4 = "SELECT COUNT(order_id) AS allorder2
               FROM `order` 
               WHERE account ='{$account}' 
@@ -1880,7 +1890,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="clientLabel">' . $row3['account'] . '的信用紀錄</h1>
+                      <h1 class="modal-title fs-5" id="clientLabel">' . $account . '的信用紀錄</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

@@ -931,7 +931,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         </form>';
                         }
                         $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && $order_state != "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3)){
+                        if(isset($_SESSION["account"]) && ($order_state != "未成立" || $order_state != "完成訂單")  && ($commodity_group_state == 1 || $commodity_group_state == 3)){
                         echo'
                         <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
