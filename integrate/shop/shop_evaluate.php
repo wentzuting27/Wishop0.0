@@ -500,7 +500,7 @@
                                 <span>',$order_account_name,'</span><br>
                                 <p>',$row["commodity_group_name"],'</p>
                               </td>
-                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
                             </tr>
                             <tr>
                               <td colspan="3" ><div class="';
@@ -580,7 +580,7 @@
                                 <span>',$order_account_name,'</span><br>
                                 <p>',$row["commodity_group_name"],'</p>
                               </td>
-                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
                             </tr>
                             <tr>
                               <td colspan="3" ><div class="';
@@ -659,7 +659,7 @@
                                 <span>',$order_account_name,'</span><br>
                                 <p>',$row["commodity_group_name"],'</p>
                               </td>
-                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
                             </tr>
                             <tr>
                               <td colspan="3" ><div class="';
@@ -737,7 +737,7 @@
                                 <span>',$order_account_name,'</span><br>
                                 <p>',$row["commodity_group_name"],'</p>
                               </td>
-                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></td>
+                              <td width="25%" style="vertical-align: top;" align="right"><i class="fa-solid fa-wand-sparkles"></i></td>
                             </tr>
                             <tr>
                               <td colspan="3" ><div class="';
