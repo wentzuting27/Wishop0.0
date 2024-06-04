@@ -291,9 +291,40 @@
                                 </a>
                               </div>
                               <div class="item-meta">
-                                <p class="price" style="color: #b3a4bd;"><i class="fa-solid fa-wand-sparkles"></i><i
-                                    class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i
-                                    class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i></p>
+                                <p class="price" style="color: #b3a4bd;">';
+                                $sum=0;
+                                $ordersum=0;
+                                $sql_star="select *
+                                from evaluate
+                                natural join order_details
+                                natural join commodity
+                                natural join commodity_group
+                                where shop_id='{$row["shop_id"]}'
+                                group by order_id";
+                                $result_star=mysqli_query($link,$sql_star);
+                                while($row_star=mysqli_fetch_assoc($result_star))
+                                {
+                                  $sum+=$row_star["star"];
+                                  $ordersum+=1;
+                                }
+                                $evaluate=$sum/$ordersum;
+                                $evaluate = round($evaluate, 1);
+                                if(mysqli_num_rows($result_star)==0){
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(0)';
+                                }else{
+                                if($evaluate>=4.5){
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                                }elseif($evaluate>=3.5){
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                                }elseif($evaluate>=2.5){
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                                }elseif($evaluate>=1.5){
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                                }else{
+                                  echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                                }
+                              }
+                                echo '</p>
                                     <a class="remove-btn" href="deleteLike_shop.php?shop_id=' . $row['shop_id'] . '"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;取消收藏</a>
 
                               </div>
