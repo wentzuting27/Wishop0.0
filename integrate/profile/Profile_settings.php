@@ -332,13 +332,13 @@
 
                           <div class="row">
                             <div class="col-md-6 form-group">
-                              <label for="new_password">修改密碼</label>
+                              <label for="new_password">新密碼</label>
                               <input  type="password" id="new_password" name="new_password" class="form-control"
                                 placeholder="***********" required>
                             </div>
 
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                              <label for="confirm_password">請再次輸入密碼</label>
+                              <label for="confirm_password">請再次輸入新密碼</label>
                               <input type="password" id="confirm_password" name="confirm_password" class="form-control"
                                 placeholder="***********" required>
                             </div>
