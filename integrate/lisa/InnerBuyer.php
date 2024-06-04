@@ -395,7 +395,7 @@
                 if ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3) {
                   echo '
                 <div class="table-responsive">
-                  <table class="table table-hover" width="100%">
+                  <table class="table" width="100%">
                     <tbody>
                       <tr>
                         <th>商品名稱</th>
@@ -455,9 +455,7 @@
 
                       <tr>
                         <td colspan="5">
-                          <fieldset>
                             <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
-                          </fieldset>
                         </td>
                       </tr>
                     </tbody>
@@ -1017,7 +1015,7 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h4><B>', $row["question_title"], '</B></h4>
+                    <p>', $row["question_title"], '</p>
                   </div>';
                     if ($row["account"] == $_SESSION["account"]) {
                       echo '<h4 style="float: right;margin-top:0px;cursor: pointer;">
@@ -1027,7 +1025,7 @@
                     }
                     echo '</div>
                 
-                <div class="card-body " id="card' . $question_id . '" style="cursor: pointer;max-height:300px;overflow-y:scroll;">
+                <div class="card-body " id="card' . $question_id . '" style="cursor: pointer;max-height:400px;height:1000px;overflow-y:scroll;">
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
                     $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
