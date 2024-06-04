@@ -594,7 +594,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '">編輯</a></button>
+                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;color: white;">編輯</a></button>
                     <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
                   </div>
                 </div>

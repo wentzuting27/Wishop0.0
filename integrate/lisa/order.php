@@ -22,7 +22,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $payment_state=1;
     $order_state="未成立";
     if($payment_account=="無卡交易"){
-        $account_to_send_money_to = "無卡交易";
+        $account_to_send_money_to = $_POST['account_to_send_money_to']+"(無卡交易)";
     }
     else{
        $remark = $_POST['remark']; // 检查备注是否设置 
