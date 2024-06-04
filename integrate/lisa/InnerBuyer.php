@@ -118,7 +118,7 @@
       $result2 = mysqli_query($link, $sql2);
       $allOrdersComplete = true;
       while ($row2 = mysqli_fetch_assoc($result2)) {
-        if ($row2["order_state"] != "完成訂單" || $row2["order_state"] != "拒絕接收") {
+        if ($row2["order_state"] != "完成訂單" && $row2["order_state"] != "拒絕接收") {
           $allOrdersComplete = false;
           break;
         }
@@ -850,9 +850,9 @@
         <section id="first">
           <h2>Shipping</h2>
           <div id="third">
-            <div class="part2" id="card0">
-              <div class="card border-secondary mb-12" style="width: 100%;border-radius: 0;">
-                <div class="card-header bg-transparent border-secondary">
+          <div class="part2" id="card0">
+              <div class="card border-secondary mb-12" style="width: 100%;border: none;">
+                <div class="card-header  border-secondary" style="cursor: pointer;border: none;border-radius: 10px;">
                   <div class="col-md-1">
                     <?php
                     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
@@ -869,17 +869,22 @@
                     </div>
                   </div>';
                     mysqli_close($link); ?>
-                    <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>撰寫內容...</small>
-                    </h4>
-                    <button class="btn btn-info btn-sm"
-                      style="font-size: 0.3cm;float: right;margin-top: 13px;background-color: #b0a5c6a8;border: none;color: white;"><i
-                        class="fa-solid fa-pen-to-square"></i></button>
+                    <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;">
+                  <small style="color:rgba(0, 0, 0, 0.5);">&nbsp;&nbsp;發布公告</small>
+                  </h4>
+                  <button class="btn btn-info btn-sm"
+                    style="font-size: 0.3cm;float: right;margin-top: 13px;background-color: #b0a5c6a8;border: none;color: white;"><i
+                      class="fa-solid fa-pen-to-square"></i></button>
                   </div>
                 </div>
               </div>
               <?php
+              $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
               $commodity_group_id = $_GET["commodity_group_id"];
-              // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+              $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+          $result4 = mysqli_query($link, $sql4);
+          $row4 = mysqli_fetch_assoc($result4);
+              if($row4["commodity_group_state"]!=2){
               echo '<script>
               window.addEventListener("DOMContentLoaded", function () {
                   var part3 = document.getElementById(\'card0\');
@@ -889,6 +894,7 @@
                   });
               });
           </script>';
+        }mysqli_close($link); 
               ?>
               <style>
                 .filtertag h4 {
@@ -905,7 +911,7 @@
               </style>
               <div class="filtertag">
                 <h4>團主公告
-                  <button id="pra" style="float: right; border-radius: 50%;"><i
+                <button id="pra" style="float: right; border-radius: 50%;background-color:#B0A5C6; color:#FFF; border: 2px solid #B0A5C6;"><i
                       class="fa-solid fa-arrow-right"></i></button>
                 </h4>
               </div>
@@ -922,34 +928,29 @@
                   if (isset($_SESSION["account"])) {
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo '
-                <div class="item">
-                  <div class="col-sm-10">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="col-md-12" style="display: flex; align-items: center;">
-                          <div class="profile-picture big-profile-picture clear"
-                            style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
-                            <img width="100%" height="100%" alt="Anne Hathaway picture"
-                              src="', $row["user_avatar"], '">
+                      <div class="item">
+                      <div class="col-sm-10">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="col-md-12" style="display: flex; align-items: center;">
+                              <div class="profile-picture big-profile-picture clear"
+                                style="width: 50px; height: 50px; border: 0; margin-right: 10px;">
+                                <img width="100%" height="100%" alt="Anne Hathaway picture"
+                                  src="', $row["user_avatar"], '">
+                              </div>
+                              <div style="display: flex; align-items: center; flex-grow: 7;">
+                              <h5 style="margin: 0;"><b>', $row["announce_title"], '</b></h5>
+                              </div>
+                            </div>
                           </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>', $row["announce_title"], '
-                            <i class="fa-solid fa-ellipsis-vertical" style="float: right; margin-top: -15px;"
-                                 data-bs-toggle="modal" data-bs-target="#del', $row["commodity_group_announce_id"], '"></i>
-                                 </h5>
+                          <div class="card-body" style="max-height: 250px; overflow: auto;">
+                            <p class="card-text">
+                            ', nl2br($row["announce_narrate"]), '
+                            </p>
                           </div>
                         </div>
                       </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                        <p>尊敬的客戶:</p>
-                        ', nl2br($row["announce_narrate"]), '
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>';
+                    </div>';
                     }
                   }
                   mysqli_close($link);
@@ -994,18 +995,17 @@
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $commodity_group_id = $_GET["commodity_group_id"];
-                $sql = "SELECT * FROM question NATURAL JOIN account 
-            WHERE commodity_group_id ='$commodity_group_id' ;";
+                $sql = "SELECT * FROM question NATURAL JOIN account  WHERE commodity_group_id ='$commodity_group_id' ;";
                 $result = mysqli_query($link, $sql);
                 if (isset($_SESSION["account"])) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     $question_id = $row["question_id"];
 
                     echo '
-              <div class="part2">
-              <div class="card border-secondary mb-12">
-                <div class="card-header bg-transparent border-secondary">
-                  <div class="col-md-12">
+                    <div class="part2">
+                    <div class="card border-secondary mb-12"style="border:none;box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);">
+                      <div class="card-header  border-secondary"style="border:none;">
+                        <div class="col-md-12"style="border:none;">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
@@ -1025,21 +1025,24 @@
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
                   $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
+                  $sql3 = "SELECT COUNT(reply_id) AS COM FROM reply WHERE question_id = '$question_id'";
                   $result2 = mysqli_query($link, $sql2);
+                  $result3 = mysqli_query($link, $sql3);
+                  $row3 = mysqli_fetch_assoc($result3);
                   // 逐行顯示 question_photo
                   while ($photo_row = mysqli_fetch_assoc($result2)) {
                     echo '<img src="' . $photo_row["question_photo_link"] . '" alt="question Photo">';
                   }
                   echo '<div id="overlay"></div>
                 </div>
-                <div class="card-footer bg-transparent border-secondary">
-                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
-                    <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
-                    <i class="bi bi-chat-dots"></i>&nbsp;<small>', $row3["COM"], '</small>
-                  </h4>
-                </div>
+                <div class="card-footer  border-secondary" style="border:none;">
+                <h4 style="margin-top:-3px;margin-bottom:-3px;margin: 10px;">
+                  <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
+                  <i class="bi bi-chat-dots"></i>&nbsp;<small>', $row3["COM"], '</small>
+                </h4>
               </div>
-            </div>';
+            </div>
+          </div>';
                   echo '<!-- Modal -->
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -1075,8 +1078,8 @@
                 });
               });
               </script>';
-                  }
-                }
+                  }}
+                
                 mysqli_close($link);
                 ?>
         </section>
@@ -1330,6 +1333,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           AND order_state != '拒絕接收' 
            AND order_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
@@ -1399,6 +1403,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           AND order_state != '拒絕接收' 
            AND order_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
@@ -1468,6 +1473,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           AND order_state != '拒絕接收' 
            AND order_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
@@ -1537,6 +1543,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           AND order_state != '拒絕接收' 
            AND payment_state = 1
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
@@ -1606,6 +1613,7 @@
            FROM order_details natural JOIN `order` natural JOIN commodity
            WHERE commodity_group_id=$commodity_group_id
            AND order_state != '未成立'
+           AND order_state != '拒絕接收' 
            AND payment_state = 2
            GROUP BY order_details.order_id";
                       $result = mysqli_query($link, $sql);
@@ -1756,6 +1764,7 @@
             $order_id = $row['order_id']; // 獲取訂單 ID
             $order_state = $row['order_state'];
             $remark = $row['remark'];
+            $account_to_send_money_to=$row['account_to_send_money_to'];
             $sql2 = "SELECT * FROM `order` NATURAL JOIN order_details natural join commodity where order_id=$order_id ";
             $result2 = mysqli_query($link, $sql2);
             if (!$result2) {
@@ -1771,7 +1780,7 @@
                       <tr>
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">買家選擇之匯款帳戶</th>
                         <td>
-                        <p>' . $row['account_to_send_money_to'] . '</p>
+                        <p>' .$account_to_send_money_to . '</p>
                         </td>
                       </tr>
                       <tr>

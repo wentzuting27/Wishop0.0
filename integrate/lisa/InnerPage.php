@@ -581,9 +581,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $account = $_SESSION["account"];
               $commodity_group_id = $_GET["commodity_group_id"];
               $sql = "SELECT * FROM question NATURAL JOIN account 
-            WHERE commodity_group_id ='$commodity_group_id' 
-            AND public='公開'
-            OR account= '$account';";
+              WHERE commodity_group_id = $commodity_group_id 
+              AND (public = '公開' OR account = '$account');";
 
               $result = mysqli_query($link, $sql);
               if(isset($account)){
@@ -650,6 +649,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             </div>
             </form>
           ';
+          
                 echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -674,8 +674,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               ?>
             </div>
             <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $commodity_group_id = $_GET["commodity_group_id"];
             // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+            $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+          $result4 = mysqli_query($link, $sql4);
+          $row4 = mysqli_fetch_assoc($result4);
+            if($row4["commodity_group_state"]!=2){
             echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -694,7 +699,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   });
                 });
               });
-              </script>';
+              </script>';}
 
             ?>
         </section>
@@ -945,7 +950,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                        ';
                        if($_SESSION["account"]==$account ){
                        $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3)){
+                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
                           echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
                           <form  method="post" action="order.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
                         <input type="hidden" name="order_id" value="', $order_id, '">
@@ -953,7 +958,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         </form>';
                         }
                         $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && ($order_state != "未成立" || $order_state != "完成訂單")  && ($commodity_group_state == 1 || $commodity_group_state == 3)){
+                        if(isset($_SESSION["account"]) && ($order_state != "未成立" && $order_state != "完成訂單")  && ($commodity_group_state == 1 || $commodity_group_state == 4)){
                         echo'
                         <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
@@ -1058,7 +1063,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 $sql = "SELECT * FROM  account NATURAL JOIN `order` NATURAL JOIN order_details NATURAL JOIN commodity  WHERE account='$account' AND commodity_group_id={$commodity_group_id} ";
                 $result = mysqli_query($link, $sql);
                 $row = mysqli_fetch_assoc($result);
-                if(isset($account) && isset($row["order_id"])){
+                if(isset($account) && isset($row["order_id"]) && $row["order_state"]=="已成立"){
                 echo '<form action="addconform.php?commodity_group_id='.$commodity_group_id.'" method="post" role="form"
             enctype="multipart/form-data">
             <div class="card" style="width:80%">
