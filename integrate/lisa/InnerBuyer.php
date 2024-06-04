@@ -401,7 +401,7 @@
                         <th>商品名稱</th>
                         <td>
                           <fieldset>
-                            <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
+                            <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus class="form-control">
                           </fieldset>
                         </td>
                       </tr>
@@ -409,7 +409,7 @@
                         <th>商品敘述</th>
                         <td>
                           <fieldset>
-                            <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
+                            <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required class="form-control"></textarea>
                           </fieldset>
                         </td>
                       </tr>
@@ -417,11 +417,11 @@
                         <th>商品狀態</th>
                         <td>
                           <div>
-                            <input type="radio" id="1" name="commodity_state" value="1" checked />
+                            <input type="radio" id="1" name="commodity_state" value="1" checked / class="form-check-input">
                             <label for="add1">上架</label>
                           </div>
                           <div>
-                            <input type="radio" id="2" name="commodity_state" value="2" />
+                            <input type="radio" id="2" name="commodity_state" value="2" / class="form-check-input">
                             <label for="add2">待上架</label>
                           </div>
                         </td>
@@ -430,7 +430,7 @@
                         <th>金額</th>
                         <td>
                           <fieldset>
-                            <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
+                            <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required class="form-control">
                           </fieldset>
                         </td>
 
@@ -439,7 +439,7 @@
                         <th>連結</th>
                         <td>
                           <fieldset>
-                            <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
+                            <input placeholder="連結" type="text" tabindex="1" name="commodity_link" class="form-control">
                           </fieldset>
                         </td>
                       </tr>
@@ -448,7 +448,7 @@
                         <td>
                           <fieldset>
                             <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                              name="commodity_photo[]" multiple required />
+                              name="commodity_photo[]" multiple required / class="form-control">
                           </fieldset>
                         </td>
                       </tr>
