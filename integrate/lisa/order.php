@@ -10,8 +10,6 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $result4=mysqli_query($link, $sql4);
     $row4 = mysqli_fetch_assoc($result4);
     $shop_id = $row4["shop_id"];
-    // 取得目前会话的 Session ID
-    // session_start();
     $account = $_SESSION["account"];
     
     $sql = "SELECT common_payment_account FROM shop NATURAL JOIN account WHERE shop_id = ' $shop_id'";
@@ -22,7 +20,7 @@ if(isset($_POST['submit']) || isset($_POST['submit2'])) {
     $payment_state=1;
     $order_state="未成立";
     if($payment_account=="無卡交易"){
-        $account_to_send_money_to = $_POST['account_to_send_money_to']+"(無卡交易)";
+        $account_to_send_money_to = $_POST['account_to_send_money_to'].'(無卡交易)';
     }
     else{
        $remark = $_POST['remark']; // 检查备注是否设置 

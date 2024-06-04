@@ -65,14 +65,17 @@ if (isset($_POST['submit'])) {
             $result2 = mysqli_query($link, $sql2);
 
             if ($result2) {
-                echo '';
-                // exit();
+                echo '<script>alert("評價成功！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+                exit();
+            }
+            else{
+                echo '<script>alert("評價失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
+                exit();
             }
         }
     }
 
-    // echo '<script>alert("評價失敗！"); window.location.href = "InnerPage.php?commodity_group_id=' . $commodity_group_id . '";</script>';
-    // exit();
+    
 }
 
 mysqli_close($link);
