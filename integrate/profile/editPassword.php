@@ -36,7 +36,7 @@ session_start();
             exit();
         } else {
             // 再次輸入的密碼與新密碼不相符
-            echo '<script>alert("再次輸入的密碼與新密碼不相符，請檢查是否輸入錯誤！"); window.history.go(-1);</script>';
+            echo '<script>alert("再次輸入新的密碼與新密碼不相符，請檢查是否輸入錯誤！"); window.history.go(-1);</script>';
             exit();
         }
     } else {
