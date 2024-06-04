@@ -1082,7 +1082,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     <p style="font-size:17px;font-weight:bold;color:#636363;">訂單編號：</p>
                   </div>
                   <div style="display: inline-block;">
-                    <input type="text" id="order_id" name="order_id" required minlength="1" maxlength="10" size="50" placeholder="請輸入訂單編號"/>
+                    <input type="text" id="order_id" name="order_id" required minlength="1" maxlength="10" size="50" placeholder="請輸入訂單編號" class="form-control"/>
                   </div>
                 </td>
                 
