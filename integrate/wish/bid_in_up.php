@@ -36,7 +36,7 @@
         // 計算新的 id
         $new_id = $row['max_id'] + 1;
 
-        $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link,creat_time)
+        $sql_insert="insert into commodity_group(commodity_group_id,shop_id,commodity_group_name,commodity_group_narrate,commodity_group_bg,commodity_group_state,nation,cg_original_product_link,create_time)
         value('$new_id','{$_SESSION["user_shop_id"]}','$group_name','$commodity_group_narrate','$dest','3','$nation','$group_link',now())";
         
         
