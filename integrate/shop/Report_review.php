@@ -138,15 +138,11 @@
 
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $sql = "SELECT *
+                $sql = "SELECT *,MAX(report_time)
                 FROM report r
                 NATURAL JOIN commodity_group
-                WHERE r.report_time = (
-                    SELECT MAX(r2.report_time)
-                    FROM report r2
-                    WHERE r2.commodity_group_id = r.commodity_group_id
-                )
-                AND r.report_results = 3
+                WHERE r.report_results = 3
+                GROUP BY commodity_group_id
                 ORDER BY r.report_time DESC;";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {

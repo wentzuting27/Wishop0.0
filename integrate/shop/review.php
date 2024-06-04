@@ -28,7 +28,6 @@
                 $sql3 = "UPDATE commodity_group SET commodity_group_state = 4 WHERE commodity_group_id='$commodity_group_id'";
                 mysqli_query($link, $sql3);
             }
-
             header("Location: rr_details.php?commodity_group_id=$commodity_group_id");
         } else {
             header("Location: rr_details.php?commodity_group_id=$commodity_group_id");
