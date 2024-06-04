@@ -902,10 +902,10 @@ section {
 
 
 /*商品明細*/
-#app {
+/* #app {
   height: 400px;
   overflow-y: auto;
-}
+} */
 
 #app .table>tbody>tr>td,
 .table>tfoot>tr>td {

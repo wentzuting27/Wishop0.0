@@ -452,15 +452,17 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 <h1 class="modal-title fs-5" id="evaLabel" style="font-weight:bold;color:#fff;">備註內容及付款帳戶</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div style="padding-right:20px;">
                 <label for="remark" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">備註內容填寫：</label>
                 <textarea id="w3review" name="remark" rows="4" cols="50" style="margin:10px;"
-                  placeholder="備註內容..."></textarea>
+                  placeholder="備註內容..." class="form-control"></textarea>
                 <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">確認付款帳戶:(欲無卡交易請填無卡交易)</label>
                 <input type="text" id="payment_account" name="payment_account" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '"/>
+                  style="margin:0 10px 10px 10px" value="' . $row["common_payment_account"] . '" class="form-control"/>
                   <label for="payment_account" style="margin-left:10px;font-size:17px;font-weight:bold;color:#B0A5C6;">欲付款之賣家帳戶：</label>
                 <input type="text" id="account_to_send_money_to" name="account_to_send_money_to" required minlength="4" maxlength="8" size="10"
-                  style="margin:0 10px 10px 10px"/>
+                  style="margin:0 10px 10px 10px" class="form-control"/>
+                  </div>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
                   <button class="btn btn-primary"  name="submit" type="submit"
