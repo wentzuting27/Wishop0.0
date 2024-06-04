@@ -9,6 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -76,7 +77,7 @@
 
               if (mysqli_num_rows($result) == 0) {
                 echo '<script>
-    alert("此商品團體目前尚未有待審核的檢舉！");
+    alert("已審核完該商品團體的檢舉！");
     window.open("Report_review.php", "_blank");
     window.close();
   </script>';
