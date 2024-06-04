@@ -335,13 +335,13 @@
                         if ($result3) {
                           while ($row_social = mysqli_fetch_assoc($result3)) {
                             if ($row_social["social_type"] == 1) {
-                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-twitter"></i></a>';
+                              $social_type = '<a href="' . $row_social["social_link"] . '" target="_blank"><i class="bx bxl-twitter"></i></a>';
                             } elseif ($row_social["social_type"] == 2) {
-                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-facebook"></i></a>';
+                              $social_type = '<a href="' . $row_social["social_link"] . '" target="_blank"><i class="bx bxl-facebook"></i></a>';
                             } elseif ($row_social["social_type"] == 3) {
-                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="bx bxl-instagram"></i></a>';
+                              $social_type = '<a href="' . $row_social["social_link"] . '" target="_blank"><i class="bx bxl-instagram"></i></a>';
                             } elseif ($row_social["social_type"] == 4) {
-                              $social_type = '<a href="' . $row_social["social_link"] . '"><i class="fa-brands fa-line"></i></a>';
+                              $social_type = '<a href="' . $row_social["social_link"] . '" target="_blank"><i class="fa-brands fa-line"></i></a>';
                             }
                             echo $social_type;
                           }
