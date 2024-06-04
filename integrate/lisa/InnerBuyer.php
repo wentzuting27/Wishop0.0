@@ -315,27 +315,36 @@
     while ($row = mysqli_fetch_assoc($result)) {
       echo '
           <div class="col-md-7">
-            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b>';
+            <h3 class="card-title"><b>', $row["commodity_group_name"], '</b></h3>';
       $commodity_group_id = $_GET["commodity_group_id"];
       $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
       $sql2 = "SELECT COUNT(*) AS total FROM withgroup WHERE commodity_group_id = '$commodity_group_id';";
       $result2 = mysqli_query($link, $sql2);
       $row2 = mysqli_fetch_assoc($result2);
-      echo '<small style="font-size: 0.4cm;font-weight: bold;">（跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span>）';
-      if ($row["commodity_group_state"] == 2) {
-        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>已結束</button></small>';
-      }
-      if ($row["commodity_group_state"] == 1) {
-        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>進行中</button></small>';
-      } if ($row["commodity_group_state"] == 3){
-        echo '<button type="button" class="btn-floating" style="background-color:green;color:white;" disabled>未成團</button></small>';
-      }
-      if ($row["commodity_group_state"] == 4) {
-        echo '<button type="button" class="btn-floating" style="background-color:red;color:white;" disabled>危險團體</button></small>';
-      }
-      echo '</h3>
+      echo '
+      <table width="100%">
+        <tr>
+          <td>';
+          if ($row["commodity_group_state"] == 2) {
+            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #e87d7d;font-weight:bold;">已結束</span></small></p>';
+          }
+          if ($row["commodity_group_state"] == 1) {
+            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #83c57e;font-weight:bold;">進行中</span></small></p>';
+          }
+          if ($row["commodity_group_state"] == 3){
+            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #aeaeae;font-weight:bold;">未成團</span></small></p>';
+          }
+          if ($row["commodity_group_state"] == 4) {
+            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #d55858;font-weight:bold;">危險團體!</span></small></p>';
+          }
+          echo'
+          </td>
+          <td style="text-align:right;color: #B0A5C6;font-weight:bold;"><small>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small></td>
+        </tr>
+        </table>';
+      echo '
             <div class="card-text" style="height:120px;overflow-y:scroll;">
-                <p style="color: #5a5a5a;font-size: 0.4cm">', nl2br($row["commodity_group_narrate"]), '</p>
+                <p style="color: #797979;font-size: 0.4cm;font-weight:bold;">', nl2br($row["commodity_group_narrate"]), '</p>
 
           </div>
         </div>
@@ -385,13 +394,13 @@
                 if ($row["commodity_group_state"] == 1 || $row["commodity_group_state"] == 3) {
                   echo '
                 <div class="table-responsive">
-                  <table class="table table-hover" width="100%">
+                  <table class="table" width="100%">
                     <tbody>
                       <tr>
                         <th>商品名稱</th>
                         <td>
                           <fieldset>
-                            <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus>
+                            <input placeholder="商品名稱" type="text" tabindex="5" name="commodity_name" required autofocus class="form-control">
                           </fieldset>
                         </td>
                       </tr>
@@ -399,7 +408,7 @@
                         <th>商品敘述</th>
                         <td>
                           <fieldset>
-                            <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required></textarea>
+                            <textarea placeholder="商品敘述" tabindex="5" name="commodity_narrate" required class="form-control"></textarea>
                           </fieldset>
                         </td>
                       </tr>
@@ -407,11 +416,11 @@
                         <th>商品狀態</th>
                         <td>
                           <div>
-                            <input type="radio" id="1" name="commodity_state" value="1" checked />
+                            <input type="radio" id="1" name="commodity_state" value="1" checked / class="form-check-input">
                             <label for="add1">上架</label>
                           </div>
                           <div>
-                            <input type="radio" id="2" name="commodity_state" value="2" />
+                            <input type="radio" id="2" name="commodity_state" value="2" / class="form-check-input">
                             <label for="add2">待上架</label>
                           </div>
                         </td>
@@ -420,7 +429,7 @@
                         <th>金額</th>
                         <td>
                           <fieldset>
-                            <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required>
+                            <input placeholder="金額" type="text" tabindex="1" name="commodity_price" required class="form-control">
                           </fieldset>
                         </td>
 
@@ -429,7 +438,7 @@
                         <th>連結</th>
                         <td>
                           <fieldset>
-                            <input placeholder="連結" type="text" tabindex="1" name="commodity_link" required>
+                            <input placeholder="連結" type="text" tabindex="1" name="commodity_link" class="form-control">
                           </fieldset>
                         </td>
                       </tr>
@@ -438,16 +447,14 @@
                         <td>
                           <fieldset>
                             <input type="file" id="file-uploader" data-target="file-uploader" accept="image/*"
-                              name="commodity_photo[]" multiple required />
+                              name="commodity_photo[]" multiple required / class="form-control">
                           </fieldset>
                         </td>
                       </tr>
 
                       <tr>
                         <td colspan="5">
-                          <fieldset>
                             <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">送出</button>
-                          </fieldset>
                         </td>
                       </tr>
                     </tbody>
@@ -1004,7 +1011,7 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h4><B>', $row["question_title"], '</B></h4>
+                    <p>', $row["question_title"], '</p>
                   </div>';
                     if ($row["account"] == $_SESSION["account"]) {
                       echo '<h4 style="float: right;margin-top:-70px;">
@@ -1014,7 +1021,7 @@
                     }
                     echo '</div>
                 
-                <div class="card-body " id="card' . $question_id . '">
+                <div class="card-body " id="card' . $question_id . '" style="cursor: pointer;max-height:400px;height:1000px;overflow-y:scroll;">
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
                   $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
@@ -1078,11 +1085,21 @@
           <div class="seven">
             <h1>對帳表</h1>
           </div>
+          <br>
+          <style>
+            .qu {
+              color: #B0A5C6;
+            }
+
+            .qu:hover {
+              color: #E9C9D6; /* 悬停时的新颜色，例如橙色 */
+            }
+          </style>
           <?php
           if (!empty($_SESSION['account'])) {
             echo '
           <a href="#" data-bs-toggle="modal" data-bs-target="#update_social_Modal">
-          <i class="fa-regular fa-circle-question fa-lg" style="float: right;" aria-hidden="true"></i>
+          <i class="fa-regular fa-circle-question fa-lg qu" style="float: right;" aria-hidden="true"></i>
           </a>';
           } ?>
           <style>
@@ -1136,6 +1153,7 @@
               margin-top: 5px;
               margin-bottom: 10px;
             }
+
           </style>
           <!-- 連結管理Modal -->
           <div class="modal fade" id="update_social_Modal" tabindex="-1" aria-labelledby="update_social_ModalLabel"
@@ -1907,6 +1925,10 @@
             }
             mysqli_close($link); ?>
           </table>
+          <br><br>
+          <div class="filtertag">
+            <h4>認證區塊</h4>
+          </div>
           <br>
           <div class="seven">
             <h1>認證區塊</h1>

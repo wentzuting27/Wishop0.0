@@ -731,17 +731,22 @@
                           }
                           $evaluate=$sum/$ordersum;
                           $evaluate = round($evaluate, 1);
-                          if($evaluate>=4.5){
-                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
-                          }elseif($evaluate>=3.5){
-                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
-                          }elseif($evaluate>=2.5){
-                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
-                          }elseif($evaluate>=1.5){
-                            echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                          if(mysqli_num_rows($result_star)==0){
+                            echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(0)';
                           }else{
-                            echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            if($evaluate>=4.5){
+                              echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            }elseif($evaluate>=3.5){
+                              echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            }elseif($evaluate>=2.5){
+                              echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            }elseif($evaluate>=1.5){
+                              echo '<i class="fa-solid fa-wand-sparkles"></i><i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            }else{
+                              echo '<i class="fa-solid fa-wand-sparkles"></i>&nbsp;(',$evaluate,')';
+                            }
                           }
+
                           echo '
                           <p><i class="fa-regular fa-heart"></i>&nbsp;';
                           $sql_likegroup_num="select *
