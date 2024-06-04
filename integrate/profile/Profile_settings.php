@@ -347,7 +347,7 @@
 
                         <div class="form-footer text-right">
                           <button type="reset">重制</button>
-                          <button type="submit">確認編輯</button>
+                          <button type="submit">確認修改</button>
                         </div>
 
                       </form>
