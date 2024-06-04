@@ -409,7 +409,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
                   $result3 = mysqli_query($link, $sql3);
                   $row3 = mysqli_fetch_assoc($result3);
-                  if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) && (time() < strtotime($row3["close_order_date"]) || time() == null)){
+                  if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) && (time() < strtotime($row3["close_order_date"]) || $row3["close_order_date"] == null)){
                   if ($result2 && mysqli_num_rows($result2) != 0) {
                     echo '
                       <td class="text-right">
@@ -452,7 +452,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   style="margin:0 10px 10px 10px"/>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-dismiss="modal">取消</button>
-                  <button class="btn btn-primary" data-bs-dismiss="modal" name="submit" type="submit"
+                  <button class="btn btn-primary"  name="submit" type="submit"
                     style="background-color: #B0A5C6; color: white;border:none;">確認</button>
                 </div>
               </div>
@@ -480,7 +480,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </style>
               <div class="filtertag">
                 <h4>團主公告
-                  <button id="pra" style="float: right; border-radius: 50%;"><i
+                  <button id="pra" style="float: right; border-radius: 50%;background-color:#B0A5C6; color:#FFF; border: 2px solid #B0A5C6;"><i
                       class="fa-solid fa-arrow-right"></i></button>
                 </h4>
               </div>
@@ -505,15 +505,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                             <img width="100%" height="100%" alt="Anne Hathaway picture"
                               src="', $row["user_avatar"], '">
                           </div>
-                          <div style="flex-grow: 7;">
-                            <p>團主：</p>
-                            <h5>', $row["announce_title"], '</h5>
+                          <div style="display: flex; align-items: center; flex-grow: 7;">
+                          <h5 style="margin: 0;"><b>', $row["announce_title"], '</b></h5>
                           </div>
                         </div>
                       </div>
-                      <div class="card-body">
+                      <div class="card-body" style="max-height: 250px; overflow: auto;">
                         <p class="card-text">
-                        <p>尊敬的客戶:</p>
                         ', nl2br($row["announce_narrate"]), '
                         </p>
                       </div>
@@ -526,9 +524,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
             </div>
             <br>
+            <br>
             <div class="filtertag">
                 <h4>詢問區</h4>
               </div>
+              <br>
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $account = $_SESSION["account"];
@@ -538,8 +538,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             if(isset($account)){
             echo '
             <div class="part2" id="card">
-              <div class="card border-secondary mb-12" style="width: 100%;border-radius: 0;">
-                <div class="card-header bg-transparent border-secondary">
+              <div class="card border-secondary mb-12" style="width: 100%;border: none;">
+                <div class="card-header  border-secondary" style="cursor: pointer;border: none;border-radius: 10px;">
                   <div class="col-md-1">
                     <div class="profile-picture big-profile-picture clear"
                       style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
@@ -550,7 +550,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   ';
                   if($row["account"]==$_SESSION["account"]){
                     echo'
-                  <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;"><small>詢問內容...</small>
+                  <h4 class="card-title" style="font-size: 0.6cm;float: left;margin-top: 13px;">
+                  <small style="color:rgba(0, 0, 0, 0.5);">&nbsp;&nbsp;發布詢問</small>
                   </h4>';}
                   echo'
                   <button class="btn btn-info btn-sm"
@@ -561,7 +562,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             </div>';}
             mysqli_close($link);
             ?>
-            <div style="max-height:600px;overflow-y:scroll;">
+            <div>
               <?php
               $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
               $account = $_SESSION["account"];
@@ -577,24 +578,25 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $question_id = $row["question_id"];
                 echo '
               <div class="part2">
-              <div class="card border-secondary mb-12">
-                <div class="card-header bg-transparent border-secondary">
-                  <div class="col-md-12">
+              <div class="card border-secondary mb-12"style="border:none;box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);">
+                <div class="card-header  border-secondary"style="border:none;">
+                  <div class="col-md-12"style="border:none;">
                     <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: 10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
+                      
                     </div>
                     <p>', $row["account"], '：</p>
                     <h4><B>', $row["question_title"], '</B></h4>
                   </div>';
                   if($row["account"]==$_SESSION["account"]){
-                  echo'<h4 style="float: right;margin-top:-70px;">
+                  echo'<h4 style="float: right;margin-top:-50px; cursor: pointer;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
                   </h4>';}
                 echo'</div>
                 
-                <div class="card-body " id="card' . $question_id . '">
+                <div class="card-body " id="card' . $question_id . '" style="cursor: pointer;max-height:300px;overflow-y:scroll;">
                   <p>', nl2br($row["question_narrate"]), '</p>';
 
                 $sql2 = "SELECT question_photo_link FROM question_photo WHERE question_id = '$question_id'";
@@ -608,8 +610,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 }
                 echo '<div id="overlay"></div>
                 </div>
-                <div class="card-footer bg-transparent border-secondary">
-                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin-left: 10px;">
+                <div class="card-footer  border-secondary" style="border:none;">
+                  <h4 style="margin-top:-3px;margin-bottom:-3px;margin: 10px;">
                     <i class="bi bi-clock"></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small>&nbsp;
                     <i class="bi bi-chat-dots"></i>&nbsp;<small>', $row3["COM"], '</small>
                   </h4>
@@ -685,7 +687,10 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
         </section>
         <section id="order">
           <h2>Returns</h2>
-          <h4>對帳表:</h4>
+          <div class="filtertag">
+                <h4>對帳表</h4>
+              </div>
+              <br>
           <?php
           if (!empty($_SESSION['account'])) {
             echo '
