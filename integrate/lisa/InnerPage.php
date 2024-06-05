@@ -956,11 +956,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                        ';
                        if($_SESSION["account"]==$account ){
                        $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
+                        if(isset($_SESSION["account"]) && ($order_state == "未成立" ||  $order_state == "拒絕接收") && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
                           echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
                           <form  method="post" action="order.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
                         <input type="hidden" name="order_id" value="', $order_id, '">
-                        <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
+                        <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">取消訂單</button>
                         </form>';
                         }
                         $commodity_group_state=$row["commodity_group_state"];

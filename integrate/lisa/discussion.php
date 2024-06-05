@@ -532,10 +532,14 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     </div>
                     <p>', $row["account"], '：</p>
                     <h3><B>', $row["question_title"], '</B></h3>
+                    ';
+                    if($row["account"]==$_SESSION["account"]){
+                      echo'
                   <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>
+                  </h4>';}
+                  echo'
                   <div style="float:right;margin-top:-15px;"">
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div><hr>
@@ -544,8 +548,12 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   </div>
                 </div><!-- End blog sidebar --> 
               ';
-
+              $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+              $result4 = mysqli_query($link, $sql4);
+              $row4 = mysqli_fetch_assoc($result4);
+                if($row4["commodity_group_state"]!=2){
               echo '<!-- Modal -->
+              <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -554,14 +562,15 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;
-                    color: inherit;">編輯</a></button>
-                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;color: white;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">編輯</button></a>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                   </div>
                 </div>
               </div>
+              </form>
           ';
+                }
             } else {
               echo '
             <div class="row gy-4">
@@ -610,8 +619,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;color: white;">編輯</a></button>
-                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
+                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;background-color: #E9C9D6;border: none;color: white;">編輯</a></button>
+                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                   </div>
                 </div>
               </div>
