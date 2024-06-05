@@ -546,7 +546,7 @@
                         <td><i class="fa-solid fa-user"></i>&nbsp;最低成團人數:</td>
                         <td style="text-align: right;">',$row["bid_people"],'&nbsp;</td>
                         <td><i class="fa-solid fa-face-smile"></i>&nbsp;狀態:</td>
-                        <td style="color: rgb(123, 195, 150);text-align: right;">';
+                        <td style=";text-align: right;">';
                         $sql_state="select commodity_group_state from commodity_group
                         where commodity_group_id='$commodity_group_id'";
                         $result_state=mysqli_query($link,$sql_state);
@@ -554,9 +554,9 @@
                         {
                           $state=$row_state["commodity_group_state"];
                           if($state==3){ //未成團
-                            echo "待成團";
+                            echo '<span style="color:indianred;font-weight:bold">未成團</sapn>';
                           }else{ //進行中or已結束
-                            echo "已成團";
+                            echo '<span style="color: rgb(123, 195, 150);font-weight:bold">已成團</sapn>';
                           }
                         }
 
