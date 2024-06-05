@@ -630,6 +630,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 </div>
               </div>
             </div>';
+             // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+             $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+             $result4 = mysqli_query($link, $sql4);
+             $row4 = mysqli_fetch_assoc($result4);
+               if($row4["commodity_group_state"]!=2 ){
                 echo '<!-- Modal -->
                 <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
@@ -648,7 +653,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
             </div>
             </form>
-          ';
+          ';}
           
                 echo '
             <script>
