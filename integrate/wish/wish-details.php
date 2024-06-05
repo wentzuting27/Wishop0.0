@@ -155,10 +155,6 @@
                     $sql="select * from wish where wish_id='$wish_id'";
                     $result=mysqli_query($link,$sql);
 
-                    $sql_shop="select * from shop where account='{$_SESSION["account"]}'";
-                    $result_shop=mysqli_query($link,$sql_shop);
-                    $count_shop=mysqli_num_rows($result_shop);
-
                     if($row=mysqli_fetch_assoc($result))
                     {
                       if(!isset($_SESSION["account"])){
@@ -438,38 +434,27 @@
 
                     if (mysqli_num_rows($result_wishtopic) > 0) {
                       while ($row_wishtopic = mysqli_fetch_assoc($result_wishtopic)) {
-                        switch ($row_wishtopic['topic']) {
-                          case 1:
-                            echo '<a href="../index/topic.php?topic=1"><span class="topic" name="topic" value="1">#服飾</span></a>                            ';
-                            break;
-                          case 2:
+                        if ($row_wishtopic['topic'] == 1) {
+                          echo '<a href="../index/topic.php?topic=1"><span class="topic" name="topic" value="1">#服飾</span></a>';
+                        } elseif ($row_wishtopic['topic'] == 2) {
                             echo '<a href="../index/topic.php?topic=2"><span class="topic" name="topic" value="2">#美妝</span></a>';
-                            break;
-                          case 3:
+                        } elseif ($row_wishtopic['topic'] == 3) {
                             echo '<a href="../index/topic.php?topic=3"><span class="topic" name="topic" value="3">#動漫</span></a>';
-                            break;
-                          case 4:
+                        } elseif ($row_wishtopic['topic'] == 4) {
                             echo '<a href="../index/topic.php?topic=4"><span class="topic" name="topic" value="4">#明星</span></a>';
-                            break;
-                          case 5:
+                        } elseif ($row_wishtopic['topic'] == 5) {
                             echo '<a href="../index/topic.php?topic=5"><span class="topic" name="topic" value="5">#日常</span></a>';
-                            break;
-                          case 6:
+                        } elseif ($row_wishtopic['topic'] == 6) {
                             echo '<a href="../index/topic.php?topic=6"><span class="topic" name="topic" value="6">#數位3C</span></a>';
-                            break;
-                          case 7:
+                        } elseif ($row_wishtopic['topic'] == 7) {
                             echo '<a href="../index/topic.php?topic=7"><span class="topic" name="topic" value="7">#美食</span></a>';
-                            break;
-                          case 8:
+                        } elseif ($row_wishtopic['topic'] == 8) {
                             echo '<a href="../index/topic.php?topic=8"><span class="topic" name="topic" value="8">#運動</span></a>';
-                            break;
-                          case 9:
+                        } elseif ($row_wishtopic['topic'] == 9) {
                             echo '<a href="../index/topic.php?topic=9"><span class="topic" name="topic" value="9">#精品</span></a>';
-                            break;
-                          case 10:
-                            echo '<a href="../index/topic.php?topic=10"><span class="topic" name="topic" value="9">#其他</span></a>';
-                            break;
-                          default:
+                        } elseif ($row_wishtopic['topic'] == 10) {
+                            echo '<a href="../index/topic.php?topic=10"><span class="topic" name="topic" value="10">#其他</span></a>';
+                        } else {
                             echo '<a href="#"><span class="topic" name="topic" value="10">無</span></a>';
                         }
                       }

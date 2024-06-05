@@ -44,7 +44,7 @@
     position: relative;
     width: 100px;
     height: 60px;
-    overflow: hidden;
+    overflow: hidden; /*元素內容超出其框框時，隱藏超出部分*/
     margin: 10px;
     border-radius: 5px;
     padding: 0 5px 0 5px;
@@ -205,8 +205,6 @@
           <?php
           if (!empty($_SESSION['user_name'])) {
             echo '
- 
-
               <li class="dropdown"><a href="../profile/Profile_settings.php"><img src="', $_SESSION["user_avatar"], '" class="nav-photo"></a>
                 <ul>
                   <li><a style="color:#FFF;font-weight: 600;margin-bottom: 0px;">', $_SESSION["user_name"], '</a></li>
@@ -223,7 +221,6 @@
                     <li><a href="../profile/Wishlist.php" style="font-weight: 600;">收藏清單</a></li>
                     <li><a href="../profile/Purchase_history.php" style="font-weight: 600;">購買紀錄</a></li>
                     <li><a href="../index/logout.php" style="font-weight: 600;">登出&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>';
-
             echo '  
                 </ul>
               </li>
@@ -232,7 +229,6 @@
             echo "<a href='../index/login.php' class='getstarted' style='color: white;'>登入</a>";
           }
           ?>
-
 
           <!-- <li><a href="contact.php">Contact</a></li> -->
 
@@ -249,7 +245,7 @@
 
     <?php
     $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-    date_default_timezone_set('Asia/Taipei');
+    date_default_timezone_set('Asia/Taipei'); //設置默認的時區
     // 計算當月的起始和結束日期
     $startOfMonth = date('Y-m-01'); // 當月的第一天
     $endOfMonth = date('Y-m-t 23:59:59'); // 當月的最後一天
@@ -293,7 +289,7 @@
               <p class="animate__animated animate__fadeInUp">~每一个心聲都被聽見，每一次的許願都有機會實現~</p>
               <?php
               $sql = "select * from wish where account='{$_SESSION["account"]}' AND MONTH(wish_start) = MONTH(CURRENT_DATE())
-            AND YEAR(wish_start) = YEAR(CURRENT_DATE())";
+              AND YEAR(wish_start) = YEAR(CURRENT_DATE())"; //確保 wish_start 欄位的月份與當前日期的月份相同
               $result = mysqli_query($link, $sql);
               $count = mysqli_num_rows($result); // 获取结果行数
               if (!isset($_SESSION["account"])) {
@@ -478,7 +474,7 @@
         if (tab) {
           // 获取标签内容的位置
           var tabPosition = tab.getBoundingClientRect().top + window.scrollY;
-          // 调整位置，例如向上偏移 100 像素
+          // 调整位置，例如向上偏移 180 像素
           var offset = tabPosition - 180;
           // 使用调整后的位置滚动
           window.scrollTo({ top: offset, behavior: 'smooth' });
@@ -735,7 +731,7 @@
                       </center>
                     </section>
                     <?php
-                    $wish_name = "%" . $_POST['wish_name'] . "%";
+                    $wish_name = "%" . $_POST['wish_name'] . "%"; //LIKE 關鍵字模糊匹配
                     $sql = "select * from wish 
                           natural join account
                           where wish_name like '$wish_name' 
@@ -787,21 +783,21 @@
                                 <div class="course-item">
                                   <div id="carouselExampleIndicators', $wish_num, '" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner fixed-image">';
-                          $a = 1;
-                          $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
-                          $result_photo = mysqli_query($link, $sql_photo);
-                          while ($row_photo = mysqli_fetch_assoc($result_photo)) {
-                            echo '
-                                      <div class="carousel-item ';
-                            if ($a == 1) {
-                              echo 'active';
-                            }
-                            echo '">
-                                        <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
-                                      </div>';
-                            $a++;
-                          }
-                          echo '
+                                    $a = 1;
+                                    $sql_photo = "select * from wish_photo where wish_id='$wish_id'";
+                                    $result_photo = mysqli_query($link, $sql_photo);
+                                    while ($row_photo = mysqli_fetch_assoc($result_photo)) {
+                                      echo '
+                                          <div class="carousel-item ';
+                                            if ($a == 1) {
+                                              echo 'active';
+                                            }
+                                            echo '">
+                                            <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
+                                          </div>';
+                                      $a++;
+                                    }
+                                    echo '
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators', $wish_num, '" data-bs-slide="prev">
                                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -825,27 +821,27 @@
                                         <a href="" class="trainer-link">', $row["user_name"], '</a>
                                       </div>
                                       <div class="trainer-rank d-flex align-items-center">';
-                          $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
-                          $result_likepeople = mysqli_query($link, $sql_likepeople);
-                          $count_likepeople = mysqli_num_rows($result_likepeople);
-                          echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
+                                      $sql_likepeople = "select * from like_wish where wish_id='$wish_id'";
+                                      $result_likepeople = mysqli_query($link, $sql_likepeople);
+                                      $count_likepeople = mysqli_num_rows($result_likepeople);
+                                      echo '<i class="bi bi-heart heart-icon"></i>&nbsp;', $count_likepeople, '&nbsp;';
 
-                          $sql_likewish = "select * from like_wish
-                                        where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
-                          $result_likewish = mysqli_query($link, $sql_likewish);
-                          if (isset($_SESSION["account"])) {
-                            if (mysqli_num_rows($result_likewish) == 0) {
-                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
-                            } else {
-                              echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
-                            }
-                          }
-                          echo '</div>
-                                    </div>
-                                  </div>
-                                </div>  
-                              </div><!-- End Course Item-->';
-                          $wish_num++;
+                                      $sql_likewish = "select * from like_wish
+                                                    where wish_id='$wish_id' and account='{$_SESSION["account"]}'";
+                                      $result_likewish = mysqli_query($link, $sql_likewish);
+                                      if (isset($_SESSION["account"])) {
+                                        if (mysqli_num_rows($result_likewish) == 0) {
+                                          echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=in"><button class="btn insert_button">收藏許願</button></a>';
+                                        } else {
+                                          echo '<a href="like_in_de.php?wish_id=', $row["wish_id"], '&page=wish&method=de"><button class="btn insert_button">取消收藏</button></a>';
+                                        }
+                                      }
+                                      echo '</div>
+                                                </div>
+                                              </div>
+                                            </div>  
+                                          </div><!-- End Course Item-->';
+                                      $wish_num++;
                         }
                       }
                     } else {
@@ -868,13 +864,13 @@
                         $result_photo = mysqli_query($link, $sql_photo);
                         while ($row_photo = mysqli_fetch_assoc($result_photo)) {
                           echo '
-                                      <div class="carousel-item ';
+                            <div class="carousel-item ';
                           if ($a == 1) {
                             echo 'active';
                           }
                           echo '">
-                                        <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
-                                      </div>';
+                              <img src="', $row_photo["wish_photo_link"], '" class="d-block w-100" alt="...">
+                            </div>';
                           $a++;
                         }
                         echo '
@@ -1434,23 +1430,17 @@
 
                     $time_range = $_POST['wish_end'];
                     // 根据用户选择的时间范围设置日期
-                    switch ($time_range) {
-                      case '1個月內':
-                        $start_date = date('Y-m-d H:i:s', strtotime('-1 month'));
-                        break;
-                      case '3個月內':
+                    if ($time_range == '1個月內') {
+                      $start_date = date('Y-m-d H:i:s', strtotime('-1 month'));
+                    } elseif ($time_range == '3個月內') {
                         $start_date = date('Y-m-d H:i:s', strtotime('-3 months'));
-                        break;
-                      case '半年內':
+                    } elseif ($time_range == '半年內') {
                         $start_date = date('Y-m-d H:i:s', strtotime('-6 months'));
-                        break;
-                      case '1年內':
+                    } elseif ($time_range == '1年內') {
                         $start_date = date('Y-m-d H:i:s', strtotime('-1 year'));
-                        break;
-                      default:
+                    } else {
                         // 默认为一年内
                         $start_date = date('Y-m-d H:i:s', strtotime('-1 year'));
-                        break;
                     }
 
                     $wish_name = "%" . $_POST['wish_name'] . "%";
