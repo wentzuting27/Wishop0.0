@@ -52,4 +52,28 @@ if(isset($_POST['delrewrite'])) {
     
     mysqli_close($link);
 }
+if(isset($_POST['editrewrite'])) {
+    $commodity_group_id = $_GET["commodity_group_id"];
+    $commodity_group_announce_id = $_POST['commodity_group_announce_id'];
+    $announce_title = $_POST['announce_title'];
+    $announce_narrate = $_POST['announce_narrate'];
+    
+    $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+
+    if (!$link) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+
+    $sql = "UPDATE commodity_group_announce SET announce_title='$announce_title',announce_narrate='$announce_narrate' WHERE commodity_group_announce_id = $commodity_group_announce_id;";
+
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        echo '<script>alert("編輯成功!"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>';
+        exit(); 
+    } else{
+        echo '<script>alert("編輯失敗"); window.location.href = "InnerBuyer.php?commodity_group_id='.$commodity_group_id.'";</script>'; 
+    }
+    
+    mysqli_close($link);
+}
 ?>

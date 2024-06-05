@@ -905,11 +905,14 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h3><B>', $row["question_title"], '</B></h3>
+                    <h3><B>', $row["question_title"], '</B></h3>';
+                    if($row["account"]==$_SESSION["account"]){
+                    echo'
                   <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>
+                  </h4>';}
+                  echo'
                   <div style="float:right;margin-top:-15px;"">
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div><hr>
@@ -955,11 +958,14 @@
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
                     <p>', $row["account"], '：</p>
-                    <h3><B>', $row["question_title"], '</B></h3>
+                    <h3><B>', $row["question_title"], '</B></h3>';
+                    if($row["account"]==$_SESSION["account"]){
+                      echo'
                   <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>
+                  </h4>';}
+                  echo'
                   <div style="float:right;margin-top:-15px;"">
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div><hr>
