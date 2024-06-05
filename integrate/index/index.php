@@ -133,7 +133,9 @@
             INNER JOIN shop ON commodity_group.shop_id = shop.shop_id
            
             INNER JOIN withgroup ON commodity_group.commodity_group_id = withgroup.commodity_group_id
-            WHERE commodity_group_state <> 2 AND close_order_date > NOW() and close_order_date is not null
+            WHERE commodity_group_state NOT IN (2, 4) 
+            AND (close_order_date > NOW() and close_order_date is not null)
+            
             GROUP BY commodity_group.commodity_group_id, shop.shop_name
             ORDER BY COUNT(*) DESC
             LIMIT 5";

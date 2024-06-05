@@ -630,6 +630,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 </div>
               </div>
             </div>';
+             // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+             $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+             $result4 = mysqli_query($link, $sql4);
+             $row4 = mysqli_fetch_assoc($result4);
+               if($row4["commodity_group_state"]!=2 ){
                 echo '<!-- Modal -->
                 <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
@@ -648,7 +653,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
             </div>
             </form>
-          ';
+          ';}
           
                 echo '
             <script>
@@ -680,7 +685,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
           $result4 = mysqli_query($link, $sql4);
           $row4 = mysqli_fetch_assoc($result4);
-            if($row4["commodity_group_state"]!=2){
+          if(isset($_SESSION["account"])){
+            if($row4["commodity_group_state"]!=2 ){
             echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -699,7 +705,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   });
                 });
               });
-              </script>';}
+              </script>';}}
 
             ?>
         </section>
@@ -950,11 +956,11 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                        ';
                        if($_SESSION["account"]==$account ){
                        $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
+                        if(isset($_SESSION["account"]) && ($order_state == "未成立" ||  $order_state == "拒絕接收") && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
                           echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
                           <form  method="post" action="order.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
                         <input type="hidden" name="order_id" value="', $order_id, '">
-                        <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
+                        <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">取消訂單</button>
                         </form>';
                         }
                         $commodity_group_state=$row["commodity_group_state"];

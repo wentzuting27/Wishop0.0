@@ -851,6 +851,9 @@
                 <?php
                 $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
                 $account = $_SESSION["account"];
+                if(isset($_GET["commodity_group_announce_id"])){
+
+                }
                 $sql = "select * from shop natural join account where account='$account'";
                 $result = mysqli_query($link, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -873,7 +876,25 @@
                     </button>
                   </div>
                 </div>-->
-                <div class="card-body">
+                ';
+                if(isset($_GET["commodity_group_announce_id"])){
+                  $sql2 = "SELECT * FROM commodity_group_announce WHERE commodity_group_announce_id={$_GET["commodity_group_announce_id"]}";
+                  $result2 = mysqli_query($link, $sql2);
+                  $row2 = mysqli_fetch_assoc($result2);
+                  echo'
+                  <div class="card-body">
+                  <input type="text" class="form-control" name="announce_title" value="'.$row2["announce_title"].'" required>
+                  <br>
+                  <textarea class="form-control" name="announce_narrate" rows="5" placeholder="內容" required>'.$row2["announce_narrate"].'</textarea>
+                </div>
+                  <input type="hidden" name="commodity_group_announce_id" value="', $_GET["commodity_group_announce_id"], '">
+                  <div class="card-footer">
+                  <button class="btn btn-primary" name="editrewrite" type="submit"
+                  style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
+                </div>';
+                }
+                else{
+                  echo'<div class="card-body">
                   <input type="text" class="form-control" name="announce_title" placeholder="標題" required>
                   <br>
                   <textarea class="form-control" name="announce_narrate" rows="5" placeholder="內容" required></textarea>
@@ -881,7 +902,7 @@
                 <div class="card-footer">
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
-                </div>';
+                </div>';}
                 }
                 ?>
             </form>

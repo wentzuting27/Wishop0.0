@@ -940,6 +940,10 @@
                               </div>
                               <div style="display: flex; align-items: center; flex-grow: 7;">
                               <h5 style="margin: 0;"><b>', $row["announce_title"], '</b></h5>
+                              <h4 style="float: right; margin-left:80px;cursor: pointer;">
+                    <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
+                    data-bs-target="#del', $row["commodity_group_announce_id"],'"></i>
+                  </h4>
                               </div>
                             </div>
                           </div>
@@ -963,7 +967,12 @@
               $commodity_group_id = $_GET["commodity_group_id"];
               $sql = "select * from commodity_group_announce ";
               $result = mysqli_query($link, $sql);
-              if (isset($_SESSION["account"])) {
+               // 使用 echo 在 PHP 中生成 JavaScript 語句，將 PHP 值傳遞到 JavaScript 中
+            $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
+            $result4 = mysqli_query($link, $sql4);
+            $row4 = mysqli_fetch_assoc($result4);
+            if(isset($_SESSION["account"])){
+              if($row4["commodity_group_state"]!=2 ){
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '
               <form method="post" action="addwrite.php?commodity_group_id=' . $commodity_group_id . ' ">
@@ -973,17 +982,19 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="delLabel">想要刪除嗎？</h1>
+                          <h1 class="modal-title fs-5" id="delLabel">想要編輯或刪除嗎？</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                          <a href="../lisa/rewrite.php?commodity_group_id=' . $commodity_group_id . '&commodity_group_announce_id=' . $row["commodity_group_announce_id"] . '" style="text-decoration: none;color: #fff;"><button type="button" class="btn btn-secondary">
+                          編輯</button></a>
                           <button type="submit" name="delrewrite" class="btn btn-primary" >刪除</button>
                         </div>
                       </div>
                     </div>
                   </div>
                   </form>';
+                }
                 }
               }
               mysqli_close($link);
@@ -1043,22 +1054,7 @@
               </div>
             </div>
           </div>';
-                  echo '<!-- Modal -->
-            <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button>
-                    <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal">刪除</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ';
+                
                     echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
