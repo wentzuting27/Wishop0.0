@@ -696,6 +696,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
               $result4 = mysqli_query($link, $sql4);
               $row4 = mysqli_fetch_assoc($result4);
+              
                 if($row4["commodity_group_state"]!=2){
               echo '
               <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >

@@ -680,7 +680,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
           $result4 = mysqli_query($link, $sql4);
           $row4 = mysqli_fetch_assoc($result4);
-            if($row4["commodity_group_state"]!=2){
+          if(isset($_SESSION["account"])){
+            if($row4["commodity_group_state"]!=2 ){
             echo '
             <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -699,7 +700,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   });
                 });
               });
-              </script>';}
+              </script>';}}
 
             ?>
         </section>
