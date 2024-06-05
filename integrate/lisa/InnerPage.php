@@ -16,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/logo2.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -646,7 +646,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   </div>
                   <div class="modal-footer">
                   <input type="hidden" name="question_id" value="', $row["question_id"], '">
-                    <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal"><a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;color: #fff;">編輯</a></button>
+                  <a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;background-color: #E9C9D6;border: none;color: white;">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button></a>
                     <button type="submit" name="deldis" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #b0a5c6a8;border: none;color: white;">刪除</button>
                   </div>
                 </div>
