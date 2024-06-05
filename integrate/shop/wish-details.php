@@ -360,19 +360,6 @@
 
           </div><!-- End blog sidebar -->
 
-          <div class="col-lg-12">
-            <div class="sidebar">
-
-              <h3 class="sidebar-title">Tags</h3>
-              <div class="sidebar-item tags">
-                <ul>
-                  <li><a href="#">xxx</a></li>
-                  <li><a href="#">xxxx</a></li>
-                </ul>
-              </div><!-- End sidebar tags-->
-
-            </div><!-- End sidebar -->
-          </div>
 
       </div>
     </section><!-- End Blog Single Section -->
