@@ -464,7 +464,7 @@
                               $sql_detail="select *
                               from report
                               where commodity_group_id='{$row["commodity_group_id"]}'
-                              order by report_time";
+                              order by report_time DESC";
                               $result_detail=mysqli_query($link,$sql_detail);
                               while($row_detail=mysqli_fetch_assoc($result_detail))
                               {
@@ -622,7 +622,7 @@
                               $sql_detail="select *
                               from report
                               where commodity_group_id='{$row["commodity_group_id"]}'
-                              order by report_time";
+                              order by report_time DESC";
                               $result_detail=mysqli_query($link,$sql_detail);
                               while($row_detail=mysqli_fetch_assoc($result_detail))
                               {
@@ -737,9 +737,10 @@
       <div class="modal-body">
         <ul>
           <li style="font-size:16px;color: #666666;font-weight: bold;">此區會顯示您遭人檢舉且經管理員認證檢舉成功之商品團體</li>
-          <li style="font-size:16px;color: #666666;font-weight: bold;">被檢舉之商品團體無法再進行商品及訂單狀態的更動</li>
-          <li style="font-size:16px;color: #666666;font-weight: bold;">僅保留討論區之功能供買賣雙方溝通</li>
-          <li style="font-size:16px;color: #666666;font-weight: bold;">此商品團體也不會顯示於賣場中</li>
+          <li style="font-size:16px;color: #666666;font-weight: bold;">被檢舉之商品團體無法再進行商品狀態的更動</li>
+          <li style="font-size:16px;color: #666666;font-weight: bold;">僅保留討論區、訂單狀態更動之功能供買賣雙方處理訂單</li>
+          <li style="font-size:16px;color: #666666;font-weight: bold;">此商品團體不會顯示於賣場中</li>
+          <li style="font-size:16px;color: #666666;font-weight: bold;">買家無法向該商品團體喊單</li>
         </ul>
         <p style="font-size:16px;color: #d55858;font-weight: bold;">
       請您與已喊單的買家自行協調是否繼續交易以及退款、退貨之相關事項<br>
