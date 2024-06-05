@@ -16,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/logo2.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -1238,7 +1238,7 @@
               <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
                 tabindex="0">
                 <div class="table-responsive">
-                  <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                  <table id="example1" class="table table-hover" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th>帳號</th>

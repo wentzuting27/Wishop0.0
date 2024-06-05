@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/logo2.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -618,8 +618,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <a href="../lisa/adddiscussion?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;background-color: #E9C9D6;border: none;color: white;">編輯</a></button>
+                    <a href="../lisa/adddiscussion.php?commodity_group_id=' . $commodity_group_id . '&question_id=' . $question_id . '" style="text-decoration: none;border: none;background-color: #E9C9D6;border: none;color: white;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">編輯</button></a>
                     <button type="button" name="delgroup" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                   </div>
                 </div>
@@ -714,13 +714,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="deloreditLabel">想要編輯還是刪除？</h1>
+                      <h1 class="modal-title fs-5" id="deloreditLabel">確認刪除？</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
                     <input type="hidden" name="question_id" value="', $question_id , '">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">編輯</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">取消</button>
                       <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                     </div>
                   </div>
