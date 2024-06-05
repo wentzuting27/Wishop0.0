@@ -57,7 +57,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php">首頁</a></li>
-          <li class="dropdown"><a href="portfolio.php" class="active"><span>購物</span></a>
+          <li class="dropdown"><a href="portfolio.php"><span>購物</span></a>
           </li>
           <li><a href="groupshop.php">團購</a></li>
           <li><a href="../wish/wish.php">許願池</a></li>
@@ -345,6 +345,7 @@
                           JOIN commodity_group cg ON c.commodity_group_id = cg.commodity_group_id
                           LEFT JOIN group_topic gt ON cg.commodity_group_id = gt.commodity_group_id 
                           LEFT JOIN order_details od ON od.commodity_id = c.commodity_id 
+                          LEFT JOIN `order` o ON od.order_id = o.order_id 
                           WHERE gt.topic = '$topic'
                           AND (cg.close_order_date > NOW() OR cg.close_order_date IS NULL)
                           AND cg.commodity_group_state = '1'
