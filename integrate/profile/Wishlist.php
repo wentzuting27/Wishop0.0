@@ -248,7 +248,7 @@
                 <li class="nav-item">
                   <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
                     <h5 style="padding-top: 40px; padding-bottom: 20px;"><i
-                        class="fa-solid fa-users"></i>&nbsp;&nbsp;收藏商品團體(開團)</h5>
+                        class="fa-solid fa-users"></i>&nbsp;&nbsp;收藏商品團體</h5>
                   </a>
                 </li>
                 <li class="nav-item">
