@@ -220,33 +220,33 @@ const galleryLightbox = GLightbox({
 
 
 
-let isDragging = false;
-  let startX, scrollLeft;
+// let isDragging = false;
+//   let startX, scrollLeft;
 
-  function startDrag(e) {
-    isDragging = true;
-    startX = e.clientX - document.querySelector('.scrollable-img').offsetLeft;
-    scrollLeft = document.querySelector('.scrollable-img').scrollLeft;
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', stopDrag);
-  }
+//   function startDrag(e) {
+//     isDragging = true;
+//     startX = e.clientX - document.querySelector('.scrollable-img').offsetLeft;
+//     scrollLeft = document.querySelector('.scrollable-img').scrollLeft;
+//     document.addEventListener('mousemove', drag);
+//     document.addEventListener('mouseup', stopDrag);
+//   }
 
-  function drag(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.clientX - document.querySelector('.scrollable-img').offsetLeft;
-    const walk = (x - startX) * 2; // 控制拖动速度
-    document.querySelector('.scrollable-img').scrollLeft = scrollLeft - walk;
-  }
+//   function drag(e) {
+//     if (!isDragging) return;
+//     e.preventDefault();
+//     const x = e.clientX - document.querySelector('.scrollable-img').offsetLeft;
+//     const walk = (x - startX) * 2; // 控制拖动速度
+//     document.querySelector('.scrollable-img').scrollLeft = scrollLeft - walk;
+//   }
 
-  function stopDrag() {
-    isDragging = false;
-    document.removeEventListener('mousemove', drag);
-    document.removeEventListener('mouseup', stopDrag);
-  }
+//   function stopDrag() {
+//     isDragging = false;
+//     document.removeEventListener('mousemove', drag);
+//     document.removeEventListener('mouseup', stopDrag);
+//   }
 
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+//   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+// const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 
 

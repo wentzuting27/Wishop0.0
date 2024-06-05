@@ -351,6 +351,7 @@
   
 
   <main id="main">
+    
 
     <!-- ======= shop_group Section ======= -->
     <section id="shop_group" class="shop_group">
@@ -396,7 +397,8 @@
                     natural join commodity
                     natural join commodity_group
                     where shop_id=$shop_id and star='5'
-                    group by order_id";
+                    group by order_id
+                    ORDER BY evaluate_time DESC";
                     $result=mysqli_query($link,$sql);
                     while($row=mysqli_fetch_assoc($result))
                     {
@@ -440,13 +442,13 @@
                             if(mysqli_num_rows($result_ephoto)>0){
                               echo '
                             <tr>
-                              <td colspan="3" style="height: 70px;">';
+                              <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)" id="scrollable-img-container-' . $row["evaluate_id"] . '>';
                               while($row_ephoto=mysqli_fetch_assoc($result_ephoto))
                               {
                                 echo '<img src="',$row_ephoto["evaluate_photo"],'" class="goods_photo">';
                               }
                               echo '
-                              </td>
+                              </div></td>
                             </tr>';
                           }
                           echo '
@@ -462,6 +464,8 @@
               </div>
             
               <!-- End 5star -->
+              
+
     
               <!-- 4star -->
               <div role="tabpanel" class="col-lg-12  tab-pane fade" id="4star">
@@ -517,14 +521,14 @@
                             </tr>';
                               if(mysqli_num_rows($result_ephoto)>0){
                                 echo '
-                              <tr>
-                                <td colspan="3" style="height: 70px;">';
+                                <tr>
+                                <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)" id="scrollable-img-container-' . $row["evaluate_id"] . '>';
                                 while($row_ephoto=mysqli_fetch_assoc($result_ephoto))
                                 {
                                   echo '<img src="',$row_ephoto["evaluate_photo"],'" class="goods_photo">';
                                 }
                                 echo '
-                                </td>
+                                </div></td>
                               </tr>';
                             }
                             echo '
@@ -597,14 +601,14 @@
                             </tr>';
                               if(mysqli_num_rows($result_ephoto)>0){
                                 echo '
-                              <tr>
-                                <td colspan="3" style="height: 70px;">';
+                                <tr>
+                                <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)" id="scrollable-img-container-' . $row["evaluate_id"] . '>';
                                 while($row_ephoto=mysqli_fetch_assoc($result_ephoto))
                                 {
                                   echo '<img src="',$row_ephoto["evaluate_photo"],'" class="goods_photo">';
                                 }
                                 echo '
-                                </td>
+                                </div></td>
                               </tr>';
                             }
                             echo '
@@ -676,14 +680,14 @@
                             </tr>';
                               if(mysqli_num_rows($result_ephoto)>0){
                                 echo '
-                              <tr>
-                                <td colspan="3" style="height: 70px;">';
+                                <tr>
+                                <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)" id="scrollable-img-container-' . $row["evaluate_id"] . '>';
                                 while($row_ephoto=mysqli_fetch_assoc($result_ephoto))
                                 {
                                   echo '<img src="',$row_ephoto["evaluate_photo"],'" class="goods_photo">';
                                 }
                                 echo '
-                                </td>
+                                </div></td>
                               </tr>';
                             }
                             echo '
@@ -754,14 +758,14 @@
                             </tr>';
                               if(mysqli_num_rows($result_ephoto)>0){
                                 echo '
-                              <tr>
-                                <td colspan="3" style="height: 70px;">';
+                                <tr>
+                                <td colspan="3" style="height: 70px;"><div class="scrollable-img" onmousedown="startDrag(event)" id="scrollable-img-container-' . $row["evaluate_id"] . '>';
                                 while($row_ephoto=mysqli_fetch_assoc($result_ephoto))
                                 {
                                   echo '<img src="',$row_ephoto["evaluate_photo"],'" class="goods_photo">';
                                 }
                                 echo '
-                                </td>
+                                </div></td>
                               </tr>';
                             }
                             echo '
@@ -917,6 +921,36 @@ while ($row = mysqli_fetch_assoc($result)) {
   };
 
 
+</script>
+
+<script>
+  let isDragging = false;
+  let startX, scrollLeft;
+
+  document.querySelectorAll('.scrollable-img').forEach(function(element) {
+    element.addEventListener('mousedown', startDrag);
+  });
+
+  function startDrag(e) {
+    isDragging = true;
+    startX = e.clientX;
+    scrollLeft = this.scrollLeft;
+    this.addEventListener('mousemove', drag);
+    this.addEventListener('mouseup', stopDrag);
+  }
+
+  function drag(e) {
+    if (!isDragging) return;
+    const x = e.clientX;
+    const walk = (x - startX) * 2; // 控制拖动速度
+    this.scrollLeft = scrollLeft - walk;
+  }
+
+  function stopDrag() {
+    isDragging = false;
+    this.removeEventListener('mousemove', drag);
+    this.removeEventListener('mouseup', stopDrag);
+  }
 </script>
 
   

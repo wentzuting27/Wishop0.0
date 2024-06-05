@@ -1164,8 +1164,6 @@ profile2(頭貼、名字)
 
 .scrollable-img img {
   display: inline-block;
-  width: 50px; /* 调整图片大小 */
-  height: auto;
   margin-right: 10px; /* 调整图片间距 */
 }
 /*--------------------------------------------------------------
