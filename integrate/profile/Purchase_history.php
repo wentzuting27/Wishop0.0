@@ -348,7 +348,7 @@
 
                               <?php
                               $link = mysqli_connect("localhost", "root", "12345678", "wishop");
-                              // 查詢所有我也想買(跟團)
+                              // 查詢所有我要跟團)
                               $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group
                                       WHERE commodity_group_state <> 2 AND account = '{$_SESSION['account']}'";
                               // 團體狀態不等於已結束的跟團
