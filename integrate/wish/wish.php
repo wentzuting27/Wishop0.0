@@ -509,7 +509,7 @@
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link <?php echo ($nowtab == 'all_wish') ? 'active show' : ''; ?> " data-bs-toggle="tab"
               data-bs-target="#tab-1" href="#tab-1" onclick="scrollToTab('tab-1')">
-              <i class="bi bi-binoculars color-cyan"></i>
+              <i class="bi bi-brightness-high color-teal"></i>
               <h4>許願區</h4>
             </a>
           </li><!-- End Tab 1 Nav -->
@@ -517,7 +517,7 @@
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link <?php echo ($nowtab == 'coming_wish') ? 'active show' : ''; ?>" data-bs-toggle="tab"
               data-bs-target="#tab-2" href="#tab-2" onclick="scrollToTab('tab-2')">
-              <i class="bi bi-box-seam color-indigo"></i>
+              <i class="bi bi-binoculars color-cyan"></i>
               <h4>即將結束區</h4>
             </a>
           </li><!-- End Tab 2 Nav -->
@@ -525,7 +525,7 @@
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link <?php echo ($nowtab == 'end_wish') ? 'active show' : ''; ?>" data-bs-toggle="tab"
               data-bs-target="#tab-3" href="#tab-3" onclick="scrollToTab('tab-3')">
-              <i class="bi bi-brightness-high color-teal"></i>
+              </i><i class="bi bi-box-seam color-indigo"></i>
               <h4>歷史許願區</h4>
             </a>
           </li><!-- End Tab 3 Nav -->
