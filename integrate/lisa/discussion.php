@@ -47,8 +47,8 @@
 
   <main id="main">
 
-   <!-- ======= Breadcrumbs ======= -->
-   <section id="breadcrumbs" class="breadcrumbs">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
         <?php
         $commodity_group_id = $_GET["commodity_group_id"];
@@ -96,22 +96,23 @@
       $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
       $result3 = mysqli_query($link, $sql3);
       $row3 = mysqli_fetch_assoc($result3);
-      echo'<div class="background-overlay" style="position: absolute;
+      echo '<div class="background-overlay" style="position: absolute;
       top: 0;
       width: 100%;
       height: 100%;background-color: rgba(237, 237, 237, 0.733)">
       </div>';
-      if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)){ 
-      if ($result2 && mysqli_num_rows($result2) == 0) {
-        echo '
+      if (isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)) {
+        if ($result2 && mysqli_num_rows($result2) == 0) {
+          echo '
     <div class="edit_like_shop_button">
     <button type="submit" name="submit" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;收藏</button>';
-      } else {
-        echo '
+        } else {
+          echo '
       
       <div class="edit_like_shop_button">
       <button type="submit" name="submit2" class="btn insert_button"><i class="fa-solid fa-heart"></i>&nbsp;取消收藏</button>';
-      }}
+        }
+      }
 
       $sql = "SELECT * FROM withgroup NATURAL JOIN commodity_group WHERE account = '$account' and commodity_group_id=$commodity_group_id";
       $result = mysqli_query($link, $sql);
@@ -119,26 +120,27 @@
       $result3 = mysqli_query($link, $sql3);
       $row = mysqli_fetch_assoc($result);
       $row3 = mysqli_fetch_assoc($result3);
-if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)){
-      if ($result && mysqli_num_rows($result) == 0) {
-        echo '
+      if (isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3)) {
+        if ($result && mysqli_num_rows($result) == 0) {
+          echo '
     <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#leave">
     <i class="fa-solid fa-share-from-square"></i>我要跟團</button>
     </div>
     ';
-      } else {
-        echo '
+        } else {
+          echo '
       <button type="button" class="btn insert_button" data-bs-toggle="modal" data-bs-target="#already">
       <i class="fa-solid fa-share-from-square"></i>已跟團</button>
       </div>
      
-      ';}
-    }
-        $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
+      ';
+        }
+      }
+      $sql3 = "SELECT announce_title,announce_narrate FROM commodity_group_announce WHERE commodity_group_id='$commodity_group_id'
      order by announce_time DESC";
-        $result3 = mysqli_query($link, $sql3);
-        $row3 = mysqli_fetch_assoc($result3);
-        echo '
+      $result3 = mysqli_query($link, $sql3);
+      $row3 = mysqli_fetch_assoc($result3);
+      echo '
     <div class="marquee-container">
     <center>
     <marquee><i class="fa-solid fa-bullhorn" style="color: #B0A5C6;"></i>
@@ -149,7 +151,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
     </center>
      </div>
       ';
-      
+
       mysqli_close($link);
       ?>
     </form>
@@ -244,25 +246,25 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
       <table width="100%">
         <tr>
           <td>';
-          if ($row["commodity_group_state"] == 2) {
-            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #e87d7d;font-weight:bold;">已結束</span></small></p>';
-          }
-          if ($row["commodity_group_state"] == 1) {
-            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #83c57e;font-weight:bold;">進行中</span></small></p>';
-          }
-          if ($row["commodity_group_state"] == 3){
-            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #aeaeae;font-weight:bold;">未成團</span></small></p>';
-          }
-          if ($row["commodity_group_state"] == 4) {
-            echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #d55858;font-weight:bold;">危險團體!</span></small></p>';
-          }
-          echo'
+      if ($row["commodity_group_state"] == 2) {
+        echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #e87d7d;font-weight:bold;">已結束</span></small></p>';
+      }
+      if ($row["commodity_group_state"] == 1) {
+        echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #83c57e;font-weight:bold;">進行中</span></small></p>';
+      }
+      if ($row["commodity_group_state"] == 3) {
+        echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #aeaeae;font-weight:bold;">未成團</span></small></p>';
+      }
+      if ($row["commodity_group_state"] == 4) {
+        echo '<small><p style="color: #B0A5C6;font-weight:bold;">狀態：<span style="color: #d55858;font-weight:bold;">危險團體!</span></small></p>';
+      }
+      echo '
           </td>
           <td style="text-align:right;"><small>跟團人數：<span style="color:#B0A5C6;">', $row2["total"], '人</span></small></td>
         </tr>
         </table>';
-        
-      
+
+
       echo '</h3>
             <div class="card-text"  style="height:120px;overflow-y:scroll;">
                 <p style="color: #797979;font-size: 0.4cm;font-weight:bold;">', nl2br($row["commodity_group_narrate"]), '</p>
@@ -278,7 +280,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
 
     <div class="tabs" role="tablist">
 
-      <input type="radio" id="tab1" name="tab-control" >
+      <input type="radio" id="tab1" name="tab-control">
       <input type="radio" id="tab2" name="tab-control">
       <input type="radio" id="tab3" name="tab-control" checked>
       <input type="radio" id="tab4" name="tab-control">
@@ -415,9 +417,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   $sql3 = "SELECT * FROM  commodity_group WHERE  commodity_group_id=$commodity_group_id";
                   $result3 = mysqli_query($link, $sql3);
                   $row3 = mysqli_fetch_assoc($result3);
-                  if(isset($account)&& ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) && (time() < strtotime($row3["close_order_date"]) || $row3["close_order_date"] == null)){
-                  if ($result2 && mysqli_num_rows($result2) != 0) {
-                    echo '
+                  if (isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_group_state"] == 3) && (time() < strtotime($row3["close_order_date"]) || $row3["close_order_date"] == null)) {
+                    if ($result2 && mysqli_num_rows($result2) != 0) {
+                      echo '
                       <td class="text-right">
                         <center><button type="button" data-bs-toggle="modal" data-bs-target="#remark"
                             class="btn btn-block" style="background-color: #B0A5C6; color: white;">喊單 <i
@@ -425,7 +427,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                           </button>
                         </center>
                       </td>';
-                  }}
+                    }
+                  }
                   echo '</tr>
                   </tfoot>
                 </table>';
@@ -483,10 +486,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
             echo ' <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
-              </ul>
+            <nav aria-label="breadcrumb">
+             <ol class="breadcrumb" style="font-weight:600;">
+              <li class="breadcrumb-item"><a href="../lisa/InnerPage.php?commodity_group_id=' . $commodity_group_id . '" style="color:#B0A5C6;">討論區</a></li>
+              <li class="breadcrumb-item active" aria-current="page">回覆詳細</li>
+             </ol>
+            </nav>
+
             </div>
               <div class="row gy-4">
               <div class="col-lg-5 entries">
@@ -533,13 +539,14 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     <p>', $row["account"], '：</p>
                     <h3><B>', $row["question_title"], '</B></h3>
                     ';
-                    if($row["account"]==$_SESSION["account"]){
-                      echo'
+              if ($row["account"] == $_SESSION["account"]) {
+                echo '
                   <h4 style="float: right;margin-top:-70px;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>';}
-                  echo'
+                  </h4>';
+              }
+              echo '
                   <div style="float:right;margin-top:-15px;"">
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
                 </div><hr>
@@ -551,8 +558,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
               $result4 = mysqli_query($link, $sql4);
               $row4 = mysqli_fetch_assoc($result4);
-                if($row4["commodity_group_state"]!=2){
-              echo '<!-- Modal -->
+              if ($row4["commodity_group_state"] != 2) {
+                echo '<!-- Modal -->
               <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -570,7 +577,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
               </form>
           ';
-                }
+              }
             } else {
               echo '
             <div class="row gy-4">
@@ -580,25 +587,33 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 </article><!-- End blog entry -->
               </div><!-- End blog entries list -->';
               echo '
-              <div class="col-lg-12" style="border:1.25px solid 	#5B5B5B;border-radius:10px;margin-top:-10px;">
-                  <div class="card-header">    
-                      <div class="profile-picture big-profile-picture clear"
-                      style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: -10px;">
+              <div class="col-lg-12" style="border-radius:10px;margin-top:10px;background-color:#F8F8F8;">
+                  <div class="card-header" style="padding:10px;">    
+                    <div class="profile-picture big-profile-picture clear"style="width: 50px; height: 50px; border:0cm ;float: left;margin-left: 10px;">
                       <img width="100%" height="100%" alt="Anne Hathaway picture" src="', $row["user_avatar"], '">
                     </div>
-                    <p>', $row["account"], '：</p>
-                    <h3><B>', $row["question_title"], '</B></h3>';
-                    if($row["account"]==$_SESSION["account"]){
-                    echo'
-                  <h4 style="float: right;margin-top:-70px;">
+
+                    <div style="margin-top:20px;">
+                     <h5>&nbsp;&nbsp;', $row["account"], '<br><b>&nbsp;&nbsp;', $row["question_title"], '</b></h5>
+                   </div>';
+
+              if ($row["account"] == $_SESSION["account"]) {
+                echo '
+                  <h4 style="float: right;margin-top:-70px;cursor: pointer;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" 
                     data-bs-target="#deloredit' . $question_id . '"></i>
-                  </h4>';}
-                  echo'
-                  <div style="float:right;margin-top:-15px;"">
+                  </h4>';
+              }
+
+              
+              echo '
+                <div style="float:right;margin-top:-15px;"">
                   <i class="bi bi-clock" ></i>&nbsp;<small datetime="2020-01-01">', $row["time"], '</small></div>
-                </div><hr>
-                <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;">
+                </div>
+                
+                <hr>
+                
+                <div class="card-body " id="card' . $question_id . '" style="max-height:400px;width:100%;overflow-y: scroll;overflow-x: hidden;padding:10px;">
                   <p>', nl2br($row["question_narrate"]), '</p>           
                   </div>
                 </div><!-- End blog sidebar --> 
@@ -607,8 +622,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
               $result4 = mysqli_query($link, $sql4);
               $row4 = mysqli_fetch_assoc($result4);
-                if($row4["commodity_group_state"]!=2){
-              echo '<!-- Modal -->
+              if ($row4["commodity_group_state"] != 2) {
+                echo '<!-- Modal -->
               <form action="adddis.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
             <div class="modal fade" id="deloredit' . $question_id . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -626,13 +641,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               </div>
               </form>
           ';
-                }
+              }
             }
             mysqli_close($link);
             ?>
           </div>
 
-          <div class="blog-comments" style="max-height: 800px;overflow-y: scroll;overflow-x: hidden;">
+          <div class="blog-comments">
             <?php
             $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
             $commodity_group_id = $_GET["commodity_group_id"];
@@ -643,9 +658,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
             $result2 = mysqli_query($link, $sql2);
             $row2 = mysqli_fetch_assoc($result2);
             echo '
-              <h4 class="comments-count">' . $row2["totalcom"] . ' Comments</h4>';
+              <h4 class="comments-count">' . $row2["totalcom"] . ' 留言</h4>';
             while ($row = mysqli_fetch_assoc($result)) {
-              $reply_id=$row["reply_id"];
+              $reply_id = $row["reply_id"];
               echo '
               <div class="card mb-3 " style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                 <div class="row g-0">
@@ -659,15 +674,17 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">';
-                    if($row["account"]==$_SESSION["account"]){
-                      echo'
+              if ($row["account"] == $_SESSION["account"]) {
+                echo '
                     <h4 style="float: right;">
                     <i class="fa-solid fa-ellipsis-vertical" data-bs-toggle="modal" data-bs-target="#deloredit' . $row["reply_id"] . '"></i>
-                  </h4>';}
-                  echo'
+                  </h4>';
+              }
+              echo '
                         <h5>' . $row["account"] . '</h5>
-                        <time datetime="2020-01-01"><mark>' . $row["reply_time"] . '</mark></time>
-                        <p>
+                        <time datetime="2020-01-01"><i class="bi bi-clock" ></i>&nbsp;' . $row["reply_time"] . '</time>
+                        <hr>
+                        <p   style="max-height: 300px;overflow-y: scroll;overflow-x: hidden;">
                         ' . nl2br($row["reply_narrate"]) . '
                         </p>
                         ';
@@ -678,9 +695,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                 echo '
                   <div id="carouselExampleIndicators' . $row["reply_id"] . '" class="carousel slide" data-bs-ride="carousel" style="width:200px;height:200px;">
                       <div class="carousel-inner fixed-image2" style="width:200px;height:200px;">';
-                    
+
                 while ($row_photo = mysqli_fetch_assoc($result3)) {
-                  echo'<div class="carousel-item ';
+                  echo '<div class="carousel-item ';
                   if ($a == 1) {
                     echo 'active"';
                   }
@@ -701,13 +718,13 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                       </button>
                     </div>
                  ';
-              } 
+              }
               $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
               $result4 = mysqli_query($link, $sql4);
               $row4 = mysqli_fetch_assoc($result4);
-              
-                if($row4["commodity_group_state"]!=2){
-              echo '
+
+              if ($row4["commodity_group_state"] != 2) {
+                echo '
               <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" >
               <!-- Modal -->
               <div class="modal fade" id="deloredit' . $row["reply_id"] . '" tabindex="-1" aria-labelledby="deloreditLabel" aria-hidden="true">
@@ -719,26 +736,28 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" name="reply_id" value="', $row["reply_id"], '">
-                    <input type="hidden" name="question_id" value="', $question_id , '">
+                    <input type="hidden" name="question_id" value="', $question_id, '">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">取消</button>
                       <button type="submit" name="delcom" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #E9C9D6;border: none;color: white;">刪除</button>
                     </div>
                   </div>
                 </div>
                 </form>
-            ';}
-            echo '
+            ';
+              }
+              echo '
             </div>
                     </div>
                     </div>
                     </div>
                     </div>
                    
-              ';  }
-               
-              mysqli_close($link);
-              ?>
-              </div><!-- End blog comments -->
+              ';
+            }
+
+            mysqli_close($link);
+            ?>
+          </div><!-- End blog comments -->
           <center>
             <div class="blog-comments" style="margin-top:-50px;">
               <?php
@@ -752,8 +771,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
               $sql4 = "SELECT * FROM commodity_group WHERE commodity_group_id = $commodity_group_id";
               $result4 = mysqli_query($link, $sql4);
               $row4 = mysqli_fetch_assoc($result4);
-                if($row4["commodity_group_state"]!=2){
-              echo '
+              if ($row4["commodity_group_state"] != 2) {
+                echo '
                 <div class="reply-form">
                   <form action="reply.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form" enctype="multipart/form-data">
                   <input type="hidden" name="question_id" value="' . $question_id . '" >
@@ -779,8 +798,9 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         </div>
                       </div>
                   </form>
-                </div>';}
-                ?>
+                </div>';
+              }
+              ?>
             </div>
           </center>
         </section>
@@ -788,16 +808,17 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
         <section id="order">
           <h2>Returns</h2>
           <div class="filtertag">
-                <h4>對帳表</h4>
-              </div>
-              <br>
+            <h4>對帳表</h4>
+          </div>
+          <br>
           <style>
             .qu {
               color: #B0A5C6;
             }
 
             .qu:hover {
-              color: #E9C9D6; /* 悬停时的新颜色，例如橙色 */
+              color: #E9C9D6;
+              /* 悬停时的新颜色，例如橙色 */
             }
           </style>
           <?php
@@ -877,7 +898,7 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                           data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                           aria-selected="false">對帳表&nbsp;&nbsp;<i class="fa-solid fa-check"></i></button>
                       </li>
-                    </ul> 
+                    </ul>
                     <div class="tab-content" id="pills-tabContent">
                       <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
                         aria-labelledby="pills-profile-tab">
@@ -887,11 +908,12 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                           <h5><b>被拒絕之訂單：</b>賣家拒絕訂單後訂單狀態會改為拒絕接收，可以在詢問區詢問賣家原因</h5>
                           <br>
                           <h5><b>拒絕可能原因如下：</b>
-                          <ul>
-                            <li>未正確填好訂單資料(付款帳號等等)</li>
-                            <li>該訂單商品缺貨</li>
-                            <li>詳細可能原因請參照賣家的規則、注意賣家的通知</li>
-                          </ul></h5>
+                            <ul>
+                              <li>未正確填好訂單資料(付款帳號等等)</li>
+                              <li>該訂單商品缺貨</li>
+                              <li>詳細可能原因請參照賣家的規則、注意賣家的通知</li>
+                            </ul>
+                          </h5>
                         </div>
                         <div class="d-flex justify-content-center">
                           <img src="../files/螢幕擷取畫面 2024-06-03 145229.png" alt="發現功能"
@@ -1030,23 +1052,24 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                         <th style="font-size:17px;font-weight:bold;color:#B0A5C6;">訂單狀況：</th>
                         <td>
                        ';
-                       if($_SESSION["account"]==$account ){
-                       $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)){
-                          echo'<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
+            if ($_SESSION["account"] == $account) {
+              $commodity_group_state = $row["commodity_group_state"];
+              if (isset($_SESSION["account"]) && $order_state == "未成立" && ($commodity_group_state == 1 || $commodity_group_state == 3 || $commodity_group_state == 4)) {
+                echo '<p style="color:red;">訂單已被接收後將不能刪除訂單</p>
                           <form  method="post" action="order.php?commodity_group_id=' . $commodity_group_id . '"   enctype="multipart/form-data">
                         <input type="hidden" name="order_id" value="', $order_id, '">
                         <button class="btn btn-primary" type="submit" name="delorder" style="background-color:#e1bbca; border: none; color: white;">刪除訂單</button>
                         </form>';
-                        }
-                        $commodity_group_state=$row["commodity_group_state"];
-                        if(isset($_SESSION["account"]) && ($order_state != "未成立" && $order_state != "完成訂單")  && ($commodity_group_state == 1 || $commodity_group_state == 4)){
-                        echo'
+              }
+              $commodity_group_state = $row["commodity_group_state"];
+              if (isset($_SESSION["account"]) && ($order_state != "未成立" && $order_state != "完成訂單") && ($commodity_group_state == 1 || $commodity_group_state == 4)) {
+                echo '
                         <p style="color:red;">請確認收貨後再點擊完成訂單</p>
                         <button class="btn btn-primary"  type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eva' . $order_id . '"
-                        style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';}
-                      }
-                      echo'</tr>
+                        style="background-color: #E9C9D6; border: none; color: white;">完成訂單</button>';
+              }
+            }
+            echo '</tr>
                     </table>
                   </div>
                 <div class="modal-footer">
@@ -1135,18 +1158,18 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
           <div class="seven">
             <h1>無卡付款證明上傳區塊</h1>
           </div>
-          
-            <center>
-              
-                <?php
-                $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
-                $account = $_SESSION["account"];
-                $commodity_group_id = $_GET["commodity_group_id"];
-                $sql = "SELECT * FROM  account NATURAL JOIN `order` NATURAL JOIN order_details NATURAL JOIN commodity  WHERE account='$account' AND commodity_group_id={$commodity_group_id} ";
-                $result = mysqli_query($link, $sql);
-                $row = mysqli_fetch_assoc($result);
-                if(isset($account) && isset($row["order_id"]) && $row["order_state"]=="已成立"){
-                echo '<form action="addconform.php?commodity_group_id='.$commodity_group_id.'" method="post" role="form"
+
+          <center>
+
+            <?php
+            $link = mysqli_connect('localhost', 'root', '12345678', 'wishop');
+            $account = $_SESSION["account"];
+            $commodity_group_id = $_GET["commodity_group_id"];
+            $sql = "SELECT * FROM  account NATURAL JOIN `order` NATURAL JOIN order_details NATURAL JOIN commodity  WHERE account='$account' AND commodity_group_id={$commodity_group_id} ";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result);
+            if (isset($account) && isset($row["order_id"]) && $row["order_state"] == "已成立") {
+              echo '<form action="addconform.php?commodity_group_id=' . $commodity_group_id . '" method="post" role="form"
             enctype="multipart/form-data">
             <div class="card" style="width:80%">
                     <div class="card-header">
@@ -1190,7 +1213,8 @@ if(isset($account) && ($row3["commodity_group_state"] == 1 || $row3["commodity_g
                   <button class="btn btn-primary" name="submit" type="submit"
                   style="background-color: #E9C9D6;border: none;color: white;">上傳</button>
                 </div>
-                </form>'; }?>
+                </form>';
+            } ?>
         </section>
       </div>
     </div>

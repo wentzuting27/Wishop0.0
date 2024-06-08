@@ -857,10 +857,13 @@
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
             echo ' <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="fa-regular fa-hand-point-left"></i> <a
-                    href="../lisa/InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '">回上一頁</a></li>
-              </ul>
+            <nav aria-label="breadcrumb">
+             <ol class="breadcrumb" style="font-weight:600;">
+              <li class="breadcrumb-item"><a href="../lisa/InnerBuyer.php?commodity_group_id=' . $commodity_group_id . '" style="color:#B0A5C6;">討論區</a></li>
+              <li class="breadcrumb-item active" aria-current="page">回覆詳細</li>
+             </ol>
+            </nav>
+              
             </div>
               <div class="row gy-4">
               <div class="col-lg-5 entries">
@@ -1013,7 +1016,7 @@
             $result2 = mysqli_query($link, $sql2);
             $row2 = mysqli_fetch_assoc($result2);
             echo '
-              <h4 class="comments-count">' . $row2["totalcom"] . ' Comments</h4>';
+              <h4 class="comments-count">' . $row2["totalcom"] . ' 留言</h4>';
             while ($row = mysqli_fetch_assoc($result)) {
               $reply_id=$row["reply_id"];
               echo '
